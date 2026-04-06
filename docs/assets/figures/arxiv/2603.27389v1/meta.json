@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.27389v1/fig-001.webp",
+      "caption": "Table 1: Environment summary. Observation dimensionality ranges from 3 (Pendulum) to 17 (HalfCheetah, Walker2d). SAC is used only for continuous-action environments.",
+      "page": 6,
+      "index": 1,
+      "width": 736,
+      "height": 203
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27389v1/fig-002.webp",
+      "caption": "Figure 3: Combined: Violation score vs. reward ratio. Each point is one environment–algorithm–noiselevel condition. In environments where the score correctly tracks violations (e.g., HalfCheetah, CartPole), higher scores correspond to lower reward. Inverted pairs cluster near score ≈ 0 regardless of reward loss.",
+      "page": 11,
+      "index": 2,
+      "width": 660,
+      "height": 462
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27389v1/fig-003.webp",
+      "caption": "Figure 1: Phase 1: Violation score vs. noise intensity. Each panel shows one environment; lines represent different algorithms. Error bars are 95% CIs over 10 seeds. The score increases monotonically with α in HalfCheetah and CartPole. In Pendulum, Hopper (PPO/SAC), and Acrobot it decreases—the inversion phenomenon discussed in Section 5.3.",
+      "page": 7,
+      "index": 3,
+      "width": 964,
+      "height": 482
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27389v1/fig-004.webp",
+      "caption": "Table 3: Phase 2: Welch’s t-test. Clean (α = 0) vs. noised (α = 0.9) reward, 10 seeds. Thirteen of 16 pairs show significant degradation after Benjamini–Hochberg FDR correction (q < 0.05). Rewards rounded to integers.",
+      "page": 10,
+      "index": 4,
+      "width": 822,
+      "height": 463
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27389v1/fig-005.webp",
+      "caption": "Table 2: Phase 1 monotonicity. Spearman ρ between noise intensity α and violation score, pooled across seeds (n = 60 per pair). Seven pairs show the expected positive trend (HalfCheetah strongest at ρ = 0.78). Eight show significant inversion. See text for repeated-measures analysis that accounts for within-seed dependence.",
+      "page": 8,
+      "index": 5,
+      "width": 614,
+      "height": 548
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27389v1/fig-006.webp",
+      "caption": "Figure 2: Phase 2: Reward vs. noise intensity. AR(1) noise during training degrades final performance across nearly all conditions. The worst collapses: HalfCheetah-SAC drops from 8920 to −42; Walker2dSAC from 4244 to 318; CartPole-PPO from 500 to 53.",
+      "page": 9,
+      "index": 6,
+      "width": 964,
+      "height": 482
+    }
+  ]
+}

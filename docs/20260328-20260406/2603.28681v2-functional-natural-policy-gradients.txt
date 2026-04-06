@@ -1,0 +1,672 @@
+Title: Functional Natural Policy Gradients
+
+URL Source: https://arxiv.org/pdf/2603.28681v2
+
+Published Time: Mon, 06 Apr 2026 01:01:54 GMT
+
+Number of Pages: 10
+
+Markdown Content:
+# Functional Natural Policy Gradients 
+
+Aur´ elien Bibaut Houssam Zenati Thibaud Rahier Nathan Kallus April 6, 2026 
+
+Abstract 
+
+We propose a cross-fitted debiasing device for policy learning from offline data. A key con-sequence of the resulting learning principle is √N regret even for policy classes with complexity greater than Donsker, provided a product-of-errors nuisance remainder is O(N −1/2). The re-gret bound factors into a plug-in policy error factor governed by policy-class complexity and an environment nuisance factor governed by the complexity of the environment dynamics, making explicit how one may be traded against the other. 
+
+# 1 Introduction 
+
+Personalized decision policies are increasingly central in areas such as healthcare [Bertsimas et al., 2017], education [Mandel et al., 2014], and public policy [Kube et al., 2019], where tailoring actions to individual characteristics can improve outcomes. In many of these settings, however, actively experimenting with new policies to generate “online data” is expensive, risky, or infeasible, which motivates methods that can evaluate and optimize policies using pre-existing “offline data.” A variety of work studies semiparametric efficient estimation of the value of a fixed policy from offline data [Chernozhukov et al., 2018, Dud´ ık et al., 2011, Jiang and Li, 2016, Kallus and Uehara, 2020, 2022, Kallus et al., 2022, Scharfstein et al., 1999]. And, a variety of work considers selecting the policy that optimizes such estimates over policies in a given class [Athey and Wager, 2021, Chernozhukov et al., 2019, Foster and Syrgkanis, 2023, Kallus, 2021, Zhang et al., 2013, Zhou et al., 2023], which generally yields rates the scale with policy class complexity, e.g., OP (N −1/2)for VC classes. Luedtke and Chambaz [2020] get regret acceleration to oP (N −1/2) by leveraging an equicontinuity argument. Margin (or, noise) conditions controlling the fraction of hard deci-sion contexts can also speed up policy-search regret [Boucheron et al., 2005, Hu et al., 2022, 2024, Koltchinskii, 2006, Tsybakov, 2004, Tsybakov and van de Geer, 2005]. However, with the exception of Bennett and Kallus [2020] whose assumptions imply the optimal policy solves a smooth condi-tional moment restriction, none of these works leverage cross-fitting or debiasing to estimate the optimal policy itself, such as done for example when targeting a low-dimensional regular functional [Chernozhukov et al., 2024]. In this paper we show how to perform a cross-fitted policy debiasing update to an initial ERM policy fit. Specifically, we recycle the machinery of targeted maximum loss estimation (TMLE) [van der Laan and Gruber, 2016, van der Laan and Rose, 2011] to find a policy within a pre-specified policy class that maximally increases population-level policy value. To make the analogy clear for readers familiar with TMLE: here, the target functional is the optimal policy value, the nuisance we debias is the policy, and the efficient score equation we solve is an estimated first-order condition for value optimality at the population level. We demonstrate how to solve for the functional value-optimality condition via optimization along a one-dimensional policy subclass, which we construct in the same way van der Laan and 1
+
+> arXiv:2603.28681v2 [stat.ML] 3 Apr 2026
+
+Gruber [2016] construct a universal-least favorable submodel (ULFM) within a nuisance space. It turns out that, in the policy optimization setting, ULFMs are natural policy gradient (NPG) flows [Kakade, 2001]. In that sense, our proposal can be seen as a functional NPG ascent, and is similar in spirit to functional optimization (see El Khoury et al., 2025, Petrulionyte et al., 2024 for example). The key statistical enablers of our results are two-fold. First, we construct estimated NPG flows / ULFMs on one split of the data and optimize the index along the estimated flow on another split of the data, which allows us to debias policies living in classes much larger than Donsker. Second, we leverage the TMLE principle: in policy learning, what we are after primarily isn’t a good estimate of the optimal value but a good estimate of a policy that realizes it. The TMLE principle allows us to merge these two objectives in one: since a TMLE is a plug-in estimate, a plug-in policy that realizes a good estimate of the optimal value must have good regret. Our results of course do not violate existing minimax results on policy learning. Our theorem provides rates in terms of an empirical process term over the one-dimensional NPG flow, which is trivially OP (N −1/2) and a product-of-nuisance-errors remainder term. The latter makes appear an environment-nuisance error factor and a policy error factor. What makes it possible to achieve root-N regret rate over larger-than-Donsker policy classes is that the environment dynamics are learnable. Therefore simple environment dynamics can alleviate the learning burden of complex policy class. 
+
+# 2 Setup 
+
+We consider the contextual bandit setting. We observe i.i.d. copies of a context-action-reward triplet ( X, A, Y ) ∈ X × [K] × [0 , 1], for some K ≥ 1, generated from a context density qX , logging policy πb, and a conditional density of reward given action and context qY , where densities are w.r.t. an appropriate dominating measure. Specifically 
+
+X ∼ qX , (1) 
+
+A | X = x ∼ πb(· | x), (2) 
+
+Y | X = x, A = a ∼ qY (· | a, x ). (3) For any policy π, generic pair of context and reward densities q = ( qX , q Y ), and f : X × [K]×[0 , 1] →
+
+R, x ∈ X , a ∈ [K], define 
+
+Pq,π f := 
+
+Z
+
+qX (x) X
+
+> a
+
+π(a | x)qY (y | a, x )f (x, a, y ) dx dy, (4) 
+
+P := Pq,π b , (5) 
+
+Q(a, x ) := 
+
+Z
+
+yq Y (y | a, x )dy, (6) 
+
+V (q, π ) := 
+
+Z
+
+qX (x) X
+
+> a
+
+π(a | x)Q(a, x ) dx (7) =Pq,π Y, (8) 
+
+Jλ(q, π ) = V (q, π ) − λ
+
+Z
+
+qX (x) X
+
+> a
+
+π(a | x) log π(a | x) dx. (9) Let Π a class of policies. For any π, denote TΠ(π) the tangent space of Π at π, that is 
+
+TΠ(π) := { ∂ϵ log πϵ|ϵ=0 : {πϵ : ϵ} regular one-dimensional submodel of Π , π ϵ=0 = π} . (10) 23 Semiparametric natural gradient and natural gradient flow 
+
+Definition 1 (Semiparametric natural policy gradient) . For any pair of environment densities 
+
+q = ( qX , q Y ) and policy π ∈ Π, we define the semiparametric natural policy gradient at π under qG(q, π ) as 
+
+G(q, π ) ∈ arg min 
+
+> ϕ∈TΠ(π)
+
+
+
+Pq,π 
+
+12 ϕ2 − ∂πJλ(q, π )( πϕ )
+
+
+
+. (11) 
+
+Remark 1. In the nonparametric policy class, that is when Π is the full simplex pointwise in x,the Riesz representer of the differential 
+
+ϕ 7 → ∂πJλ(q, π )( πϕ ) (12) 
+
+under the inner product 
+
+(ϕ1, ϕ 2) 7 → Pq,π [ϕ1ϕ2] (13) 
+
+is the centered entropy-adjusted advantage 
+
+Aq,π (x, a ) := {Q(a, x ) − λ log π(a | x)} − X
+
+> a′
+
+π(a′ | x) Q(a′, x ) − λ log π(a′ | x) . (14) 
+
+Indeed, for any score ϕ satisfying P 
+
+> a
+
+π(a | x)ϕ(x, a ) = 0 ,
+
+∂πJλ(q, π )( πϕ ) = Pq,π [Aq,π ϕ] . (15) 
+
+For a semiparametric policy class Π, the natural gradient G(q, π ) is the Riesz representer of the same differential restricted to the tangent space TΠ(π). Equivalently, G(q, π ) is the L2(Pq,π )-projection of Aq,π onto TΠ(π):
+
+G(q, π ) ∈ arg min 
+
+> ϕ∈TΠ(π)
+
+Pq,π 
+
+(ϕ − Aq,π )2 . (16) 
+
+Thus the nonparametric gradient is the centered entropy-adjusted advantage, while under a semi-parametric policy class the gradient is its projection onto the tangent space of Π at π.
+
+Remark 2. In higher level terms, remark 1 states that, in the nonparametric setting, the “direction” of highest value ascent is the advantage. The right notion of “directions” in optimization, and functional optimization, and in particular the space in which gradients live, is the tangent space. In the semiparametric setting, some components of the advantage are orthogonal to the tangent space. The advantage is a gradient in the sense that its inner product against scores gives the the variation of the objective. In semiparametric statistics terms, any such object is a valid gradient. The canonical gradient is the minimum norm such gradient, and it is thus the one that has no orthogonal component to the tangent space. This is why, in our setting the canonical gradient, which we also refer to here as the natural gradient to match optimization terminology, is the projection of the advantage onto the tangent space. 
+
+Note that for any regular one-dimensional subclass {πϵ : ϵ} ⊂ Π such that πϵ=0 = π and 
+
+∂ϵ log πϵ ϵ=0 = ϕ, we have 
+
+∂ϵJλ(q, π ϵ) ϵ=0 = Pq,π G(q, π ) · ϕ. (17) 3Note that by definition, G(q, π ) ∈ TΠ(π), and therefore they are π-centered pointwise in x, that is, P 
+
+> a
+
+π(a | x)G(q, π )( a, x ) = 0 for any x ∈ X . The natural policy gradient can be defined as a minimizer of a risk under the data-generating distribution π via importance sampling weighting. Specifically, G(q, π ) = eG(P, π ) for 
+
+eG(P, π ) ∈ arg min 
+
+> ϕ∈TΠ(π)
+
+
+
+P 12
+
+ππb
+
+ϕ2 − ∂π eJλ(P, π )( πϕ )
+
+
+
+(18) with 
+
+∂π eJλ(P, π )( πϕ ) := P ππb
+
+∂πJλ(q, π )( πϕ ). (19) 
+
+Definition 2 (Natural policy gradient flow) . For any ¯P , ¯π, let t ∈ [0 , ∞) 7 → πt( ¯P , ¯π) be defined by the ordinary differential equation 
+
+
+
+ddt log πt( ¯P , ¯π) = eG  ¯P , π t( ¯P , ¯π),π0( ¯P , ¯π) = ¯ π. 
+
+(NPGF) 
+
+We refer to t ∈ [0 , ∞) 7 → πt( ¯P , ¯π) as the natural policy gradient flow. 
+
+Our construction mimics the least favorable uniform submodel construction in van der Laan and Gruber [2016]. 
+
+Remark 3. The terminology “natural policy gradient flow” is literal here. The defining differential equation evolves the policy in the score coordinates log πt using the Riesz representer of the value differential under the L2(Pq,π ) geometry. In a smooth finite-dimensional parametric model Π = 
+
+{πθ : θ ∈ Θ}, this reduces to the usual natural-gradient picture: the score span defines the tangent space, the L2(Pq,π θ ) inner product induces the Fisher information, and the resulting update is the Fisher-preconditioned gradient direction. The present construction should therefore be read as a coordinate-free, semiparametric version of natural policy gradient [Kakade, 2001]. 
+
+# 4 Cross-fitted debiased optimal policy estimator 
+
+We now construct an optimal policy estimator as follows: (1) we compute an initial (entropy regu-larized) empirical risk minimizer on a first split of the data, (2) we then construct a one-dimensional natural gradient flow starting at the initial estimator and estimating the gradients using a second split of the data, and (3) we select an index of the natural gradient flow that maximizes the (entropy regularized) value on a third split of the data. Formally, let P −1 
+
+> N
+
+, P 0 
+
+> N
+
+, and P 1 
+
+> N
+
+be empirical measures generated by three splits of the data each consisting of N i.i.d. draws from P . Let ˆπ0 ∈ arg max 
+
+> π∈Π
+
+eJλ(P −1 
+
+> N
+
+, π ), (20) be an initial policy estimator computed from the −1 split, let 
+
+t1 := arg max 
+
+> t≥0
+
+eJλ
+
+ P 1 
+
+> N
+
+, π t(P 0 
+
+> N
+
+, ˆπ0) (21) 4Algorithm 1 Cross-fitted debiased policy learning via functional natural gradient flow 
+
+Require: Three independent empirical splits P −1 
+
+> N
+
+, P 0 
+
+> N
+
+, P 1 
+
+> N
+> 1:
+
+Compute an initial regularized ERM policy ˆπ0 ∈ arg max 
+
+> π∈Π
+
+eJλ(P −1 
+
+> N
+
+, π ). 
+
+> 2:
+
+Starting from ˆ π0, construct the natural policy gradient flow 
+
+t 7 → πt(P 0 
+
+> N
+
+, ˆπ0)using the middle split P 0 
+
+> N
+
+to estimate the natural gradient field.  
+
+> 3:
+
+Select the index 
+
+t1 ∈ arg max 
+
+> t≥0
+
+eJλ(P 1 
+
+> N
+
+, π t(P 0 
+
+> N
+
+, ˆπ0)) using the third split P 1 
+
+> N
+
+. 
+
+> 4:
+
+Output the cross-fitted debiased policy ˆπ⋆ := πt1 (P 0 
+
+> N
+
+, ˆπ0).
+
+be the index of the policy along the gradient flow that optimizes the value estimated on the 1 split and let ˆπ⋆ := πt1 (P 0 
+
+> N
+
+, ˆπ0). (22) be the policy along the gradient flow indexed by the cross-fitted t1. The full procedure is summarized in Algorithm 1. As in targeted minimum loss estimation, we think of ˆ π⋆ as a debiased policy. Define the oracle (soft-)optimal policy 
+
+π⋆ ∈ arg max 
+
+> π∈Π
+
+eJλ(P, π ). (23) 
+
+Remark 4. Algorithmically, the procedure starts from a plug-in ERM policy, then replaces the difficult task of optimizing over the full policy class by a one-dimensional search along an estimated natural-gradient flow. This algorithm should be read as a one-shot offline policy-improvement pro-cedure under fixed logging, not as a repeated online policy-iteration scheme. The role of cross-fitting is twofold: it makes the path construction and the path selection statistically separable, and it is precisely what allows the final regret decomposition to feature a one-dimensional empirical-process term together with product-of-errors nuisance remainders. 
+
+The following theorem provides conditions under which a regret bound holds. 
+
+Theorem 1. Assume Π is convex and that t1 is an interior maximizer of 
+
+t 7 → eJλ
+
+ P 1 
+
+> N
+
+, π t(P 0 
+
+> N
+
+, ˆπ0). (24) 
+
+and ˆπ⋆ defined as in (22) . Then 
+
+Jλ(q, π ⋆) − Jλ(q, ˆπ⋆) ≤ I + II + III, (25) 5where 
+
+I = ( P − P 1 
+
+> N
+
+) ˆπ⋆
+
+πb
+
+eG(P 0 
+
+> N
+
+, ˆπ⋆) ·
+
+ π⋆
+
+ˆπ⋆
+
+− 1
+
+
+
+, (26) 
+
+II = P ˆπ⋆
+
+πb
+
+  eG(P, ˆπ⋆) − eG(P 0 
+
+> N
+
+, ˆπ⋆) ·
+
+ π⋆
+
+ˆπ⋆
+
+− 1
+
+
+
+, (27) 
+
+III = eG(P 0 
+
+> N
+
+, ˆπ⋆) − eG(P 1 
+
+> N
+
+, ˆπ⋆) ˆπ⋆,P 1
+
+> N
+
+π⋆
+
+ˆπ⋆
+
+− 1 ˆπ⋆,P 1
+
+> N
+
+, (28) 
+
+where, for any f : X × [K] × [0 , 1] → R, policy ¯π and distribution ¯P with domain X × [K] × [0 , 1] ,
+
+∥f ∥¯π, ¯P := ( ¯P {(¯ π/π b)f 2})1/2.
+
+Remark 5. Conditional on the −1 and 0 splits, I is an empirical process term over the one-dimensional gradient flow which is substantially simpler than a global empirical-process analysis over the full policy class. It is trivially OP (N −1/2) under a compactness condition that holds essentially for free. 
+
+Remark 6. Terms II and III are error-product terms where the first factor in each is an environment-nuisance error factor (measuring how well the environment-dependent quantities are learned) and the second is a policy error factor (measuring how far the selected policy is from the oracle policy along the policy side). It may help to understand why the first factors are pure environment-nuisance errors to notice that under a locally fully nonparametric Π, they reduce to differences in estimated advantage functions. 
+
+Remark 7. Remarks 5 and 6 explain the core statistical implications of the decomposition of theorem 1. Rather than paying policy-class complexity through a global stochastic process over Π,we pay it only through its interaction with environment estimation error, which is what makes root-N regret possible beyond the classical Donsker regime. 
+
+Remark 8. The theorem controls soft regret in terms of the entropy-regularized value Jλ, not directly hard regret in terms of the value V . The two differ only through the bias induced by entropy regularization: in the finite-action case, hard regret is soft regret plus at most an O(λ)
+
+term, more precisely λ log K. Hence λ trades statistical/optimization stability against distance to the unregularized optimum. 
+
+Remark 9. The reason why we optimize the entropy penalized value and not directly the unpenal-ized value along the gradient flow is to ensure that the optimum is realized at an interior point. The interior stationarity condition ensures that the debiased policy satisfies a certain zero-gradient equation. In semiparametric statistics terms, this annulation of the gradient is referred to as sat-isfying the efficient influence function (EIF) equation. Finding a nuisance that satisfies the EIF equation is what targeted learning does. Proof. The proof combines the first-order condition for the cross fitted index t1 with a von-Mises expansion in terms of the natural gradient. 
+
+Stationarity at an interior point of the gradient flow. From the definitions (19) and (18) of the IS-weighted differential ˜Jλ and of ˜G the gradient in terms of the P -risk, stationarity at 
+
+G(P 1 
+
+> N
+
+, π t(P 0 
+
+> N
+
+, ˆπ0)) and the chain rule, 
+
+ddt eJλ(P 1 
+
+> N
+
+, π t(P 0 
+
+> N
+
+, ˆπ0)) = P 1
+
+> N
+
+πt(P 0 
+
+> N
+
+, ˆπ0)
+
+πb
+
+eG(P 1 
+
+> N
+
+, π t(P 0 
+
+> N
+
+, ˆπ0)) · ddt log πt(P 0 
+
+> N
+
+, ˆπ0). (29) 6Then from the definition of the gradient flow, we have 
+
+ddt log πt(P 0 
+
+> N
+
+, ˆπ0) = eG(P 0 
+
+> N
+
+, π t(P 0 
+
+> N
+
+, ˆπ0)) ,
+
+and therefore, from stationarity at t1, it holds that 0 = P 1
+
+> N
+
+ˆπ⋆
+
+πb
+
+eG(P 1 
+
+> N
+
+, ˆπ⋆) · eG(P 0 
+
+> N
+
+, ˆπ⋆) (30) =
+
+D eG(P 1 
+
+> N
+
+, ˆπ⋆), eG(P 0 
+
+> N
+
+, ˆπ⋆)
+
+E 
+
+> ˆπ⋆,P 1
+> N
+
+, (31) where, for any distribution ¯P with domain X × [K]×[0 , 1], policy ¯ π and f1, f 2 : X × [K]×[0 , 1] → R,we define the ⟨· , ·⟩ ¯P , ¯π inner product by 
+
+⟨f1, f 2⟩ ¯P , ¯π := ¯P ¯ππb
+
+f1f2. (32) 
+
+Submodel definition. We introduce 
+
+ϕ⋆ := π⋆
+
+ˆπ⋆
+
+− 1, (33) which is a score, and we construct a one-dimensional policy class {πϵ : ϵ ∈ [0 , 1] } with score ϕ⋆
+
+at every ϵ by letting for every ϵ ∈ [0 , 1] πϵ := ˆ π⋆(1 + ϵϕ ⋆). Convexity of Π ensures that {πϵ : ϵ ∈
+
+[0 , 1] } ⊂ Π. Then, a second order Taylor expansion provides the existence of eϵ ∈ [0 , 1] such that 
+
+Jλ(q, π ⋆) − Jλ(q, ˆπ⋆) = ∂ϵJλ(q, π ϵ) ϵ=0 + 12 ∂ϵϵ Jλ(q, π ϵ) ϵ=eϵ (34) = P ˆπ⋆
+
+πb
+
+eG(P, ˆπ⋆) · ϕ⋆ − λ
+
+2 ∂ϵϵ P H (πϵ)( X) ϵ=eϵ, (35) by definition of the gradient at ˆ π⋆, because the value term V (q, π ϵ) is affine in ϵ and with 
+
+H(π)( x) := X
+
+> a
+
+π(a | x) log π(a | x). (36) 
+
+Second order derivative of the entropy along the path. We have that 
+
+H(πϵ)( x) = X
+
+> a
+
+ˆπ⋆(a | x)(1 + ϵϕ ⋆(a | x)) log(ˆ π⋆(a | x)(1 + ϵϕ ⋆(a | x))) (37) = Q(ϵ) + S(ϵ), (38) with 
+
+Q(ϵ) := X
+
+> a
+
+ˆπ⋆(a | x)(1 + ϵϕ ⋆(a | x)) log ˆ π⋆(a | x), (39) 
+
+S(ϵ) := X
+
+> a
+
+ˆπ⋆(a | x)(1 + ϵϕ ⋆(a | x)) log(1 + ϵϕ ⋆(a | x)) . (40) We have 
+
+S′(ϵ) = X
+
+> a
+
+ˆπ⋆(a | x)ϕ⋆(a | x) log(1 + ϵϕ ⋆(a | x)) + X
+
+> a
+
+ˆπ⋆(a | x)ϕ⋆(a | x), (41) 7and Q′′ (ϵ) = 0. We have 
+
+S′′ (ϵ) = X
+
+> a
+
+ˆπ⋆(a | x) ϕ2
+
+> ⋆
+
+(a | x)1 + ϵϕ ⋆(a | x) (42) = X
+
+> a
+
+ˆπ⋆(a | x) ˆπ⋆(a | x)
+
+πϵ(a | x) ϕ2
+
+> ⋆
+
+(a | x) > 0. (43) Hence 
+
+∂ϵϵ P H (πϵ)( X) ϵ=eϵ > 0, (44) 
+
+Von Mises Expansion. The second order derivative above gives us that 
+
+Jλ(q, π ⋆) − Jλ(q, ˆπ⋆) ≤ P ˆπ⋆
+
+πb
+
+eG(P, ˆπ⋆) · ϕ⋆ = I + II + III ′, (45) with 
+
+I := ( P − P 1 
+
+> N
+
+) ˆπ⋆
+
+πb
+
+eG(P 0 
+
+> N
+
+, ˆπ⋆) · ϕ⋆, (46) 
+
+II := P ˆπ⋆
+
+πb
+
+  eG(P, ˆπ⋆) − eG(P 0 
+
+> N
+
+, ˆπ⋆) · ϕ⋆, (47) 
+
+III ′ := P 1
+
+> N
+
+ˆπ⋆
+
+πb
+
+eG(P 0 
+
+> N
+
+, ˆπ⋆) · ϕ⋆. (48) Therefore, from Pythagoras and the orthogonality identity (31) arising from interior stationarity at t1,
+
+eG(P 0 
+
+> N
+
+, ˆπ⋆) ˆπ⋆,P 1
+
+> N
+
+≤ eG(P 0 
+
+> N
+
+, ˆπ⋆) − eG(P 1 
+
+> N
+
+, ˆπ⋆) ˆπ⋆,P 1
+
+> N
+
+, (49) and then from Cauchy–Schwarz 
+
+|III ′| ≤ eG(P 0 
+
+> N
+
+, ˆπ⋆) − eG(P 1 
+
+> N
+
+, ˆπ⋆) ˆπ⋆,P 1
+
+> N
+
+∥ϕ⋆∥ˆπ⋆,P 1
+
+> N
+
+. (50) 
+
+# References 
+
+Susan Athey and Stefan Wager. Policy learning with observational data. Econometrica , 89(1): 133–161, 2021. doi: 10.3982/ECTA15732. Andrew Bennett and Nathan Kallus. Efficient policy learning from surrogate-loss classification reductions. In International Conference on Machine Learning , pages 788–798. PMLR, 2020. Dimitris Bertsimas, Nathan Kallus, Alexander M. Weinstein, and Ying Daisy Zhuo. Personalized diabetes management using electronic medical records. Diabetes Care , 40(2):210–217, 2017. St´ ephane Boucheron, Olivier Bousquet, and G´ abor Lugosi. Theory of classification: A survey of some recent advances. ESAIM: Probability and Statistics , 9:323–375, 2005. 8Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian Hansen, Whitney Newey, and James Robins. Double/debiased machine learning for treatment and structural parameters. The Econometrics Journal , 21(1):C1–C68, 2018. doi: 10.1111/ectj.12097. Victor Chernozhukov, Mert Demirer, Greg Lewis, and Vasilis Syrgkanis. Semi-parametric efficient policy learning with continuous actions. In Advances in Neural Information Processing Systems 32 , 2019. Victor Chernozhukov, Christian Hansen, Nathan Kallus, Martin Spindler, and Vasilis Syrgkanis. Applied causal inference powered by ml and ai. arXiv preprint arXiv:2403.02467 , 2024. Miroslav Dud´ ık, John Langford, and Lihong Li. Doubly robust policy evaluation and learning. In 
+
+Proceedings of the 28th International Conference on Machine Learning , 2011. Fares El Khoury, Edouard Pauwels, Samuel Vaiter, and Michael Arbel. Learning theory for kernel bilevel optimization. arXiv preprint arXiv:2502.08457 , 2025. Dylan J. Foster and Vasilis Syrgkanis. Orthogonal statistical learning. The Annals of Statistics , 51 (3):879–908, 2023. Yichun Hu, Nathan Kallus, and Xiaojie Mao. Fast rates for contextual linear optimization. Man-agement Science , 68(6):4236–4245, 2022. Yichun Hu, Nathan Kallus, Xiaojie Mao, and Yanchen Wu. Contextual linear optimization with partial feedback. arXiv preprint arXiv:2405.16564 , 2024. Nan Jiang and Lihong Li. Doubly robust off-policy value evaluation for reinforcement learning. In 
+
+International Conference on Machine Learning , pages 652–661. PMLR, 2016. Sham M. Kakade. A natural policy gradient. In Advances in Neural Information Processing Systems 14 , 2001. Nathan Kallus. More efficient policy learning via optimal retargeting. Journal of the American Statistical Association , 116(534):646–658, 2021. Nathan Kallus and Masatoshi Uehara. Double reinforcement learning for efficient off-policy evalu-ation in markov decision processes. Journal of Machine Learning Research , 21(167):1–63, 2020. Nathan Kallus and Masatoshi Uehara. Efficiently breaking the curse of horizon in off-policy eval-uation with double reinforcement learning. Operations Research , 70(6):3282–3302, 2022. Nathan Kallus, Xiaojie Mao, Kaiwen Wang, and Zhengyuan Zhou. Doubly robust distributionally robust off-policy evaluation and learning. In International Conference on Machine Learning ,pages 10598–10632. PMLR, 2022. Vladimir Koltchinskii. Local rademacher complexities and oracle inequalities in risk minimization. 2006. Amanda Kube, Sanmay Das, and Patrick J. Fowler. Allocating interventions based on predicted outcomes: A case study on homelessness services. In Proceedings of the AAAI Conference on Artificial Intelligence , volume 33, pages 622–629, 2019. 9Alex Luedtke and Antoine Chambaz. Performance guarantees for policy learning. Annales de l’Institut Henri Poincar´ e, Probabilit´ es et Statistiques , 56(3):2162–2188, 2020. doi: 10.1214/19-AIHP1034. Travis Mandel, Yun-En Liu, Sergey Levine, Emma Brunskill, and Zoran Popovic. Offline policy evaluation across representations with applications to educational games. In AAMAS , volume 1077, 2014. Ieva Petrulionyte, Julien Mairal, and Michael Arbel. Functional bilevel optimization for machine learning. Advances in Neural Information Processing Systems , 37:14016–14065, 2024. Daniel O. Scharfstein, Andrea Rotnitzky, and James M. Robins. Adjusting for nonignorable drop-out using semiparametric nonresponse models. Journal of the American Statistical Association ,94(448):1096–1120, 1999. Alexander B. Tsybakov. Optimal aggregation of classifiers in statistical learning. The Annals of Statistics , 32(1):135–166, 2004. Alexandre B. Tsybakov and Sara A. van de Geer. Square root penalty: adaptation to the margin in classification and in edge estimation. 2005. Mark van der Laan and Susan Gruber. One-step targeted minimum loss-based estimation based on universal least favorable one-dimensional submodels. The International Journal of Biostatistics ,12(1):351–378, 2016. doi: 10.1515/ijb-2015-0054. Mark J. van der Laan and Sherri Rose. Targeted Learning: Causal Inference for Observational and Experimental Data . Springer, 2011. Baqun Zhang, Anastasios A. Tsiatis, Eric B. Laber, and Marie Davidian. Robust estimation of optimal dynamic treatment regimes for sequential treatment decisions. Biometrika , 100(3), 2013. Zhengyuan Zhou, Susan Athey, and Stefan Wager. Offline multi-action policy learning: General-ization and optimization. Operations Research , 71(1):148–183, 2023. 10

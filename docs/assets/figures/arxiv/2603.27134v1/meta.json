@@ -1,0 +1,102 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-001.webp",
+      "caption": "Figure 4: Failure to capture SII can induce hallucinations. (a) Sequential updating of example posteriors under Joint and Naive inference. (b) Distribution of hits and misses at each step, pooled over episodes. Misinterpreting evidence yields episodes with performance below chance.",
+      "page": 6,
+      "index": 1,
+      "width": 824,
+      "height": 296
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-002.webp",
+      "caption": "Figure 3: Recurrent Neural Networks align with theoretical predictions. (a) Architecture (left) and gradient flow (right) of the Classifier. Only the goal belief-state receives a gradient. (b-d) Same as Figure 2b (for C = 1, 2) with Fully Trained and Echo State Networks.",
+      "page": 6,
+      "index": 2,
+      "width": 822,
+      "height": 253
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-003.webp",
+      "caption": "Figure 13: Failing to capture interaction information causes entanglement over time. Same as Figure 12, for the final observation (t = T ). The Fully Trained network successfully maintains factorized representations akin to Joint Bayes. In contrast, the Echo State and Naive Bayes representations of rc and rc′ become entangled, as evidenced by the inability to linearly separate them from the top 2 components.",
+      "page": 25,
+      "index": 3,
+      "width": 785,
+      "height": 698
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-004.webp",
+      "caption": "Figure 5: Goals enable generalization from experience through compositional embeddings. Schematic demonstrating compositional generalization to a novel combination of states.",
+      "page": 7,
+      "index": 4,
+      "width": 822,
+      "height": 181
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-005.webp",
+      "caption": "Figure 6: A variational architecture learns compositional embeddings from reward. (a) Active states interact via learnable embeddings to form interactions. (b) Forward pass and gradient flow of the Classifier and Generator. The Classifier learns from rewards while the Generator uses selfsupervised-learning (SSL). (c) Testing episode accuracy of the Classifier throughout training.",
+      "page": 7,
+      "index": 5,
+      "width": 817,
+      "height": 277
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-006.webp",
+      "caption": "Figure 11: Early C = 2 learning dynamics reveal different strategies. (a) Average final step accuracy improves throughout training for both Fully Trained and Echo State networks during early training. (b) A negative correlation between accuracy and Semantic Interaction Information (SII) emerges early on, and persists for the Echo State network. (c) The predictability of accuracy from SII closely tracks the Participation Ratio (PR) of the recurrent dynamics minus the Participation Ratio of the read-in activity. Over time, the Fully Trained network expands its recurrent dimensionality, while the Echo State network develops a more expressive read-in.",
+      "page": 23,
+      "index": 6,
+      "width": 814,
+      "height": 325
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-007.webp",
+      "caption": "Figure 10: Additional examples of Bayesian inference for C = 2. Representative examples of belief-state updating under Joint and Naive inference.",
+      "page": 23,
+      "index": 7,
+      "width": 810,
+      "height": 462
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-008.webp",
+      "caption": "Figure 7: Conditional generative modeling enables optimization in compositional spaces. (a) Schematic illustrating the mapping of preferred observations (Ω) to their respective likelihoods and the cumulative landscape (accumulated over i in subsection 3.4). (b) An example traversal, from the lowest to the highest point on the landscape, changes observations to best match the agent’s preference. (c) Controller learning curves (mean± SEM, n = 20 initializations of Ω). Performance is evaluated asR(argmaxrπ(r),Ω, ℓ, Z)/maxrR(r,Ω, ℓ, Z) (using the true ℓ and Z).",
+      "page": 8,
+      "index": 8,
+      "width": 822,
+      "height": 280
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-009.webp",
+      "caption": "Figure 1: Environment schematic for C = 2. Observations are generated stochastically. State interactions parameterize the likelihood and state realizations fix the probability of each observable.",
+      "page": 4,
+      "index": 9,
+      "width": 821,
+      "height": 288
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-010.webp",
+      "caption": "Figure 12: Belief representations are initially factorized. Top 2 Principal Components of the marginal beliefs at the first time step (t = 1) for Fully Trained Networks, Echo State networks, Joint Bayes and Naive Bayes. Beliefs are colored by the realization sum rc+ rc′ (top), difference rc− rc′ (middle), and average belief entropy − ∑ c ∑ r B1cr lnB1cr (bottom).",
+      "page": 24,
+      "index": 10,
+      "width": 785,
+      "height": 698
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-011.webp",
+      "caption": "Figure 9: A flexible process for embedding Gridworld structure into latent space. The embeddings of active states are compressed into interactions which are then expanded to a set of vectors that map to a discrete probability distribution over possible realizations of the world.",
+      "page": 20,
+      "index": 11,
+      "width": 812,
+      "height": 403
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27134v1/fig-012.webp",
+      "caption": "Figure 2: The cost of Naive Bayes grows with time and interactions. (a) Joint (matrices) and independent (vectors) likelihoods for example observables. (b) Top: Accuracy of Joint (left) and Naive (right) Bayes across varying context sizes. Bottom: Relative accuracy (left) and Semantic Interaction Information (right) of Joint versus Naive Bayes. Circles mark four equidistant reference time-points throughout inference.",
+      "page": 5,
+      "index": 12,
+      "width": 814,
+      "height": 404
+    }
+  ]
+}

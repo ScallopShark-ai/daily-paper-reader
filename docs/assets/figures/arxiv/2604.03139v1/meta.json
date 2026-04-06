@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2604.03139v1/fig-001.webp",
+      "caption": "Fig. 3: In our real-world experimental setup, we deployed the framework on a Unitree Go2 EDU quadruped robot. A custom 3D-printed mount was used to attach an Intel RealSense D455 camera to the robot for capturing real-time RGB observations.",
+      "page": 7,
+      "index": 1,
+      "width": 420,
+      "height": 327
+    },
+    {
+      "url": "assets/figures/arxiv/2604.03139v1/fig-002.webp",
+      "caption": "TABLE I: Performance comparison on MP3D and HM3D datasets. We evaluate methods on ON, IIN, TN, and OV tasks. Results of REST are reported from its original paper, which only provides overall ObjectNav results without task decomposition.",
+      "page": 6,
+      "index": 2,
+      "width": 1068,
+      "height": 421
+    },
+    {
+      "url": "assets/figures/arxiv/2604.03139v1/fig-003.webp",
+      "caption": "Fig. 2: The overall framework of FSUNav Cerebrum is shown in the figure. A unified Vision-Language Model (VLM) serves as the core semantic engine across three Cerebrum layers. The Semantic Layer parses multimodal goals into structured target profiles and performs open-vocabulary grounding; the Spatial Layer integrates VLM-driven semantic waypoints with geometry-based frontier exploration for efficient navigation; and the Rule Layer orchestrates behavior via two-stage verification and adaptive cooldown, while also constructing a semantic scene graph. This hierarchical design enables training-free, zero-shot adaptation to heterogeneous goal-oriented navigation tasks.",
+      "page": 6,
+      "index": 3,
+      "width": 1076,
+      "height": 383
+    },
+    {
+      "url": "assets/figures/arxiv/2604.03139v1/fig-004.webp",
+      "caption": "Fig. 1: The overall framework of FSUNav is shown in the figure. Current vision-language navigation methods still face significant limitations in terms of heterogeneous robot compatibility, real-time performance, and navigation safety, while also struggling to support open-vocabulary semantic generalization and multimodal task inputs. To address these issues, this paper proposes FSUNav, which leverages an efficient dual-brain collaborative architecture to achieve fast, safe, and generalizable zero-shot goal-oriented navigation, delivering comprehensive improvements in generalization capability, real-time performance, safety, and robustness.",
+      "page": 4,
+      "index": 4,
+      "width": 860,
+      "height": 675
+    },
+    {
+      "url": "assets/figures/arxiv/2604.03139v1/fig-005.webp",
+      "caption": "Fig. 4: Under a maximum locomotion speed of 0.6 m/s, the quadruped robot successfully completed the open-vocabulary object goal navigation task targeting “umbrella.” During the experiment, the robot not only demonstrated efficient mobility but also exhibited real-time dynamic obstacle avoidance capabilities, achieving safe approach and accurate identification of the target object in unstructured environments. Additional task types for the quadruped robot, along with physical experiments involving the humanoid robot G1 and wheeled mobile robots, are planned to be updated in subsequent versions.",
+      "page": 8,
+      "index": 5,
+      "width": 1076,
+      "height": 456
+    }
+  ]
+}

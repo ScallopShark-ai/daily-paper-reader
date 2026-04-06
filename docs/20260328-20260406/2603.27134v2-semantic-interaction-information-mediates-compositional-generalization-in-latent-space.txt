@@ -1,0 +1,1062 @@
+Title: Semantic Interaction Information mediates compositional generalization in latent space
+
+URL Source: https://arxiv.org/pdf/2603.27134v2
+
+Published Time: Fri, 03 Apr 2026 00:22:38 GMT
+
+Number of Pages: 31
+
+Markdown Content:
+# SEMANTIC INTERACTION INFORMATION MEDIATES COMPOSITIONAL GENERALIZATION IN LATENT SPACE 
+
+John Schwarcz 
+
+Edmond and Lily Safra Center for Brain Sciences (ELSC) The Hebrew University of Jerusalem Jerusalem, Israel 
+
+Johnschwarcz@gmail.com 
+
+# ABSTRACT 
+
+Are there still barriers to generalization once all of the relevant variables are known? We address this question via a framework that casts compositional generalization as a variational inference problem over latent variables with parametric interactions. To explore this framework, we develop the Cog-nitive Gridworld , a stationary Partially Observable Markov Decision Process (POMDP) in which observations are generated jointly by multiple latent variables, yet feedback is provided only for a single goal variable. This setting allows us to describe Semantic Interaction Information : an information-theoretic quantity that measures the contribution of latent variable interactions to task performance. Using this metric, we first analyze Recurrent Neural Networks (RNNs) that are ex-plicitly provided with the interactions and find that Semantic Interaction Information explains the accuracy gap between Echo State and Fully Trained networks. Additionally, our analysis uncovers a theoretically predicted failure mode, where confidence becomes decoupled from accuracy. These results suggest that utilizing the interactions between relevant variables is a non-trivial capability. We then address a harder regime where the interactions themselves must be learned by an embedding model. Learning how latent variables interact requires accurate inference, yet accurate inference de-pends on knowing those interactions; this circular dependence is characteristic of variational infer-ence. The Cognitive Gridworld reveals this circularity as a potential challenge for continual meta-learning. We approach this dilemma via Representation Classification Chains (RCCs), a JEPA-style architecture which disentangles two processes: variable inference and variable embeddings are learned by separate modules through Reinforcement Learning and self-supervised learning, respec-tively. Lastly, we demonstrate that, by learning how variables interact, RCCs facilitate composi-tional generalization to novel combinations of relevant variables and offline learning in novel action spaces. Together, these results establish a theoretically grounded setting for researching, developing and evaluating goal-directed generalist agents. 
+
+# 1 INTRODUCTION 
+
+As Machine Learning tackles increasingly difficult challenges, rigidity and unreliability remain a significant barrier to the development of generalist agents. A central obstacle is the fact that what 
+
+can be learned depends crucially on what has been learned. For instance, inferring time of day from 
+
+ambient light becomes significantly more reliable after learning about seasons (perhaps in order to explain changes in temperature). While a combinatorial explosion can emerge from interactions, only a small number of variables may be relevant to a given task. Therefore, the world could be compressed into something far more manageable, insofar as the goal-directed agent is concerned [98, 80]. Similarly in nature, the knowledge an animal gains from an experience is shaped by internal objectives (hunger, safety, curiosity, etc) that constrain what will be learned from each experience. Nevertheless, animals develop a far better understanding of the world than modern reasoning models [96, 71], in part due to a remarkable intuition for how abstract variables interact. To address this shortcoming, we must be able to differentiate meaningful intelligence from that which is trivial. [17] defines intelligence as ’skill-acquisition efficiency’, emphasizing the capacity to build upon prior knowledge. This relies on the ability to recognize or propose an unseen com-bination of elements as a novel solution, known as compositional generalization. In this paper, we 
+
+# 1
+
+> arXiv:2603.27134v2 [cs.LG] 1 Apr 2026
+
+formalize compositional generalization with abstract variables as the elemental units, using the prin-ciple of Interaction Information – mutual information among three or more random variables [106]. Interaction information has been used to understand sensory modality integration [73] and causal inference [30], but has not yet been put into a Reinforcement Learning (RL) framework. We bridge this gap by unifying Interaction Information with Semantic Information – the subset of information that is meaningful for survival [50]. To exemplify the relationship between Semantic Information and Interaction Information, consider an agent with two possible actions (i.e. causal interventions ), where reward r is determined by an 
+
+exclusive or (XOR) operation between the agent’s action a and a hidden (i.e. latent ) binary variable 
+
+c. XOR demonstrates Interaction Information in its purest form [79]: Action a and reward r are independent unless the agent knows the value of auxiliary variable c. We consider such variables as contextual since they mediate the dependencies between action, observations and reward, while not being directly causal. Here, we introduce Semantic Interaction Information (SII) – the con-tribution of Interaction Information between latent variables (and observables) to inference of the optimal action. More generally, SII emerges when conditioning on observables changes the mutual information between contextual variables and the optimal action. Conceptually, SII measures how much more certain an agent becomes about its goal by accounting for latent variable interactions, rather than treating them in isolation. Moreover, when variables interact in a systematic manner, an agent can use this to generalize to novel combinations of latent variables. In summary, we argue that meaningful intelligence can be made formal, through Information The-ory and RL, as learning from inference in environments with compositional latent structure (often studied under the umbrella of meta-learning [85, 38, 51]). Our support for SII as a mediator of 
+
+meaningful intelligence can be split into three primary sections: (1) Cognitive Gridworld (CG): Aminimal task that rewards agents for performing mental navigation in a compositional latent space. 
+
+(2) Representation Classification Chains (RCCs): A novel architecture that consolidates expe-rience into parametric embeddings to be used as building blocks for future learning. (3) Offline Optimization: A demonstration of the usefulness of RCCs for zero-shot control in novel spaces. 
+
+# 2 RELATED WORKS 
+
+2.1 COMPOSITIONAL GENERALIZATION 
+
+Learning to interact with the environment was originally described by Classical Behaviorism [91], and was formalized in RL as the reinforcement of actions that maximize internal reward (condi-tioned on the state of the world) [9, 93, 81]. Generalization in unambiguous environments can then be described as learning how independent dimensions of the state space interact in a manner that extrapolates to novel situations [34]. This capacity to recognize a novel combination of elements as a coherent whole is referred to as compositional generalization [47, 52]. Compositional repre-sentations emerge naturally in recurrent networks trained to perform complex sensory predictions [10]. Other works explore how such representations may be formed by specialized regions of the brain. The Tolman-Eichenbaum Machine (TEM) [108] models the Hippocampus as a network that learns to navigate a grid of past experiences. The ”internal action” of navigating between sensory observations is proposed to convey their relationships and facilitate prediction. Similarly, models of animal behavior and perception describe sequential inference akin to navigation towards a ”decision boundary” [90, 31, 48, 56, 12, 22, 45, 70, 83, 84]. This suggests that the internal ’commitments’ of a decision-making process can be treated as elemental units, allowing for compositional generalization to novel combinations of relevant decision-variables. A minimal task which allows researchers to design and manipulate hidden interactions could be a valuable tool for general intelligence research, complementary to the modern, large-scale benchmarks currently used [18, 77, 32]. The Cognitive Gridworld is an attempt to provide a formally grounded setting which explores the challenges of compositional generalization when the world is not fully observable. 2.2 PARTIALLY OBSERVABLE MARKOV DECISION PROCESSES 
+
+Animals often learn without the need for concrete examples or symbols to reason with. For in-stance, riding a bike can become automatic without an understanding of all its mechanisms. Such abstract reasoning is often implicit—a ’gut-feeling’ that is effortlessly utilized but not as easily ex-
+
+# 2plained. Inference under such uncertainty can be modeled with a POMDP [61, 43]. POMDPs utilize a belief-state , a probability distribution over possible world states which is updated either passively by observation or actively via goal-directed exploration [39, 46]. Distributional representations suf-fer from the curse of dimensionality, so effective agents must encode goal-relevant information into a compressed approximation of the belief-state [5, 80]. Incidentally, belief-like representations have been implicated in the dopaminergic neurons involved in RL [36, 35]. Furthermore, cortical dynam-ics are often found to lie on a low dimensional manifold [57, 20]. In this work, we consider the compositional generalization that emerges from the dynamics of approximate inference. Observa-tions in the Cognitive Gridworld are fundamentally ambiguous, without any inherent spatiotemporal structure that could circumvent the need to learn to approximate the underlying world model. 2.3 GENERATIVE MODELING 
+
+The brain is hypothesized to cluster observations by independent latent causes [29, 25] through mechanisms such as attention and computation through dynamics [65, 103, 102]. Together, these form a traversable cognitive map [100, 8, 28]—an abstract space of task-relevant variables. This capability is believed to emerge via meta-learning [53, 105], wherein agents learn a repertoire of computations that can be reconfigured as needed for flexible inference [111, 101, 11]. Modern meta-learning algorithms utilize conditional generative models to produce data for the agent to train on. For instance, PEARL learns a posterior over contextual variables that summarize recent expe-rience, and conditions the agent on samples from this posterior to facilitate few-shot acquisition of novel goals [76]. Additionally, [2] show that diffusion-based decision-making can generalize by combining conditioning variables at inference time. [1] consider the task of continual learning to be identifying generative factors that are shared between datasets. Using this assumption, their VASE algorithm learns independent factors in the data and recombines them to generate augmented data to train on. Such research illustrates the value of a simple, standardized meta-learning task cen-tered around compositional abstractions. To demonstrate the usefulness of the Cognitive Gridworld, we show that the manner by which latent variables interact can be consolidated into embeddings. Learning these compositional embeddings , which encode how a variable will interact with others, requires conditioning a generative model on the inference model, and vice versa. To achieve this, we develop Representation Classification Chains and show that, after learning, the process can be inverted to evaluate locations on a novel cognitive map, with respect to preferred observations. 2.4 SETUP 
+
+Our goal is to facilitate the study and development of agents that can generalize from goal-directed inference. To simplify our scope, we assume that for any specific goal, only a small number of latent variables are relevant, and that they interact in a systematic and learnable manner. We refer to the variables as states and their values as realizations , which are governed by a random process wherein each latent state, in a context of C relevant states, takes on a value from R possibilities: 
+
+r i.i.d. 
+
+∼ U ({1, . . . , R })C , where rc ∈ r is the realization of state c. 
+
+The agent observes the world through a do-dimensional observation space O (Figure 1), where the probability of each independent observable oi ∈ { 0, 1}, ∀oi ∈ o depends on r via a joint likelihood parameterized by state interactions , Z. For simplicity and learnability, we assume that interactions are pairwise and independent, resulting in |Z| = do × C × (C − 1) interactions. The likelihood of observing oi = 1 , denoted by the shorthand ℓzi (r), ∀zi ∈ Z (where ℓzi (r) ≡ Pzi (oi = 1 | r))is given by a tensor of order C with R entries along each axis. Each interaction zicc ′ ∈ zi (denoting the modulation from state c′ onto state c) shifts the phase of the periodic (w.r.t to rc) likelihood. This functionally ”rolls” values of ℓzi (r) along axis c. Since our goal is to generate Interaction Information in an interpretable manner, ℓzi (r) is modeled around the exclusive or operation, while remaining adjustable to other stationary POMDPs. Further details can be found in subsection A.2. An episode E is defined by the tuple (r, g, Z, o1: T ), containing the realizations, a randomly selected goal index g ∼ { 1, . . . , C }, the set of interactions, and a trajectory of T i.i.d. observations. The agent’s objective is to infer the realization of the goal state, a⋆ = rg , and select the corresponding action a ∈ { 1, . . . , R }. The agent can estimate rg by using sequential Bayesian inference: 
+
+PZ (r | o1: t) ∝ PZ (ot | r) PZ (r | o1: t−1),
+
+# 3Generative Process 
+
+## Observables Observations Figure 1: Environment schematic for C = 2 . Observations ot are generated stochastically. State interactions Z parameterize the likelihood PZ (o | r) and state realizations (r1, r 2) fix the probability of sampling each observable oi.where the joint likelihood of the independent observables follows a geometric distribution: 
+
+PZ (o = ot | r) = 
+
+> do
+
+Y
+
+> i=1
+
+ℓzi (r)oit (1 − ℓzi (r)) 1−oit .
+
+Our results are structured as follows: (i) Demonstrating how interactions impact Bayesian observers; Then training (ii) RNNs to capture Semantic Interaction Information; (iii) RCCs to learn how vari-ables interact; (iv) RL-agents to identify regions of latent space that generate preferred observations. 
+
+# 3 RESULTS 
+
+3.1 SEMANTIC INTERACTION INFORMATION MEDIATES THE RELATIVE ACCURACY OF 
+
+BAYESIAN OBSERVERS IN A STATIONARY POMDP A natural baseline for our setting is a Bayesian observer whose marginal beliefs ( Btc ) are updated in-dependently. The likelihood for this Naive observer is acquired by marginalizing the joint likelihood (Figure 2a). Semantic Interaction Information quantifies the contribution of Interaction Information to marginal beliefs as the kullback-leibler divergence ( DKL ) between Btg acquired through Joint and independent inference: SII t = DKL (BJoint  
+
+> tg
+
+∥BNaive  
+
+> tg
+
+)
+
+(A formal derivation is provided in subsection A.3). Figure 2b compares the posterior distributions of the Bayesian observers. We observe that, for both Joint and Naive Bayes, the average performance (calculated as ⟨1 − [arg max r
+
+ Btgr 
+
+ = a⋆]⟩E using Iverson bracket notation) improves with the number of evidences received and declines with the number of interactions. However, the relative accuracy attained by joint inference when compared to independent inference grows rapidly with the number of interactions, in accordance with the Semantic Interaction Information. In summary, the Cognitive Gridworld demonstrates that even in stationary POMDPs, systematic gaps emerge between nuanced and Naive Bayesian observers, despite both possessing perfect memory. 3.2 EXPERIMENT 1: T HE COGNITIVE GRIDWORLD REQUIRES FLEXIBLE NEURAL DYNAMICS 
+
+The Cognitive Gridworld inverts the standard dependency structure of most tasks. Typically, inde-pendent features of an observation space (e.g., pixels or tokens) become conditionally dependent given the realization of a latent variable (e.g., a label or concept). In a CG, conditioning on latent variable realizations causes observables to become independent. The lack of spatial or temporal correlations in the observation space yields a uniform distribution of data, such that all learnable structure is latent. The network performing sequential inference, referred to as the Classifier , con-sists of Long-Short-Term-Memory (LSTM) units and receives Z and o1: T . To demonstrate that arbitrary neural dynamics that encode Z and o1: T are insufficient, we benchmark a Fully Trained 
+
+# 4(a) (b) Figure 2: The cost of Naive Bayes grows with time and interactions. (a) Joint (matrices) and independent (vectors) likelihoods for example observables. (b) Top: Accuracy of Joint (left) and Naive (right) Bayes across varying context sizes. Bottom: Relative accuracy (left) and Semantic Interaction Information (right) of Joint versus Naive Bayes. Circles mark four equidistant reference time-points throughout inference. RNN against reservoir computing ( Echo State RNN). While Echo State dynamics provide random temporal features on which to learn a function of recent inputs, they suffer from fundamental lim-itations that may be viewed as a tradeoff between discrimination and generalization, memory and nonlinearity or recall and precision [3, 21, 6, 40, 99, 97]. As a result, we predicted that the perfor-mance of an Echo State network would resemble that of a Naive Bayesian observer. 3.2.1 INTERACTION INFORMATION UNDERLIES NETWORK CAPABILITY AT INFERENCE TIME 
+
+To ensure the Echo State network has a rich teaching signal to learn from, we train with the opti-mal belief as the target (see subsection 5.1 for details), and to ensure performance does not reflect memory limitations, the network outputs belief updates ∆Bt ∈ RC×R which we accumulate over time (Figure 3a). In Figure 3b we observe that the performance of the Fully Trained network is explained by Joint Bayes, meanwhile, as predicted, the Echo State network reaches exactly the ac-curacy of Naive Bayes (Figure 3c). Crucially, the Echo State network performs optimally in the single latent-state case ( C = 1 ), where joint inference is equivalent to independent inference. This indicates the sub-optimality at C = 2 is not due to basic memory limitations, but a specific inability to approximate joint inference. Moreover, the relative accuracy between the Fully Trained and Echo State networks mirrors the exact ratio seen between Joint and Naive Bayes (Figure 3d). These results suggest that task-aligned dynamics [89] are particularly necessary when latent variables interact. 3.2.2 NAIVE BAYES PREDICTS THE FAILURE MODE EXHIBITED BY RESERVOIR COMPUTING 
+
+A closer look at the belief dynamics in C = 2 in Figure 4 reveals an unexpected failure mode analogous to hallucinations: high confidence in an incorrect conclusion. Figure 4a shows a repre-sentative trajectory of goal belief under Joint and Naive Bayes (additional trajectories are provided in Supplementary Figure 10). In Figure 4b, we pool the belief assigned to the correct action (i.e. the probability of a hit ) over episodes and analyze its density at each step of the trajectory. Early in the trajectory (blue), the distribution of hits is centered near chance. As time progresses, the density shifts rightward, reflecting a growing probability of a hit. Unexpectedly, for models that ignore SII (the Echo State network and Naive Bayes), a second, disjoint peak emerges below chance (Figure 4b, right column). This peak represents a significant fraction of trajectories where misinterpretation of evidence lead the agent to become wrong and confident . In other words, the consequence of ne-glecting SII is not just a reduction in accuracy, but the active creation of confident, incorrect belief. Therefore, in the presence of Interaction Information, model confidence becomes unreliable. 
+
+# 5(a) (b) (c) (d) 
+
+> LSTM Read-in Read-out
+> Gradient
+> Fully Trained Echo State
+> Read-in Read-out
+
+Figure 3: Recurrent Neural Networks align with theoretical predictions . (a) Architecture (left) and gradient flow (right) of the Classifier. Only the goal belief-state receives a gradient. (b-d) Same as Figure 2b (for C = 1 , 2) with Fully Trained and Echo State Networks. (a) (b) 
+
+Figure 4: Failure to capture SII can induce hallucinations . (a) Sequential updating of example posteriors under Joint and Naive inference. (b) Distribution of hits and misses at each step, pooled over episodes. Misinterpreting evidence yields episodes with performance below chance. 3.3 EXPERIMENT 2: L EARNING INTERACTIONS REQUIRES VARIATIONAL INFERENCE 
+
+Thus far we have established that Interaction Information can be an obstacle to optimal action se-lection in a POMDP. In experiment 1, networks were trained while explicitly receiving Z. In the following experiments we assume that latent states interact in an unknown, but learnable, manner. To implement this, we introduce compositional state embeddings which encode how states interact. Each latent state ( s ∈ S ) is associated with a set of learnable embeddings {(kis, qis)}do 
+
+> i=1
+
+∈ E . The context of each episode thus includes the subset of C ⊂ S active states, which map to interactions through zicc ′ = ( qic)⊤kic′ , ∀{{ c, c ′} | c, c ′ ∈ C, c ̸ = c′} (illustrated in Figure 5). We assume that the active states of the context have already been discovered (e.g., by VASE-like methods) and focus on the challenges which emerge from their novel combinations . The agent now must con-solidate experience into an internal representation {(ˆkis, ˆqis)}do 
+
+> i=1
+
+∈ ˆE (Figure 6a) that estimates the true embedding space. By conditioning on estimated interactions ˆZ, a gradient can be propagated back to ˆE, however the full task of learning ˆP ˆZ (o | ˆr) (where ˆr = arg max r ˆP ˆZ (r | o)) presents a difficult ”chicken-and-egg” problem: learning useful embeddings depends on accurate inference, yet accurate inference depends on having useful embeddings. 3.3.1 NATURALISTIC FEEDBACK IS SUFFICIENT FOR LEARNING INTERACTIONS 
+
+Inspired by the V-JEPA 2-AC architecture [4], we separate the problem into embedding and pre-diction. Our Representation Classification Chains (RCC) (Figure 6b) use a variational approach where modules bootstrap off each other without sharing gradients: a Classifier predicts state realiza-tions from ˆZ, while a Generator maximizes the likelihood of observations conditioned on ˆZ and ˆr
+
+# 6(see subsection 5.2 for details). To train the Classifier we treat the goal belief as a policy. At the end of a trajectory we sample an action and use a cross-entropy-style loss to provide naturalistic feed-back that is sparse (end-of-trajectory), partial (goal-state only), and binary (reward/punishment). Concurrently, the Generator network is trained via a self-supervised loss and the gradient flows from 
+
+ˆZ to ˆE, teaching the embedding space to be useful for the Generator. Importantly, we define a sub-set of testing states which, during training, (i) never appear as goals and (ii) never co-occur in a context. Additionally, training contexts contain (at most) one testing state , while testing contexts contain only testing states . Because contextual belief is never evaluated during training, testing states’ embeddings must be learned via their implicit relationships to training goals. Figure 6c illus-trates the improvement in test accuracy, throughout training, at each step of inference, demonstrating that ˆE is indeed learnable from naturalistic feedback. Testing Episodes with Testing states (2,3)   
+
+> Active State Embeddings
+> Training Episodes with Training states (1,4) and Testing states (2,3)
+
+Figure 5: Goals enable generalization from experience through compositional embeddings. 
+
+Schematic demonstrating compositional generalization to a novel combination of states. (a) (b) (c)  
+
+> Classifier
+> Generator RL SSL
+
+Figure 6: A variational architecture learns compositional embeddings from reward. (a) Active states interact via learnable embeddings to form interactions. (b) Forward pass and gradient flow of the Classifier and Generator. The Classifier learns from rewards while the Generator uses self-supervised-learning (SSL). (c) Testing episode accuracy of the Classifier throughout training. 3.4 EXPERIMENT 3: L ATENT SPACE NAVIGATION ENABLES OFFLINE OPTIMIZATION 
+
+In the previous section, we demonstrated that experience can be consolidated into compositional em-beddings given the appropriate architecture. We next connect this architecture with the growing body of work in meta-learning and continual learning, where generalization is supported by conditioning generative models on variables such as action, context, cluster, class and constraints [39, 76, 2, 32]. 
+
+# 7By conditioning on the interactions between causal factors (such as the testing states introduced in subsubsection 3.3.1), Generator-supported optimization may even allow for zero-shot control in novel spaces. Here, we model such a process as traversing an internally generated Cognitive Grid-world. In this setup, the agent has preferred observations Ω and directly controls realizations r,modeling a hypothetical interaction (or imagined interaction) with the world. The objective is to maximize intrinsic reward R(r, Ω, ˆℓ, ˆZ), for a given preference Ωi ∈ [0 , 1] of each observable. The intrinsic reward is given by a normalized log-sum of preference-weighted Bernoulli likelihoods: 
+
+R(r, Ω, ˆℓ, ˆZ) = exp 1
+
+do
+
+X
+
+> i
+
+ ln( ˆℓˆzi (r))Ω i + ln(1 − ˆℓˆzi (r))(1 − Ωi)!
+
+.
+
+The schematic in Figure 7a, demonstrates the mapping from preferences to specific likelihoods and their integration into a preference landscape of R(r, Ω, ˆℓ, ˆZ). Figure 7b illustrates how navigating this landscape impacts the generated observations, which an agent can utilize to identify the latent state that will maximize its preference. A benefit of this setup is that complex latent space traversals remain highly interpretable as simple RL agents (i.e. Controllers ) navigating a Cognitive Gridworld. (b) (c) (a)                    
+
+> Preference Landscape
+> Start End Generated Observations Preference
+> Training
+> Ω= 1 11−( ) ℓzirℓzi( ) rCum.
+> Ω= 0 2
+> Ω= 0 3
+> Ω= 0 4
+> Ω= 1 5110 100 1000
+> Controller Training Episodes
+> 0.6
+> 0.7
+> 0.8
+> 0.9
+> 1.0
+> % Max Reward Learning Curves
+> Online Offline w/ Joint Offline w/ Generator
+
+Figure 7: Conditional generative modeling enables optimization in compositional spaces. (a) 
+
+Schematic illustrating the mapping of preferred observations ( Ω) to their respective likelihoods and the cumulative landscape (accumulated over i in subsection 3.4). (b) An example traversal, from the lowest to the highest point on the landscape, changes observations to best match the agent’s preference. (c) Controller learning curves (mean ± SEM, n = 20 initializations of Ω). Performance is evaluated as R(argmax rπ(r), Ω, ℓ, Z )/ max r R(r, Ω, ℓ, Z ) using the ground truth ℓ and Z.The Controllers are trained through a standard Advantage Actor-Critic (A2C) algorithm. We com-pare training Controllers across three conditions that vary estimates of ˆZ and ˆℓ:In the Online condition (i) , the Controller directly interacts with the environment, setting the state of the world to a joint realization sampled from the Actor’s policy. ˆZ is learned from scratch by training a Generator (like in subsubsection 3.3.1, but since this agent directly controls the world there is no uncertainty around r and therefore ˆE is learned much faster). The likelihoods ˆℓ in R(r, Ω, ˆℓ, ˆZ) are approximated using the empirical average observation ⟨o⟩t of the episode. The other two agents learn Offline , sampling a joint realization r and imagining the resulting obser-vations, without any manipulation of the environment. These agents receive an estimate of ˆZ coming from embedding space ˆE which was passively learned through Representation Classification Chains. In order to approximate ˆℓ in R(r, Ω, ˆℓ, ˆZ), the Offline agent w/ Generator (ii) uses the Generator that was pre-trained by the RCC to approximate ˆℓˆzi (r) ← ˆPˆzi (oi = 1 | r). Serving as an oracle for comparison, the Offline agent w/ Joint Bayes (iii) uses the ground-truth ˆℓzi (r) ← Pzi (oi = 1 | r).Training fully offline with the generative model achieves the same performance and efficiency as training with direct access to the joint likelihood (Figure 7c). Figure 8 displays the Offline w/ Gen-erator agent’s deterministic policy (argmax rπ(r)) throughout several example learning trajectories. These traversals reveal the utility of compositional embeddings for offline optimization. 
+
+# 8rcrc '    
+
+> rcrcrcrcrc
+
+Figure 8: Example offline learning trajectories w/ Generator. The evolution of the deterministic policy, argmax rπ(r), is plotted throughout offline training from initialization (red circles) to the end of training (green stars). Trajectories are overlaid on the preference landscapes to demonstrate nav-igation in the internally generated Cognitive Gridworld. More examples are presented in Figure 14. 
+
+# 4 DISCUSSION 
+
+In this work, we attempted to formalize the ability to generalize from past experience as an instance of variational inference with latent variables that interact in a parametric embedding space. We intro-duced the concept of Semantic Interaction Information to quantify the reward-relevant information that emerges from these latent variable interactions. To operationalize interactions, we developed the Cognitive Gridworld, a modular environment designed to differentiate meaningful and trivial intelligence. Crucially, Semantic Interaction Information not only explained task performance on average, but also predicted a failure mode reminiscent of hallucinations . These findings support the treatment of Naive Bayes as a theoretical lower bound on meaningful intelligence in station-ary POMDPs. While the exponential growth of potential interactions renders exhaustive learning computationally intractable, goals create the necessary pressure to discover specific relationships. In this work, we operationalized continual meta-learning as the conjunction of variational and se-quential inference. This allowed us to establish the Cognitive Gridworld as a testbed for evaluating generalization from goal-directed experience. Building off previous work, we demonstrated that Representation Classification Chains enable an agent to learn compositional embeddings from nat-ural feedback and passive experience. These embeddings can then be utilized to optimize novel objectives without further environmental interaction. It is notable that while Representation Clas-sification Chains were trained on individual training states, compositional embeddings enabled the Offline Controller to optimize a policy in a multi-dimensional (joint) testing state space. This builds upon [2]’s work, recasting model-free RL as a conditional generative modeling problem, which en-abled generalization to a novel combination of inputs (e.g. constraints, reward functions, etc). Con-versely, by recasting latent space traversals as a model-free RL problem, RCC’s generalize to novel combinations of outputs (e.g. decision variables, control variables etc). This may be particularly helpful for optimizing non-differentiable objectives. In summary, RCCs serve as promising evalua-tors that learn passively during goal-directed experience. Their ability to evaluate in imagined latent spaces allows for zero-shot generalization to novel combinations of relevant causal factors. Future work should attempt to integrate RCCs with the VASE algorithm to identify which embeddings are relevant to a task, rather than assuming this is known. Beyond artificial intelligence, we also aspired to provide a compelling model of meaningful intel-ligence in animals. Specifically, Semantic Interaction Information offers a unifying lens through which to interpret the diverse empirical findings on the Orbitofrontal Cortex (OFC), a region criti-cal for cognitive flexibility and highly specialized in primates [15, 23, 87, 58, 19, 37, 41, 82, 72]. This area is necessary for latent state inference, adaptation to context, and evaluation of feature conjunctions [24, 95, 26, 88, 16, 69, 92, 60, 86]. Furthermore, OFC activity is thought to rep-resent a multidimensional abstract space with reward-dependent compression, encoding goals and a “common currency” value, including the value of information itself and of imagined outcomes [68, 67, 44, 95, 7, 62, 74, 14]. These seemingly disparate functions—inference, evaluation, imagi-nation, and compositionality—all follow naturally from the objective of maximizing SII. This view also offers a framework for understanding the complementary cognitive maps of the Hip-pocampus and OFC [109, 110, 49, 104, 63, 54]. While the Hippocampus is well suited for dynamic environments where order matters [75], sequential Bayesian inference in a stationary environment is permutation invariant. According to our framework, the Hippocampus compresses ordered sen-
+
+# 9sory sequences into embeddings which encode how underlying causal factors would interact if they co-occurred. Once consolidated into the cortex, the task-relevant embeddings must be integrated across multiple timescales, sensory modalities and levels of abstraction. This likely requires top-down control of inter-cortical communication. We propose that the OFC is this cortical conductor, recruiting the distributed cortical representations of independent latent variables into a brain-wide model of the world through its robust connections with limbic, thalamic, and neuromodulatory sys-tems [78, 27, 94, 55, 42, 64, 107]. This would imply that the integration of information distributed throughout the cortex should be permutation invariant. Incidentally, treating the environment as fixed (yet unknown) is precisely the assumption that makes meta-learning tractable [66]. In sum-mary, we propose that maximization of Semantic Interaction Information serves as an objective for which the OFC and Hippocampus collaborate; the Hippocampus consolidates ordered sequences into compositional representations embedded throughout the cortex, meanwhile the OFC expands interactions between relevant representations into a cognitive map for optimizing novel objectives. 
+
+# 5 METHODS 
+
+5.1 EXPERIMENT 1: 
+
+Network goal belief. The goal belief BNet  
+
+> tgr
+
+is extracted from the accumulated output Mtcr =
+
+Ptt′=1 Mt′cr (where Mt′cr is single timestep network pre-activations) via a softmax over possible realizations BNet  
+
+> tgr
+
+= eMtgr   
+
+> P
+> r′eMtgr ′
+
+. Although observations are conditionally independent given the joint latent state (rg , r c), the optimal maximum a posteriori (MAP) estimate of rg requires marginalizing the joint likelihood over rc before maximizing: 
+
+arg max 
+
+> rg
+
+PZ (rg | o1: T ) = arg max 
+
+> rg
+
+ln X
+
+> rc
+
+exp 
+
+> T
+
+X
+
+> t=1
+
+ln PZ (ot | rg , r c)
+
+!! 
+
+.
+
+Crucially, because the summation over rc envelops the temporal accumulation, the log-likelihood cannot be decomposed into a simple iterative summation over time for the marginals. There-fore, sequential Bayesian updating is only Markovian with respect to an intractable joint posterior 
+
+PZ (rg , r c | o1: t). Since ∆Btc is restricted to marginal beliefs to remain tractable, re-evaluating the marginal Btc in light of a new observation ot+1 will not be Markovian. Therefore, performing this update accurately requires the network’s memory state to encode the missing joint dependen-cies—specifically, the interaction information—that is lost when only tracking marginals. 
+
+Classifier loss. To provide a rich teaching signal, we minimize a symmetrized KL divergence between the network and optimal goal belief-state (where α = 0 .5 gave the best results): 
+
+LSII =
+
+ 12 DKL (BJoint  
+
+> tg
+
+∥ BNet  
+
+> tg
+
+) + 12 DKL (BNet  
+
+> tg
+
+∥ BJoint  
+
+> tg
+
+)
+
+α
+
+.
+
+5.2 EXPERIMENT 2: 
+
+Classifier loss. At the end of each trajectory we sample an action a ∼ BT gr and receive outcome 
+
+δ(a − rg ) ∈ { 0, 1}. We train using a cross-entropy-style objective with an entropy bonus ( β1): 
+
+LClassifier = −1
+
+T
+
+X
+
+> t
+
+δ(a − rg )
+
+| {z }
+
+> rewarded
+
+ln Btga +  1 − δ(a − rg )| {z }
+
+> unrewarded
+
+ln(1 − Btga ) − (−β1 Btga ln Btga 
+
+| {z }
+
+> entropy bonus
+
+),
+
+Gradients from LClassifier update only the Classifier parameters. 
+
+Generator loss. We sample a latent configuration ˆr from the Classifier belief at t = T (without 
+
+a gradient), and train the Generator to maximize the likelihood of observations. Since the true generative distribution is unknown, we construct an empirical target distribution ˜P (o), where the 
+
+# 10 likelihood of each independent observable is given by its trajectory average ˜P (oi = 1) = ⟨oi⟩t. We use this to compute a symmetric DKL (hence a self-supervised loss): 
+
+LGenerator = 12 DKL 
+
+  ˜P (o) ∥ ˆP ˆZ (o | ˆr) + 12 DKL 
+
+  ˆP ˆZ (o | ˆr) ∥ ˜P (o) + Lreg .
+
+Gradients from LGenerator update the embeddings via gradient flow through ˆZ.5.3 EXPERIMENT 3: 
+
+Controller loss. The Controller is trained using an Advantage Actor-Critic (A2C) algorithm to maximize the intrinsic reward. The Actor and Critic both receive ˆZ, and output a policy over r
+
+and the expected R, respectively. At each episode, r is sampled stochastically from the Actor’s policy π(r). In contrast to the Classifier, whose outputs are marginal beliefs, the Actor’s policy is a probability distribution over the full action space so r is sampled from all dimensions jointly. The Critic predicts the intrinsic reward V ( ˆZ). The advantage A is calculated as the difference between the true intrinsic reward and the Critic’s prediction: 
+
+A = R(r, Ω, ˆℓ, ˆZ) − V ( ˆZ)
+
+The Controller loss Lcntrl integrates the Critic’s prediction error, the Actor’s policy gradient and a policy entropy bonus weighted by βcntrl to encourage exploration: 
+
+Lcntrl = A2 − ln( π(ˆ r | ˆZ)) A − βcntrl (−π ln π)
+
+where the entropy bonus scaling βcntrl decays over the training episodes. ACKNOWLEDGMENTS 
+
+I would like to express my gratitude to Eran Lottem, Jonathan Kadmon, Jan Bauer and Vladimir Shaidurov, for constructive discussion and support. 5.3.1 DATA AVAILABILITY 
+
+The full code is available on the Cognitive Gridworld Github. 
+
+# REFERENCES 
+
+[1] Alessandro Achille, Tom Eccles, Lo¨ ıc Matthey, Christopher P. Burgess, Nicholas Watters, Alexander Lerchner, and Irina Higgins. Life-long disentangled representation learning with cross-domain latent homologies. In Neural Information Processing Systems , 2018. URL 
+
+https://api.semanticscholar.org/CorpusID:52049801 .[2] Anurag Ajay, Yilun Du, Abhi Gupta, Joshua B. Tenenbaum, T. Jaakkola, and Pulkit Agrawal. Is conditional generative modeling all you need for decision-making? ArXiv ,abs/2211.15657, 2022. URL https://api.semanticscholar.org/CorpusID: 254044710 .[3] Sergio A Alvarez. An exact analytical relation among recall, precision, and classification accuracy in information retrieval. Boston College, Boston, Technical Report BCCS-02 , 1: 1–22, 2002. [4] Mahmoud Assran, Adrien Bardes, David Fan, Quentin Garrido, Russell Howes, Mojtaba Komeili, Matthew Muckley, Ammar Rizvi, Claire Roberts, Koustuv Sinha, Artem Zho-lus, Sergio Arnaud, Abha Gejji, Ada Martin, Francois Robert Hogan, Daniel Dugas, Pi-otr Bojanowski, Vasil Khalidov, Patrick Labatut, Francisco Massa, Marc Szafraniec, Kapil Krishnakumar, Yong Li, Xiaodong Ma, Sarath Chandar, Franziska Meier, Yann LeCun, Michael Rabbat, Nicolas Ballas, Fair at Meta, Mila Qu´ ebec, AI Institute, and Polytech-nique Montr´ eal. V-jepa 2: Self-supervised video models enable understanding, prediction and planning. ArXiv , abs/2506.09985, 2025. URL https://api.semanticscholar. org/CorpusID:279306055 .
+
+# 11 [5] Karl Johan ˚ Astr¨ om. Optimal control of markov processes with incomplete state information. 
+
+Journal of Mathematical Analysis and Applications , 10:174–205, 1965. URL https:// api.semanticscholar.org/CorpusID:121222106 .[6] Omri Barak, Mattia Rigotti, and Stefano Fusi. The sparseness of mixed selectivity neurons controls the generalization–discrimination trade-off. The Journal of Neuroscience , 33:3844 – 3856, 2013. URL https://api.semanticscholar.org/CorpusID:1766932 .[7] Raunak Basu, Robert Gebauer, Tim Herfurth, Simon Kolb, Zahra Golipour, Tatjana Tchumatchenko, and Hiroshi T. Ito. The orbitofrontal cortex maps future navigational goals. Nature , 599:449 – 452, 2021. URL https://api.semanticscholar.org/ CorpusID:240072183 .[8] Timothy Edward John Behrens, Timothy H. Muller, James C. R. Whittington, Shirley Mark, Alon B. Baram, Kimberly L. Stachenfeld, and Zeb Kurth-Nelson. What is a cognitive map? organizing knowledge for flexible behavior. Neuron , 100:490–509, 2018. URL https: //api.semanticscholar.org/CorpusID:53105626 .[9] Richard Bellman. Dynamic programming. Science , 153:34 – 37, 1957. URL https: //api.semanticscholar.org/CorpusID:271544899 .[10] Gauthier Boeshertz and Claudia Clopath. Predictive learning enables compositional repre-sentations. bioRxiv , pp. 2025–09, 2025. [11] John C. Bowler, Dua Azhar, Cambria M Jensen, Hyun-Woo Lee, and James G. Heys. Struc-tured experience shapes strategy learning and neural dynamics in the medial entorhinal cortex. bioRxiv , 2025. URL https://api.semanticscholar.org/CorpusID: 278664552 .[12] Bingni W. Brunton, Matthew M. Botvinick, and Carlos D. Brody. Rats and humans can optimally accumulate evidence for decision-making. Science , 340:95 – 98, 2013. URL 
+
+https://api.semanticscholar.org/CorpusID:13098239 .[13] Yoram Burak. Spatial coding and attractor dynamics of grid cells in the entorhinal cortex. Current Opinion in Neurobiology , 25:169–175, 2014. URL https://api. semanticscholar.org/CorpusID:16681043 .[14] Jennifer J. Bussell, Ryan P. Badman, Christian David M´ arton, Ethan S. Bromberg-Martin, Larry Abbott, Kanaka Rajan, and Richard Axel. Representations of the intrinsic value of information in mouse orbitofrontal cortex. bioRxiv , 2024. URL https://api. semanticscholar.org/CorpusID:264171514 .[15] Charles M. Butter. Perseveration in extinction and in discrimination reversal tasks following selective frontal ablations in macaca mulatta. Physiology & Behavior , 4:163–171, 1969. URL 
+
+https://api.semanticscholar.org/CorpusID:17920166 .[16] Stephanie C. Y. Chan, Yael Niv, and Kenneth A. Norman. A probability distribution over latent causes, in the orbitofrontal cortex. The Journal of Neuroscience , 36:7817 – 7828, 2016. URL https://api.semanticscholar.org/CorpusID:9673546 .[17] Franc ¸ois Chollet. On the measure of intelligence. arXiv preprint arXiv:1911.01547 , 2019. [18] Francois Chollet, Mike Knoop, Gregory Kamradt, and Bryan Landers. Arc prize 2024: Tech-nical report. ArXiv , abs/2412.04604, 2024. URL https://api.semanticscholar. org/CorpusID:274581906 .[19] Yogita Chudasama and Trevor William Robbins. Dissociable contributions of the or-bitofrontal and infralimbic cortex to pavlovian autoshaping and discrimination reversal learn-ing: Further evidence for the functional heterogeneity of the rodent frontal cortex. The Jour-nal of Neuroscience , 23:8771 – 8780, 2003. URL https://api.semanticscholar. org/CorpusID:8018743 .
+
+# 12 [20] Mark M. Churchland and Krishna V. Shenoy. Preparatory activity and the expansive null-space. Nature reviews. Neuroscience , 2024. URL https://api.semanticscholar. org/CorpusID:268250917 .[21] Joni Dambre, David Verstraeten, Benjamin Schrauwen, and Serge Massar. Information processing capacity of dynamical systems. Scientific Reports , 2, 2012. URL https: //api.semanticscholar.org/CorpusID:7342429 .[22] Victor de Lafuente, Mehrdad Jazayeri, and Michael N. Shadlen. Representation of accumu-lating evidence for a decision in two parietal areas. The Journal of Neuroscience , 35:4306 – 4318, 2015. URL https://api.semanticscholar.org/CorpusID:14214715 .[23] Rebecca Dias, Trevor William Robbins, and Angela C. Roberts. Dissociation in prefrontal cortex of affective and attentional shifts. Nature , 380:69–72, 1996. URL https://api. semanticscholar.org/CorpusID:4301013 .[24] Audrey Duarte, Richard N. A. Henson, Robert T. Knight, Tina Emery, and Kim S. Gra-ham. Orbito-frontal cortex is necessary for temporal context memory. Journal of Cognitive Neuroscience , 22:1819–1831, 2010. URL https://api.semanticscholar.org/ CorpusID:14909943 .[25] Alexis M. Dubreuil, Adrian Valente, Manuel Beir´ an, Francesca Mastrogiuseppe, and Srdjan Ostojic. The role of population structure in computations through neural dynamics. Nature Neuroscience , 25:783 – 794, 2022. URL https://api.semanticscholar.org/ CorpusID:256838997 .[26] Anja Farovik, Ryan Place, Sam McKenzie, Blake S. Porter, Catherine E Munro, and Howard Eichenbaum. Orbitofrontal cortex encodes memories within value-based schemas and rep-resents contexts that guide memory retrieval. The Journal of Neuroscience , 35:8333 – 8344, 2015. URL https://api.semanticscholar.org/CorpusID:17512263 .[27] Ming Gao, Chang-Liang Liu, Shen Yang, Guo-Zhang Jin, Benjamin S Bunney, and Wei-Xing Shi. Functional coupling between the prefrontal cortex and dopamine neurons in the ventral tegmental area. Journal of Neuroscience , 27(20):5414–5421, 2007. [28] Mona M. Garvert, Tankred Saanum, Eric Schulz, Nicolas W. Schuck, and Chris-tian F. Doeller. Hippocampal spatio-predictive cognitive maps adaptively guide reward generalization. Nature Neuroscience , 26:615 – 626, 2023. URL https://api. semanticscholar.org/CorpusID:257924320 .[29] Samuel J. Gershman and Yael Niv. Learning latent structure: carving nature at its joints. Current Opinion in Neurobiology , 20:251–256, 2010. URL https://api. semanticscholar.org/CorpusID:10255984 .[30] AmirEmad Ghassami and Negar Kiyavash. Interaction information for causal inference: The case of directed triangle. 2017 IEEE International Symposium on Information Theory (ISIT) ,pp. 1326–1330, 2017. URL https://api.semanticscholar.org/CorpusID: 8283977 .[31] Joshua I. Gold and Michael N. Shadlen. The neural basis of decision making. Annual review of neuroscience , 30:535–74, 2007. URL https://api.semanticscholar. org/CorpusID:6842034 .[32] Danijar Hafner, J. Paˇ sukonis, Jimmy Ba, and Timothy P. Lillicrap. Mastering diverse con-trol tasks through world models. Nature , 640:647 – 653, 2025. URL https://api. semanticscholar.org/CorpusID:277508993 .[33] Jeff Hawkins, Marcus Lewis, Mirko Klukas, Scott Purdy, and Subutai Ahmad. A framework for intelligence and cortical function based on grid cells in the neocortex. Frontiers in Neu-ral Circuits , 12, 2018. URL https://api.semanticscholar.org/CorpusID: 57761278 .
+
+# 13 [34] Steven C Hayes, Dermot Barnes-Holmes, and Bryan Roche. Relational frame theory: A post-Skinnerian account of human language and cognition . Springer Science & Business Media, 2001. [35] Jay A. Hennig, Sandra A. Romero Pinto, Takahiro Yamaguchi, Scott W. Linderman, Naoshige Uchida, and Samuel J. Gershman. Emergence of belief-like representations through reinforcement learning. PLOS Computational Biology , 19, 2023. URL https: //api.semanticscholar.org/CorpusID:258051351 .[36] Jeffrey R. Hollerman and Wolfram Schultz. Dopamine neurons report an error in the temporal prediction of reward during learning. Nature Neuroscience , 1:304–309, 1998. URL https: //api.semanticscholar.org/CorpusID:7785929 .[37] J. Hornak, John P. O’Doherty, Jessica Bramham, Edmund T. Rolls, Robin G. Morris, Pe-ter R. Bullock, and C. E. Polkey. Reward-related reversal learning after surgical exci-sions in orbito-frontal or dorsolateral prefrontal cortex in humans. Journal of Cogni-tive Neuroscience , 16:463–478, 2004. URL https://api.semanticscholar.org/ CorpusID:132678 .[38] Timothy M. Hospedales, Antreas Antoniou, Paul Micaelli, and Amos J. Storkey. Meta-learning in neural networks: A survey. IEEE Transactions on Pattern Analysis and Ma-chine Intelligence , 44:5149–5169, 2020. URL https://api.semanticscholar. org/CorpusID:215744839 .[39] Peiyun Hu, Zachary Chase Lipton, Anima Anandkumar, and Deva Ramanan. Active learning with partial feedback. ArXiv , abs/1802.07427, 2018. URL https://api. semanticscholar.org/CorpusID:3534906 .[40] Masanobu Inubushi and Kazuyuki Yoshimura. Reservoir computing beyond memory-nonlinearity trade-off. Scientific Reports , 7, 2017. URL https://api. semanticscholar.org/CorpusID:10886282 .[41] Alicia Izquierdo, Robin K. Suda, and Elisabeth A. Murray. Bilateral orbital prefrontal cortex lesions in rhesus monkeys disrupt choices guided by both reward value and re-ward contingency. The Journal of Neuroscience , 24:7540 – 7548, 2004. URL https: //api.semanticscholar.org/CorpusID:17542448 .[42] Yong Sang Jo and Sheri J. Y. Mizumori. Prefrontal regulation of neuronal activity in the ventral tegmental area. Cerebral cortex , 26 10:4057–4068, 2016. URL https://api. semanticscholar.org/CorpusID:4875389 .[43] Leslie Pack Kaelbling, Michael L. Littman, and Anthony R. Cassandra. Planning and acting in partially observable stochastic domains. Artif. Intell. , 101:99–134, 1998. URL https: //api.semanticscholar.org/CorpusID:5613003 .[44] Thorsten Kahnt, Jakob Heinzle, Soyoung Q. Park, and John-Dylan Haynes. The neural code of reward anticipation in human orbitofrontal cortex. Proceedings of the National Academy of Sciences , 107:6010 – 6015, 2010. URL https://api.semanticscholar.org/ CorpusID:22879670 .[45] Yul HR Kang, Frederike H. Petzschner, Daniel M. Wolpert, and Michael N. Shadlen. Piercing of consciousness as a threshold-crossing operation. Current Biology , 27:2285 – 2295.e6, 2017. URL https://api.semanticscholar.org/CorpusID:27618011 .[46] Gili Karni, Yael Niv, and Nathaniel Daw. How goals affect information seeking. In Proceed-ings of the Annual Meeting of the Cognitive Science Society , volume 47, 2025. [47] Kenneth Kay, Natalie Biderman, Ramin Khajeh, Manuel Beiran, Christopher J. Cueva, Daphna Shohamy, Greg Jensen, Xue-Xin Wei, Vincent P. Ferrera, and L.F. Abbott. Emer-gent neural dynamics and geometry for generalization in a transitive inference task. PLOS Computational Biology , 20, 2023. URL https://api.semanticscholar.org/ CorpusID:260381252 .
+
+# 14 [48] Roozbeh Kiani and Michael N. Shadlen. Representation of confidence associated with a decision by neurons in the parietal cortex. Science , 324:759 – 764, 2009. URL https: //api.semanticscholar.org/CorpusID:11581812 .[49] Eric B. Knudsen and Joni D. Wallis. Closed-loop theta stimulation in the or-bitofrontal cortex prevents reward-based learning. Neuron , 2020. URL https://api. semanticscholar.org/CorpusID:212644121 .[50] Artemy Kolchinsky and David H. Wolpert. Semantic information, autonomous agency and non-equilibrium statistical physics. Interface Focus , 8, 2018. URL https://api. semanticscholar.org/CorpusID:53566383 .[51] Brenden M. Lake and Marco Baroni. Human-like systematic generalization through a meta-learning neural network. Nature , 623:115 – 121, 2023. URL https://api. semanticscholar.org/CorpusID:264489248 .[52] Andrew Kyle Lampinen, Martin Engelcke, Yuxuan Li, Arslan Chaudhry, and James L. Mc-Clelland. Latent learning: episodic memory complements parametric learning by enabling flexible reuse of experiences. 2025. URL https://api.semanticscholar.org/ CorpusID:281410976 .[53] Denis C L Lan, Laurence T Hunt, and Christopher Summerfield. Goal-directed navi-gation in humans and deep reinforcement learning agents relies on an adaptive mix of vector-based and transition-based strategies. PLOS Biology , 23, 2025. URL https: //api.semanticscholar.org/CorpusID:280389881 .[54] Huixin Lin and Jingfeng Zhou. Hippocampal and orbitofrontal neurons contribute to com-plementary aspects of associative structure. Nature Communications , 15, 2024. URL 
+
+https://api.semanticscholar.org/CorpusID:270638438 .[55] Daniel J. Lodge. The medial prefrontal and orbitofrontal cortices differentially regulate dopamine system function. Neuropsychopharmacology , 36:1227–1236, 2011. URL https: //api.semanticscholar.org/CorpusID:28747941 .[56] Valerio Mante, David Sussillo, Krishna V. Shenoy, and William T. Newsome. Context-dependent computation by recurrent dynamics in prefrontal cortex. Nature , 503:78 – 84, 2013. URL https://api.semanticscholar.org/CorpusID:4450696 .[57] Valerio Mante, David Sussillo, Krishna V Shenoy, and William T Newsome. Context-dependent computation by recurrent dynamics in prefrontal cortex. nature , 503(7474):78–84, 2013. [58] Kerry McAlonan and Verity J. Brown. Orbital prefrontal cortex mediates reversal learning and not attentional set shifting in the rat. Behavioural Brain Research , 146:97–103, 2003. URL https://api.semanticscholar.org/CorpusID:11359123 .[59] Kevin Miller, Maria Eckstein, Matt Botvinick, and Zeb Kurth-Nelson. Cognitive model discovery via disentangled rnns. Advances in Neural Information Processing Systems , 36: 61377–61394, 2023. [60] Eda Mizrak, Nichole R. Bouffard, Laura A. Libby, Erie D. Boorman, and Charan Ranganath. The hippocampus and orbitofrontal cortex jointly represent task structure during memory-guided decision making. Cell reports , 37:110065 – 110065, 2021. URL https://api. semanticscholar.org/CorpusID:244792239 .[61] George E. Monahan. State of the art—a survey of partially observable markov decision processes: Theory, models, and algorithms. Management Science , 28:1–16, 1982. URL 
+
+https://api.semanticscholar.org/CorpusID:123582406 .
+
+# 15 [62] Paul S. Muhle-Karbe, Hannah Sheahan, Giovanni Pezzulo, Hugo J. Spiers, Samson Chien, Nicolas W. Schuck, and Christopher Summerfield. Goal-seeking compresses neural codes for space in the human hippocampus and orbitofrontal cortex. Neuron , 111:3885–3899.e6, 2023. URL https://api.semanticscholar.org/CorpusID:255850293 .[63] Eda Mızrak, Nichole R. Bouffard, Laura A. Libby, Erie D. Boorman, and Charan Ranganath. The hippocampus and orbitofrontal cortex jointly represent task structure during memory-guided decision making. Cell reports , 37:110065 – 110065, 2021. URL https://api. semanticscholar.org/CorpusID:244792239 .[64] Vijay Mohan K. Namboodiri, James M. Otis, Kay van Heeswijk, Elisa S Voets, Rizk A. Alghorazi, Jose Rodr´ ıguez-Romaguera, Stefan Mihalas, and Garret D. Stuber. Single-cell activity tracking reveals that orbitofrontal neurons acquire and maintain a long-term memory to guide behavioral adaptation. Nature neuroscience , 22:1110 – 1121, 2019. URL https: //api.semanticscholar.org/CorpusID:173992358 .[65] Yael Niv, Reka Daniel, Andra Geana, Samuel J. Gershman, Yuan Chang Leong, Angela Radulescu, and Robert C. Wilson. Reinforcement learning in multidimensional environments relies on attention mechanisms. The Journal of Neuroscience , 35:8145 – 8157, 2015. URL 
+
+https://api.semanticscholar.org/CorpusID:18446484 .[66] Pedro A. Ortega, Jane X. Wang, Mark Rowland, Tim Genewein, Zeb Kurth-Nelson, Raz-van Pascanu, Nicolas Manfred Otto Heess, Joel Veness, Alexander Pritzel, Pablo Sprech-mann, Siddhant M. Jayakumar, Tom McGrath, Kevin J. Miller, Mohammad Gheshlaghi Azar, Ian Osband, Neil C. Rabinowitz, Andr´ as Gy¨ orgy, Silvia Chiappa, Simon Osindero, Yee Whye Teh, H. V. Hasselt, Nando de Freitas, Matthew M. Botvinick, and Shane Legg. Meta-learning of sequential strategies. ArXiv , abs/1905.03030, 2019. URL https: //api.semanticscholar.org/CorpusID:147703875 .[67] Camillo Padoa-Schioppa. Range-adapting representation of economic value in the or-bitofrontal cortex. The Journal of Neuroscience , 29:14004 – 14014, 2009. URL https: //api.semanticscholar.org/CorpusID:7643973 .[68] Camillo Padoa-Schioppa and John A Assad. The representation of economic value in the orbitofrontal cortex is invariant for changes of menu. Nature Neuroscience , 11:95–102, 2008. URL https://api.semanticscholar.org/CorpusID:901185 .[69] Gabriel Pelletier and Lesley K. Fellows. A critical role for human ventromedial frontal lobe in value comparison of complex objects based on attribute configuration. The Journal of Neuroscience , 39:4124 – 4132, 2019. URL https://api.semanticscholar.org/ CorpusID:76659569 .[70] Michael Pereira, Pierre M´ egevand, Mi Xue Tan, Wenwen Chang, Shuo Wang, Ali Rezai, Margitta Seeck, Marco Vincenzo Corniola, Shahan Momjian, Fosco Bernasconi, Olaf Blanke, and Nathan Faivre. Evidence accumulation relates to perceptual consciousness and moni-toring. Nature Communications , 12, 2021. URL https://api.semanticscholar. org/CorpusID:235268827 .[71] Philip and Hemang. SimpleBench: The Text Benchmark in which Unspecialized Human Performance Exceeds that of Current Frontier Models. https://simple-bench.com/ ,October 2024. Technical Report. [72] Todd M. Preuss and Steven P. Wise. Evolution of prefrontal cortex. Neuropsychopharma-cology , 47:3–19, 2021. URL https://api.semanticscholar.org/CorpusID: 236940889 .[73] Alexandra Proca, Fernando E. Rosas, Andrea I. Luppi, Daniel Bor, Matthew Crosby, and Pedro A. M. Mediano. Synergistic information supports modality integration and flexible learning in neural networks solving multiple tasks. PLOS Computational Biology , 20, 2024. URL https://api.semanticscholar.org/CorpusID:252734834 .
+
+# 16 [74] Yidan Qiu, Huakang Li, Jiajun Liao, Kemeng Chen, Xiaoyan Wu, Bingyi Liu, and Rui-wang Huang. Forming cognitive maps for abstract spaces: the roles of the human hip-pocampus and orbitofrontal cortex. Communications Biology , 7, 2024. URL https: //api.semanticscholar.org/CorpusID:269499660 .[75] Rajkumar Vasudeva Raju, J. Swaroop Guntupalli, Guangyao Zhou, Carter Wendelken, Miguel L´ azaro-Gredilla, and Dileep George. Space is a latent sequence: A theory of the hippocampus. Science Advances , 10, 2024. URL https://api.semanticscholar. org/CorpusID:271597277 .[76] Kate Rakelly, Aurick Zhou, Deirdre Quillen, Chelsea Finn, and Sergey Levine. Efficient off-policy meta-reinforcement learning via probabilistic context variables. In International Con-ference on Machine Learning , 2019. URL https://api.semanticscholar.org/ CorpusID:84187276 .[77] Scott Reed, Konrad Zolna, Emilio Parisotto, Sergio Gomez Colmenarejo, Alexander Novikov, Gabriel Barth-Maron, Mai Gim´ enez, Yury Sulsky, Jackie Kay, Jost Tobias Springenberg, Tom Eccles, Jake Bruce, Ali Razavi, Ashley D. Edwards, Nicolas Man-fred Otto Heess, Yutian Chen, Raia Hadsell, Oriol Vinyals, Mahyar Bordbar, and Nando de Freitas. A generalist agent. ArXiv , abs/2205.06175, 2022. URL https://api. semanticscholar.org/CorpusID:248722148 .[78] Nancy Rempel-Clower. Role of orbitofrontal cortex connections in emotion. Annals of the New York Academy of Sciences , 1121, 2007. URL https://api.semanticscholar. org/CorpusID:21317263 .[79] Fernando E. Rosas, Pedro A. M. Mediano, Michael Gastpar, and Henrik Jeldtoft Jensen. Quantifying high-order interdependencies via multivariate extensions of the mutual informa-tion. Physical review. E , 100:032305, 2019. URL https://api.semanticscholar. org/CorpusID:67855406 .[80] Nicholas Roy, Geoffrey J. Gordon, and Sebastian Thrun. Finding approximate pomdp so-lutions through belief compression. ArXiv , abs/1107.0053, 2005. URL https://api. semanticscholar.org/CorpusID:3894022 .[81] Stuart Russell and Peter Norvig. Artificial intelligence - a modern approach, 2nd edi-tion. In Prentice Hall series in artificial intelligence , 2003. URL https://api. semanticscholar.org/CorpusID:262339885 .[82] Rafał Ryguła, Susannah C Walker, Hannah F. Clarke, Trevor William Robbins, and Angela C. Roberts. Differential contributions of the primate ventrolateral prefrontal and orbitofrontal cortex to serial reversal learning. The Journal of Neuroscience , 30:14552 – 14559, 2010. URL https://api.semanticscholar.org/CorpusID:6290998 .[83] Shervin Safavi and Peter Dayan. Multistability, perceptual value, and internal forag-ing. Neuron , 110:3076–3090, 2022. URL https://api.semanticscholar.org/ CorpusID:251887280 .[84] Shervin Safavi and Peter Dayan. A decision-theoretic model of multistability: perceptual switches as internal actions. bioRxiv , 2025. URL https://api.semanticscholar. org/CorpusID:274656763 .[85] Adam Santoro, Sergey Bartunov, Matthew M. Botvinick, Daan Wierstra, and Timothy P. Lillicrap. Meta-learning with memory-augmented neural networks. In International Con-ference on Machine Learning , 2016. URL https://api.semanticscholar.org/ CorpusID:6466088 .[86] Shannon S. Schiereck, Danilo Trinidad P´ erez-Rivera, Andrew Mah, Margaret L. DeMaegd, Royall McMahon Ward, David Hocker, Cristina Savin, and Christine M. Constantinople. Neural dynamics in the orbitofrontal cortex reveal cognitive strategies. bioRxiv , 2024. URL 
+
+https://api.semanticscholar.org/CorpusID:273776371 .
+
+# 17 [87] Geoffrey Schoenbaum, Summer L. Nugent, Michael P. Saddoris, and B Setlow. Orbitofrontal lesions in rats impair reversal but not acquisition of go, no-go odor discriminations. Neurore-port , 13:885–890, 2002. URL https://api.semanticscholar.org/CorpusID: 23885025 .[88] Nicolas W. Schuck, M. Cai, Robert C. Wilson, and Yael Niv. Human orbitofrontal cortex represents a cognitive map of state space. Neuron , 91:1402–1412, 2016. URL https: //api.semanticscholar.org/CorpusID:7912639 .[89] Friedrich Schuessler, Francesca Mastrogiuseppe, Srdjan Ostojic, and Omri Barak. Aligned and oblique dynamics in recurrent neural networks. eLife , 13, 2023. URL https://api. semanticscholar.org/CorpusID:259937586 .[90] Michael N. Shadlen and William T. Newsome. Neural basis of a perceptual decision in the parietal cortex (area lip) of the rhesus monkey. Journal of neurophysiology , 86 4:1916–36, 2001. URL https://api.semanticscholar.org/CorpusID:272332 .[91] B. F. Skinner. Science and human behavior. 1953. URL https://api. semanticscholar.org/CorpusID:270200242 .[92] Thomas A. Stalnaker, Nishika Raheja, and Geoffrey Schoenbaum. Orbitofrontal state repre-sentations are related to choice adaptations and reward predictions. The Journal of Neu-roscience , 41:1941 – 1951, 2021. URL https://api.semanticscholar.org/ CorpusID:231611820 .[93] Richard S. Sutton and Andrew G. Barto. Reinforcement learning: An introduc-tion. IEEE Trans. Neural Networks , 9:1054–1054, 1998. URL https://api. semanticscholar.org/CorpusID:60035920 .[94] Yuji K. Takahashi, Matthew R. Roesch, Thomas A. Stalnaker, Richard Z. Haney, Donna J. Calu, Adam R. Taylor, Kathryn A. Burke, and Geoffrey Schoenbaum. The orbitofrontal cor-tex and ventral tegmental area are necessary for learning from unexpected outcomes. Neu-ron , 62:269–280, 2009. URL https://api.semanticscholar.org/CorpusID: 14014931 .[95] Yuji K. Takahashi, Chun Yun Chang, Federica Lucantonio, Richard Z. Haney, Benjamin A. Berg, Hau-Jie Yau, Antonello Bonci, and Geoffrey Schoenbaum. Neural estimates of imag-ined outcomes in the orbitofrontal cortex drive behavior and learning. Neuron , 80:507–518, 2013. URL https://api.semanticscholar.org/CorpusID:1686176 .[96] Joshua B. Tenenbaum. Building machines that learn and think like people. In Adap-tive Agents and Multi-Agent Systems , 2018. URL https://api.semanticscholar. org/CorpusID:260496023 .[97] Peter Tino, Robert Simon Fong, and Roberto F. Leonarduzzi. Predictive modeling in the reservoir kernel motif space. 2024 International Joint Conference on Neural Networks (IJCNN) , pp. 1–8, 2024. URL https://api.semanticscholar.org/CorpusID: 269756966 .[98] Naftali Tishby, Fernando C Pereira, and William Bialek. The information bottleneck method. ArXiv , physics/0004057, 2000. URL https://api.semanticscholar. org/CorpusID:8936496 .[99] Peter Tiˇ no. Dynamical systems as temporal feature spaces. J. Mach. Learn. Res. ,21:44:1–44:42, 2019. URL https://api.semanticscholar.org/CorpusID: 196621796 .[100] Edward Chace Tolman. Cognitive maps in rats and men. Psychological review , 55 4:189–208, 1948. URL https://api.semanticscholar.org/CorpusID:42496633 .
+
+# 18 [101] Elia Turner and Omri Barak. The simplicity bias in multi-task rnns: Shared attractors, reuse of dynamics, and geometric representation. In Neural Information Processing Systems , 2023. URL https://api.semanticscholar.org/CorpusID:268042264 .[102] Christopher Versteeg, Jonathan D. McCart, Mitchell Ostrow, David M. Zoltowski, Clayton B. Washington, Laura Driscoll, Olivier Codol, Jonathan A. Michaels, Scott W. Linderman, David Sussillo, and Chethan Pandarinath. Computation-through-dynamics benchmark: Sim-ulated datasets and quality metrics for dynamical models of neural activity. bioRxiv , 2025. URL https://api.semanticscholar.org/CorpusID:276259763 .[103] Saurabh Vyas, Matthew D. Golub, David Sussillo, and Krishna V. Shenoy. Computation through neural population dynamics. Annual review of neuroscience , 43:249–275, 2020. URL https://api.semanticscholar.org/CorpusID:216119345 .[104] Fang Wang, Geoffrey Schoenbaum, and Thorsten Kahnt. Interactions between human or-bitofrontal cortex and hippocampus support model-based inference. PLoS Biology , 18, 2020. URL https://api.semanticscholar.org/CorpusID:210862344 .[105] Jane X. Wang, Zeb Kurth-Nelson, Dharshan Kumaran, Dhruva Tirumala, Hubert Soyer, Joel Z. Leibo, Demis Hassabis, and Matthew M. Botvinick. Prefrontal cortex as a meta-reinforcement learning system. Nature Neuroscience , 21:860 – 868, 2018. URL https: //api.semanticscholar.org/CorpusID:44137923 .[106] Michael Satosi Watanabe. Information theoretical analysis of multivariate correlation. 
+
+IBM J. Res. Dev. , 4:66–82, 1960. URL https://api.semanticscholar.org/ CorpusID:9028505 .[107] Andrew J. Weitz, Hyun Joo Lee, ManKin Choy, and Jin Hyung Lee. Thalamic in-put to orbitofrontal cortex drives brain-wide, frequency-dependent inhibition mediated by gaba and zona incerta. Neuron , 104:1153–1167.e4, 2019. URL https://api. semanticscholar.org/CorpusID:204837757 .[108] James C. R. Whittington, Timothy H. Muller, Shirley Mark, Guifen Chen, Caswell Barry, Neil Burgess, and Timothy Edward John Behrens. The tolman-eichenbaum machine: Uni-fying space and relational memory through generalization in the hippocampal formation. 
+
+Cell , 183:1249 – 1263.e23, 2019. URL https://api.semanticscholar.org/ CorpusID:203374638 .[109] Andrew M. Wikenheiser and Geoffrey Schoenbaum. Over the river, through the woods: cognitive maps in the hippocampus and orbitofrontal cortex. Nature Reviews Neuroscience ,17:513–523, 2016. URL https://api.semanticscholar.org/CorpusID: 7047742 .[110] Andrew M. Wikenheiser, Yasmin Marrero-Garcia, and Geoffrey Schoenbaum. Suppres-sion of ventral hippocampal output impairs integrated orbitofrontal encoding of task struc-ture. Neuron , 95:1197–1207.e3, 2017. URL https://api.semanticscholar.org/ CorpusID:5342811 .[111] Guangyu Robert Yang, Madhura R. Joglekar, H. Francis Song, William T. Newsome, and Xiao-Jing Wang. Task representations in neural networks trained to perform many cognitive tasks. Nature Neuroscience , 22:297 – 306, 2019. URL https://api. semanticscholar.org/CorpusID:58006968 .
+
+# A SUPPLEMENTARY 
+
+A.1 DEFINING COMPOSITIONAL GENERALIZATION IN LATENT SPACE 
+
+In our setting, Compositionality refers to the interaction between variables, where interaction is operationalized as a cosine similarity between embeddings associated with each variable. General-ization refers to indirectly learning (from partial feedback) variable embeddings in a manner which 
+
+# 19 will extrapolate to a novel combination of variables. Partial feedback is operationalized by Goals, which refer to a subset of variables that receive a teaching signal during training. Latent Space refers to possible values of the random variables, with a specific realization reflecting a specific state of the world. In summary, compositional generalization in latent space refers to indirectly learning how a set of observations were generated by a novel combination of relevant state space dimensions. A.2 GENERATIVE PROCESS DETAILS C = 1 C = 2 C = 3 
+
+Figure 9: A flexible process for embedding Gridworld structure into latent space. The embed-dings of active states are compressed into interactions which are then expanded to a set of vectors that map to a discrete probability distribution over possible realizations of the world. Compositional embeddings are acquired by sampling kis ∼ N (0 , 1) dE qis ∼ N (0 , 1) dE , ∀s ∈S, orthogonalizing across O via a Gram–Schmidt process and finally normalizing to 1 along dE . In each Episode E, the generative process is described by: 
+
+oi ∼ P (oi = 1 | ki
+
+> 1
+
+, qi
+
+> 1
+
+, . . . , kiC , qiC , r 1, . . . , r C )) , ∀i ∈ O ,
+
+which can be shortened to: 
+
+ℓzi (r) = generation(compression( ki
+
+> 1
+
+, qi
+
+> 1
+
+, . . . , kiC , qiC )
+
+| {z }
+
+expansion( zi
+
+> 1
+
+, . . . , z iC×(C−1) )
+
+| {z }
+
+> ℓzi
+
+, r 1, . . . , r C )
+
+Extrapolation to an out of distribution set {kic, qic, . . . , kiC , qiC } may occur if the resultant zi falls within the manifold of training zi. The low rank structure of zi ∈ RC×(C−1) is embedded in joint likelihood, ℓzi ∈ [0 , 1] RC
+
+. Below we step through the default expansion from zi → ℓzi in 2 steps. 
+
+STEP 1. EXPANDING zicc ′ → vicc ′ :First, we expand each scalar zicc ′ to vector vicc ′ through Θ and ω:
+
+vicc ′ (r) =  
+
+> N−1
+
+X
+
+> n=0
+
+Θ( n, r ) ω(n), N = 1 + 2 R. 
+
+Here, Θ is a cyclic shift of sinusoidal base values: 
+
+Θ( n, r ) = λ sin 
+
+ 2πN
+
+ (( n − r) mod N ) − N 
+
+, λ = likelihood temperature ,
+
+# 20 and ω gives softmax weights over circular distances from zicc ′ :
+
+ω(n) = softmax n −
+
+ N
+
+2π · min  |θ(n)|, 2π − | θ(n)|2!
+
+, where θ(n) = 2 π
+
+ nN − zicc ′
+
+
+
+.
+
+Functionally, zicc ′ performs a smooth approximation of the discrete roll operation of a sinusoid. Note that N > R , vicc ′ is shorter than a full period, allowing for asymmetry in vicc ′ .
+
+STEP 2. EXPANDING vicc ′ (vic′c)⊤ → ℓzi ∈ [0 , 1] RC
+
+:Next, we expand outer products vicc ′ (vic′c)⊤ to tensor ℓzi ∈ [0 , 1] RC
+
+through: 
+
+ℓzi =
+
+
+
+σ vicc 
+
+, C = 1 ,σ P{cc ′}
+
+> c̸=c′
+
+Ecc ′
+
+
+
+vicc ′ (vic′c)⊤
+
+!
+
+, C ≥ 2,
+
+where σ denotes element-wise sigmoid and Ecc ′ : RR×R → RRC
+
+is an embedding operator that expands RR×R to RRC
+
+by adding singleton dimensions along all axes but c, c ′ of ℓzi . For example, for the case of C = 3 : 
+
+ℓzi = σ {vi
+
+> 12
+
+(vi
+
+> 21
+
+)⊤}12 + {vi
+
+> 13
+
+(vi
+
+> 31
+
+)⊤}13 + {vi
+
+> 23
+
+(vi
+
+> 32
+
+)⊤}23 
+
+.
+
+To summarize, the full process consists of (i) compressing embedding vectors to their scalar inter-actions, (ii) expanding pairwise interactions to pairs of vectors, (iii) expanding the vector pairs to matrices through an outer product, (iv) integrating the matrices into a tensor by broadcasting each matrix over all other dimensions, and finally (v) normalizing to valid probabilities. 
+
+Important properties of likelihood constructions. We chose our manner of expansion to ensure several properties: • Low rank structure: Broadcasting vicc ′ (vic′c)⊤ ∈ RR×R to RRC
+
+constructs the likelihood entirely from pairwise interactions, embedding low-rank structure into the tensor. • Constrained scale: Using a sine function for vicc ′ creates a linear (as a function of C)bound on the standard deviation of (pre-activation) elements of ℓ.• Visual Interpretability: Constructing vicc ′ with a smooth function ensures local similarity in PZ (o | r) such that similar vectors r generate similar observations. • Consistency: Using zicc ′ to modulating phase, rather than scale, ensures different contexts and dimensions of O generate similar amounts of information. • Useful Baseline: Ensuring the potential for asymmetry in vicc ′ ensures that independent inference can perform above chance. 
+
+Future Directions of the Generative Process. A natural extrapolation would be to construct vicc ′
+
+using Fourier series, perhaps adding another dimension to K and Q for frequency specific inter-action. Such a design would embed structure at multiple spatial frequencies while staying inter-pretable, similar to modules of grid cells in the Hippocampus [13]. Another natural extension would be to introduce sparsity to K and Q, to move away from the current regime where all dimensions of 
+
+E have some degree of interaction. In summary, 2 promising future directions: • Construct ℓ through inverse DFT (rather than a single frequency) for greater expressivity. • Sparsify embeddings by masking elements in E for greater interaction specificity. A.3 SII R ELATION TO INTERACTION INFORMATION 
+
+Interaction Information , I(rg ; rc; o), quantifies how the mutual information between two random variables, rg and rc, changes when conditioned on a third, o. Assuming the latent variables rg and rc
+
+# 21 are a priori independent ( I(rg ; rc) = 0 ) (as they are in the setting we consider), the definition sim-plifies to (the negative of) conditional mutual information, or equivalently, the (negative) expected (DKL ) between the conditional joint distribution and the product of its conditional marginals: 
+
+I(rg ; rc; o) = −I(rg ; rc | o) = −E[DKL (p(rg , r c | o) || p(rg | o) ⊗ p(rc | o))] 
+
+Note: The marginals of p(rg , r c | o) are not necessarily the posteriors under independent inference. Let us now consider two types of Bayesian observers processing a sequence of observations o1: T :1. Optimal Observer : Updates its joint belief Bt(rg , r c) correctly using p(o|rg , r c).2. Naive Observer : Updates its joint belief ˜Bt(rg , r c) using a factorized likelihood 
+
+˜p(o|rg , r c) ∝ p(o | rg ) ⊗ p(o | rc)
+
+because it is unaware of the conditional dependencies between rg & rc.For a single observation ( o1), the marginalized posteriors of both observers are identical: 
+
+X
+
+> rc
+
+p(o1|rg , r c)p(rg , r c) = X
+
+> rc
+
+p(o1 | rg ) ⊗ p(o1 | rc)p(rg , r c)
+
+Therefore, for the Interaction Information produced by a single observation ( o1), it is valid to replace the conditional distributions with our Optimal and Naive observers: 
+
+I(rg ; rc; o1) = −E[DKL (B0(rg , r c|o1) || ˜B0(rg |o1) ⊗ ˜B0(rc|o1))] 
+
+Thus, for one observation, Interaction Information is exactly the divergence between Optimal and Naive posteriors. However, for multiple observations , the inability of the Naive observer to encode Interaction Information in its belief can cause subsequent marginalized posteriors to diverge. Se-mantic Interaction Information (SII) quantifies the cumulative effect of this divergence on a task-relevant variable rg . It’s defined as the expected DKL between the Optimal and Naive observers’ marginal belief over rg after T observations: 
+
+SII T = E[DKL (BT (rg |o1: T ) || ˜BT (rg |o1: T ))] 
+
+Equivalently, SII measures the residual Interaction Information in o1: T after conditioning on rg :
+
+SII T ∝ E
+
+h
+
+DKL 
+
+ p(o1: T |rg ) ∥ Y
+
+> t
+
+p(ot|rg )i
+
+,
+
+revealing it as the cost of assuming that rg alone suffices to make observations i.i.d. 
+
+Summary : SII is not I(rg ; rc; o), rather it is I(o1, . . . , o T , r g ), a measure of the accumulated, reward-relevant information which would be lost by neglecting interaction information. SII is the cost of a myopic focus on the goal-pertinent state and distinguishes a genuine world model from strategies that simply exploit spurious correlations. 
+
+# 22 Joint Bayes Naive Bayes Figure 10: Additional examples of Bayesian inference for C = 2 . Representative examples of belief-state updating under Joint and Naive inference. A.4 LEARNING , D YNAMICS AND COMPUTATION 
+
+Figure 11: Early C = 2 learning dynamics reveal opposing strategies. (a) Average final step accuracy improves throughout training for both Fully Trained and Echo State networks during early training. (b) A negative correlation between accuracy and Semantic Interaction Information (SII) emerges early on, and persists for the Echo State network. (c) The predictability of accuracy from SII closely tracks the Participation Ratio (PR) of the recurrent activity minus the Participation Ratio of the read-in activity. Over time, the Fully Trained network expands the expressivity of the recurrent activity, while the Echo State network develops a more expressive read-in. Future theoretical work is still needed to specify the relationship between learning, dynamics and computation. For instance, we observed that while average performance improves throughout train-ing for both Fully Trained and Echo State networks (Figure 11a), a negative correlation between accuracy and Semantic Interaction Information emerges early on (Figure 11b). This relationship continues to strengthen for an Echo State network, yet decays when recurrent weights are plastic. This indicates that while average performance improves, the network solution may be moving fur-ther from optimality. A natural analogy is the exploration-exploitation tradeoff, where finetuning a reliable strategy could lead the agent away from discovering a superior strategy. One possibility 
+
+# 23 is that the reliable strategy, when learning to compute, is externally-driven dynamics that amplify confidence in the typical case. Consistent with this possibility, we found that the predictability of accuracy from SII has a strong correspondence with the relative Participation Ratio of the read-in activity to the recurrent dynamics (Figure 11c). While a Fully Trained network expands the dimen-sionality of its recurrent dynamics, the Echo State network is developing a more expressive encoder. Although this strategy initially improves accuracy, it also creates proactive interference, blocking the ability to learn subtle differences in a trajectory that correspond to large jumps in latent space. Misalignment between the RNN’s state space and the true latent space could be explained mecha-nistically as entanglement. Entanglement in an RNN’s representation may emerge from the mixing of information by temporal correlations between neurons [59]. Therefore, we hypothesized that training only a read-in and read-out on an evidence accumulation task, which demands temporal correlations, would not only fail to overcome this entanglement, but would exacerbate it. Indeed, Principal Component Analysis (PCA) on the marginal beliefs for network and Bayesian agents was consistent with this prediction. When performing PCA on marginal beliefs after a single observa-tion, all representations appeared factorized (Figure 12). Yet PCA on the marginal beliefs at the end of inference appeared entangled for the Echo State and Naive Bayes (Figure 13) who lose the ability to differentiate rc from rc′ . Additionally, the Joint and Fully Trained representation allocates low entropy beliefs (i.e. high confidence) to all (rc, r c′ ) pairs. In contrast, the Echo State network and Naive Bayes represent confidence in an orthogonal direction to rc and rc′ .
+
+Figure 12: Belief representations are initially factorized. Top 2 Principal Components of the marginal beliefs after a single observation. Beliefs are colored by the realization sum ( rc + rc′ ), difference ( rc − rc′ ), and belief entropy ( − P
+
+> c
+
+P 
+
+> r
+
+Btcr ln Btcr ). 
+
+# 24 Figure 13: Failing to capture interaction information causes entanglement over time. Same as Figure 12, for the final observation. The Fully Trained network maintains factorized representations akin to Joint Bayes. The Echo State and Naive representations of rc and rc′ become entangled, as evidenced by the inability to linearly decode their difference. The following section provides a potential source of this link between the entanglement in mecha-nistic and analytical solutions. Let er ∈ { 0, 1}R represent a one-hot indicator vector which inquires about the probability of realization r. In Pzi (oi | r), the mapping from scalar zi to a vector of R
+
+updates is mediated by expansion f (zi). For C = 1 , inquiring about a specific realization r = r′
+
+projects the indicator vector onto the likelihood via: 
+
+Pzi (oi = 1 | r = r′) = eTr′ f (zi).
+
+While there exists interaction information between observations oi, interactions zi, and realizations 
+
+r- I(oi; zi; r) = −I(r; zi | oi), crucially, because different realizations of the same variable are mutually exclusive , the likelihood of a specific r = r′ is perfectly isolated from all other potential realizations and PZ (r = r′ | o) may be updated independently. Next, consider a context of two latent variables ( C = 2 ). Here the interactions Zi = ( zi
+
+> 1
+
+, z i
+
+> 2
+
+) map to a joint space via the bilinear tensor product f (zi
+
+> 12
+
+) ⊗ f (zi
+
+> 21
+
+) ∈ RR×R, forming an R × R matrix of belief updates. The bilinear construction generates synergy— a phenomenon where an informative combination of variables loses predictive power if the variables are considered in isolation, i.e. the whole is greater than the sum of its parts [73, 6]. We can see this because evaluating the likelihood of oi = 1 given a realization r1 = r′ now involves projecting all er2 indicator vectors onto a shared basis: 
+
+PZi (oi = 1 | r1 = r′, r 2) = eTr′
+
+X
+
+> r2
+
+ f (zi
+
+> 1
+
+)f (zi
+
+> 2
+
+)T  er2 ,
+
+revealing the entanglement between latent variables. 
+
+# 25 A.5 REPRESENTATION CLASSIFICATION CHAINS AND THOUSAND BRAINS THEORY 
+
+The Thousand Brains Theory of intelligence [33] postulates that individual cortical columns au-tonomously model through compositions of compositions . Tasked specifically with learning useful relationships, Representation Classification Chains can be viewed as the potential microcircuit of such a system. This architecture-agnostic circuit generates abstractions r, to explain inputs o, in a manner that enables optimal control of inputs given their internal value, without needing to interact with the environment. These chains incorporate the relational information of embeddings, decision-making of Classifiers, latent representation of generative models and embodiment of a Controller. Importantly, these modules are not combined arbitrarily, but have a principled grounding in the task of compositional generalization. rcrcrc '    
+
+> rcrcrcrcrc
+> rc '
+
+Figure 14: Additional learning trajectories of the Controller trained Offline w/ Generator. 
+
+Representative examples of the Controller exploring an internally generated Cognitive Gridworld. A.6 ENVIRONMENT HYPERPARAMETERS 
+
+• T (Trajectory / inference steps): 30 • dE (Embedding dimensionality): 30 • |S| (Total latent states): 500 • R (Possible realizations): 10 • do (Observation dimensions): 5 • λ (Likelihood temperature): 2 A.7 ADDITIONAL MODEL HYPERPARAMETERS 
+
+All models are implemented in PyTorch. 
+
+General. 
+
+• Hidden dimensionality of all networks ( N ): 1000 • Parametric embedding dimensionality ( d ˆE ): 1000 • Optimizer: Adam 
+
+Experiment 1. 
+
+• Learning rate: 0.001 • Training episodes: 50000 • Training batch size: 8000 
+
+Experiment 2. 
+
+# 26 • RCC Learning rate: 0.0005 • RCC Training episodes: 125000 • RCC Training batch size: 8000 • RCC Entropy bonus ( β1): 0.1
+
+Experiment 3. 
+
+• RCC Learning rate: 0.0001 • RCC training episodes: 50000 • RCC Training batch size: 20000 • RCC Entropy bonus ( β1): 0.01 
+
+• Controller Learning rate: 0.005 • Controller Training episodes: 2000 • Controller Batch size: 20000 • Controller Entropy bonus ( β2): 0.05 
+
+• Online Generator Learning Rate: 0.001 
+
+Learnable Compositional Embeddings. When compositional embeddings are learned, training reliability was improved when the learnable embedding estimates were over-parameterized. The ac-tive state embedding estimates were passed through learnable linear layers fK (·), f Q(·) ∈ Rd ˆE ×dE ,to project them down from d ˆE = N to dimensionality dE . Estimated interactions were computed from the projections: 
+
+ˆzi = ⟨fK ( ˆKi), f Q( ˆQi)⟩
+
+Embedding regularization was applied to the projections: 
+
+Lreg = 1
+
+C × do
+
+X
+
+> c,i
+
+(∥fK (ˆkic)∥2 − 1) 2 + ( ∥fQ(ˆ qic)|| 2 − 1) 2
+
+Classifier Architecture. 
+
+1. Input: At each time step t, the input xclss t is the concatenation of the current observation vector ot and the estimated interactions Z: xcls t = [ ot, Z ].2. Read-in: hin t = ReLU (Win xcls t + bin ) maps the input to the hidden dimension N .3. LSTM: hstm t , h ltm t = LSTM (hin t , (hstm t−1 , h ltm t−1)) processes the T × N sequence where initial states (hstm  
+
+> 0
+
+, h ltm  
+
+> 0
+
+) are learnable parameters. 4. Read-out: lt: lt = Wout hstm t + bout maps the LSTM output to logits of dimension R.5. Output: As described in the main text, a cumulative sum is applied along time and then a softmax is applied along the realizations to produce the Classifier’s belief-state. 
+
+Generator Architecture. To provide the Generator estimates of the active state realizations we sample ˆr from the Classifier’s final belief-state BT . We assume that the Classifier has already acted and insert the taken action a into the g’th index of ˆr. We also provide the Classifier’s confidence in the sampled realizations ˆrconf = BT ˆr. Depending on whether a was rewarded or not, the g’th index of ˆrconf is set to 1 or 0.
+
+Input: The Generator integrates three inputs: xgen = hr + hc + hz , where hr , h c, h z ∈ RN .
+
+• hr = WsEs(ˆr) + bs is a linear projection of learnable PyTorch embeddings Es(ˆr).
+
+• hc = Wcˆrconf + bc is a linear projection of the confidence in the sampled realizations. • hz = Wz ˆzi + bz is a linear projection of estimated interactions ˆzi. Since dimensions of the observation space are independent we process them in parallel. 
+
+Output: ˆP ˆZ (o|ˆr) = σ
+
+
+
+W3
+
+ ReLU  W2(ReLU (W1xgen + b1)) + b2
+
+ + b3
+
+
+
+.
+
+# 27 Training reliability was improved by augmenting the Generator’s loss function to give greater weight to elements of a batch where the Classifier’s action was rewarded. The augmented loss was: 
+
+L⋆ 
+
+> Generator
+
+= chance × L 1−δ 
+
+> Generator
+
++ 1 − chance 
+
+⟨δ(a − rg )⟩ × L δ 
+
+> Generator
+
++ Lreg ,
+
+where chance = 1 
+
+> R
+
+and Lδ 
+
+> Generator
+
+& L1−δ 
+
+> Generator
+
+are the DKL losses where a was rewarded and unre-warded, respectively, and ⟨δ(a − rg )⟩ is the average accuracy in the batch. 
+
+Controller Architecture. 
+
+1. Input: The Actor and Critic networks pass ˆZ through separate two-layer MLPs with ReLU activations. For the Actor, the final output is passed through a Softmax to produce a dis-tribution over actions. For the Critic, the output is passed through a Sigmoid function to output the predicted intrinsic reward. 
+
+Probability stabilization (soft clip). To avoid vanishing gradients when clipping probabilities, we use a differentiable soft clip: soft clip (x, ϵ clip ) = ϵclip +σ
+
+ ˆx − ϵclip 
+
+ϵclip 
+
+
+
+(ˆ x−ϵclip ), ˆx = (1 −ϵclip )−σ
+
+ 1 − ϵclip − xϵclip 
+
+
+
+(1 −ϵclip −x).
+
+We found that training reliability to improve dramatically when ϵclip = 1 e − 3.
+
+# 28 A.8 PSEUDO -CODE 
+
+Algorithm 1 Cognitive Gridworld Task 
+
+Input: Total States |S| , Context size C, Realizations R, Time Horizon T
+
+Hyperparameters: Temperature λ
+
+Initialize Embeddings: K, Q ← CREATE COMPOSITIONAL EMBEDDINGS (|S| )
+
+Create Compositional Embeddings: 
+
+K, Q ∼ N (0 , I ) {Draw matrix of size |S| × do × dE }
+
+for s ∈ { 1, . . . , |S|} do 
+
+Ks ← GRAM SCHMIDT (Ks) {Orthogonalize across do}
+
+Qs ← GRAM SCHMIDT (Qs)
+
+end for 
+
+K ← K/ || K|| 2, Q ← Q/ || Q|| 2 {Normalize across dE }
+
+return K, Q 
+
+Compression & Expansion(K,Q): 
+
+Initialize sinusoid v of size R with wavelength 2R {Sinusoidal base }
+
+for active state pair c, c ′ ∈ C do 
+
+z ← ⟨ kc, qc′ ⟩ {Get cosine similarity }
+
+ϕ ← arccos( z) {Convert sim to angle }
+
+vicc ′ ← v(r + ϕ) {roll base by angle }
+
+end for 
+
+ℓzi ← σ
+
+P Broadcast ({vicc ′ (vic′c)⊤})
+
+
+
+{Tensor of shape RC parameterized by Z}
+
+return ℓzi {Likelihood of observing ′0′ in dimension o of o}
+
+Episode Generation: 
+
+Sample context indices C ⊂ { 1, . . . , |S|} 
+
+Sample realizations rc ∼ Uniform (R) for c ∈ C
+
+Sample goal g ∼ Uniform (C)
+
+a∗ ← rg
+
+for observation dimension o ∈ O do 
+
+ℓzi ← Compression & Expansion (Ki, Q i)
+
+end for 
+
+Generate trajectory o1: T where oit ∼ Bernoulli (ℓzi (r)) 
+
+Algorithm 2 Experiment 1: Training to capture Semantic Interaction Information 
+
+Input: Episodes E, Interactions Z, F ULLY TRAINABLE or E CHO STATE Network Φ
+
+for each episode (o1: T , r g , Z ) ∈ E do 
+
+h1 ← hϕ {Initialize memory streams }L ← 0 {Initialize loss }
+
+ln BNet  
+
+> 1
+
+← 0 {Initialize log belief }
+
+ln BJoint  
+
+> 1
+
+← 0 {Initialize log belief }
+
+for t = 1 to T − 1 do 
+
+[ht+1 , ∆] ← Φ([ ot, Z ], h t)ln BNet  
+
+> t+1
+
+← ln BNet  
+
+> t
+
++ ∆ ln BJoint  
+
+> t+1
+
+← ln BJoint  
+
+> t
+
++ ln PZ (ot|rg , r c) − ln PZ (ot)
+
+L ← L + 1 
+
+> T
+
+DKL 
+
+ Softmax (BJoint  
+
+> t+1
+
+)|| Softmax (BNet 
+
+> t+1
+
+)
+
+end for 
+
+Update Φ, h ϕ to minimize L
+
+end for 
+
+# 29 Algorithm 3 Experiment 2: Training Representation Classification Chains 
+
+Input: Episodes E, Classifier Φ, Generator Ψ
+
+Hyperparameters: Entropy bonus weight β
+
+Learnable Embeddings: ˆK, ˆQ, fK , f Q
+
+for each episode (o1: T , r g , C ) ∈ E do 
+
+ˆZ ← ⟨ fK ( ˆKC ), f Q( ˆQC )⟩ {Estimated Interactions }
+
+ln BNet  
+
+> 1
+
+← 0
+
+h1 ← hϕ
+
+Φ Forward Pass: for t = 1 to T − 1 do 
+
+[ht+1 , ∆] ← Φ([ ot, Detach ( ˆZ)] , h t)ln BNet  
+
+> t+1
+
+← ln BNet  
+
+> t
+
++ ∆ 
+
+end for 
+
+Sample action a ∼ BNet  
+
+> T g
+
+{Action taken at t = T }
+
+δ ← I(a = rg ) {Sparse reward signal }
+
+Φ Backward Pass: 
+
+LClss ← 0
+
+for t = 2 to T do 
+
+EB ← − BNet  
+
+> tga
+
+ln BNet  
+
+> tga
+
+{Entropy Bonus }
+
+PG ← δ ln BNet  
+
+> tga
+
++ (1 − δ) ln(1 − BNet 
+
+> tga
+
+) {Policy Gradient }LClss ← L Clss − 1 
+
+> T
+
+(PG + β · EB )
+
+end for 
+
+Update Φ, h ϕ to minimize LClss {Gradient flows through Φ}
+
+Ψ Forward Pass: 
+
+ˆrg ← a
+
+ˆrc ∼ BNet  
+
+> T c
+
+{Sample context realization }
+
+ˆP ˆZ (o | ˆr) ← Ψ([ ˆZ, ˆrg , ˆrc]) Ψ Backward Pass: 
+
+OPE i ← D KL ( ˆP ˆZ (o | ˆr), ˜P (o)) {Observation Prediction Error }
+
+REG iV ← ⟨ MSE (∥fV (V i)∥2, 1) ⟩c {Embedding Regularization }LGen ← ⟨ OPE + REG ˆK + REG ˆQ⟩o
+
+Update Ψ, ˆKC , ˆQC , f K , f Q to minimize LGen {Gradient flows through Ψ to Embeddings }
+
+end for 
+
+# 30 Algorithm 4 Experiment 2: Offline Controller Training 
+
+Input: Learned Factors ˆZ, Generator Ψ, Preferred Observation Ω
+
+Hyperparameters: Training Episodes E, Entropy bonus weight βcntrl , Bonus decay βdecay 
+
+Models: Actor Π, Critic V
+
+Intrinsic Reward Function R(r, Ω, Ψ, Z ):
+
+ℓzi ← Ψ(ˆ zi, r) {Generator provides likelihood estimates }
+
+PL i = ln( ℓzi )Ω i + ln(1 − ℓzi )(1 − Ωi) {Preference logit }
+
+Reward ← exp ⟨PL ⟩o
+
+return Reward 
+
+for e = 1 to E do 
+
+π(r) ← Π( ˆZ) {Policy over joint realizations }
+
+PE ← − P 
+
+> r
+
+π(r) ln π(r) {Compute policy entropy }
+
+r ∼ π(r) {Sample joint action }
+
+A ← R (r, Ω, Ψ, ˆZ) − V ( ˆZ) {Compute Advantage }Lcntrl ← A2 − ln π(r) · Detach (A) − βcntrl · PE 
+
+βcntrl ← βcntrl · βdecay {Decay entropy bonus }
+
+Update Π, V to minimize Lcntrl 
+
+end for 
+
+# STATEMENT ON LLM USAGE 
+
+Large language models (LLMs) were used to assist with improving the clarity and style of the manuscript text including this statement; Additionally, LLMs aided in providing relevant articles. All conceptual contributions, experimental design, and analysis were conducted by the author. 
+
+# 31

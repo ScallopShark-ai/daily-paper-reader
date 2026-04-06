@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2604.00224v1/fig-001.webp",
+      "caption": "Fig. 4. CDF of time steps required to reach a feasible target service level (when CS-FUB indicates feasibility). Latent policies reach feasible service significantly faster.",
+      "page": 5,
+      "index": 1,
+      "width": 490,
+      "height": 316
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00224v1/fig-002.webp",
+      "caption": "Fig. 3. CS-FUB feasibility breakdown showing the fraction of time steps where full, partial, or no user service is achievable under the candidate-set feasibility upper bound.",
+      "page": 5,
+      "index": 2,
+      "width": 482,
+      "height": 314
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00224v1/fig-003.webp",
+      "caption": "TABLE I ENVIRONMENT, DATASET, REPRESENTATION, AND TRAINING PARAMETERS.",
+      "page": 4,
+      "index": 3,
+      "width": 539,
+      "height": 771
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00224v1/fig-004.webp",
+      "caption": "Fig. 2. Comparison of average served users, peak served users, and discounted (CS-FUB-normalized) performance for latent and raw-state policies.",
+      "page": 4,
+      "index": 4,
+      "width": 490,
+      "height": 316
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00224v1/fig-005.webp",
+      "caption": "Fig. 1. CS-FUB illustration. Candidate UAV placements Pt and optimal location p⋆ are shown. Served and unserved users are indicated in green and red, respectively. The dashed blue contour denotes the coverage boundary (e.g., −90 dBm), highlighting geometry- and propagation-induced limits.",
+      "page": 3,
+      "index": 5,
+      "width": 529,
+      "height": 429
+    }
+  ]
+}

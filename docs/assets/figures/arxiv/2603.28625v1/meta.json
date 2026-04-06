@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.28625v1/fig-001.webp",
+      "caption": "Fig. 2: Training diagnostics for PPO. Reward and episode length are computed on a fixed evaluation environment; explained variance and entropy are logged during training.",
+      "page": 6,
+      "index": 1,
+      "width": 529,
+      "height": 405
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28625v1/fig-002.webp",
+      "caption": "Fig. 1: Training-and-deployment workflow. A map and minimum-curvature raceline are generated offline and used by the simulator environment and baseline Pure Pursuit controller during training. The PPO agent receives observations and reward from the environment and outputs a dynamic lookahead policy, which is then integrated with Pure Pursuit for simulation validation and real-world deployment on a 1:10-scale autonomous racing platform.",
+      "page": 5,
+      "index": 2,
+      "width": 882,
+      "height": 487
+    }
+  ]
+}

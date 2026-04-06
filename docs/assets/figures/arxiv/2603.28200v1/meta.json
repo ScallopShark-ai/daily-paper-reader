@@ -1,0 +1,86 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-001.webp",
+      "caption": "Figure 3: Conceptual diagram of the multi-objective reward design. The cohesion term rschool encourages the virtual agents to maintain proximity to the real fish, while rdirection rewards the progress of the virtual agents toward the target area.",
+      "page": 6,
+      "index": 1,
+      "width": 850,
+      "height": 325
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-002.webp",
+      "caption": "Table 1: Summary of guidance performance in Experiment A. Area occupancy ratios represent the total percentage of time spent by the school in each zone. Larger Bhattacharyya distances indicate higher guidance efficacy.",
+      "page": 11,
+      "index": 2,
+      "width": 913,
+      "height": 574
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-003.webp",
+      "caption": "Figure 6: Positional histograms of the school’s centroid for the visual parameters tested in Experiment A. (a) Background color comparison. (b) Fish-image size comparison (small: 0.6×, medium: 1.0×, large: 1.5×). Each plot shows the overlay of leftward and rightward guidance results.",
+      "page": 11,
+      "index": 3,
+      "width": 913,
+      "height": 533
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-004.webp",
+      "caption": "Figure 5: Learning curves showing the transition of the mean evaluation value R̄ across different training steps T and reward weights β. Each data point represents the average of 10 independent training trials for the corresponding parameter combination. The baseline represents the policy trained using only the horizontal coordinate of the school’s centroid (rbase). Each plot compares different ignoring probabilities p for the simulated fish.",
+      "page": 10,
+      "index": 4,
+      "width": 795,
+      "height": 736
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-005.webp",
+      "caption": "Figure 8: Spatiotemporal evolution of group centroids (Nr = 5). Each row displays four independent trials for (a) the baseline (fixed formation) and (b) the independent agent (Nv = 3) configuration. Horizontal and vertical axes denote horizontal coordinates and elapsed sub-intervals, respectively. Target direction is indicated by red triangles and box colors (orange: leftward, blue: rightward).",
+      "page": 14,
+      "index": 5,
+      "width": 935,
+      "height": 795
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-006.webp",
+      "caption": "Figure 1: Schematic diagram of the closed-loop system architecture. The positions of the live fish are monitored by a front-facing camera and processed by a PC to apply the learned agent policies, which are then rendered as virtual agents on the display.",
+      "page": 3,
+      "index": 6,
+      "width": 754,
+      "height": 422
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-007.webp",
+      "caption": "Figure 2: Top-view schematic of the experimental setup. The hatched area indicates the 40mm deep (front-to-back distance) section where the live fish were constrained. The partition ensures two-dimensional movement and visibility of the displayed virtual agents by avoiding reflections at the tank-water interface from the fish’s perspective.",
+      "page": 3,
+      "index": 7,
+      "width": 754,
+      "height": 278
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-008.webp",
+      "caption": "Figure 4: Definition of evaluation areas for guidance tasks. The target area is defined as the 30% region from the target end, while the opposite area is the 30% region from the opposite end.",
+      "page": 8,
+      "index": 8,
+      "width": 910,
+      "height": 302
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-009.webp",
+      "caption": "Table 2: Summary of guidance performance in Experiment B. Results for group sizes Nr = 5 and Nr = 8 are compared across different agent configurations.",
+      "page": 12,
+      "index": 9,
+      "width": 913,
+      "height": 588
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28200v1/fig-010.webp",
+      "caption": "Figure 7: Positional histograms of the school’s centroid for Experiment B. The columns compare (a) Nr = 5 and (b) Nr = 8 conditions. The rows represent the fixed-formation baseline and the independent (Nv = 2, 3) configurations. Each plot shows the overlay of leftward and rightward guidance results.",
+      "page": 12,
+      "index": 10,
+      "width": 913,
+      "height": 534
+    }
+  ]
+}

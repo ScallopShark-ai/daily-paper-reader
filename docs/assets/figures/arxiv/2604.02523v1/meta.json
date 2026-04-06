@@ -1,0 +1,174 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-001.webp",
+      "caption": "Fig. 1: Different robot learning paradigms prefer different controller gain interfaces. Colored regions indicate gain regimes where each paradigm succeeds. Contrary to conventional wisdom of tuning gains for desired task compliance, optimal gains depend on the learning paradigm. Based on our experimental findings, heatmaps illustrate representative gain preferences for (a) behavior cloning, which favors compliant, overdamped gains, (b) reinforcement learning, which adapts to nearly any setting, and (c) sim-to-real transfer, which is degraded by stiff and overdamped gains.",
+      "page": 1,
+      "index": 1,
+      "width": 529,
+      "height": 446
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-002.webp",
+      "caption": "Fig. 8: Compliant controllers attenuate action errors. (a) Validation MSE loss during training: compliant gains yield higher loss, while stiff gains achieve lower loss. (b) Open-loop success rate under action noise: compliant gains maintain high success while stiff gains completely fail. (c) Compliant gains keep the perturbed trajectory close to the original, while (d) stiff gains cause large deviations that lead to task failure.",
+      "page": 6,
+      "index": 2,
+      "width": 518,
+      "height": 696
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-003.webp",
+      "caption": "Fig. 19: User study survey. After each trial, users complete the survey to rate their subjective experience teleoperating with a given gain setting.",
+      "page": 15,
+      "index": 3,
+      "width": 474,
+      "height": 595
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-004.webp",
+      "caption": "Fig. 20: Five tasks for online RL solution existence proof. For each task, we trained a successful policy for 8+ gain configurations spanning the range of stiff / compliant, overdamped / underdamped.",
+      "page": 15,
+      "index": 4,
+      "width": 527,
+      "height": 578
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-005.webp",
+      "caption": "Fig. 30: Stiff and overdamped gains increase Sim2Real NN error. The Sim2Real NN error (Eq.31) is consistently larger (light blue) in the stiff and overdamped regime (a-c).",
+      "page": 21,
+      "index": 5,
+      "width": 1061,
+      "height": 351
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-006.webp",
+      "caption": "Fig. 29: Stiff and overdamped gain settings reduce sim2real transferability. The Sim2Real trajectory error (Eq.11) is consistently larger (light blue) in the stiff and overdamped regime (a-c).",
+      "page": 21,
+      "index": 6,
+      "width": 1043,
+      "height": 339
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-007.webp",
+      "caption": "Fig. 2: Controller gains induce diverse action–response dynamics. We evaluate a broad range of representative gain configurations and their resulting dynamic responses to assess their impact on learnability.",
+      "page": 2,
+      "index": 7,
+      "width": 1003,
+      "height": 496
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-008.webp",
+      "caption": "Fig. 4: Task-level impedance can be decoupled from lowlevel controller gains with learned policies. A learned policy can achieve (a) compliant behavior despite stiff low-level gains, and (b) stiff behavior despite compliant gains.",
+      "page": 3,
+      "index": 8,
+      "width": 512,
+      "height": 419
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-009.webp",
+      "caption": "Fig. 22: System identification result for sample gain settings in each gain regime. We show commanded positions (green), real-world achieved positions (orange), and simulation positions (blue) achieved with the optimal actuator parameters.",
+      "page": 18,
+      "index": 9,
+      "width": 1075,
+      "height": 1081
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-010.webp",
+      "caption": "Fig. 16: Six tasks used for behavior cloning.",
+      "page": 13,
+      "index": 10,
+      "width": 527,
+      "height": 711
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-011.webp",
+      "caption": "Fig. 12: Stiff and overdamped gain settings yield lower SysID modeling errors, but exhibit larger closed-loop Sim2Real errors. Policy observations during closed-loop rollout evolve similarly between sim and real (b-left) for compliant, overdamped gains, but very dissimilarly (b-right) for stiff, overdamped gains.",
+      "page": 8,
+      "index": 11,
+      "width": 524,
+      "height": 245
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-012.webp",
+      "caption": "Fig. 10: RL training across gain regimes. (a–b) Success rate across the hyperparameter landscape varies among gain settings and tasks; policies with 95%+ success rate (green circles) are found across all conditions. (c–d) Sample efficiency and training stability of PPO is comparable across gain regimes for both tasks.",
+      "page": 8,
+      "index": 12,
+      "width": 1021,
+      "height": 483
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-013.webp",
+      "caption": "Fig. 24: Behavior cloning performance across policy architectures. Success rate per gain setting for the Block Stack task. The preference for compliant and overdamped gain settings is maintained across policy architectures (a-c).",
+      "page": 19,
+      "index": 13,
+      "width": 1049,
+      "height": 301
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-014.webp",
+      "caption": "Fig. 25: Behavior cloning performance across action chunk size. Success rate per gain setting for the Block Stack task. The preference for compliant and overdamped gain settings is observed when predicting both single actions (a) and action chunks (b).",
+      "page": 19,
+      "index": 14,
+      "width": 728,
+      "height": 301
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-015.webp",
+      "caption": "Fig. 23: Behavior cloning performance across dataset size. Success rate per gain setting for the Block Stack task. The preference for compliant and overdamped gain settings is maintained across dataset sizes (a-c).",
+      "page": 19,
+      "index": 15,
+      "width": 1044,
+      "height": 301
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-016.webp",
+      "caption": "Fig. 13: Stiff and overdamped gain settings reduce sim2real transferability. The Sim2Real trajectory error (Eq.11) is consistently larger (light blue) in the stiff and overdamped regime (a-c). The primary Sim2Real failure mode is high-frequency oscillation (d).",
+      "page": 9,
+      "index": 16,
+      "width": 527,
+      "height": 528
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-017.webp",
+      "caption": "Fig. 28: Offline imitation learning scales more favorably under compliant and overdamped gains. Success rate as a function of dataset size across tasks and robot embodiments. Policies trained with low stiffness and high damping achieve higher success with fewer demonstrations, while stiff or weakly damped controllers exhibit poorer data scaling.",
+      "page": 20,
+      "index": 17,
+      "width": 1043,
+      "height": 405
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-018.webp",
+      "caption": "Fig. 27: Behavior cloning performance across control frequencies. Success rate per gain setting for the Block Stack task. The preference for compliant and overdamped gain settings is observed when predicting actions at 10Hz (a) and 50Hz (b).",
+      "page": 20,
+      "index": 18,
+      "width": 723,
+      "height": 301
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-019.webp",
+      "caption": "Fig. 26: Behavior cloning performance across action representations. Success rate per gain setting for the Block Stack task. The preference for compliant and overdamped gain settings is observed when predicting both absolute (a) and relative (b) joint position actions.",
+      "page": 20,
+      "index": 19,
+      "width": 723,
+      "height": 301
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-020.webp",
+      "caption": "Fig. 5: Behavior cloning prefers compliant and overdamped controller gains. Closed-loop rollout success rates across a grid of proportional (Kp) and derivative (Kd) gains for diverse manipulation tasks and robot embodiments. Each heatmap reports success averaged over evaluation rollouts. Across tasks, higher success rate (darker red) consistently concentrates in the compliant, overdamped regime (upper-left), while stiff or weakly damped controllers yield degraded performance.",
+      "page": 5,
+      "index": 20,
+      "width": 1043,
+      "height": 405
+    },
+    {
+      "url": "assets/figures/arxiv/2604.02523v1/fig-021.webp",
+      "caption": "TABLE VI: PPO hyperparameters that vary across tasks.",
+      "page": 16,
+      "index": 21,
+      "width": 500,
+      "height": 272
+    }
+  ]
+}

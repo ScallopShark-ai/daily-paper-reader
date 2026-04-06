@@ -1,0 +1,70 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.27450v1/fig-001.webp",
+      "caption": "Figure 7: Effect of diffusion steps on performance. Performance of QSM, SDAC, and DACER when varying the number of diffusion steps (2, 5, 10, and 50). Returns are normalized by taskspecific maximum scores and averaged across Ant, HalfCheetah, Humanoid, and Walker2d.",
+      "page": 11,
+      "index": 1,
+      "width": 691,
+      "height": 182
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27450v1/fig-002.webp",
+      "caption": "Figure 1: The overview of FLOWRL.",
+      "page": 7,
+      "index": 2,
+      "width": 617,
+      "height": 225
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27450v1/fig-003.webp",
+      "caption": "Table 2: Normalized returns of the final policy checkpoint for offline DPRL methods. Methods marked with † denote results reported in the original paper. Results are averaged over five independent runs of 10 evaluation episodes each. Numbers within 95% of the highest scores are bolded.",
+      "page": 10,
+      "index": 3,
+      "width": 722,
+      "height": 255
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27450v1/fig-004.webp",
+      "caption": "Table 4: On-policy algorithm-specific hyperparameters on IsaacLab. Only parameters that differ from the shared defaults are listed.",
+      "page": 18,
+      "index": 4,
+      "width": 490,
+      "height": 250
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27450v1/fig-005.webp",
+      "caption": "Figure 2: Representative tasks across three continuous-control suites. Left: MuJoCo Gymnasium. Middle: DeepMind Control Suite. Right: IsaacLab.",
+      "page": 8,
+      "index": 5,
+      "width": 764,
+      "height": 314
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27450v1/fig-006.webp",
+      "caption": "Table 1: Summarization of existing DPRL algorithms, based on their guidance mechanism and reference policy.",
+      "page": 4,
+      "index": 6,
+      "width": 830,
+      "height": 340
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27450v1/fig-007.webp",
+      "caption": "Table 3: Shared training settings per benchmark.",
+      "page": 17,
+      "index": 7,
+      "width": 594,
+      "height": 351
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27450v1/fig-008.webp",
+      "caption": "Figure 9: Effect of noise schedule. Performance of SDAC, QSM, and DACER with a cosine (black) or linear noise schedule.",
+      "page": 12,
+      "index": 8,
+      "width": 696,
+      "height": 182
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+Title: Intelligent Radio Resource Slicing for 6G In-Body Subnetworks
+
+URL Source: https://arxiv.org/pdf/2603.28529v1
+
+Published Time: Tue, 31 Mar 2026 02:13:51 GMT
+
+Number of Pages: 6
+
+Markdown Content:
+# Intelligent Radio Resource Slicing for 6G In-Body Subnetworks 
+
+Samira Abdelrahman ∗ and Hossam Farag †∗ ∗ Department of Electrical Engineering, Aswan University, Egypt 
+
+> †
+
+Department of Electronic Systems, Aalborg University, Denmark Email: sma@asw.edu.eg, hmf@es.aau.dk 
+
+Abstract —6G In-body Subnetworks (IBSs) represent a key enabler for supporting standalone eXtended Reality (XR) ap-plications. IBSs are expected to operate as an underlay to existing cellular networks, giving rise to coexistence challenges when sharing radio resources with other cellular users, such as enhanced Mobile Broadband (eMBB) users. Such resource allocation problem is highly dynamic and inherently non-convex due to heterogeneous service demands and fluctuating channel conditions. In this paper, we propose an intelligent radio re-source slicing strategy based on the Soft Actor-Critic (SAC) deep reinforcement learning algorithm. The proposed SAC-based slicing method addresses the coexistence challenge between IBSs and eMBB users by optimizing a refined reward function that explicitly incorporates XR cross-modal delay alignment to ensure immersive experience while preserving eMBB service guarantees. Extensive system-level simulations are performed under realistic network conditions and the results demonstrate that the pro-posed method can enhance user experience by 12–85% under different network densities compared to baseline methods while maintaining the target data rate for eMBB users. 
+
+Index Terms —in-X subnetworks, deep learning, RAN slicing. 
+
+I. I NTRODUCTION 
+
+The sixth generation (6G) of wireless networks is envisioned as a network-of-networks [1], where heterogeneous radio access technologies, deployment scales, and service paradigms coexist and are jointly orchestrated to support extreme perfor-mance requirements. A key pillar of this vision is the concept of 6G in-X subnetworks [2], which provide short-range, low-power, and high-performance wireless connectivity within physical entities such as industrial modules, vehicles, robots, and the human body. By operating at very short distances and leveraging localized coordination, in-X subnetworks are expected to support services with stringent latency, reliability, and availability requirements that have traditionally relied on wired connectivity. Using wireless for such applications avoids the drawbacks related to a wired setup, including higher cost, limited deployment flexibility, and maintenance of cables. In-Body Subnetworks (IBS) [2], [3] play a pivotal role in supporting proximity wireless communications around the human body, with eXtended Reality (XR) standing out as a principal application scenario. From a practical deployment perspective, in-X subnetworks typically operate under the coverage of a larger network [2], such as a 5G or beyond cellular system, where they act as underlay networks and share radio resources with conven-tional cellular users. For instance, IBSs may coexist with conventional cellular users, reusing time–frequency–spatial resources managed by the radio access network (RAN). XR service requirements are located between ultra-reliable low-latency communications (URLLC) and enhanced mobile broadband (eMBB) [4]. Hence, such coexistence introduces radio resource management (RRM) challenges that extend beyond traditional heterogeneous networks. The large disparity in transmit power and coverage between cellular base sta-tions and in-X access points results in highly asymmetric interference, where cellular transmissions can jeopardize the reliability of in-X links, while aggregated interference from multiple subnetworks may degrade eMBB (cellular users) performance. Moreover, coexistence must accommodate het-erogeneous service requirements of both in-X subnetworks alongside high data rates of eMBB cellular users. The in-terference environment is highly dynamic, driven by entity-specific subnetwork activity and time-varying cellular traffic. A fundamental requirement pertains to IBS-empowered XR application is the synchronized video-haptic transmission to ensure immersive user experience. This demands a resource allocation mechanism capable of accommodating the distinct latency and rate constraints of each modality while preserving inter-modal synchronization. Motivated by the aforementioned challenges, this work aims to introduce an intelligent radio slicing Soft Actor-Critic (SAC) deep reinforcement learning (DRL) algorithm. We address the scenario where the IBSs underlay a macro cellular network and share the same radio resources with eMBB users. The proposed method adopts a refined reward function that incentivizes the slicing mechanism to fulfill Quality-of-Service (QoS) objectives of each slice and dynamically adapts to changes in the network conditions. We first consider the inter-slice distribution where the available radio resource are distributed among IBS and eMBB users considering data rate, packet loss and synchronization requirement. Then, we con-sider intra-slice scheduling where the resources allocated for each user set (slice) are fairly distributed considering the buffer occupancy. The effectiveness of the proposed method is eval-uated via system-level simulations and the results demonstrate significant performance gains in terms of user satisfaction ratio (12–85%) compared to relevant baseline while maintaining the target throughput of eMBB users. The paper is organized as follows. Section II describes the related work. Section III presents the proposed DRL-based 
+
+> arXiv:2603.28529v1 [eess.SY] 30 Mar 2026
+
+radio slicing method. Performance evaluations are given in Section IV and finally the paper is concluded in Section V. II. R ELATED WORK 
+
+Existing works on in-X subnetworks have mainly focused on addressing the challenges of radio resource management and interference mitigation. In [5], a multi-agent DRL frame-work for resource scheduling in non-coordinated in-X sub-networks, combining recurrent neural network and a binary tree search procedure to cope with time-varying channel conditions. The work in [6] addresses decentralized interfer-ence management in industrial subnetwork deployments by introducing a goal- and control-aware coordination algorithm tailored for subnetwork-controlled plants. The authors in [7] introduces a proactive radio resource allocation method using Bayesian ridge regression to minimize the age of information in industrial subnetworks. However, these works have assumed dedicated spectrum availability for in-X subnetworks and have not addressed their coexistence with cellular networks where sub-networks share resources managed by a cellular entity. While coexistence has been explored in similar comparable settings, such as device-to-device settings [8], [9], these studies do not explicitly account for the unique coexistence challenges arising from the underlay deployment of in-X subnetworks. RAN slicing [10] naturally emerges as a key abstraction for managing coexistence, enabling logical isolation between cellular users and in-X services while allowing controlled resource sharing. In the underlay coexistence scenario, slic-ing decisions must be continuously adapted to the evolving interference landscape and heterogeneous service demands. In addition, the capability of dynamically adapting resource slicing is therefore of paramount importance or achieving the expected communication requirements of in-X subnetworks under high mobility and dynamic subnetwork crowds [11]. Therefore, simple heuristic-based methods such as equal re-source splitting across slices are inefficient, as they ignore slice heterogeneity and complex network dynamics [12]. Moreover, the problem of determining the optimal resource allocation at each system state is NP-hard, thereby limiting the applicability of theoretical optimization methods [13]. This necessitates the need for intelligent, adaptive, and learning-based RRM frameworks capable of dynamically configuring slices and allocating radio resources in a way that balances isolation, efficiency, and robustness. Several data-driven methods have been investigated in the literature [14]–[16]. However, these works focus mainly on maximization/minimization of spe-cific network metrics for each slice and do not consider the corresponding QoS objectives/constraints for each slice, leading to either degraded user experience or resource over-provisioning. Moreover, none of these works consider the cross-modal synchronization for XR uses cases supported by IBSs. III. T HE PROPOSED DRL-B ASED RAN S LICING 
+
+We consider the scenario of a set N = {1, 2, ..., N } of consumer subnetworks underlay a 5G macro base station and 
+
+Fig. 1: Network model showing a number of IBSs (XR users) coexist and share the radio resources with eMBB users. share the same resources with a set set M = {1, 2, ..., M }
+
+of eMBB cellular users as depicted by Fig. 1. The network operates using orthogonal frequency-division multiple access (OFDMA) with subcarrier spacing determined by the nu-merology of 5G-NR. The total network bandwidth is divided into a number resource blocks (RBs) and these RBs are grouped into R RB groups (RBGs). The macro base station is responsible for resource management and RAN slicing for both the eMBB and IBS users. The traffic pattern as well as the QoS requirements are the same for all users within the same set. The eMBB users use a full-buffer traffic pattern, requiring resources for transmission at each time slot. For the IBS users, we adopt single-eye-buffer traffic model [4], where video frames for both eyes arrive together as one application-layer packet. We focus on the downlink transmission, where XR devices receive high-bandwidth video frames rendered at the subnetwork access point (AP). Specifically, the AP col-lects data from sensors and controllers, computes appropriate interactive video frames, and transmits them back to the XR headset. Another option could be that the XR headset has high capability of computation so that the XR scene can be self-generated [17]. For immersive experience, the XR users are provided with a haptic feedback in the form of vibration or heat. Such feedback shall be tightly synchronized with the XR scene delivered to the users. In our work, we focus on three network requirements: data rate, packet loss, latency and video-haptic synchronization. The aim of the proposed DRL-based RAN slicing algorithm is to allocate RBGs to a slice k ∈ { s, c }, where s denotes the XR slice and c denotes the eMBB-slice as depicted by Fig. 2. For the considered complex scenario of a heteroge-neous, time-varying network, we employ DRL-based policy that dynamically allocates RBGs for each slice. Particularly, we adopt the Soft Actor–Critic (SAC) algorithm due to its strong performance in highly dynamic environments. SAC Fig. 2: The DRL-based RAN slicing showing inter-slice and intra-slice schedulers. maximizes a stochastic policy objective that jointly considers the expected long-term return and an entropy regularization term, where the entropy coefficient regulates the balance between exploration and exploitation. During training, the agent stores transition tuples, comprising the current state, selected action, obtained reward, and subsequent state in a replay buffer, from which mini-batches are randomly sampled to update the actor and critic networks [18]. As SAC inherently produces continuous-valued actions, the generated outputs are discretized to determine the number of RBGs allocated to each slice k, following a similar approach deployed in [19]. The agent, state, action and reward of the DRL method are defined as follows:  
+
+> •
+
+Agent: The agent is a Deep Neural Network (DNN) com-prising actor and critic networks which are responsible for stabilizing learning and improve policy updates in time-varying network conditions.  
+
+> •
+
+State: The state vector captures network indicators, in-cluding the aggregate buffer occupancy βo, latency τ ,packet loss ratio ρ, and data rate r. To reduce dimension-ality, averaged metrics are considered instead of per-user measurements.  
+
+> •
+
+Action: The action represents the number RBs allocated for each slice. The total bandwidth is divided into R
+
+RBGs leading to a discrete action space.  
+
+> •
+
+Reward: The reward function evaluates the degree to which slice-level QoS requirements are satisfied. The agent aims to maximize the expected cumulative reward, thereby learning a resource slicing policy that maintains QoS compliance under dynamic wireless environments. At each time slot t, the actor network observes the network state st and selects a slicing action at according to a stochastic policy π(·| st). The stochastic nature of the policy promotes exploration by sampling actions from a parameterized distri-bution. The objective of the policy is to maximize a trade-off between the expected cumulative reward and an entropy reg-ularization term, which encourages exploration. The optimal policy π∗ is represented as 
+
+π∗ = arg max  
+
+> π
+
+E
+
+"X
+
+> t
+
+γt (R(st, a t, s t+1 ) − λ log π(at|st)) 
+
+#
+
+,
+
+(1) where γ ∈ (0 , 1) denotes the discount factor and λ is the entropy coefficient controlling the exploration-exploitation balance. The soft Q-function represents the expected long-term return under the entropy-regularized objective and is defined as 
+
+Q(st, a t) = E
+
+h
+
+R(st, a t, s t+1 )+ γ  min  
+
+> i=1 ,2
+
+Qθi (st+1 , a t+1 ) − λ log π(at+1 |st+1 )i
+
+, (2) where Qθ1 and Qθ2 correspond to the two critic networks used to mitigate overestimation bias. The reward function is formulated to penalize violations of the service-level constraints of each user. For the eMBB slice, the users require high data rate with no stringent requirements on latency and packet loss. For the XR (IBS) slice, the users demand high data rate, low packet loss and tight scynchroniza-tion between the video and haptic feedback for a satisfactory user experience. We define ¯rk and ¯ρk as the average data rate and packet loss ratio across users within the slice k. For the XR slice s, we define ¯τv and ¯τh as the average latency for the video and haptic traffic, respectively. 
+
+Data Rate Component: The data rate reward is designed to penalize insufficient throughput and is expressed as 
+
+Rrk =
+
+
+
+− r0 
+
+> k
+
+− ¯rk
+
+r0
+
+> k
+
+, if ¯rk < r 0
+
+> k
+
+,
+
+0, otherwise ,
+
+(3) where r0 
+
+> k
+
+denotes the minimum required data rate for slice k.
+
+Packet Loss Component: Similarly, the packet loss penalty is defined as 
+
+Rρs =
+
+
+
+− ¯ρs − ρ0
+
+> s
+
+1 − ρ0
+
+> s
+
+, if ¯ρs > ρ 0
+
+> s
+
+,
+
+0, otherwise ,
+
+(4) where ρ0 
+
+> s
+
+is the maximum tolerable packet loss. 
+
+Latency Component: For the IBSs, the XR users needs to maintain a tight synchronization between the video and haptic modalities. Hence, for the s slice, we consider a synchroniza-tion threshold, which is based on the relative latency between video and haptic traffic. The reward component for the video traffic is given as 
+
+Rτsv =
+
+
+
+− |¯τv − ¯τh| − τsync 
+
+τsync 
+
+, if |¯τv − ¯τh| > τ sync ,
+
+0, otherwise ,
+
+(5) where τsync represents the maximum acceptable delay dif-ference between the two modalities that ensures seamless user experience. Human-subject experiments suggest that users begin to perceive cross-modal desynchronization when the delay between haptic and video signals exceeds approximately 50 ms [20]. Moreover, for the haptic traffic, we formulate the reward contribution Rτsh that considers the buffer latency as follows 
+
+Rτsh =
+
+
+
+− ˆτ − ¯τ h
+
+> 0
+
+τmax − ¯τ h
+
+> 0
+
+, if ˆτ > ¯τ h 
+
+> 0
+
+,
+
+0, otherwise ,
+
+(6) TABLE I: Summary of system-level simulation parameters                                
+
+> Parameter Value/Setting General
+> Deployment layout 50 m ×50 m ×3 m
+> Number of devices 5 eMBB and 10 - 25 IBS Total bandiwidth 100 MHz number of RBs 272 TTI 14 OFDM symbols Channel model InH (Open Office) [21] Macro BS power 31 dBm AP power 10 dBm
+> r0
+> c45 Mbps
+> Hyperparameters of the SAC algorithm
+> Number of hidden layers 4
+> γ0.9 Learning rate 0.0001 Update rate 0.005 Replay buffer Size 1×10 6
+> Optimizer Adam Entropy coefficient λAuto-tuned Batch size 1024
+> XR Traffic Model
+> Packet arrival rate for video 90 packets/s Packet arrival rate for haptic data 1000 packets/s
+> r0
+> s60 Mbps
+> ρ0
+> s1×10 −5
+> τsync 50 ms
+
+where ˆτ is the average buffer latency of the haptic traffic, 
+
+τmax is the maximum buffer latency of a packet before it is discarded and τ h 
+
+> 0
+
+is the target buffer latency. Then, the latency contribution for the XR slice is Rτs = Rτsv + Rτsh . Finally, the total reward function is calculated as the sum of all the components. 
+
+R = Rρs + Rτs + X
+
+> k∈{ s,c }
+
+Rrk. (7) Following the inter-slice allocation performed by the DRL agent, the intra-slice scheduler distributes the allocated RBGs among the slice users. The intra-slice scheduler assigns RBGs to user u proportionally to its buffer occupancy βuo , thereby prioritizing users with higher traffic demand. The RBGs alloc-tated for user u is computed as 
+
+N urbg =
+
+ βuo
+
+βo
+
+N krbg 
+
+
+
+, (8) where N krbg denotes the number of RBGs allocated to slice 
+
+k and βo represents the total buffer occupancy of slice 
+
+k. Compared to conventional resource distribution methods which follow round-robin approach, this proportional alloca-tion mechanism dynamically assigns more resources to users experiencing higher buffer backlog. IV. P ERFORMANCE EVALUATION 
+
+The performance of the proposed method is evaluated using a system-level simulator following the 3GPP method-ology [22]. The simulation implements a macro base station centered at a height of 3m in a 50m × 50m environment. The spatial distribution of the IBSs follows a Thomas Clus-ter Process (TCP) with five cluster centers and a standard Number of IBSs 
+
+10 15 20 25 
+
+> Satisfaction Ratio (%)
+
+0
+
+20 
+
+40 
+
+60 
+
+80 
+
+100 
+
+> Proposed
+> Baseline
+
+Fig. 3: Satisfaction ratio under varying number of IBS users. deviation of 2 m for the distance between offspring points and their corresponding cluster centers [23]. Each IBS is modeled as a cylindrical region with radius 0.25 m and height 1.9 m, where the cylinder center corresponds to the IBS location. A minimum separation of 4 m between cluster centers and 0.5 m between IBS centers is enforced to avoid excessive spatial overlap. The minimum time unit considered in the scheduling process is a transmission time interval (TTI), which is equivalent to the duration of 14 OFDM symbols and represents the time to allocate the RBGs to each slice. A summary of the simulation parameters are listed in Table I For the DRL algorithm, we assume that both the actor and critic networks share a similar architecture. Each network consists of 4 hidden layers with 400, 300, 200, and 100 neurons, respectively. The actor network output is connected to a softmax layer to produce a probability distribution over discrete actions, whereas the critic networks use linear output layers without additional nonlinear activation. The discount factor is set to γ = 0 .9, and the learning rate is 10 −4. The target network parameters are updated using a soft-update mechanism with rate 0.005 . Training is performed over 10 episodes, each comprising 10,000 time steps with each step is 1 ms. The initial 200 frames are excluded to avoid the impact of transient traffic behavior. After training, the policy is evaluated over 100 independent episodes of equal length, We use the work in [16] as a baseline. We implement the same reward function used in [16] while using the same observation and action spaces in our proposed method. Fig. 3 shows the satisfaction ratio under different number of IBSs. A user (XR or eMBB) is marked as satisfied if the corresponding QoS requirements are fulfilled over a sin-gle episode. Then, we calculate the satisfaction ratio using statistics aggregated from the results of 100 independent episodes. Based on the Wilson score interval for binomial proportions [24], all the reported results have at least 95% confidence interval. As depicted by Fig. 3, the satisfaction ratio of both methods gradually decreases as the number of IBSs increases due to intensified competition for radio resources and Synchronization Latency (ms) 
+
+0 20 40 60 80 100 120 
+
+> CDF
+
+0
+
+0.2 
+
+0.4 
+
+0.6 
+
+0.8 
+
+1
+
+Baseline, N=20 
+
+Proposed, N=20 
+
+Baseline, N=25 
+
+Proposed, N=25 Fig. 4: CDF of the synchronization latency of the XR users with N = 20 and N = 25 .Number of IBSs 
+
+10 15 20 25 
+
+> Average eMBB Throughput (Mbps)
+
+0
+
+20 
+
+40 
+
+60 
+
+80 
+
+100 
+
+Baseline 
+
+Proposed 
+
+Fig. 5: Average throughput of eMBB users under varying number of IBS users. increased inter-slice contention. Nevertheless, our proposed slicing method consistently maintains a significantly higher satisfaction level across all density regimes. Specifically, at 10 IBS users, the proposed approach achieves approximately 98% satisfaction, compared to around 85% for the baseline. Under the most congested scenario with 25 IBS users, the proposed method still preserves about 87% satisfaction, while the baseline falls sharply below 50%. This corresponds to a relative improvement of approximately 7-74% across the evaluated densities. The most significant degradation for the baseline was the violation of the synchronization latency between the video and haptic modalities, which has been efficiently handled by the proposed slicing method. Fig. 4 depicts the cumulative distribution function (CDF) of the synchronization latency of the XR users. For the high IBS densities of 20 and 25, most of the values obtained from the proposed method fulfill the target synchronization latency while the baseline distribution shows a heavier tail toward higher latency values, exceeding the synchronization constraint of 50 ms. These results give more detailed insight on the effectiveness of the proposed method in maintaining acceptable user experience for XR users coexisting with other cellular users. In Fig. 5, we show the impact of the number of IBSs on the average throughput of the eMBB users. For the IBSs density of 10 and 15, both methods managed to maintain the average throughput above the target value of 45 Mbps. However, as the IBSs density increases to 20 and 25, the baseline exhibits noticeable degradation and fails to maintain the target throughput, while the proposed scheme still preserves a safe margin above 45 Mbps. Taking together, the obtained results demonstrate the effectiveness of the proposed SAC-based method in efficiently utilizing the available radio resources for supporting the emerging 6G IBSs, while maintaining acceptable QoS for the standard cellular users, V. C ONCLUSION 
+
+The paper investigated a DRL-based method for RAN slicing, addressing the challenge of underlay coexistence sce-nario of IBSs and cellular users. We proposed a SAC-based slicing framework that dynamically allocates radio resources between XR and eMBB slices using a service-aware reward formulation. Performance evaluations have been conducted via system-level simulations and the obtained results showed that the proposed method achieves improved user experience compared to the baseline. Our findings therefore contribute to robust and scalable resource management solutions, supporting coexistence between heterogeneous services in future 6G network-of-networks architectures. REFERENCES [1] M. A. Uusitalo et al. , “6g vision, value, use cases and technologies from european 6g flagship project hexa-x,” IEEE Access , vol. 9, pp. 160 004–160 020, 2021. [2] G. Berardinelli, P. Baracca, R. O. Adeogun, S. R. Khosravirad, F. Schaich, K. Upadhya, D. Li, T. Tao, H. Viswanathan, and P. Mo-gensen, “Extreme communication in 6g: Vision and challenges for ‘in-x’ subnetworks,” IEEE Open Journal of the Communications Society ,vol. 2, pp. 2516–2535, 2021. [3] S. Bagherinejad, T. Jacobsen, N. K. Pratas, and R. O. Adeogun, “Drl-based distributed joint sub-band allocation and power control for extended reality over in-body subnetworks,” in 2025 IEEE Wireless Communications and Networking Conference (WCNC) , 2025, pp. 1–6. [4] M. Gapeyenko, V. Petrov, S. Paris, A. Marcano, and K. I. Pedersen, “Standardization of extended reality (xr) over 5g and 5g-advanced 3gpp new radio,” IEEE Network , vol. 37, no. 4, pp. 22–28, 2023. [5] A. Srinivasan, U. Singh, and O. Tirkkonen, “Multi-agent reinforcement learning approach scheduling for in-x subnetworks,” in 2024 IEEE 100th Vehicular Technology Conference (VTC2024-Fall) , 2024, pp. 1–7. [6] D. Abode, P. M. de Sant Ana, R. Adeogun, A. Artemenko, and G. Berardinelli, “Goal-oriented interference coordination in 6g in-factory subnetworks,” IEEE Journal on Selected Areas in Communications ,vol. 43, no. 9, pp. 3088–3103, 2025. [7] H. Farag, M. Ragab, G. Berardinelli, and c. Stefanovic, “Proactive radio resource allocation for 6g in-factory subnetworks,” in 2025 International Wireless Communications and Mobile Computing (IWCMC) , 2025, pp. 1108–1113. [8] A. Amer, S. Hoteit, and J. B. Othman, “Resource allocation for enabled-network-slicing in cooperative noma-based systems with underlay d2d communications,” in ICC 2023 - IEEE International Conference on Communications , 2023, pp. 1344–1349. [9] W. Lee and K. Lee, “Resource allocation scheme for guarantee of qos in d2d communications using deep neural network,” IEEE Communications Letters , vol. 25, no. 3, pp. 887–891, 2021. [10] P. Popovski, K. F. Trillingsgaard, O. Simeone, and G. Durisi, “5g wireless network slicing for embb, urllc, and mmtc: A communication-theoretic view,” IEEE Access , vol. 6, pp. 55 765–55 779, 2018. [11] G. Berardinelli and R. Adeogun, “Hybrid radio resource management for 6g subnetwork crowds,” IEEE Communications Magazine , vol. 61, no. 6, pp. 148–154, 2023. [12] M. B. Krishna and P. Lorenz, “Deterministic network slice instance policy for intra and inter slice resource management in 5g,” IEEE Transactions on Vehicular Technology , vol. 74, no. 3, pp. 4904–4916, 2025. [13] J. Zhao, Q. Li, Y. Gong, and K. Zhang, “Computation offloading and resource allocation for cloud assisted mobile edge computing in vehicular networks,” IEEE Transactions on Vehicular Technology ,vol. 68, no. 8, pp. 7944–7956, 2019. [14] M. Polese, L. Bonati, S. D’Oro, S. Basagni, and T. Melodia, “Colo-ran: Developing machine learning-based xapps for open ran closed-loop control on programmable experimental platforms,” IEEE Transactions on Mobile Computing , vol. 22, no. 10, pp. 5787–5800, 2023. [15] M. Yan, G. Feng, J. Zhou, Y. Sun, and Y.-C. Liang, “Intelligent resource scheduling for 5g radio access network slicing,” IEEE Transactions on Vehicular Technology , vol. 68, no. 8, pp. 7691–7703, 2019. [16] J. Mei, X. Wang, K. Zheng, G. Boudreau, A. B. Sediq, and H. Abou-Zeid, “Intelligent radio access network slicing for service provisioning in 6g: A hierarchical deep reinforcement learning approach,” IEEE Transactions on Communications , vol. 69, no. 9, pp. 6063–6078, 2021. [17] 6G-SHINE Consortium, “D2.2: Refined definition of scenarios, use cases and service requirements for in-x subnetworks,” 6G-SHINE — Short Range Extreme Communication IN Entities, Horizon Europe SNS JU Project, Public Technical Report Deliverable D2.2, Feb. 2024, https: //6gshine.eu/deliverables-ii/. [18] T. Haarnoja, A. Zhou, P. Abbeel, and S. Levine, “Soft actor-critic: Off-policy maximum entropy deep reinforcement learning with a stochastic actor,” in Proceedings of the 35th International Conference on Machine Learning (ICML) , 2018, pp. 1861–1870. [19] C. V. Nahum, V. H. L. Lopes, R. M. Dreifuerst, P. Batista, I. Correa, K. V. Cardoso, A. Klautau, and R. W. Heath, “Intent-aware radio re-source scheduling in a ran slicing scenario using reinforcement learning,” 
+
+IEEE Transactions on Wireless Communications , vol. 23, no. 3, pp. 2253–2267, 2024. [20] M. Di Luca and A. Mahnan, “Perceptual limits of visual-haptic si-multaneity in virtual reality interactions,” in 2019 IEEE World Haptics Conference (WHC) , 2019, pp. 67–72. [21] 3rd Generation Partnership Project (3GPP), “Study on channel model for frequencies from 0.5 to 100 GHz (Release 18),” 3rd Generation Partnership Project (3GPP), Technical Report TR 38.901, 2024. [22] ——, “Study on XR (Extended Reality) Evaluations for NR (Release 17),” 3rd Generation Partnership Project (3GPP), Technical Report TR 38.838, 2021. [23] M. Haenggi, Stochastic Geometry for Wireless Networks . Cambridge, UK: Cambridge University Press, 2012. [24] A. D. Lawrence D. Brown, T. Tony Cai, “Interval estimation for abinomial proportion,” Statistical Science , vol. 16, no. 2, pp. 101–133, 2001.

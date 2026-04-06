@@ -1,0 +1,110 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-001.webp",
+      "caption": "Figure 4: Ablation of the exploration mechanism for LMc-NPG-EXP.",
+      "page": 57,
+      "index": 1,
+      "width": 976,
+      "height": 248
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-002.webp",
+      "caption": "Figure 3: Comparison of LMC-NPG-EXP (our proposed framework), LMC-NPG-IMP (memory-intensive variant), and LMC (value-based baseline) in the Deep Sea environment.",
+      "page": 57,
+      "index": 2,
+      "width": 414,
+      "height": 313
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-003.webp",
+      "caption": "Figure 1: Comparison of LMC-NPG-EXP (our proposed algorithm), LMC-NPG-IMP (memory-intensive variant), and LMC (value-based baseline) in the Random MDP.",
+      "page": 15,
+      "index": 3,
+      "width": 414,
+      "height": 313
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-004.webp",
+      "caption": "Table 2: Notations for Problem Definition and Algorithm Design",
+      "page": 21,
+      "index": 4,
+      "width": 848,
+      "height": 394
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-005.webp",
+      "caption": "Figure 5: Effect of feature dimension d in Deep Sea.",
+      "page": 58,
+      "index": 5,
+      "width": 414,
+      "height": 313
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-006.webp",
+      "caption": "Figure 6: LMC-NPG-EXP exhibits robustness to different choices of ζ−1.",
+      "page": 58,
+      "index": 6,
+      "width": 976,
+      "height": 248
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-007.webp",
+      "caption": "Figure 7: LMC-NPG-EXP exhibits robustness to different choices of M.",
+      "page": 58,
+      "index": 7,
+      "width": 976,
+      "height": 248
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-008.webp",
+      "caption": "Figure 8: In the on-policy setting, LMC-NPG-EXP achieves comparable or better performance compared to PPO.",
+      "page": 61,
+      "index": 8,
+      "width": 979,
+      "height": 567
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-009.webp",
+      "caption": "Figure 9: In the off-policy setting, LMC-NPG-EXP achieves comparable or better performance compared to DQN.",
+      "page": 61,
+      "index": 9,
+      "width": 979,
+      "height": 564
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-010.webp",
+      "caption": "Table 4: Hyperparameters for the Atari experiments in the on-policy setting.",
+      "page": 60,
+      "index": 10,
+      "width": 677,
+      "height": 591
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-011.webp",
+      "caption": "Table 5: Hyperparameters for the Atari experiments in the off-policy setting.",
+      "page": 60,
+      "index": 11,
+      "width": 672,
+      "height": 500
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-012.webp",
+      "caption": "Table 1: Comparison with the state-of-the-art algorithms for episodic finite-horizon linear MDPs (with feature dimension dc and horizon H). The sample complexity refers to the number of interactions required for outputting an ϵ-optimal policy, whereas the cost of policy inference refers to the per-episode cost for interacting with the environment for H steps. Our proposed algorithm matches the optimal sample efficiency in both the on- and off-policy settings. Furthermore, in contrast to existing works, our algorithm employs an explicit policy parameterization (log-linear policies with dimension da), resulting in lower computational cost for policy inference.",
+      "page": 4,
+      "index": 12,
+      "width": 968,
+      "height": 194
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28595v2/fig-013.webp",
+      "caption": "Table 3: Hyperparameter search space for our experiments in linear MDPs.",
+      "page": 56,
+      "index": 13,
+      "width": 852,
+      "height": 194
+    }
+  ]
+}

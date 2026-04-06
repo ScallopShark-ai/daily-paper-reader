@@ -1,0 +1,102 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-001.webp",
+      "caption": "Fig. 3: Policy model NN design. In the control loop, the image inputs (ot, and ot−1) are focal plane images from the science camera, and while training, the future inputs (Algorithm 1 line 11, t = 2, 3, · · ·H) are predicted/simulated by the dynamics model.",
+      "page": 6,
+      "index": 1,
+      "width": 484,
+      "height": 305
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-002.webp",
+      "caption": "Fig. 8: RMS per mode over the long episode with dynamic NCPA for (a) standard imaging and (b) perfect coronagraph cases.",
+      "page": 11,
+      "index": 2,
+      "width": 1064,
+      "height": 355
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-003.webp",
+      "caption": "Fig. 9: PSF sharpness/contrast with dynamic NCPA for (a) standard imaging and (b) perfect coronagraph cases.",
+      "page": 11,
+      "index": 3,
+      "width": 1086,
+      "height": 524
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-004.webp",
+      "caption": "Table 1: Simulations parameters",
+      "page": 7,
+      "index": 4,
+      "width": 511,
+      "height": 473
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-005.webp",
+      "caption": "Fig. 6: Circular pupil PSF sharpness/raw contrast with static NCPA for (a) standard imaging and (b) perfect coronagraph cases. Here, we take the average (over 500 episodes) of the last PSF frame and plot the resulting PSF and radial average divided by the peak intensity.",
+      "page": 10,
+      "index": 5,
+      "width": 1086,
+      "height": 524
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-006.webp",
+      "caption": "Fig. 7: A 100-time-step window during the long exposure dynamic NCPA, showing the wavefront error RMS as a function of time steps. (a) Standard imaging and (b) perfect coronagraph cases.",
+      "page": 10,
+      "index": 6,
+      "width": 1073,
+      "height": 357
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-007.webp",
+      "caption": "Fig. 4: Training plots of PO4NCPA on circular pupil with SI and PC. Here we plot the negative cumulative reward (loss) after each episode in the training circle. The light blue curve shows the raw negative reward, and the dark blue shows the smoothed value (moving average). For the dynamic case (c, d), the DM is flattened only at the start of the episode for the first 40k episodes to prevent saturation. Afterward, each episode starts from the previous endpoint, thereby mimicking a continuously updated closedloop control system. Hence, the bigger episode reward after that.",
+      "page": 8,
+      "index": 7,
+      "width": 1086,
+      "height": 665
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-008.webp",
+      "caption": "Fig. 1: Illustration of the preprocessing step of the focal plane data, i.e, the observation. For a non-coronagraphic system, the Airy pattern (perfect PSF) is subtracted from the PSF, and for the perfect coronagraph, the perfect PSF is simply a dark image (background). The images are then flattened with the cubic root.",
+      "page": 4,
+      "index": 8,
+      "width": 500,
+      "height": 379
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-009.webp",
+      "caption": "Fig. 11: Raw “residual” PSF contrast for ELT-METIS. Upper row: recorded PSF. Middle row: recorded PSFs with diffraction patterns (ideal PSF) subtracted. Lower row: the azimuthal average of the subtracted PSFs (i.e., “Raw residual PSF contras”).",
+      "page": 12,
+      "index": 9,
+      "width": 510,
+      "height": 716
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-010.webp",
+      "caption": "Fig. 10: PO4NCPA performance compared against “Fitting error + delay error” on larger dynamic wavefront errors in the standard imaging case. The gray dashed line is the “Fitting error + delay error”, the red line is the open-loop/no-correction Strehl, the blue line is the PO4NCPA trained on the given r0, and the green line is the PO4NCPA trained on r0 = 20 m applied to r0 = 15 m and 10 m.",
+      "page": 12,
+      "index": 10,
+      "width": 506,
+      "height": 326
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-011.webp",
+      "caption": "Fig. 5: PO4NCPA convergence on circular pupil with SI (left) and PC (right) in the case of static NCPA. Top row: reward on time steps. PO4NCPA episodes are shown in green (best), blue (median), red (worst), while black and gray lines correspond to fitting error rewards. Bottom row: PO4NCPA residual wavefront RMS (inside the control region) over the same episodes (fitting error is always zero).",
+      "page": 9,
+      "index": 11,
+      "width": 1073,
+      "height": 747
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00993v1/fig-012.webp",
+      "caption": "Fig. 2: Dynamics model NN design. Trained on closed-loop data (science camera images and residual commands), the dynamics model learns to simulate the optical path of the light. Highlighted in green are the inputs to the NN.",
+      "page": 5,
+      "index": 12,
+      "width": 512,
+      "height": 258
+    }
+  ]
+}
