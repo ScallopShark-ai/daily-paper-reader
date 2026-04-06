@@ -1,0 +1,94 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-001.webp",
+      "caption": "Figure 1. Example 1: Optimal controls for the true, uncorrupted problem, as well as for the corrupted problem (dotted lines) and the corresponding Rockafellian relaxations at varying corruption levels.",
+      "page": 26,
+      "index": 1,
+      "width": 877,
+      "height": 219
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-002.webp",
+      "caption": "Figure 3. Optimal controls z∗ for (6.7) (without any Rockafellian relaxation) for differing values of risk-tolerance β and corruption levels. All plots use the same legend.",
+      "page": 30,
+      "index": 2,
+      "width": 864,
+      "height": 785
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-003.webp",
+      "caption": "Figure 2. Probability density functions for the random variable ξ in the advection field v(ξ) for the PDE constraint (6.8).",
+      "page": 29,
+      "index": 3,
+      "width": 439,
+      "height": 344
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-004.webp",
+      "caption": "Table 4. For Example 2: Statistics associated with the total control cost j(ξ, z∗)+ α 2 ∥z ∗∥2L2(Ω) at various corruption levels and β values. Wherever a θ value is indicated, this corresponds to a Rockafellian case. Min and Max refer to the minimum and maximum value of the total cost, respectively, while the final five columns list various quantiles of the random objective function.",
+      "page": 34,
+      "index": 4,
+      "width": 892,
+      "height": 277
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-005.webp",
+      "caption": "Figure 8. For β = 0.9: CDF plots for the random objective function (6.11) (left) and total control cost (right) for Rockafellian optimal controls at various θ values and corruption levels.",
+      "page": 33,
+      "index": 5,
+      "width": 882,
+      "height": 347
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-006.webp",
+      "caption": "Figure 7. For β = 0.9: CDF plots for the random objective function (6.11) (left) and total control cost (right) for various optimal controls. The dashed lines correspond to optimal controls without any Rockafellian relaxation.",
+      "page": 33,
+      "index": 6,
+      "width": 876,
+      "height": 346
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-007.webp",
+      "caption": "Figure 6. For β = 0.1: CDF plots for the random objective function (6.11) (left) and total control cost (right) for various optimal controls. The dashed lines correspond to optimal controls without any Rockafellian relaxation.",
+      "page": 32,
+      "index": 7,
+      "width": 882,
+      "height": 347
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-008.webp",
+      "caption": "Table 3. For Example 2: relative L2 errors Erel between the Rockafellian and true, uncorrupted optimal controls, as well as the ratio of L2 errors Eratio for the corrupted and Rockafellian optimal controls–both Erel and Erel are defined analogously to (6.6). The quantities are shown at various combinations of corruption level, risk-tolerance β, and relaxation parameter θ.",
+      "page": 32,
+      "index": 8,
+      "width": 583,
+      "height": 315
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-009.webp",
+      "caption": "Table 1. Example 1 with θ = 10−1: relative L2 errors Erel between the Rockafellian and true optimal controls, as well as the ratio of L2 errors Eratio for the corrupted and Rockafellian optimal controls; see (6.6). Also included are the fraction of corrupted and clean sample points correctly and incorrectly removed by the perturbation variable t, respectively. Corruption levels defined by (6.4).",
+      "page": 27,
+      "index": 9,
+      "width": 798,
+      "height": 467
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-010.webp",
+      "caption": "Figure 4. For β = 0.1: pointwise errors between an uncorrupted optimal control and corrupted optimal controls at 50% and 100% corruption (left and middle, respectively), as well as the pointwise error for a Rockafellian optimal control at 100% corruption (right). All plots use the same legend.",
+      "page": 31,
+      "index": 10,
+      "width": 896,
+      "height": 277
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00226v1/fig-011.webp",
+      "caption": "Figure 5. For β = 0.9: pointwise errors between an uncorrupted optimal control and corrupted optimal controls at 50% and 100% corruption (left and middle, respectively), as well as the pointwise error for a Rockafellian optimal control at 100% corruption (right). All plots use the same legend.",
+      "page": 31,
+      "index": 11,
+      "width": 896,
+      "height": 275
+    }
+  ]
+}

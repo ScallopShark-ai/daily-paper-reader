@@ -1,0 +1,2035 @@
+Title: Risk-averse optimization under distributional uncertainty with Rockafellian relaxation
+
+URL Source: https://arxiv.org/pdf/2604.00226v1
+
+Published Time: Thu, 02 Apr 2026 00:12:42 GMT
+
+Number of Pages: 38
+
+Markdown Content:
+RISK-AVERSE OPTIMIZATION UNDER DISTRIBUTIONAL UNCERTAINTY WITH ROCKAFELLIAN RELAXATION 
+
+HARBIR ANTIL, ALONSO J. BUSTOS, SEAN P. CARNEY, AND BENJAM ´IN VENEGAS 
+
+Abstract. A framework for risk-averse optimization problems is introduced that is re-silient to ambiguities in the true form of the underlying probability distribution. The focus is on problems with partial differential equations (PDEs) as constraints, although the for-mulation is more broadly applicable. The framework is based on combining risk measures with problem relaxation techniques, and it builds off of previous advances for risk-neutral problems. This work advances the existing theory with strengthened Γ-convergence re-sults, novel existence results and first-order optimality criteria. In particular, the theo-retical approach naturally accommodates infinite-dimensional probability spaces; no finite-dimensional noise assumption is needed. The framework blends aspects of both distribu-tionally robust optimization (DRO) and distributionally optimistic optimization (DOO) approaches. The DRO aspect facilitates strong out-of-sample performance, while the DOO aspect takes care of adversarial and outlier data, as illustrated with numerical examples. 
+
+# 1. Introduction 
+
+In a wide variety of applications in financial planning, operations management, engineering design, and statistical modeling, it is critical to account for uncertainty in a conservative, risk-averse manner. Risk measures are a well-established tool in stochastic optimization to arrive at decisions that minimize exposure to exceptionally poor outcomes [Roy25]. Given a random variable ξ defined on a probability space (Ξ , A, P), 1 ≤ p ≤ ∞ , and a coherent risk measure [SDR14, Section 6.3] R : Lp(Ξ , A, P) → R, a typical risk-averse stochastic program can be written in the form min 
+
+> z∈Zad
+
+R[f (ξ, z )] . (1.1) Here the deterministic control variable z belongs to an admissible subset Z ad of some Banach space Z, and f : Ξ × Z → R is integrable for each z ∈ Z.In practice, the precise form of the uncertainty itself is often unsettled; i.e. the sample space Ξ and probability measure P are themselves uncertain. The assumed probability dis-tribution might not accurately reflect the true variability, or extreme outcomes may appear outside the nominal support of the distribution. These inaccuracies could arise from mea-surement error or adversarial corruption, for example. Ignoring these possibilities can lead to optimization solutions that perform poorly under real-world conditions, particularly in the risk-averse setting [KS18a]. A common approach to account for such meta-uncertainty is to consider distributionally robust optimization (DRO) formulations, where one minimizes an expected value over a 
+
+This work is partially supported by the Office of Naval Research (ONR) under Award NO: N00014-24-1-2147, the Air Force Office of Scientific Research (AFOSR) under Award NO: FA9550-25-1-0231, NSF grant DMS-2408877, and SURE-AI Centre grant 357482, Research Council of Norway. 
+
+> 1
+> arXiv:2604.00226v1 [math.OC] 31 Mar 2026
+
+2 h. antil, a. bustos, s. carney, b. venegas 
+
+collection {Pi}i∈I of plausible measures, which is termed the ambiguity set. In risk-averse approaches, worst-case scenarios are considered, which yields a minimax problem min 
+
+> z∈Zad
+
+sup 
+
+> i∈I
+
+ˆ
+
+> Ξ
+
+f (ξ, z )dPi. (1.2) The literature on DRO is quite vast; we refer to the reviews [BTEGN09, PdHM16, RM22, LFG22] and references therein. It is well known that minimizing a coherent measure of risk R is itself an example of a distributionally robust optimization problem. For example, if one takes R = CVaR β , i.e. the Conditional Value-at-Risk at level β ∈ (0 , 1) [RU02, RU00], then (1.1) becomes min 
+
+> z∈Zad
+
+CVaR β (f (ξ, z )) = min 
+
+> z∈Zad
+
+inf 
+
+> γ∈R
+
+
+
+γ + 11 − β
+
+ˆ
+
+> Ξ
+
+(f (ξ, z ) − γ)+ dP
+
+
+
+. (1.3) By the Fenchel-Moreau theorem [ABM14, Theorem 9.3.5], (1.3) is equivalent to min 
+
+> z∈Zad
+
+sup 
+
+> θ∈Θβ
+
+ˆ
+
+> Ξ
+
+θ(ξ)f (ξ, z ) dP, (1.4) where the so-called risk envelope Θβ =
+
+n
+
+ϑ ∈ L∞(Ξ , A, P)
+
+ˆ
+
+> Ξ
+
+ϑ(ξ) dP = 1 , 0 ≤ ϑ ≤ (1 − β)−1 P a.s. 
+
+o
+
+plays the role of the ambiguity set. For more general coherent risk measures, an analogous result can be found in [SDR14, Theorem 6.7]. In the context of statistical estimation, DRO is known to exhibit strong out-of-sample performance; it allows one to hedge against common issues such as overfitting and “distri-butional shifts”—deviations between the distributions observed in the model training and model deployment environments. We refer to the comprehensive discussion in [BLLZ25] for more details. On the other hand, DRO can be ill-suited for problems with contaminated or outlier data. At scenarios ξ that cause the function f (ξ, z ) to be exceptionally large (or possibly unbounded) at certain control values z (termed “endogenous” outliers by Jiang and Xie [JX24]) the DRO approach necessarily leads to higher objective function values, owing to the supremum in (1.2). An alternative approach for problems with data corruption is distributionally optimistic optimization (DOO). Generally speaking, DOO seeks best-case scenarios, for example, by replacing the supremum in (1.2) with an infimum. Although the literature is not as vast as for DRO, optimistic approaches are also well-studied; see [BZ04, HRKW17, ASN20, GKL25], for example. They are also closely connected to techniques from robust statistics [Hub92, MMYSB19], such as using a trimmed loss [AD20], as recently pointed out by the authors in [JX24] and [BLPZ24]. This connection can help explain the success of these approaches in the presence of outlier data. The work in [ACDR25] was the first example of an optimistic approach to stochastic optimization problems with partial differential equations (PDEs) as constraints. An interesting and relatively unexplored approach to stochastic optimization is to combine DOO with DRO to simultaneously improve both resilience to corrupted data and out-of-sample performance. A recent example is from [JX24], who proposed combining a “favorable CVaR β ” with a DRO approach based on measuring ambiguity sets with the Wasserstein Risk-averse optimization with Rockafellian relaxation 3
+
+∞-distance. Similar approaches can be found in [NTM17, NSAY +19, SZ20, BLPZ24]. Dis-tributionally robust chance constrained programs [HRKW15, CKW23, SJ23] can also be classified in this way. The current work presents a novel approach to combining robust and optimistic frame-works. The approach is based on employing both risk measures and Rockafellian relaxation techniques. Although the framework is more general, our focus is on problems that are constrained by PDEs. In this setting, the generic stochastic optimization problem (1.1) is modified to include the composition of a (random-valued) control-to-state map s(ξ, z ) with a quantity-of-interest map g, as well as an additional control penalty term. In particular, this work uses the coherent risk measure R = CVaR β (Eq. (1.3)), which originated in financial mathematics and portfolio optimization [RU02, RU00]. The au-thors in [KS16] were the first to use R = CVaR β in the context of PDE constrained op-timization (PDECO). Analysis and optimization algorithms can be found in [KS18b] and [KS22, GSU21, BKUW23], respectively. Risk measures for PDECO have also been used in conjunction with reduced order models [YG17, HKTW18] and tensor-train decompositions [ADO23]. Application areas include building and shape design [KLU18, CNK20, KKK +22], noise reduction [YG17], and digital twins [AAL25]. These lists are far from exhaustive, however, and risk-averse PDECO is a continually evolving field. Rockafellian relaxation is an optimistic approach to stochastic optimization based on ideas originating in [Roc63, Roc70]. Rather than replacing the supremum in (1.2) with an infi-mum (or suitable reformulation thereof), the approach seeks best-case scenarios by not only optimizing over the control variable z, but also jointly with a choice of model perturbations [Roy21]. Similar ideas based on minimizing “bivariate functions” and “perturbation func-tions” can also be found in [BC11] and [Z˘ al02], respectively. Rockafellians are intimately related to Lagrangian relaxations and dual problems, as discussed in [RW21, Chapter 5] and [DR25]. The work in [ACDR25] established theoretical foundations as well as practical algorithms for Rockafellian relaxation applied to risk-neutral PDECO problems, building off of prior work for finite dimensional problems in [RCE25]. The numerical examples in [ACDR25] additionally showcased that Rockafellian relaxation enables recovery of the opti-mal control to an uncorrupted optimization problem, even when solving with corrupted data. See also recent work applying Rockafellian relaxation to handle erroneous training labels in deep learning [CCE +24], as well as extensions to problems with arbitrary Borel distributions and discontinuous integrands (including chance-constrained programs) [TR25]. The first of two main objectives of the present work is to introduce a number of theoretical advances from the work in [ACDR25]. We prove novel existence results for Rockafellians constrained by PDEs, and, under appropriate regularity assumptions on the control-to-state map, we rigorously derive first-order optimality conditions. Importantly, our construction allows for infinite-dimension (in the Schauder sense) probability spaces. In contrast to many presentations in the literature, no finite-noise assumption is needed, cf. [KS18a]. We also present a unified theory for Γ-convergence of corrupted Rockafellians to the original, uncorrupted one in the limit of vanishing data corruption. As is well-known, this guarantees preservation of convergence of minimizers, demonstrating the method’s consistency. The second main objective is to illustrate with numerical examples the practical utility of Rockafellian relaxation for risk-averse PDECO problems with corrupted data. This builds off of the numerical examples presented in [ACDR25] in the risk-neutral setting. We observe that the method can recover the optimal control of a risk-averse problem in the presence of 4 h. antil, a. bustos, s. carney, b. venegas 
+
+endogenous outliers [JX24] caused by corrupted data samples. Additionally, we illustrate how the combined DOO and DRO approach can uncover “hidden” possibilities: using the CVaR β risk measure and minimizing over the Rockafellian decision variable allow for the recovery of controls that would be optimal, were the problem data different. The principal utility of the combined approach is that it can equip decision makers with insight into the sensitivity of optimal control strategies under changing levels of both problem corruption and risk-aversion. The remainder of this paper is structured as follows. In Section 2, we introduce some notations and preliminary definitions. Section 3 studies the original uncorrupted problem together with natural modifications that prepare the ground for the introduction of corrup-tion. Section 4 constitutes the main part of this work, in which we develop a systematic framework to analyze corrupted versions of the problems introduced previously. In partic-ular, we introduce several constructions that allow us to handle arbitrary sample spaces, which may be infinite-dimensional and of infinite measure. Then, we prove the existence of minimizers, first-order optimality conditions, and the convergence of corrupted minimiz-ers to uncorrupted minimizers. In Section 5, we particularize the results given in Section 4 to some cases of interest. In particular, as mentioned earlier, we complete the analysis made in [ACDR25] for corruption to the continuous distribution and to the support of dis-tributions. Moreover, we illustrate how focusing on particular instances enables us to relax assumptions and strengthen the obtained results. Section 6 contains two numerical examples of Rockafellian relaxation in practice, and Section 7 finishes with some concluding remarks. 
+
+# 2. Notation and preliminaries 
+
+Let (Z , ∥ · ∥ Z) be a reflexive Banach space, (U , ∥ · ∥ U) be an arbitrary Banach space, and (Ξ , A, P) be a probability space whose sample space is equipped with a norm ∥·∥ Ξ.Let Z ad ⊂ Z be a closed convex subset of optimization variables. We consider functions 
+
+f0 : Z → R, g : U → R, and s : Ξ × Z → U, which satisfy the following assumptions. 
+
+Assumption 2.1 (Properties of the solution map s).
+
+(1) s(·, z ) : Ξ → U is A-measurable, for every z ∈ Z. (2) If both ξε → ξ in Ξ and zε ⇀ z in Z as ε ↓ 0, then 
+
+s(ξε, z ε) ⇀ s (ξ, z ) in U .
+
+Assumption 2.2 (Properties of f0 and g).
+
+(1) f0 is proper: f0(z) > −∞ ∀ z ∈ Z and f0(z) < +∞ for some z ∈ Z. (2) Both f0 and g are sequentially weakly lower semicontinuous; that is, respectively, 
+
+zε Z
+
+⇀ z =⇒ lim inf  
+
+> ε↓0
+
+f0(zε) ≥ f0(z) ,uε U
+
+⇀ u =⇒ lim inf  
+
+> ε↓0
+
+g(zε) ≥ g(z) .
+
+Now, let us introduce some notation that will be used throughout the paper. Given an arbitrary space X and a subset S ⊂ X, we denote by ıS the indicator function of S, namely, the function X → R defined by ıS (x) = 0 for x ∈ S and ıS (x) = + ∞ for x / ∈ S. Similarly, let χS denote the characteristic function of S, that is, the function that takes the value 1 Risk-averse optimization with Rockafellian relaxation 5in S, and 0 otherwise. We also denote by E S, 0 the extension-by-zero operator from S to X.More precisely, given a function f : S → R, its extension E S, 0(f ) : X → R coincides with f
+
+on S, and is identically zero on X \ S.We also recall the definition of the positive part function ( · )+ : R → R, given by 
+
+x+ := |x| + x
+
+2 = max {0, x } ∀ x ∈ R ,
+
+which enjoys the following useful lower semicontinuity property: for any sequence of real numbers ( xε)ε> 0 such that lim inf  
+
+> ε↓0
+
+xε ≥ x for some x ∈ R, one has lim inf  
+
+> ε↓0
+
+(xε)+ ≥ x+. (2.1) We now introduce the notions of convergence that we will consider throughout the paper. In the following, X and Y denote Banach spaces, ϕ : X × Y → R denotes a map, whereas (ϕε)ε is a sequence of maps from X × Y to R.
+
+Definition 2.1 (Mosco convergence) . The sequence (ϕε)ε Mosco-converges to ϕ if the fol-lowing conditions hold: (1) For all (x, y ) ∈ X × Y there is a sequence (xε, y ε)ε in X × Y converging strongly to 
+
+(x, y ) such that 
+
+lim sup 
+
+> ε↓0
+
+ϕε(xε, y ε) ≤ ϕ(x, y ) . (2.2) 
+
+(2) For all sequences (xε, y ε)ε ⇀ (x, y ) in X × Y , there holds 
+
+lim inf  
+
+> ε↓0
+
+ϕε(xε, y ε) ≥ ϕ(x, y ) . (2.3) 
+
+These are called limit superior and limit inferior conditions, respectively. 
+
+We also introduce a slight modification of the definition of Γ-convergence, which we refer to as weak-strong Γ-convergence. This notion will be particularly useful in our context (cf. Theorem (4.3)). 
+
+Definition 2.2 (Weak-strong Γ-convergence) . The sequence (ϕε)ε weak-strong Γ-converges to ϕ, denoted by ϕε Γ
+
+⇁ ϕ , if the following conditions hold: (1) For all (x, y ) ∈ X × Y , there exists a sequence (xε, y ε)ε> 0 in X × Y converging strongly to (x, y ) such that 
+
+lim sup 
+
+> ε↓0
+
+ϕε(xε, y ε) ≤ ϕ(x, y ) . (2.4) 
+
+(2) For all sequences xε ⇀ x ∈ X and yε → y ∈ Y , there holds 
+
+lim inf  
+
+> ε↓0
+
+ϕε(xε, y ε) ≥ ϕ(x, y ) . (2.5) The main difference between this and the usual notion of Γ-convergence lies in the topol-ogy under which convergence is understood: here, convergence in X and Y is taken with respect to the weak and strong topologies, respectively, rather than the strong topology on the product space as a whole. This gives rise to a somewhat stronger notion of generalized convergence, which sits strictly between Mosco and Gamma convergence. As a consequence, and as expected, the two notions are generally not equivalent. These notions of convergence are naturally suited to the optimization framework. Indeed, control sequences typically exhibit weak convergence. The following proposition provides a concrete illustration of these concepts. 6 h. antil, a. bustos, s. carney, b. venegas 
+
+Proposition 2.1. Let (x⋆ε , y ⋆ε )ε be a sequence in X × Y with x⋆ε ∈ argmin ϕε(x). Assume that the sequence (ϕε)ε converges to ϕ in one of the notions defined above, and that (x⋆ε , y ⋆ε )ε
+
+converges to (x⋆, y ⋆) ∈ X × Y with respect to the corresponding topologies. Then, x⋆ ∈
+
+argmin ϕ(x).Proof. Given ( x, y ) ∈ X × Y , there holds ϕε(x⋆ε , y ⋆ε ) ≤ ϕε(x, y ). Then, for any sequence (xε, y ε)ε satisfying the limit superior condition associated with ( x, y ), we obtain 
+
+ϕ(x⋆, y ⋆) ≤ lim inf  
+
+> ε
+
+ϕε(x⋆ε , y ⋆ε ) ≤ lim inf  
+
+> ε
+
+ϕε(xε, y ε) ≤ lim sup 
+
+> ε
+
+ϕε(xε, y ε) ≤ ϕ(x, y ) .
+
+This completes the proof. □
+
+To conclude this section, we recall the definition of a Rockafellian associated with an optimization problem (cf. [Roc63, Roc70]). 
+
+Definition 2.3 (Rockafellian) . For Banach spaces X and Y , a function φ : X → R, and a generic optimization problem min x∈X φ(x), a bivariate function Φ : X × Y → R is called a Rockafellian for the problem, anchored at y ∈ Y , if 
+
+Φ( x, y ) = φ(x) ∀ x ∈ X . 
+
+Note that Rockafellians are not unique; for a given optimization problem, there exist infinitely many Rockafellians associated with it. This non-uniqueness provides significant flexibility, allowing one to design Rockafellians that can better accommodate approximations, perturbations, or numerical regularizations than the original problem. In particular, by carefully choosing the Rockafellian, one can simplify the analysis of convergence, stability, or sensitivity of approximate solutions. 
+
+# 3. The uncorrupted problem 
+
+In this section, we study the optimization problem min  
+
+> (z,γ )∈Zad ×R
+
+φ(z, γ ) = f0(z) + γ + κ E  (g ◦ s)( ·, z ) − γ
+
+> +
+
+ , (3.1) together with a slight variant incorporating a smoothing of the positive-part function. More-over, we introduce the corresponding Rockafellian formulations for each problem, thereby setting the stage for the corruption framework developed in Section 4. 
+
+3.1. The original optimization problem 
+
+Our first result establishes the existence of a solution to (3.1). 
+
+Proposition 3.1. If Zad is bounded in Z or f0 is coercive, then the problem (3.1) has a minimizer. Proof. We first prove that Z × R ∋ (z, γ ) 7 → E  (g ◦ s)( ·, z ) − γ
+
+> +
+
+ is weakly lower semi-continuous. Let ( zn, γ n) ∈ Z × R be a sequence such that zn ⇀ z in Z and γn ⇀ γ in R.Notice that since R is finite-dimensional, the latter means that γn → γ strongly. Now, using Assumptions 2.1 and 2.2, we have that lim inf n→∞ 
+
+(g ◦ s)( ξ, z n) − γn ≥ (g ◦ s)( ξ, z ) − γ
+
+for a.e. ξ ∈ Ξ. Then, by (2.1), we get lim inf 
+
+> n→∞
+
+ (g ◦ s)( ξ, z n) − γn
+
+ 
+
+> +
+
+≥  (g ◦ s)( ξ, z ) − γ 
+
+> +
+
+for a.e. ξ ∈ Ξ .Risk-averse optimization with Rockafellian relaxation 7An straightforward application of Fatou’s lemma implies that lim inf  
+
+> n→∞
+
+E  (g ◦ s)( ·, z n) − γn
+
+
+
+> +
+
+ ≥ E  (g ◦ s)( ·, z ) − γ
+
+> +
+
+ ,
+
+which means that ( z, γ ) 7 → E  (g ◦ s)( ·, z ) − γ
+
+> +
+
+ is weakly lower semicontinuous, as desired. Since f0 is weakly lower semicontinuous as well (cf. Assumption 2.2), we conclude that φ
+
+is weakly lower semicontinuous. Moreover, Z × R ∋ (z, γ ) 7 → φ(z, γ ) + ıZad (z) is coercive provided that Z ad is bounded or f0 is coercive. Thus, by applying [ABM14, Theorem 3.2.5], it follows that φ admits a minimizer in Z ad × R, i.e., problem (3.1) has a solution. □
+
+Ahead of passing to a corrupted Rockafellian framework and intending to maintain the notation as clear as possible, we introduce a slight variation of the so-called reduced objective function. Specifically, we define J as the function that assigns to each ( z, γ ) ∈ Z × R the random variable 
+
+J (z, γ ) := g(s(·, z )) − γ . 
+
+For t : Ξ → Ξ, we denote J (z, γ ; t) = J (z, γ ) ◦ t and J+(z, γ ; t) = ( J (z, γ ; t)) +. We further define f : Z × R → R as 
+
+f (z, γ ) := f0(z) + γ . 
+
+Under this notation, the objective functional may be rewritten as 
+
+φ(z, γ ) = f (z, γ ) + κ E[J+(z, γ )] .
+
+Furthermore, we introduce a suitable change of measure to ease the task of formalizing corruption to the continuous probability distribution: 
+
+Assumption 3.1 (Change of measure) .
+
+(1) There exists another σ-finite measure μ defined on (Ξ , A). (2) P is absolutely continuous with respect to μ.From now on, we assume that Ξ carries the measure μ. Accordingly, all measure-related properties are to be interpreted with respect to μ instead of P. We let ρ denote the Radon– Nikodym derivative dP/dμ and I denote the integral operator X 7 → ´ 
+
+> Ξ
+
+X dμ . In addition, given t : Ξ → R and t : Ξ → Ξ, we denote the translations ℘(t) = ρ + t and ω(t) = I + t,where I : Ξ → Ξ denotes the identity map. In particular, this enables us to rewrite the objective functional as 
+
+φ(z, γ ) = f (z, γ ) + κ I [J+(z, γ ) ρ] = f (z, γ ) + κ I J+
+
+ z, γ ; ω(0)  ℘(0)  .
+
+The notation on the right-hand side of the last equality is suggestive of the form that the Rockafellian will take. In fact, for q ∈ (1 , +∞) and q′ ∈ (1 , +∞), we introduce the reflexive Banach spaces T := L q(Ξ) and T := L q′
+
+(Ξ; Ξ) , (3.2) and define the announced Rockafellian functional Φ : Z × R × T × T → R by Φ( z, γ ; t , t) := 
+
+(f (z, γ ) + κ I J+
+
+ z, γ ; ω(t)℘(t)  , if (t , t) = (0 , 0) a.s. ,
+
++∞ otherwise , (3.3) which is clearly anchored at (t , t) = (0 , 0). Thus, the Rockafellian problem associated with (3.1) is min 
+
+n
+
+Φ( z, γ ; t , t) : (z, γ, t, t) ∈ Zad × R × T × T
+
+o
+
+. (3.4) 8 h. antil, a. bustos, s. carney, b. venegas 
+
+Proposition 3.2. If Zad is bounded in Z or f0 is coercive, then the minimization problem 
+
+(3.4) has at least one solution. Proof. Let ( z⋆, γ ⋆) ∈ Zad × R be a solution of (3.1), whose existence is guaranteed by Proposition 3.1. Since Φ( z, γ ; t , t) = + ∞ whenever (t , t)̸ = (0 , 0), it follows that Φ( z⋆, γ ⋆; 0 , 0) = φ(z⋆, γ ⋆) ≤ φ(z, γ ) = Φ( z, γ ; 0 , 0) ≤ Φ( z, γ ; t , t) ∀ (z, γ ) ∈ Zad × R ,
+
+which means that ( z⋆, γ ⋆; 0 , 0) is a solution to (3.4). □
+
+3.2. The δ-smoothed uncorrupted problem 
+
+The non-smoothness of the positive part function introduces non-differentiability in the in-tegral term of (3.1), which poses significant challenges when deriving optimality conditions— particularly in nonconvex settings, where certain regularity assumptions on the functional are essential. To address this issue, we introduce a smoothing of the positive part function, which ensures enhanced regularity of the integral term, namely Fr´ echet differentiability. This smoothing strategy can be traced back, for instance, to the work of Chen and Mangasarian in [CM95]. Our approach can be seen as a generalization of the smoothed primal formulation studied by Kouri and Surowiec in [KS16], as both the mapping g to the quantity-of-interest and the solution operator s considered here are generic. In this way, we consider a function 
+
+ζ : R → R satisfying the following assumption. 
+
+Assumption 3.2 (Properties of ζ).
+
+(i) ζ is continuous and bounded on the real line. (ii) ζ is nonnegative and ´ 
+
+> R
+
+ζ(x) dx = 1. (iii) ´ 
+
+> R
+
+ζ(x)|x| dx < +∞.(iv) Either ´ 
+
+> R
+
+ζ(x)x dx ≤ 0 or ´ 0 
+
+> −∞
+
+ζ(x)|x| dx = 0. (v) The set {x ∈ R : ζ(x) > 0} is connected. Under this assumption, we define a net of smoothings of the positive part ( · )+,δ : R → R,given by (x)+,δ := 
+
+ˆ x
+
+> −∞
+
+Aδ(τ ) dτ , where Aδ(τ ) := 
+
+ˆ τ
+
+> −∞
+
+1
+
+δ ζ
+
+ σδ
+
+
+
+dσ , (3.5) for all δ > 0. The smoothing proposed by Chen and Mangasarian in [CM95] serves as an example of this, since it can be understood as the one obtained by considering ζ(x) = 
+
+e−x (1 + e−x)−2, which certainly satisfies our assumptions. Through a direct computation, one verifies that ( · )+,δ is at least twice continuously differentiable, with derivatives (x)′ 
+
+> +,δ
+
+= Aδ(x) and (x)′′  
+
+> +,δ
+
+= 1
+
+δ ζ
+
+ xδ
+
+
+
+∀ x ∈ R . (3.6) Now, we collect some important facts about the smoothing for later use. 
+
+Lemma 3.1. Consider ζ satisfying Assumption 3.2. Then, the following statements hold: (i) {( · )+,δ }δ converges uniformly to ( · )+ as δ ↓ 0, with linear order. (ii) Given δ > 0, either ( · )+,δ ≤ ( · )+ or ( · )+ ≤ ( · )+,δ .(iii) Let (xδ)δ be a sequence of real numbers whose limit inferior is bounded below by 
+
+x ∈ R. Then 
+
+lim inf  
+
+> δ
+
+(xδ)+,δ ≥ x+ .Risk-averse optimization with Rockafellian relaxation 9
+
+(iv) For all δ > 0, ( · )+,δ is Lipschitz continuous, with uniform Lipschitz constant 1.Proof. To prove the first assertion, we first establish upper and lower bounds for the differ-ence ( x)+,δ − (x)+. Given x ∈ R, integrating by parts (3.5), we have (x)+,δ = −
+
+ˆ x
+
+> −∞
+
+A′
+
+> δ
+
+(τ ) τ dτ + Aδ(x) x . (3.7) By definition of Aδ and (3.6), we get (x)+,δ − (x)+ ≤ − δ
+
+ˆ x/δ 
+
+> −∞
+
+σ ζ (σ) dσ ≤ δ ∆2 ,
+
+with ∆ 2 = ´ 0 
+
+> −∞
+
+|σ|ζ(σ) dσ . Similarly, when x > 0, from (3.7), we obtain (x)+,δ − (x)+ = −
+
+ˆ x
+
+> −∞
+
+τδ ζ(τ /δ ) dτ + ( Aδ(x) − 1) x
+
+≥ − 
+
+ˆ x
+
+> −∞
+
+τδ ζ(τ /δ ) dτ −
+
+ˆ x
+
+> −∞
+
+xδ ζ(τ /δ ) dτ ≥ − δ
+
+ˆ
+
+> R
+
+σ ζ (σ) dσ , 
+
+where in the last inequality we have used that x > 0 together with the natural change of variables. When x ≤ 0, by definition, there holds (x)+,δ − (x)+ ≥ 0 .
+
+The last two inequalities give ( x)+,δ − (x)+ ≥ − δ ∆1, with ∆ 1 = max ´ 
+
+> R
+
+σζ (σ) dσ, 0 ,thereby proving the estimate 
+
+−δ ∆1 ≤ (x)+,δ − (x)+ ≤ δ ∆2 , (3.8) which, in turn, provides a uniform bound on the absolute value of the difference ( x)+,δ −
+
+(x)δ. Thus, letting δ → 0 yields assertion (i). The second statement follows directly from comparing (3.8) with Assumption 3.2, item (iv). Notice that the options in this statement are mutually exclusive; otherwise, the smoothing would coincide pointwise with the positive part, which leads to a contradiction, since the zero function does not integrate to 1. For the third item, from the uniform bounds in (3.8) and (2.1), we obtain lim inf  
+
+> δ
+
+(xδ)+,δ ≥ lim inf 
+
+> δ
+
+(xδ)+ − δ∆1
+
+ = lim inf  
+
+> δ
+
+(xδ)+ ≥ x+ .
+
+Finally, the uniform Lipschitz continuity of the mapping x 7 → (x)+,δ follows from its differ-entiability and ∥Aδ∥L∞(R) ≤ 1. Then, given x, y ∈ R, we have 
+
+(x)+,δ − (y)+,δ ≤ ∥ Aδ∥L∞(x,y ) |x − y| ≤ | x − y| ,
+
+which proves the third assertion and concludes the proof. □
+
+Naturally, this smoothing induces a family of “objective” functionals φδ
+
+> δ> 0
+
+, defined by 
+
+φδ(z, γ ) = f (z) + κ I J+,δ 
+
+ z, γ ; ω(0)  ℘(0)  , (3.9) to which we refer as δ-smoothed objective functionals. In turn, just as in Section 3.1—and more precisely, in (3.3)— one can associate to φδ a functional Φ δ : Z × R × T × T → R,given by Φδ(z, γ ; t , t) = 
+
+ f (z, γ ) + κ I J+,δ 
+
+ z, γ ; ω(t) ℘(t)  , if (t , t) = 0 a.s. ,
+
++∞ , otherwise , (3.10) 10 h. antil, a. bustos, s. carney, b. venegas 
+
+which we call δ-smoothed Rockafellian . It is clear that it is a Rockafellian anchored at (t , t) = (0 , 0) for φδ. Finally, we remark that φδ admits a minimizer in Z ad × R, which follows from the same reasoning used in the proof of Proposition 3.1. Consequently, by the same argument as in Proposition 3.2, it follows that Φ δ also admits a solution. 
+
+# 4. Unified analysis for corrupted Rockafellians 
+
+This is the main section of the paper. Here, we study the problems arising from simul-taneous corruptions of the probability measure P and the support of its distribution. This approach is motivated by the work in [ACDR25], where the authors carry out a convergence analysis for these two types of corruptions separately in the expected-value setting. Subse-quently, in Sections 5.2 and 5.3, we address the corresponding separated scenarios for the CVaR functional by particularizing the results developed in the present section. We first develop a framework that encompasses the types of corruption described above and provides the theoretical foundation for their analysis. Next, we study the existence of solutions to the corrupted problems associated with (3.9) and (3.10). We then derive first-order optimality conditions under suitable differentiability assumptions on the operators. We end this section by establishing a generalized convergence result in the sense of weak-strong Γ-convergence (see Definition 2.2). 
+
+4.1. Preliminary constructions and the Rockafellian problem 
+
+We begin by defining the space of probability densities P := 
+
+
+
+ϱ : Ξ → R+ ϱ ∈ L∞(Ξ) and 
+
+ˆ
+
+> Ξ
+
+ϱ(ξ) dμ (ξ) = 1 
+
+
+
+, (4.1) and note that the Radon–Nikodym derivative ρ introduced in the previous section belongs to this space. The natural definition of the corrupted objective functional—by analogy with the one adopted in [ACDR25]—is 
+
+f (z, γ ) + κ I [J+,δ (z, γ ; ηε) ρε] , (4.2) where ηε ∈ T and ρε ∈ P represent a corruption map and a corrupted distribution, respec-tively. However, since we aim to work on a general underlying measure space Ξ, this notion of corrupted objective functional turns out to be slightly inadequate. Indeed, in order to establish the existence of solutions to the associated minimization problem, we require the availability of suitable compact embeddings (cf. Assumption 4.2), which, in practice, are not attainable when Ξ is infinite-dimensional. We shall return to this issue and provide further insight into this setting in Remark 4.1. First, in order to accurately represent corruptions of ρ acting in our δ-smoothed functional 
+
+φδ, we consider the following assumption, which should be interpreted as “approximability” of Ξ. 
+
+Assumption 4.1 . There exists a sequence of measurable subspaces {eΞε}ε> 0 of Ξ such that 
+
+χeΞε (ξ) ε ↓ 0
+
+−−→ 1 for almost every ξ ∈ Ξ. According to Assumption 3.1, μ is a σ-finite measure on (Ξ , A), so there exists an A-measurable countable covering {Cn}n of Ξ, such that Cn ⊂ Cn+1 and μ(Cn) < +∞, for all Risk-averse optimization with Rockafellian relaxation 11 
+
+n ∈ N. Define eCε := Cnε , where nε :=  1
+
+> ε
+
+ and notice that, by construction, eCε ⊂ eCε′ for all ε′ ≤ ε, which implies that χ eCε (ξ) ε ↓ 0
+
+−−→ 1 for almost every ξ ∈ Ξ. Now, putting Ξ ε := eΞε ∩ eCε, we notice that Ξ ε has finite measure and respects the approximation property: lim  
+
+> ε↓0
+
+χΞε (ξ) = 
+
+
+
+lim  
+
+> ε↓0
+
+χeΞε (ξ)
+
+  
+
+lim  
+
+> ε↓0
+
+χ eCε (ξ)
+
+
+
+= 1 for almost every ξ ∈ Ξ. (4.3) From now on, we assume that each set Ξ ε carries the corresponding restriction of the measure, σ-algebra, and norm defined in Ξ. More precisely, the triple (Ξ ε, Aε, μ |Aε ) defines a finite measure space, where Aε := {A∩Ξε : A ∈ A} , and the norm on Ξ ε is the restriction of ∥ · ∥ Ξ to Ξ ε.With these objects at hand, by analogy with P and T (cf. (4.1) and (3.2)), we define Pε := 
+
+
+
+ϱ : Ξ → R+ ϱ ∈ L∞(Ξ) , supp( ϱ) ⊂ Ξε and 
+
+ˆ
+
+> Ξε
+
+ϱ(ξ) dμ (ξ) = 1 
+
+
+
+(4.4) and 
+
+Qε =
+
+n
+
+t ∈ Lq′
+
+(Ξ; Ξ) : supp( t) ⊂ Ξε
+
+o
+
+. (4.5) We note that functions in P ε (when restricted to Ξ ε) constitute probability densities in Ξε, and so they can be regarded as the density of a corrupted probability distribution 
+
+Pε : Aε → R. The second space Qε shall represent the space of corruption maps. It is direct to see the inclusions P ε ⊂ P and Qε ⊂ T, so we are only refining the choices of corruption according to the new family of measure spaces. Comparing with I, ω and ℘, we denote Iε [X] = ´ 
+
+> Ξε
+
+X, ℘ε(t) = ρε + t and ωε(t) = ηε + t,for X : Ξ → R, t : Ξ → R and t : Ξ → Ξ, respectively. Then, we may define the smoothed-corrupted objective functional as follows: given a corrupted density ρε ∈ Pε and a corruption map ηε ∈ Qε, we introduce φδε : Z × R → R by 
+
+φδε(z, γ ) = f (z, γ ) + κ Iε
+
+J+,δ (z, γ ; ωε(0)) ℘ε(0)  , (4.6) where J+,δ (z, γ ; ωε(0)) denotes  J (z, γ ; ωε(0)) 
+
+> +,δ
+
+. In practical terms, the only difference with (4.2) is that we have restricted integration to a subdomain Ξ ε. From now on, we assume that we have fixed nets ( ρε)ε> 0 and ( ηε)ε> 0 of corruptions. We thus obtain our first corrupted minimization problem to study: min 
+
+n
+
+φδε(z, γ ) : (z, γ ) ∈ Zad × R
+
+o
+
+. (4.7) As expected, we have the following result: 
+
+Proposition 4.1. If Zad is bounded in Z or f0 is coercive, then (4.7) has at least one solution. Proof. It follows from a slight modification of the proof of Proposition 3.1, taking into account the properties of the smoothing ( · )+,δ in place of those of ( · )+, and using the positivity of ρε. □
+
+Next, to define a Rockafellian associated with φδε, we must define appropriate spaces for the perturbation variables. To this end, consider nets of reflexive Banach spaces {Wε}ε> 0
+
+and {Wε}ε> 0, which consist of functions Ξ ε → R and Ξ ε → Ξ, respectively. We assume that they satisfy the following assumption. 
+
+Assumption 4.2 . For every ε > 0, 12 h. antil, a. bustos, s. carney, b. venegas 
+
+(1) W ε is compactly embedded into L q(Ξ ε). (2) Wε is compactly embedded into L q′
+
+(Ξ ε; Ξ). Due to this assumption, and recalling the definition of the extension-by-zero operator (cf. Section 2), we are able to define the following spaces: Tε := 
+
+n
+
+t : Ξ → R t|Ξε ∈ Wε ⊕ S ρε and t|Ξcε ∈ Lq(Ξ cε)
+
+o
+
+= E Ξε,0(W ε) ⊕ E Ξε,0(Sρε ) ⊕ E Ξcε,0
+
+ Lq(Ξ cε) ,
+
+(4.8) where Sρε := span {ρε|Ξε }, and 
+
+Tε : = 
+
+n
+
+t : Ξ → Ξ : t|Ξε ∈ Wε ⊕ S ηε and t|Ξcε ∈ Lq′
+
+(Ξ cε; Ξ) 
+
+o
+
+= E Ξε,0(Wε) ⊕ E Ξε,0(Sηε ) ⊕ EΞcε (L q′
+
+(Ξ cε; Ξ)) ,
+
+(4.9) where Sηε := span {I|Ξε , η ε|Ξε }. When writing these spaces as direct sums, we are tacitly assuming that W ε and Wε do not contain the added terms, because otherwise, there is no need for enrichment. In practice, if the choice of spaces includes any of the added elements, one can force a direct sum by deleting the finite-dimensional spaces generated by these elements, and so the subsequent analysis is also valid. We imbue these spaces with the norm deduced from the direct sum decompositions. More precisely, given t ∈ Tε, we define 
+
+∥t∥Tε := ∥w∥Wε + ∥v∥Sρε + ∥g∥Lq (Ξ cε) ,
+
+where w ∈ Wε, v ∈ S ρε and g ∈ Lq(Ξ cε) are the unique functions satisfying t = E Ξε,0(w) + E Ξε,0(v) + E Ξcε,0(g) .
+
+Similarly, given t ∈ Tε, we set 
+
+∥t∥Tε := ∥w∥Wε + ∥v∥Sηε + ∥g∥Lq′ (Ξ cε;Ξ) ,
+
+where w ∈ Wε, v ∈ S ηε and g ∈ Lq′
+
+(Ξ cε; Ξ) are the unique functions satisfying 
+
+t = E Ξε,0(w) + E Ξε,0(v) + E Ξcε,0(g) .
+
+We remark that we do not require a specific norm for the spaces Sρε and Sηε , as in a finite-dimensional space, all norms induce equivalent topologies. The use of compactly embedded spaces is, in broad terms, a way to enforce stronger regularity on the admissible functions. This additional regularity is what ultimately enables the existence of minimizers for the associated Rockafellians (see Theorem 4.1), introduced below. Likewise, the need to enrich the formulation with corruptions will arise naturally when establishing the weak–strong Γ-convergence of the corrupted Rockafellians towards the uncorrupted one (see Theorem 4.3). An important note is that this construction preserves the compactness property of W ε and Wε. Moreover, since T ε and Tε are defined as direct sums of reflexive Banach spaces with the natural norms, they are reflexive as well. Lastly, we consider a function H : T × T → R that is weakly lower semicontinuous, coercive, satisfies H(0 , 0) = 0, and enjoys the following property: if H(t k, tk) k
+
+−−→ 0, then (t k, tk) k
+
+−−→ (0 , 0) strongly. H could be, for instance, the T × T norm or a stronger norm. Furthermore, we introduce a sequence ( θε)ε> 0 ⊂ R+ of penalty parameters that satisfies 
+
+θε ε→0
+
+−−−→ +∞.Risk-averse optimization with Rockafellian relaxation 13 We are finally in a position to associate a Rockafellian functional with φδε. Define Φ δε :Z × R × T × T → R as Φδε
+
+ z, γ ; t , t := f (z, γ ) + κ Iε
+
+J+,δ 
+
+ z, γ ; ωε(t) ℘ε(t)  + θε H(t , t)+ ıTε∩(P −ρε)(t) + ıTε (t) . (4.10) We notice that Φ δε is anchored at (t , t) = (0 , 0) for φδε (cf. (4.6)). Then, the smoothed-corrupted Rockafellian problem associated with (4.7) is min 
+
+n
+
+Φδε
+
+ z, γ ; t , t : (z, γ ; t , t) ∈ Zad × R × T × T
+
+o
+
+. (4.11) We remark that the existence of a solution to this problem does not follow from arguments similar to those in Proposition 3.2, since the definition of the Rockafellian does not incorpo-rate the + ∞ part. The corresponding result is established in Section 4.2. The following growth condition guarantees that the integral term in (4.10) is finite. From now on, we assume that q and q′ are H¨ older conjugates, i.e., 1 /q + 1 /q ′ = 1. 
+
+Assumption 4.3 . There exists a function ϱ : [0 , +∞) → [0 , +∞) such that 
+
+(g ◦ s)( ξ, z ) ≤ ϱ(∥z∥Z) ∥ξ∥Ξ ∀ (ξ, z ) ∈ Ξ × Z .
+
+Indeed, given ( z, γ, t, t) ∈ Z × R × T × T, from the Lipschitz continuity of ( ·)+,δ (see Lemma 3.1), it follows that 0 ≤ J+,δ (z, γ ; ωε(t)) ≤ | J (z, γ ; ωε(t)) | + (0) +,δ in Ξε .
+
+Notice that Assumption 4.3 allows us to deduce that ( g ◦ s)( ωε(t), z ) ∈ Lq′
+
+(Ξ ε), since 
+
+ωε(t) = ηε+t ∈ T. Together with the finiteness of μ(Ξ ε), this implies that J (z, γ ; ωε(t)) |Ξε ∈
+
+Lq′
+
+(Ξ ε). By the same argument, (0) +,δ also belongs to L q′
+
+(Ξ ε). Hence, the right-hand side of the above inequality lies in L q′
+
+(Ξ ε) and, consequently, so does J+,δ (z, γ ; ωε(t)). Finally, since ℘ε(t) |Ξε ∈ Lq(Ξ ε), an application of H¨ older’s inequality yields J+,δ (z, γ ; ωε(t)) ℘ε(t) |Ξε ∈
+
+L1(Ξ ε), as desired. 
+
+Remark 4.1. We end this section by giving some insight into the aforementioned setting. At first glance, the framework presented herein may appear excessively complicated or overly elaborate, but we shall see that its implications make it a reasonable approach to adopt. For instance, this approach may be helpful when Ξ cannot be embedded in a finite-dimensional space (e.g. a space of sequences), as it enables us to study a limiting problem written in such a space through problems posed in finite-dimensional spaces. In this case, identifying function spaces Ξ → R and Ξ → Ξ that are compactly embedded in L q(Ξ , R) and L q(Ξ; Ξ) is a difficult task, since classical Rellich-type compactness results depend heavily on the properties of Ξ, particularly on its dimension and size (see e.g. [IK09, BK22, Rom13, FHK99, asz03]). As we shall see in Section 4.2, the lack of a compactness property hinders the proof of existence of a minimizer for the smoothed-corrupted problems, as the L q-topology turns out not to be strong enough. To overcome this difficulty, we can take the sequence {Ξε}ε> 0 to be finite-dimensional which, in real applications, makes it possible to find function spaces that possess the desired compactness properties (cf. Assumption 4.2). 
+
+Remark 4.2. Notice that if Ξ turns out to be included in a finite-dimensional space and has finite measure, we can take every subspace Ξ ε to be Ξ itself. In this sense, our framework includes the case in which a finite-dimensional noise assumption is made (see [AKLR18, Part I, Section 2] and the references therein). We consider this particular case in Section 5.1. 14 h. antil, a. bustos, s. carney, b. venegas 
+
+4.2. Existence of solution 
+
+The following result concerns the existence of a minimizer for each problem associated with the smoothed-corrupted Rockafellians. 
+
+Theorem 4.1. Fix ε > 0 and δ > 0 and suppose that Assumptions 2.1, 2.2, 3.1, 3.2, 4.1, 4.2 and 4.3 hold. Additionally, assume that f0 is coercive or Zad is bounded. Then, there exists 
+
+(z⋆, γ ⋆; t ⋆, t⋆) ∈ Zad × R × Tε × Tε
+
+such that 
+
+Φδε(z⋆, γ ⋆; t ⋆, t⋆) ≤ Φδε(z, γ ; t , t) ∀ (z, γ, t, t) ∈ Zad × R × T × T .
+
+Proof. We begin by defining the auxiliary functional eΦδε : Z × R × Tε × Tε → R given by 
+
+eΦδε(z, γ ; t , t) := Φ δε|Z×R×Tε×Tε (z, γ ; t , t) + ıZad (z) ,
+
+which, by definition, agrees with Φ δε in Z ad × R × Tε × Tε. We further realize that, if eΦδε
+
+has a minimizer ( z⋆, γ ⋆; t ⋆, t⋆) ∈ Zad × R × Tε × Tε, we have Φδε(z⋆, γ ⋆; t ⋆, t⋆) = eΦδε(z⋆, γ ⋆, t⋆, t⋆) ≤ eΦδε(z, γ, t, t) = Φ δε(z, γ ; t , t) ,
+
+for all ( z, γ ; t , t) ∈ Zad × R × Tε × Tε. Moreover, since Φ δε(z, γ ; t , t) = + ∞ whenever (t , t)̸ ∈ Tε × Tε, it holds Φδε(z⋆, γ ⋆; t ⋆, t⋆) ≤ Φδε(z, γ ; t , t) ∀ (z, γ ; t , t) ∈ Zad × R × T × T .
+
+Thus, it suffices to show the existence of such a minimizer for eΦδε in order to conclude the proof. We do so in what follows. We start by proving that eΦδε is weakly lower semicontinuous; in doing so, we pay special attention to the integral term. Consider sequences ( zn)n∈N in Z, ( γn)n∈N in R, (t n)n∈N
+
+in T ε, and ( tn)n∈N in Tε, converging weakly to z ∈ Z, γ ∈ R, t ∈ Tε, and t ∈ Tε,respectively. If ( zn, tn)n∈N does not have a subsequence contained in Z ad × (P − ρε), at least one of the indicator terms in the auxiliary Rockafellian equals + ∞, and the property follows. Otherwise, there exists a (not relabeled) subsequence such that zn ∈ Zad and ρε + t n ∈ P, for all n ∈ N. We may assume that the limit inferior lim inf  
+
+> n
+
+Φδε(zn, γ n; t n, tn) is attained along this subsequence. Notice that  tn|Ξε
+
+ 
+
+> n∈N
+
+is weakly convergent in W ε ⊕ S ρε . Since the latter is compactly embedded in L q(Ξ ε), strong convergence (up to subsequences) implies almost everywhere pointwise convergence in Ξ ε. Hence, there exists a subsequence (t n′ )n′ satisfying 
+
+ρε(ξ) + t n′ (ξ) n′→∞ 
+
+−−−−→ ρε(ξ) + t( ξ) for a.e. ξ ∈ Ξε . (4.12) Similarly, since tn′ ⇀ t in Tε, using the compact embedding, we are able to find a subse-quence (not relabeled) pointwise convergent to t. Then, 
+
+ηε(ξ) + tn′ (ξ) n′→∞ 
+
+−−−−→ ηε(ξ) + t(ξ) for a.e. ξ ∈ Ξε ,
+
+which combined with the fact that zn ⇀ z in Z, and employing Assumption 2.1, yields 
+
+s(ηε(ξ) + tn′ (ξ), z n′ ) ⇀ s (ηε(ξ) + t(ξ), z ) in U , for a.e. ξ ∈ Ξε .Risk-averse optimization with Rockafellian relaxation 15 Since g is sequentially weakly lower semicontinuous (cf. Assumption 2.2), the above conver-gence implies that lim inf 
+
+> n′→∞
+
+
+
+(g ◦ s)( ηε(ξ) + tn′ (ξ), z n′ )
+
+
+
+≥ (g ◦ s)( ηε(ξ) + t(ξ), z ) for a.e. ξ ∈ Ξε .
+
+Using that γn′ → γ in R, the monotonicity and continuity of ( · )+,δ , and the foregoing inequality, we arrive at lim inf 
+
+> n′→∞
+
+ J+,δ (zn′ , γ n′ ; ωε(tn′ )) (ξ) ≥  J+,δ (z, γ ; ωε(t)) (ξ) for a.e. ξ ∈ Ξε . (4.13) Bearing in mind (4.12) and (4.13), and using the fact that ρε + t n′ ≥ 0, a straightforward application of Fatou’s Lemma yields lim inf  
+
+> n′→∞
+
+Iε
+
+ J+,δ 
+
+ zn′ , γ n′ ; ωε(tn′ ) ℘ε(t n′ ) ≥ I ε
+
+ J+,δ 
+
+ z, γ ; ωε(t) ℘ε(t)  .
+
+This, together with the weak lower semicontinuity of f0 (see Assumption 2.2) and H, yields lim inf 
+
+> n→∞
+
+eΦδε(zn, γ n; t n, tn) = lim inf 
+
+> n′→∞
+
+eΦδε(zn′ , γ n′ ; t n′ , tn′ ) ≥ eΦδε(z, γ ; t , t) ,
+
+so eΦδε is weakly lower semicontinuous. In turn, it is straightforward to verify that eΦδε is coercive, since H is coercive in T × T and either f is coercive in Z × R or the admissible set Zad is bounded. Consequently, noting that Z × R × Tε × Tε is a reflexive Banach space, the weak lower semicontinuity and coercivity of eΦδε allow us to invoke a particular case of the Weierstrass minimization theorem (see [ABM14, Theorem 3.2.5]) to establish the existence of a minimizer. Finally, since eΦδε is not identically equal to + ∞, any minimizer must satisfy (z⋆, γ ⋆, t⋆, t⋆) ∈ Zad × R × Tε × Tε. According to the initial remark, this completes the proof. □
+
+Remark 4.3. We finish this section by commenting that, as seen in the previous proof, instead of introducing Assumption 4.2, one might incorporate compact operators into the objective functional. This would allow us to dispense with the assumption that there is an actual embedding into the spaces L q(Ξ ε) and L q(Ξ ε; Ξ). We do not adopt this approach because, as far as we see, it would heavily modify the analysis of convergence to the original problem. So far, we see two possible options: First, also including compact operators in the original Rockafellian, as arguments of ω and ℘, would help the convergence analysis and would not modify the fact that we have Rockafellians anchored at 0. The second option is only including them in the corrupted Rockafellians, and then deducing suitable conditions under which the results can still be carried out. One possible advantage of considering compact operators instead of an embedding is that it may allow us to strengthen the convergence results, from weak-strong Gamma convergence to Mosco convergence. This claim comes from the fact that compact operators upgrade weak convergence to strong convergence. In our setting, we are using this fact to leverage weak convergence in the proof of Theorem 4.1, but we are not able to take advantage of this fact when proving convergence (see proof of Theorem 4.3). If this could be overcome, one gets Mosco convergence, which is the strongest among these types of generalized convergence. 
+
+4.3. Optimality conditions 
+
+Having established the existence of minimizers for our perturbed Rockafellian problems, we now aim to derive first-order optimality conditions. We use the following notation for differentials: given an operator A : X → Y between Banach spaces, we denote its directional 16 h. antil, a. bustos, s. carney, b. venegas 
+
+derivative at x ∈ X in the direction x ∈ X by DA(x)[ x]. Furthermore, if A is Fr´ echet differentiable, we denote its Fr´ echet derivative at x by DA(x) ∈ L (X, Y ). When X is a product space, namely X = Qℓi=1 Xi, we denote by Dxi A(x1, . . . , x ℓ)[ xi] the derivative with respect to the variable xi. Notice that, if x = ( x1, . . . , x ℓ), 
+
+DA(x)[ x] = Dx1 A(x)[ x1] + Dx2 A(x)[ x2] + · · · + Dxℓ A(x)[ xℓ] .
+
+Given a convex set S of a vector space X, the normal cone of S at x ∈ S is denoted by 
+
+NS (x). Moreover, we use the following convention for adjoint notation: given vector normed spaces X, Y , and Z, and given an operator G ∈ L (X, Y ), we define G∗ : L (Y, Z ) →
+
+L (X, Z ) by G∗(F ) := F ◦ G for all F ∈ L (Y, Z ). In particular, for Z = R and F ∈ Y ′ =
+
+L (Y, R), this reduces to the standard adjoint G∗ : Y ′ → X′. Finally, we denote by ⟨· , ·⟩ 
+
+the duality pairing of a space and its topological dual, omitting the underlying spaces when clear from the context. Now, notice that (4.11) can be rewritten equivalently as min 
+
+nbΦδε(z, γ ; t , t)+ ıZad ×R×(T ε∩(P −ρε)) ×Tε (z, γ ; t , t) : (z, γ ; t , t) ∈ Z×R×T×T
+
+o
+
+, (4.14) where bΦδε : Z × R × T × T → R is defined by 
+
+bΦδε(z, γ ; t , t) := f (z, γ ) + κ Iε
+
+ J+,δ (z, γ ; ωε(t)) ℘ε(t)  + θε H(t , t) . (4.15) We use this auxiliary functional to derive the optimality conditions. As usual, we begin by establishing further assumptions on the differentiability of the functions. 
+
+Assumption 4.4 (Differentiability) .
+
+(1) H : T × T → R is Fr´ echet differentiable, with derivative DH(t , t) ∈ L (T × T, R). (2) There exists p ∈ [1 , +∞] such that for all t ∈ T and z ∈ Zad , s(ωε(t), z ) ∈ Lp(Ξ; U). (3) There exists an open set V of Z, with Z ad ⊂ V , such that f0 is Fr´ echet differentiable in V , with derivative Df0(z) ∈ L (Z , R), for all z ∈ V .(4) For each z ∈ Zad , the function 
+
+T ∋ t 7 → s(t, z ) ∈ Lp(Ξ , U) is Fr´ echet differentiable with derivative Dts(t, z ) ∈ L (T, Lp(Ξ; U)). (5) For each t ∈ T, the function 
+
+V ∋ z 7 → s(t, z ) ∈ Lp(Ξ; U) is Fr´ echet differentiable with derivative Dz s(t, z ) ∈ L (Z , Lp(Ξ; U)). (6) The mapping Lp(Ξ; U) ∋ u 7 → g ◦ u ∈ Lq′
+
+(Ξ) is Fr´ echet differentiable with derivative Dg(u) ∈ L (L p(Ξ; U) , Lq′
+
+(Ξ)). Under Assumption 4.4, we are able to prove the following result: Risk-averse optimization with Rockafellian relaxation 17 
+
+Lemma 4.1. The functional bΦδε is Fr´ echet differentiable, and its derivatives with respect to each variable are given explicitly by 
+
+Dz bΦδε(z, γ ; t , t) = Df0(z) + κ Iε
+
+h
+
+℘ε(t) Aδ
+
+ J (z, γ ; ωε(t))  Dg(s(ωε(t), z )) ◦ Dz s(ωε(t), z )
+
+i
+
+,
+
+Dγ bΦδε(z, γ ; t , t) = 1 − κ Iε
+
+h
+
+℘ε(t) Aδ
+
+ J (z, γ ; ωε(t)) i
+
+,
+
+Dt bΦδε(z, γ ; t , t) = θε DtH(t , t) + κ Iε
+
+h
+
+J+,δ (z, γ ; ωε(t)) I
+
+i
+
+,
+
+where I : T → T is the identity map, and 
+
+Dt bΦδε(z, γ ; t , t)= θε DtH(t , t) + κ Iε
+
+h
+
+℘ε(t) Aδ
+
+ J (z, γ ; ωε(t))  Dg(s(ωε(t), z )) ◦ Dts(ωε(t), z )
+
+i
+
+.
+
+Proof. This follows from the assumptions, common properties of directional derivatives (such as the product and chain rules), and straightforward algebraic manipulations. The compu-tations are omitted for the sake of brevity. □
+
+Theorem 4.2. Suppose that the assumptions of Theorem 4.1 and Lemma 4.1 hold. If  z⋆ε , γ ⋆ε ; t ⋆ε , t⋆ε
+
+ ∈ Zad × R × Tε ∩ (P − ρε) × Tε is an optimal solution of the problem (4.11) ,and λ⋆ε := ( ωε(t⋆ε ), z ⋆ε ). Then, (1) For all z ∈ Zad ,
+
+D
+
+Df0(z⋆ε ) + κ Iε
+
+℘ε(t⋆ε ) Aδ
+
+ J (z⋆ε , γ ⋆ε ; ωε(t⋆ε ))  Dz s(λ⋆ε )∗ Dg(s(λ⋆ε )) , z − z⋆ε
+
+E
+
+≥ 0 .
+
+(2) It holds 
+
+Iε
+
+h
+
+℘ε(t ⋆ε ) Aδ
+
+ J (z⋆ε , γ ⋆ε ; ωε(t⋆ε )) i
+
+= 1
+
+κ .
+
+(3) For all t ∈ Tε ∩ (P − ρε),
+
+D
+
+θε DtH(t ⋆ε , t⋆ε ) + κ Iε
+
+h
+
+J+,δ (z⋆ε , γ ⋆ε ; ωε(t⋆ε )) I
+
+i
+
+, t − t⋆ε
+
+E
+
+≥ 0 .
+
+(4) For all t ∈ Tε,
+
+D
+
+θε DtH(t ⋆ε , t⋆ε ) + κ Iε
+
+h
+
+℘ε(t ⋆ε ) Aδ
+
+ J (z⋆ε , γ ⋆ε ; ωε(t⋆ε ))  Dts(λ⋆ε )∗ Dg(s(λ⋆ε )
+
+i
+
+, t − t⋆ε
+
+E
+
+≥ 0 .
+
+Proof. To avoid overloading the notation, we set Z⋆ε := ( z⋆ε , γ ⋆ε ; t ⋆ε , t⋆ε ). By [Kru03, Corollary 1.12.3.], it follows that 
+
+−DbΦδε(Z⋆ε ) ∈ ∂ ı Zad ×R×Tε∩(P −ρε)×Tε
+
+ Z⋆ε
+
+ ,
+
+where the latter denotes, as usual, the subdifferential. Moreover, noting that the set in the indicator function is convex, we have 
+
+∂ ı Zad ×R×Tε∩(P −ρε)×Tε
+
+ Z⋆ε
+
+ ∼= NZad (z⋆ε ) × { 0} × NTε∩(P −ρε)(t ⋆ε ) × NTε (t⋆ε ) .
+
+Then, 
+
+−Dz bΦδε(Z⋆ε ) ∈ NZad (z⋆ε ) , −Dγ bΦδε(Z⋆ε ) = 0 ,
+
+−Dt bΦδε(Z⋆ε ) ∈ NTε∩(P −ρε)(t ⋆ε ) and − Dt bΦδε(Z⋆ε ) ∈ NTε (t⋆ε ) ,
+
+which mean, respectively, 
+
+Dz bΦδε(Z⋆ε ), z − z⋆ε ≥ 0 , Dγ bΦδε(Z⋆ε ) = 0 ,
+
+Dt bΦδε(Z⋆ε ), t − t⋆ε ≥ 0 and Dt bΦδε(Z⋆ε ), t − t⋆ε ≥ 0 .18 h. antil, a. bustos, s. carney, b. venegas 
+
+for all z ∈ Zad , t ∈ Tε ∩ (P − ρε), and t ∈ Tε. Thus, by replacing each row according to the expressions in Lemma 4.1 and employing the adjoint notation, we obtain the desired statements. Further details are omitted for brevity. □
+
+4.4. Weak-strong Gamma convergence 
+
+The following result concerns the convergence of our family of smoothed-corrupted Rock-afellians to the original one, in the sense of weak-strong Gamma convergence, under a rea-sonable assumption on the behavior of corruption. This generalized notion of convergence is of interest because it preserves minimizing sequences, in the sense given in Proposition 2.1. In addition, it is worth mentioning that the following convergence theorem does not rely on existence nor optimality conditions of solutions, and so its hypothesis are milder than those of Theorems 4.1 and 4.2 
+
+Theorem 4.3. Suppose that Assumptions 2.1, 2.2, 3.1, 3.2 and 4.1 hold. Let ρ ∈ P ∩ Tε
+
+for all ε > 0 and consider corruptions (ρε)ε> 0 and (ηε)ε> 0 such that ρε ∈ Pε ∩ Tε and 
+
+ηε ∈ Qε ∩ Tε, for each ε > 0. Assume that 
+
+lim  
+
+> ε↓0
+
+θε = + ∞ , (4.16) 
+
+and 
+
+lim  
+
+> ε↓0
+
+θεH(ρ − ρε, η ε − I) = 0 . (4.17) 
+
+Then, there holds Φδε
+
+> Γ
+
+⇁ Φδ as ε ↓ 0, in the sense of Definition 2.2. Proof. We start by proving the limit inferior condition (cf. (2.5)). We do so in the same spirit in which the weak lower semicontinuity of Φ δε was proved in Theorem 4.1, though with the key difference that now, every object is indexed by ε. To this end, consider an arbitrary sequence  zε, γ ε, tε, tε
+
+ 
+
+> ε> 0
+
+⊂ Z × R × T × T satisfying (zε, γ ε) ⇀ (z, γ ) and (t ε, tε) −→ (t , t) as ε ↓ 0 .
+
+Let ε′ denote the index of a subsequence along which the relevant limit inferior (cf. Definition 2.2) is attained. By the same reasoning made earlier, we may assume that such subsequence satisfies tε′ ∈ Tε′ ∩ (P − ρε′ ) and tε′ ∈ Tε′ ,
+
+so that the indicator terms in Φ δε vanish. In addition, we notice for later use that, from (4.16) and (4.17), one gets convergence 
+
+ρε′ ε′
+
+−−→ ρ in T and ηε′ ε′
+
+−→ I in T .
+
+This, together with the weak convergence of ( zε′ )ε′ to z and the properties of s, gives 
+
+s(ηε′ + tε′ , z ε′ ) ⇀ s (I + t, z ) in U, a.e. in Ξ .
+
+Furthermore, using the weak convergence of ( γε′ )ε′ , weak lower semicontinuity of g, and the continuity and monotonicity of ( · )+,δ , respectively, we obtain that lim inf  
+
+> ε′
+
+J+,δ (zε′ , γ ε′ ; ωε′ (tε′ )) ≥ J+,δ (z, γ ; ω(t)) . (4.18) From the fact that convergence in T implies almost everywhere pointwise convergence, and since t ε′ ∈ P − ρε′ , it follows that 
+
+ρε′ + t ε′ ε′
+
+−−→ ρ + t and ρ + t ≥ 0 a.e. in Ξ .Risk-averse optimization with Rockafellian relaxation 19 Moreover, according to the approximation property of the subspaces Ξ ε (cf. (4.3)), we get 
+
+χΞε′ (ρε′ + t ε′ ) ε′
+
+−−→ ρ + t a.e. in Ξ .
+
+This, together with (4.18) and an application of Fatou’s lemma, yields lim inf  
+
+> ε′
+
+Iε′
+
+J+,δ (zε′ , γ ε′ ; ωε′ (tε′ )) ℘ε′ (t)  ≥ I [J+,δ (z, γ ; ω(t)) ℘(t)] .
+
+Next, we treat the penalty term. We distinguish two cases: when (t , t) = (0 , 0) and when (t , t)̸ = (0 , 0). In this way, we notice that lim inf  
+
+> ε′
+
+θε H(t ε′ , tε′ ) ≥
+
+(0 if (t , t) = (0 , 0) ,
+
++∞ otherwise ,
+
+where the first case follows from the nonnegativity of H and the penalty parameters, and the second one follows from the properties of the limit inferior. Therefore, the limit inferior condition follows from this, the weak lower semicontinuity of f0, and the fact that we are working in the minimizing sequence indexed by ε′.In second place, we prove the limit superior condition (cf. (2.4)). Fixed ( z, γ, t, t) ∈
+
+Z × R × T × T, we must find a sequence converging to it, satisfying the bound in (2.4). We distinguish two cases. First, when (t , t) = (0 , 0) a.e. in Ξ, we choose the sequence (zε, γ ε, tε, tε)ε = ( z, γ, ρ − ρε, I − ηε)ε, which is clearly convergent. Under this choice, we have Φδε(zε, γ ε; t ε, tε) = f (z, γ ) + Iε
+
+J+,δ (z, γ ; ω(t)) ℘(t) .
+
+We remark that the fact that the indicator terms vanish comes precisely from the enrichment of the spaces (see (4.8) and (4.9)) and the assumption that ρ ∈ Tε. If this was not the case, the desired bound would not hold. The approximation property of Ξ ε and the Lebesgue dominated convergence theorem yield 
+
+Iε
+
+J+,δ (z, γ ; ω(t)) ℘(t) ε
+
+−−→ I J+,δ (z, γ ; ω(t)) ℘(t) ,
+
+where we used that, by definition, Iε(Y ) = I(χΞε Y ), for any Y : Ξ → R. It follows from the above arguments that Φδε(zε, γ ε; t ε, tε) ε
+
+−−→ Φδ(z, γ ; t , t) .
+
+The remaining case is when (t , t) is not essentially zero. According to the definition of Φ δ,the condition is tautological. This concludes the proof. □
+
+We end this section by proving that the smoothing does not interfere with the convergence. Furthermore, we are able to prove Mosco convergence to the original Rockafellian functional. 
+
+Theorem 4.4. Suppose that Assumptions 2.1, 2.2, 3.1 and 3.2 hold. Then, the sequence of smoothed Rockafellians Φδ 
+
+> δ
+
+Mosco converges to Φ, as δ → 0, in the sense of Definition 2.1. Proof. First, to prove the limit inferior condition (cf. (2.3)), given a sequence ( zδ, γ δ, tδ, tδ)δ
+
+weakly converging to ( z, γ, t, t) in Z × R × T × T, we distinguish between two cases: If (t , t)is not zero, no weakly convergent sequence (t δ, tδ)δ can be identically zero. Therefore, up to deleting finite terms, we may assume that any sequence weakly converging to (t , t) does not have zero terms. A simple comparison of the involved Rockafellians (cf. (3.3) and (3.10)) gives the limit inferior condition in this case. On the other hand, if (t , t) is essentially zero, we may assume that any weakly convergent sequence (t δ, tδ)δ, up to deleting finite terms, is identically zero, because otherwise the condition is trivially verified. Then, by recalling the 20 h. antil, a. bustos, s. carney, b. venegas 
+
+definition of the Rockafellians (cf. (3.3) and (3.10)), we have Φδ(zδ, γ δ; 0 , 0) = f (zδ, γ δ) + κ I [J+,δ (zδ, γ δ, ω (0)) ℘(0)] ,
+
+and Φ( z, γ ; 0 , 0) = f (z, γ ) + κ I [J+(z, γ, ω (0)) ℘(0)] .
+
+In this way, resorting to the reasoning of the previous proof (cf. Theorem 4.3), we may establish that lim inf  
+
+> δ
+
+J (zδ, γ δ, ω (0)) ℘(0) ≥ J (z, γ, ω (0)) ℘(0) a.e. in Ξ .
+
+Moreover, according to item (iii) in Lemma 3.1, the foregoing inequality implies that lim inf  
+
+> δ
+
+J+,δ (zδ, γ δ, ω (0)) ℘(0) ≥ J+(z, γ, ω (0)) ℘(0) a.e. in Ξ .
+
+Just as in the previous results, a straightforward application of Fatou’s lemma and the continuity properties of f (cf. Assumption 2.2) give the condition. We now turn to the verification of the limit superior condition (cf. (2.2)). The case (t , t)̸ = (0 , 0) is immediate. The remaining case follows by considering the constant se-quence {(z, γ, t, t)}δ and invoking the uniform upper bound provided in (3.8) to control the corresponding limit superior. We omit further details for the sake of brevity. This completes the proof. □
+
+# 5. Particular Cases 
+
+In this section, we explore different cases that arise in applications. The analysis de-veloped in Section 4 is adapted to each context, leading to various simplifications. Specif-ically, we first present the modifications of the framework when the sample space Ξ is a finite-dimensional space with finite measure. We then consider corruptions of continuous probability distributions, and finally address the scenario in which only the support of the probability distribution is corrupted. 
+
+5.1. Finite-dimensional underlying measure space of finite measure 
+
+In this subsection, we focus on the particular case in which the sample space Ξ is finite-dimensional and μ(Ξ) < +∞. This setting provides a simple framework where several technical difficulties encountered in the general case (cf. Section 4) disappear. In fact, as previously observed, in this situation we may consider the subspaces eΞε = Ξ in Assump-tion 4.1 and, since Ξ has finite measure, we can put Ξ ε = Ξ for all ε > 0. This gives us a simplified version of the spaces introduced in Section 4. Namely, Pε = P and Qε = T .
+
+In this way, noting that Iε = I, the smoothed-corrupted objective functional (4.6) reads: 
+
+φδε(z, γ ) = f (z, γ ) + κ I[J+,δ (z, γ ; ωε(0)) ℘ε(0)] ,
+
+for all ε > 0 and δ > 0, where {ρε}ε> 0 ∈ P and {ηε}ε> 0 ∈ T represent the corruption densities and the corruption maps, respectively. Notice that, according to Proposition 4.1, this functional has a minimizer. Risk-averse optimization with Rockafellian relaxation 21 We continue by describing how Assumption 4.2 is simplified. First, we observe that there are Banach space isomorphisms [L q(Ξ)] n ∼
+
+−→ Lq(Ξ; Ξ) and [L q′
+
+(Ξ)] n ∼
+
+−→ Lq′
+
+(Ξ; Ξ) , (5.1) where n := dim Ξ. If q′ ≥ q, we only need to assume that there is a function space fW with compact inclusion in L q(Ξ) (cf. Assumption 4.2). In fact, by finite-dimensionality, there is a space fW of functions Ξ → Ξ, isomorphic to [ fW] n. We then have 
+
+fW ∼
+
+−→ [fW ]n ,→ [L q(Ξ)] n . (5.2) Then, according to (5.1), (5.2), and the canonical inclusion L q′
+
+(Ξ) ,→ Lq(Ξ), the choice W = fW and W = fW
+
+satisfies Assumption 4.2. The case where q ≥ q′ is analogous. In the remaining of this section, we assume that the spaces W and W have been obtained through this construction, thereby dispensing with Assumption 4.2. Consequently, T ε and Tε (cf. (4.8) and (4.9)) become Tε = W ⊕ span {ρε} and Tε = W ⊕ span {I, η ε} .
+
+Therefore, the Rockafellian functional defined in (4.10) is rewritten as Φδε(z, γ ; t , t) = f (z, γ ) + κ I[J+,δ (z, γ ; ωε(t)) ℘ε(t)] + θε H(t , t)+ ıTε∩(P −ρε)(t) + ıTε (t) .
+
+Of course, the results presented in Section 4 remain valid, with the corresponding modifi-cations to the notation. In particular, the existence of a solution (cf. Theorem 4.1), the optimality conditions (cf. Theorem 4.2), and weak-strong Γ-convergence (cf. Theorem 4.3) still hold. 
+
+5.2. Corruption to continuous probability distibution 
+
+Now, we aim to reduce the general setting presented in Section 4 to the case where we only consider corruptions to continuous probability distributions. In this scenario, we maintain the space of probability densities P defined in (4.1) with respect to the measure μ.Furthermore, in contrast to the case studied in Section 5.1, we do have to use the auxiliary spaces Ξ ε (cf. Assumption 4.1) so that we can construct the spaces P ε (cf. (4.4)) which represent the spaces of corrupted probability densities in Ξ ε. However, Qε (cf. (4.5)) is not required anymore, as corruptions to the support of the probability distribution are not considered here. In this way, for each ε > 0, we let ρε ∈ Pε be a corrupted density. Then, the smoothed-corrupted objective functional (cf. (4.6)) reads 
+
+φδε(z, γ ) = f (z, γ ) + κ Iε
+
+J+,δ (z, γ ) ℘ε(0)  ,
+
+where we recall that J+,δ (z, γ ) = J+,δ (z, γ ; I). To construct the Rockafellian, we note from Assumption 4.2 that Wε is no longer required, and it suffices to consider W ε. This is reflected in the spaces T ε and Tε, where the former captures corruptions to continuous probability densities, while the latter represents corruptions to the support of the probability. Now, regarding the function H : T × T → R, we consider a slight variant HT : T → R that enjoys similar properties. More precisely, we assume that HT is weakly lower semicontinuous, coercive, vanishes at 0 and satisfies: if HT(tk) k→∞ 
+
+−−−→ 0, then tk k→∞ 
+
+−−−→ 0 in T. In this case, as mentioned when H was introduced, one may take HT to be the T-norm. Thus, the 22 h. antil, a. bustos, s. carney, b. venegas 
+
+Rockafellian functional associated with φδε is given by Φ δε : Z × R × T → R, defined as Φδε
+
+ z, γ ; t  := f (z, γ ) + κ Iε [J+,δ (z, γ ) ℘ε(t)] + θε HT(t) + ıTε∩(P −ρε)(t) . (5.3) Note also that Assumption 4.3 ensures that the integral in this functional is finite. Finally, we remark that the full Assumption 2.1 is not required. In fact, it suffices to consider the following hypothesis. 
+
+Assumption 5.1 .
+
+(1) s(·, z ) : Ξ → U is A-measurable, for every z ∈ Z. (2) If zε ⇀ z in Z as ε ↓ 0, then 
+
+s(ξ, z ε) ⇀ s (ξ, z ) in U , a.s. in Ξ .
+
+Notice that we have only modified the second item, fixing the first component of s.This relaxation arises from the fact that we are now considering only corruptions to the continuous distribution, rather than both types of corruptions, so there are no sequences in the component associated with Ξ. The following result establishes the existence of a minimizer for Φ δε.
+
+Theorem 5.1. Fix ε > 0 and δ > 0, and suppose that Assumptions 5.1, 2.2, 3.1, 3.2, 4.1, (1) in 4.2, and 4.3 hold. Additionally, suppose that f0 is coercive or Zad is bounded. Then, there exists 
+
+(z⋆, γ ⋆; t ⋆) ∈ Zad × R × Tε
+
+such that 
+
+Φδε(z⋆, γ ⋆; t ⋆) ≤ Φδε(z, γ ; t) ∀ (z, γ, t) ∈ Zad × R × T .
+
+Proof. It follows from a simplification of the arguments used in the proof of Theorem 4.1. □
+
+Next, we focus on the optimality conditions associated with the problem of minimization of Φ δε defined in (5.3). To that end, we consider the same notations as in Section 4.3 and specify the hypotheses of differentiability (similar to those in Assumption 4.4). 
+
+Assumption 5.2 .
+
+(1) HT : T → R is Fr´ echet differentiable, with derivative DHT(t) ∈ L (T , R). (2) There exists p ∈ [1 , +∞] such that for all z ∈ Zad , s(·, z ) ∈ Lp(Ξ; U). (3) There exists an open set V of Z, with Z ad ⊂ V , such that f0 is Fr´ echet differentiable in V , with derivative Df0(z) ∈ L (Z , R), for all z ∈ V .(4) The function 
+
+V ∋ z 7 → s(·, z ) ∈ Lp(Ξ; U) is Fr´ echet differentiable with derivative Dz s(·, z ) ∈ L (Z , Lp(Ξ; U)). (5) The mapping Lp(Ξ; U) ∋ u 7 → g ◦ u ∈ Lq′
+
+(Ξ) is Fr´ echet differentiable with derivative Dg(u) ∈ L (L p(Ξ; U) , Lq′
+
+(Ξ)). 
+
+Theorem 5.2. Assume the same hypotheses as in Theorem 5.1. Furthermore, suppose that Assumption 5.2 holds. Let  z⋆ε , γ ⋆ε ; t ⋆ε
+
+ ∈ Zad × R × Tε ∩ (P − ρε) be an optimal solution of the problem of minimization associated with Φδε. Then, Risk-averse optimization with Rockafellian relaxation 23 
+
+(1) For all z ∈ Zad ,
+
+D
+
+Df0(z⋆ε ) + κ Iε
+
+℘ε(t⋆ε ) Aδ
+
+ J (z⋆ε , γ ⋆ε ) Dz s(·, z ⋆ε )∗ Dg(s(·, z ⋆ε )) , z − z⋆ε
+
+E
+
+≥ 0 .
+
+(2) It holds 
+
+Iε
+
+h
+
+℘ε(t ⋆ε ) Aδ
+
+ J (z⋆ε , γ ⋆ε )i
+
+= 1
+
+κ .
+
+(3) For all t ∈ Tε ∩ (P − ρε),
+
+D
+
+θε DtHT(t ⋆ε ) + κ Iε
+
+h
+
+J+,δ (z⋆ε , γ ⋆ε ) I
+
+i
+
+, t − t⋆ε
+
+E
+
+≥ 0 .
+
+Proof. The proof is analogous to that of Lemma 4.1 and Theorem 4.2, and therefore is omitted. □
+
+Theorem 5.3. Let ρ ∈ P ∩ Tε for all ε > 0 and consider corruptions (ρε)ε> 0 such that 
+
+ρε ∈ Pε ∩ Tε for each ε > 0. Assume that 
+
+lim  
+
+> ε↓0
+
+θε = + ∞ and lim  
+
+> ε↓0
+
+θεHT(ρ − ρε) = 0 .
+
+Then, under the same assumptions as in Theorem 5.1, there holds Φδε
+
+> Γ
+
+⇁ Φδ as ε ↓ 0, in the sense of Definition 2.2. Proof. The result follows by the same reasoning as in the proof of Theorem 4.3, using instead the Rockafellian defined in (5.3). □
+
+5.3. Corruption to support of the probability distibution 
+
+As a last instance of analysis, we study the case in which we are only in presence of corruption to the support of the idealized probability distribution ρ. In this situation, the spaces P ε (cf. (4.4)), T, W (cf. Assumption 4.2) and T ε are no longer required, as all of them regard corruption to the probability distribution. In this way, recalling that ℘(0) = ρ,the objective functional (cf. (4.6)) takes the form 
+
+φδε(z, γ ) = f (z, γ ) + κ Iε[J+,δ (z, γ ; ωε(0)) ρ] .
+
+In addition, we observe that the function H now depends only on T, thus the hypotheses on it are accordingly simplified. More precisely, we require a map HT : T → R which is weakly lower semicontinuous, coercive, vanishes at 0, and satisfies: if HT(tk) k
+
+−→ 0, then 
+
+tk k
+
+−→ 0 in T. In essence, these are the same requirements as before, and one may again take it to be an appropriate norm on T.The Rockafellian functional Φ δε : Z × R × T → R now reads (cf. (4.10)) Φδε(z, γ ; t) = f (z, γ ) + κ Iε[J+,δ (z, γ ; ωε(t)) ρ] + θε HT(t) + ıTε (t) . (5.4) An important observation is that, in this case, the construction of a family of subspaces of finite measure (cf. discussion after Assumption 4.1) is not needed. Indeed, we notice that 
+
+Iε[J+,δ (z, γ ; ωε(t)) ρ] ≤ I [J+,δ (z, γ ; ωε(t)) ρ] = 
+
+ˆ
+
+> Ξ
+
+(g(s(ξ + ηε(ξ) + t(ξ))) − γ)+,δ dρ . 
+
+This, according to Assumption 4.3 and the discussion following it, shows that the integral is finite. Furthermore, in a situation where Assumption 4.2 is satisfied in Ξ (for instance, when Ξ is finite-dimensional), there is no need whatsoever to consider the sequence (Ξ ε)ε.Namely, Assumption 4.1 is not needed. 24 h. antil, a. bustos, s. carney, b. venegas 
+
+In the remainder of this section, we state the main theorems given in Section 4, with the corresponding simplifications, which are certainly corollaries of the unified analysis. 
+
+Theorem 5.4. Fix ε > 0 and δ > 0. Then, there exists 
+
+(z⋆, γ ⋆, t⋆) ∈ Zad × R × Tε
+
+such that 
+
+Φδε(z⋆, γ ⋆; t⋆) ≤ Φδε(z, γ ; t) ∀ (z, γ ; t) ∈ Zad × R × T .
+
+Proof. It follows from the proof of Theorem 4.1, with the aforementioned simplifications. □
+
+Next, we state the first-order optimality conditions for this case. To this end, and under the same notation as the previous sections, instead of item (1) in Assumption 4.4, we assume that HT is Fr´ echet differentiable, with derivative DHT(t) ∈ L (T, R). The remaining assumptions are unchanged. The following result constitutes the simplified version of Theorem 4.2. 
+
+Theorem 5.5. Let (z⋆ε , γ ⋆ε , t⋆ε ) ∈ Zad × R × Tε be a minimizer of the Rockafellian (5.4) .Setting λ⋆ε := ( ωε(t⋆ε ), z ⋆ε ), we have (1) For all z ∈ Zad ,
+
+D
+
+Df0(z⋆ε ) + κ Iε
+
+℘ε(t⋆ε ) Aδ
+
+ J (z⋆ε , γ ⋆ε ; ωε(t⋆ε ))  Dz s(λ⋆ε )∗ Dg(s(λ⋆ε )) , z − z⋆ε
+
+E
+
+≥ 0 .
+
+(2) It holds 
+
+Iε
+
+h
+
+ρ A δ
+
+ J (z⋆ε , γ ⋆ε ; ωε(t⋆ε )) i
+
+= 1
+
+κ .
+
+(3) For all t ∈ Tε,
+
+D
+
+θε DtHT(t⋆ε ) + κ Iε
+
+h
+
+ρ A δ
+
+ J (z⋆ε , γ ⋆ε ; ωε(t⋆ε ))  Dts(λ⋆ε )∗ Dg(s(λ⋆ε )
+
+i
+
+, t − t⋆ε
+
+E
+
+≥ 0 .
+
+Proof. The proof is analogous to that of Lemma 4.1 and Theorem 4.2, and therefore is omitted. □
+
+We finish this section by stating the simplified version of Theorem 4.3, which concerns weak-strong Gamma convergence. 
+
+Theorem 5.6. Let ρ ∈ P and consider corruption maps (ηε)ε such that ηε ∈ Qε ∩ Tε, for each Tε > 0. Assume that 
+
+lim  
+
+> ε↓0
+
+θε = + ∞ and lim  
+
+> ε↓0
+
+θε HT(I − ηε) = 0 .
+
+Then, under the previously discussed assumptions, we have weak-strong Γ-convergence of Φδε
+
+to Φδ.Proof. The proof is essentially identical to that of Theorem 4.3, with the difference that now, as a result of the absence of corruption to the distribution, the reasoning leading to (4.18) is greatly simplified. The rest of the proof works verbatim. □
+
+# 6. Numerical examples 
+
+We consider two stochastic optimization problems constrained by elliptic boundary value problems. In each case, we model a different corruption scenario. In the first, samples from Risk-averse optimization with Rockafellian relaxation 25 a normally distributed random vector are corrupted by introducing samples with increased variance. In the second, a truncated exponential random variable is corrupted by increasing the likelihood of tail events. 
+
+6.1. Example 1 
+
+For our first numerical example, we consider the stochastic optimal control problem min  
+
+> z∈L2(0 ,1)
+
+φ(z), φ(z) = CVaR β
+
+ 12 ∥s(ξ, z ) − u⋆∥2
+
+> L2(0 ,1)
+
+
+
++ α
+
+2 ∥z∥2 
+
+> L2(0 ,1)
+
+(6.1) where u(·, ξ ) := s(ξ, z ) is the solution operator to the one-dimensional boundary value problem 
+
+− ddx 
+
+
+
+a(x, ξ ) ddx u(x, ξ )
+
+
+
+= z(x), (x, ξ ) ∈ (0 , 1) × Ξ (6.2) 
+
+u(0 , ξ ) = u(1 , ξ ) = 0 ,
+
+The diffusion coefficient is given by 
+
+a(x, ξ ) = eσ Pdk=1    
+
+> √λksin( x/ √λk)ξk
+
+, λk = 4(2 k − 1) 2π2 ,
+
+where each ξk is independent and normally distributed with mean-zero and unit variance. Here the argument of the exponential function is a truncated Kosambi-Karhunen-Lo´ eve expansion [MFE18, Theorem 2.3] for a rescaled Brownian motion on the interval (0 , 1). We take σ = 0 .4 and consider d = 50 expansion terms. For the control regularization term in the objective function, we take α = 10 −5, while the target function u⋆(x) = 1. To numerically solve the optimization problem, we discretize the expectation value in the objective function with a sample-average approximation using N = 5000 samples. Similar to the numerical experiments reported in [BKUW23, Section 5.2], we employ the “nested quantile estimation” (NQE) strategy described in [BKUW23, Algorithm 2], which amounts to an alternating coordinate descent algorithm [RW21, Section 1.J] on the variables z and 
+
+γ. After mollifying the function ( x)+ with (x)δ 
+
+> +
+
+:= x + δ ln(1 + e−x/δ ) (6.3) (from [KS16, Eqn. (4.6)]), the optimization problem for fixed γ becomes min 
+
+> z∈L2(0 ,1)
+
+11 − β
+
+1
+
+N
+
+> N
+
+X
+
+> i=1
+
+ 12 ∥s(ξ(i), z ) − u⋆∥2 
+
+> L2(0 ,1)
+
+− γ
+
+δ 
+
+> +
+
++ α
+
+2 ∥z∥2
+
+> L2(0 ,1)
+
+!
+
+,
+
+which is numerically solved using SciPy’s implementation of the L-BFGS-B algorithm with the default settings [V +20]. In turn, for fixed z, the optimization problem min  
+
+> γ∈R
+
+γ + 11 − β
+
+1
+
+N
+
+> N
+
+X
+
+> i=1
+
+ 12 ∥s(ξ(i), z ) − u⋆∥2 
+
+> L2(0 ,1)
+
+− γ
+
+δ
+
+> +
+
+!
+
+is solved using the bisection method to find the critical point. Note that this latter opti-mization problem is relatively cheap; the bulk of the computational expense requires less than a single objective function calculation. The NQE algorithm terminates when the abso-lute difference in optimal γ values between successive iterations is smaller than a specified tolerance, which we set to 10 −4. In all numerical examples, the mollification parameter 
+
+δ = 10 −3.26 h. antil, a. bustos, s. carney, b. venegas 
+
+The state equation (6.2) and the corresponding adjoint equation are discretized with a second-order finite difference method with uniform grid spacing h = 1 /128; the resulting tridiagonal systems are solved with SciPy’s banded direct solver. All L2 norms are approx-imated with the composite trapezoidal rule. To introduce data corruption into the stochastic optimization problem (6.1), we select the first M ∈ N samples ( M < N ) and increase their variance through the map ξ 7 → 5ξ, which amounts to setting σ = 2 for those samples. For the values β ∈ { 0.1, 0.5, 0.9}, we solve both the uncorrupted version of (6.1) and the corrupted version at various corruption levels, defined as % corruption := 100 · M/N. (6.4) Figure 1 shows that even with only 1% of the samples corrupted, the optimal control z∗
+
+corrupted 
+
+is significantly different than the uncorrupted one z∗
+
+true for all values of β. The differences grow with increasing corruption. 0.0 0.2 0.4 0.6 0.8 1.0                    
+
+> 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> 120
+> Optimal control zfor = 0.1
+> Uncorrupted
+> Rockafellian 20%
+> Rockafellian 5%
+> Rockafellian 1%
+> 20%
+> 5%
+> 1% 0.0 0.2 0.4 0.6 0.8 1.0
+> 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> 120
+> 140
+> Optimal control zfor = 0.5
+> Uncorrupted
+> Rockafellian 20%
+> Rockafellian 5%
+> Rockafellian 1%
+> 20%
+> 5%
+> 1% 0.0 0.2 0.4 0.6 0.8 1.0
+> 0
+> 25
+> 50
+> 75
+> 100
+> 125
+> 150
+> 175
+> Optimal control zfor = 0.9
+> Uncorrupted
+> Rockafellian 20%
+> Rockafellian 5%
+> Rockafellian 1%
+> 20%
+> 5%
+> 1%
+
+Figure 1. Example 1: Optimal controls for the true, uncorrupted problem, as well as for the corrupted problem (dotted lines) and the corresponding Rockafellian relaxations at varying corruption levels. To recover z∗
+
+true in the presence of data corruption, we define the Rockafellian Φ( z, t ) := min 
+
+γ∈R γ + 11 − β
+
+NX
+
+i=1 
+
+ 1
+
+N + ti
+
+ 12 ∥s(ξ(i), z ) − u⋆∥2
+
+L2(0 ,1) − γ
+
+δ
+
++
+
+!
+
++θ∥t∥1 +ι∆(p+t).
+
+(6.5) where t ∈ RN , θ > 0, ∆ is the set of probability vectors, and every component of p ∈
+
+RN equals 1 /N . Following the numerical experiments in [RCE25] and [ACDR25], the l1
+
+norm is chosen for the perturbation variable t because of its well known sparsity-promoting property. We also borrow from [RCE25] and [ACDR25] the numerical optimization strategy to minimize Φ, which involves an alternating-direction (ADI) heuristic in which we first fix 
+
+t = 0 and compute z∗ ∈ argmin Φ( z, 0) using the NQE described above. Using the result, we then solve the linear program t∗ ∈ argmin Φ( z∗, t ) using SciPy’s implementation of the simplex method. This process is repeated until the absolute l1 distance between successive 
+
+t∗ values is smaller than 10 −3.The constraint that p + t ∈ ∆ implies the pointwise bounds −1/N ≤ ti ≤ 1 − 1/N for each 1 ≤ i ≤ N . As in the numerical examples in [ACDR25], in practice we find better results after imposing the tighter bounds −1/N ≤ ti ≤ 1/N , as this prevents the linear program solver from “greedily” identifying a small handful of samples ξ(i) at which 
+
+ 12 ∥s(ξ(i) − u⋆∥2
+
+L2(0 ,1) 
+
+δ
+
++Risk-averse optimization with Rockafellian relaxation 27 Corruption level Erel (z∗
+
+> Rock
+
+) Eratio Corrupted deleted Clean deleted 
+
+β = 0 .11% 7.50 · 10 −2 48.0 14/50=28% 1/4950=0.02% 5% 9.38 · 10 −2 40.4 85/250=34% 0/4750=0.0% 20% 3.55 · 10 −1 13.7 352/1000=35.2% 0/4000=0.0% 40% 7.13 · 10 −1 7.76 645/2000=32.3% 0/3000=0.0% 
+
+β = 0 .51% 1.36 · 10 −1 35.4 21/50=42% 11/4950=0.22% 5% 6.06 · 10 −2 76.3 123/250=49.2% 11/4750=0.23% 20% 2.83 · 10 −1 18.6 508/1000=50.8% 9/4000=0.25% 40% 4.22 · 10 −1 13.7 972/2000=48.6% 5/3000=0.17% 
+
+β = 0 .91% 4.92 · 10 −1 11.7 33/50=66% 199/4950=4.02% 5% 4.79 · 10 −1 10.8 177/250=70.8% 194/4750=4.08% 20% 4.51 · 10 −1 13.2 693/1000=69.3% 139/4000=3.48% 40% 1.93 · 10 0 3.31 1103/2000=55.2% 51/3000=1.70% 
+
+Table 1. Example 1 with θ = 10 −1: relative L2 errors Erel between the Rockafellian and true optimal controls, as well as the ratio of L2 errors Eratio 
+
+for the corrupted and Rockafellian optimal controls; see (6.6). Also included are the fraction of corrupted and clean sample points correctly and incorrectly removed by the perturbation variable t, respectively. Corruption levels de-fined by (6.4). is smallest and then subsequently removing the other samples (including potentially uncor-rupted, “clean” samples). Figure 1 shows that the optimal controls z∗ 
+
+> Rock
+
+obtained by minimizing (6.5) with θ = 10 −1
+
+are quite close to z∗ 
+
+> true
+
+for all values β ∈ { 0.1, 0.5, 0.9} and 1%, 5% and 20% corruption levels. The differences are quantified in Table 1, which shows the relative L2 errors and ratio of errors, as defined by 
+
+Erel (z) := ∥z − z∗
+
+> true
+
+∥2
+
+> L2(0 ,1)
+
+∥z∗
+
+> true
+
+∥2
+
+> L2(0 ,1)
+
+and Eratio := Erel (z∗
+
+> corrupted
+
+)
+
+Erel (z∗
+
+> Rock
+
+) , (6.6) respectively. The L2 errors for z∗ 
+
+> Rock
+
+are all at least one order of magnitude smaller than the corresponding ones in the corrupted cases. Rockafellian relaxation can even mitigate data corruption at a 40% level (not illustrated in Figure 1), although the reduction in error is not as substantial, particularly for β = 0 .9. Additionally displayed are the percentages of corrupted and clean data samples removed by the Rockafellian perturbation variable t. For fixed corruption level, the results indicate that, as β increases, the Rockafellian variable t
+
+removes more corrupted data samples. In general, both the L2 errors and the number of removed data samples will change as a function of θ.Table 2 illustrates the impact of varying θ when β = 0 .9 and the corruption level is fixed at 10%. As θ decreases, the number of corrupted data samples that are removed increases; however, the number of uncorrupted, clean samples removed also increases. For this particular problem, the value of θ = 10 −1 yields the largest reduction in L2 error. For 28 h. antil, a. bustos, s. carney, b. venegas 
+
+θ Erel (z∗
+
+> Rock
+
+) Eratio Corrupted deleted Clean deleted 1 1.75 · 10 0 3.12 93/500=18.6% 0/4500=0.0% 10 −1 4.93 · 10 −1 11.1 359/500=71.8% 179/4500=3.98% 10 −2 1.18 · 10 0 4.62 451/500=90.2% 1853/4500=41.2% 10 −3 9.70 · 10 −1 5.64 445/500=89.0% 2038/4500=45.3% 
+
+Table 2. Results from Example 1 at various θ values with β = 0 .9 and 10% corruption (as defined by (6.4)). Erel and Eratio are defined by (6.6). all values of θ, however, the Rockafellian optimal control is closer to the true, uncorrupted one than the corresponding corrupted controls. 
+
+6.2. Example 2 
+
+For our second numerical example, we consider the stochastic optimal control problem min  
+
+> z∈Ω
+
+φ(z), φ(z) = CVaR β
+
+ 12 ∥s(ξ, z ) − u⋆∥2
+
+> L2(Ω)
+
+
+
++ α
+
+2 ∥z∥2 
+
+> L2(Ω)
+
+(6.7) where u(·, ξ ) := s(ξ, z ) is the solution operator to the two-dimensional boundary value problem 
+
+−∆u(x, ξ ) + v(ξ) · ∇ u(x, ξ ) = f (x) + z(x), (x, ξ ) ∈ Ω × Ξ (6.8) 
+
+u(x, ξ ) = 0 , (x, ξ ) ∈ ∂Ω × Ξ,
+
+where Ω = B1(0), i.e. the unit-ball in R2 centered at the origin. The divergence-free advec-tion field is given by 
+
+v(ξ) = 
+
+D
+
+ξ cos  ξπ/v max − π/ 2, ξ sin  ξπ/v max − π/ 2E
+
+where vmax equals 20. The target function in the objective function u⋆(x) = 1. The random variable ξ takes values on the state space Ξ = [0 , 20]. In the true, uncorrupted case, ξ is distributed according to a truncated exponential probability density function given by 
+
+ρtrue (ξ) = 
+
+ k
+
+1 − e−kv max 
+
+
+
+e−kξ (6.9) where k = 0 .25. Intuitively, at smaller values of ξ, the advection field is weaker and points more towards the south, while at larger values of ξ, the advection field is stronger and points more towards the north. We refer to this case as 0% corruption. In the fully (100%) corrupted case, we consider ξ with a density function that decays algebraically, rather than exponentially: 
+
+ρcorrupted (ξ) = 
+
+ 1log( vmax /a + 1) 
+
+ 1
+
+ξ + a ,
+
+where a = 5. Finally, we also consider a partially corrupted case, in which the probability density of ξ is given by 12 (ρtrue + ρcorrupted ), which we refer to as 50% corruption. The three cases are shown in Figure 6.2; notice that the corrupted densities have heavier tails than the uncorrupted one. To numerically solve the optimization problem (6.7), we discretize the expectation value in the objective function with standard Gaussian quadrature (GQ) with N = 15 points. The control regularization parameter is set as α = 10 −4. The same NQE strategy described in the previous subsection is employed to minimize over the control variable z and CVaR βRisk-averse optimization with Rockafellian relaxation 29 0.0 2.5 5.0 7.5 10.0 12.5 15.0 17.5 20.0      
+
+> 0.00
+> 0.05
+> 0.10
+> 0.15
+> 0.20
+> 0.25 true : 0% corruption
+> 12(true +corrupted ): 50% corruption
+> corrupted : 100% corruption
+
+Figure 2. Probability density functions for the random variable ξ in the advection field v(ξ) for the PDE constraint (6.8). variable γ. The ( x)+ is again mollified with (6.3) and δ = 10 −3. For fixed γ, minimization over z is done with the L-BFGS method with history size m = 9 [NW99, Chapter 7.2] and backtracking line search based on the Wolfe criterion. The state equation (6.8) and the corresponding adjoint equation are discretized with a finite element method with Q1 elements implemented in deal.II [ABF +22]; the total number of degrees of freedom is 5185. Figure 3 shows the computed optimal control z∗ for the values β ∈ { 0.1, 0.5, 0.9} at 0%, 50% and 100% corruption. For fixed β and increasing corruption level, the maximum value of the optimal control increases, and it becomes increasingly localized to the north-eastern portion of the domain Ω. Increasing β at fixed corruption level has a similar effect. This is unsurprising, given the nature of the corruption (increased probabilities for tail events), and the fact that CVaR β averages over worst-case scenarios. To mitigate the influence of the heavy tails, particularly at larger β values, we define the Rockafellian Φ( z, t ) := min 
+
+> γ∈R
+
+
+
+γ + 11 − β
+
+ˆ
+
+> Ξ
+
+ 12 ∥s(ξ(i), z ) − u⋆∥2 
+
+> L2(0 ,1)
+
+− γ
+
+δ
+
+> +
+
+(ρ(ξ) + t(ξ)) dξ 
+
+
+
++θ
+
+ˆ
+
+> Ξ
+
+|t(ξ)|dξ + ιP(ρ + t), (6.10) where θ > 0. The density ρ is given by either ρtrue , ρcorrupted , or 12 (ρtrue + ρcorrupted ), depending on the corruption level, and the indicator function ιP enforces that ρ + t is a probability density function. The L1(Ξ) norm of t is approximated with the same N = 15 GQ nodes and weights as the expectation value. The same ADI heuristic described in the prior subsection is used here to minimize the bivariate function (6.10). After discretizing the integrals over Ξ, the linear program that results when optimizing over the perturbation variable t is solved with the GNU Linear Programming Kit ( glpk ) [GNU]. As before, we enforce the pointwise bound −ρ(ξk) ≤
+
+t(ξk) ≤ ρ(ξk) at each of the GQ collocation points 1 ≤ k ≤ N .The pointwise error between (i) the computed minimizer z∗ of the Rockafellian (6.10) for β = 0 .1, θ = 10 −1, and 100% corruption and (ii) the uncorrupted optimal control (the computed minimizer of (6.7)) is shown in Figure 4, while the analogous error for β = 0 .9 is 30 h. antil, a. bustos, s. carney, b. venegas 
+
+Figure 3. Optimal controls z∗ for (6.7) (without any Rockafellian relax-ation) for differing values of risk-tolerance β and corruption levels. All plots use the same legend. shown in Figure 5. Compared with the pointwise errors for the corrupted optimal controls at 50% and 100% (also shown in Figures 4 and 5), we see that the Rockafellian errors are smaller in magnitude, particularly near the boundary of the domain ∂Ω. The relative errors in L2(Ω) and the ratio of errors–defined analogously to (6.6)–are quan-tified in Table 3 for various β values and corruption levels. Additionally, we show the values for θ ∈ { 10 −1, 10 −2}. At θ = 1, the optimal value of the perturbation variable is t∗(ξ) = 0, and hence z∗ 
+
+> Rock
+
+and z∗ 
+
+> corrupted
+
+are the same. The results for this case are therefore not reported in Table 3 (by definition, the error ratio would equal one). Employing Rockafel-lian relaxation meaningfully reduces the errors in the optimal controls in the presence of data corruption, although the error ratios Erel are not as dramatic as those in the previous numerical example (cf. Table 1). This is unsurprising, given that the corrupted probability densities in this example feature increased likelihoods of tail events, rather than endogeneous outliers. Risk-averse optimization with Rockafellian relaxation 31 
+
+Figure 4. For β = 0 .1: pointwise errors between an uncorrupted optimal control and corrupted optimal controls at 50% and 100% corruption (left and middle, respectively), as well as the pointwise error for a Rockafellian optimal control at 100% corruption (right). All plots use the same legend. 
+
+Figure 5. For β = 0 .9: pointwise errors between an uncorrupted optimal control and corrupted optimal controls at 50% and 100% corruption (left and middle, respectively), as well as the pointwise error for a Rockafellian optimal control at 100% corruption (right). All plots use the same legend. One noteworthy result occurs for β = 0 .1, θ = 10 −2 and 50% corruption: notice that the Rockafellian optimal control actually is slightly worse than the corresponding corrupted optimal control, in the sense that the ratio Eratio is less than one. Although the overall relative error in this case is about 16% for the Rockafellian optimal control, which is in line with the other cases, this example illustrates that the “greediness” inherent to Rockafellian relaxation (and, more generally, DOO) can sometimes lead to suboptimal outcomes, particularly when employed in a context where the impact of data corruption is minimal. From this observation, an interesting question naturally arises: what happens when Rock-afellian relaxation is employed for a risk-averse stochastic optimal control problem with little to no data corruption? To answer this and, more generally, to further quantify how the com-bination of Rockafellian relaxation (DOO) and CVaR β (DRO) performs, we next analyze the cumulative distribution function (CDF) of the random objective function. 32 h. antil, a. bustos, s. carney, b. venegas 
+
+β Corruption level Erel (z∗
+
+> Rock
+
+) Eratio 
+
+θ = 10 −1
+
+0.1 50% 4.74 · 10 −2 3.05 0.9 50% 2.06 · 10 −1 1.22 0.1 100% 1.07 · 10 −1 2.39 0.9 100% 1.50 · 10 −1 2.09 
+
+θ = 10 −2
+
+0.1 50% 1.64 · 10 −1 0.883 0.9 50% 2.06 · 10 −1 1.22 0.1 100% 1.34 · 10 −1 1.92 0.9 100% 2.12 · 10 −1 1.49 
+
+Table 3. For Example 2: relative L2 errors Erel between the Rockafellian and true, uncorrupted optimal controls, as well as the ratio of L2 errors Eratio 
+
+for the corrupted and Rockafellian optimal controls–both Erel and Erel are defined analogously to (6.6). The quantities are shown at various combina-tions of corruption level, risk-tolerance β, and relaxation parameter θ.
+
+6.3. Analysis of cumulative distribution functions 
+
+First, define the random variable 
+
+j(ξ, z ) := 12 ∥s(ξ, z ) − u⋆∥2 
+
+> L2(Ω)
+
+(6.11) associated to the objective function from Example 2, so that s(ξ, z ) satisfies (6.8), u⋆(x) = 1, and ξ has probability density function given by ρtrue (Eqn. (6.9)). 0.30 0.35 0.40 0.45 0.50 0.55                          
+
+> j( , z)
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Probability
+> = 0.1
+> 0%
+> 50%
+> 100%
+> Rock, 0%, = 10 1
+> Rock, 50%, = 10 1
+> Rock, 100%, = 10 10.35 0.40 0.45 0.50 0.55 0.60 0.65
+> j( , z) + 2z22
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Probability
+> = 0.1
+> 0%
+> 50%
+> 100%
+> Rock, 0%, = 10 1
+> Rock, 50%, = 10 1
+> Rock, 100%, = 10 1
+
+Figure 6. For β = 0 .1: CDF plots for the random objective function (6.11) (left) and total control cost (right) for various optimal controls. The dashed lines correspond to optimal controls without any Rockafellian relaxation. To numerically compute the CDFs at various computed optimal controls, (6.11) is eval-uated at N = 2 17 Sobol samples. 1 The CDF plots for various optimal controls at β = 0 .1are shown in Figure 6; the CDF of the total control cost ( j(ξ, z ) + α 
+
+> 2
+
+∥z∥2
+
+> L2(Ω)
+
+) is also shown 
+
+> 1
+
+From scipy.stats.qmc.Sobol .Risk-averse optimization with Rockafellian relaxation 33 0.30 0.35 0.40 0.45 0.50 0.55                          
+
+> j( , z)
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Probability
+> = 0.9
+> 0%
+> 50%
+> 100%
+> Rock, 0%, = 10 1
+> Rock, 50%, = 10 1
+> Rock, 100%, = 10 10.35 0.40 0.45 0.50 0.55 0.60 0.65
+> j( , z) + 2z22
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Probability
+> = 0.9
+> 0%
+> 50%
+> 100%
+> Rock, 0%, = 10 1
+> Rock, 50%, = 10 1
+> Rock, 100%, = 10 1
+
+Figure 7. For β = 0 .9: CDF plots for the random objective function (6.11) (left) and total control cost (right) for various optimal controls. The dashed lines correspond to optimal controls without any Rockafellian relaxation. for completeness. Analogous results for β = 0 .9 are shown in Figure 7. In general, for fixed 
+
+β and fixed corruption level, the Rockafellian optimal controls are less risk-averse than the non-Rockafellian counterparts: j(ξ, z ∗) is smaller for Rockafellian controls at lower quantiles, but larger at higher quantiles. 0.30 0.35 0.40 0.45 0.50 0.55                                              
+
+> j( , z)
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Probability
+> = 0.9
+> Rock, = 0.9 , 0%, = 1
+> Rock, = 0.9 , 0%, = 10 1
+> Rock, = 0.9 , 0%, = 10 2
+> Rock, = 0.9 , 100%, = 1
+> Rock, = 0.9 , 100%, = 10 1
+> Rock, = 0.9 , 100%, = 10 20.35 0.40 0.45 0.50 0.55 0.60 0.65
+> j( , z) + 2z22
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Probability
+> = 0.9
+> Rock, = 0.9 , 0%, = 1
+> Rock, = 0.9 , 0%, = 10 1
+> Rock, = 0.9 , 0%, = 10 2
+> Rock, = 0.9 , 100%, = 1
+> Rock, = 0.9 , 100%, = 10 1
+> Rock, = 0.9 , 100%, = 10 2
+
+Figure 8. For β = 0 .9: CDF plots for the random objective function (6.11) (left) and total control cost (right) for Rockafellian optimal controls at various θ values and corruption levels. Additionally, the level of risk-aversion of Rockafellian optimal controls can be altered by changing θ. Loosely speaking, smaller values of θ correspond to lower confidence in the problem data (in this case, the veracity of the given probability density ρ); the perturbation variable t is relatively free to alter the problem data in an optimistic manner, which leads to controls that are less risk-averse. On the flip side, larger values of θ correspond to increased confidence in the problem data. In this case, there is less freedom for t to modify 
+
+ρ, leading to increased risk-aversion. This is consistent with the results of THEOREM REF; recall that as the corruption level vanishes (i.e. as ρcorrupted → ρtrue ), it is required that 34 h. antil, a. bustos, s. carney, b. venegas 
+
+β Corruption level θ Min Max 0.5 0.75 0.9 0.95 0.99 0.1 0% 10 −1 0.3496 0.6379 0.3540 0.3591 0.4090 0.4630 0.5731 0.1 0% – 0.3520 0.6287 0.3560 0.3605 0.4059 0.4556 0.5613 0.9 0% 10 −1 0.3569 0.6398 0.3665 0.3703 0.3866 0.4398 0.5656 0.9 0% – 0.4050 0.5798 0.4062 0.4076 0.4079 0.4140 0.4871 0.1 100% 10 −1 0.3611 0.6254 0.3704 0.3745 0.3863 0.4272 0.5417 0.1 100% – 0.3808 0.5820 0.3887 0.3925 0.3941 0.4173 0.4993 0.9 100% 10 −2 0.3863 0.6070 0.4000 0.4024 0.4029 0.4029 0.5046 0.9 100% 10 −1 0.4049 0.5762 0.4175 0.4191 0.4199 0.4200 0.4714 0.9 100% – 0.4546 0.5070 0.4589 0.4626 0.4641 0.4652 0.4659 
+
+Table 4. For Example 2: Statistics associated with the total control cost 
+
+j(ξ, z ∗) + α 
+
+> 2
+
+∥z∗∥2 
+
+> L2(Ω)
+
+at various corruption levels and β values. Wherever a θ
+
+value is indicated, this corresponds to a Rockafellian case. Min and Max refer to the minimum and maximum value of the total cost, respectively, while the final five columns list various quantiles of the random objective function. 
+
+θ → ∞ to ensure Γ-convergence. Figure 8 shows the effect of changing θ on the CDFs of the objective function at both 0% and 100% corruption. As mentioned above, note that at θ = 1, the optimal perturbation variable t∗(ξ) = 0, which means that z∗ 
+
+> Rock
+
+= z∗ 
+
+> true
+
+and 
+
+z∗ 
+
+> Rock
+
+= z∗ 
+
+> corrupted
+
+at 0% and 100%, respectively. The quantitative performance of the various optimal controls is summarized in Table 4. Returning to the question how utilizing Rockafellian relaxation affects stochastic optimal control problems when there is little to no data corruption present, we can see that at 0% corruption, the Rockafellian optimal control z∗ 
+
+> Rock
+
+for θ = 10 −1 performs similarly to the optimal control z∗ 
+
+> true
+
+for β = 0 .1 and 0% corruption. The same is true for z∗ 
+
+> Rock
+
+for θ = 10 −2
+
+and 0% corruption (minimal change from the θ = 10 −1 case, and hence not shown). Notice that this does lead to poor performance at the largest quantiles ( ≥ 95%). As mentioned multiple times above, however, one can easily recover the true, risk-averse optimal control by increasing θ: z∗ 
+
+> Rock
+
+at θ = 1 (not shown) is identical to z∗ 
+
+> true
+
+at 0% corruption. 
+
+# 7. Conclusions 
+
+We introduce a framework for risk-averse optimization that is robust to ambiguities in the true form of the underlying problem’s probability distribution. The framework combines problem relaxation techniques (an example of DOO) with the Conditional Value-at-Risk (an example of DRO), although other coherent measures of risk could easily be incorporated. The work advances previously established theoretical foundations for risk-neutral problems with strengthened Γ-convergence results, novel existence theorems (which can accommodate infinite-dimensional probability spaces), and first-order optimality criteria. Numerical experiments on model stochastic PDECO problems illustrate the benefit of the “blended” DOO and DRO approach. By perturbing both the parameter β in CVaR β
+
+and the regularization parameter θ inherent to Rockafellians, decision makers can explore the sensitivity of optimal control strategies to changing levels of risk aversion and problem corruption. This is consistent with the notion that, on the whole, optimization technology Risk-averse optimization with Rockafellian relaxation 35 is more a tool for identifying possibilities than an “oracle” for producing a definitive answer [RW21, Preface]. One natural extension for future research is to consider Rockafellian relaxation for state-constrained optimization problems in the presence of distributional ambiguity. Another important direction is to develop theory for how to best optimize the bivariate objective functions that arise in Rockafellian relaxation. Lastly, the technique can be used in a variety of applications, for example, topology optimization, structural weakness identification, and trajectory optimization. 
+
+Acknowledgments. The second and fourth authors gratefully acknowledge Professors Harbir Antil and Gabriel Gatica, who made possible a visit to George Mason University, during which the core of this work was carried out. We are also thankful to Professor Johannes Royset for reviewing the manuscript and sharing his comments. 
+
+# References 
+
+[AAL25] Facundo N. Airaudo, Harbir Antil, and Rainald L¨ ohner, Conditional value at risk for damage identification in structural digital twins , Finite Elements in Analysis and Design 245 (2025), 104316. [ABF +22] Daniel Arndt, Wolfgang Bangerth, Marco Feder, Marc Fehling, Rene Gassm¨ oller, Timo Heister, Luca Heltai, Martin Kronbichler, Matthias Maier, Peter Munch, et al., The deal.ii library, version 9.4 , Journal of Numerical Mathematics 30 (2022), no. 3, 231–246. [ABM14] Hedy Attouch, Giuseppe Buttazzo, and G´ erard Michaille, Variational analysis in sobolev and bv spaces , SIAM, 2014. [ACDR25] Harbir Antil, Sean P Carney, Hugo D´ ıaz, and Johannes O Royset, Rockafellian relaxation for pde-constrained optimization with distributional uncertainty , SIAM J. Optim. (2025), arXiv:2405.00176. [AD20] Aleksandr Aravkin and Damek Davis, Trimmed statistical estimation via variance reduction ,Mathematics of Operations Research 45 (2020), no. 1, 292–322. [ADO23] Harbir Antil, Sergey Dolgov, and Akwum Onwunta, Ttrisk: Tensor train decomposition al-gorithm for risk averse optimization , Numerical Linear Algebra with Applications 30 (2023), no. 3, e2481. [AKLR18] Harbir Antil, Daniel Kouri, Maxime Lacasse, and D. Ridzal, Frontiers in pde-constrained opti-mization , Springer, 2018. [ASN20] Rishabh Agarwal, Dale Schuurmans, and Mohammad Norouzi, An optimistic perspective on offline reinforcement learning , International conference on machine learning, PMLR, 2020, pp. 104–114. [asz03] Piotr Hajlasz, Sobolev spaces on metric-measure spaces , Heat kernels and analysis on manifolds, graphs, and metric spaces (Paris, 2002), Amer. Math. Soc., 2003. [BC11] Heinz H. Bauschke and Patrick L. Combettes, Convex analysis and monotone operator theory in hilbert spaces , CMS Books in Mathematics, Ouvrages de math´ ematiques de la SMC, Springer New York, New York, NY, 2011. [BK22] Jana Bj¨ orn and Agnieszka Kalamajska, Poincar´ e inequalities and compact embeddings from sobolev type spaces into weighted lq spaces on metric spaces , Journal of Functional Analysis 282 
+
+(2022). [BKUW23] Florian Beiser, Brendan Keith, Simon Urbainczyk, and Barbara Wohlmuth, Adaptive sampling strategies for risk-averse stochastic optimization with constraints , IMA Journal of Numerical Analysis 43 (2023), no. 6, 3729–3765. 36 h. antil, a. bustos, s. carney, b. venegas 
+
+[BLLZ25] Jose Blanchet, Jiajin Li, Sirui Lin, and Xuhui Zhang, Distributionally robust optimization and robust statistics , Statistical Science 40 (2025), no. 3, 351–377. [BLPZ24] Jose Blanchet, Jiajin Li, Markus Pelger, and Greg Zanotti, Automatic outlier rectification via optimal transport , Advances in Neural Information Processing Systems 37 (2024), 35313–35357. [BTEGN09] Aharon Ben-Tal, Laurent El Ghaoui, and Arkadi Nemirovski, Robust Optimization , Princeton University Press, 2009. [BZ04] Jinbo Bi and Tong Zhang, Support vector classification with input data uncertainty , Advances in neural information processing systems 17 (2004). [CCE +24] Louis L Chen, Bobbie Chern, Eric Eckstrand, Amogh Mahapatra, and Johannes O Royset, 
+
+Mitigating the impact of labeling errors on training via rockafellian relaxation , arXiv preprint arXiv:2405.20531 (2024). [CKW23] Zhi Chen, Daniel Kuhn, and Wolfram Wiesemann, On approximations of data-driven chance constrained programs over wasserstein balls , Operations Research Letters 51 (2023), no. 3, 226–233. [CM95] C. Chen and O. L. Mangasarian, Smoothing methods for convex inequalities and linear comple-mentarity problems , Mathematical Programming 71 (1995). [CNK20] Anirban Chaudhuri, Matthew Norton, and Boris Kramer, Risk-based design optimization via probability of failure, conditional value-at-risk, and buffered probability of failure , AIAA Scitech 2020 Forum, 2020, p. 2130. [DR25] Julio Deride and Johannes O Royset, Approximations of rockafellians, lagrangians, and dual functions , SIAM Journal on Optimization 35 (2025), no. 4, 2294–2322. [FHK99] B. Franchi, P. Hajlasz, and P. Koskela, Definitions of sobolev classes on metric spaces , Annales de l’institut Fourier 49 (1999). [GKL25] Jun-ya Gotoh, Michael Jong Kim, and Andrew EB Lim, A data-driven approach to beating saa out of sample , Operations Research 73 (2025), no. 2, 829–841. [GNU] GNU, GNU Linear Programming Kit , https://www.gnu.org/software/glpk/ , Accessed: 2026-02-14. [GSU21] Sebastian Garreis, Thomas M Surowiec, and Michael Ulbrich, An interior-point approach for solving risk-averse pde-constrained optimization problems with coherent risk measures , SIAM Journal on Optimization 31 (2021), no. 1, 1–29. [HKTW18] Matthias Heinkenschloss, Boris Kramer, Timur Takhtaganov, and Karen Willcox, Conditional-value-at-risk estimation via reduced-order models , SIAM/ASA Journal on Uncertainty Quan-tification 6 (2018), no. 4, 1395–1423. [HRKW15] Grani A Hanasusanto, Vladimir Roitch, Daniel Kuhn, and Wolfram Wiesemann, A distribu-tionally robust perspective on uncertainty quantification and chance constrained programming ,Mathematical Programming 151 (2015), no. 1, 35–62. [HRKW17] Grani A. Hanasusanto, Vladimir Roitch, Daniel Kuhn, and Wolfram Wiesemann, Ambigu-ous joint chance constraints under mean and dispersion information , Operations Research 65 
+
+(2017), no. 3, 751–767. [Hub92] Peter J Huber, Robust estimation of a location parameter , Breakthroughs in statistics: Method-ology and distribution, Springer, 1992, pp. 492–518. [IK09] I. A. Ivanishko and V. G. Krotov, Compactness of embeddings of sobolev type on metric measure spaces , Math Notes 86 (2009). [JX24] Nan Jiang and Weijun Xie, Distributionally favorable optimization: A framework for data-driven decision-making with endogenous outliers , SIAM J. Optim. 34 (2024), no. 1, 419–458. [KKK +22] Anoop Kodakkal, Brendan Keith, Ustim Khristenko, Andreas Apostolatos, Kai-Uwe Bletzinger, Barbara Wohlmuth, and Roland W¨ uchner, Risk-averse design of tall buildings for uncertain wind conditions , Computer Methods in Applied Mechanics and Engineering 402 (2022), 115371. [KLU18] Philip Kolvenbach, Oliver Lass, and Stefan Ulbrich, An approach for robust pde-constrained optimization with application to shape optimization of electrical engines and of dynamic elastic structures under uncertainty , Optimization and Engineering 19 (2018), no. 3, 697–731. [Kru03] A. Y. Kruger, On fr´ echet subdifferentials , Journal of Mathematical Sciences 116 (2003), 3325– 3358. Risk-averse optimization with Rockafellian relaxation 37 
+
+[KS16] D. P. Kouri and T. M. Surowiec, Risk-averse pde-constrained optimization using the conditional value-at-risk , SIAM Journal on Optimization 26 (2016). [KS18a] Drew P Kouri and Alexander Shapiro, Optimization of PDEs with Uncertain Inputs , Frontiers in PDE-Constrained Optimization, Springer, 2018, pp. 41–81. [KS18b] Drew P Kouri and Thomas M Surowiec, Existence and optimality conditions for risk-averse pde-constrained optimization , SIAM/ASA Journal on Uncertainty Quantification 6 (2018), no. 2, 787–815. [KS22] , A primal–dual algorithm for risk minimization , Mathematical Programming 193 
+
+(2022), no. 1, 337–363. [LFG22] Fengming Lin, Xiaolei Fang, and Zheming Gao, Distributionally robust optimization: A review on theory and applications , Numerical Algebra, Control and Optimization 12 (2022), no. 1, 159–212. [MFE18] Jes´ us Mart´ ınez-Frutos and Francisco Periago Esparza, Optimal control of pdes under uncer-tainty: An introduction with application to optimal shape design of structures , Springer, 2018. [MMYSB19] Ricardo A Maronna, R Douglas Martin, Victor J Yohai, and Mat´ ıas Salibi´ an-Barrera, Robust Statistics: Theory and Methods (with R) , John Wiley & Sons, 2019. [NSAY +19] Viet Anh Nguyen, Soroosh Shafieezadeh Abadeh, Man-Chung Yue, Daniel Kuhn, and Wol-fram Wiesemann, Optimistic distributionally robust optimization for nonparametric likelihood approximation , Advances in Neural Information Processing Systems 32 (2019). [NTM17] Matthew Norton, Akiko Takeda, and Alexander Mafusalov, Optimistic robust optimization with applications to machine learning , arXiv preprint arXiv:1711.07511 (2017). [NW99] Jorge Nocedal and Stephen J Wright, Numerical optimization , Springer, 1999. [PdHM16] Krzysztof Postek, Dick den Hertog, and Bertrand Melenberg, Computationally tractable coun-terparts of distributionally robust constraints on risk measures , SIAM Review 58 (2016), no. 4, 603–650. [RCE25] Johannes O Royset, Louis L Chen, and Eric Eckstrand, Rockafellian relaxation and stochastic optimization under perturbations , Mathematics of Operations Research 50 (2025), no. 3, 1585– 1610. [RM22] Hamed Rahimian and Sanjay Mehrotra, Frameworks and results in distributionally robust op-timization , Open Journal of Mathematical Optimization 3 (2022), 1–85. [Roc63] R. T. Rockafellar, Convex functions and dual extremum problems , Ph.D. thesis, Harvard Uni-versity, 1963. [Roc70] , Convex analysis , Princeton University Press, 1970. [Rom13] N. N. Romanovski˘ ı, Sobolev spaces on an arbitrary metric measure space: Compactness of embeddings , Sib Math J 54 (2013). [Roy21] Johannes O Royset, Good and bad optimization models: Insights from rockafellians , Tutori-als in Operations Research: Emerging Optimization Methods and Modeling Techniques with Applications, INFORMS, 2021, pp. 131–160. [Roy25] , Risk-adaptive approaches to stochastic optimization: A survey , SIAM Review 67 
+
+(2025), no. 1, 3–70. [RU00] R. Tyrrell Rockafellar and Stanislav Uryasev, Optimization of conditional value-at-risk , Journal of Risk 2 (2000), 21–41. [RU02] , Conditional value-at-risk for general loss distributions , Journal of Banking & Finance 
+
+26 (2002). [RW21] Johannes O Royset and Roger J-B Wets, An optimization primer , vol. 440, Springer, 2021. [SDR14] Alexander Shapiro, Darinka Dentcheva, and Andrzej Ruszczynski, Lectures on stochastic pro-gramming: Modeling and theory, second edition , MOS-SIAM Series on Optimization, SIAM, 2014. [SJ23] Haoming Shen and Ruiwei Jiang, Chance-constrained set covering with wasserstein ambiguity ,Mathematical programming 198 (2023), no. 1, 621–674. [SZ20] Jun Song and Chaoyue Zhao, Optimistic distributionally robust policy optimization , arXiv preprint arXiv:2006.07815 (2020). 38 h. antil, a. bustos, s. carney, b. venegas 
+
+[TR25] Lai Tian and Johannes O Royset, Approximating rockafellians mitigate distributional per-turbations: Discontinuous integrands and chance-constrained applications , arXiv preprint arXiv:2507.15801 (2025). [V +20] Pauli Virtanen et al., SciPy 1.0: Fundamental Algorithms for Scientific Computing in Python ,Nature Methods 17 (2020), 261–272. [YG17] Huanhuan Yang and Max Gunzburger, Algorithms and analyses for stochastic optimization for turbofan noise reduction using parallel reduced-order modeling , Computer Methods in Applied Mechanics and Engineering 319 (2017), 217–239. [Z˘ al02] C. Z˘ alinescu, Convex analysis in general vector spaces , 1st ed., World Scientific, River Edge, NJ, 2002. 
+
+Department of Mathematical Sciences and Center for Mathematics and Artificial Intelli-gence, George Mason University, Fairfax, VA, 22030, USA 
+
+Email address : hantil@gmu.edu 
+
+GIANuC 2 and Departamento de Matem´ atica y F´ ısica Aplicadas, Universidad Cat´ olica de la Sant´ ısima Concepci´ on, Casilla 297, Concepci´ on, Chile, and CI 2MA, Universidad de Concepci´ on, Casilla 160-C, Concepci´ on, Chile 
+
+Email address : alonso.bustos@ucsc.cl 
+
+Department of Mathematics, Union College, Schenectady, NY, 12308, USA 
+
+Email address : carneys@union.edu 
+
+GIANuC 2 and Departamento de Matem´ atica y F´ ısica Aplicadas, Universidad Cat´ olica de la Sant´ ısima Concepci´ on, Casilla 297, Concepci´ on, Chile, and CI 2MA, Universidad de Concepci´ on, Casilla 160-C, Concepci´ on, Chile 
+
+Email address : benjamin.venegas@ucsc.cl

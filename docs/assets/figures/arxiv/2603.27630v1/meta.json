@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.27630v1/fig-001.webp",
+      "caption": "Table 1: Generate result comparison about different metrics.",
+      "page": 7,
+      "index": 1,
+      "width": 732,
+      "height": 262
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27630v1/fig-002.webp",
+      "caption": "Figure 4: Diversity-Centric Multi-Objective Reward reinforcement learning in RTLSeek.",
+      "page": 4,
+      "index": 2,
+      "width": 788,
+      "height": 389
+    }
+  ]
+}

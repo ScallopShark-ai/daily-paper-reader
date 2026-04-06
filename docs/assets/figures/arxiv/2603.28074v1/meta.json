@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.28074v1/fig-001.webp",
+      "caption": "Fig. 3. Control performance of policies from both surrogates over the course of training.",
+      "page": 8,
+      "index": 1,
+      "width": 452,
+      "height": 303
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28074v1/fig-002.webp",
+      "caption": "Fig. 1. Extension of the LRAN architecture to incorporate control actions as additional inputs. The action vector at is added to the next hidden state after an affine transformation defined by an input-to-hidden matrix U and a bias term bu.",
+      "page": 5,
+      "index": 2,
+      "width": 604,
+      "height": 317
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28074v1/fig-003.webp",
+      "caption": "Fig. 2. Training loop of the policy-aware surrogate training scheme. The surrogate model is optimized with data from DNS using actions from the policy while the policy is optimized by interacting with the surrogate using PPO.",
+      "page": 5,
+      "index": 3,
+      "width": 434,
+      "height": 312
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28074v1/fig-004.webp",
+      "caption": "Table 1. Encoder and decoder architectures of the LRAN. Here, B denotes the batch size and dim(h) the latent dimension. Layers correspond to individual PyTorch classes. A Gaussian Error Linear Unit (GELU) [10] is used as the activation function.",
+      "page": 7,
+      "index": 4,
+      "width": 684,
+      "height": 320
+    },
+    {
+      "url": "assets/figures/arxiv/2603.28074v1/fig-005.webp",
+      "caption": "Fig. 4. Qualitative comparison of both LRANs. (a) Surrogates predict 200 steps with zero action input in an initial four-cell RBC state. (b) Surrogates predict one step with zero action input in a two-cell RBC state. Control with zero action inputs is equivalent to uncontrolled forward prediction.",
+      "page": 10,
+      "index": 5,
+      "width": 711,
+      "height": 381
+    }
+  ]
+}

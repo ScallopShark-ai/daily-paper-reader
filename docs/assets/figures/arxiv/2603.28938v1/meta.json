@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.28938v1/fig-001.webp",
+      "caption": "Fig. 1: Comparison of online LQR methods on the aircraft pitch angle control (top) and unmanned aerial vehicle (bottom) examples, in terms of cumulative regret (left), number of controller updates (middle), and wall-clock time per controller update (right). The median is shown together with bootstrap confidence intervals (60%) across runs. (40 samples, T = 200)",
+      "page": 4,
+      "index": 1,
+      "width": 1031,
+      "height": 288
+    }
+  ]
+}

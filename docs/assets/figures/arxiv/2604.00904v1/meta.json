@@ -1,0 +1,118 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-001.webp",
+      "caption": "Table 4: The range of parameters of human performance variation in Eq. (2) on FLickr10K dataset.",
+      "page": 11,
+      "index": 1,
+      "width": 740,
+      "height": 186
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-002.webp",
+      "caption": "Table 3: The range of parameters of human performance variation in Eq. (2) on Chaoyang dataset.",
+      "page": 11,
+      "index": 2,
+      "width": 740,
+      "height": 183
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-003.webp",
+      "caption": "Table 7: Quantitative comparison in terms of the Area Under Accuracy-Coverage Curve (AUACC) (×100) [48] of the SOTA L2D [6, 5, 7, 8] with three different human performance curves on the Cifar100 dataset. The results consist of the mean value obtained from three experiments using models trained with different random seeds. The best result per benchmark is marked in bold.",
+      "page": 15,
+      "index": 3,
+      "width": 975,
+      "height": 196
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-004.webp",
+      "caption": "Figure 8: Accuracy-Coverage curves of CMDP ablation on Cifar100 dataset.",
+      "page": 15,
+      "index": 4,
+      "width": 466,
+      "height": 307
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-005.webp",
+      "caption": "Figure 9: Validation against clinical human performance data. (a) Comparison between simulated human performance in FALCON and real-world human data [49]. The orange line represents the radiologist’s correct recall rate, which shows a significant decline from 78% to 66% after the vigilance threshold. The green shaded area indicates the range of our simulated experts on the Chaoyang dataset, demonstrating high ecological validity. (b) Zero-shot testing results on the Chaoyang dataset.",
+      "page": 15,
+      "index": 5,
+      "width": 967,
+      "height": 466
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-006.webp",
+      "caption": "Figure 1: Example of an L2D scenario illustrating workload-variant human performance in human–AI task allocation within a single episode. FALCON adapts deferral decisions based on both task difficulty and accumulated human fatigue. At t = 1, an easy task is handled by the AI while the human expert remains fresh. At t = 2, a challenging case is deferred to the human expert who has sufficient cognitive capacity. By t = 3, another hard task is still assigned to the human despite mild fatigue accumulation. At the final time step t = T , severe human fatigue leads to AI handling the task to prevent performance degradation.",
+      "page": 2,
+      "index": 6,
+      "width": 971,
+      "height": 283
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-007.webp",
+      "caption": "Table 2: The range of parameters of human performance variation in Eq. (2) on Cifar100 dataset.",
+      "page": 10,
+      "index": 7,
+      "width": 740,
+      "height": 184
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-008.webp",
+      "caption": "Figure 3: Human performance-Cumulative Workload curves on various datasets. The blue and red lines denote the upper and lower bound of human performance under cumulative workload accumulation.",
+      "page": 10,
+      "index": 8,
+      "width": 944,
+      "height": 783
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-009.webp",
+      "caption": "Figure 7: Different human performance during testing (left column) and corresponding results with fine-tuning (middle column) and zero-shot (right column) testing on Cifar100 across all methods.",
+      "page": 14,
+      "index": 9,
+      "width": 971,
+      "height": 765
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-010.webp",
+      "caption": "Figure 5: Inference time of FALCON and competing methods on Cifar100 (50 episodes).",
+      "page": 13,
+      "index": 10,
+      "width": 690,
+      "height": 185
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-011.webp",
+      "caption": "Figure 6: Accuracy-Coverage curves of several L2D strategies and FALCON on various datasets.",
+      "page": 13,
+      "index": 11,
+      "width": 970,
+      "height": 665
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-012.webp",
+      "caption": "Figure 4: Training time of FALCON and competing methods on Cifar100 (1e7 iterations).",
+      "page": 12,
+      "index": 12,
+      "width": 690,
+      "height": 185
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-013.webp",
+      "caption": "Table 1: PPO parameters",
+      "page": 9,
+      "index": 13,
+      "width": 372,
+      "height": 390
+    },
+    {
+      "url": "assets/figures/arxiv/2604.00904v1/fig-014.webp",
+      "caption": "Figure 2: (a): Examples of w(ρ). The values of parameters (w0, wpeak, wbase, k, ρ̄, ρ̂) in Example 1,2 and 3 are (0.9, 1, 0.7, 0.1, 0.375, 0.05), (0.8, 0.95, 0.5, 0.09, 0.5, 0.025) and (0.8, 0.9, 0.6, 0.2, 0.6, 0.1). (b): The architecture of FALCON with workload-variant human performance. A backbone model extracts visual features from the input xt, while the cumulative human workload ρt is passed through an embedding layer. The visual and workload features are concatenated and processed by a Resettable S5 layers [31] to capture temporal dependencies and output the policy π(at|st) alongside value estimates.",
+      "page": 5,
+      "index": 14,
+      "width": 934,
+      "height": 299
+    }
+  ]
+}
