@@ -1,0 +1,1190 @@
+Title: Finite-Time Analysis of Projected Two-Time-Scale Stochastic Approximation
+
+URL Source: https://arxiv.org/pdf/2604.00179v1
+
+Published Time: Thu, 02 Apr 2026 00:09:43 GMT
+
+Number of Pages: 6
+
+Markdown Content:
+# Finite-Time Analysis of Projected Two-Time-Scale Stochastic Approximation 
+
+Yitao Bai, Thinh T. Doan, Justin Romberg 
+
+Abstract — We study the finite-time convergence of projected linear two-time-scale stochastic approximation with constant step sizes and Polyak–Ruppert averaging. We establish an explicit mean-square error bound, decomposing it into two interpretable components, an approximation error determined by the constrained subspace and a statistical error decaying at a sublinear rate, with constants expressed through restricted stability margins and a coupling invertibility condition. These constants cleanly separate the effect of subspace choice (ap-proximation errors) from the effect of the averaging horizon (statistical errors). We illustrate our theoretical results through a number of numerical experiments on both synthetic and reinforcement learning problems. 
+
+I. I NTRODUCTION 
+
+Stochastic approximation (SA) is a foundational tool for solving root-finding and optimization problems from noisy observations, with applications spanning signal processing, control, and machine learning [1]. Two-time-scale SA (TTSA) generalizes the single-variable setting to coupled systems where two groups of variables are updated on different time scales—one “fast” and one “slow”—and has found broad use in actor–critic reinforcement learning [2], gradient temporal-difference (GTD) methods for policy evaluation [3], primal– dual constrained optimization [4], and bilevel learning [5]. In many of these applications, the ambient dimension of the iterates is too large for direct computation, and one must restrict the variables to low-dimensional linear subspaces [6], [7]. A prominent example is policy evaluation in reinforce-ment learning: in the tabular setting, GTD [3] is a two-time-scale SA operating on the full value vector V π ∈ R|S| and an auxiliary vector u ∈ R|S| ; when the state space is large, one imposes the linear function approximation V π ≈ Φθ [6] by projecting onto the feature subspace span(Φ) . This projection reduces dimensionality but introduces an approximation bias: the constrained solution generally differs from the true one, and the subspace dimension must be traded off against the resulting approximation error [8]. Understanding this approximation–estimation tradeoff quantitatively is essential for principled subspace selection. 
+
+Main Contributions. In this paper, we study finite-time convergence properties of the projected linear TTSA methods with constant step sizes and Polyak–Ruppert (PR) averaging. We establish an explicit mean-square error bound for the PR averages, where we decompose the error into two terms:                 
+
+> This work was supported in part by NSF under CAREER Award 2527059 and Grant CIF 2527044. Yitao Bai and Thinh T. Doan are with Department of Aerospace Engineering, University of Texas at Austin
+
+Email: yb5429@my.utexas.edu, thinhdoan@utexas.edu  
+
+> Justin Romberg is with Department of Electrical and Computer Engineer-ing, Georgia Tech
+
+Email: jrom@ece.gatech.edu 
+
+Fig. 1: Error decomposition of projected TTSA. (i) an approximation component determined by the subspace distances inf x∈X ∥x∗ − x∥ and inf y∈Y ∥y∗ − y∥; and (ii) a 
+
+statistical component decaying at rate O(1 /T ), where T is the number of iterations (see Figure 1). A key feature of our analysis is the use of constant step sizes, which yield exact telescoping identities and produce a clean decomposition whose constants are interpretable through restricted stability margins and a coupling invertibility condition. We illustrate our theoretical results though a number of numerical experi-ments on both synthetic and reinforcement learning problems. Our simulations confirm the bias–variance decomposition and the decaying rate O(1 /T ) of statistical errors studied in our theoretical results. 
+
+A. Related Work 
+
+Projected single-time-scale SA. Given its broad applicability, SA has been studied extensively in the literature [1], [9]. The projected variant of SA has been studied in the context of approximate dynamic programming [6], [7], [10]. In [8], the authors establish oracle inequalities for PR averaging of the classical single-time-scale SA, obtaining a bias–variance decomposition that matches instance-dependent lower bounds. Our work, by contrast, studies the two-time-scale SA, which requires a fundamentally different analysis. 
+
+Two-time-scale SA and PR averaging. The asymptotic convergence of TTSA is well understood via ODE meth-ods [1], [9], with asymptotic rates established in [2]. Finite-time results have been obtained under various settings: [11] studies lock-in probability and projected TTSA for GTD; [12] considers distributed TTSA; [13] handles Markovian noise; and [14] establishes a nonasymptotic CLT. Separately, PR averaging [15]–[17] is known to improve the statisti-cal efficiency of SA, with sharp single-time-scale results appearing in [18]. However, none of these works combine PR averaging with subspace-constrained TTSA or provide an explicit bias–variance decomposition for the projected setting. This work addresses this gap by providing a finite-time theoretical analysis of PR averaging for iterates generated by projected TTSA. 
+
+> arXiv:2604.00179v1 [eess.SY] 31 Mar 2026
+
+II. P ROJECTED TWO -T IME -S CALE STOCHASTIC 
+
+APPROXIMATION 
+
+Two-time-scale stochastic approximation (TTSA) is an iterative method to find a pair (x∗, y ∗) ∈ Rn × Rm satisfying 
+
+ g(x∗, y ∗) = Af f x∗ + Af s y∗ − b1 = 0 ,h(x∗, y ∗) = Asf x∗ + Ass y∗ − b2 = 0 . (1) In particular, TTSA iteratively updates (xk, y k), an estimate of (x∗, y ∗), using noisy samples of the system matrices as 
+
+xt+1 = xt + α(g(xt, y t) + ϵt),yt+1 = xt + β(g(xt, y t) + ψt),
+
+where β ≪ α are two step sizes and the random variables 
+
+ϵ, ψ represent sampling noises. As β ≪ α, x is referred to as the fast variable while y is called the slow variable [2], [9]. In this paper, we consider the setting where (x, y ) are constrained in some linear subspaces (X , Y) ⊆ Rd × Rr ,where r, d are much smaller than m, n . Our focus is to study a projected version of TTSA given as 
+
+xt+1 = Π X [xt + α(g(xt, y t) + ϵt)] ,yt+1 = Π Y [xt + β(g(xt, y t) + ψt)] , (2) where ΠX , ΠY denote the projections to the sets X , Y,respectively. As X , Y are linear, we can obtain a closed form representation of these projection operators: let UX ∈ Rn×d
+
+and UY ∈ Rm×r have orthonormal columns spanning X and 
+
+Y, then the projection operators are defined as 
+
+ΠX := UX U ⊤X and ΠY := UY U ⊤Y .
+
+While the constrained variant of TTSA arises naturally in many applications, including primal–dual constrained optimization [4], bilevel learning [5], and low-rank parameter-ization in large-scale systems [6], our main motivation is the application of (2) to reinforcement learning, in particular, to study the gradient temporal-difference learning with linear function approximation (see Section IV for a detailed presentation). 
+
+Main focus. The main objective of this paper is to study the convergence properties of the following PR averages of the iterates generated by (2) 
+
+¯xT := 1
+
+T 
+
+> T−1
+
+X
+
+> t=0
+
+xt, ¯yT := 1
+
+T 
+
+> T−1
+
+X
+
+> t=0
+
+yt. (3) PR averaging improves the statistical efficiency of constant-step-size SA by canceling the zero-mean fluctuations of the iterates around their limit, achieving an O(1 /T ) mean-square error rate [16]–[18]. Note that due to the projections, one would not expect the sequence (xt, y t) generated by (2) , if they converge, to reach 
+
+(x∗, y ∗). Indeed, the iterates are confined to X × Y , and the best one can hope for is convergence to the constrained solution (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+) ∈ X × Y , defined as the unique pair satisfying the projected equations ΠX (Af f x∗
+
+> p
+
++Af s y∗ 
+
+> p
+
+−b1) = 0 and ΠY (Asf x∗ 
+
+> p
+
++Ass y∗ 
+
+> p
+
+−b2) = 0 . When (x∗, y ∗) /∈ X ×Y ,the constrained solution differs from the true one, and the total error of the PR averages decomposes as 
+
+E∥¯xT − x∗∥2 ≤ 2∥x∗ 
+
+> p
+
+− x∗∥2
+
+| {z }
+
+> approximation error
+
++ 2 E∥¯xT − x∗
+
+> p
+
+∥2
+
+| {z }
+
+> statistical error
+
+,
+
+and similarly for y. The approximation error is the irre-ducible distance between the constrained and unconstrained solutions, determined entirely by the choice of subspaces. The 
+
+statistical error measures how well the PR averages track the constrained solution, and decays as O(1 /T ). In the next subsection, we state the technical assumptions that guarantee existence and uniqueness of both (x∗, y ∗) and (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+), and that make the approximation error quantifiable. 
+
+A. Technical Assumptions 
+
+We next present the main assumptions underlying our analysis. Since the projections ΠX , ΠY are linear, the con-strained problem in (2) inherits a linear structure analogous to that of Eq. (1) . Accordingly, our assumptions parallel the standard conditions in the TTSA literature, extended to account for the subspace restriction. Assumptions 1 and 2 guarantee existence and uniqueness of (x∗, y ∗) and (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+),respectively. Assumption 3 imposes a variant of standard well-posedness conditions on the resolvent matrices associated with the linear subspaces, which will be used to characterize the approximation errors ∥x∗ 
+
+> p
+
+− x∗∥2 and ∥y∗ 
+
+> p
+
+− y∗∥2. Finally, Assumption 4 requires that the sampling noises ϵt, ψ t are Martingale difference with bounded variances. Assumptions 1– 4 are fairly standard in the SA literature [8], [9], [14]. 
+
+Assumption 1: Af f and the Schur complement ∆ := Ass −
+
+Asf A−1 
+
+> f f
+
+Af s are Hurwitz. 
+
+Assumption 2: Let c1 := UX (U ⊤X Af f UX )−1U ⊤X . The projected system matrices U ⊤X Af f UX and U ⊤Y (Ass +
+
+Asf c1 Af s ) UY are Hurwitz. For convenience, we consider the following notation 
+
+μx := σmin (U ⊤X (I − Af f ) UX ),μy := σmin (U ⊤Y (I − Ass ) UY ),c3 := UX
+
+ U ⊤X (I −Af f ) UX
+
+−1U ⊤X ,c4 := UY
+
+ U ⊤Y (I −Ass ) UY
+
+−1U ⊤Y .
+
+(4) Note that the Hurwitz condition on U ⊤X Af f UX implies that 
+
+μx > 0. Additionaly, we assume the following conditions. 
+
+Assumption 3: The restricted resolvent constant μy > 0.Moreover, the restricted resolvent matrices (I − c3Af s c4Asf )
+
+and (I − c4Asf c3Af s ) are invertible. 
+
+Assumption 4: E[εt | F t] = 0 , E[ψt | F t] = 0 a.s., and 
+
+E[∥εt∥2 | F t] ≤ Cε, E[∥ψt∥2 | F t] ≤ Cψ , where Ft is the 
+
+σ-algebra generated by {(xk, y k)}k≤t.Assumption 4 is standard in the SA literature [13], [18], [19]. III. M AIN RESULT 
+
+Recall that (x∗, y ∗) are the solution of the unconstrained system in (1) and (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+) ∈ X × Y are the fixed point solution of the constrained updates in (2) . Existence and uniqueness of these points follow from Assumptions 1 and 2. As illustrated in Fig. 1, the iterates generated by (2) can converge at best to (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+). Our main theorem below for-malizes this behavior by establishing finite-time convergence rate bounds for the PR averages ¯xT and ¯yT . Specifically, these bounds consist of two components: a statistical error ,characterizing the rate at which the PR averages converge to (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+), and an approximation error , representing the distance between the unconstrained and constrained solutions 
+
+ϵ2 
+
+> x
+
+:= inf  
+
+> x∈X
+
+∥x∗ − x∥2 and ϵ2 
+
+> y
+
+:= inf  
+
+> y∈Y
+
+∥y∗ − y∥2.
+
+For convenience, we consider the following notation 
+
+mx := σmin (U ⊤X Af f UX ),my := σmin (U ⊤Y (Ass + Asf c1 Af s ) UY ),κxy := ∥(I − c3Af s c4Asf )−1∥2,κyx := ∥(I − c4Asf c3Af s )−1∥2.
+
+Theorem 1: Suppose that Assumptions 1–4 hold. Let α, β > 0
+
+be constant step sizes with β/α ≪ 1, α < 1/∥Af f ∥2, and 
+
+β < 1/∥Ass ∥2. Then we have 
+
+E∥¯xT −x∗∥2 ≤ 2Bxx ϵ2 
+
+> x
+
++ 2 Bxy ϵ2 
+
+> y
+
++ 2Lx
+
+T ,
+
+E∥¯yT −y∗∥2 ≤ 2Byx ϵ2 
+
+> x
+
++ 2 Byy ϵ2 
+
+> y
+
++ 2Ly
+
+T ,
+
+(5) where Lx, L y are the statistical constants 
+
+Ly = 2 Cψ
+
+m2
+
+> y
+
++ 2∥Asf ∥22
+
+m2 
+
+> y
+
+m2
+
+> x
+
+Cε,Lx = 2∥Af s ∥22
+
+m2 
+
+> x
+
+m2
+
+> y
+
+Cψ +
+
+ 4∥Af s ∥22∥Asf ∥22
+
+m2 
+
+> y
+
+m4
+
+> x
+
++ 1
+
+m2
+
+> x
+
+
+
+Cε,
+
+and the approximation constants defined as 
+
+Bxx = 2 κ2
+
+> xy
+
+
+
+1 + ∥Af f ∥2
+
+μx
+
+2
+
+,Bxy = 2 κ2
+
+> xy
+
+ ∥Af s ∥2
+
+μx
+
+2
+
+1 + ∥Ass ∥2
+
+μy
+
+2
+
+,Byy = 2 κ2
+
+> yx
+
+
+
+1 + ∥Ass ∥2
+
+μy
+
+2
+
+,Byx = 2 κ2
+
+> yx
+
+ ∥Asf ∥2
+
+μy
+
+2
+
+1 + ∥Af f ∥2
+
+μx
+
+2
+
+.
+
+Remark 1: The bound in Theorem 1 decomposes the optimal errors into two distinct components. The statistical constants 
+
+Lx, L y govern the convergence of the PR averages toward the constrained solution (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+) at a rate O(1 /T ). Their structure reveals how noise propagates through the two-time-scale coupling: Ly depends on the slow noise variance Cψ
+
+directly and on the fast noise Cε through the cross-coupling norm ∥Asf ∥2, both scaled by the projected stability margins 
+
+mx, m y . Similarly, Lx inherits contributions from Cψ through 
+
+∥Af s ∥2. Smaller margins mx, m y (i.e., weaker projected stability) amplify the statistical error. The approximation constants Bxx , B xy , B yy , B yx are controlled by the resolvent margins μx, μ y and the coupling constants κxy , κ yx . The off-diagonal terms Bxy , B yx capture an effect unique to the TTSA setting: even if ϵ2 
+
+> x
+
+is small, the 
+
+y-error inherits a contribution through Byx , and vice versa. Our theoretical bound provides a clean representation on these two expected errors of the projected TTSA in (2) : the subspace choice determines the approximation errors ϵ2
+
+> x
+
+, ϵ 2 
+
+> y
+
+,while the statistical errors decay with the number of iterations 
+
+T regardless of the subspace. In Section IV, we verify this decomposition empirically: the PR-averaged errors decay and then plateau at the approximation error, with the O(1 /T ) rate consistent across different subspace choices. We also discuss how to choose the subspaces to control the values of ϵ2
+
+> x
+
+, ϵ 2 
+
+> y
+
+.IV. N UMERICAL EXPERIMENTS 
+
+In this section, we provide numerical simulations to validate the theoretical bounds in Theorem 1. We apply the projected TTSA in (2) to two settings: a synthetic coupled system and GTD for policy evaluation in reinforcement learning. In the tabular setting, GTD is an unprojected TTSA [3]: both the value function V π ∈ R|S| and the auxiliary variable w ∈ R|S| 
+
+are updated in the full ambient space. When the state space is large, one can use linear function approximation V π ≈ Φθ
+
+with the feature matrix Φ ∈ R|S|× d, d ≪ |S| , which restricts both variables to the subspace span(Φ) . This is precisely the projected TTSA in (2) , with X = Y = span(Φ) and 
+
+ΠX = Π Y = Φ(Φ ⊤Φ) −1Φ⊤.
+
+A. Synthetic Coupled Linear Systems 
+
+We construct a stable coupled system of the form (1) with ambient dimensions n = 20 and m = 16 . The self-dynamics matrices Af f and Ass are negative definite (diagonal in random orthonormal bases eUx ∈ Rn×n, eUy ∈ Rm×m), while the cross-couplings Af s , A sf are random matrices scaled by 
+
+0.08 to preserve overall stability. A ground-truth solution 
+
+(x∗, y ∗) is defined with exponentially decaying coordinates in eUx, eUy , and (b1, b 2) are set so that (1) holds. We constrain the iterates to rank-r subspaces X = span( eUx(: , 1 : r)) 
+
+and Y = span( eUy (: , 1 : r)) with r = 6 , and compute the constrained solution (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+) by solving the reduced system. The algorithm (2) is implemented for T = 5 ,000 iterations, averaged over 25 independent trials, with i.i.d. Gaussian noise εt, ψ t ∼ N (0 , σ 2I), σ = 0 .08 , and constant step sizes 
+
+α = 0 .2 (fast) and β = 0 .01 (slow), giving β/α = 0 .05 .Figure 2 plots the PR-averaged errors ∥¯xt − x∗∥2 and 
+
+∥¯yt − y∗∥2 on a log scale, with horizontal dashed lines at the approximation errors ∥x∗ 
+
+> p
+
+− x∗∥2 and ∥y∗ 
+
+> p
+
+− y∗∥2. Both PR errors decrease and then plateau near the corresponding dashed lines, confirming the decomposition in Theorem 1: the statistical term decays as O(1 /T ), while the limiting accuracy is set by the approximation error. The fast iterate x (α = 0 .2)exhibits a more rapid initial decay, whereas the slow iterate y
+
+(β = 0 .01 ) shows a longer transient, consistent with the two-time-scale structure. To further validate the O(1 /T ) rate, we overlay the curve Ly /T + ∥y∗ 
+
+> p
+
+− y∗∥2 (dotted), where 
+
+Ly is a fitted constant. This curve lies above the slow PR error ∥¯yt − y∗∥2 for all T , confirming that the bound in Theorem 1 correctly captures both the O(1 /T ) decay rate and the approximation error floor. 
+
+B. GTD with Feature Mismatch 
+
+In this section, we apply the projected TTSA to study the GTD algorithm. Using the simulation of GTD, our first goal is to verify that the bias–variance decomposition in Theorem 1 also holds in a reinforcement learning setting. Second, we investigate how the choice of feature subspace 
+
+span(Φ) affects each component of the theoretical bound— in particular, whether the O(1 /T ) convergence rate of the Fig. 2: Synthetic coupled system. statistical error is robust across subspaces with very different alignment to the value function. We consider policy evaluation on a 9-state Markov decision process (MDP) with a discount factor γ = 0 .9. The discounted value function V π ∈ R9 is the unique solution of the Bellman equation of the underlying MDP. We will consider the linear function approximation setting where V π ≈ Φθ within a low-dimensional feature subspace span(Φ) . The goal of GTD is to find θ∗ such that Φθ∗ is the best approximation of V π .To evaluate the effects of different choices of the subspace spanned by features Φ on the convergence of GTD, we consider a random orthonormal basis W = [ w1, . . . , w 9] ∈
+
+R9×9 and set V π = W c with coefficients 
+
+c = [3 .0, 2.4, 1.8, 1.4, 1.1, 0.5, 10 −3, 5·10 −4, 10 −4]⊤.
+
+By design, V π concentrates nearly all of its energy in the first six directions w1, . . . , w 6, while the last three directions 
+
+w7, w 8, w 9 carry negligible energy. This construction will enable us to study the alignment between the feature subspace and the value function, and thereby illustrate different aspects of the approximation error ϵ2 in the bound in Theorem 1. We will approximate V π by Φθ with Φ ∈ R9×3. Given a choice of Φ, we will implement GTD to find θ∗ that gives the best approximation of V π . As mentioned, GTD can be formulated as a variant of the projected TTSA in (2) ,where X = Y = span(Φ) . For our simulations, we set step sizes α = 0 .02 and β = 0 .001 (β/α = 0 .05 ) and conduct experiments in three different choices of feature matrices Φ:(i) well aligned : Φ1 = [ w1, w 2, w 3], spanning the highest-energy directions of V π ; (ii) medium aligned : Φ2 is a random orthonormal basis in R9×3 (via QR factorization); (iii) poorly aligned : Φ3 = [w7, w 8, w 9], spanning the lowest-energy directions, nearly orthogonal to V π . For each Φi, we report the the approximation error ∥V π − Φiθi, ∗∥2, the statistical error ∥Φiθi, ∗ − Φi ¯θit∥2, and total PR error ∥V π − Φi ¯θit∥2.Our simulation results are shown in Figure 3. The top plot in Figure 3 displays the approximation error 
+
+∥V π −Φiθi, ∗∥2 across the three feature families. As expected, well-aligned features yield the smallest approximation error. On the other hand, the middle plot in Figure 3 displays the sta-tistical error ∥Φiθi, ∗ −Φi ¯θit∥2. We order the curves from well-aligned (highest) to poorly-aligned (lowest). This ordering reflects the initial error magnitude, not the convergence rate: since V π has positive entries and well-aligned features capture more of its energy, the projected value Φ1θ1,∗ is largest in norm, producing a larger initial gap ∥Φiθi, ∗ − Φi ¯θi
+
+> 0
+
+∥2.Crucially, the slopes of all three curves are similar, indicating a consistent decaying rate across feature choices. Finally, the bottom plot in Figure 3 shows the total PR error ∥V π − Φi ¯θit∥2 for the well-aligned case Φ1, together with its statistical and approximation components on the same log-scale axis. The statistical error decays to zero while the total PR error plateaus at the approximation error as shown by our theoretical bound in Theorem 1. We also overlay the curve Ly /T (dotted), where Ly is a fitted constant, which lies above the statistical error for all T . This confirms that the statistical error decays at the O(1 /T ) rate predicted by Theorem 1. 
+
+Fig. 3: Performance of GTD under different Φ.APPENDIX V. P ROOF OF THEOREM 1We decompose the PR-averaged error into (i) a statistical term measuring how well ¯xT , ¯yT track the constrained solution (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+), and (ii) an approximation term measuring the distance between (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+) and the unconstrained solution 
+
+(x∗, y ∗). Throughout, we use the fact that the projections are linear and that the iterates remain feasible: xt ∈ X and 
+
+yt ∈ Y for all t. Our analysis is composed of 5 steps. 
+
+Step 0: Projection-solution identity. Solving a projected linear equation over a subspace reduces to an r-dimensional system in reduced coordinates. 
+
+Lemma 5.1 (Projected linear solve): Let Z be a linear subspace with orthonormal basis UZ , and let A be amatrix such that U ⊤Z A U Z is invertible. If zp ∈ Z satisfies 
+
+ΠZ (Az p) = Π Z (b), then 
+
+zp = UZ (U ⊤Z A U Z )−1U ⊤Z b. 
+
+Proof: Write zp = UZ ˜z and left-multiply ΠZ (Az p) = ΠZ (b) by U ⊤Z to obtain U ⊤Z A U Z ˜z = U ⊤Z b; inverting yields the claim. 
+
+Step 1: Bias–variance decomposition. Using ∥a + b∥2 ≤
+
+2∥a∥2 + 2 ∥b∥2 with a = ¯ xT − x∗ 
+
+> p
+
+and b = x∗ 
+
+> p
+
+− x∗ gives 
+
+E∥¯xT −x∗∥2 ≤ 2E∥¯xT −x∗
+
+> p
+
+∥2 + 2 ∥x∗ 
+
+> p
+
+−x∗∥2,
+
+E∥¯yT −y∗∥2 ≤ 2E∥¯yT −y∗ 
+
+> p
+
+∥2 + 2 ∥y∗ 
+
+> p
+
+−y∗∥2. (6) It remains to bound (i) the statistical errors E∥¯xT − x∗
+
+> p
+
+∥2
+
+and E∥¯yT − y∗ 
+
+> p
+
+∥2 (Part 1 ), and (ii) the approximation errors 
+
+∥x∗ 
+
+> p
+
+− x∗∥2 and ∥y∗ 
+
+> p
+
+− y∗∥2 (Part 2 ). 
+
+Part 1: Statistical error. We bound E[∥¯yT − y∗ 
+
+> p
+
+∥2] and 
+
+E[∥¯xT − x∗
+
+> p
+
+∥2] by relating the block averages to the con-strained solution via telescoping sums. The key ideas are: (i) define the instantaneous constrained solution x∗
+
+> p
+
+(y) at any fixed y; (ii) express ¯xT − x∗
+
+> p
+
+(¯ yT ) and ¯yT − y∗ 
+
+> p
+
+via sums of the update increments; (iii) invert the projected operators using Lemma 5.1. 
+
+1. Define x∗
+
+> p
+
+(y) and the constrained solution. For each 
+
+y ∈ Rm, let x∗
+
+> p
+
+(y) ∈ X be the unique solution of 
+
+ΠX
+
+ Af f x∗
+
+> p
+
+(y) + Af s y − b1
+
+ = 0 .
+
+By Lemma 5.1 with A = Af f and b = b1 − Af s y,
+
+x∗
+
+> p
+
+(y) = c1(b1 − Af s y), (7) where c1 := UX (U ⊤X Af f UX )−1U ⊤X . Note that x∗ 
+
+> p
+
+= x∗
+
+> p
+
+(y∗ 
+
+> p
+
+)
+
+by definition. 
+
+2. Telescoping sums and block averages. Fix T ≥ 1 and define the block averages and noise sums 
+
+¯xT = 1
+
+> T
+
+PT −1 
+
+> t=0
+
+xt, ¯yT = 1
+
+> T
+
+PT −1 
+
+> t=0
+
+yt,
+
+¯εT = PT −1 
+
+> t=0
+
+εt, ¯ψT = PT −1 
+
+> t=0
+
+ψt.y-update. Summing the y-recursion (2) from t = 0 to T − 1
+
+with constant step size β, expanding in block averages, and centering around the constrained-solution condition ΠY b2 =ΠY (Asf x∗ 
+
+> p
+
++ Ass y∗ 
+
+> p
+
+) gives 
+
+ΠY Ass (¯ yT − y∗ 
+
+> p
+
+) + Π Y Asf (¯ xT − x∗
+
+> p
+
+)= 1
+
+T
+
+ y0 − yT
+
+β − ΠY ¯ψT
+
+
+
+. (8) 
+
+x-update. An analogous telescoping argument for the x-recursion (2) with constant step size α gives 
+
+ΠX Af f 
+
+ ¯xT − x∗
+
+> p
+
+(¯ yT ) = 1
+
+T
+
+ x0 − xT
+
+α − ΠX ¯εT
+
+
+
+, (9) where we used the defining property ΠX b1 =ΠX (Af f x∗
+
+> p
+
+(¯ yT ) + Af s ¯yT ).
+
+3. Invert the projected operators. Since ¯xT − x∗
+
+> p
+
+(¯ yT ) ∈ X ,Lemma 5.1 applied to (9) yields 
+
+¯xT − x∗
+
+> p
+
+(¯ yT ) = c1
+
+T
+
+ x0 − xT
+
+α − ΠX ¯εT
+
+
+
+. (10) Plugging the decomposition ¯xT − x∗ 
+
+> p
+
+= (¯ xT − x∗
+
+> p
+
+(¯ yT )) + (x∗
+
+> p
+
+(¯ yT ) − x∗
+
+> p
+
+) into (8) , using x∗
+
+> p
+
+(¯ yT ) − x∗ 
+
+> p
+
+= c1Af s (¯ yT − y∗ 
+
+> p
+
+)
+
+from (7), and rearranging: 
+
+ΠY (Ass + Asf c1Af s )(¯ yT − y∗ 
+
+> p
+
+) = 1
+
+T
+
+ y0 − yT
+
+β − ΠY ¯ψT
+
+
+
+− ΠY Asf (¯ xT − x∗
+
+> p
+
+(¯ yT )) .
+
+Applying Lemma 5.1 with A = Ass + Asf c1Af s (in-vertible by Assumption 2) and c2 := UY (U ⊤Y (Ass +
+
+Asf c1Af s )UY )−1U ⊤Y gives 
+
+¯yT − y∗ 
+
+> p
+
+= c2
+
+T
+
+ y0 − yT
+
+β − ΠY ¯ψT
+
+| {z } 
+
+> =: T1
+
+− c2ΠY Asf 
+
+c1
+
+T
+
+ x0 − xT
+
+α − ΠX ¯εT
+
+| {z } 
+
+> =: T2
+
+, (11) where we substituted (10) for ¯xT − x∗
+
+> p
+
+(¯ yT ).
+
+4. Take norms and expectations for the y-bound. From (11) and ∥a + b∥2 ≤ 2( ∥a∥2 + ∥b∥2):
+
+E[∥¯yT − y∗ 
+
+> p
+
+∥2] ≤ 2 E[∥T1∥2] + 2 E[∥T2∥2]. (12) 
+
+Bounding E[∥T1∥2]. Expanding T1 and using the fact that the cross term ⟨c2(y0−yn)/β, c 2ΠY ¯ψT ⟩ has zero expectation (by the martingale-difference property, Assumption 4): 
+
+E[∥T1∥2] ≤ 1
+
+T 2 E
+
+h
+
+c2
+
+y0 − yT
+
+β
+
+> 2
+
+i
+
++ 1
+
+T 2 E∥c2ΠY ¯ψT ∥2.
+
+(13) By the martingale-difference property, 
+
+E[∥c2ΠY ¯ψT ∥2] =  
+
+> T−1
+
+X
+
+> t=0
+
+E[∥c2ΠY ψt∥2] ≤ ∥ c2∥22 T C ψ .
+
+Hence the noise contribution in (13) is ∥c2∥22 Cψ /T =
+
+O(1 /T ), while the boundary term is O(1 /T 2) since the numerator E[∥c2(y0 − yn)/β ∥2] remains bounded: the pro-jected stability guaranteed by Assumption 2 and the step-size conditions ensure uniformly bounded iterates [19]. 
+
+Bounding E[∥T2∥2]. An identical argument (replacing 
+
+c2, ¯ψT , y, β by c2ΠY Asf c1, ¯εT , x, α ) gives 
+
+E[∥T2∥2] ≤ 1
+
+T 2 E
+
+h
+
+c2ΠY Asf c1
+
+x0 − xT
+
+α
+
+> 2
+
+i
+
++ ∥c2ΠY Asf c1∥22 Cε
+
+T . (14) 
+
+Assembling the y-bound. Substituting (13) – (14) into (12) and separating the O(1 /T ) and O(1 /T 2) contributions: 
+
+E[∥¯yT − y∗ 
+
+> p
+
+∥2] ≤ Ly
+
+T + Dy
+
+T 2 , (15) where the leading statistical constant is 
+
+Ly = 2 ∥c2∥22 Cψ + 2 ∥c2ΠY Asf c1∥22 Cε
+
+≤ 2 Cψ
+
+m2
+
+> y
+
++ 2∥Asf ∥22
+
+m2 
+
+> y
+
+m2
+
+> x
+
+Cε,
+
+The remainder Dy collects O(1 /T 2) boundary terms involving E[∥y0 − yT ∥2] and E[∥x0 − xT ∥2], which are finite since the step-size conditions and Assumption 2 ensure uniformly bounded iterates [19]. 
+
+5. Bound E∥¯xT − x∗
+
+> p
+
+∥2. An analogous argument using 
+
+ΠX b1 = Π X (Af f x∗ 
+
+> p
+
++ Af s y∗ 
+
+> p
+
+) and Lemma 5.1 gives 
+
+¯xT − x∗ 
+
+> p
+
+= c1
+
+T
+
+ x0 − xT
+
+α − ΠX ¯εT
+
+
+
+− c1ΠX Af s (¯ yT − y∗ 
+
+> p
+
+).
+
+Applying ∥a+b∥2 ≤ 2∥a∥2 +2 ∥b∥2, using E[∥¯εT ∥2] ≤ T C ε,and substituting (15) for the coupling term yields E[∥¯xT −
+
+x∗
+
+> p
+
+∥2] ≤ Lx/T + Dx/T 2, where 
+
+Lx ≤ 2∥Af s ∥22
+
+m2 
+
+> x
+
+m2
+
+> y
+
+Cψ +
+
+ 4∥Af s ∥22∥Asf ∥22
+
+m2 
+
+> y
+
+m4
+
+> x
+
++ 1
+
+m2
+
+> x
+
+
+
+Cε,
+
+and Dx collects the O(1 /T 2) terms. This completes Part 1. 
+
+Part 2: Approximation error. We compare the constrained solution (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+) to the unconstrained solution (x∗, y ∗).
+
+1. Decompose into projection mismatch and coupling. 
+
+x∗ 
+
+> p
+
+−x∗ = ( x∗ 
+
+> p
+
+−ΠX x∗) + (Π X x∗ −x∗),y∗ 
+
+> p
+
+−y∗ = ( y∗ 
+
+> p
+
+−ΠY y∗) + (Π Y y∗ −y∗),
+
+where ΠX x∗ − x∗ and ΠY y∗ − y∗ are the best-approximation errors onto the feasible subspaces. 
+
+2. Solve the projected error equations and eliminate cross-terms. Subtracting the projected x-equation evaluated at 
+
+(x∗, y ∗) from that at (x∗
+
+> p
+
+, y ∗ 
+
+> p
+
+), applying Lemma 5.1 with 
+
+A = I − Af f (c3 as in (4) ), and combining with the best-approximation error gives x∗ 
+
+> p
+
+− x∗ = ( I + c3Af f )(Π X x∗ −
+
+x∗)+ c3Af s (y∗ 
+
+> p
+
+−y∗). A symmetric argument with c4 from (4) gives y∗ 
+
+> p
+
+− y∗ = ( I + c4Ass )(Π Y y∗ − y∗) + c4Asf (x∗ 
+
+> p
+
+− x∗).Substituting the second into the first and rearranging: 
+
+x∗ 
+
+> p
+
+− x∗ = ( I −c3Af s c4Asf )−1(I +c3Af f )(Π X x∗ −x∗)+ ( I −c3Af s c4Asf )−1c3Af s (I +c4Ass )(Π Y y∗ −y∗).
+
+Taking norms and using ∥a + b∥2 ≤ 2∥a∥2 + 2 ∥b∥2,
+
+∥x∗ 
+
+> p
+
+− x∗∥2 ≤ 2κ2
+
+> xy
+
+
+
+1 + ∥Af f ∥2
+
+μx
+
+2
+
+∥ΠX x∗ −x∗∥2
+
++ 2 κ2
+
+> xy
+
+ ∥Af s ∥2
+
+μx
+
+2
+
+1 + ∥Ass ∥2
+
+μy
+
+2
+
+∥ΠY y∗ −y∗∥2,
+
+which identifies Bxx and Bxy . Analogously, eliminating x∗ 
+
+> p
+
+−
+
+x∗ gives 
+
+∥y∗ 
+
+> p
+
+− y∗∥2 ≤ 2κ2
+
+> yx
+
+
+
+1 + ∥Ass ∥2
+
+μy
+
+2
+
+∥ΠY y∗ −y∗∥2
+
++ 2 κ2
+
+> yx
+
+ ∥Asf ∥2
+
+μy
+
+2
+
+1 + ∥Af f ∥2
+
+μx
+
+2
+
+∥ΠX x∗ −x∗∥2,
+
+which identifies Byx and Byy .
+
+Conclusion. Combining Part 1 (statistical terms) and Part 2 (approximation terms) with the decomposition (6) from Step 1 yields the claimed bounds in Theorem 1. □
+
+REFERENCES [1] H. J. Kushner and G. G. Yin, Stochastic Approximation and Recursive Algorithms and Applications , 2nd ed., ser. Stochastic Modelling and Applied Probability. Springer, 2003, vol. 35. [Online]. Available: https://doi.org/10.1007/b97441 [2] V. R. Konda and J. N. Tsitsiklis, “Convergence rate of linear two-time-scale stochastic approximation,” The Annals of Applied Probability , vol. 14, no. 2, pp. 796–819, 2004. [Online]. Available: https://doi.org/10.1214/105051604000000116 [3] R. S. Sutton, H. R. Maei, D. Precup, S. Bhatnagar, D. Silver, C. Szepesv ´ari, and E. Wiewiora, “Fast gradient-descent methods for temporal-difference learning with linear function approximation,” in 
+
+Proceedings of the 26th Annual International Conference on Machine Learning (ICML) . ACM, 2009, pp. 993–1000. [Online]. Available: https://doi.org/10.1145/1553374.1553501 [4] A. Nedi ´c and A. Ozdaglar, “Subgradient methods for saddle-point problems,” Journal of Optimization Theory and Applications , vol. 142, no. 1, pp. 205–228, 2009. [5] M. Hong, H.-T. Wai, Z. Wang, and Z. Yang, “A two-timescale framework for bilevel optimization: Complexity analysis and application to actor-critic,” arXiv preprint , vol. arXiv:2007.05170, 2020. [6] J. N. Tsitsiklis and B. V. Roy, “An analysis of temporal-difference learning with function approximation,” IEEE Transactions on Automatic Control , vol. 42, no. 5, pp. 674–690, 1997. [Online]. Available: https://doi.org/10.1109/9.580874 [7] D. P. Bertsekas and H. Yu, “Projected equation methods for approximate solution of large linear systems,” Journal of Computational and Applied Mathematics , vol. 227, pp. 27–50, 2009. [Online]. Available: https://doi.org/10.1016/j.cam.2008.07.037 [8] W. Mou, A. Pananjady, and M. J. Wainwright, “Optimal oracle inequalities for projected fixed-point equations, with applications to policy evaluation,” Mathematics of Operations Research , vol. 48, no. 4, pp. 2308–2336, Nov. 2023. [Online]. Available: https: //doi.org/10.1287/moor.2022.1341 [9] V. S. Borkar, “Stochastic approximation with two time scales,” Systems & Control Letters , vol. 29, no. 5, pp. 291–294, 1997. [Online]. Available: https://doi.org/10.1016/S0167-6911(97)90015-3 [10] D. P. Bertsekas, “Temporal difference methods for general projected equations,” IEEE Transactions on Automatic Control ,vol. 56, no. 9, pp. 2128–2139, 2011. [Online]. Available: https://doi.org/10.1109/TAC.2011.2115290 [11] G. Dalal, G. Thoppe, B. Sz ¨or ´enyi, and S. Mannor, “Finite sample analysis of two-timescale stochastic approximation with applications to reinforcement learning,” in Proceedings of the 31st Conference On Learning Theory , ser. Proceedings of Machine Learning Research, vol. 75. PMLR, 2018, pp. 1199–1233. [Online]. Available: https://proceedings.mlr.press/v75/dalal18a.html [12] T. Doan and J. Romberg, “Finite-time performance of distributed two-time-scale stochastic approximation,” in Proceedings of the 2nd Conference on Learning for Dynamics and Control , ser. Proceedings of Machine Learning Research, vol. 120. PMLR, 2020, pp. 26–36. [Online]. Available: https://proceedings.mlr.press/v120/doan20a.html [13] M. Kaledin, E. Moulines, A. Naumov, V. Tadi ´c, and H.-T. Wai, “Finite time analysis of linear two-timescale stochastic approximation with markovian noise,” in Proceedings of Thirty Third Conference on Learning Theory , ser. Proceedings of Machine Learning Research, vol. 125. PMLR, 2020, pp. 2144–2203. [Online]. Available: https://proceedings.mlr.press/v125/kaledin20a.html [14] S. T. Kong, S. Zeng, T. T. Doan, and R. Srikant, “Nonasymptotic clt and error bounds for two-time-scale stochastic approximation,” arXiv preprint arXiv:2502.09884 , 2025. [15] D. Ruppert, “Efficient estimations from a slowly convergent robbins– monro process,” School of Operations Research and Industrial Engi-neering, Cornell University, Tech. Rep. Technical Report 781, 1988, revised December 1988. [16] B. T. Polyak, “New method of stochastic approximation type,” Automa-tion and Remote Control , vol. 51, no. 7, pp. 937–946, 1990, translated from Avtomatika i Telemekhnika, 1990, No. 7, pp. 98–107. [17] B. T. Polyak and A. B. Juditsky, “Acceleration of stochastic approximation by averaging,” SIAM Journal on Control and Optimization , vol. 30, no. 4, pp. 838–855, 1992. [Online]. Available: https://doi.org/10.1137/0330046 [18] W. Mou, C. J. Li, M. J. Wainwright, P. L. Bartlett, and M. I. Jordan, “On linear stochastic approximation: Fine-grained polyak-ruppert and non-asymptotic concentration,” in Proceedings of Thirty Third Conference on Learning Theory , ser. Proceedings of Machine Learning Research, vol. 125. PMLR, 2020, pp. 2947–2997. [Online]. Available: https://proceedings.mlr.press/v125/mou20a.html [19] R. Srikant and L. Ying, “Finite-time error bounds for linear stochastic approximation and td learning,” Proceedings of the 32nd Conference on Learning Theory (COLT) , vol. 99, pp. 2803–2830, 2019. [Online]. Available: https://proceedings.mlr.press/v99/srikant19a.html

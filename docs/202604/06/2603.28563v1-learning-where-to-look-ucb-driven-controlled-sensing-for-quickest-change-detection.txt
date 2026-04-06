@@ -1,0 +1,2573 @@
+Title: Learning Where to Look: UCB-Driven Controlled Sensing for Quickest Change Detection
+
+URL Source: https://arxiv.org/pdf/2603.28563v1
+
+Published Time: Tue, 31 Mar 2026 02:16:50 GMT
+
+Number of Pages: 14
+
+Markdown Content:
+# Learning Where to Look: UCB-Driven Controlled Sensing for Quickest Change Detection 
+
+Yu-Han Huang, Argyrios Gerogiannis, Subhonmesh Bose, Venugopal V. Veeravalli 
+
+Abstract — We study the multichannel quickest change de-tection problem with bandit feedback and controlled sensing, in which an agent sequentially selects one of the data streams to observe at each time-step and aims to detect an unknown change as quickly as possible while controlling false alarms. Assuming known pre- and post-change distributions and al-lowing an arbitrary subset of streams to be affected by the change, we propose two novel and computationally efficient detection procedures inspired by the Upper Confidence Bound (UCB) multi-armed bandit algorithm. Our methods adaptively concentrate sensing on the most informative streams while pre-serving false-alarm guarantees. We show that both procedures achieve first-order asymptotic optimality in detection delay under standard false-alarm constraints. We also extend the UCB-driven controlled sensing approach to the setting where the pre- and post-change distributions are unknown, except for a mean-shift in at least one of the channels at the change-point. This setting is particularly relevant to the problem of learning in piecewise stationary environments. Finally, extensive simulations on synthetic benchmarks show that our methods consistently outperform existing state-of-the-art approaches while offering substantial computational savings. 
+
+I. I NTRODUCTION 
+
+The problem of Quickest Change Detection (QCD) has an extensive range of applications in science and engineering, including quality control [1], earthquake detection [2], and online learning [3]. In this problem, an agent sequentially observes the environment through noisy samples, whose distribution shifts when the environment undergoes a change. The goal for the agent is to detect the change as soon as possible while not triggering false alarms too often. See [4], [5], [6], [7] for books and survey articles on this topic. In this work, we study a variant of QCD, referred to as 
+
+multichannel bandit QCD [8], [9], [10], which is a special case of the more general problem of QCD with controlled sensing that was introduced in [11] and further studied in [12]. In the multichannel bandit QCD problem, there are a finite number of data streams, and each data stream undergoes a different degree of shift in its distribution when the change occurs. The agent can only sample from one 
+
+stream at a time, and therefore requires a carefully designed control policy that selects which data stream to observe. In particular, the change detector and the control policy have to be designed jointly to achieve the best tradeoff between detection delay and false alarm rate. A canonical example application of the QCD problem with controlled sensing, described in [11], is the surveillance system with a limited number of sensors that can be steered in different directions and locations. In this scenario, only a few sensors with specific positions can detect the change, as changes are localized in certain areas. Our motivation for studying the multichannel bandit QCD problem comes from detection-augmented learning in piece-wise stationary environments [13], [14], where one detects changes in the environment to restart stationary learning algorithms. To detect such changes, one cannot rely on the optimal learned algorithm over a stationary interval to detect changes in the environment quickly; it requires forced exploration. In this context, each channel corresponds to an action chosen for forced exploration, with the observations being the rewards obtained from that action. When the learning environment changes, this change is reflected in the reward distributions obtained from the exploration actions, but the degree to which the distribution changes can vary across different actions. Current strategies for change detec-tion typically cycle through the various exploration actions in a round-robin fashion [15], [13], [14]. The round-robin approach is wasteful if only a small subset of the actions see significant shifts in distribution. Ideally, one would like to only explore actions for which the distribution shift is the most pronounced, making it a multichannel bandit QCD problem instance. A greedy algorithm for the multichannel bandit QCD prob-lem was proposed in [8] that samples a single channel until a cumulative log-likelihood ratio statistic for that channel exceeds a certain positive threshold or falls below zero. In the former case, a change is declared, and in the latter, the algo-rithm discards the observations from the channel, and repeats the process on the next channel. This greedy algorithm was shown to possess certain asymptotic optimality properties in terms of the tradeoff between delay delay and the false alarm rate when only a single channel is affected by the change or all affected channels see identical distribution shifts. This algorithm can be far from optimal when there is more than one affected channel and the distribution shifts can vary significantly across actions. Intuitively, the greedy algorithm can focus on a single channel with a small distribution shift and declare a change with a large delay, never getting to sample another channel with a larger distribution shift, capable of certifying the change with far fewer samples. To circumvent this challenge, the authors of [11] proposed the ϵ-Greedy Change Detector ( ϵ-GCD) for the general problem of QCD with controlled sensing. This algorithm, however, is not (asymptotically) optimal; the worst-case delay can increase with the pre-change duration, as pointed out by [12]. An asymptotically optimal procedure for the general prob-lem of QCD with controlled sensing, called the Windowed-Chernoff-Cumulative Sum (WCC) procedure, was provided in [12]. In the special case of the multichannel bandit QCD 
+
+> arXiv:2603.28563v1 [cs.IT] 30 Mar 2026
+
+problem, the WCC procedure chooses which channel to sample based on a windowed maximum-likelihood estimate (MLE) of the set of channels that are affected by the channel, and then chooses the channel with the largest potential distribution shift within that set. In addition, to avoid being unduly biased by the MLE, the WCC procedures performs random exploration of the other channels at o(n) time-steps over a time-horizon of length n. The observations from the chosen channels at each time-step are then fed into a windowed Cumulative Sum (CuSum) test for detecting the change. While the WCC procedure is asymptotically optimal for the multichannel bandit QCD problem, the control policy, which is designed to work for the general problem of QCD with controlled sensing, is not well-matched to the multi-channel special case. In particular, the number of subsets over which the MLE is computed grows exponentially with the number of channels. Another aspect of the WCC procedure that might make it less useful in the multichannel setting is that the observations across channels are combined into a single windowed CuSum test for change detection. As discussed in Section V, this aspect does not allow the WCC procedure to be easily generalized to the setting where the pre- and post-change distributions of the observations from the channels are unknown. Given the similarity between the multi-armed bandit (MAB) and the multichannel bandit QCD problems, it is nat-ural to ask if one can develop MAB-like control policies for the latter problem. In order to do so, we need to identify an appropriate (pseudo) reward that can be used to guide action selection for change detection. Since the channel with the largest distribution shift (measured in terms of the Kullback-Leibler (KL) divergence) will generate observations that have the largest average log-likelihood ratio (LLR) after the change, we may use LLR of the observations as the reward. We design efficient procedures for the multichannel bandit QCD problem by combining the popular Upper Confidence Bound (UCB) MAB algorithm with CuSum change detection by viewing LLRs as rewards from the actions. Concretely, our contributions are as follows: (i) We pro-pose UCB-CuSum , a bandit QCD procedure using UCB-based action selection to compute a CuSum statistic for change detection that is proven to be asymptotically optimal. 
+
+(ii) We generalize the above algorithm to PA-UCB-CuSum 
+
+that maintains a separate CuSum statistic for each action for change detection, which is shown to offer a straightforward extension to settings with unknown pre- and post-change distributions. (iii) The proposed methods are empirically shown to outperform prior methods. II. P ROBLEM FORMULATION 
+
+In this section, we formally define a multichannel bandit QCD problem. We start by defining some no-tations. Let [n] := {1, . . . , n } for any n ∈ N, and 
+
+{Xa,n : a ∈ [K], n ∈ N} be K sequences of mutually inde-pendent stochastic observations indexed by the action a and the time-step n. For each action a, there are two densities the observation Xa,n can possibly follow: the pre-change density 
+
+fa, 0 and the post-change density fa, 1. At some time-step ν,referred to as the change-point , the underlying distributions of the stochastic observations could possibly change, i.e., for 
+
+a ∈ [K] and n ∈ N,
+
+Xa,n ∼
+
+(fa, 1, n ≥ ν and a ∈ A ,fa, 0, otherwise , (1) where A ⊆ [K] is an nonempty subset that denotes the actions that undergo a distributional shift in the observations. In other words, for action a in the subset A, the observations follows the pre-change density fa, 0 before the change-point 
+
+ν and follows the post-change density fa, 1 after the change-point ν. For actions that are not in the subset A, the observations follows fa, 0 before and after ν, as the change does not affect the stochastic properties associated with these actions. The densities fa, 0 and fa, 1 are with respect to the same dominating measure λ, and they are all fully known by the agent. 1 However, the change-point ν and the subset A
+
+are deterministic and completely unknown to the agent. We also make the following assumptions, which does not impose a strict restriction on the pre- and post-change densities. 
+
+Assumption 1: Assume that the KL Divergence between 
+
+fa, 1 and fa, 0 is positive, i.e., for any a ∈ [K],
+
+D (fa, 1|| fa, 0) := 
+
+Z
+
+log ( fa, 1/f a, 0) fa, 1dλ > 0. (2) In addition, assume that there exists a constant v < ∞ such that for any a ∈ [K], log ( fa, 1/f a, 0) is v-sub-Gaussian, i.e., for any θ ∈ R,
+
+log 
+
+Z 
+
+exp ( θ (log ( fa, 1/f a, 0) − D (fa, 1|| fa, 0))) fa, 1dλ 
+
+
+
+≤ v
+
+2 θ2. (3) At time-step n, the agent chooses an action An to deter-mine which data stream to observe. These actions are deter-mined based on past observations; in particular, An is Fn−1
+
+measurable where Fn−1 := σ  XA1,1, . . . , X An−1,n −1
+
+ is the filtration generated by all observations collected prior to time-step n. The sequence of actions A := {An : n ∈ N}
+
+forms a control policy . Based on the noisy observations obtained from the control policy, the agent decides whether a change has occurred or not. The stopping time at which the agent detects a change is denoted by T , and we refer to the pair (A, T ) as the bandit QCD procedure , as these two components determine the detection delay and the false alarm frequency. We use PAν, A and EAν, A to denote the measure and expec-tation when the agent uses A as its control policy, and the density associated with actions in A changes at ν. We also use PA 
+
+> ∞
+
+and EA 
+
+> ∞
+
+to denote those when the agent uses A as its control policy and no changes occur. For the false alarm and detection delay metrics, we employ Lorden’s criterion [16]. The false alarm is evaluated by the mean time to false 
+
+> 1In our experiments, we explore cases where the pre- and post-change densities are bounded but not known.
+
+alarm EA 
+
+> ∞
+
+[T ],2 and the detection delay is evaluated by the worst-case, over all possible change-points and pre-change observations, expected detection delay conditioned on the filtration Fν−1, i.e., for any control policy A and A ⊆ [K],
+
+JA (A, T ) := sup 
+
+> ν∈N
+
+ess sup EAν, A
+
+h
+
+(T − ν + 1) + Fν−1
+
+i
+
+(4) where (x)+ := max {x, 0} is the positive part of x ∈ R.The definition in (4) follows from the delay measure in [12]. The goal of the agent is to minimize the worst-case expected delay J A 
+
+> A
+
+, while controlling the mean time to false alarm to be above a predetermined level γ, i.e., 
+
+min  
+
+> T,A
+
+JA (A, T ) , subject to EA 
+
+> ∞
+
+[T ] ≥ γ. (5) III. O UR PROCEDURES 
+
+A. UCB-CuSum Procedure 
+
+In the QCD problem under Lorden’s criterion without control sensing, i.e., K = 1 and A = {1}, the CuSum test [17] is asymptotically optimal as γ → ∞ [16], [18]. The CuSum statistic is computed by a recursion that adds the LLR of the observation at time-step n with the positive part of the CuSum statistic at the previous time-step n − 1.The CuSum test raises an alarm whenever the CuSum statistic surpasses a constant threshold. Due to the asymptotic optimality, it is natural to expect that a procedure that utilizes a CuSum-like statistic will perform well in the bandit QCD problem. Thus, following the recursion along the lines of [9], [12], we define a CuSum-like statistic: for n ∈ N,
+
+CAn :=  CAn−1
+
++ + LLR ( An, X An,n ) (6) with CA 
+
+> 0
+
+:= 0 and the LLR function 
+
+LLR ( a, x ) := log ( fa, 1 (x) /f a, 0 (x)) . (7) The procedure using the CuSum-like statistic in (6) stops whenever the statistic surpasses a constant threshold b, i.e., 
+
+T Ab := inf n ∈ N : CAn ≥ b . (8) We choose b to satisfy the false alarm constraint in (5). To achieve faster detection, the control policy A should select the action with the largest average LLR after the change-point, so that the CuSum-like statistic in (6) grows quickly to surpass the threshold. Therefore, to learn the optimal action that leads to the largest increment in the statistic in (6), we employ an upper confidence bound (UCB) algorithm [19] with periodic restarts AUCB as our control policy A. First, we partition the entire horizon into intervals of length W , i.e., N = ∪∞
+
+> j=1
+
+Ij with the jth interval Ij := 
+
+{(j − 1) W + 1 , . . . , jW }. In each interval, we apply the UCB algorithm to select the action and restart the control policy at the start of the next interval. Notice that we restart our UCB algorithm every W time-steps. Without such a restart, the control policy tends to heavily concentrate on the action with the largest average LLR before the change. 
+
+> 2This false alarm metric is different from but related to the false alarm probability used in many prior works.
+
+Consequently, the control policy rarely explore other actions, leading to delayed detection after the change. We view the LLR of the observation XAn,n from action An as the reward at time-step n, that is, 
+
+Rn := LLR ( An, X An,n ) . (9) Let j = ⌈n/W ⌉ denote the index of the current interval, and let m = ( j − 1) W + 1 denote the start of the current interval. In addition, we use Na,n to denote the times action 
+
+a is selected since the start of the current interval, i.e., 
+
+Na,n := 
+
+> n
+
+X
+
+> i=m
+
+I {Ai = a} . (10) Let ˆμa,n denote the empirical mean of the rewards from action a since the start of the current interval, i.e., 
+
+ˆμa,n := 
+
+
+
+1
+
+Na,n nX
+
+> i=m
+
+RiI {Ai = a} , Na,n > 00, Na,n = 0 .
+
+(11) Then, the UCB index is defined as follows: 
+
+UCB ( a, n ) := ˆ μa,n +
+
+s
+
+4v log WNa,n 
+
+, (12) and the UCB algorithm selects the action with the largest UCB index, i.e., AUCB := {An : n ∈ N} with 
+
+An := argmax 
+
+> a∈[K]
+
+UCB ( a, n ) . (13) Combining the UCB control policy AUCB in (13) with the stopping time T Ab in (8), we propose the UCB-CuSum Pro-cedure 
+
+
+
+AUCB , T AUCB 
+
+> b
+
+
+
+, which is illustrated in Algorithm 1. This procedure uses the CuSum-like statistic in (6) that combines LLRs from all actions together. 
+
+Algorithm 1 UCB-CuSum Procedure 
+
+Input: Threshold b, Interval length W
+
+Initialize C ← 0 and n ← 0.
+
+repeat if n mod W = 0 then 
+
+Set Na ← 0, ˆμa ← 0, UCB a ← ∞ for a ∈ [K].
+
+end if 
+
+Choose action A ∈ argmax a∈[K] UCB a.Receive observation X.Update statistic C ← max {C, 0} + LLR ( A, X ).Compute reward R ← LLR ( A, X ).Update mean reward ˆμA ← (Naμ + R) / (Na + 1) .Update index UCB A ← ˆμA + p4v log W/N A.Update number of pulls NA ← NA + 1 .
+
+n ← n + 1 .
+
+until C ≥ b
+
+In the following result, we characterize the performance of the UCB-CuSum procedure. Theorem 1 (Asymptotic optimality of UCB-CuSum): 
+
+With b = log γ, EAUCB 
+
+> ∞
+
+h
+
+T AUCB 
+
+> b
+
+i
+
+≥ γ. As γ, W → ∞ with 
+
+W = o (log γ), we have 
+
+JA
+
+
+
+AUCB , T AUCB 
+
+> b
+
+
+
+≤ log γIA
+
+(1 + o (1)) . (14) where IA := max a∈A D (fa, 1|| fa, 0).The formal proof is included in Appendix . Here, we provide a sketch. The lower bound on the mean time to false alarm follows from Lemma 1 in [12], which relies on the martingale property of a Shiryaev-Roberts (SR)-like statistic and the optional sampling theorem. To prove the upper bound on the expected delay, we establish that 
+
+JA
+
+
+
+AUCB , T AUCB 
+
+> b
+
+
+
+≤ W + EAUCB 
+
+> 1,A
+
+h
+
+T AUCB 
+
+> b
+
+i
+
+, (15) where recall that EAUCB  
+
+> 1,A
+
+denotes the expectation when the change occurs at time-step 1. The intuition behind this step is that the duration between the change-point ν and the subsequent restart ℓ is at most W , and that EAUCB  
+
+> ν, A
+
+[T AUCB  
+
+> b
+
+−
+
+ℓ+1 |F ν−1] is roughly equal to EAUCB  
+
+> 1,A
+
+[T AUCB  
+
+> b
+
+], as the obser-vations after the restart ℓ under PAUCB  
+
+> ν, A
+
+and all observations under PAUCB  
+
+> 1,A
+
+follow the same post-change distribution. Next, we upper bound EAUCB  
+
+> 1,A
+
+[T AUCB  
+
+> b
+
+]. While our precise argument relies on Proposition 1 in [12], we provide some intuition here. To do so, consider the notation, 
+
+Y AUCB  
+
+> i
+
+:= 
+
+> iW
+
+X 
+
+> j=( i−1) W+1
+
+LLR  Aj , X Aj ,j 
+
+ , i ∈ N. (16) Thus, Yi is the sum of the LLR over the i-th W -step window. Let ¯CAUCB  
+
+> iW
+
+:= PiW j=1 Y AUCB  
+
+> j
+
+accumulate these Y AUCB  
+
+> j
+
+’s across windows up to the i-th one. With this notation, notice that 
+
+T AUCB  
+
+> b
+
+≤ W inf 
+
+n
+
+i ∈ N : ¯CAUCB  
+
+> iW
+
+≥ b
+
+o
+
+(17) To obtain the expected hitting time of ¯CAUCB  
+
+> iW
+
+’s, we view the LLR’s as rewards for an UCB algorithm in (13) for which the expectation of Y AUCB  
+
+> i
+
+, given the history F(i−1) W ,precisely equals the maximum possible cumulative reward 
+
+W I A less the regret of the UCB algorithm. We borrow an upper bound on that regret from Theorem 7.1 in [20]. In turn, this step provides a minimum expected positive drift on 
+
+Y AUCB  
+
+> i
+
+’s using regret analysis of the UCB algorithm, with which we apply the level crossing result in Proposition 1 for 
+
+¯CAUCB  
+
+> iW
+
+from [12]. Putting it together, we obtain 
+
+EAUCB 
+
+> 1,A
+
+h
+
+T AUCB 
+
+> b
+
+i
+
+≤
+
+W
+
+
+
+b + c
+
+
+
+1 + √b
+
+ 
+
+W I A − P
+
+> a:∆ a>0
+
+
+
+3∆ a + 16 log W
+
+> ∆a
+
+ .
+
+The rest follows from taking γ → ∞ with W = o(log γ).UCB-CuSum is in fact asymptotically optimal in the regime γ → ∞ ; optimality follows from a known lower bound on the worst-case expected delay JA of any multi-channel bandit QCD procedure that satisfies the false alarm constraint. More precisely, as γ → ∞ ,
+
+inf   
+
+> (A,T ): EA
+> ∞[T]≥γ
+
+JA (A, T ) ≥ log γIA
+
+(1 + o (1)) , (18) according to Theorem 1 in [12]. 
+
+B. Per-Action-UCB-CuSum Procedure 
+
+The CuSum-like statistic in (6) accumulates LLRs asso-ciated with different pairs of pre- and post-change distribu-tions. This is different from the original CuSum statistic, which only involves a single pair of pre- and post-change distributions. Now, we study an alternate CuSum statistic that is defined by the following recursion: for any a ∈ [K]
+
+and n ∈ N,
+
+CAa,n := 
+
+(  CAa,n −1
+
++ + LLR ( a, X a,n ) , An = aCAa,n −1, otherwise (19) with CAa, 0 := 0 and LLR defined in (7). The change detection procedure using the statistic in (19) flags a change whenever one of these statistics surpasses a constant threshold b, i.e., 
+
+˜T Ab := inf n ∈ N : CAa,n ≥ b for some a ∈ [K] . (20) Combining with the UCB algorithm, we propose the Per-Action (PA)-UCB-CuSum procedure 
+
+
+
+AUCB , ˜T AUCB 
+
+> b
+
+
+
+,which computes a CuSum statistic in (19) for each action separately. The PA-UCB-CuSum procedure is illustrated in Algorithm 2. This algorithm is motivated by the fact that it generalizes better to the case when the pre- and post-change distributions are not known, and the statistics must be computed using generalized LLRs, as we illustrate later in Section V. 
+
+Algorithm 2 PA-UCB-CuSum Procedure 
+
+Input: Threshold b, Interval length W
+
+Initialize n ← 0 and Ca ← 0 for all a ∈ [K].
+
+repeat if n mod W = 0 then 
+
+Set Na ← 0, ˆμa ← 0, UCB a ← ∞ for a ∈ [K].
+
+end if 
+
+Choose action A ∈ argmax a∈[K] UCB a.Receive observation X.Update statistic CA ← max {CA, 0} + LLR ( A, X ).Compute reward R ← LLR ( A, X ).Update mean reward ˆμA ← (Naμ + R) / (Na + 1) .Update index UCB A ← ˆμA + p4v log W/N A.Update number of pulls NA ← NA + 1 .
+
+n ← n + 1 .
+
+until Ca ≥ b for some a ∈ [K]
+
+Our next result resonates the same message as in Theorem 1 for the PA-UCB-CuSum procedure, claiming its asymptotic optimality under the false alarm constraint in (5). 
+
+Theorem 2 (Asymptotic optimality of PA-UCB-CuSum): 
+
+With b = log γ, EAUCB 
+
+> ∞
+
+h ˜T AUCB 
+
+> b
+
+i
+
+≥ γ and as γ, W → ∞ 
+
+with W = o (log γ), we have 
+
+JA
+
+
+
+AUCB , ˜T AUCB 
+
+> b
+
+
+
+≤ log γIA
+
+(1 + o (1)) . (21) The proof of the upper bound on the worst-case expected delay JA(AUCB , ˜T AUCB  
+
+> b
+
+) follows similar steps as in the proof of Theorem 1. However, we cannot apply Lemma 1 in [12] to argue the lower bound on the false alarm constraint. Instead, we construct an SR-like statistic for each arm separately, and then show that the difference between the time-step and the sum of all SR-like statistics forms a martingale. Then, the rest of the steps follow the same line in Lemma 1 in [12]. The formal proof is included in Appendix .Again, Theorem 1 in [12] certifies the asymptotic opti-mality of the PA-UCB-CuSum procedure. In other words, asymptotically speaking ( γ → ∞ ), the per-action and the accumulated UCB-based CuSUM procedures have similar performance. We study their differences empirically, and specifically in the case where the distributions are unknown with generalized LLRs, in the next section. IV. E XPERIMENTAL STUDY 
+
+In this section, we numerically evaluate how UCB-CuSum and the PA-UCB-CuSum algorithms on the multichannel bandit QCD problem using synthetic data. We further com-pare their performance against the leading approaches from prior works. 
+
+A. Algorithmic Benchmarks 
+
+We compare against four baselines. First, we include 
+
+WCC [12], the state-of-the-art procedure that is first-order optimal and empirically strong. Second, we consider the 
+
+Greedy procedure (as in [10]), which samples a single component while maintaining a CuSum statistic: it repeatedly pulls the current component until its cumulative LLR either crosses the detection threshold (in which case it declares an alarm) or resets to zero (in which case it discards past samples and switches to the next component). This method is known to enjoy asymptotic optimality guarantees in special cases, e.g., when only one component is affected or when all affected components share the same post-change distribution [8], [21]. Finally, as an additional benchmark, we include RoundRobin . This algorithm cyclically samples all components and aggregates the resulting LLRs into a single global statistic, declaring an alarm once this statistic exceeds its threshold. To make a comparison with the per-action variant of UCB-CuSum, we also include a per-action RoundRobin (PA-RoundRobin) which maintains a unique statistic for each action. Greedy and RoundRobin algorithms offer no optimality guarantees. 
+
+B. Experimental Setup 
+
+We consider a bandit QCD problem with K = 10 inde-pendent action-channels, where selecting action a ∈ [K] at time n yields an observation Xa,n . We consider four different observation distributions: (i) Gaussian, (ii) Exponential, (iii) Laplace, and (iv) Beta, where only the last distribution family yields bounded observations in [0 , 1] . In the pre-change regime ( n < ν ), the observations are i.i.d. across time with 
+
+Xa,n ∼ N (0 , 1) in the Gaussian case, Xa,n ∼ Exp(1) (mean 
+
+1) in the Exponential case, Xa,n ∼ Laplace(0 , 1) in the Laplace case, and for Beta, Xa,n ∼ Beta( α, β ) with and mean equal to 0.01 , where throughout we set α + β = 2 .At the change-point ν, for all cases except Beta (since it is bounded in [0 , 1] ) a sparse subset of the channels becomes anomalous according to the shift vector 
+
+ξ = [0 , 0, 0.1, 0, 0, 0.1, 0, 0, 1, 0] ⊤.
+
+and the shift is added to the corresponding actions. With the Beta distributed observations, we replace 0.1 with 0.04 
+
+and 1 with 0.19 . This design is intentionally sparse and 
+
+heterogeneous : multiple components change, yet the mag-nitudes are unequal (two mild changes at level 0.1 and one strong change at level 1). As a result, greedy selection rules can be brittle: once the Greedy policy locks onto a mildly-changed channel, it may continue sampling it and accumulate evidence too slowly, thereby delaying discovery of the strongly-changed channel. This behavior is consistent with the fact that Greedy does not generally admit asymptotic optimality guarantees in such heterogeneous sparse settings, even though it can perform well empirically in simpler regimes [12]. Notice that RoundRobin continues to probe all channels, preventing permanent lock-in; in our setting, the presence of a sufficiently strong change ( ξ9 = 1 ) suggests that periodic exploration can yield informative post-change samples and enables better detection compared to Greedy. 
+
+C. Experimental Parameters and Metrics 
+
+We follow the parameter choices recommended in the original works, setting w = ⌈5 log b⌉ and q = ⌈log w⌉ for WCC. As per our theory, we set W = ⌈8 log b⌉ for Bandit-CuSum and PA-Bandit-CuSum. Greedy and RoundRobin do not have associated parameter choices. Performance is evaluated via Monte-Carlo simulation in terms of (i) mean time to false alarm (MTFA) and (ii) expected detection delay, averaging over 200 K independent trials. To generate MTFA–delay curves, we sweep the detec-tion threshold to obtain different operating points; in practice, this can be done by selecting target MTFA levels γ and setting b = log γ. In all figures, we report expected detection delay versus log(MTFA) . In addition to statistical perfor-mance, we also report computational efficiency, quantified as the average cost per step (wall-clock time per algorithm iteration), averaged over simulation runs. 
+
+D. Experimental Results 
+
+Figure 1 reports the trade-off between expected detection delay and log(MTFA) . Across the different observation models, UCB-CuSum and PA-UCB-CuSum attain the best performance, achieving the smallest delay for a given MTFA level, consistently improving over WCC and substantially outperforming the Greedy and RoundRobin baselines. This behavior is consistent with heterogeneous sparse-change de-sign: Greedy can lock onto mildly-changed channels and thus accumulates evidence slowly, while RoundRobin allocates a fixed fraction of samples to unaffected channels (which improves over Greedy), leading to larger delay. In contrast, UCB-CuSum adaptively concentrates sam-pling on informative channels with the largest changes, 7 8 9 10 11 12 13 14 
+
+> log(MTFA)
+> 100
+> 150
+> 200
+> 250
+> 300
+> 350
+> 400
+> Expected detection delay
+
+Exponential         
+
+> Greedy
+> RoundRobin
+> PA-RoundRobin
+> UCB-CuSum
+> PA-UCB-CuSum
+> WCC 678910 11 12 13 14
+> log(MTFA)
+> 50
+> 100
+> 150
+> 200
+> 250
+> 300
+> Expected detection delay
+
+Gaussian         
+
+> Greedy
+> RoundRobin
+> PA-RoundRobin
+> UCB-CuSum
+> PA-UCB-CuSum
+> WCC 678910 11 12 13 14
+> log(MTFA)
+> 50
+> 100
+> 150
+> 200
+> 250
+> 300
+> 350
+> Expected detection delay
+
+Laplace      
+
+> Greedy
+> RoundRobin
+> PA-RoundRobin
+> UCB-CuSum
+> PA-UCB-CuSum
+> WCC 5678910
+> log(MTFA)
+> 10
+> 15
+> 20
+> 25
+> 30
+> 35
+> Expected detection delay
+
+Beta 
+
+> Greedy
+> RoundRobin
+> PA-RoundRobin
+> UCB-CuSum
+> PA-UCB-CuSum
+> WCC
+
+Fig. 1. Expected detection delay versus log(MTFA) (lower=better). Top: Exponential (left), Gaussian (right). Bottom: Laplace (left), LogNormal (right). Greedy         
+
+> RoundRobin
+> PA-RoundRobin
+> UCB-CuSum
+> PA-UCB-CuSum
+> WCC
+> 0.0
+> 0.5
+> 1.0
+> 1.5
+> 2.0
+> 2.5
+> 3.0
+> 3.5
+> Cost per step (seconds)
+> 1e 7Exponential
+> Greedy
+> RoundRobin
+> PA-RoundRobin
+> UCB-CuSum
+> PA-UCB-CuSum
+> WCC
+> 0.0
+> 0.5
+> 1.0
+> 1.5
+> 2.0
+> 2.5
+> 3.0
+> Cost per step (seconds)
+> 1e 7Gaussian
+> Greedy
+> RoundRobin
+> PA-RoundRobin
+> UCB-CuSum
+> PA-UCB-CuSum
+> WCC
+> 0.0
+> 0.5
+> 1.0
+> 1.5
+> 2.0
+> 2.5
+> 3.0
+> Cost per step (seconds)
+> 1e 7Laplace
+> Greedy
+> RoundRobin
+> PA-RoundRobin
+> UCB-CuSum
+> PA-UCB-CuSum
+> WCC
+> 0.0
+> 0.5
+> 1.0
+> 1.5
+> 2.0
+> 2.5
+> Cost per step (seconds)
+> 1e 6Beta
+
+Fig. 2. Average computational cost per iteration (seconds, lower=better). Top: Exponential (left), Gaussian (right). Bottom: Laplace (left), LogNormal (right). 
+
+while retaining sufficient exploration to avoid lock-in. UCB-CuSum slightly outperforms its per-action variant PA-UCB-CuSum, as expected since it aggregates all observations into a single detection statistic. Importantly however, the perfor-mance gap between UCB-CuSum and PA-UCB-CuSum is small, indicating strong robustness to per-action decompo-sition. In contrast, PA-RoundRobin exhibits a substantially larger degradation relative to RoundRobin. Figure 2 compares computational cost per iteration (sec-onds per time-step). All methods are highly efficient in abso-lute terms (on the order of 10 −6 − 10 −7 seconds per step in our implementation). As expected, Greedy and RoundRobin are the cheapest per iteration, while WCC incurs the high-est per-step cost; UCB-CuSum and PA-UCB-CuSum lie in between, offering a favorable accuracy-efficiency trade-off in practice. Notably, UCB-CuSum and PA-UCB-CuSum are markedly more efficient than WCC, achieving substantially lower per-step runtime while also attaining better statistical performance. V. T OWARDS UNKNOWN DISTRIBUTIONS 
+
+The procedures above rely on the knowledge of the dis-tributions (fa, 0, f a, 1) to compute LLR( a, x ) and the CuSum statistics. In a variety of applications, such distributions are not known. As a first step toward that scenario, we replace 
+
+LLR by a per-action generalized likelihood ratio (GLR) statistic and retain the same UCB-driven controlled sensing template for QCD. Specifically, we use the Bernoulli GLR statistic of [15]: given observations X1, . . . , X n ∈ [0 , 1] ,define ˆμt1:t2 := 1
+
+t2−t1+1 
+
+Pt2
+
+t=t1 Xt and kl( p, q ) := p ln pq +(1 − p) ln 1−p 
+
+> 1−q
+
+. Then the GLR statistic GLR( n) is 
+
+max 
+
+> 1≤s<n
+
+{ s kl(ˆ μ1: s, ˆμ1: n) + ( n − s) kl(ˆ μs+1: n, ˆμ1: n)}.
+
+Based on the statistic, it is evident that observations need to share the same distribution in the segments used for the empirical mean. Therefore, the WCC and UCB-CuSum procedures cannot readily exploit the GLR statistic, as the statistic used for change detection combines likelihood ratios from different data streams, each of which can have dif-ferent distributions, and hence, different GLRs. To address this challenge, we consider a per-action variant, where we maintain a different GLR statistic for each action, for which observations follow a specific pre- and post-change distribution pair. We evaluate its performance empirically. We modify the PA-UCB-CuSum procedure and utilize the Bernoulli GLR statistic in place of the LLR. We call it the PA-UCB-GLR procedure. The reward of each arm in this case is defined as the GLR statistic using the samples of that arm, normalized by the number of samples belonging to that specific arm. In order to estimate a measure of variance, we compute the empirical variance of the differences of the GLR statistics at each time step. Concretely, let La be the total number of pulls of arm a (not reset), and let Ga(m)
+
+denote the GLR statistic computed from the first m samples of arm a. We use the normalized reward 
+
+Ra(m) := Ga(m)
+
+m .
+
+To quantify variability, define increments ∆Ga(m) := 
+
+Ga(m) − Ga(m − 1) for m ≥ 2 and the empirical variance 
+
+bσ2
+
+> a
+
+(La) := 1
+
+La − 2
+
+> La
+
+X
+
+> m=2
+
+
+
+∆Ga(m) − ∆Ga(La)
+
+2
+
+,
+
+∆Ga(La) := 1
+
+La − 1
+
+> La
+
+X
+
+> m=2
+
+∆Ga(m).
+
+Algorithm 3 PA-UCB-GLR Procedure 
+
+Input: threshold b, interval length W .Initialize n ← 0. For all a ∈ [K]: La ← 0, Ga ← 0.For all a ∈ [K]: Na ← 0, bμa ← 0, bσ2 
+
+> a
+
+← 0, UCB a ← +∞.
+
+repeat if n mod W = 0 then 
+
+Reset (Na, bμa, bσ2
+
+> a
+
+, UCB a) for all a ∈ [K]
+
+end if 
+
+Choose action A ∈ arg max a∈[K] UCB a.Receive observation X from channel A.
+
+LA ← LA + 1 .Update GA ← GLR A(LA)
+
+Set reward R ← GA/L A.Update bσ2 
+
+> A
+
+← bσ2
+
+> A
+
+(LA)
+
+Update NA, bμA using reward R.Update UCB A ← bμA + p(2 bσ2 
+
+> A
+
+log W )/N A.
+
+n ← n + 1 .
+
+until Ga ≥ b for some a ∈ [K]
+
+To evaluate our the PA-UCB-GLR procedure, we employ the experiments with Beta distributions used in Section IV and compare with a GLR variant of the PA-RoundRobin. 7 8 9 10 11 12 13 14    
+
+> log(MTFA)
+> 0
+> 200
+> 400
+> 600
+> 800
+> 1000
+> 1200
+> Expected Detection Delay
+> GLR-Based Detection (Beta)
+> PA-RoundRobin-GLR
+> PA-UCB-GLR
+> Fig. 3. Expected detection delay versus log(MTFA) (lower=better) for PA-RoundRoubin and PA-UCB using the GLR detector with Beta observations.
+
+Since observations are bounded in [0 , 1] , we instantiate the per-arm statistic Ga(·) with the Bernoulli GLR, computed separately on each arm’s sample stream. Both methods use the same stopping rule shown in the end of Algorithm (threshold b), and differ only in how samples are allocated across arms: PA-RoundRobin-GLR cycles through arms uni-formly, whereas PA-UCB-GLR (Alg. 3) adaptively selects arms via a UCB index built from the normalized reward and the empirical variance of GLR increments. Figure 3 shows that PA-UCB-GLR achieves a significantly better MTFA– delay trade-off, with an increasingly larger advantage at higher MTFA: round-robin spends a fixed fraction of samples on weakly-informative arms, while PA-UCB-GLR concen-trates sensing on the most informative arm, substantially reducing delay. VI. C ONCLUSIONS 
+
+In this paper, we developed simple and efficient mul-tichannel bandit QCD procedures that (i) achieve optimal MTFA–delay scaling in the known-model setting and (ii) extend naturally to unknown pre/post distributions. Specifi-cally, when the distributions of observations from each action is known, we proposed and analyzed UCB-CuSum and PA-UCB-CuSum , which treat per-sample LLRs as bandit rewards and used periodically-restarted UCB to select actions. Such a policy focuses on more informative affected channel(s) quickly, while enforcing enough exploration to avoid lock-in to pre-change optimal actions. These procedures were shown to achieve first-order asymptotic optimality. Across multi-ple observation models with sparse, heterogeneous changes, the our methods attained the best MTFA–delay trade-off, while remaining computationally efficient relative to state-of-art. Finally, we introduced PA-UCB-GLR that replaces per-action LLR with a Bernoulli GLR statistic, extending our algorithm design philosophy to distribution-agnostic setups. While we relegate its theoretical analysis to future work, our experiments confirmed its efficacy over round-robin action selection policy. REFERENCES [1] D. M. Hawkins, P. Qiu, and C. W. Kang, “The changepoint model for statistical process control,” Journal of quality technology , vol. 35, no. 4, pp. 355–366, 2003. [2] W. Zhou, L. Xie, Z. Peng, and S. Zhu, “Sequential change point detec-tion via denoising score matching,” arXiv preprint arXiv:2501.12667 ,2025. [3] Y.-H. Huang and V. V. Veeravalli, “Sequential change detection for learning in piecewise stationary bandit environments,” in 2025 IEEE International Symposium on Information Theory (ISIT) , 2025, pp. 1–5. [4] H. V. Poor and O. Hadjiliadis, Quickest detection . Cambridge University Press, 2009. [5] V. V. Veeravalli and T. Banerjee, “Quickest change detection,” in 
+
+Academic press library in signal processing: Array and statistical signal processing . Cambridge, MA: Academic Press, 2013. [6] A. G. Tartakovsky, I. V. Nikiforov, and M. Basseville, Sequential Anal-ysis: Hypothesis Testing and Change-Point Detection , ser. Statistics. CRC Press, 2014. [7] L. Xie, S. Zou, Y. Xie, and V. V. Veeravalli, “Sequential (quickest) change detection: Classical results and new directions,” IEEE Journal on Selected Areas in Information Theory , vol. 2, no. 2, pp. 494–514, 2021. [8] Q. Xu, Y. Mei, and G. V. Moustakides, “Optimum multi-stream sequential change-point detection with sampling control,” IEEE Trans-actions on Information Theory , vol. 67, no. 11, pp. 7627–7636, 2021. [9] W. Zhang and Y. Mei, “Bandit change-point detection for real-time monitoring high-dimensional data under sampling control,” Techno-metrics , vol. 65, no. 1, pp. 33–43, 2023. [10] Q. Xu and Y. Mei, “Asymptotic optimality theory for active quickest detection with unknown postchange parameters,” Sequential analysis ,vol. 42, no. 2, pp. 150–181, 2023. [11] A. Gopalan, B. Lakshminarayanan, and V. Saligrama, “Bandit quickest changepoint detection,” Advances in Neural Information Processing Systems , vol. 34, pp. 29 064–29 073, 2021. [12] V. V. Veeravalli, G. Fellouris, and G. V. Moustakides, “Quickest change detection with controlled sensing,” IEEE Journal on Selected Areas in Information Theory , vol. 5, pp. 1–11, 2024. [13] Y.-H. Huang, A. Gerogiannis, S. Bose, and V. V. Veeravalli, “Detec-tion augmented bandit procedures for piecewise stationary mabs: A modular approach,” arXiv preprint arXiv:2501.01291 , 2025. [14] A. Gerogiannis, Y.-H. Huang, S. Bose, and V. V. Veeravalli, “Detection is all you need: A feasible optimal prior-free black-box approach for piecewise stationary bandits,” arXiv e-prints , pp. arXiv–2501, 2025. [15] L. Besson, E. Kaufmann, O.-A. Maillard, and J. Seznec, “Effi-cient change-point detection for tackling piecewise-stationary bandits,” 
+
+Journal of Machine Learning Research , vol. 23, no. 77, pp. 1–40, 2022. [16] G. Lorden, “Procedures for reacting to a change in distribution,” The annals of mathematical statistics , pp. 1897–1908, 1971. [17] E. Page, “Continuous inspection schemes,” Biometrika , vol. 41, no. 1/2, pp. 100–115, 1954. [18] T. L. Lai, “Information bounds and quick detection of parameter changes in stochastic systems,” IEEE Transactions on Information theory , vol. 44, no. 7, pp. 2917–2929, 1998. [19] P. Auer, N. Cesa-Bianchi, and P. Fischer, “Finite-time analysis of the multiarmed bandit problem,” Machine learning , vol. 47, no. 2, pp. 235–256, 2002. [20] T. Lattimore and C. Szepesv´ ari, Bandit algorithms . Cambridge University Press, 2020. [21] A. Chaudhuri, G. Fellouris, and A. Tajer, “Sequential change detection of a correlation structure under a sampling constraint,” in 2021 IEEE International Symposium on Information Theory (ISIT) . IEEE, 2021, pp. 605–610. [22] A. N. Shiryaev, “The problem of the most rapid detection of a disturbance in a stationary process,” in Soviet Math. Dokl , vol. 2, no. 795-799, 1961, p. 103. APPENDIX 
+
+To prove that EAUCB 
+
+> ∞
+
+h
+
+T AUCB  
+
+> log γ
+
+i
+
+≥ γ, we can apply Lemma 1 in [12] and directly obtain the lower bound. To prove (14), we show that as W, b → ∞ with W = o(b),
+
+JA
+
+
+
+AUCB , T AUCB 
+
+> b
+
+
+
+≤ bIA
+
+(1 + o (1)) . (22) The proof of this upper bound on JA requires the following lemma. 
+
+Lemma 1: For any change-point ν ∈ N and A ⊆ [K],
+
+EAUCB 
+
+> ν, A
+
+
+
+T AUCB  
+
+> b
+
+− ν + 1 
+
++
+
+Fν−1
+
+
+
+≤ W + EAUCB 
+
+> 1,A
+
+h
+
+T AUCB 
+
+> b
+
+i
+
+. (23) 
+
+Proof: Let ℓ := argmin {i ∈ N : i ≥ ν and i mod W = 1 } be the first time-step at which the UCB algorithm restarts after the change occurs. Then, for n ≥ ℓ, define the statistic with the recursion 
+
+CAUCB  
+
+> ℓ:n
+
+:= max 
+
+n
+
+CAUCB  
+
+> ℓ:n−1
+
+, 0
+
+o
+
++ LLR ( An, X An,n ) (24) with CAUCB  
+
+> ℓ:ℓ−1
+
+:= 0 . The statistic in (24) is the CuSum-like statistic that accumulates the LLRs of samples after time-step ℓ.We also define a new stopping time that uses this statistic in place of the CuSum-like statistic in (6): 
+
+T AUCB  
+
+> b,ℓ
+
+:= inf 
+
+n
+
+n ≥ ℓ : CAUCB  
+
+> ℓ:n
+
+≥ b
+
+o
+
+. (25) Then, 
+
+EAUCB 
+
+> ν, A
+
+
+
+T AUCB  
+
+> b
+
+− ν + 1 
+
++
+
+Fν−1
+
+ (a)
+
+≤ EAUCB 
+
+> ν, A
+
+
+
+T AUCB  
+
+> b,ℓ
+
+− ν + 1 
+
++
+
+Fν−1
+
+
+
+= EAUCB 
+
+> ν, A
+
+h
+
+T AUCB  
+
+> b,ℓ
+
+− ν + 1 Fν−1
+
+i
+
+= ℓ − ν + EAUCB 
+
+> ν, A
+
+h
+
+T AUCB  
+
+> b,ℓ
+
+− ℓ + 1 Fν−1
+
+i
+
+> (b)
+
+≤ W + EAUCB 
+
+> ν, A
+
+h
+
+T AUCB  
+
+> b,ℓ
+
+− ℓ + 1 Fν−1
+
+i
+
+> (c)
+
+= W + EAUCB 
+
+> ν, A
+
+h
+
+T AUCB  
+
+> b,ℓ
+
+− ℓ + 1 
+
+i
+
+> (d)
+
+= W + EAUCB 
+
+> ℓ, A
+
+h
+
+T AUCB  
+
+> b,ℓ
+
+− ℓ + 1 
+
+i
+
+> (e)
+
+= W + EAUCB 
+
+> 1,A
+
+h
+
+T AUCB 
+
+> b, 1
+
+i 
+
+> (f)
+
+= W + EAUCB 
+
+> 1,A
+
+h
+
+T AUCB 
+
+> b
+
+i
+
+. (26) In step (a), T AUCB  
+
+> b,ℓ
+
+≥ T AUCB  
+
+> b
+
+almost surely, as we can show that CAUCB  
+
+> ℓ:n
+
+≤ CAUCB  
+
+> n
+
+for n ≥ ℓ by induction. In step (b), we leverage the fact that ℓ − W ≤ ν, as ℓ is the first time-step at which the UCB algorithm restarts after the change. In step (c),because the statistic CAUCB  
+
+> ℓ:n
+
+is independent of the samples prior to the time-step ℓ − 1, we can utilize the fact that T AUCB 
+
+> b,ℓ
+
+is independent of Fℓ−1 and that Fν−1 ⊆ F ℓ−1. Step (d) follows from the fact that Xa,n follows the post-change density 
+
+fa, 1 for n ≥ ℓ and a ∈ A when the change occurs either at ν or at ℓ. Step (e) results from the fact that Xa,n follows the post-change density fa, 1 for n ≥ ℓ and a ∈ A under PAUCB  
+
+> ℓ, A
+
+, and that Xa,n follows the post-change density fa, 1 for n ≥ 1
+
+and a ∈ A under PAUCB  
+
+> 1,A
+
+. In step (f ), T AUCB  
+
+> b
+
+= T AUCB  
+
+> b, 1
+
+by the definitions in (6) and (24). With Lemma 1, we can derive that 
+
+JA
+
+
+
+AUCB , T AUCB 
+
+> b
+
+
+
+≤ W + EAUCB 
+
+> 1,A
+
+h
+
+T AUCB 
+
+> b
+
+i
+
+. (27) To upper bound EAUCB 
+
+> 1,A
+
+h
+
+T AUCB 
+
+> b
+
+i
+
+, we need the following lemma. 
+
+Lemma 2: For some constant c > 0 that does not depend on b, I A, and W ,
+
+EAUCB 
+
+> 1,A
+
+h
+
+T AUCB 
+
+> b
+
+i
+
+≤
+
+W
+
+
+
+b + c
+
+
+
+1 + √b
+
+ 
+
+W I A − P
+
+> a:∆ a>0
+
+
+
+3∆ a + 16 log W
+
+> ∆a
+
+ (28) where ∆a = IA − D (fa, 1|| fa, 0).Proof: For any n ∈ N, define the statistic ¯CAUCB  
+
+> n
+
+to be the sum of the LLRs up to time-step n, i.e., 
+
+¯CAUCB  
+
+> n
+
+:= 
+
+> n
+
+X
+
+> i=1
+
+LLR ( Ai, X Ai,i ) . (29) Also, we define ¯T AUCB  
+
+> b
+
+to be the stopping time at which ¯CAUCB  
+
+> n
+
+crosses the threshold b at the end of an W -length interval 
+
+Ii = {(i − 1) W + 1 , . . . , iW }, i.e., 
+
+¯LAUCB  
+
+> b
+
+:= inf 
+
+n
+
+i ∈ N : ¯CAUCB  
+
+> iW
+
+≥ b
+
+o
+
+and ¯T AUCB  
+
+> b
+
+:= ¯LAUCB  
+
+> b
+
+W. (30) Since ¯CAUCB  
+
+> n
+
+≤ CAUCB  
+
+> n
+
+for all n ∈ N, ¯T AUCB  
+
+> b
+
+≥ T AUCB  
+
+> b
+
+. Now, for any i ∈ N, define the filtration Gi := σ (X1, . . . , X iW )
+
+and the following statistic to be the difference of ¯CAUCB  
+
+> n
+
+over interval Ii = {(i − 1) W + 1 , . . . , iW }, i.e., 
+
+Y AUCB  
+
+> i
+
+:= ¯CAUCB  
+
+> iW
+
+− ¯CAUCB  
+
+> (i−1) W
+
+=
+
+> iW
+
+X 
+
+> j=( i−1) W+1
+
+LLR  Aj , X Aj ,j 
+
+ . (31) Recall that IA := max a∈A D (fa, 1|| fa, 0). Then, 
+
+EAUCB 
+
+> 1,A
+
+h
+
+Y AUCB  
+
+> i
+
+Gi−1
+
+i (a)
+
+= EAUCB 
+
+> 1,A
+
+h
+
+Y AUCB 
+
+> i
+
+i
+
+= EAUCB 
+
+> 1,A
+
+
+
+> iW
+
+X 
+
+> j=( i−1) W+1
+
+LLR  Aj , X Aj ,j 
+
+ (b)
+
+≤ W I A, (32) and 
+
+EAUCB 
+
+> 1,A
+
+h
+
+Y AUCB  
+
+> i
+
+|G i−1
+
+i
+
+= EAUCB 
+
+> 1,A
+
+
+
+> iW
+
+X 
+
+> j=( i−1) W+1
+
+LLR  Aj , X Aj ,j 
+
+ (c)
+
+≥ W I A − X
+
+> a:∆ a>0
+
+
+
+3∆ a + 16 log W
+
+∆a
+
+
+
+. (33) In step (a), we leverage the fact that Y AUCB  
+
+> i
+
+is independent of Gi−1. In step (b), we apply the fact that 
+
+EAUCB 
+
+> 1,A
+
+LLR  Aj , X Aj ,j 
+
+ ≤ IA. In step (c), we apply the regret upper bound in Theorem 7.1 in [20], as the LLRs are the rewards of the UCB algorithm. Recall that we assume R (log ( fa, 1/f a, 0) − D (fa, 1|| fa, 0)) 2 fa, 1dλ = v < ∞ for any 
+
+a ∈ [K]. Then, 
+
+EAUCB 
+
+> 1,A
+
+
+
+Y AUCB 
+
+> i
+
+2
+
+Gi−1
+
+
+
+> (a)
+
+= EAUCB 
+
+> 1,A
+
+
+
+Y AUCB 
+
+> i
+
+2
+
+= EAUCB 
+
+> 1,A
+
+
+
+> iW
+
+X 
+
+> j=( i−1) W+1
+> iW
+
+X 
+
+> k=( i−1) W+1
+
+LLR  Aj , X Aj ,j 
+
+ LLR ( Ak, X Ak ,k )
+
+
+
+=
+
+> iW
+
+X 
+
+> j=( i−1) W+1
+> iW
+
+X 
+
+> k=( i−1) W+1
+
+EAUCB 
+
+> 1,A
+
+LLR  Aj , X Aj ,j 
+
+ LLR ( Ak, X Ak ,k )
+
+=
+
+> iW
+
+X 
+
+> j=( i−1) W+1
+
+EAUCB 
+
+> 1,A
+
+h LLR  Aj , X Aj ,j 
+
+ 2i
+
++ 2 
+
+> iW
+
+X 
+
+> j=( i−1) W+1
+> iW
+
+X
+
+> k=j+1
+
+EAUCB 
+
+> 1,A
+
+LLR  Aj , X Aj ,j 
+
+ LLR ( Ak, X Ak ,k )
+
+> (b)
+
+≤ W v + W 2I2 
+
+> A
+
+(34) where step (a) stems from the fact that Y AUCB  
+
+> i
+
+is independent of Gi−1, and step (b) follows from Assumption 1. Then, we can apply Proposition 1 in [12] and obtain that 
+
+EAUCB 
+
+> 1,A
+
+h ¯LAUCB 
+
+> b
+
+i
+
+≤
+
+b + c
+
+
+
+1 + √b
+
+
+
+W I A − P
+
+> a:∆ a>0
+
+
+
+3∆ a + 16 log W
+
+> ∆a
+
+ . (35) Thus, 
+
+EAUCB 
+
+> 1,A
+
+h
+
+T AUCB 
+
+> b
+
+i (a)
+
+≤ EAUCB 
+
+> 1,A
+
+h ¯T AUCB 
+
+> b
+
+i (b)
+
+≤
+
+W
+
+
+
+b + c
+
+
+
+1 + √b
+
+ 
+
+W I A − P
+
+> a:∆ a>0
+
+
+
+3∆ a + 16 log W
+
+> ∆a
+
+ (36) where step (a) follows from the fact that ¯T AUCB  
+
+> b
+
+≥ T AUCB  
+
+> b
+
+, and step (b) results from (35). With Lemma 2, we derive 
+
+JA
+
+
+
+AUCB , T AUCB 
+
+> b
+
+
+
+≤ W +
+
+W
+
+
+
+b + c
+
+
+
+1 + √b
+
+ 
+
+W I A − P
+
+> a:∆ a>0
+
+
+
+3∆ a + 16 log W
+
+> ∆a
+
+ . (37) Then, as W, b → ∞ with W = o(b),
+
+JA
+
+
+
+AUCB , T AUCB 
+
+> b
+
+
+
+≤ bIA
+
+(1 + o (1)) . (38) This completes the proof of Theorem 1. To prove that EAUCB 
+
+> ∞
+
+h ˜T AUCB  
+
+> log γ
+
+i
+
+≥ γ, we first construct the following SR-like statistic [22] for each action: for a ∈ [K]
+
+and n ∈ N,
+
+SAUCB  
+
+> a,n
+
+:= 
+
+
+
+SAUCB  
+
+> a,n −1
+
++ 1 
+
+
+
+exp (LLR ( a, X a,n )) , An = aSAUCB 
+
+> a,n −1
+
+, otherwise 
+
+(39) with Sa, 0 := 0 . In addition, we define the following statistic as the sum of the SR-like statistic in (39): for each n ∈ N,
+
+Sn := X
+
+> a∈[K]
+
+Sa,n . (40) Thereupon, we can see that {Sn : n ∈ N} is adapted to the filtration {F n : n ∈ N}. We show that {Sn − n : n ∈ N} is a martingale with respect to the filtration {F n : n ∈ N} under EAUCB  
+
+> ∞
+
+: for any n ∈ N,
+
+EAUCB  
+
+> ∞
+
+[Sn − n|F n−1] = EAUCB 
+
+> ∞
+
+SAn,n + X
+
+> a̸=An
+
+Sa,n − n Fn−1
+
+
+
+= EAUCB 
+
+> ∞
+
+(SAn,n −1 + 1) exp  LLR  An, X An,M An,n 
+
+ + X
+
+> a̸=An
+
+Sa,n −1 − n Fn−1
+
+
+
+= ( SAn,n −1 + 1) EAUCB 
+
+> ∞
+
+exp  LLR  An, X An,M An,n 
+
+ Fn−1
+
+ + X
+
+> a̸=An
+
+Sa,n −1 − n
+
+= ( SAn,n −1 + 1) EAUCB 
+
+> ∞
+
+fAn,1 (XAn,n ) /f An,0 (XAn,n ) Fn−1
+
+ + X
+
+> a̸=An
+
+Sa,n −1 − n
+
+= X
+
+> a∈[K]
+
+Sa,n −1 − (n − 1) = Sn−1 − (n − 1) . (41) We can see that Sn ≥ Sa,n ≥ exp ( Ca,n ) for any a ∈ [K] and n ∈ N. Therefore, 
+
+EAUCB 
+
+> ∞
+
+h ˜T AUCB  
+
+> log γ
+
+i (a)
+
+= EAUCB 
+
+> ∞
+
+h
+
+S ˜T AUCB log γ
+
+i
+
+≥ EAUCB 
+
+> ∞
+
+h
+
+exp 
+
+
+
+C ˜T AUCB log γ
+
+i (b)
+
+≥ γ. (42) where step (a) follows from Optional Sampling Theorem, and step (b) stems from the definition of ˜T AUCB   
+
+> log γ
+
+in (20). To prove (21), we show that as W, b → ∞ with W = o(b),
+
+JA
+
+
+
+AUCB , ˜T AUCB 
+
+> b
+
+
+
+≤ bIA
+
+(1 + o (1)) . (43) The proof of this upper bound on JA requires the following lemma similar to Lemma 1. 
+
+Lemma 3: For any change-point ν ∈ N and A ⊆ [K],
+
+EAUCB 
+
+> ν, A
+
+ ˜T AUCB  
+
+> b
+
+− ν + 1 
+
++
+
+Fν−1
+
+
+
+≤ W + EAUCB 
+
+> 1,A
+
+h ˜T AUCB 
+
+> b
+
+i
+
+. (44) 
+
+Proof: Recall that ℓ := argmin {i ∈ N : i ≥ ν and i mod W = 1 } is the first time-step at which the UCB algorithm restarts after the change occurs. We define the CuSum-like statistic that accumulates the LLRs starting from time-step ℓ
+
+using the following recursion: for n ≥ ℓ and a ∈ [K],
+
+CAUCB  
+
+> a,ℓ :n
+
+:= 
+
+
+
+max 
+
+n
+
+CAUCB 
+
+> a,ℓ :n−1
+
+, 0
+
+o
+
++ LLR ( a, X a,n ) , An = aCAUCB 
+
+> a,ℓ :n−1
+
+, otherwise 
+
+(45) with CAUCB  
+
+> a,ℓ :ℓ−1
+
+:= 0 . We also define a new stopping time that stops when CAUCB  
+
+> a,ℓ :n
+
+crosses the threshold b:
+
+˜T AUCB  
+
+> b,ℓ
+
+:= inf 
+
+n
+
+n ≥ ℓ : CAUCB  
+
+> a,ℓ :n
+
+≥ b for some a ∈ [K]
+
+o
+
+. (46) Then, following similar steps in (26), 
+
+EAUCB 
+
+> ν, A
+
+ ˜T AUCB  
+
+> b
+
+− ν + 1 
+
++
+
+Fν−1
+
+ (a)
+
+≤ EAUCB 
+
+> ν, A
+
+ ˜T AUCB  
+
+> b,ℓ
+
+− ν + 1 
+
++
+
+Fν−1
+
+
+
+= EAUCB 
+
+> ν, A
+
+h ˜T AUCB  
+
+> b,ℓ
+
+− ν + 1 Fν−1
+
+i
+
+= ℓ − ν + EAUCB 
+
+> ν, A
+
+h ˜T AUCB  
+
+> b,ℓ
+
+− ℓ + 1 Fν−1
+
+i
+
+> (b)
+
+≤ W + EAUCB 
+
+> ν, A
+
+h ˜T AUCB  
+
+> b,ℓ
+
+− ℓ + 1 Fν−1
+
+i
+
+> (c)
+
+= W + EAUCB 
+
+> ν, A
+
+h ˜T AUCB  
+
+> b,ℓ
+
+− ℓ + 1 
+
+i
+
+> (d)
+
+= W + EAUCB 
+
+> ℓ, A
+
+h ˜T AUCB  
+
+> b,ℓ
+
+− ℓ + 1 
+
+i
+
+> (e)
+
+= W + EAUCB 
+
+> 1,A
+
+h ˜T AUCB 
+
+> b, 1
+
+i 
+
+> (f)
+
+= W + EAUCB 
+
+> 1,A
+
+h ˜T AUCB 
+
+> b
+
+i
+
+. (47) In step (a), ˜T AUCB  
+
+> b,ℓ
+
+≥ ˜T AUCB  
+
+> b
+
+almost surely, since we can show that CAUCB  
+
+> a,ℓ :n
+
+≤ CAUCB  
+
+> a,n
+
+for n ≥ ℓ by induction. In step (b),since ℓ is the first restart time-step after the change, ℓ − ν ≤ W . In step (c), because CAUCB  
+
+> a,ℓ :n
+
+is independent the observations before time-step ℓ, we can utilize the fact that ˜T AUCB  
+
+> b,ℓ
+
+is independent of Fℓ−1 and Fν−1 ⊆ F ℓ−1. Step (d) follows from the fact that Xa,n follows the post-change density fa, 1 for n ≥ ℓ and a ∈ A when the change occurs either at ν or at ℓ. Step 
+
+(e) results from the fact that Xa,n follows the post-change density fa, 1 for n ≥ ℓ and a ∈ A under PAUCB  
+
+> ℓ, A
+
+, and that Xa,n 
+
+follows the post-change density fa, 1 for n ≥ 1 and a ∈ A under PAUCB  
+
+> 1,A
+
+. In step (f ), ˜T AUCB  
+
+> b
+
+= ˜T AUCB  
+
+> b, 1
+
+by the definitions in (19) and (45). With Lemma 3, we can derive that 
+
+JA
+
+
+
+AUCB , ˜T AUCB 
+
+> b
+
+
+
+≤ W + EAUCB 
+
+> 1,A
+
+h ˜T AUCB 
+
+> b
+
+i
+
+. (48) To upper bound EAUCB 
+
+> 1,A
+
+h ˜T AUCB 
+
+> b
+
+i
+
+, we need the following lemma. 
+
+Lemma 4: For some constant c > 0 that does not depend on b, I A, and W ,
+
+EAUCB 
+
+> 1,A
+
+h ˜T AUCB 
+
+> b
+
+i
+
+≤
+
+W
+
+
+
+b + c
+
+
+
+1 + √b
+
+ 
+
+W I A − IA
+
+P 
+
+> a:∆ a>0
+
+3 + 16 log W
+
+> (∆ a)2
+
+ (49) where ∆a = IA − D (fa, 1|| fa, 0).
+
+Proof: First, let a∗ := argmax a∈[K] D (fa, 1|| fa, 0) and define the following statistic to be the summation of the LLRs at time-steps when the control policy chooses action a: for any a ∈ [K] and n ∈ N,
+
+¯CAUCB  
+
+> a,n
+
+:= 
+
+> n
+
+X
+
+> i=1
+
+I {Ai = a} LLR ( a, X a,i ) . (50) Also, define ¯T AUCB  
+
+> a,b
+
+to be the stopping time at which ¯CAUCB  
+
+> a,n
+
+crosses the threshold b at the end of an W -length interval 
+
+Ii = {(i − 1) W + 1 , . . . , iW }, i.e., for any a ∈ [K] and n ∈ N,
+
+¯LAUCB  
+
+> a,b
+
+:= inf 
+
+n
+
+i ∈ N : ¯CAUCB  
+
+> a,iW
+
+≥ b
+
+o
+
+and ¯T AUCB  
+
+> a,b
+
+:= ¯LAUCB  
+
+> a,b
+
+W. (51) Since ¯CAUCB  
+
+> a,n
+
+≤ CAUCB  
+
+> a,n
+
+for all n ∈ N and a ∈ [K], ¯Ta∗,b ≥ ˜T AUCB  
+
+> b
+
+. Recall that Gi := σ (X1, . . . , X iW ) for any i ∈ N and define the statistic: for any i ∈ N and a ∈ [K],
+
+Y AUCB  
+
+> a,i
+
+:= ¯CAUCB  
+
+> a,iW
+
+− ¯CAUCB  
+
+> a, (i−1) W
+
+=
+
+> iW
+
+X 
+
+> j=( i−1) W+1
+
+I {Ai = a} LLR ( a, X a,j ) . (52) Then, 
+
+EAUCB 
+
+1,A
+
+h
+
+Y AUCB 
+
+a∗,i Gi−1
+
+i (a)
+
+= EAUCB 
+
+1,A
+
+h
+
+Y AUCB 
+
+a∗,i 
+
+i
+
+= EAUCB 
+
+1,A
+
+
+
+iW X
+
+j=( i−1) W +1 
+
+EAUCB 
+
+1,A [I {Ai = a∗} LLR ( a∗, X a∗,j ) |F j−1]
+
+
+
+= EAUCB 
+
+1,A
+
+
+
+iW X
+
+j=( i−1) W +1 
+
+I {Ai = a∗} EAUCB 
+
+1,A [LLR ( a∗, X a∗,j ) |F j−1]
+
+
+
+(b)
+
+= EAUCB 
+
+1,A
+
+
+
+iW X
+
+j=( i−1) W +1 
+
+I {Ai = a∗} EAUCB 
+
+1,A [LLR ( a∗, X a∗,j )] 
+
+
+
+(c)
+
+≤ W I A, (53) and 
+
+EAUCB 
+
+1,A
+
+h
+
+Y AUCB 
+
+a∗,i |G i−1
+
+i
+
+= EAUCB 
+
+1,A
+
+
+
+iW X
+
+j=( i−1) W +1 
+
+I {Ai = a∗} EAUCB 
+
+1,A [LLR ( a∗, X a∗,j )] 
+
+
+
+(d)
+
+≥ W I A − IA
+
+X
+
+a:∆ a>0
+
+3 + 16 log W
+
+(∆ a)2
+
+!
+
+. (54) In step (a), we apply the fact that Y AUCB 
+
+a∗,i is independent of Gi−1. Step (b) follows from the fact that Xa∗,j is independent of Fj−1. In step (c), we apply the fact that EAUCB 
+
+1,A [LLR ( a∗, X a∗,j )] = IA. In step (d), we apply the regret upper bound in Theorem 7.1 in [20], as the LLRs are the rewards of the UCB algorithm. Recall that we assume R (log ( fa, 1/f a, 0)) 2 fa, 1dλ < 
+
+∞ for any a ∈ [K]. Then, 
+
+EAUCB 
+
+1,A
+
+
+
+Y AUCB 
+
+a∗,i 
+
+2
+
+Gi−1
+
+
+
+(a)
+
+= EAUCB 
+
+1,A
+
+
+
+Y AUCB 
+
+a∗,i 
+
+2
+
+= EAUCB 
+
+1,A
+
+
+
+iW X
+
+j=( i−1) W +1 
+
+iW X
+
+k=( i−1) W +1 
+
+I {Aj = a∗} I {Ak = a∗} LLR ( a∗, X a∗,j ) LLR ( a∗, X a∗,k )
+
+
+
+≤
+
+iW X
+
+j=( i−1) W +1 
+
+iW X
+
+k=( i−1) W +1 
+
+EAUCB 
+
+1,A [LLR ( a∗, X a∗,j ) LLR ( a∗, X a∗,k )] =
+
+iW X
+
+j=( i−1) W +1 
+
+EAUCB 
+
+1,A
+
+h
+
+(LLR ( a∗, X a∗,j )) 2i
+
++ 2 
+
+iW X
+
+j=( i−1) W +1 
+
+iW X
+
+k=j+1 
+
+EAUCB 
+
+1,A [LLR ( a∗, X a∗,j ) LLR ( a∗, X a∗,k )] 
+
+(b)
+
+≤ W v + ( W − 1) W I 2
+
+A (55) where step (a) stems from the fact that Y AUCB 
+
+a∗,i is independent of Gi−1, and step (b) follows from Assumption 1. Then, we can apply Proposition 1 in [12] and obtain that 
+
+EAUCB 
+
+1,A
+
+h
+
+LAUCB 
+
+a∗,b 
+
+i
+
+≤
+
+b + c
+
+
+
+1 + √b
+
+
+
+W I A − IA
+
+P
+
+a:∆ a>0
+
+
+
+3 + 16 log W
+
+(∆ a)2
+
+ . (56) Thus, 
+
+EAUCB 
+
+1,A
+
+h ˜T AUCB 
+
+b
+
+i (a)
+
+≤ EAUCB 
+
+1,A
+
+h ¯T AUCB 
+
+a∗,b 
+
+i (b)
+
+≤
+
+W
+
+
+
+b + c
+
+
+
+1 + √b
+
+ 
+
+W I A − IA
+
+P
+
+a:∆ a>0
+
+
+
+3 + 16 log W
+
+(∆ a)2
+
+ (57) where step (a) follows from the fact that ¯T AUCB 
+
+a∗,b ≥ ˜T AUCB 
+
+b , and step (b) results from (56). With Lemma 4, we derive 
+
+JA
+
+
+
+AUCB , ˜T AUCB 
+
+> b
+
+
+
+≤ W +
+
+W
+
+
+
+b + c
+
+
+
+1 + √b
+
+ 
+
+W I A − IA
+
+P
+
+> a:∆ a>0
+
+
+
+3 + 16 log W
+
+> (∆ a)2
+
+ . (58) Then, as W, b → ∞ with W = o(b),
+
+JA
+
+
+
+AUCB , ˜T AUCB 
+
+> b
+
+
+
+≤ bIA
+
+(1 + o (1)) . (59) This completes the proof of Theorem 2.

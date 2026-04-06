@@ -1,0 +1,772 @@
+Title: An Output Feedback Q-learning Algorithm for Optimal Control of Nonlinear Systems with Koopman Linear Embedding
+
+URL Source: https://arxiv.org/pdf/2603.29858v1
+
+Published Time: Wed, 01 Apr 2026 01:13:19 GMT
+
+Number of Pages: 6
+
+Markdown Content:
+# An Output Feedback Q-learning Algorithm for Optimal Control of Nonlinear Systems with Koopman Linear Embedding 
+
+Victor G. Lopez, Malte Heinrich, and Matthias A. M¨ uller 
+
+Abstract — In the reinforcement learning literature, strong theoretical guarantees have been obtained for algorithms ap-plicable to LTI systems. However, in the nonlinear case only weaker results have been obtained for algorithms that mostly rely on the use of function approximation strategies like, for ex-ample, neural networks. In this paper, we study the applicability of a known output-feedback Q-learning algorithm to the class of nonlinear systems that admit a Koopman linear embedding. This algorithm uses only input-output data, and no knowledge of either the system model or the Koopman lifting functions is required. Moreover, no function approximation techniques are used, and the same theoretical guarantees as for LTI systems are preserved. Furthermore, we analyze the performance of the algorithm when the Koopman linear embedding is only an approximation of the real nonlinear system. A simulation example verifies the applicability of this method. 
+
+I. INTRODUCTION In the past few decades, reinforcement learning (RL) algorithms have been extensively investigated for their use to determine optimal control policies for dynamical systems [1], [2]. Most of these algorithms do not require any knowledge of the system model, and instead employ measured data to iteratively improve a control policy until it becomes optimal. When the system has linear dynamics and the cost function is quadratic, rigorous theoretical guarantees about stability, convergence and optimality have been obtained [3], [4], [5], [6]. The main reason for this success is the fact that, for linear systems and quadratic costs, only linear policies need to be considered and the solution of the corresponding Bellman equation is known to have a quadratic form. In contrast, determining optimal controllers for nonlinear systems presents a greater challenge. In general, both the control input and the associated value function are unknown nonlinear functions that are difficult to compute in practice. To address this problem, function approximation techniques are often employed, in particular neural networks (NNs) [7], [8], [9]. Although NNs are known to have universal func-tion approximation capabilities, their use in RL algorithms complicates their theoretical analysis. Training methods for (very) shallow neural networks have been proposed that allow to obtain some guarantees [8], [9], [10], but for such shallow networks the number of nodes required to have accurate approximations may become impractically large. Analyzing RL algorithms that use deeper NNs remains a  
+
+> This work was supported by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - 535860958 V. G. Lopez, M. Heinrich, and M. A. M¨ uller are with the Leibniz University Hannover, Institute of Automatic Control, 30167 Hannover, Germany
+
+{lopez,mueller }@irt.uni-hannover.de, malte.heinrich2@stud.uni-hannover.de 
+
+difficult task. Moreover, even when an adequate NN archi-tecture is used, it is in general unclear which conditions in the measured data guarantee obtaining an accurate func-tion approximation. Persistence of excitation (PE) conditions have been considered [11], [9] that can be difficult to verify. This contrasts with modern conditions on persistence of excitation for linear systems, where PE verification consists of computing the rank of a matrix [12]. In [5], a Q-learning algorithm with strong theoretical guarantees for linear time invariant (LTI) systems was pre-sented. This algorithm exploits the result known as Willems’ fundamental lemma [12] that provides an elegant condition for persistence of excitation. Using the data collected in this fashion, [5] showed how to reformulate the Bellman equation as a generalized Lyapunov equation that can be solved very efficiently. Then, the resulting algorithm was shown to have a quadratic rate of converge to the optimal control solution. In [6], this algorithm was extended to the output-feedback case, where the full state of the system is not required to be measured. Instead, [6] exploits the construction of a nonminimal state described in [13], which employs only input-output measurements. The guaranteed properties on convergence and optimality of these algorithms are currently not shared by any RL algorithm for nonlinear systems. The goal of this paper is to obtain optimal controllers for the class of nonlinear systems that admit a Koopman linear embedding (KLE) [14]. Koopman theory is a mathematical tool that allows to lift the dynamics of a nonlinear system into a higher-dimensional space where, in some cases, the dynam-ics are linear [15]. This can facilitate the design of controllers for nonlinear systems [16]. Also in the RL context, Koopman theory has been used [17], [18]. However, most of these methods require the difficult task of determining an adequate set of lifting functions for the given system. In contrast, the result in [14] provided a data-based representation of nonlinear systems with KLE using only input-output data. In this paper, we first show conditions for the Koopman linear embedding to be stabilizable and observable. Then, we use the output-feedback Q-learning algorithm in [6] to deter-mine an optimal controller for the nonlinear system without knowledge of the model or the lifting functions. We show the conditions under which the theoretical guarantees of this algorithm are preserved: the algorithm yields stabilizing policies at each iteration and converges at a quadratic rate to the optimal control policy. Since, in general, the KLE is not exact, we finally analyze the performance of the algorithm in the presence of approximation errors. In the remainder of this paper, Section II describes the 
+
+> arXiv:2603.29858v1 [eess.SY] 31 Mar 2026
+
+systems with KLE and formulates the main objective of this work. Section III presents the Q-learning algorithm that solves the optimal control problem in the case of an exact KLE, and also analyzes the case when there is an approxi-mation error. Section IV presents a numerical example and Section V concludes the paper. II. PROBLEM FORMULATION In this paper, we consider nonlinear systems with aKoopman linear embedding as defined in [14]. In particular, consider a system of the form 
+
+xt+1 = f (xt, u t), (1a) 
+
+yt = h(xt), (1b) where xt ∈ Rn, ut ∈ Rm, and yt ∈ Rp are the state, input, and output vectors of the system at time t, respectively. The functions f : Rn ×Rm → Rn and h : Rn → Rp are unknown continuous functions satisfying f (0 , 0) = 0 , h(0) = 0 . We let this system satisfy the following assumption. 
+
+Assumption 1: System (1) is stabilizable in the sense that, for every initial condition x0 ∈ Rn, there exist a control sequence {ut}∞ 
+
+> t=0
+
+such that xt → 0 as t → ∞ . Moreover, the system is detectable in the sense that yt → 0 as t → ∞ 
+
+implies xt → 0 as well. The following definition is taken from [14]. Notice that we consider systems without a direct feedthrough term from input to output. 
+
+Definition 1 (Koopman Linear Embedding): System (1) is said to admit a Koopman linear embedding (KLE) if there exist a scalar η ∈ N, matrices (A, B, C ) of appropriate dimensions, and a set of linearly independent functions ψi :
+
+Rn → R, i = 1 , . . . , η , such that 
+
+Ψ( xt+1 ) = AΨ( xt) + Bu t, (2a) 
+
+yt = CΨ( xt), (2b) holds for all t, where Ψ( xt) = [ ψ1(xt) · · · ψη (xt)] ⊤.In the Koopman theory literature, the lifting functions ψi
+
+are known as observables . It is known that general nonlinear systems do not admit an exact KLE [16], [19], and conditions for the existence of the KLE have recently been studied in [20]. However, in many cases the dynamics in (2) may still provide a sufficiently close approximation of the nonlinear dynamics (1) on some domain of operation. In fact, a variety of controllers for system (1) designed under the assumption of an exact KLE have been successfully used in practice [16]. We are interested in determining a control policy that stabilizes (1) while minimizing the quadratic cost function 
+
+J =
+
+> ∞
+
+X
+
+> t=0
+
+y⊤ 
+
+> t
+
+Qy t + u⊤ 
+
+> t
+
+Ru t (3) with Q, R ≻ 0. If the system admits a KLE, it may be natural to attempt using a controller of the form ut = −KΨ( xt)
+
+to stabilize (1) by stabilizing (2). However, it can be very challenging to determine a suitable set of lifting functions 
+
+ψi that satisfy the conditions in Definition 1. Moreover, in our setting the functions f and h (as well as the matrices A,
+
+B, and C) are unknown. Hence, the problem considered in this paper is formulated as follows. 
+
+Problem 1: Let the system (1) admit a KLE as in Def-inition 1. Using only input-output data, and without using knowledge of the mathematical models or of the lifting functions ψi, determine a control policy u that stabilizes (1) and that minimizes the cost function (3). In this paper, we propose the use of a Q-learning algorithm to solve Problem 1. The use of reinforcement learning strate-gies for control of nonlinear systems has been investigated for many years [8], [9]. However, the available theoretical guarantees typically rely on the use of shallow NNs to approximate the solution of the Bellman equation, as well as the resulting nonlinear control policy [8]. For example, 
+
+ˆV (xt) = Wcϕc(xt), ˆu(xt) = Waϕa(xt), (4) are common expressions for the critic approximator and the 
+
+actor approximator, respectively. Here, ϕc : Rn → RNc
+
+and ϕa : Rn → RNa are user-defined basis functions, and Wc ∈ R1×Nc , W a ∈ Rm×Na are the weights to be determined. Training rules have been proposed that lead to bounded function approximation errors [10], [8], hence implying suboptimal controllers. In the following section we show how this issue can be overcome when solving Problem 1 for systems with a Koopman linear embedding. III. OPTIMAL CONTROL FOR NONLINEAR SYSTEMS WITH LINEAR KOOPMAN EMBEDDING Suppose that system (1) admits a KLE. The expression (2) suggests to consider a linear system of the form 
+
+ξt+1 = Aξ t + Bu t, (5a) 
+
+yt = Cξ t, (5b) where ξ ∈ Rη is an auxiliary state variable. Note that, if the initial condition can be written as ξ0 = Ψ( x0) for some x0,then ξt = Ψ( xt) for all t > 0. Throughout this paper, we refer to (5) as a KLE of (1). In this section, we first analyze the conditions that allow to design optimal controllers for system (1) by exploiting the linear structure of (5). Then, we present a Q-learning algorithm to solve Problem 1 in the case of an exact KLE and show its theoretical properties. Finally, we consider the case when the KLE is inexact. 
+
+A. Conditions for optimal control of systems with KLE 
+
+By Definition 1, every input-output trajectory {ut, y t}∞
+
+> t=0
+
+of the nonlinear system (1) is also an input-output trajectory of the lifted system (5). Hence, it is intuitive that an optimal controller for (5) should also be optimal for (1). In this subsection we show that this is the case as long as suitable conditions hold. As it is discussed in [14], a given KLE (5) may not be controllable and/or observable. However, like any linear state space representation, the realization (5) is not unique. It is not difficult to show that, if a system admits a KLE, then there exits an equivalent KLE that is observable. 
+
+Proposition 1: If system (1) admits a KLE, then there exists an observable KLE realization. Proof: Consider an unobservable realization (5). Using Kalman decomposition, there exists a similarity transforma-tion TKD such that 
+
+T −1 
+
+> KD
+
+AT KD =
+
+A¯o A12 
+
+0 Ao
+
+
+
+, CT KD = 0 Co
+
+ ,
+
+and (Ao, C o) is an observable pair. Hence, the transformation 
+
+¯ξ = [0 I]T −1 
+
+> KD
+
+ξ leads to an observable realization. By Proposition 1, we can assume that the KLE (5) is observable without loss of generality. We now show that if (1) is stabilizable then there is a stabilizable realization (5). 
+
+Proposition 2: Let system (1) admit a KLE and let As-sumption 1 hold. Then, there exists an observable and stabilizable KLE realization. 
+
+Proof: An observable realization exists by Proposi-tion 1. We now show that this realization is also stabilizable. The proof is performed by showing that for any initial state 
+
+ξ0 there exists an input sequence such that ξt → 0 as t → ∞ .Case 1: the initial state is realizable by the lifting functions as 
+
+ξ0 = Ψ( x0) for some x0. Then, consider the input sequence that, when applied to (1), leads to xt → 0 (which exists by Assumption 1). Since the function h in (1) is continuous, this implies that yt → 0. Observability of (5) leads to ξt → 0.Case 2: ξ0̸ = Ψ( x0) for any x0. Since the functions ψi,
+
+i = 1 , . . . , η , are linearly independent, there exist vectors 
+
+¯xi 
+
+> 0
+
+such that the matrix [Ψ(¯ x10) · · · Ψ(¯ xη 
+
+> 0
+
+)] is nonsingular. Let the sequence ¯ui := {¯uit}∞ 
+
+> t=0
+
+be such that, when applied to (1) with initial condition ¯xi
+
+> 0
+
+, leads to ¯xit → 0 as 
+
+t → ∞ . Moreover, define the vector α ∈ Rη such that 
+
+[Ψ(¯ x10) · · · Ψ(¯ xη 
+
+> 0
+
+)] α = ξ0. Then, from linearity of (5) and the arguments in Case 1, it follows that the inputs 
+
+ut = Pηi=1 αi ¯uit lead to ξt → 0.In the following theorem, we show that Assumption 1 and Propositions 1 and 2 together provide the conditions to design stabilizing optimal controllers for system (1) by exploiting its KLE (5). Notice that conditions for stability and optimality of systems with a Koopman linear embedding were studied in [21, Section 3] in a different setting. The following result expresses the conditions differently, suitably formulated for the setting considered in this paper. 
+
+Theorem 1: Let system (1) admit a KLE as in Defini-tion 1, let Assumption 1 hold, and consider the cost function (3). There exist lifting functions ψi, i = 1 , . . . , η , such that the control input u∗ 
+
+> t
+
+= −K∗Ψ( xt) with 
+
+K∗ = ( R + B⊤P B )−1B⊤P A, (6) and where P ≻ 0 satisfies the algebraic Riccati equation 
+
+Qξ +A⊤P A −P −A⊤P B (R+B⊤P B )−1B⊤P A = 0 , (7) with Qξ = C⊤QC , globally asymptotically stabilizes system (1) and minimizes the cost (3). 
+
+Proof: Propositions 1 and 2 guarantee the existence of a stabilizable and observable realization (5). Moreover, notice that (5b) allows to write the cost (3) as 
+
+J =
+
+> ∞
+
+X
+
+> t=0
+
+ξ⊤ 
+
+> t
+
+C⊤QCξ t + u⊤ 
+
+> t
+
+Ru t. (8) Hence, (5a) and (8) define a standard linear quadratic reg-ulator (LQR) problem that, since (5) is stabilizable and observable, is known to have the solution u∗ 
+
+> t
+
+= −K∗ξt with 
+
+K∗ as in (6). Since u∗ stabilizes (5), yt → 0 as t → ∞ ,which, by Definition 1, corresponds also to the output of (1). By Assumption 1, this implies xt → 0 as t → ∞ . Finally, assume for contradiction that there exists an initial condition 
+
+x0 and an input policy ˆu̸ = u∗ such that, when applied to (1), yields a better cost J(x0, ˆu) < J (x0, u ∗). This input would yield the same result when applied to (5), contradicting the optimality of u∗.The results obtained in this subsection allow us to design optimal controllers for system (1) by focusing on the linear expression (5). Although the optimal input in Theorem 1 depends explicitly on the lifting functions ψi, in the follow-ing subsection, we bypass the need for choosing a suitable set of lifting functions by using a Q-learning algorithm that requires only input-output data measured from the system. 
+
+B. Output-feedback Q-learning with exact KLE 
+
+In this subsection we use the output-feedback Q-learning algorithm in [6] to optimally control (5) without information about neither the model nor the lifting functions Ψ (and hence the state ξ). This algorithm was shown to be a compu-tationally efficient method with strong theoretical guarantees. To avoid the need for state information, [6] leveraged the result in [13] where an alternative, nonminimal state for an LTI system as (5) was constructed using input-output data. Specifically, this state is constructed as 
+
+zt =
+
+ u[t−ℓ,t −1] 
+
+Γy[t−ℓ,t −1] 
+
+
+
+∈ Rmℓ +η , (9) where ℓ is the lag (i.e., the observability index) of system (5), u[t−ℓ,t −1] := [u⊤ 
+
+> t−ℓ
+
+· · · u⊤
+
+> t−1
+
+]⊤ and similarly for 
+
+y[t−ℓ,t −1] . Moreover, Γ ∈ Rη×pℓ is a constant matrix that can be computed from data as described below. It was shown in [13] that, if system (5) is controllable, then every state 
+
+ξ ∈ Rη can be written as ξ = T z for some full row rank matrix T . This means that z in (9) is a valid state corresponding to a different realization of (5), i.e., there exist matrices ( ¯A, ¯B, ¯C) of appropriate dimensions such that 
+
+zt+1 = ¯Az t + ¯Bu t, (10a) 
+
+yt = ¯Cz t (10b) holds. This is also true for stabilizable systems as long as the following assumption is satisfied. 
+
+Assumption 2: There exists a full row rank matrix T such that ξ = T z for any state ξ of (5) and with z as in (9). From the proof in [13, Theorem 4], it can be noted that a sufficient condition for Assumption 2 is that the matrix A in (5) does not have uncontrollable modes at the origin. Notice that, under Assumption 2, (10) is a valid KLE for system (1). Now, a control input of the form ut = −Kz t can be used to stabilize (10) while minimizing the cost (3). The matrix Γ in (9) can be obtained using input-output data if persistence of excitation conditions are satisfied. The following definition of PE data is adapted to our setting. Definition 2: Let the system (1) admit a KLE (5) and let D
+
+be a set containing ν input-output trajectories of length ℓ + 1 
+
+collected from (1), i.e., D := 
+
+n
+
+{ujt , y jt }ℓt=0 , j = 1 , . . . , ν 
+
+o
+
+.The data D are said to be persistently excited of order η+ℓ+1 
+
+if rank (HD ) = m(ℓ + 1) + η, where 
+
+HD := 
+
+" u1[0 ,ℓ ] u2[0 ,ℓ ] · · · uν
+
+> [0 ,ℓ ]
+
+y1[0 ,ℓ −1] y2[0 ,ℓ −1] · · · yν
+
+> [0 ,ℓ −1]
+
+#
+
+. (11) In general, the rank condition in Definition 2 does not imply that the matrix HD has full rank. Moreover, it is needed that ν ≥ m(ℓ + 1) + η. Note that, as is standard in the data-driven control literature, one can either construct the matrix (11) from one long input-output trajectory, or from multiple shorter ones. We also highlight that, different from the PE condition used in [14], the condition in Definition 2 can be verified from measured data 1.
+
+Remark 1: In Definition 2, as well as in the procedure described below, knowledge of the state dimension η and the lag ℓ of (5) is exploited. As it is discussed in [13, Remark 3], we can replace both η and ℓ by an upper bound ˜η ≥ η ≥ ℓ
+
+and still obtain a valid nonminimal state zt.For the benefit of the reader, we summarize in Algorithm 1 the steps to compute the matrix Γ in (9), which are described in [13]. Algorithm 1 must only be used once to obtain Γ, and then the nonminimal state zt can be computed using stored input-output information as in (9) either in an offline fashion (e.g., to run Algorithm 2 below), or in an online fashion (e.g., to apply the controller ut = −Kz t to the system). 
+
+Algorithm 1 [13]: Construction of Γ in (9)  
+
+> 1:
+
+procedure  
+
+> 2:
+
+Collect persistently excited data D of order η + ℓ + 1 as in Definition 2 and construct the matrix 
+
+H−D := 
+
+u1[0 ,ℓ −1] u2[0 ,ℓ −1] · · · uν
+
+> [0 ,ℓ −1]
+
+y1[0 ,ℓ −1] y2[0 ,ℓ −1] · · · yν
+
+> [0 ,ℓ −1]
+
+
+
+. (12)  
+
+> 3:
+
+Determine a permutation matrix Π ∈ Rpℓ ×pℓ that reorders the rows of H−D such that 
+
+H−D =
+
+Imℓ 00 Π
+
+  MN
+
+
+
+,
+
+where M ∈ Rmℓ +η×ν has full row rank, and N ∈ Rpℓ −η×ν . 
+
+> 4:
+
+Compute the inverse of Π and define the matrix Γ ∈ Rη×pℓ 
+
+such that Π−1 =
+
+Γ
+
+G
+
+
+
+for some G ∈ Rpℓ −η×pℓ . 
+
+> 5:
+
+end procedure 
+
+Algorithm 2 below was proposed in [6] to stabilize system (10) while minimizing the cost (3). There, it was shown that the matrix Z in (13) can always be chosen as nonsingular due to the persistence of excitation condition in Definition 2. Moreover, as every policy iteration algorithm, an initial stabilizing matrix K0 must be chosen, i.e., ¯A − ¯BK 0 must be Schur. An efficient method to determine this matrix from data was proposed in [5]. In the Bellman equation (16) and      
+
+> 1If system (5) is controllable (and not only stabilizable), then by Willems’ lemma [12] the conditions in Definition 2 can be enforced by applying a persistently exciting input of order η+ℓ+ 1 [13, Lemma 1].
+
+the control update (17) we use the definitions 
+
+¯Q =
+
+Q 00 R
+
+
+
+, Θ = 
+
+Θzz Θ⊤
+
+> uz
+
+Θuz Θuu 
+
+
+
+,
+
+where Q, R are the weighting matrices of the cost function, 
+
+Θuz ∈ Rm×mℓ +η , and Θuu ∈ Rm×m.
+
+Algorithm 2 [6]: Output-feedback Q-learning  
+
+> 1:
+
+procedure  
+
+> 2:
+
+Run Algorithm 1 and store the data D and the matrix Γ.Construct the vectors zjℓ and zjℓ+1 , j = 1 , . . . , ν , as in (9).  
+
+> 3:
+
+Select a set of μ = m(ℓ + 1) + η indices, kj , j = 1 , . . . , μ ,from the set {1, . . . , ν } such that the matrix 
+
+Z =
+
+"
+
+zk1 
+
+> ℓ
+
+zk2 
+
+> ℓ
+
+· · · zkμ
+
+> ℓ
+
+uk1 
+
+> ℓ
+
+uk2 
+
+> ℓ
+
+· · · ukμ
+
+> ℓ
+
+#
+
+∈ Rμ×μ (13) is nonsingular. Moreover, define 
+
+W =
+
+"
+
+yk1 
+
+> ℓ
+
+yk2 
+
+> ℓ
+
+· · · ykμ
+
+> ℓ
+
+uk1 
+
+> ℓ
+
+uk2 
+
+> ℓ
+
+· · · ukμ
+
+> ℓ
+
+#
+
+∈ Rm+p×μ. (14)  
+
+> 4:
+
+Set i = 0 and determine an initial stabilizing matrix K0. 
+
+> 5:
+
+Using Ki, construct the matrix 
+
+Σi =
+
+"
+
+zk1 
+
+> ℓ+1
+
+zk2 
+
+> ℓ+1
+
+· · · zkμ
+
+> ℓ+1
+
+−Kizk1 
+
+> ℓ+1
+
+−Kizk2 
+
+> ℓ+1
+
+· · · −Kizkμ
+
+> ℓ+1
+
+#
+
+∈ Rμ×μ.
+
+(15) and solve for Θi+1 from the equation 
+
+Z⊤Θi+1 Z = W ⊤ ¯QW + Σ ⊤ 
+
+> i
+
+Θi+1 Σi. (16)  
+
+> 6:
+
+Update the input policy as 
+
+Ki+1 =
+
+
+
+Θi+1 
+
+> uu
+
+−1
+
+Θi+1  
+
+> uz
+
+. (17)  
+
+> 7:
+
+Let i = i + 1 and go to Step 5. On convergence, stop.  
+
+> 8:
+
+end procedure 
+
+The following theorem shows that a control input of the form u∗ 
+
+> t
+
+= − ¯K∗zt is optimal for system (1), and that Algorithm 2 converges to the matrix ¯K∗.
+
+Theorem 2: Let system (1) admit a KLE as in Defini-tion 1, consider the cost function (3), and let Assumptions 1 and 2 hold. Then, a control input of the form u∗ 
+
+> t
+
+= − ¯K∗zt,with zt as in (9), stabilizes (1) and minimizes the cost (3). Moreover, at every iteration of Algorithm 2, the Bell-man equation (16) has a unique solution Θi+1 , the input 
+
+uit = −Kizt stabilizes (1), and the algorithm converges quadratically as lim i→∞ Ki = ¯K∗.
+
+Proof: By Propositions 1 and 2, (5) is a stabilizable and observable KLE for (1) without loss of generality. By Theorem 1, the input u∗ 
+
+> t
+
+= −K∗ξt, with K∗ as in (6)-(7), is stabilizing and optimal. By Assumption 2, we can write this optimal input as u∗ 
+
+> t
+
+= −K∗T z t = − ¯K∗zt, with 
+
+¯K∗ := K∗T . It was shown in [6] that Ki from Algorithm 2 quadratically converges to ¯K∗. Finally, it was also shown in [6] that the inputs uit = −Kizt obtained at each iteration stabilize (5) and, hence, it can be shown as in the proof of Theorem 1 that they also stabilize (1). Theorem 2 provides our solution to Problem 1. The input 
+
+u∗ 
+
+> t
+
+= − ¯K∗zt optimally stabilizes system (1) using only input-output information (cf. (9)). We remark that the input 
+
+u∗ 
+
+> t
+
+= − ¯K∗zt is not linear in the original state x. Note from (9) that this is a dynamic output feedback controller that implicitly accounts for the nonlinearities of the system. 
+
+C. On an inexact linear embedding and noisy data 
+
+It is known that general nonlinear systems do not admit a Koopman linear embedding [16], [19]. However, a KLE of sufficiently high order may provide a close enough approx-imation of the system dynamics for a KLE-based control design to be effective [16]. A thorough study of the effects of approximation errors in our proposed method is a subject of future work, but in this subsection we present initial results regarding the inherent robustness properties of Algorithm 2. First, we analyze the case when the lifted states do not propagate exactly in a linear fashion, but the output does depend linearly on the lifted state. That is, instead of the system (9), consider the system 
+
+zt+1 = ¯Az t + ¯Bu t + εt, (18a) 
+
+yt = ¯Cz t, (18b) where εt ∈ Rmℓ +η corresponds to the modeling error in the state dynamics at each time t. We consider this case because it provides interesting insights about the convergence of Algorithm 2. A more general case is discussed later. The procedure that we follow now is an extension for our setting of the analysis performed in [5]. First, from the data collected from (18), we can write 
+
+W =
+
+" ¯Cz k1 
+
+> ℓ
+
+· · · ¯Cz kμ
+
+> ℓ
+
+uk1 
+
+> ℓ
+
+· · · ukμ
+
+> ℓ
+
+#
+
+= CZ, 
+
+Σi =
+
+ ¯A ¯B
+
+−Ki ¯A −Ki ¯B
+
+ "
+
+zk1 
+
+> ℓ
+
+· · · zkμ
+
+> ℓ
+
+uk1 
+
+> ℓ
+
+· · · ukμ
+
+> ℓ
+
+#
+
++
+
+ I
+
+−Ki
+
+ h
+
+εk1 
+
+> ℓ
+
+· · · εkμ
+
+> ℓ
+
+i
+
+= Φ iZ + KiE. 
+
+where 
+
+Φi =
+
+ ¯A ¯B
+
+−Ki ¯A −Ki ¯B
+
+
+
+, C =
+
+ ¯C 00 I
+
+
+
+, Ki =
+
+ I
+
+−Ki
+
+
+
+,
+
+and E = [ εk1 
+
+> ℓ
+
+· · · εkμ 
+
+> ℓ
+
+]. Pre- and post-multiplying (16) by 
+
+(Z−1)⊤ and Z−1, respectively, we get 
+
+Θi+1 = C⊤ ¯QC +  Φi + KiEZ −1⊤ Θi+1  Φi + KiEZ −1 .
+
+In the absence of modeling errors, this expression becomes 
+
+Θi+1 = C⊤ ¯QC + Φ ⊤ 
+
+> i
+
+Θi+1 Φi,
+
+which is a Lyapunov equation that has a unique solution 
+
+Θi ≻ 0 if and only if Φi is Schur, which happens if and only if ¯A − ¯BK i is Schur [5]. Now, since Φi = Ki[ ¯A ¯B], then Φi + KiEZ −1 =
+
+Ki([ ¯A ¯B] + EZ −1) = Ki[ ˆA ˆB] =: ˆΦi, where [ ˆA ˆB] := [ ¯A ¯B] + EZ −1. From (18) notice that, in fact, [ ˆA ˆB] is the solution of the least-squares problem 
+
+min  
+
+> ˆA, ˆB
+
+h
+
+zk1 
+
+> ℓ+1
+
+· · · zkμ
+
+> ℓ+1
+
+i
+
+−  ˆA ˆB Z 2
+
+.
+
+Therefore, using the data from (18), Algorithm 2 solves the optimal control problem for the least-squares linear approximation of (18), but without computing such matrices. Now, the algorithm converges if K0 is stabilizing for the system defined by ( ˆA, ˆB).We finally comment on the case when the input-output trajectories of (1) are trajectories of the system 
+
+zt+1 = ¯Az t + ¯Bu t + εt, (19a) 
+
+yt = ¯Cz t + vt, (19b) where εt ∈ Rη and vt ∈ Rp are the modeling errors, and they can account for noise as well. The first issue in this case is that the state z in (9) must be computed from “noisy” outputs. This often makes the matrix (12) have full rank, preventing an adequate computation of Γ. If the mismatch terms ε and v have sufficiently small magnitudes, this problem can be solved by following a singular value decomposition approach, as suggested in [13]. Moreover, the additional term vt in (19) implies that the matrix W now has the form 
+
+W =
+
+" ¯Cz k1 
+
+> ℓ
+
++ vk1 
+
+> ℓ
+
+· · · ¯Cz kμ 
+
+> ℓ
+
++ vkμ
+
+> ℓ
+
+uk1 
+
+> ℓ
+
+· · · ukμ
+
+> ℓ
+
+#
+
+= CZ + V, 
+
+where the columns of V are [( vkj 
+
+> ℓ
+
+)⊤ 0] ⊤, j = 1 , . . . , μ .Hence, as in the previous case, from (16) we get 
+
+Θi+1 = ˆQ +  Φi + KiEZ −1⊤ Θi+1  Φi + KiEZ −1 ,
+
+with ˆQ =  C + V Z −1⊤ ¯Q  C + V Z −1. Since ¯Q contains the cost’s weights, this implies solving an optimization problem for a “disturbed cost”, as well as considering the least-squares system given by ( ˆA, ˆB) as in the previous case. It is a matter of future research to investigate how this affects the controller performance. In the following section, we show how the proposed Q-learning controller compares with a traditional RL algorithm that uses neural network approximations. IV. SIMULATION EXAMPLE Consider a system with xt ∈ R3 and ut ∈ R2 given by 
+
+xt+1 =
+
+
+
+0.7x1,t 
+
+0.9x2,t + x31,t − x21,t 
+
+0.8x3,t − x2,t + x51,t 
+
+ +
+
+
+
+0 01 00 1
+
+ ut.
+
+The output is yt = xt ∈ R3, i.e., state measurements are available. This is not necessary for the application of our method, but it allows to compare with the RL al-gorithm in [10 ] that requires state information. This sys-tem admits a KLE, for example by taking Ψ( xt) =[x1,t x2,t x3,t x21,t x31,t x51,t ]⊤ ∈ R6. Information about these functions is not used in Algorithm 2. The cost function is chosen as (3) with Q = I3 and R = I2.# iter avg. cost error avg. time ( s)QL 10 1.0127 × 10 −16 2.012 × 10 −3
+
+RL-NN1 10 4 4.3547 × 10 −2 7.676 × 10 0
+
+RL-NN2 10 4 1.0167 × 10 −3 9.089 × 10 0
+
+TABLE I COMPARISON BETWEEN ALGORITHM 2 (QL) AND THE RL ALGORITHM IN [10] FOR TWO DIFFERENT NN S (RL-NN1 AND RL-NN2). 
+
+Data is collected by applying a uniformly distributed ran-dom input to the system, u ∈ U (−1, 1) m. The rank condition in Definition 2 was verified. Since the system is stable, K0 =0 is an initial stabilizing policy. We compare the performance of Algorithm 2 with the RL algorithm in [10], where NNs as in (4) are used for the actor-critic approximators. Since the user has no knowledge of the system model, we test two different sets of basis functions choices. First, the basis func-tions in (4) are chosen as ϕc(xt) = [( xt⊗xt)⊤ x41,t x61,t ]⊤
+
+and ϕa(xt) = [ x⊤ 
+
+> t
+
+(xt ⊗xt)⊤]⊤, where ⊗ is the Kronecker product (call this example RL-NN1). This choice of functions can only inexactly approximate the optimal controller. Then (example RL-NN2), we repeat the experiment but using the basis functions ϕc(xt) = Ψ( xt) ⊗ Ψ( xt) and ϕa(xt) =Ψ( xt), where Ψ was defined above. This selection of basis functions is rich enough to yield the optimal controller, if the optimal weights Wc, W a are obtained. After running each of the algorithms, we apply the result-ing controllers to the system for the same initial conditions, and compute the corresponding costs. Algorithm 2 is run for only ten iterations. To achieve an acceptable performance with the algorithm in [10], we execute it for 10000 iterations. The resulting controllers are applied to the system 100 times for random initial conditions. The relative error between the resulting cost and the optimal cost (obtained from model knowledge) is computed and averaged. The results, together with the computation time, are displayed in Table I. This shows the superior performance of our algorithm. Note that, although the example RL-NN2 had the potential to reach optimality, it failed to do so because the training method in [10] does not guarantee convergence of the NN weights to their ideal values. The proposed Algorithm 2 achieves optimal performance with a much lower computation time, and without the need to know the vector of functions Ψ( x).V. CONCLUSION In this paper, we showed that a Q-learning algorithm with strong stability and convergence properties can be used to de-termine optimal controllers for the class of nonlinear systems that admit a Koopman linear embedding. Conditions for the existence of an exact KLE are given in [20], and they include, for example, certain classes of polynomial systems (cf. the system in Section IV). In this case, the optimal controller can be obtained without any knowledge of the mathematical model, the lifting functions, or the system state. From the analysis in Section III-C it can be noted that, when the KLE is inexact, as the magnitude of the approximation error goes to zero, the optimal controller is recovered. Future research includes designing algorithms with robustness properties that can better overcome the KLE approximation errors that are encountered in most applications. REFERENCES [1] R. S. Sutton and A. G. Barto, Reinforcement Learning: An Introduc-tion , 2nd ed. Cambridge, MA: MIT Press, 2018. [2] D. P. Bertsekas, Dynamic Programming and Optimal Control , 3rd ed. Belmont, MA: Athena Scientific, 2005, vol. I. [3] S. J. Bradtke, B. E. Ydstie, and A. G. Barto, “Adaptive linear quadratic control using policy iteration,” in Proceedings of 1994 American Control Conference , vol. 3, 1994, pp. 3475–3479. [4] B. Kiumarsi, F. L. Lewis, and Z.-P. Jiang, “ H∞ control of linear discrete-time systems: Off-policy reinforcement learning,” Automatica ,vol. 78, pp. 144–152, 2017. [5] V. G. Lopez, M. Alsalti, and M. A. M¨ uller, “Efficient off-policy Q-learning for data-based discrete-time LQR problems,” IEEE Transac-tions on Automatic Control , vol. 68, no. 5, pp. 2922–2933, 2023. [6] M. Alsalti, V. G. Lopez, and M. A. M¨ uller, “An efficient data-based off-policy Q-learning algorithm for optimal output feedback control of linear systems,” in Proceedings of the 6th Annual Learning for Dynamics & Control Conference , ser. Proceedings of Machine Learning Research, A. Abate, M. Cannon, K. Margellos, and A. Pa-pachristodoulou, Eds., vol. 242. PMLR, 15–17 Jul 2024, pp. 312–323. [7] X. Wang, S. Wang, X. Liang, D. Zhao, J. Huang, X. Xu, B. Dai, and Q. Miao, “Deep reinforcement learning: A survey,” IEEE Transactions on Neural Networks and Learning Systems , vol. 35, no. 4, pp. 5064– 5078, 2024. [8] B. Kiumarsi, K. G. Vamvoudakis, H. Modares, and F. L. Lewis, “Opti-mal and autonomous control using reinforcement learning: A survey,” 
+
+IEEE Transactions on Neural Networks and Learning Systems , vol. 29, no. 6, pp. 2042–2062, 2018. [9] D. Liu, S. Xue, B. Zhao, B. Luo, and Q. Wei, “Adaptive dynamic programming for control: A survey and recent advances,” IEEE Transactions on Systems, Man, and Cybernetics: Systems , vol. 51, no. 1, pp. 142–160, 2021. [10] T. Dierks and S. Jagannathan, “Online optimal control of nonlin-ear discrete-time systems using approximate dynamic programming,” 
+
+Math. Control Signal Systems , vol. 9, no. 3, pp. 361–369, 2011. [11] A. Al-Tamimi, F. L. Lewis, and M. Abu-Khalaf, “Discrete-time nonlinear HJB solution using approximate dynamic programming: Convergence proof,” IEEE Transactions on Systems, Man, and Cy-bernetics, Part B (Cybernetics) , vol. 38, no. 4, pp. 943–949, 2008. [12] J. C. Willems, P. Rapisarda, I. Markovsky, and B. L. De Moor, “A note on persistency of excitation,” Systems & Control Letters , vol. 54, no. 4, pp. 325–329, 2005. [13] M. Alsalti, V. G. Lopez, and M. A. M¨ uller, “Notes on data-driven output-feedback control of linear MIMO systems,” IEEE Transactions on Automatic Control , vol. 70, no. 9, pp. 6143–6150, 2025. [14] X. Shang, J. Cort´ es, and Y. Zheng, “Willems’ fundamental lemma for nonlinear systems with Koopman linear embedding,” IEEE Control Systems Letters , vol. 8, pp. 3135–3140, 2024. [15] A. Mauroy, I. Mezi´ c, and Y. Susuki, Eds., The Koopman Operator in Systems and Control: Concepts, Methodologies and Applications .Cham, Switzerland: Springer Cham, 2020. [16] R. Str¨ asser, K. Worthmann, I. Mezi´ c, J. Berberich, M. Schaller, and F. Allg¨ ower, “An overview of Koopman-based control: From error bounds to closed-loop guarantees,” Annual Reviews in Control , vol. 61, p. 101035, 2026. [17] V. S. Donge, B. Lian, F. L. Lewis, and A. Davoudi, “Data-efficient reinforcement learning for complex nonlinear systems,” IEEE Trans-actions on Cybernetics , vol. 54, no. 3, pp. 1391–1402, 2024. [18] L. Song, J. Wang, and J. Xu, “A data-efficient reinforcement learning method based on local Koopman operators,” in 2021 20th IEEE Inter-national Conference on Machine Learning and Applications (ICMLA) ,2021, pp. 515–520. [19] L. C. Iacob, R. T´ oth, and M. Schoukens, “Koopman form of nonlinear systems with inputs,” Automatica , vol. 162, p. 111525, 2024. [20] X. Shang, M. Haseli, J. Cort´ es, and Y. Zheng, “On the existence of Koopman linear embeddings for controlled nonlinear systems,” 
+
+arXiv:2602.14537 , 2026. [21] X. Shang, J. Cort´ es, and Y. Zheng, “On the exponential stability of Koopman model predictive control,” arXiv:2511.02008 , 2025.

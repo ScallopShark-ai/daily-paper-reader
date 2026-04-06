@@ -1,0 +1,558 @@
+Title: Principal Prototype Analysis on Manifold for Interpretable Reinforcement Learning
+
+URL Source: https://arxiv.org/pdf/2603.27971v2
+
+Published Time: Wed, 01 Apr 2026 01:18:26 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+> PAPER
+
+# Principal Prototype Analysis on Manifold for Interpretable Reinforcement Learning 
+
+Bodla Krishna Vamshi 1 and Haizhao Yang 2 
+
+> 1Department of Computer science, University of Maryland College park, USA
+> 2Department of Mathematics, University of Maryland College park, USA
+> Keywords: Interpretability, Reinforcement learning agents, Manifold learning
+
+Abstract 
+
+Recent years have witnessed the widespread adoption of reinforcement learning (RL), from solving real-time games to fine-tuning large language models using human preference data significantly improving alignment with user expectations. However, as model complexity grows exponentially, the interpretability of these systems becomes increasingly challenging. While numerous explainability methods have been developed for computer vision and natural language processing to elucidate both local and global reasoning patterns, their application to RL remains limited. Direct extensions of these methods often struggle to maintain the delicate balance between interpretability and performance within RL settings. Prototype-Wrapper Networks (PW-Nets) have recently shown promise in bridging this gap by enhancing explainability in RL domains without sacrificing the efficiency of the original black-box models. However, these methods typically require manually defined reference prototypes, which often necessitate expert domain knowledge. In this work, we propose a method that removes this dependency by automatically selecting optimal prototypes from the available data. Preliminary experiments on standard Gym environments demonstrate that our approach matches the performance of existing PW-Nets, while remaining competitive with the original black-box models. 
+
+1 Introduction 
+
+Deep reinforcement learning (RL) models have achieved state-of-the-art performance in domains such as Go Silver et al. [2016], Chess Silver et al. [2017], inverse scattering Jiang et al. [2022], and self-driving cars Kiran et al. [2021]. More recently, RL has been successfully applied to align large language models with human preferences, receiving considerable attention as a powerful post-training strategy using extensive human feedback data Ouyang et al. [2022], Rafailov et al. [2024]. However, despite these advances, the deployment of RL agents in sensitive domains remains limited due to the opaque nature of their decision-making processes. Extracting the rationale behind an agent’s actions in a human-interpretable format remains a significant challenge, yet doing so is crucial for understanding failure modes and ensuring trust in these systems. To address this challenge, prototype-based networks have emerged as a promising approach for enhancing the interpretability of deep learning models. ProtoPNet Chen et al. [2019], initially proposed for image classification tasks, introduced pre-hoc interpretability by associating predictions with learned prototype representations. This idea was later extended to deep RL with Prototype-Wrapper Networks (PW-Nets) Kenny et al. [2023], which provide post-hoc interpretability while preserving the performance of the underlying black-box agent. By incorporating exemplar-based reasoning, PW-Nets allow users to inspect and understand the agent’s actions through user-defined reference examples, without degrading task performance. Despite these recent advantages, there is a remaining challenge to automatically and efficiently discover data-adaptive reference examples for interpreting RL behaviors, since manually curated prototypes present several limitations: Human-selected prototypes are costly to acquire, difficult to scale, and often lack consistency across environments, reducing the reproducibility and generalization of explanations. To overcome the above limitations, we propose our principal prototype analysis on manifold: an automated prototype sampling method that eliminates the need for manual intervention and selects prototypes adaptive to RL tasks on the data manifold. To the best of our knowledge, this is among the first works to explore automated prototype discovery in reinforcement learning settings while retaining the performance of the black-box agent. Our approach leverages a combination of metric and manifold learning objectives to select prototypes directly from the encoded state space that reflects a low-dimensional 
+
+> arXiv:2603.27971v2 [cs.LG] 31 Mar 2026
+
+geometric representation of the RL task, providing a more scalable and principled mechanism for prototype discovery. The code is publicly available at § Code 
+
+• Automated and Decoupled Prototype Discovery: Our method proposes a novel two-stage architecture that decouples prototype discovery from policy optimization. In the first stage, it automatically selects prototypes from the agent’s trajectory data using a lightweight neural network trained with combined manifold and metric learning objectives, removing the need for human-curated examples. In the second stage, these prototypes are fixed and integrated into the PW-Net for interpretable action prediction, preserving black-box performance. 
+
+• Geometry-Aware and Faithful Prototypes via Real Instances: Instead of learning abstract embeddings, our method grounds each learned proxy vector in real training samples by mapping them to their nearest encoded instance. This ensures prototypes are both geometry-aware by leveraging piecewise-linear manifold approximations and semantically faithful, enabling more intuitive and interpretable behavior analysis of RL agents. 
+
+2 Related Works 
+
+Interpretability in neural network architectures, particularly in computer vision (CV) and natural language processing (NLP), has advanced substantially, encompassing both pre-hoc and post-hoc strategies. In CV, post-hoc methods such as Grad-CAM Selvaraju et al. [2019], RISE Petsiuk et al. [2018], and occlusion-based techniques like Meaningful Perturbations Fong and Vedaldi [2017] have enabled visual explanations by highlighting image regions most influential to predictions. However, these methods provide explanations only after decisions are made, offering limited insight into the decision-making process itself. In NLP, pre-hoc approaches include interpretable rule-based decision sets Lakkaraju et al. [2016] and, more recently, Proto-LM Xie et al. [2023], which embeds prototypical reasoning directly into large language models. Post-hoc methods such as LIME Ribeiro et al. [2016] and Integrated Gradients Sundararajan et al. [2017] are widely used to approximate local model behavior and attribute predictions to input features. Other efforts have challenged conventional practices; for instance, Jain and Wallace [2019] questioned the reliability of attention weights as explanations, while Arras et al. [2016] applied Layer-wise Relevance Propagation to trace decision origins in text classifiers. Although several interpretability techniques have been proposed for reinforcement learning (RL) models Vouros [2022], Milani et al. [2022], most prior work relies on interpretable surrogate models, such as decision trees, that imitate agent behavior in symbolic domains. These approaches, however, do not scale to complex environments with high-dimensional observations such as high-dimensional pixel-based observations. In deep RL settings, most interpretability research has focused on post-hoc methods utilizing attention mechanisms Zambaldi et al. [2019], Mott et al. [2019] or tree-based surrogates Liu et al. [2018], but these often fall short in revealing the underlying reasoning or intent of the agent Rudin et al. [2021]. Some approaches attempt to distill recurrent neural network (RNN) policies into finite-state machines Danesh et al. [2021], Koul et al. [2018], but such methods can yield opaque explanations and are constrained to specific architectures. Our work builds on prototype-based neural networks, which are inherently interpretable by design. These models associate test instances with prototypical examples during the forward pass, enabling intuitive, exemplar-based reasoning. A foundational example of this approach was presented by Li et al. [2017], who introduced a pre-hoc method that learns prototypes in latent space and classifies inputs based on their L2 distance to these prototypes. This method also required a decoder to visualize prototype representations. A notable extension was ProtoPNet Chen et al. [2019], which associated prototypes with image parts rather than entire images, enhancing fine-grained interpretability. The prototype network paradigm has been substantially extended since ProtoPNet, with several lines of work addressing its core limitations. ProtoTree Nauta et al. [2021] embedded prototype reasoning within a hierarchical decision tree structure, enabling global explanations through a sequence of prototype comparisons rather than a single similarity score. PIPNet Nauta et al. [2023] further improved visual coherence by enforcing that prototypes correspond to contiguous, human-interpretable image patches rather than distributed feature vectors. In the few-shot learning literature, Prototypical Networks Snell et al. [2017] demonstrated that class-level prototype representations computed as the mean of support set embeddings provide a powerful inductive bias for generalization, establishing the theoretical basis for prototype-based reasoning in low-data regimes. Building on this, PAL Arik and Pfister [2019] introduced prototype-based attentive learning to dynamically weight prototype contributions, improving robustness to intra-class variation. A common limitation across these methods is that prototypes are either learned end-to-end alongside the classification objective, risking a performance-interpretability tradeoff, or fixed as simple class statistics such as means or medoids, which fail to capture the intrinsic geometry of the learned representation space. Our method addresses this gap by decoupling prototype discovery from task optimization and grounding prototype selection in the manifold structure of the encoded state space, ensuring that prototypes are both geometrically faithful and discriminative without degrading task performance. A related but distinct line of interpretability research focuses on concept-based explanations, which seek to explain model behavior in terms of high-level semantic concepts rather than individual training instances. Testing with Concept Activation Vectors (TCAV) Kim et al. [2018] quantifies the sensitivity of model predictions to user-defined concept directions in activation space, enabling global explanations without modifying the model architecture. Concept Bottleneck Models (CBMs) Koh et al. [2020] extend this idea by explicitly conditioning predictions on a learned concept layer, allowing human intervention at inference time. More recent work such as ConceptSHAP Yeh et al. [2022] has sought to automate concept discovery by identifying a complete and minimal set of concepts that explain model behavior without requiring predefined concept annotations. While these approaches provide semantically rich explanations, they share two limitations that constrain their applicability to RL settings: they typically require either predefined concept vocabularies or auxiliary concept-annotated datasets, and they do not ground explanations in concrete training instances, making it difficult for non-expert users to interpret agent behavior through direct analogy. Our prototype-based approach complements concept-level methods by providing instance-level, exemplar-based explanations that are immediately interpretable without domain-specific concept supervision, while the geometry-aware selection mechanism ensures that chosen exemplars faithfully represent the decision-relevant structure of the agent’s learned state representation. 
+
+3 Methodology 
+
+3.1 Motivation 
+
+Prototype-based methods offer an interpretable way to associate each class with representative examples; here the representative examples are termed as prototypes. A straightforward baseline to define prototypes is using simple statistics such as the class mean or medoids in the embedding space. However, such naive approaches fail to capture the intrinsic geometry of encoded representations: they are biased by outliers, insensitive to multi-modal distributions within classes, and often yield prototypes that are statistically central but semantically uninformative. To construct meaningful prototypes, it is essential to account for the geometry of the data distribution itself. According to the manifold hypothesis Cayton [2005], high-dimensional representations typically reside on lower-dimensional manifolds. Leveraging this property enables geometry-aware prototype sampling. Classical manifold learning techniques, however, come with limitations methods like t-SNE van der Maaten and Hinton [2008], UMAP McInnes et al. [2020], and LLE Roweis and Saul [2000] emphasize neighborhood preservation but often distort local dependencies or fail to provide consistent global structure. To address this, we adopt a piecewise-linear manifold learning approach in which nonlinear manifolds are decomposed into locally linear regions. This design ensures that prototypes are drawn from regions that reflect local geometry, avoiding the pitfalls of global averages or distorted embeddings. While manifold learning preserves geometric structure, prototypes must also be discriminative across classes. Geometry alone does not guarantee that prototypes tightly capture intra-class consistency or maximize inter-class separation. To achieve this, we incorporate a metric learning objective. Methods such as triplet or contrastive loss require predefined prototypes and extensive sample mining, which is inefficient and often unstable. Instead, we employ Proxy-Anchor loss, which introduces learnable class-level proxy vectors that directly enforce compact clustering within a class and clear separation between classes. After training, each proxy is mapped to its nearest training instance, yielding prototypes that are simultaneously geometry-aware and discriminative. In Chen et al. [2019], the notion of learnable prototypes was introduced for image classification, where prototype learning was jointly optimized alongside the classification objective. While this approach proved effective for supervised image tasks, its adaptation to reinforcement learning in Kenny et al. [2023] (PW-Net*) resulted in noticeably weaker performance compared to black-box RL models. To overcome this limitation, we propose to decouple these objectives into two sequential stages. In the first stage, we focus on sampling prototypes that serve as robust and representative anchors for each class. In the second stage, these prototypes are fixed and used within PW-Net, which is then trained exclusively on the RL objective. 
+
+3.2 Dataset 
+
+Our method begins with the assumption that we have access to a pre-trained policy πbb operating within a Markov Decision Process (MDP) Sutton and Barto [2015]. Since all policies used in our experiments are implemented as neural network architectures, we assume that each policy concludes with a final linear layer. Under this setting, the policy πbb can be decomposed into two components: an encoder fenc , which maps the input state s to a latent representation z, and a final linear layer defined by weights W and bias b. The resulting policy function can be expressed as: 
+
+πbb (s) = W f enc (s) + b, 
+
+Where z = fenc (s) represents the encoded state.To construct the dataset used for training our prototype selection mechanism, we execute the pre-trained agent in its original environment for n
+
+time steps. During this rollout, we collect encoded state–action pairs, resulting in a dataset D:
+
+D ← { (zi, π bb (si)) }ni=1 .
+
+3.3 Training overview  
+
+> Figure 1. Overview of the proposed method
+
+As mentioned in 3.1, our method consists of two stages. In the first stage of our method, we initialize a simple neural network hθ and train it on Dataset D to jointly optimize manifold learning Eq.: 4 and metric learning objectives Eq.: 2. The neural network hθ learns to map the high-dimensional encoded representations into lower dimensions. Before the training process, we initialize the proxies θq and θm; here both the proxies are unique for each class and initiated randomly with θq = θm. The proxy vector θq is learned using the metric learning objective Eq.: 2 and updated via back-propagation. The proxy vector θm is updated via the Momentum update He et al. [2020] where γ is the momentum constant. 
+
+θm ← γθ m + (1 − γ)θq (1) Before training our model hθ , we reformat the dataset D to consist of pairs of encoded state representations and their corresponding discretized actions (Section 4.1). This discretization allows the use of a metric learning objective Eq.: 2 that clusters encoded states with similar actions and separates those with dissimilar ones, and also enables learning discriminative prototypes. During training, for every mini-batch B we build linear piecewise manifolds as outlined in Section 3.4. For every point in B, we then compute the manifold-based similarity following the procedure in Section 3.5. This similarity measure is used to compute the manifold point-to-point loss Lmanifold . At the same time, we compute the Proxy Anchor loss LPA using randomly initialized class proxies θq and latent representations z in batch B. The final loss is computed as 
+
+Ltotal = LPA + Lmanifold .The manifold point-to-point loss is designed to reduce the distance between points lying on the same manifold, thus preserving local geometric structure while increasing the distance between points on different manifolds. In contrast, the Proxy Anchor loss encourages samples from the same class to cluster closer together while pushing samples from different classes further apart; this encourages the discriminative learning of prototypes. For every epoch, the network hθ is updated through backpropagation, and the proxy vectors are updated according to the procedure described in Eq.: 1. Once the training is completed, we use the learned proxy vectors θm to select the nearest training data sample as prototypes for each class to be used in the stage of two of training PW-net; here, for every class, there is only θm being initialized, i.e., we will be only getting one prototype per class. 
+
+3.4 Manifold construction 
+
+Based on the Manifold hypothesis, we assume that the encoded state representations produced by the policy πbb , though inherently complex and non-linear, can be locally approximated into smaller chunks of linear regions. Our approach leverages this structural assumption to automatically identify representative prototypes that capture the essential characteristics of each action class. To efficiently approximate the structure of the data manifold, we adopt a piecewise linear manifold learning method, which constructs localized m-dimensional linear submanifolds around selected anchor points. Given a batch B containing N data points, we randomly select n of them to serve as anchors. For each anchor point hθ (zi), we initially collect its m−1 nearest neighbors in the encoded representation space based on Euclidean distance to form the neighborhood set Xi.The manifold expansion process proceeds iteratively by attempting to add the m-th nearest neighbor to Xi. After each addition, we recompute the best-fit m-dimensional submanifold using PCA and assess whether all points in Xi can be reconstructed with a quality above a threshold 
+
+T %. If the reconstruction quality remains acceptable, the new point is retained in Xi; otherwise, it is excluded. This evaluation is repeated for subsequent neighbors N (hθ (xi)) j for 
+
+j ∈ { ml + 1 , . . . , k }, gradually constructing a local linear approximation of the manifold. The final set Xi comprises all points in the anchor’s neighborhood that lie well within an 
+
+m-dimensional linear submanifold. A basis for this submanifold is computed by applying PCA to 
+
+Xi and extracting the top m eigenvectors. We choose PCA for this task as it is computationally efficient and well-suited for capturing linear approximations of non-linear data, in alignment with our assumption of locally linear structure within the high-dimensional state space. 
+
+3.5 Loss Functions 
+
+Proxy Anchor Loss: We use a modified version of proxy anchor loss with Euclidean distance instead of cosine similarity: 
+
+LPA = 1
+
+|Θ+|
+
+X 
+
+> θq∈Θ+
+
+log 
+
+1 + X
+
+> z∈Z +
+> θq
+
+exp ( −α · (∥hθ (z) − θq ∥2 − ϵ)) 
+
+ (2) + 1
+
+|Θ|
+
+X 
+
+> θq∈Θ
+
+log 
+
+1 + X
+
+> z∈Z −
+> θq
+
+exp ( α · (∥hθ (z) − θq ∥2 − ϵ)) 
+
+ (3) Here, Θ denotes the set of all proxies, where each proxy θq ∈ Θ serves as a representative vector for a class. The subset Θ + ⊆ Θ includes only those proxies that have at least one positive embedding in the current batch B. For a given proxy θq , the latent representations Z in B (where 
+
+z ∈ Z ) are partitioned into two sets: Z+ 
+
+> θq
+
+, the positive embeddings belonging to the same class as 
+
+θq , and Z− 
+
+> θq
+
+= Z \ Z + 
+
+> θq
+
+, the negative embeddings. The scaling factor α controls the sharpness of optimization by amplifying hard examples when large (focusing gradients on difficult pairs) or smoothing training when small (spreading weight across all pairs). The margin ϵ enforces a buffer zone between positives and negatives by requiring positives to be closer to their proxies and negatives to be sufficiently farther away. 
+
+Manifold Point-to-Point Loss: This loss helps in estimating the point to point similarities preserving the geometric structure:               
+
+> Lmanifold =X
+> i,j
+> (δ·(1 −s(zi, z j)) − ∥ hθ(zi)−hθ(zj)∥2)2(4)
+
+where s(zi, z j ) is the manifold similarity computed as: 
+
+s(zi, z j ) = s′(zi, z j ) + s′(zj , z i)2with s′(zi, z j ) = α(zi, z j ) · β(zi, z j ), where:         
+
+> α(zi, z j) = 1(1 + o(zi, z j)2)Nα
+> β(zi, z j) = 1(1 + p(zi, z j)) Nβ
+
+δ is the scaling factor, it determines the maximum separation between dissimilar points. The loss encourages Euclidean distances in the embedding space to match manifold-based dissimilarities 1 − s(zi, z j ), ensuring that the learned metric space respects the underlying manifold structure. 
+
+o(zi, z j ) is the orthogonal distance from point zi to the manifold of point zj , and p(zi, z j ) is the projected distance between point zj and the projection of zi on the manifold. The parameters Nα
+
+and Nβ control how rapidly similarity decays with distance, with Nα > N β ensuring that similarity decreases more rapidly for points lying off the manifold than for points on the same manifold. 
+
+Distance Calculation. For each point pair ( zi, z j ), the distances o(zi, z j ) and p(zi, z j ) are calculated using the manifold basis vectors Pj associated with point zj . The projection of zi onto 
+
+Pj is computed as proj Pj (zi) = zj + P
+
+> k
+
+⟨zi − zj , v k⟩vk, where vk are the basis vectors of Pj . The orthogonal distance is then o(zi, z j ) = ∥zi − proj Pj (zi)∥2, and the projected distance is 
+
+p(zi, z j ) = ∥proj Pj (zi) − zj ∥2. This process is repeated for all point pairs, capturing the full geometric structure of the data manifold. The total loss is the sum of these two components, allowing the model to simultaneously learn a metric space that respects action classes while preserving the geometric structure of the data. 
+
+3.6 Performance review 
+
+The action output a′ from the Prototype-Wrapper Network (PW-Net) can in some cases generalize better than the original black-box model’s action a Snell et al. [2017], Li et al. [2021], due to improved alignment with class-representative prototypes—even without further interaction with the environment. This generalization is critically influenced by the quality and representativeness of the selected prototypes. The black-box policy πbb computes the action as: 
+
+a = W f enc (s) + b
+
+where z is the latent state representation obtained from the encoder. PW-Net enforces structured reasoning through prototypes and computes similarity scores as: 
+
+a′ 
+
+> i
+
+=
+
+> Ni
+
+X
+
+> j=1
+
+W ′ 
+
+> i,j
+
+sim( zi,j , p i,j )The similarity function is defined as: sim( zi,j , p i,j ) = log 
+
+ (zi,j − pi,j )2 + 1 (zi,j − pi,j )2 + ϵ
+
+
+
+.
+
+This ensures actions are chosen based on structured prototype distances rather than raw neural activations. The model uses prototype-based regularization, which provides better generalization by using the learned policy πbb as additional input signal. For simplicity assume a deep RL domain with only two actions possible, the action can be computed as a′
+
+a′ 
+
+> 1
+
+= W ′ 
+
+> 1,1
+
+log d21,1 + 1 
+
+d21,1 + ϵ
+
+!
+
++ W ′ 
+
+> 1,2
+
+log d21,2 + 1 
+
+d21,2 + ϵ
+
+!
+
+di,j = zi,j − pi,j .
+
+Where W ′ is the manually defined weight matrix for each action, the output a′ is heavily dependent on the similarity score between the zi,j and pi,j , this metric enables PW-Net to avoid completely mimicking the policy πbb and instead use it as an additional input signal along with the choice of prototype to better align responses with human choices. 3.7 Model Architecture 
+
+This section includes details about the black-box models, user study, and the model architecture (hθ ) used in our method. We used a single-layer network with intermediate normalizations. The prototype size is set to 50 for all the environments. The motivation for using a simpler model is to avoid losing information in the encoded vectors during manifold construction.       
+
+> Table 1. Model Architecture
+> Layer Layer Parameters
+> Linear (latent size z, prototype size) InstanceNorm1d prototype size ReLU -
+
+4 Experiments 
+
+4.1 Action Discretization 
+
+Our prototype discovery framework requires discrete class labels to enable metric learning and clustering of encoded state representations. While such labels are naturally available in discrete-action environments, continuous control settings lack an explicit class structure. To address this, we discretize the continuous action space by mapping each action vector to a single dominant action class. Specifically, we transform the action values using a sigmoid function and assign each encoded state to the class corresponding to the maximum activation. This process identifies the most influential control dimension at each state, thereby preserving the primary decision signal of the policy. We use absolute values of the action components prior to transformation to emphasize action magnitude rather than direction. This design choice aligns with our objective of capturing dominant behavioral modes for interpretability, rather than modeling fine-grained directional variations in control. For instance, in the Car Racing environment, the original action output is represented as a tuple [(acc, brake), left, right] . We first restructure this into a unified vector format: [acc, brake, left, right] . The encoded state representation is then assigned a discrete label based on the index of the maximum value obtained after applying the sigmoid function to this transformed vector. This discretization procedure is consistently applied across all continuous action environments, including the Bipedal Walker and Humanoid Standup environments, enabling compatibility with our prototype selection and metric learning pipeline. Importantly, our goal is not to exactly reconstruct the continuous action space, but to enable interpretable grouping of states based on dominant action tendencies. This discretization provides a consistent and scalable mechanism for prototype discovery across both discrete and continuous domains, while maintaining alignment with the agent’s decision structure. Empirically, we observe that this transformation does not degrade policy performance, as demonstrated in Section 4.2. 
+
+4.2 Numerical Results                                                     
+
+> Method Car Racing BipedalWalker HumanoidStandup (Reward) (Reward) (Reward)
+> Our method 220.91 ±0.85 312.10 ±0.17 75112.60 ±840.25
+> PW-Net 220.72 ±0.34 308.27 ±3.41 74980.37 ±816.84 VIPER N/A -92.36 ±10.09 -PW-Net* -10.23 ±2.20 197.85 ±52.19 -k-means -1.56 ±0.81 -105.68 ±0.54 -Black-Box 219.56 ±0.85 312.32 ±0.21 74930.50 ±837.61
+> Table 2. Reward comparison on Car Racing, Bipedal Walker, and Humanoid Standup tasks
+
+Tables 2 and 3 present the performance comparison across six reinforcement learning environments. All methods are evaluated under a controlled setting using identical encoder architectures (black-box), training procedures, hyperparameters (including epochs), and random seeds. The only difference between methods lies in the prototype selection strategy. Our method consistently matches or outperforms PW-Net across all environments, while achieving performance comparable to the original black-box policies. This demonstrates that automated prototype selection can improve interpretability without sacrificing policy performance. We do not report Method Pong (Reward) Lunar Lander (Reward) Acrobot (Reward)                                                
+
+> Our method 14.96 ±0.45 218.01 ±1.47 -83.12 ±2.39
+> PW-Net 10.72 ±0.26 216.38 ±1.69 -84.67 ±2.42 VIPER N/A -423.22 ±53.91 -PW-Net* 8.64 ±1.27 131.01 ±89.52 -k-means -19.47 ±2.49 -423.41 ±97.85 -Black-Box 12.07 ±0.39 214.75 ±1.08 -85.54 ±3.37
+> Table 3. Reward comparison on Pong, Lunar Lander, and Acrobot environments.
+
+results for VIPER, PW-Net*, and k-means in certain high-dimensional environments (e.g. HumanoidStandup and Acrobot), as these methods fail to scale to such settings and do not produce meaningful policies in preliminary experiments. The PW-Net Kenny et al. [2023] relied on human-curated prototypes in visually interpretable environments such as Car Racing. However, this approach becomes infeasible in complex domains with high-dimensional, non-visual state spaces and large continuous action sets. For instance, the Humanoid Standup environment (Section 4.3) features a high-dimensional vector input and 17 continuous control actions across joints and rotors, making manual prototype selection impractical without domain-specific tools or expertise. Our automated prototype selection method overcomes this limitation by leveraging geometric and class-level structure in the latent space. Notably, in the Humanoid Standup task, our approach achieves a mean reward of 75,112.60 (SE = 840.25), closely matching the original black-box model’s performance of 74,930.50 (SE = 837.61). This result demonstrates that our method retains performance even in settings where manual prototype curation is infeasible. For the new environments (Humanoid Standup and Acrobot) without manually curated prototypes, we use class-mean prototypes as a reproducible heuristic baseline. This does not reflect the original PW-Net design but provides a consistent comparison in settings where manual selection is infeasible. This follows the approach used by the PW-Net authors (Section 4.6) that they have used for training on the BipedalWalker and Lunar Lander environments. To analyze the effect of varying hyperparameters, we have performed an ablation study (Section 5) on the Bi-pedal and Atari Pong environments. To ensure a fair comparison, PW-Net and our method share the same encoder architecture, training procedure, hyperparameters (including learning rate, number of epochs), and random seeds. The only difference between the two methods lies in prototype selection: PW-Net relies on manually or heuristically selected prototypes, whereas our method automatically discovers prototypes through the proposed geometry-aware approach. This controlled setup isolates the effect of prototype selection on performance and interpretability. While the original PW-Net work evaluates on four environments with manually selected prototypes, we extend the evaluation to six environments. For environments without predefined prototypes, we employ class-mean representations as a standardized baseline. This choice ensures reproducibility and reflects realistic settings where expert-defined prototypes are unavailable. Importantly, this highlights a key limitation of PW-Net—its reliance on manual prototype selection—which our method addresses through automated, geometry-aware prototype discovery. 
+
+4.3 Black-Box Models 
+
+For the CarRacing environment, we used a CNN model trained using PPO JinayJain [2025]. This pre-trained model was evaluated under both IID and OOD settings during the user study. For Atari Pong, we used a simple CNN trained with the Double Dueling DQN method bhctsntrk [2025]. The model used for BipedalWalker was trained using TD3 nikhilbarhate99 [2025b], and the LunarLander model was trained using the Actor-Critic method nikhilbarhate99 [2025a]. These networks are relatively simple, reflecting the symbolic nature of their respective environments. For the HumanoidStandup and CartPole environments, we used models from Stable-Baselines3 Raffin et al. [2021], trained using PPO with an MLP policy. The diversity of environments, models, and algorithms demonstrates the robustness of our approach. 
+
+4.4 Training parameters 
+
+For the first phase of training prototype discovery we train our network for 200 epochs on the training dataset (Section 3.2) using two separate Adam optimizers: one for the network parameters and one for the proxy parameters. Both optimizers use a learning rate of 1e-3 , accompanied by a learning rate scheduler with decay rate ηt = 0 .97. The dimensionality of the encoded vector z
+
+varies depending on the environment and the encoder model, but generally falls near the order of 100. We use a mini-batch size of 128 samples and set the reconstruction threshold T to 90%. The scale parameter δ is set to 2 (the maximum distance between two points on a unit sphere), and the submanifold dimension m is fixed at 3. For the second phase training and evaluating the sampled prototypes within the PW-Net framework we use the Adam optimizer with a learning rate of 1e-2 , again paired with a scheduler using ηt = 0 .97. Training and evaluation are conducted over 5 independent iterations. In each iteration, the PW-Net model is trained for 10 epochs and evaluated over 30 simulation runs to compute the mean and standard deviation of the resulting rewards. All experiments were conducted on an NVIDIA RTX A6000 GPU. In the first stage of our method, we train a lightweight neural network hθ to sample prototypes, which requires approximately 640 MB of GPU memory and about 7 hours of training time without parallelization. With parallelized estimation of manifold-based similarities, the training time is reduced to roughly 2 hours, with a peak GPU memory usage of about 4700 MB across all environments. 
+
+4.5 User Study  
+
+> Figure 2. IID and OOD distribution plots for both user groups
+
+The interpretability of PW-Nets arises from their case-based reasoning approach, where decisions are explained through analogies to representative prototypical states. Prior work Kenny et al. [2023] demonstrated that human-selected prototypes enable users to form accurate mental models of agent behavior, supporting effective prediction of both successes and failures. Our automated prototype selection is designed to preserve this interpretability mechanism by identifying states that capture the same decision-critical features that human experts would highlight. To evaluate the plausibility and faithfulness of the sampled prototypes, and to analyze how prototype-based explanations influence participants’ ability to interpret and anticipate the agent’s decisions in both IID and OOD conditions, we conducted a user study in the CarRacing environment (Figure 5). Out of the six environments considered in our experiments, four are symbolic domains where states are represented as vectors of physical properties, while CarRacing and Atari Pong operate on raw pixels that can be visually interpreted. CarRacing was chosen because its driving actions are naturally understandable to non-expert users, making it suitable for visual inspection and evaluation Rudin et al. [2021]. Two groups of 25 participants were recruited. The first group interacted with PW-Nets using our sampled prototypes as global explanations, while the second group was assigned to a black-box condition in which participants were told: “The car has learned to complete the track as fast as possible in this environment by learning from millions of simulations, but no explanation is available.” In this condition, prototype images were replaced with text-only information, while the prototype group received visual exemplars that directly conveyed the agent’s reasoning process. This design isolates the contribution of prototypes to interpretability by contrasting a case-based explanation with no explanation. Figure 3. Comparison of Visual similarity between prototypes 
+
+Participants were presented with 20 scenarios: 10 in-distribution (ID) from the standard CarRacing-v0 environment where the agent drove safely, and 10 out-of-distribution (OOD) from a modified environment NotAnyMike [2025] introducing new road types and red obstacles that led to actual failure cases. After viewing the car’s current state and the corresponding explanatory condition, participants predicted whether the vehicle would operate safely on a five-point Likert scale. This setup assessed how well explanations enabled users to anticipate agent behavior in both familiar and novel situations. Results are summarized in Figure 5. In the ID scenarios, both groups produced similar ratings, indicating that participants could reliably interpret safe behavior in either condition. In contrast, for the OOD cases where the agent failed, participants in the prototype condition were more sensitive to these failures: their ratings more closely reflected the unsafe ground truth, while the black-box group tended to overestimate safety. This demonstrates that prototype-based explanations enhance interpretability by helping users anticipate failure modes, even if they do not increase overall reported confidence. In addition, we evaluated the interpretability of our sampled prototypes relative to the human-curated prototypes used in PW-Nets (Figure 4.5). For each action class, participants rated on a 1–5 scale how well the prototype represented the corresponding decision. For the acceleration class, ratings were comparable across both methods, while for the other classes human-curated prototypes were slightly preferred. While human-curated prototypes are slightly preferred in some cases, the observed differences are marginal. This suggests that our method achieves comparable interpretability in practice, while eliminating the need for manual prototype selection. Importantly, our method delivers this interpretability benefit in high-dimensional settings where human prototype selection is infeasible. 
+
+4.5.1 User Study details Two groups of 25 users each participated in the study. All participants provided informed consent. No personally identifiable information was collected. One group was presented with the black-box model (the ”Black-Box Group”) (Figure 4), while the other with sampled prototypes (the ”Sampled Prototypes Group”) (Figure 4). Both groups were given identical scenarios and instructions on how to rate them independently. The figure below shows a sample of the IID and OOD cases shown to users. 
+
+4.6 Method comparisons 
+
+VIPER Bastani et al. [2019] extracts interpretable decision-tree policies from trained RL agents via imitation learning. Although it offers global explanations, it is limited to low-dimensional settings and does not scale well to high-dimensional or continuous control environments. The k-means method selects prototypes by choosing the cluster centers within each action class. In contrast, PWnet* learns prototypes through a joint objective that combines a clustering loss and a separation loss while simultaneously optimizing for RL performance. Moreover, our approach Figure 4. Visual Comparison of Human surveyed and Automated Prototypes  
+
+> Figure 5. User Study Overview
+
+significantly reduces the reliance on subjective inputs, thereby promoting a more objective assessment of the prototypes. For all the environments, we used the same black-box models (Section 4.3) used in PW-net. For the Car Racing and Atari Pong environments, we recomputed the performance of the black-box models, but we retain the reported PW-Net Kenny et al. [2023] results for CarRacing and Pong, as their evaluation depends on human-surveyed prototypes, which cannot be faithfully reproduced. For all other environments, we recompute PW-Net under identical settings. In the case of symbolic domains, we constructed canonical prototypical action-space examples, where the action of interest was set to 1 or -1 and all others to 0, and subsequently mapped these to the closest training samples. These prototypes were then used to reevaluate PW-Net’s performance across the four symbolic domains in this work. 5 Ablation Study 
+
+To analyze the effect of each individual parameter, we have performed an ablation study on one model each from the Continuous and discrete action spaced environments. To achieve this we used the BipedalWalker and Atari pong environments respectively.    
+
+> 2468
+> 300
+> 305
+> 310
+> 315
+> 320
+> m
+> Reward
+
+(a) Reward vs m   
+
+> 0.40.60.81
+> 300
+> 305
+> 310
+> 315
+> γ
+> Reward
+
+(b) Reward vs γ  
+
+> 123
+> 300
+> 305
+> 310
+> 315
+> Nβ
+> Reward
+
+(c) Reward vs Nβ  
+
+> 246
+> 300
+> 305
+> 310
+> 315
+> Nα
+> Reward
+
+(d) Reward vs Nα  
+
+> 0.70.80.9
+> 300
+> 305
+> 310
+> 315
+> T
+> Reward
+
+(e) Reward vs T  
+
+> 123
+> 300
+> 305
+> 310
+> 315
+> δ
+> Reward
+
+(f) Reward vs δ  
+
+> 10 20 30
+> 300
+> 305
+> 310
+> 315
+> α
+> Reward
+
+(g) Reward vs α  
+
+> 00.10.2
+> 300
+> 305
+> 310
+> 315
+> ϵ
+> Reward
+
+(h) Reward vs ϵ  
+
+> 020 40
+> 308
+> 310
+> 312
+> 314
+> 316
+> 318
+> no.of prototypes
+> Reward
+
+(i) Reward vs no.of prototypes  
+
+> Figure 6. Ablation study on BipedalWalker environment
+
+5.1 Effect of m
+
+The parameter m denotes the dimension of the linear submanifold Xi, which locally approximates the data manifold around a point hθ (z). To examine its effect, we vary m in the range [2 , 8] with a step size of 1. As shown in (Figure 7 and Figure 6)(a), performance consistently decreases in both the environments as m increases. This trend arises because Xi is intended to approximate the immediate neighborhood of a point, which is inherently low-dimensional. Larger values of m may lead to overfitting, since only a limited number of nearby samples are available within a batch to reliably estimate Xi, thereby degrading performance. Furthermore, we observe that the computational overhead for prototype sampling increases with larger m, underscoring the trade-off between accuracy and efficiency. 2 4 6 8
+
+> 5
+> 10
+> 15
+> 20
+> m
+> Reward
+
+(a) Reward vs m   
+
+> 0.40.60.81
+> 5
+> 10
+> 15
+> 20
+> γ
+> Reward
+
+(b) Reward vs γ  
+
+> 123
+> 10
+> 12
+> 14
+> 16
+> Nβ
+> Reward
+
+(c) Reward vs Nβ  
+
+> 246
+> 10
+> 12
+> 14
+> 16
+> Nα
+> Reward
+
+(d) Reward vs Nα  
+
+> 0.70.80.9
+> 10
+> 12
+> 14
+> 16
+> T
+> Reward
+
+(e) Reward vs T  
+
+> 123
+> 10
+> 12
+> 14
+> 16
+> δ
+> Reward
+
+(f) Reward vs δ  
+
+> 10 20 30
+> 10
+> 12
+> 14
+> 16
+> α
+> Reward
+
+(g) Reward vs α  
+
+> 00.10.2
+> 10
+> 12
+> 14
+> 16
+> ϵ
+> Reward
+
+(h) Reward vs ϵ  
+
+> 010 20
+> 10
+> 12
+> 14
+> 16
+> no.of prototypes
+> Reward
+
+(i) Reward vs no.of prototypes  
+
+> Figure 7. Ablation study on Atari Pong environment
+
+5.2 Effect of γ
+
+The parameter γ denotes the momentum constant used to update the proxy vector θm during prototype sampling. Following He et al. [2020], higher values of γ are expected to yield improved performance, as the proxy updates become smoother and more stable. Consistent with this observation, (Figure 7 and Figure 6)(b) shows that in both models, performance improves as γ
+
+increases, highlighting the importance of stable momentum updates for effective representation learning. 
+
+5.3 Effect of Nα & Nβ
+
+The parameters Nα and Nβ control the decay of similarity based on the orthogonal and projected distances, respectively, of a point from the linear submanifold in the neighborhood of another point. We vary Nα in the range [1 , 6] with a step size of 1, and Nβ in the range [0 .5, 3] with a step size of 0 .5. As shown in (Figure 7 and Figure 6)(c), increasing Nβ leads to decrease in performance in both the environments. In contrast, (Figure 7 and Figure 6)(d) shows that performance improves with larger Nα in both the environments. This effect can be explained by the relationship between Nα and Nβ : as Nα approaches Nβ , a point A at distance ε within the linear neighborhood of a point B (and thus sharing many features with B and its neighbors) may be treated as equally dissimilar to B as another point C located at an orthogonal distance ε from the neighborhood of B. In the experiments when Nβ was varied Nα
+
+is set to 4, as Nβ increases from 0.5 to 3 it becomes closer to Nα which is leading to a decrease in performance. When Nα was varied from 1 to 6 Nβ was set to 0.5, as Nα increases from it becomes larger than Nβ which is leading to an increase in performance. 
+
+5.4 effect of T
+
+The reconstruction threshold T determines the quality of points admitted into the linear submanifold Xi. We vary T in the range [0 .7, 0.95] with a step size of 0 .05. As shown in (Figure 7 and Figure 6)(e), the models in both environments exhibit a clear upward trend in performance as 
+
+T increases, underscoring the importance of ensuring that only high-quality points are incorporated into Xi.
+
+5.5 Effect of δ
+
+The scaling factor δ regulates the maximum separation between dissimilar points. We vary δ in the range [0 .8, 3.2] with a step size of 0 .4. As shown in (Figure 7 and Figure 6)(f), the performance remains relatively stable across this range in both environments, highlighting the robustness of our method. 
+
+5.6 Effect of α
+
+The scaling factor α controls the sharpness of the exponential term in the Proxy Anchor loss. We vary its value over 5 , 10 , 15 , 20 , 25 , 30 , 32. As shown in (Figure 7 and Figure 6)(g), models in both environments exhibit an overall increasing trend in performance with larger α.
+
+5.7 Effect of ϵ
+
+The margin parameter ϵ enforces that positive embeddings are pulled within this distance from their corresponding class proxies. We vary its value across 0 .001 , 0.005 , 0.05 , 0.1, 0.2. As shown in (Figure 7 and Figure 6)(h), models in both the environments demonstrate stable performance across the range of ϵ, undermining its effect in the loss function. 
+
+5.8 Effect of no.of prototypes 
+
+To investigate the effect of prototype count on performance, we conducted an ablation study in the Bipedal Walker and Atari Pong environments. In Bipedal Walker 6(i), rewards consistently increased with additional prototypes until reaching a plateau. In contrast, in Atari Pong 7(i), rewards initially improved with more prototypes but began to decline beyond a certain point. We attribute this divergence to differences in state representation. Bipedal Walker is a symbolic domain where states encode physical properties such as position and velocity, providing relatively low-noise inputs. By comparison, Atari Pong represents states as raw pixels, which must be encoded by a neural network before prototype selection. This pixel-based encoding introduces noise, and as the number of prototypes increases, the accumulated noise degrades performance. 
+
+6 Conclusion and Future work 
+
+The application of Deep Reinforcement Learning (Deep RL) spans from automated game simulations to fine-tuning large language models (LLMs) using preference data. However, in the absence of transparency regarding the agent’s actions and intentions, deploying such systems in high-stakes or sensitive domains remains impractical Rudin [2019]. PW-Net addresses this challenge by providing interpretability for deep RL agents through example-based reasoning using human-understandable concepts. While relying on human-annotated prototypes offers valuable insights, it is not feasible across all domains. To overcome this limitation, our approach automatically samples prototypes from the training data itself, leveraging the geometric structure of the encoded state space to select representative and discriminative exemplars without requiring expert curation. Through user studies, we demonstrate that trust in the model’s behavior especially under out-of-distribution (OOD) scenarios where failures are likely can be effectively assessed using our automatically sampled prototypes, with participants better anticipating agent failures compared to a black-box baseline. Several promising directions remain open for future work. First, while our method supports a variable number of prototypes per class with performance scaling behavior analyzed across symbolic and pixel-based domains in Section 5 extending the prototype discovery framework to output spaces of significantly larger cardinality, such as those encountered in generative language modeling, presents an important challenge. In such settings, the action space may grow to vocabulary scale, and efficient prototype selection under these conditions would require hierarchical or clustering-based strategies that preserve the geometry-aware properties of our current approach. Xie et al. [2023] made initial progress in this direction for sentence classification, but prototype-based interpretability for open-ended generation remains largely unsolved. Second, our current framework operates post-hoc on a fixed pre-trained policy; an interesting extension would be to investigate whether geometry-aware prototype discovery can be incorporated as a soft regularizer during policy training itself, potentially guiding the encoder to produce representations that are both task-optimal and inherently more amenable to prototype-based explanation. Third, the piecewise-linear manifold construction currently operates on encoded state representations from a single policy. Extending this to multi-task or transfer learning settings where a shared encoder serves multiple policies across environments could yield prototypes that capture transferable, task-agnostic behavioral primitives, broadening the scope of interpretability beyond individual environment instances. Finally, evaluating our approach in higher-stakes real-world domains such as autonomous driving simulation and robotic manipulation, where prototype-based explanations could directly support human oversight and intervention, represents a natural and impactful next step. 
+
+7 Acknowledgments 
+
+The authors were partially supported by the US National Science Foundation under awards IIS-2520978, GEO/RISE-5239902, the Office of Naval Research Award N00014- 23-1-2007, DOE (ASCR) Award DE-SC0026052, and the DARPA D24AP00325-00. Approved for public release; distribution is unlimited. 
+
+References 
+
+Sercan O. Arik and Tomas Pfister. Protoattend: Attention-based prototypical learning, 2019. URL 
+
+https://arxiv.org/abs/1902.06292 .Leila Arras, Franziska Horn, Gr´ egoire Montavon, Klaus-Robert M¨ uller, and Wojciech Samek. Explaining predictions of non-linear classifiers in nlp, 2016. URL 
+
+https://arxiv.org/abs/1606.07298 .Osbert Bastani, Yewen Pu, and Armando Solar-Lezama. Verifiable reinforcement learning via policy extraction, 2019. URL https://arxiv.org/abs/1805.08328 .bhctsntrk. OpenAIPong-DQN: Solving atari pong game with duel double dqn in pytorch. 
+
+https://github.com/bhctsntrk/OpenAIPong-DQN , 2025. Accessed: 2025-09-22. Lawrence Cayton. Algorithms for manifold learning. 07 2005. Chaofan Chen, Oscar Li, Chaofan Tao, Alina Jade Barnett, Jonathan Su, and Cynthia Rudin. This looks like that: Deep learning for interpretable image recognition, 2019. URL 
+
+https://arxiv.org/abs/1806.10574 .Mohamad H. Danesh, Anurag Koul, Alan Fern, and Saeed Khorram. Re-understanding finite-state representations of recurrent policy networks, 2021. URL https://arxiv.org/abs/2006.03745 .Ruth C. Fong and Andrea Vedaldi. Interpretable explanations of black boxes by meaningful perturbation. In 2017 IEEE International Conference on Computer Vision (ICCV) . IEEE, October 2017. doi: 10.1109/iccv.2017.371. URL http://dx.doi.org/10.1109/ICCV.2017.371 .Kaiming He, Haoqi Fan, Yuxin Wu, Saining Xie, and Ross Girshick. Momentum contrast for unsupervised visual representation learning, 2020. URL https://arxiv.org/abs/1911.05722 .Sarthak Jain and Byron C. Wallace. Attention is not explanation, 2019. URL 
+
+https://arxiv.org/abs/1902.10186 .Hanyang Jiang, Yuehaw Khoo, and Haizhao Yang. Reinforced inverse scattering, 2022. URL 
+
+https://arxiv.org/abs/2206.04186 .JinayJain. deepracing: Implementing ppo from scratch in pytorch to solve carracing. 
+
+https://github.com/JinayJain/deep-racing , 2025. Accessed: 2025-09-22. Eoin M. Kenny, Mycal Tucker, and Julie Shah. Towards interpretable deep reinforcement learning with human-friendly prototypes. In The Eleventh International Conference on Learning Representations , 2023. URL https://openreview.net/forum?id=hWwY_Jq0xsN .Been Kim, Martin Wattenberg, Justin Gilmer, Carrie Cai, James Wexler, Fernanda Viegas, and Rory Sayres. Interpretability beyond feature attribution: Quantitative testing with concept activation vectors (tcav), 2018. URL https://arxiv.org/abs/1711.11279 .B Ravi Kiran, Ibrahim Sobh, Victor Talpaert, Patrick Mannion, Ahmad A. Al Sallab, Senthil Yogamani, and Patrick P´ erez. Deep reinforcement learning for autonomous driving: A survey, 2021. URL https://arxiv.org/abs/2002.00444 .Pang Wei Koh, Thao Nguyen, Yew Siang Tang, Stephen Mussmann, Emma Pierson, Been Kim, and Percy Liang. Concept bottleneck models, 2020. URL https://arxiv.org/abs/2007.04612 .Anurag Koul, Sam Greydanus, and Alan Fern. Learning finite state representations of recurrent policy networks, 2018. URL https://arxiv.org/abs/1811.12530 .Himabindu Lakkaraju, Stephen H. Bach, and Jure Leskovec. Interpretable decision sets: A joint framework for description and prediction. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining , KDD ’16, page 1675–1684, New York, NY, USA, 2016. Association for Computing Machinery. ISBN 9781450342322. doi: 10.1145/2939672.2939874. URL https://doi.org/10.1145/2939672.2939874 .Gen Li, Varun Jampani, Laura Sevilla-Lara, Deqing Sun, Jonghyun Kim, and Joongkyu Kim. Adaptive prototype learning and allocation for few-shot segmentation, 2021. URL 
+
+https://arxiv.org/abs/2104.01893 .Oscar Li, Hao Liu, Chaofan Chen, and Cynthia Rudin. Deep learning for case-based reasoning through prototypes: A neural network that explains its predictions, 2017. URL 
+
+https://arxiv.org/abs/1710.04806 .Guiliang Liu, Oliver Schulte, Wang Zhu, and Qingcan Li. Toward interpretable deep reinforcement learning with linear model u-trees, 2018. URL https://arxiv.org/abs/1807.05887 .Leland McInnes, John Healy, and James Melville. Umap: Uniform manifold approximation and projection for dimension reduction, 2020. URL https://arxiv.org/abs/1802.03426 .Stephanie Milani, Nicholay Topin, Manuela Veloso, and Fei Fang. A survey of explainable reinforcement learning, 2022. URL https://arxiv.org/abs/2202.08434 .Alex Mott, Daniel Zoran, Mike Chrzanowski, Daan Wierstra, and Danilo J. Rezende. Towards interpretable reinforcement learning using attention augmented agents, 2019. URL 
+
+https://arxiv.org/abs/1906.02500 .Meike Nauta, Ron van Bree, and Christin Seifert. Neural prototype trees for interpretable fine-grained image recognition, 2021. URL https://arxiv.org/abs/2012.02046 .Meike Nauta, J¨ org Schl¨ otterer, Maurice van Keulen, and Christin Seifert. Pip-net: Patch-based intuitive prototypes for interpretable image classification. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 2744–2753, June 2023. nikhilbarhate99. Actor-Critic-PyTorch: Policy gradient actor-critic implementation (lunar lander v2) in pytorch. https://github.com/nikhilbarhate99/Actor-Critic-PyTorch , 2025a. Accessed: 2025-09-22. nikhilbarhate99. TD3-PyTorch-BipedalWalker-v2: Twin delayed ddpg (td3) pytorch solution for roboschool and box2d environments. 
+
+https://github.com/nikhilbarhate99/TD3-PyTorch-BipedalWalker-v2 , 2025b. Accessed: 2025-09-22. NotAnyMike. gym: An improvement of carracing-v0 from openai gym for hierarchical reinforcement learning. https://github.com/NotAnyMike/gym , 2025. Accessed: 2025-09-22. Long Ouyang, Jeff Wu, Xu Jiang, Diogo Almeida, Carroll L. Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, John Schulman, Jacob Hilton, Fraser Kelton, Luke Miller, Maddie Simens, Amanda Askell, Peter Welinder, Paul Christiano, Jan Leike, and Ryan Lowe. Training language models to follow instructions with human feedback, 2022. URL https://arxiv.org/abs/2203.02155 .Vitali Petsiuk, Abir Das, and Kate Saenko. Rise: Randomized input sampling for explanation of black-box models, 2018. URL https://arxiv.org/abs/1806.07421 .Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher D. Manning, and Chelsea Finn. Direct preference optimization: Your language model is secretly a reward model, 2024. URL https://arxiv.org/abs/2305.18290 .Antonin Raffin, Ashley Hill, Adam Gleave, Anssi Kanervisto, Maximilian Ernestus, and Noah Dormann. Stable-baselines3: Reliable reinforcement learning implementations. Journal of Machine Learning Research , 22(268):1–8, 2021. URL 
+
+http://jmlr.org/papers/v22/20-1364.html .Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. ”why should i trust you?”: Explaining the predictions of any classifier, 2016. URL https://arxiv.org/abs/1602.04938 .Sam T. Roweis and Lawrence K. Saul. Nonlinear dimensionality reduction by locally linear embedding. Science , 290(5500):2323–2326, 2000. doi: 10.1126/science.290.5500.2323. URL 
+
+https://www.science.org/doi/abs/10.1126/science.290.5500.2323 .Cynthia Rudin. Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead, 2019. URL https://arxiv.org/abs/1811.10154 .Cynthia Rudin, Chaofan Chen, Zhi Chen, Haiyang Huang, Lesia Semenova, and Chudi Zhong. Interpretable machine learning: Fundamental principles and 10 grand challenges, 2021. URL 
+
+https://arxiv.org/abs/2103.11251 .Ramprasaath R. Selvaraju, Michael Cogswell, Abhishek Das, Ramakrishna Vedantam, Devi Parikh, and Dhruv Batra. Grad-cam: Visual explanations from deep networks via gradient-based localization. International Journal of Computer Vision , 128(2):336–359, October 2019. ISSN 1573-1405. doi: 10.1007/s11263-019-01228-7. URL 
+
+http://dx.doi.org/10.1007/s11263-019-01228-7 .David Silver, Aja Huang, Christopher J. Maddison, Arthur Guez, Laurent Sifre, George van den Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda Panneershelvam, Marc Lanctot, Sander Dieleman, Dominik Grewe, John Nham, Nal Kalchbrenner, Ilya Sutskever, Timothy Lillicrap, Madeleine Leach, Koray Kavukcuoglu, Thore Graepel, and Demis Hassabis. Mastering the game of go with deep neural networks and tree search. Nature , 529:484–503, 2016. URL 
+
+http://www.nature.com/nature/journal/v529/n7587/full/nature16961.html .David Silver, Thomas Hubert, Julian Schrittwieser, Ioannis Antonoglou, Matthew Lai, Arthur Guez, Marc Lanctot, Laurent Sifre, Dharshan Kumaran, Thore Graepel, Timothy Lillicrap, Karen Simonyan, and Demis Hassabis. Mastering chess and shogi by self-play with a general reinforcement learning algorithm, 2017. URL https://arxiv.org/abs/1712.01815 .Jake Snell, Kevin Swersky, and Richard S. Zemel. Prototypical networks for few-shot learning, 2017. URL https://arxiv.org/abs/1703.05175 .Mukund Sundararajan, Ankur Taly, and Qiqi Yan. Axiomatic attribution for deep networks, 2017. URL https://arxiv.org/abs/1703.01365 .Richard S. Sutton and Andrew G. Barto. Reinforcement Learning: An Introduction . MIT Press, 2nd edition, 2015. URL 
+
+https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf .Draft, in progress. Laurens van der Maaten and Geoffrey Hinton. Visualizing data using t-sne. Journal of Machine Learning Research , 9(86):2579–2605, 2008. URL 
+
+http://jmlr.org/papers/v9/vandermaaten08a.html .George A. Vouros. Explainable deep reinforcement learning: State of the art and challenges. ACM Computing Surveys , 55(5):1–39, December 2022. ISSN 1557-7341. doi: 10.1145/3527448. URL 
+
+http://dx.doi.org/10.1145/3527448 .Sean Xie, Soroush Vosoughi, and Saeed Hassanpour. Proto-lm: A prototypical network-based framework for built-in interpretability in large language models, 2023. URL 
+
+https://arxiv.org/abs/2311.01732 .Chih-Kuan Yeh, Been Kim, Sercan O. Arik, Chun-Liang Li, Tomas Pfister, and Pradeep Ravikumar. On completeness-aware concept-based explanations in deep neural networks, 2022. URL https://arxiv.org/abs/1910.07969 .Vinicius Zambaldi, David Raposo, Adam Santoro, Victor Bapst, Yujia Li, Igor Babuschkin, Karl Tuyls, David Reichert, Timothy Lillicrap, Edward Lockhart, Murray Shanahan, Victoria Langston, Razvan Pascanu, Matthew Botvinick, Oriol Vinyals, and Peter Battaglia. Deep reinforcement learning with relational inductive biases. In International Conference on Learning Representations , 2019. URL https://openreview.net/forum?id=HkxaFoC9KQ .

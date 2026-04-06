@@ -1,0 +1,9739 @@
+Title: Optimistic Actor-Critic with Parametric Policies for Linear Markov Decision Processes
+
+URL Source: https://arxiv.org/pdf/2603.28595v1
+
+Published Time: Tue, 31 Mar 2026 02:36:13 GMT
+
+Number of Pages: 61
+
+Markdown Content:
+# Optimistic Actor-Critic with Parametric Policies for Linear Markov Decision Processes 
+
+## Max Qiushi Lin Simon Fraser University Reza Asad Simon Fraser University Kevin Tan University of Pennsylvania Haque Ishfaq Mila, McGill University Csaba Szepesvári Google DeepMind, University of Alberta Sharan Vaswani Simon Fraser University 
+
+# Abstract 
+
+## Although actor-critic methods have been successful in practice, their theoretical analyses have several limitations. Specifically, existing theoretical work either sidesteps the exploration problem by making strong assumptions or analyzes impractical methods with complicated algorithmic modifications. Moreover, the actor-critic methods analyzed for linear MDPs often employ natural policy gradi-ent (NPG) and construct “implicit” policies without explicit parameterization. Such policies are computationally expensive to sample from, making the environ-ment interactions inefficient. To that end, we focus on the finite-horizon linear MDPs and propose an optimistic actor-critic framework that uses parametric log-linear policies. In particular, we introduce a tractable logit-matching regression objective for the actor. For the critic, we use approximate Thompson sampling via Langevin Monte Carlo to obtain optimistic value estimates. We prove that the resulting algorithm achieves eO(ϵ−4) and eO(ϵ−2) sample complexity in the on-policy and off-policy setting, respectively. Our results match prior theoretical works in achieving the state-of-the-art sample complexity, while our algorithm is more aligned with practice. 
+
+## Keywords: Actor-Critic, Linear MDP, Log-Linear Policy, Natural Policy Gradient, Strategic Exploration, Langevin Monte Carlo, Sample Complexity 
+
+> 1
+> arXiv:2603.28595v1 [cs.LG] 30 Mar 2026
+
+# Contents 
+
+1 Introduction 42 Preliminaries 63 A General Actor-Critic Framework with Parametric Policies 74 Instantiating the Actor: Projected Natural Policy Gradient 7
+
+4.1 Projected Natural Policy Gradient . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 74.2 Controlling the Projection Error for Log-Linear Policies . . . . . . . . . . . . . . . . . . . . . . 94.3 Putting Everything Together: Projected NPG with Log-Linear Policies . . . . . . . . . . . . . 10 
+
+5 Instantiating the Critic: Langevin Monte Carlo 10 
+
+5.1 LMC for Linear MDPs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11 5.2 Optimism Guarantee and Error Bound . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12 
+
+6 Sample Complexity Analysis 12 
+
+6.1 On-Policy Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13 6.2 Off-Policy Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13 
+
+7 Experiments 15 
+
+7.1 Experiments in Linear MDPs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15 7.2 Experiments Beyond Linear MDPs: Atari . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15 
+
+8 Discussion 16 A Notation 21 B Analyses for the Actor 21 
+
+B.1 Generalized OMD Regret (Proof of Theorem 4.1) . . . . . . . . . . . . . . . . . . . . . . . . . . 21 B.2 Projection Error (Proof of Lemma 4.1) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22 B.3 Instantiating the Actor with SPMA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25 B.4 Technical Tools . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27 
+
+C Constructing Dexp and ρexp via Experimental Design 27 
+
+C.1 Kiefer–Wolfowitz Theorem and G-Experimental Design . . . . . . . . . . . . . . . . . . . . . . 28 C.2 Exploratory Policy and Minimum Eigenvalue . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28 
+
+D Analyses for the Critic 29 
+
+D.1 Proof of Lemma 5.1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29 D.1.1 Preliminary Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29 D.1.2 Main Analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31 D.2 Proofs of Preliminary Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33 D.2.1 Proof of Lemma D.3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33 D.2.2 Proof of Lemma D.4 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34 D.2.3 Proof of Lemma D.5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36 D.2.4 Proof of Lemma D.6 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38 D.2.5 Proof of Lemma D.7 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38 D.2.6 Proof of Lemma D.8 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41 D.2.7 Proof of Lemma D.9 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42 D.3 Technical Tools . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44 
+
+E Sample Complexity in the On-Policy Setting 46 
+
+2E.1 Proof of Good Event . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46 E.2 Proof of Theorem 6.1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46 E.3 Technical Tools . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49 
+
+F Sample Complexity in the Off-Policy Setting 50 
+
+F.1 Covering Number (Proof of Lemma 6.1) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50 F.2 Proof of Good Event . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51 F.3 Proof of Theorem 6.2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52 F.4 Technical Tools . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54 
+
+G Experiments 55 
+
+G.1 Experiments in Linear MDPs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55 G.1.1 Environment Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55 G.1.2 Coreset Construction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 56 G.1.3 Algorithms and Hyperparameters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 56 G.1.4 Experimental Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 56 G.2 Ablation Studies . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57 G.2.1 Ablation on Exploration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57 G.2.2 Ablation on Feature Dimensions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57 G.2.3 Sensitivity to Inverse Temperature ( ζ−1) . . . . . . . . . . . . . . . . . . . . . . . . . . . 58 G.2.4 Sensitivity to the Number of Critic Samples ( M) . . . . . . . . . . . . . . . . . . . . . . 58 G.3 Experiments Beyond Linear MDPs: Atari . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59 G.3.1 Extension to Deep RL Applications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59 G.3.2 Environment Setups and Hyperparameters . . . . . . . . . . . . . . . . . . . . . . . . . 59 G.3.3 Experimental Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59 31 Introduction 
+
+Reinforcement learning (RL) is a general framework for sequential decision making under uncertainty and has been successful in various real-world applications, such as robotics (Kober et al., 2013) and large language models (Uc-Cetina et al., 2023). Policy Gradient (PG) methods (Williams, 1992; Sutton et al., 1999; Kakade, 2001; Schulman et al., 2017a) are an important class of algorithms that assume a differentiable parameterization of the policy, and directly optimize the policy parameters using the return from interacting with the environment. PG methods are widely used in practice as they can easily handle function approxima-tion or structured state-action spaces. However, since the environment is typically stochastic in practice, the estimated returns usually have high variance, resulting in poor sample efficiency (Dulac-Arnold et al., 2019). Actor-critic (AC) methods (Konda and Tsitsiklis, 1999; Peters et al., 2005; Bhatnagar et al., 2009) alleviate this issue by using value-based approaches in conjunction with PG methods. In particular, they utilize a critic that estimates the policy’s value and an actor that performs PG to improve the policy towards obtaining higher returns. These AC methods have been proven to be empirically successful in both on-policy (Schulman et al., 2015, 2017b) and off-policy (Lillicrap et al., 2015; Fujimoto et al., 2018; Haarnoja et al., 2018) settings. Subsequently, there have been many attempts to provide a theoretical understanding of actor-critic methods, especially in the presence of function approximation (Cai et al., 2020; Zhong and Zhang, 2023; Liu et al., 2023). However, there are two prevalent issues that result in mismatches between theory and practice: the studied methods either (i) do not consider strategic exploration in a systematic manner or (ii) analyze complicated and impractical variants of the algorithm. In particular, much of the literature makes unrealistic assumptions to avoid dealing with exploration, a central challenge in RL. For instance, existing works on PG methods (Agarwal et al., 2021a; Yuan et al., 2023; Alfano and Rebeschini, 2022; Asad et al., 2025) obtain convergence rates that involve a mismatch ratio between the optimal policy and the initial state distribution. These results are only meaningful if the mismatch ratio is bounded. However, a bounded mismatch ratio indicates that the initial state distribution already provides a good coverage over the state space, thereby sidestepping the exploration problem. Within actor-critic methods, some early analyses make assumptions on the reachability of the state-action space or the coverage of collected data (Abbasi-Yadkori et al., 2019; Neu et al., 2017; Bhandari and Russo, 2024; Agarwal et al., 2021a; Cen et al., 2022; Gaur et al., 2024), which again imply that the state-action space is already relatively easy to explore. Follow-up works (Hong et al., 2023; Fu et al., 2021; Xu et al., 2020; Cayci et al., 2024) assume a bounded mismatch ratio, while others (Khodadadian et al., 2022; Gaur et al., 2023) require mixing assumptions on the induced Markov chain.                                 
+
+> Algorithm Sample Complexity (On-Policy) Sample Complexity (Off-Policy) Policy Param. Clipping Q-Function Computational Cost for Policy Inference
+> Liu et al. (2023) eO(1
+> ϵ4)✗implicit yes O(d2
+> cH|A| ϵ−2)
+> Sherman et al. (2023) ✗eO(1
+> ϵ2)implicit no O(d2
+> cH|A| ϵ−2)
+> Cassel and Rosenberg (2024) Ours eO(1
+> ϵ4)eO(1
+> ϵ2)explicit yes O(d2
+> aH|A| )
+
+Table 1: Comparison with the state-of-the-art algorithms for episodic finite-horizon linear MDPs (with feature dimension dc and horizon H). The sample complexity refers to the number of interactions required for outputting an ϵ-optimal policy, whereas the cost of policy inference refers to the per-episode cost for interacting with the environment for H steps. Our proposed algorithm matches the optimal sample efficiency in both the on- and off-policy settings. Furthermore, in contrast to existing works, our algorithm employs an explicit policy parameterization (log-linear policies with dimension da), resulting in lower computational cost for policy inference. On the other hand, recent works (Cai et al., 2020; Jin et al., 2021; Zanette et al., 2021; Zhong and Zhang, 2023; Agarwal et al., 2023; He et al., 2023; Liu et al., 2023; Sherman et al., 2023; Cassel and Rosenberg, 2024; Tan 4et al., 2025) tackle the exploration issue directly. However, the algorithms analyzed are significantly different from those implemented in practice. Much of this body of work studies AC methods that use the natural policy gradient ( NPG ) update for policy optimization. However, the canonical implementation of the NPG 
+
+update does not consider an explicit policy parameterization. Instead, the update involves constructing “implicit” policies on the fly using all previously stored Q-functions. This makes it computationally expensive to sample from these policies and use them to interact with the environment. In contrast, the algorithms used in practice typically employ explicitly parameterized complex models as learnable policies and optimize them with gradient descent-based methods. Therefore, we aim to address the following question: 
+
+Can we design a provably efficient actor–critic algorithm with parametric policies for linear MDPs in both on- and off-policy settings? 
+
+Contributions. We answer the above question affirmatively and make the following contributions. 
+
+1. General framework with an explicitly parameterized actor. In Section 3, we propose a general optimistic actor-critic framework that utilizes an explicitly parameterized policy. We apply this framework in the setting of linear function approximation for both the environment (i.e., linear MDP (Jin et al., 2020)) and the policy (i.e., log-linear policy class). In Section 4, we propose an actor algorithm that learns a log-linear policy by solving a specific regression problem at each iteration. This allows us to directly control the error between the explicitly parametrized policy and the implicit policy induced by NPG . Using this error bound in conjunction with the well-established theoretical results of NPG (Hazan et al., 2016; Szepesvári, 2022) enables us to analyze the performance of the parameterized actor. We show that the proposed algorithm benefits from a substantially improved memory complexity, while retaining similar theoretical guarantees. 
+
+2. LMC critic for practical strategic exploration. In Section 5, instead of constructing UCB bonuses (Jin et al., 2020), which are ubiquitous within prior works (Zhong and Zhang, 2023; Liu et al., 2023; Sherman et al., 2023; Cassel and Rosenberg, 2024), we adopt a more practical approach. We employ Langevin Monte Carlo ( LMC ) (Welling and Teh, 2011) to update the critic parameters at each episode. Unlike UCB -based approaches that require computing confidence sets at every episode, LMC simply perturbs (by Gaussian noise) the gradient descent update on the critic loss. This gradient descent-based approach is both easier to implement (Ishfaq et al., 2025) and to extend to general function approximation (Ishfaq et al., 2024b). Furthermore, the LMC algorithm directly leads to an optimistic estimate of the Q-function that has similar guarantees as UCB bonuses. Nevertheless, previous works have only successfully designed provably efficient algorithms for solving multi-armed bandits (Mazumdar et al., 2020), contextual bandits (Xu et al., 2022), and linear MDPs via value-based methods (Ishfaq et al., 2024a). Our paper is the first to analyze an LMC -based approach in the context of policy optimization. 
+
+3. End-to-end theoretical guarantees for actor-critic. In Section 6, we analyze the proposed actor-critic framework in both the on-policy and off-policy settings without making any assumptions on the mismatch ratio or data coverage. In particular, in the on-policy setting, we prove that our method requires eO(ϵ−4)
+
+samples to learn an ϵ-optimal policy. This matches the result in (Liu et al., 2023) that uses an implicit NPG 
+
+policy in conjunction with UCB bonuses. On the other hand, we also prove that our framework can attain a sample complexity of eO(ϵ−2) in the off-policy setting. This matches the results of Sherman et al. (2023); Cassel and Rosenberg (2024), but with a far less complicated algorithm design. We thus demonstrate that our proposed algorithm is both sample-efficient and aligned with practice. 52 Preliminaries 
+
+In this section, we introduce the finite-horizon linear MDP setting and the log-linear policy class. 
+
+Finite-Horizon Linear MDP. A finite-horizon MDP is a tuple M = ( S, A, P, r, H) where S denotes the state space, A is the action set, and H ∈ Z+ is the length of the horizon. P = {Ph}h∈[H] is a set of time-dependent transition kernels, and r = {rh}h∈[H] denotes a sequence of reward functions. We assume that the state space S is a (possibly infinite) measurable space, whereas A is a finite set with cardinality |A| .
+
+Ph(· | s, a) ∈ ∆(S) is the distribution over states when taking action a ∈ A in state s ∈ S at step h ∈ [H],and rh(s, a) ∈ [0, 1 ] is the corresponding reward. Additionally, for any given function V : S → R, we define that [Ph Vh+1]( s, a) := Es′ ∼Ph (·| s,a)Vh+1(s′).The agent interacts with the environment by starting at an initial state (w.l.o.g., fixed to be s1 ∈ S ). At step h,the agent first observes the current state sh ∈ S , then takes an action ah ∈ A and receives the reward rh(sh, ah).After that, the agent transitions to sh+1 ∼ Ph(· | sh, ah) . The agent follows a given policy π : [H] × S 7 → ∆(A)
+
+in which πh(· | s) ∈ ∆(A) is the probability distribution over A in state s at step h. To quantify the performance of any policy π, we define the value function as Vπ 
+
+> h
+
+(s) := Eπ,P[∑H 
+
+> τ=h
+
+rτ (sτ , aτ ) | sh = s], and the corresponding state-action value function is defined as Qπ 
+
+> h
+
+(s, a) := Eπ,P[∑H 
+
+> τ=h
+
+rτ (sτ , aτ ) | sh = s, ah = a],where the expectation is with respect to the randomness in the stochastic policy and the transition dynamics. The value function (resp. Q-function) corresponds to the expected cumulative rewards when starting in state 
+
+s (resp. state-action (s, a)) at step h, and subsequently following the policy π until reaching step H.We assume that both P and r are unknown to the agent. In order to efficiently learn these quantities, we consider the linear MDP assumption (Jin et al., 2020) where both the transition kernel and the reward function are assumed to be linear functions of given features. 
+
+Definition 2.1 (Linear MDP) . A finite-horizon MDP M = ( S, A, P, r, H) is a linear MDP with a feature map 
+
+ϕ : S × A 7 → Rdc if the following holds. There exist H signed measures ψh : S → Rdc and υh : Rdc such that 
+
+Ph(s′ | s, a) = ⟨ϕ(s, a), ψh(s′)⟩ and rh(s, a) = ⟨ϕ(s, a), υh⟩ for all h , s , and a . It should also satisfy the following constraints: ∥ϕ(s, a)∥2 ≤ 1 and ∥υh∥2 ≤ √dc for all h , s , and a . Additionally, for any measurable function V : S → [0, 1 ], R 
+
+> s∈S
+
+V(s) ψh(s) ds 2 ≤ √dc.
+
+According to Jin et al. (2020, Proposition 2.3), for a linear MDP and any policy π, Qπ 
+
+> h
+
+is a linear function of the features: for all (h, s, a), there exists a wh ∈ Rdc such that Qπ 
+
+> h
+
+(s, a) = ⟨ϕ(s, a), wh⟩.
+
+Learning Objective. For this linear MDP setting, we assume that only ϕ is given to the learner whereas ψ
+
+and υ are not. The agent sequentially interacts with the environment for T episodes and aims to minimize the 
+
+cumulative regret defined as Reg (T) := ∑Tt=1
+
+V⋆ 
+
+> 1
+
+(s1) − Vπt 
+
+> 1
+
+(s1), where V⋆ 
+
+> 1
+
+:= Vπ⋆ 
+
+> 1
+
+:= sup π Vπ 
+
+> 1
+
+is the value function of the optimal policy π⋆ := arg sup π Vπ 
+
+> 1
+
+(s1). Equivalently, if πT denotes the mixture policy that picks a policy among {π1, . . . , πT } uniformly randomly, we aim to learn an ϵ-optimal πT , i.e., its optimality gap (OG ) is bounded such that 
+
+OG (T) := E
+
+h
+
+V⋆ 
+
+> 1
+
+(s1) − VπT 
+
+> 1
+
+(s1)
+
+i
+
+= Reg (T)
+
+T ≤ eO(ϵ) ,where the expectation is taken with respect to the randomness of the mixture policy. 
+
+Log-Linear Policy. We consider a restricted policy class Πlin consisting of log-linear policies . Log-linear policies are represented using the softmax function with linear function approximation. In particular, a log-linear policy is defined as follows: for all h ∈ [H],
+
+πh(a | s, θ) = exp (zh(s, a | θh)) 
+
+∑a′ ∈A exp (zh(s, a′ | θh)) , (1) 6Algorithm 1 Actor-Critic with Parametric Policies  
+
+> 1:
+
+Input : number of update steps T, data collection batch size N (only for on-policy)  
+
+> 2:
+
+set D0 ← ∅, w1 
+
+> h
+
+← 0, π1
+
+> h
+
+(· | s) ← Unif (A) ∀(h, s) 
+
+> 3:
+
+for t = 1, . . . , T − 1 do  
+
+> 4:
+
+Dt ←
+
+(
+
+On-Policy: 
+
+n
+
+N fresh traj. i.i.d. 
+
+∼ πto
+
+Off-Policy: Dt−1 ∪ 1 traj. ∼ πt 
+
+> 5:
+
+wt+1 ← CRITIC_UPDATE (Dt, πt, wt) 
+
+> 6:
+
+θt+1 ← ACTOR_UPDATE (wt+1, θt) 
+
+> 7:
+
+πt+1 = π(θt+1) 
+
+> 8:
+
+Return : mixture policy πT
+
+where zh(s, a | θh) = ⟨φ(s, a), θh⟩ represents the logits parameterized by θh, and φ : S × A 7 → Rda are policy features given to the learner. W.l.o.g, we assume that ∥φ(s, a)∥ ≤ 1 for all s and a. For convenience, we use the shorthand π(θ) : [H] × S → ∆(A) to refer to the log-linear policy corresponding to the parameters θ.
+
+# 3 A General Actor-Critic Framework with Parametric Policies 
+
+In this section, we start by introducing our general optimistic actor-critic framework as shown in Algorithm 1. Starting with a uniform policy π1, at the beginning of every learning episode t ∈ [T], the agent interacts with the environment using policy πt (Line 4). Our framework allows for collecting data from the environment in either an on-policy or off-policy fashion. In the on-policy setting, at episode t, the agent collects N
+
+fresh trajectories Dt by interacting with the environment using the current policy πt. On the other hand, in the off-policy setting, at episode t, the agent collects only 1 trajectory from the environment using πt.However, the agent stores all the historical data collected by the previous policies, and hence, Dt consists of 
+
+t trajectories, each collected by π1, . . . , πt respectively. The critic uses the collected data and estimates an (optimistic) Q-function via learning the critic parameters 
+
+wt+1 ∈ [H] × Rdc (Line 5). The actor then uses the estimated Q-function, and updates the parameters of 
+
+θt ∈ [H] × Rda of the log-linear policy (Line 6). The updated log-linear policy is denoted by πt+1 (Line 7), and is used to collect data in the next episode. Given this general framework, we will next instantiate the actor in Section 4 and the critic in Section 5. 
+
+# 4 Instantiating the Actor: Projected Natural Policy Gradient 
+
+In this section, we instantiate the actor using natural policy gradient ( NPG ) with parametric policies and analyze its behavior. In particular, in Section 4.1, we devise an algorithm that projects the standard NPG 
+
+update onto the class of realizable policies. In Section 4.2, we analyze and control the errors induced by the projection step. Finally, in Section 4.3, we put everything together and instantiate the complete actor algorithm for the log-linear policy class. 
+
+## 4.1 Projected Natural Policy Gradient 
+
+At episode t ∈ [T], given bQth, the estimated Q-function, NPG updates the policy as: for every (h, s) ∈ [H] × S ,
+
+πt+1 
+
+> h
+
+(· | s) ∝ πth(· | s) exp (η bQth(s, ·)) (2) with the corresponding normalization across A. Existing work on policy optimization in linear MDPs (Liu et al., 2023; Sherman et al., 2023; Cassel and Rosenberg, 2024) uses NPG to update the actor because of its 7favorable theoretical properties. Importantly, these results do not consider any explicit parameterization for the actor . Directly implementing the update in Eq. (2) requires O(|S||A| ) memory, and is therefore impractical with large state-action spaces. Consequently, existing work uses the following equivalent form of the NPG update: for every (h, s) ∈ [H] × S ,
+
+πt+1 
+
+> h
+
+(· | s) ∝ π1
+
+> h
+
+(· | s) exp 
+
+
+
+η ∑ti=1 bQih(s, ·)
+
+
+
+,which characterizes the policy implicitly. In particular, at episode t, for any (h, s, a), we can compute the policy on the fly if we have access to the sum of all the parameterized Q-functions up to episode t. However, in existing works (Liu et al., 2023; Sherman et al., 2023; Cassel and Rosenberg, 2024), the sum of parameterized 
+
+Q functions cannot be stored in a succinct manner, and they require storing all the parameterized Q functions. Consequently, when interacting with the environment using such an implicit policy, these works suffer from an extensive per-episode computational cost of O(d2 
+
+> c
+
+H |A| T). Therefore, the resulting algorithm is far from practice that typically uses an explicit (and often sophisticated) actor parameterization. To alleviate these issues, we aim to compute a policy that is (i) realizable by the explicit actor parameterization and (ii) provably approximates the policy induced by the NPG update in Eq. (2) (referred to as the implicit policy ). To this end, we use a projected NPG update: 
+
+πt+1 
+
+> h
+
+(· | s) = Proj Π
+
+" πth(· | s) exp (η bQth(s, ·)) 
+
+∑a′ πth(a′ | s) exp (η bQth(s, a′)) 
+
+#
+
+,where Proj is the projection operator, which will be instantiated subsequently in Section 4.2. When theoretically analyzing policy optimization methods, an important intermediate result is the bound on the regret for a specific online linear optimization problem. For the standard NPG update in Eq. (2), this regret can be bounded by eO(√T) (Hazan et al., 2016; Szepesvári, 2022). In the following lemma, we analyze the effect of the projection operator and bound the regret for the projected NPG .
+
+Theorem 4.1. Given a sequence of linear functions { pt, gt }t∈[T] for a sequence of vectors {gt}t∈[T] where for any t ∈ [T], pt ∈ ∆(A), gt ∈ R|A| , and gt ∞ ≤ H . Consider pt∈[T] where p1 is the uniform distribution, and for all t ∈ [T],pt+1/2 = arg min 
+
+> p∈∆A
+
+ p, −η gt + KL (p ∥ pt) , (3) 
+
+pt+1 = Proj Π(pt+1/2 ) . (4) 
+
+Let ϵt := KL (u ∥ pt+1) − KL (u ∥ pt+1/2 ) be the projection error induced by Eq. (4). Then, for any comparator u ∈ ∆(A), it holds that 
+
+> T
+
+# ∑
+
+> t=1
+
+u − pt, gt ≤ log |A| + ∑Tt=1 ϵt
+
+η + η H2 T
+
+2 .The update in Eq. (3) with pt = πth(·| s) is equivalent to the standard NPG update in Eq. (2) (Xiao, 2022). Using this lemma for each state s and step h, with gt = bQth(s, ·) and an appropriate choice of η gives the following regret bound 1 for the projected NPG :
+
+∑Tt=1 ∑Hh=1 max s∈S ⟨π⋆ 
+
+> h
+
+(·| s) − πth(·| s), bQth(s, ·)⟩    
+
+> 1This generalized regret bound holds for any other mirror descent-based policy optimization method (e.g., SPMA (Asad et al., 2025) in Section B.3), but we discuss NPG within the main text for the ease of exposition.
+
+8≤ O 
+
+
+
+H2 plog |A| √T + H2 √ϵ T
+
+
+
+, (5) where ϵ := max t,s,h ϵth(s) is the largest error across all t, s, and h. For the NPG in Eq. (2) without projection, 
+
+ϵ = 0 and the above result recovers the standard regret bound for NPG . The above lemma suggests that by choosing the projection operator carefully and controlling the projection errors, we can bound the regret. 
+
+## 4.2 Controlling the Projection Error for Log-Linear Policies 
+
+To bound the projection error in Theorem 4.1, one could choose that Proj Π(p) = arg min p KL (u ∥ p) −
+
+KL (u ∥ pt+1/2 ), and hence directly control ϵth. However, this results in a non-convex optimization prob-lem. Consequently, we instead choose Proj to minimize the following regression loss in the logit space:  
+
+> 12
+
+z − (zt + η gt) where zt is the logit corresponding to pt such that pt ∝ exp (zt). For the projected NPG 
+
+with log-linear policies, we aim to minimize the sum of such regression losses (across all (s, a) ∈ S × A ) at episode t and step h, and obtain the loss function: 
+
+ℓth(θ) = 12 ∑
+
+> (s,a)∈S×A
+
+hD 
+
+φ(s, a), θ − bθth
+
+E
+
+− η bQth(s, a)
+
+i2
+
+,where bQth(s, a) is the estimated Q-function from the critic. As a regression problem, this actor loss can be easily optimized via gradient descent-based methods. However, note that the above actor loss requires a minimization over the entire state-action space, which may be impractical. Therefore, we propose to construct a good and preferably small subset Dexp ⊂ S × A along with a corresponding distribution ρexp ∈ ∆(Dexp ) that offers good coverage of the feature space. Given Dexp 
+
+and ρexp (the construction of which will be detailed subsequently), we instantiate the actor loss, eℓth(θ), in terms of a logit-matching regression: 
+
+eℓth(θ) = 12 ∑
+
+> (s,a)∈D exp
+
+ρexp (s, a)
+
+hD 
+
+φ(s, a), θ − bθth
+
+E
+
+− bQth(s, a)
+
+i2
+
+, (6) In order to show that optimizing the above actor loss can indeed bound the projection error, we require the following assumptions. We assume that the given policy features φ are expressive enough to control the bias when minimizing ℓth(θ).
+
+Assumption 4.1 (Bias) . min θ sup t,h eℓth(θ) ≤ ϵbias 
+
+In practice, ϵbias can be controlled by choosing high-dimensional features (e.g., da ≫ dc) or a sufficiently expressive policy class (e.g., neural network). Next, we assume the loss eℓth(θ) is sufficiently minimized. 
+
+Assumption 4.2 (Optimization Error) . Suppose θth is obtained by minimizing eℓth(θ) in the critic update, then 
+
+sup 
+
+> t,h
+
+eℓth(θth) − min 
+
+> θ
+
+eℓth(θ) ≤ ϵopt .In practice, minimizing eℓth(θ) by Kt steps of gradient descent ensures that ϵopt ≤ O (exp (−Kt)) . Given these two mild assumptions, we can then proceed to bound the projection error. Using Theorem 4.1 for the projected NPG update at state s, step h, and setting u = π⋆(· | s), the projection error ϵth(s) can be bounded as follows. 
+
+Lemma 4.1. Suppose φG := sup (s,a)∈S×A ∥φ(s, a)∥G−1 where G := ∑(s,a)∈D exp ρexp (s, a) φ(s, a) φ(s, a)⊤. Un-der Assumptions 4.1 and 4.2, it holds that for all (t, h, s),
+
+ϵth(s) ≤ ϵ := 2 (φG + 1) √ϵbias + 2 √ϵopt .9The above lemma is true for any choice of Dexp and ρexp , and suggests that if we can control φG, the projection error can be bounded. 
+
+Constructing Dexp and ρexp . Therefore, we would like to construct a suitable Dexp and ρexp to bound 
+
+∥φ(s, a)∥G−1 for any (s, a) ∈ S × A and solve the following optimization problem: inf Dexp ∈S×A 
+
+> ρexp ∈∆(Dexp )
+
+sup (s,a)∈S×A ∥φ(s, a)∥G−1
+
+s.t. G = ∑(s,a)∈D exp ρexp (s, a) φ(s, a) φ(s, a)⊤ ,which fits the form of experimental design. Ideally, we would also like Dexp to be relatively small so that the actor parameters can be updated efficiently. There are standard techniques to solve this problem. The most common approach is the G-optimal design, which involves constructing a coreset (i.e., Dexp and ρexp ) and bounds ∥φ(s, a)∥G−1 . In particular, the Kiefer–Wolfowitz theorem (Kiefer and Wolfowitz, 1960) guarantees that there exists a coreset such that 
+
+∥φ(s, a)∥G−1 ≤ O (da) and Dexp ≤ eO(da). Constructing such a coreset can be achieved using various methods, such as the Frank-Wolfe algorithm (Frank et al., 1956; Szepesvári, 2022). We remark that this method only uses the given policy features φ, and does not involve the linear MDP features ϕ. Furthermore, the required coreset can be constructed offline, even before the learning procedure or without any knowledge of the environment (see Section C.1 for details). Giving access to such a coreset guarantees that ϵ ≤O(da
+
+√ϵbias + √ϵopt ), and optimizing the actor loss upon that only requires O(da) computation. Rather than forming a coreset, alternative approaches assume φ = ϕ, and use some limited interaction with the environment to construct Dexp . In particular, under some standard assumptions (e.g., Wagenmaker and Jamieson, 2022, Assumption 1), we can apply methods such as CoverTraj (Wagenmaker et al., 2022) and 
+
+OptCov (Wagenmaker et al., 2022) that construct Dexp and ρexp and can subsequently ensure that ∥φ(s, a)∥G−1
+
+is bounded. The sample complexity for such procedures is eO(d4 
+
+> c
+
+H3 ϵ−1 
+
+> M
+
+) where ϵM is a problem-dependent constant. We defer all the details to Section C. 
+
+Remark 4.1. Having access to Dexp and ρexp does not obviate the necessity of exploration. Specifically, we do not assume random access, i.e., the agent cannot visit all the state-actions in Dexp . Hence, we cannot effectively calculate Qπ (s, a) for any (s, a) ∈ D exp .
+
+## 4.3 Putting Everything Together: Projected NPG with Log-Linear Policies 
+
+In Algorithm 2, we instantiate the complete actor algorithm, which uses the projected NPG update for log-linear policies. Unlike the standard NPG update, Algorithm 2 alleviates the necessity of storing past 
+
+Q-functions, improving the memory complexity to O(da), while enjoying similar theoretical guarantees. Furthermore, the actor parameters are updated by using gradient descent on a properly defined surrogate loss, rendering it closer to the practical implementation of common algorithms (e.g., PPO (Schulman et al., 2017b)). We remark that although we focused on the log-linear policies, our theoretical guarantees readily extend to general function approximation when Assumptions 4.1 and 4.2 are satisfied, and one has access to an exploratory policy (Hao et al., 2021, Definition 1). In the next section, we instantiate the critic in Algorithm 1. 
+
+# 5 Instantiating the Critic: Langevin Monte Carlo 
+
+In this section, we use Langevin Monte Carlo ( LMC ) to instantiate the critic. We describe the resulting algorithm in Section 5.1, and analyze it in Section 5.2          
+
+> 2min {x,a}+:=max {min {x,a}, 0 }is the clipping function that bounds the given value xto the range [0, a].
+
+10 Algorithm 2 Actor: Projected NPG  
+
+> 1:
+
+Input : critic parameters wt, policy optimization learning rate η, number of actor updates Kt, actor learning rate αt
+
+> a
+
+, subset and distribution of the state-action space Dexp and ρexp  
+
+> 2:
+
+for h = 1, 2, . . . , H do  
+
+> 3:
+
+bQth(·, ·) = min { ϕ(·, ·), wth , H − h + 1}+ 2 
+
+> 4:
+
+Define the actor loss eℓth(θ) using Eq. (6)  
+
+> 5:
+
+for k = 1, . . . , Kt do  
+
+> 6:
+
+θt,kh ← θt,k−1 
+
+> h
+
+− αt 
+
+> a
+
+∇θeℓth(θt,k−1 
+
+> h
+
+) 
+
+> 7:
+
+Return : actor parameters for the policy θt
+
+The LMC approaches allow for sampling from a posterior distribution and have recently been used in sequential decision-making problems. For example, Mazumdar et al. (2020) achieves optimal instance-dependent regret bounds for multi-armed bandits using Langevin dynamics for approximate Thompson sampling. On the other hand, Xu et al. (2022) uses LMC for contextual bandits, achieving comparable theoretical results to Thompson sampling. More recently, Ishfaq et al. (2024a) leverages LMC for linear MDPs by using it to sample the Q-function from its posterior distribution, achieving the optimal eO(√T) regret. Nevertheless, all existing LMC -based approaches for MDPs, including those for general function approxi-mation (Ishfaq et al., 2024b; Jorge et al., 2024) use value-based algorithms. To the best of our knowledge, such approaches have never been theoretically analyzed in the context of policy optimization. Next, we incorporate the LMC algorithm into our actor-critic framework and provide the first provable result. 
+
+## 5.1 LMC for Linear MDPs 
+
+At episode t, the critic uses the collected dataset Dt to obtain an optimistic estimate of the Q function. In order to instantiate the critic loss, we consider the dataset Dt as split into H disjoint subsets Dth h∈[H],where Dth consists of (sh, ah, sh+1) tuples indexed as 
+
+n
+
+(sih, aih, sih+1)
+
+o|D t |
+
+> i=13
+
+. The critic loss at episode t and step 
+
+h uses the estimated value function at step h + 1, and forms the following ridge regression problem: 
+
+Lth(w) = 12 ∑|Dt |
+
+> i=1
+
+h
+
+χt,hi = rh(sih, aih) + bVth+1(sih+1) − ϕ(sih, aih), w
+
+i2
+
++ λ 
+
+> 2
+
+∥w∥2 . (7) For each step h, the LMC algorithm iteratively adds Gaussian noise to the gradient descent updates on Lth(w),and aims to produce approximate samples of the critic parameters from its underlying posterior distribution (Line 6-8). In particular, for an arbitrary loss ℓ, the LMC update can be written as: 
+
+wt+1 = wt − αt∇wℓ(wt) + pαt/ζ ν t ,where αt is the learning rate, ζ is the inverse temperature parameter, and νt is sampled from an isotropic Gaussian distribution. After Jt steps of the LMC update on the critic loss (Lines 6-8 in Algorithm 3), the resulting critic parameters are used to produce an optimistic sample of the Q-function (Line 9). From a theoretical perspective, we note that it is important to clip Qth appropriately. In order to improve the optimism guarantees of the LMC algorithm, we follow the idea in Ishfaq et al. (2021), and repeat the LMC 
+
+update M times, taking the maximum over these samples (Line 9). Iterating this procedure backwards from 
+
+h = H to 1, we can obtain the desired critic parameters. Note that compared to UCB -based approaches, LMC does not require computing confidence sets at every episode. Instead, it simply perturbs gradient descent by injecting Gaussian noise, allowing for a natural extension beyond the linear function approximation setting and rendering it easier to implement in practice.          
+
+> 3|D t|represents the number of trajectories in Dtor the number of (sh,ah,sh+1)tuples in Dth
+
+11 Algorithm 3 Critic: LMC  
+
+> 1:
+
+Input : collected data Dt, policy πt−1, number of critic updates Jt, critic learning rate αh,t 
+
+> c
+
+, inverse temperature ζ, number of critic samples M 
+
+> 2:
+
+bVtH+1(·) ← 0 
+
+> 3:
+
+for h = H, H − 1, . . . , 1 do  
+
+> 4:
+
+Define the critic loss Lth(w) using Eq. (7)  
+
+> 5:
+
+wt,m,0  
+
+> h
+
+← wt−1, m,Jt−1 
+
+> h
+
+∀m ∈ [M] 
+
+> 6:
+
+for j = 1, . . . , Jt do  
+
+> 7:
+
+νt,m,jh ← N(0, I) ∀m ∈ [M] 
+
+> 8:
+
+wt,m,jh ← wt,m,j−1 
+
+> h
+
+− αh,t 
+
+> c
+
+∇wLth(wt,m,j−1 
+
+> h
+
+)+
+
+q
+
+αh,t 
+
+> c
+
+/ζ ν t,m,jh ∀m ∈ [M] 
+
+> 9:
+
+bQth(·, ·) = min 
+
+
+
+max 
+
+> m∈[M]
+
+D
+
+ϕ(·, ·), wt,m,Jt
+
+> h
+
+E
+
+, H
+
++ 
+
+> 10:
+
+bVth (·) = Ea∼πt−1(·| s) bQth(·, a) 
+
+> 11:
+
+Return : critic parameters for the estimated Q-function {wt,m,Jt 
+
+> h
+
+}(m,h)∈[M]×[H]
+
+## 5.2 Optimism Guarantee and Error Bound 
+
+In order to theoretically analyze Algorithm 3, we first define the following model prediction error. 
+
+Definition 5.1. Given an estimated Q -function bQt and the corresponding estimated value function bVt, for all 
+
+(t, h, s, a), the model prediction error is defined as: ιth(s, a) := rh(s, a) + Ph bVth+1(s, a) − bQth(s, a).
+
+The theoretical analyses in existing work (Jin et al., 2020; Zhong and Zhang, 2023; Liu et al., 2023) that use 
+
+UCB bonuses typically proceed by proving an upper bound of 0 on ιth (optimism ) and a lower bound of eO(√T).The following lemma shows that LMC can offer similar guarantees. 
+
+Lemma 5.1. Let Λth := ∑(s,a,s′ )∈D th
+
+ϕ(s, a) ϕ(s, a)⊤ + λ I . With appropriate choices of λ, ζ, Jt, αt
+
+> c
+
+, M and for any 
+
+δ ∈ (0, 1 ), Algorithm 1 with the LMC critic in Algorithm 3 ensures that in both the on-policy and off-policy settings, for all t, h, s, a and some constant ΓLMC = eO(H d c), with probability at least 1 − δ,
+
+−ΓLMC × ∥ ϕ(s, a)∥(Λth )−1 ≤ ιth(s, a) ≤ 0.
+
+The exact definition of ΓLMC varies between the on-policy and off-policy settings, although they are both bounded by eO(H d c) (see Section D for the full version of this lemma). In order to prove this result in the on-policy setting, we use the fact that all the data points in Dth are collected via independent trajectories from the same policy πt, and are therefore independent and identically distributed. Hence, we can use the self-normalized bounds in Abbasi-Yadkori et al. (2011) to analyze the dependence in h, and prove the corresponding result. In the off-policy setting, since the data points in Dth are collected by different data-dependent policies, these samples are correlated in a complicated manner. Hence, we use the value-aware uniform concentration result from Jin et al. (2020). We remark that this result requires control over the covering number of the value function class, which is deferred to Section 6. Therefore, we conclude that, compared to UCB bonuses, LMC offers significant practical advantages while still providing similar theoretical guarantees. 
+
+# 6 Sample Complexity Analysis 
+
+In this section, we analyze the sample complexity of Algorithm 1 with the projected NPG actor from Algo-rithm 2 and the LMC critic from Algorithm 3. Section 6.1 focuses on the on-policy setting, while Section 6.2 12 addresses the off-policy setting. 
+
+## 6.1 On-Policy Setting 
+
+We now present the following theorem that shows that our proposed algorithm achieves a sample complexity of eO(ϵ−4) in the on-policy setting. 
+
+Theorem 6.1. Under Assumptions 4.1 and 4.2, consider Algorithm 1 in the on-policy setting with the projected 
+
+NPG actor (Algorithm 2) and the LMC critic (Algorithm 3). Suppose ϵ is the projection error in the actor. For an appropriate choice of the actor and critic parameters, including N = H4/ϵ2, and any δ ∈ (0, 1 ), it holds that with probability at least 1 − δ,
+
+OG (T) ≤ eO H2 pd3 
+
+> c
+
+log |A| √T + H2 √ϵ
+
+!
+
+.
+
+Hence, for any ϵ > 0, Algorithm 1 with T = d3 
+
+> c
+
+H4 log |A| ϵ−2 yields a (ϵ + H2√ϵ)-optimal mixture policy, and therefore requires T × N = eO(ϵ−4) samples. 
+
+Proof Sketch. We decompose the difference between VπT 
+
+> 1
+
+(s1) and V⋆ 
+
+> 1
+
+(s1) into two terms that only depend on either the actor or the critic. 
+
+E
+
+h
+
+Vπ⋆ 
+
+> 1
+
+− VπT 
+
+> 1
+
+(s1)
+
+i
+
+= 1
+
+T
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπ⋆
+
+hD 
+
+π⋆ 
+
+> h
+
+(· | sh) − πth(· | sh), bQth(sh, ·)
+
+Ei | {z }
+
+> policy optimization (actor) error
+
++ 1
+
+T
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+ Eπ⋆ [ιth(sh, ah)] − Eπt [ιth(sh, ah)] | {z }
+
+> policy evaluation (critic) error
+
+.The policy optimization (actor) error can be bounded using Eq. (5), and the policy evaluation (critic) error is bounded using Lemma D.2. In particular, in the on-policy setting, the lower-bound in Lemma D.2 can be instantiated as: 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+−ιth(s, a) ≤ O 
+
+q 
+
+d3 
+
+> c
+
+H4 T log 2(N/δ)/N
+
+
+
+.Putting everything together with the chosen value of N leads to the stated sample complexity. 
+
+Comparison to Liu et al. (2023). The on-policy sample-complexity in Theorem 6.1 matches the bound in Liu et al. (2023, Theorem 1). However, unlike the proposed algorithm, Liu et al. (2023) uses NPG with implicit policies for the actor. Consequently, sampling from the current policy (to interact with the environment) requires calculating ∑t−1 
+
+> τ=1
+
+bQτ 
+
+> h
+
+(·, ·) for each encountered state-action pair. Since they use clipped Q functions with UCB bonuses for the critic, the above sum of Q functions cannot be stored succinctly. Hence, sampling from the policy requires instantiating each previous Q function for each step h and episode t, resulting in a computational cost of O(d2 
+
+> c
+
+H ϵ−2).
+
+## 6.2 Off-Policy Setting 
+
+Next, we show that, in the off-policy setting, Algorithm 1 can achieve eO(ϵ−2) sample complexity. 13 Theorem 6.2. Under Assumptions 4.1 and 4.2, consider Algorithm 1 in the off-policy setting with the projected 
+
+NPG actor (Algorithm 2) and the LMC critic (Algorithm 3). Suppose ϵ is the projection error in the actor. For an appropriate choice of the actor and critic parameters and any δ ∈ (0, 1 ), it holds that with probability at least 
+
+1 − δ,
+
+OG (T) ≤ eO H2pd3 
+
+> c
+
+max {da, dc} log |A| √T + H2 √ϵ
+
+!
+
+.
+
+Hence, for any ϵ > 0, Algorithm 1 with T = d3 
+
+> c
+
+max {da, dc} H4 log |A| ϵ−2 yields a (ϵ + H2√ϵ)-optimal mixture policy, and therefore requires T × 1 = eO(ϵ−2) samples. 
+
+Proof Sketch. The proof uses a similar regret decomposition to Theorem 6.1. Compared to the on-policy setting, the most significant difference is the bound on the policy evaluation (critic) errors. First, using Lemma 5.1, we have that 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+−ιth(s, a) ≤ Γ
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt ∥ϕ(s, a)∥(Λth )−1 .The term, ∑Tt=1 ∑Hh=1 Eπt ∥ϕ(s, a)∥(Λth )−1 , can be bounded using the standard elliptical potential lemma. However, since we are in the off-policy setting, bounding Γ > 0 requires the uniform concentration argument from Jin et al. (2020), which yields that 
+
+Γ ≤ O H
+
+s
+
+dc log T + log 
+
+ N∆(V )
+
+δ
+
+
+
++ T ∆
+
+!
+
+.This involves obtaining a bound on log (N∆(V )) , the logarithm of the covering number of the value function class. The covering number is a measure of the complexity of the space of value functions. In particular, we show that for an actor with log-linear policies, we can bound the logarithm of the covering number using the following lemma. 
+
+Lemma 6.1. Let Πlin be the policy class induced by Eq. (1) such that sup θ,h,s,a∥zh(s, a | θ)∥ ≤ Z . Let Q =
+
+n
+
+min {⟨ ϕ(·, ·), w⟩), H}+ | ∥ w∥ ≤ W
+
+o
+
+be the Q -function class and V = {⟨ Q(·, ·), π(· | · , θ)⟩A | Q ∈ Q , π ∈
+
+Πlin } be the corresponding value function class. Then, it holds that 
+
+log N∆(V ) ≤ V := dc log 1 + 4 W + 4 H √2 Z
+
+∆
+
+!
+
++ da log 1 + 4 H √2 Z
+
+∆
+
+!
+
+.In particular, we can show that W ≤ O (√T) (Lemma D.7), and Z ≤ O (ϵ T) (Lemma F.1). Putting everything together and setting ∆ = 1/ T yields that 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+−ιth(s, a) ≤ eO
+
+q 
+
+d3 
+
+> c
+
+max {da, dc} H4 T
+
+
+
+.Following a proof similar to Theorem 6.1 leads to the desired sample complexity. 
+
+Remark 6.1. In order to effectively bound the logarithm of the covering number, previous work (Sherman et al., 2023; Cassel and Rosenberg, 2024; Tan et al., 2025) has incorporated various algorithmic tweaks, including reward-free warm-ups, feature contractions, and rare-switching. On the contrary, since our algorithm projects the implicit policy onto the log-linear policy class at each iteration, the logarithm of the covering number can be bounded in a more direct manner. 
+
+14 Comparison to Sherman et al. (2023); Cassel and Rosenberg (2024). The off-policy sample-complexity in Theorem 6.2 matches the bound in Sherman et al. (2023); Cassel and Rosenberg (2024). Similar to Liu et al. (2023), both works use NPG with implicit policies for the actor and UCB bonuses for the critic. Consequently, the resulting methods suffer from a high cost of policy inference. Finally, we note that similar to the proposed algorithm (see Section 4.2), Sherman et al. (2023) also uses a reward-free warm-up phase (Wagenmaker et al., 2022). However, while we require the warm-up phase to identify a coreset to efficiently minimize the actor loss (a computational reason), Sherman et al. (2023) requires the warm-up procedure to restrict the subsequent regret minimization procedure to high occupancy regions of the state-action space and effectively control the capacity of the policy class (a statistical reason). 
+
+# 7 Experiments 
+
+In this section, we first evaluate our proposed algorithm in linear MDPs, consistent with our theoretical analyses. To further demonstrate its versatility, we extend the proposed algorithm to large-scale deep RL applications, evaluating its performance across several Atari games. 
+
+## 7.1 Experiments in Linear MDPs 
+
+Figure 1: Comparison of LMC-NPG-EXP (our proposed algorithm), LMC-NPG-IMP (memory-intensive variant), and LMC (value-based baseline) in the Random MDP. To demonstrate the practical value of our proposed algorithm, we evaluate it over various benchmarks. We first test our proposed algorithm in the randomly generated linear MDPs (Random MDP). We compare our proposed algorithm, LMC-NPG-EXP , with the memory-intensive variant with implicit policy parameterization, 
+
+LMC-NPG-IMP , and the value-based baseline, LMC (Ishfaq et al., 2024a). As shown in Figure 1, our proposed algorithm can achieve comparable performance with the memory-intensive variant and better performance than LMC . In Section G.1, we also do the same experiment in the linear MDP version of the Deep Sea environment (Osband et al., 2019). In Section G.2, we further conduct some ablation studies in these two environments of linear MDPs. 
+
+## 7.2 Experiments Beyond Linear MDPs: Atari 
+
+In Section G.3, we extend our proposed algorithm to large-scale deep RL applications. We then conduct experiments in Atari (Mnih et al., 2013) using Stable Baselines3 (Raffin et al., 2021) and compare our proposed algorithm to PPO (Schulman et al., 2017b) in the on-policy setting and DQN (Mnih et al., 2015) in the off-policy setting. We demonstrate that our algorithm can achieve similar or even better performance. 15 8 Discussion 
+
+We proposed an optimistic actor–critic algorithm with explicitly parameterized policies and a systematic exploration mechanism. In particular, for the actor, we demonstrated that using projected NPG with parametric policies is not only practical, but also equipped with theoretical guarantees. For the critic, we demonstrated that LMC is a principled and easy-to-implement exploration scheme for policy optimization methods. We derived theoretical guarantees in both the on-policy and off-policy settings, showcasing that the proposed actor-critic algorithm can simultaneously achieve sample efficiency and practicality. For future work, eliminating the dependence on Dexp and ρexp will result in a more practical algorithm. We also aim to investigate the actor-critic algorithms in more realistic setups (e.g., infinite-horizon discounted MDPs) with more general function approximation schemes beyond linear models for both the environment and the policy. It would also be fruitful to further evaluate their empirical performance in more challenging large-scale deep RL applications. 
+
+# Acknowledgments 
+
+We would like to thank Xingtu Liu, Yunxiang Li, and the anonymous reviewers for their helpful feedback. This work was partially supported by the Natural Sciences and Engineering Research Council of Canada (NSERC) Discovery Grant RGPIN-2022-04816, and enabled in part by support provided by the Digital Research Alliance of Canada (alliancecan.ca). 
+
+# References 
+
+Abbasi-Yadkori, Y., Bartlett, P., Bhatia, K., Lazic, N., Szepesvari, C., and Weisz, G. (2019). Politex: Regret bounds for policy iteration using expert prediction. In International Conference on Machine Learning, pages 3692–3702. PMLR. Abbasi-Yadkori, Y., Pál, D., and Szepesvári, C. (2011). Improved algorithms for linear stochastic bandits. Advances in Neural Information Processing Systems, 24. Abramowitz, M. and Stegun, I. A. (1948). Handbook of mathematical functions with formulas, graphs, and mathematical tables, volume 55. US Government Printing Office. Agarwal, A., Jin, Y., and Zhang, T. (2023). VO QL: Towards optimal regret in model-free RL with nonlinear function approximation. In The Thirty Sixth Annual Conference on Learning Theory, pages 987–1063. PMLR. Agarwal, A., Kakade, S. M., Lee, J. D., and Mahajan, G. (2021a). On the theory of policy gradient methods: Optimality, approximation, and distribution shift. Journal of Machine Learning Research, 22(98):1–76. Agarwal, N., Chaudhuri, S., Jain, P., Nagaraj, D., and Netrapalli, P. (2021b). Online target q-learning with reverse experience replay: Efficiently finding the optimal policy for linear mdps. arXiv preprint arXiv:2110.08440. Alfano, C. and Rebeschini, P. (2022). Linear convergence for natural policy gradient with log-linear policy parametrization. arXiv preprint arXiv:2209.15382. Asad, R., Harikandeh, R. B., Laradji, I. H., Le Roux, N., and Vaswani, S. (2025). Fast convergence of softmax policy mirror ascent. In International Conference on Artificial Intelligence and Statistics, pages 3943–3951. PMLR. Bhandari, J. and Russo, D. (2024). Global optimality guarantees for policy gradient methods. Operations Research, 72(5):1906–1927. 16 Bhatnagar, S., Sutton, R. S., Ghavamzadeh, M., and Lee, M. (2009). Natural actor–critic algorithms. Automatica, 45(11):2471–2482. Cai, Q., Yang, Z., Jin, C., and Wang, Z. (2020). Provably efficient exploration in policy optimization. In International Conference on Machine Learning, pages 1283–1294. PMLR. Cassel, A. and Rosenberg, A. (2024). Warm-up free policy optimization: Improved regret in linear Markov decision processes. Advances in Neural Information Processing Systems, 37:3275–3303. Cayci, S., He, N., and Srikant, R. (2024). Finite-time analysis of entropy-regularized neural natural actor-critic algorithm. Transactions on Machine Learning Research. Cen, S., Cheng, C., Chen, Y., Wei, Y., and Chi, Y. (2022). Fast global convergence of natural policy gradient methods with entropy regularization. Operations Research, 70(4):2563–2578. Dulac-Arnold, G., Mankowitz, D., and Hester, T. (2019). Challenges of real-world reinforcement learning. arXiv preprint arXiv:1904.12901. Frank, M., Wolfe, P., et al. (1956). An algorithm for quadratic programming. Naval research logistics quarterly, 3(1-2):95–110. Fu, Z., Yang, Z., and Wang, Z. (2021). Single-timescale actor-critic provably finds globally optimal policy. In International Conference on Learning Representations. Fujimoto, S., Hoof, H., and Meger, D. (2018). Addressing function approximation error in actor-critic methods. In International conference on machine learning, pages 1587–1596. PMLR. Gaur, M., Bedi, A., Wang, D., and Aggarwal, V. (2024). Closing the gap: Achieving global convergence (last iterate) of actor-critic under Markovian sampling with neural network parametrization. In International Conference on Machine Learning, pages 15153–15179. PMLR. Gaur, M., Bedi, A. S., Wang, D., and Aggarwal, V. (2023). On the global convergence of natural actor-critic with two-layer neural network parametrization. arXiv preprint arXiv:2306.10486. Haarnoja, T., Zhou, A., Abbeel, P., and Levine, S. (2018). Soft actor-critic: Off-policy maximum entropy deep reinforcement learning with a stochastic actor. In International conference on machine learning, pages 1861–1870. Pmlr. Hao, B., Lattimore, T., Szepesvári, C., and Wang, M. (2021). Online sparse reinforcement learning. In International Conference on Artificial Intelligence and Statistics, pages 316–324. PMLR. Hazan, E. et al. (2016). Introduction to online convex optimization. Foundations and Trends® in Optimization, 2(3-4):157–325. He, J., Zhao, H., Zhou, D., and Gu, Q. (2023). Nearly minimax optimal reinforcement learning for linear markov decision processes. In International Conference on Machine Learning, pages 12790–12822. PMLR. Hong, M., Wai, H.-T., Wang, Z., and Yang, Z. (2023). A two-timescale stochastic algorithm framework for bilevel optimization: Complexity analysis and application to actor-critic. SIAM Journal on Optimization, 33(1):147–180. Ishfaq, H., Cui, Q., Nguyen, V., Ayoub, A., Yang, Z., Wang, Z., Precup, D., and Yang, L. (2021). Random-ized exploration in reinforcement learning with general value function approximation. In International Conference on Machine Learning, pages 4607–4616. PMLR. Ishfaq, H., Lan, Q., Xu, P., Mahmood, A. R., Precup, D., Anandkumar, A., and Azizzadenesheli, K. (2024a). Provable and practical: Efficient exploration in reinforcement learning via langevin monte carlo. In The Twelfth International Conference on Learning Representations. 17 Ishfaq, H., Tan, Y., Yang, Y., Lan, Q., Lu, J., Mahmood, A. R., Precup, D., and Xu, P. (2024b). More efficient randomized exploration for reinforcement learning via approximate sampling. In Reinforcement Learning Conference. Ishfaq, H., Wang, G., Islam, S. N., and Precup, D. (2025). Langevin soft actor-critic: Efficient exploration through uncertainty-driven critic learning. In The Thirteenth International Conference on Learning Representations. Jin, C., Liu, Q., and Miryoosefi, S. (2021). Bellman eluder dimension: New rich classes of rl problems, and sample-efficient algorithms. Advances in Neural Information Processing Systems, 34:13406–13418. Jin, C., Yang, Z., Wang, Z., and Jordan, M. I. (2020). Provably efficient reinforcement learning with linear function approximation. In Conference on learning theory, pages 2137–2143. PMLR. Jorge, E., Dimitrakakis, C., and Basu, D. (2024). Isoperimetry is all we need: Langevin posterior sampling for rl with sublinear regret. arXiv preprint arXiv:2412.20824. Kakade, S. M. (2001). A natural policy gradient. Advances in Neural Information Processing Systems, 14. Khodadadian, S., Doan, T. T., Romberg, J., and Maguluri, S. T. (2022). Finite-sample analysis of two-time-scale natural actor–critic algorithm. IEEE Transactions on Automatic Control, 68(6):3273–3284. Kiefer, J. and Wolfowitz, J. (1960). The equivalence of two extremum problems. Canadian Journal of Mathematics, 12:363–366. Kober, J., Bagnell, J. A., and Peters, J. (2013). Reinforcement learning in robotics: A survey. The International Journal of Robotics Research, 32(11):1238–1274. Konda, V. and Tsitsiklis, J. (1999). Actor-critic algorithms. Advances in Neural Information Processing Systems, 12. Lattimore, T. and Szepesvári, C. (2020). Bandit algorithms. Cambridge University Press. Lillicrap, T. P., Hunt, J. J., Pritzel, A., Heess, N., Erez, T., Tassa, Y., Silver, D., and Wierstra, D. (2015). Continuous control with deep reinforcement learning. arXiv preprint arXiv:1509.02971. Liu, Q., Weisz, G., György, A., Jin, C., and Szepesvári, C. (2023). Optimistic natural policy gradient: a simple efficient policy optimization framework for online rl. Advances in Neural Information Processing Systems, 36:3560–3577. Mazumdar, E., Pacchiano, A., Ma, Y., Jordan, M., and Bartlett, P. (2020). On approximate thompson sampling with langevin algorithms. In international conference on machine learning, pages 6797–6807. PMLR. Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., and Riedmiller, M. (2013). Playing atari with deep reinforcement learning. arXiv preprint arXiv:1312.5602. Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J., Bellemare, M. G., Graves, A., Riedmiller, M., Fidjeland, A. K., Ostrovski, G., et al. (2015). Human-level control through deep reinforcement learning. nature, 518(7540):529–533. Neu, G., Jonsson, A., and Gómez, V. (2017). A unified view of entropy-regularized markov decision processes. arXiv preprint arXiv:1705.07798. Osband, I., Doron, Y., Hessel, M., Aslanides, J., Sezener, E., Saraiva, A., McKinney, K., Lattimore, T., Szepes-vari, C., Singh, S., et al. (2019). Behaviour suite for reinforcement learning. arXiv preprint arXiv:1908.03568. Peters, J., Vijayakumar, S., and Schaal, S. (2005). Natural actor-critic. In European Conference on Machine Learning, pages 280–291. Springer. 18 Raffin, A. (2020). Rl baselines3 zoo. https://github.com/DLR-RM/rl-baselines3-zoo .Raffin, A., Hill, A., Gleave, A., Kanervisto, A., Ernestus, M., and Dormann, N. (2021). Stable-baselines3: Reliable reinforcement learning implementations. Journal of Machine Learning Research, 22(268):1–8. Schulman, J., Chen, X., and Abbeel, P. (2017a). Equivalence between policy gradients and soft q-learning. arXiv preprint arXiv:1704.06440. Schulman, J., Levine, S., Abbeel, P., Jordan, M., and Moritz, P. (2015). Trust region policy optimization. In International conference on machine learning, pages 1889–1897. PMLR. Schulman, J., Wolski, F., Dhariwal, P., Radford, A., and Klimov, O. (2017b). Proximal policy optimization algorithms. arXiv preprint arXiv:1707.06347. Sherman, U., Cohen, A., Koren, T., and Mansour, Y. (2023). Rate-optimal policy optimization for linear markov decision processes. arXiv preprint arXiv:2308.14642. Sutton, R. S., McAllester, D., Singh, S., and Mansour, Y. (1999). Policy gradient methods for reinforcement learning with function approximation. Advances in Neural Information Processing Systems, 12. Szepesvári, C. (2022). Algorithms for reinforcement learning. Springer nature. Tan, K., Fan, W., and Wei, Y. (2025). Actor-critics can achieve optimal sample efficiency. arXiv preprint arXiv:2505.03710. Todd, M. J. (2016). Minimum-volume ellipsoids: Theory and algorithms. SIAM. Tomar, M., Shani, L., Efroni, Y., and Ghavamzadeh, M. (2020). Mirror descent policy optimization. arXiv preprint arXiv:2005.09814. Uc-Cetina, V., Navarro-Guerrero, N., Martin-Gonzalez, A., Weber, C., and Wermter, S. (2023). Survey on reinforcement learning for language processing. Artificial Intelligence Review, 56(2):1543–1575. Wagenmaker, A. and Jamieson, K. G. (2022). Instance-dependent near-optimal policy identification in linear mdps via online experiment design. Advances in Neural Information Processing Systems, 35:5968–5981. Wagenmaker, A. J., Chen, Y., Simchowitz, M., Du, S., and Jamieson, K. (2022). Reward-free rl is no harder than reward-aware rl in linear markov decision processes. In International Conference on Machine Learning, pages 22430–22456. PMLR. Welling, M. and Teh, Y. W. (2011). Bayesian learning via stochastic gradient langevin dynamics. In Proceedings of the 28th international conference on machine learning (ICML-11), pages 681–688. Williams, R. J. (1992). Simple statistical gradient-following algorithms for connectionist reinforcement learning. Machine learning, 8(3):229–256. Xiao, L. (2022). On the convergence rates of policy gradient methods. Journal of Machine Learning Research, 23(282):1–36. Xu, P., Zheng, H., Mazumdar, E. V., Azizzadenesheli, K., and Anandkumar, A. (2022). Langevin monte carlo for contextual bandits. In International Conference on Machine Learning, pages 24830–24850. PMLR. Xu, T., Wang, Z., and Liang, Y. (2020). Improving sample complexity bounds for (natural) actor-critic algorithms. Advances in Neural Information Processing Systems, 33:4358–4369. Yuan, R., Du, S. S., Gower, R. M., Lazaric, A., and Xiao, L. (2023). Linear convergence of natural policy gradient methods with log-linear policies. In International Conference on Learning Representations. 19 Zanette, A., Cheng, C.-A., and Agarwal, A. (2021). Cautiously optimistic policy optimization and exploration with linear function approximation. In Conference on Learning Theory, pages 4473–4525. PMLR. Zhong, H. and Zhang, T. (2023). A theoretical analysis of optimistic proximal policy optimization in linear markov decision processes. Advances in Neural Information Processing Systems, 36:73666–73690. 20 A Notation 
+
+Notation Meaning 
+
+Problem Definition 
+
+S, A state space and action space 
+
+H, h horizon length (total number of steps), current index of step 
+
+r ∈ R|S|×|A| reward function 
+
+P ∈ R|S|×|A|×|S| transition kernel 
+
+ϕ : S × A 7 → Rdc features for the linear MDP environment 
+
+φ : S × A 7 → Rda features for the learnable policy 
+
+Algorithm Design 
+
+T, t total number of learning episodes, index of current episode 
+
+Dt, Dth collected data of at episode t, split data at h-th step (subset of Dt)
+
+N number of samples collected for on-policy learning 
+
+w ∈ Rdc learnable critic parameters 
+
+J number of critic updates 
+
+αc critic learning rate 
+
+ν noise vector for LMC sampled from the standard normal distribution 
+
+ζ inverse temperature for the LMC critic loss 
+
+M number of samples for the critic parameters 
+
+Dexp , ρexp subset of S × A , distribution over the subset 
+
+θ ∈ Rda learnable actor parameters 
+
+K number of actor updates 
+
+αa actor learning rate 
+
+η policy optimization learning rate Table 2: Notations for Problem Definition and Algorithm Design 
+
+Additional Notations. Throughout this paper, we use subscripts to represent the index of the step within the horizon of the episodic MDP and superscripts to denote the index of the episode for learning. For example, Vth means the value function for the h-th step derived at the learning episode t. In some cases, where the subscripts are omitted, it represents a set of H functions for all steps h ∈ [H] (e.g., Vt := {Vth }h∈[H]). 
+
+|D t| represents the number of trajectories in Dt or the number of (sh, ah, sh+1) tuples in Dth. Additionally, for any vector v ∈ Rd and any matrix M ∈ Rd×d, we denote ∥v∥M = √v⊤ M v .
+
+# B Analyses for the Actor 
+
+## B.1 Generalized OMD Regret (Proof of Theorem 4.1) 
+
+Proof of Theorem 4.1. Given the update of pt+1/2 and the fact that ∆(A) is a convex set, we have the following optimality condition: 
+
+D
+
+u − pt+1/2 , −η gt + log (pt+1/2 ) − log (pt)
+
+E
+
+≥ 0 . (8) Then, for each t ∈ [T], we have that 
+
+u − pt, η gt =
+
+D
+
+u − pt+1/2 , η gtE
+
++
+
+D
+
+pt+1/2 − pt, η gtE
+
+21 =
+
+D
+
+u − pt+1/2 , η gt − log (pt+1/2 ) + log (pt)
+
+E
+
++
+
+D
+
+u − pt+1/2 , log (pt+1/2 ) − log (pt)
+
+E
+
++
+
+D
+
+pt+1/2 − pt, η gtE
+
+> (i)
+
+≤
+
+D
+
+u − pt+1/2 , log (pt+1/2 ) − log (pt)
+
+E
+
++
+
+D
+
+pt+1/2 − pt, η gtE
+
+> (ii)
+
+= KL (u ∥ pt) − KL (u ∥ pt+1/2 ) − KL (pt+1/2 ∥ pt) + 
+
+D
+
+pt+1/2 − pt, η gtE
+
+> (iii)
+
+≤ KL (u ∥ pt) − KL (u ∥ pt+1/2 ) − KL (pt+1/2 ∥ pt) + 12 pt+1/2 − pt 21 + 12 η gt 2
+
+> ∞
+> (iv)
+
+≤ KL (u ∥ pt) − KL (u ∥ pt+1/2 ) − KL (pt+1/2 ∥ pt) + KL (pt+1/2 ∥ pt) + η2 H2
+
+2
+
+≤ KL (u ∥ pt) − KL (u ∥ pt+1/2 ) + η2 H2
+
+2
+
+≤ KL (u ∥ pt) − KL (u ∥ pt+1) + KL (u ∥ pt+1) − KL (u ∥ pt+1/2 ) + η2 H2
+
+2
+
+= KL (u ∥ pt) − KL (u ∥ pt+1) + ϵt + η2 H2
+
+2 .(i) drops the first term due to the optimality condition from Eq. (8). (ii) applies the three-point property of Bregman divergence (Lemma B.2) by setting x = u, y = pt+1/2 , and z = pt. (iii) follows from the Hölder’s inequality and then the Young’s inequality (i.e., ⟨u, v⟩ ≤ ∥ u∥1∥v∥∞ ≤ ∥ u∥21/ 2 + ∥v∥2
+
+> ∞
+
+/ 2), and (iv) applies the Pinkster’s inequality and gt ≤ H. Summing up the above inequality from t = 1 to T yields that 
+
+> T
+
+# ∑
+
+> t=1
+
+u − pt, η gt =
+
+> T
+
+# ∑
+
+> t=1
+
+KL (u ∥ pt) − KL (u ∥ pt+1) + 
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + η2 H2 T
+
+2
+
+= KL (u ∥ p1) − KL (u ∥ pT+1) + 
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + η2 H2 T
+
+2
+
+> (v)
+
+≤ KL (u ∥ p1) + 
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + η2 H2 T
+
+2
+
+≤ ∑
+
+> a∈A
+
+u(a) log (u(a)) − ∑
+
+> a∈A
+
+u(a) log (p1(a)) + 
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + η2 H2 T
+
+2
+
+> (vi)
+
+≤ log |A| +
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + η2 H2 T
+
+2 .(v) follows from the fact that KL -divergence is non-negative, and (vi) stands because the first term is negative, and for the second term, p1 is a uniform distribution. Dividing both side by η, we have that 
+
+> T
+
+# ∑
+
+> t=1
+
+u − pt, gt ≤ log |A| + ∑Tt=1 ϵt
+
+η + η H2 T
+
+2 .This concludes the proof. 
+
+## B.2 Projection Error (Proof of Lemma 4.1) 
+
+Proof of Lemma 4.1. First, we define Φ as the log-sum-exp mirror map and Φ⋆ as negative entropy, its Fenchel conjugate. Based on this, for any softmax policy π, we can also define its logit as z := ∇Φ⋆(π) = 
+
+22 (∇Φ)−1(π). Consequently, π = ∇Φ(z). Additionally, for any two softmax policies π, π′ and their corre-sponding logits z, z′, it holds that, DΦ(z, z′) = KL (π′, π).Since we are using the log-linear policy class, we have zth(s, a) = 
+
+D
+
+φ(s, a), bθth
+
+E
+
+for any (s, a) ∈ S × A where 
+
+bθth represents the parameters we attain at episode t. Therefore, for any s ∈ S ,
+
+ϵth(s) = KL (π⋆(· | s) ∥ πt+1 
+
+> h
+
+(· | s)) − KL (π⋆ 
+
+> h
+
+(· | s) ∥ πt+1/2  
+
+> h
+
+(· | s)) = DΦ(zt+1 
+
+> h
+
+(· | s), z⋆ 
+
+> h
+
+(s, ·)) − DΦ(zt+1/2  
+
+> h
+
+(· | s), z⋆ 
+
+> h
+
+(· | s)) 
+
+> (i)
+
+=
+
+D
+
+∇Φ(zt+1 
+
+> h
+
+(s, ·))) − ∇ Φ(z⋆ 
+
+> h
+
+(s, ·))) , zt+1 
+
+> h
+
+(s, ·)) − zt+1/2  
+
+> h
+
+(· | s)) 
+
+E
+
+− DΦ(zt+1/2  
+
+> h
+
+(· | s), zt+1 
+
+> h
+
+(· | s)) =
+
+D
+
+πt+1 
+
+> h
+
+(s, ·) − π⋆ 
+
+> h
+
+(s, ·), zt+1 
+
+> h
+
+(s, ·)) − zt+1/2  
+
+> h
+
+(s, ·)) 
+
+E
+
+− KL (πt+1 
+
+> h
+
+(· | s)) ∥ πt+1/2  
+
+> h
+
+(· | s))) 
+
+> (ii)
+
+≤
+
+D
+
+πt+1 
+
+> h
+
+(· | s) − π⋆ 
+
+> h
+
+(· | s), zt+1 
+
+> h
+
+(s, ·)) − zt+1/2  
+
+> h
+
+(s, ·)) 
+
+E
+
+> (iii)
+
+≤ πt+1 
+
+> h
+
+(· | s) − π⋆(· | s) 2 zt+1 
+
+> h
+
+(s, ·)) − zt+1/2  
+
+> h
+
+(s, ·)) 2
+
+≤ √2 zt+1 
+
+> h
+
+(s, ·) − zt+1/2  
+
+> h
+
+(s, ·) 2(iv) 
+
+= √2
+
+D
+
+φ(s, ·), bθt+1 
+
+> h
+
+− bθth
+
+E
+
+− η bQth(s, ·) 2(v) 
+
+≤ √2
+
+D
+
+φ(s, ·), bθt+1 
+
+> h
+
+− bθth
+
+E
+
+− η bQth(s, ·) .(i) follows from the three-point property of Bregman divergence (Lemma B.2) by setting x = zt+1/2  
+
+> h
+
+(· | s),
+
+y = zt+1 
+
+> h
+
+(· | s), and z = z⋆ 
+
+> h
+
+(· | s) where z⋆ is the logit of π⋆. (ii) is based on the fact that KL -divergence is non-negative. (iii) uses the Cauchy-Schwarz inequality. (iv) uses the NPG update. (v) holds because 
+
+∥·∥ 2 ≤ ∥·∥ 1.Since the actor is designed to minimize the ridge regression in Algorithm 2, the minimizer can be written as 
+
+bθt,⋆ 
+
+> h
+
+= arg min 
+
+> θh
+
+12 ∑
+
+> (s,a)∈D exp
+
+ρ(s, a)
+
+h
+
+⟨φ(s, a), θh⟩ − bZth(s, a)
+
+i2
+
+,where bZth(s, a) :=
+
+D
+
+φ(s, ·), bθth(s, ·)
+
+E
+
++ η bQth(s, a) for all t ∈ [T]. We define bθt,⋆ 
+
+> h
+
+as the minimizer, and it has the following explicit solution: 
+
+bθt,⋆ 
+
+> h
+
+= G−1
+
+ ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′) bZth(s′, a′) φ(s′, a′)
+
+ ,where G := ∑(s,a)∈D exp ρ(s, a) φ(s, a) φ(s, a)⊤ ∈ Rda×da .Suppose θt,⋆ 
+
+> h
+
+is the minimizer of the regression loss over the entire state-action space, bθt,⋆ 
+
+> h
+
+is the minimizer over the coreset, and bθth is the parameters produced by the actor after Kt rounds of gradient descent as shown in Algorithm 2. Under Assumptions 4.1 and 4.2, we know that for any t and h,
+
+D
+
+φ(s, a), bθt,⋆
+
+> h
+
+E
+
+− bZth(s, a)) ≤ p2 ϵbias ,
+
+D
+
+φ(s, a), bθth
+
+E
+
+−
+
+D
+
+φ(s, a), bθt,⋆
+
+> h
+
+E
+
+≤
+
+q
+
+2 ϵopt .23 Then, for any arbitrary (s, a) ∈ S × A , using the triangular inequality, we have that 
+
+D
+
+φ(s, a), bθth
+
+E
+
+− bZth(s, a)) 
+
+≤
+
+D
+
+φ(s, a), θt,⋆
+
+> h
+
+E
+
+− bZth(s, a)) +
+
+D
+
+φ(s, a), bθth
+
+E
+
+−
+
+D
+
+φ(s, a), θt,⋆
+
+> h
+
+E
+
+= p2 ϵbias +
+
+D
+
+φ(s, a), bθth
+
+E
+
+−
+
+D
+
+φ(s, a), θt,⋆
+
+> h
+
+E
+
+≤ p2 ϵbias +
+
+D
+
+φ(s, a), bθth
+
+E
+
+−
+
+D
+
+φ(s, a), bθt,⋆
+
+> h
+
+E
+
++
+
+D
+
+φ(s, a), bθt,⋆
+
+> h
+
+E
+
+−
+
+D
+
+φ(s, a), θt,⋆
+
+> h
+
+E
+
+= p2 ϵbias +
+
+q
+
+2 ϵopt +
+
+D
+
+φ(s, a), bθt,⋆ 
+
+> h
+
+− θt,⋆
+
+> h
+
+E
+
+.Therefore, it suffices to bound 
+
+D
+
+φ(s, a), bθt,⋆ 
+
+> h
+
+(s, a) − θt,⋆ 
+
+> h
+
+(s, a)
+
+E
+
+. To do that, we first define Υ(s′, a′) :=
+
+bZth(s′, a′) −
+
+D
+
+φ(s′, a′), θt,⋆
+
+> h
+
+E
+
+for any (s′, a′) ∈ D exp . Then, we have that 
+
+bθt,⋆ 
+
+> h
+
+= G−1
+
+ ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′)
+
+h
+
+Υ(s′, a′) + 
+
+D
+
+φ(s′, a′), θt,⋆
+
+> h
+
+Ei 
+
+φ(s′, a′)
+
+
+
+= G−1
+
+ ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′) φ(s′, a′) φ(s′, a′)⊤
+
+θt,⋆ 
+
+> h
+
++ G−1
+
+ ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′) Υ(s′, a′) φ(s′, a′)
+
+
+
+= θt,⋆ 
+
+> h
+
++ G−1
+
+ ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′) Υ(s′, a′) φ(s′, a′)
+
+ .This implies that 
+
+bθt,⋆ 
+
+> h
+
+− θt,⋆ 
+
+> h
+
+= G−1
+
+ ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′) Υ(s′, a′) φ(s′, a′)
+
+ .Hence, for any arbitrary (s, a) ∈ S × A ,
+
+D
+
+φ(s, a), bθt,⋆ 
+
+> h
+
+− θt,⋆
+
+> h
+
+E
+
+= ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′) Υ(s′, a′)φ(s, a)⊤ G−1 φ(s′, a′)
+
+> (vi)
+
+≤ ∑ 
+
+> (s′,a′)∈D exp
+
+Υ(s′, a′) ρ(s′, a′) φ(s, a)⊤ G−1 φ(s′, a′)
+
+≤ max  
+
+> (s′,a′)∈D exp
+
+Υ(s′, a′)
+
+!
+
+# ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′) φ(s, a)⊤ G−1 φ(s′, a′)
+
+≤ p2 ϵbias ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′) φ(s, a)⊤ G−1 φ(s′, a′)
+
+= p2 ϵbias 
+
+r
+
+E(s′,a′ )∼ρ φ(s, a)⊤ G−1 φ(s′, a′)
+
+2(vii) 
+
+≤ p2 ϵbias 
+
+q
+
+E(s′,a′ )∼ρ φ(s, a)⊤ G−1 φ(s′, a′) 2
+
+= p2 ϵbias 
+
+vuuutφ(s, a)⊤ G−1
+
+ ∑ 
+
+> (s′,a′)∈D exp
+
+ρ(s′, a′) φ(s′, a′) φ(s′, a′)⊤
+
+G−1 φ(s, a)
+
+24 = p2 ϵbias ∥φ(s, a)∥G−1 .(vi) applies the Cauchy-Schwarz inequality, and (vii) follows from Jensen’s inequality. Putting everything together, we have that 
+
+D
+
+φ(s, a), bθth
+
+E
+
+− bZth(s, a)) ≤ √2(∥φ(s, a)∥G−1 + 1) √ϵbias + √ϵopt 
+
+
+
+≤ √2(φG + 1) √ϵbias + √ϵopt 
+
+ .Recall that ϵth(s) ≤ √2
+
+D
+
+φ(s, ·), bθt+1 
+
+> h
+
+(s, ·)
+
+E
+
+− bZth(s, ·) 2. Therefore, for any s ∈ S ,
+
+ϵth(s) ≤ √2
+
+D
+
+φ(s, ·), bθth
+
+E
+
+− bZth(s, a)) ≤ 2 (φG + 1) √ϵbias + 2 √ϵopt .This concludes the proof. 
+
+## B.3 Instantiating the Actor with SPMA 
+
+Lemma 4.1 can not only be applied to NPG but also other mirror descent-based policy optimization methods such as MDPO (Tomar et al., 2020) and SPMA (Asad et al., 2025). In this section, as an example, we show that the projected variant of SPMA (projected SPMA ) is also compatible with our framework and can enjoy similar sample complexity guarantees as projected NPG .We can instantiate the actor in Algorithm 1 with the projected SPMA by setting the actor loss in Algorithm 2 as ˜ℓth(θ) = 12 ∑
+
+> (s,a)∈D exp
+
+ρexp (s, a)
+
+h
+
+⟨φ(s, a), θ⟩ − bZth(s, a)
+
+i2
+
+,where bZth(s, a) :=
+
+D
+
+φ(s, a), bθth
+
+E
+
++ log (1 + η Aπt
+
+(s, ·)) .Equivalently, the projected SPMA update can be expressed as follows. For any s ∈ S , π1(· | s) is a uniform distribution, and 
+
+πt+1/2 (· | s) = arg min 
+
+> p∈∆A
+
+nD 
+
+πt(· | s), − log 
+
+
+
+1 + η Aπt
+
+(s, ·)
+
+E 
+
++ KL  p ∥ πt(· | s)o
+
+,
+
+πt+1(· | s) = Proj Π(πt+1/2 (· | s)) .Hence, we introduce the following alternative lemma to show that Theorem 4.1 also holds for the projected 
+
+SPMA .
+
+Lemma B.1. Given a sequence of linear functions { pt, gt }t∈[T] for a sequence of vectors {gt}t∈[T] where for any t ∈ [T], pt ∈ ∆(A), gt ∈ R|A| , and gt(a) ∈ [0, H] for all a ∈ A . Consider pt∈[T] where p1 is the uniform distribution, and for all t ∈ [T],pt+1/2 = arg min 
+
+> p∈∆A
+
+ p, − log  1 + η  gt − pt, gt 1 + KL (p ∥ pt) ,
+
+pt+1 = Proj Π(pt+1/2 ) ,
+
+where 1 ∈ R|A| is an all-one vector. Let ϵt := KL (u ∥ pt+1) − KL (u ∥ pt+1/2 ) be the projection error induced by Eq. (4). If η ≤ 12 H , then for any comparator u ∈ ∆(A), it holds that 
+
+> T
+
+# ∑
+
+> t=1
+
+u − pt, gt ≤ log |A| + ∑Tt=1 ϵt
+
+η + 3 η H2 T
+
+2 .25 Proof of Lemma B.1. We first denote that dt = log  1 + η  gt − pt, gt 1 for all t ∈ [T]. Then, for all a ∈ A ,since η ≤ 12 H and gt(a) − pt, gt ∈ [−H, H], we have η  gt(a) − pt, gt  > − 12 and therefore 
+
+dt(a) (i) 
+
+≤ η  gt(a) − pt, gt  ≤ η H ,
+
+dt(a) (ii) 
+
+≥ η  gt(a) − pt, gt  − η2  gt(a) − pt, gt 2 ≥ η  gt(a) − pt, gt  − η H2 ,where (i) follows from log (1 + x) ≤ x for all x > −1, and (ii) holds because log (1 + x) ≥ x − x2 for all 
+
+x > − 12 .Given the update of pt+1/2 and the fact that ∆(A) is a convex set, we have the following optimality condition: 
+
+D
+
+u − pt+1/2 , −dt + log (pt+1/2 ) − log (pt)
+
+E
+
+≥ 0 . (9) Then, for all t ∈ [T], we have that 
+
+u − pt, dt =
+
+D
+
+u − pt+1/2 , dtE
+
++
+
+D
+
+pt+1/2 − pt, dtE
+
+=
+
+D
+
+u − pt+1/2 , dt − log (pt+1/2 ) + log (pt)
+
+E
+
++
+
+D
+
+u − pt+1/2 , log (pt+1/2 ) − log (pt)
+
+E
+
++
+
+D
+
+pt+1/2 − pt, dtE
+
+> (iii)
+
+≤
+
+D
+
+u − pt+1/2 , log (pt+1/2 ) − log (pt)
+
+E
+
++
+
+D
+
+pt+1/2 − pt, dtE
+
+> (iv)
+
+= KL (u ∥ pt) − KL (u ∥ pt+1/2 ) − KL (pt+1/2 ∥ pt) + 
+
+D
+
+pt+1/2 − pt, dtE
+
+> (v)
+
+≤ KL (u ∥ pt) − KL (u ∥ pt+1/2 ) − KL (pt+1/2 ∥ pt) + 12 pt+1/2 − pt 21 + 12 dt 2
+
+> ∞
+> (vi)
+
+≤ KL (u ∥ pt) − KL (u ∥ pt+1/2 ) − KL (pt+1/2 ∥ pt) + KL (pt+1/2 ∥ pt) + η2 H2
+
+2
+
+≤ KL (u ∥ pt) − KL (u ∥ pt+1/2 ) + η2 H2
+
+2
+
+≤ KL (u ∥ pt) − KL (u ∥ pt+1) + KL (u ∥ πt+1) − KL (u ∥ pt+1/2 ) + η2 H2
+
+2
+
+= KL (u ∥ pt) − KL (u ∥ pt+1) + ϵt + η2 H2
+
+2 .(iii) drops the first term due to the optimality condition from Eq. (9). (iv) applies the three-point property of Bregman divergence (Lemma B.2) by setting x = u, y = pt+1/2 , and z = pt. (v) follows from the Hölder’s inequality and then the Young’s inequality (i.e., ⟨u, v⟩ ≤ ∥ u∥1∥v∥∞ ≤ ∥ u∥21/ 2 + ∥v∥2
+
+> ∞
+
+/ 2), and (vi) applies the Pinkster’s inequality and dt ∞ ≤ H.Moreover, we have that 
+
+u − pt, dt (vii) 
+
+≥ u − pt, η  gt − pt, gt 1 − η H2 (viii) 
+
+≥ u − pt, η gt − η H2 ,where (vii) comes from the fact that dt(a) ≥ η  gt(a) − pt, gt  − η H2 for all a ∈ A , and (viii) follows from the fact that pt, gt ≥ 0 since pt ∈ ∆(A) and gt(a) ∈ [0, H] for all a ∈ A . This implies that 
+
+u − pt, η gt ≤ u − pt, dt + η H2
+
+≤ KL (u ∥ pt) − KL (u ∥ pt+1) + ϵt + 3 η2 H2
+
+2 .26 Summing up the above inequality from t = 1 to T yields that 
+
+> T
+
+# ∑
+
+> t=1
+
+u − pt, η gt =
+
+> T
+
+# ∑
+
+> t=1
+
+KL (u ∥ pt) − KL (u ∥ pt+1) + 
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + 3 η2 H2 T
+
+2
+
+= KL (u ∥ p1) − KL (u ∥ pT+1) + 
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + 3 η2 H2 T
+
+2
+
+> (ix)
+
+≤ KL (u ∥ p1) + 
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + 3 η2 H2 T
+
+2
+
+≤ ∑
+
+> a∈A
+
+u(a) log (u(a)) − ∑
+
+> a∈A
+
+u(a) log (p1(a)) + 
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + 3 η2 H2 T
+
+2
+
+> (x)
+
+≤ log |A| +
+
+> T
+
+# ∑
+
+> t=1
+
+ϵt + 3 η2 H2 T
+
+2 .(ix) follows from the fact that KL -divergence is non-negative, and (x) stands because the first term is negative, and for the second term, p1 is a uniform distribution. Dividing both side by η, we have that 
+
+> T
+
+# ∑
+
+> t=1
+
+u − pt, gt ≤ log |A| + ∑Tt=1 ϵt
+
+η + 3 η H2 T
+
+2 .This concludes the proof. In order to obtain a meaningful regret bound, we should set η = min 
+
+  
+
+> 12H
+
+,
+
+q 2 (log |A| +ϵ T)  
+
+> 3H2T
+
+
+
+.Therefore, under Assumptions 4.1 and 4.2, we can easily prove that Lemma 4.1 also holds for the projected 
+
+SPMA , and consequently, all the sample complexity guarantees for the projected NPG should also hold. 
+
+## B.4 Technical Tools 
+
+Lemma B.2 (Three-Point Property of Bregman Divergence) . Suppose X ⊆ Rd is closed and convex. Consider a strictly convex function Φ : X → R. For all x ∈ X and y , z ∈ intX, DΦ(x, y) + DΦ(y, z) − DΦ(x, z) = ⟨∇ Φ(z) − ∇ Φ(y), x − y⟩ .
+
+# C Constructing Dexp and ρexp via Experimental Design 
+
+In this section, we introduce various methods of experimental design to bound φG defined in Lemma 4.1. The experimental design problem can be written as inf 
+
+> Dexp ∈S×A
+> ρexp ∈∆(Dexp )
+
+sup 
+
+> (s,a)∈S×A
+
+∥φ(s, a)∥G−1
+
+s.t. G = ∑
+
+> (s,a)∈D exp
+
+ρexp (s, a) φ(s, a) φ(s, a)⊤ .In Section C.1, we consider constructing a coreset for the policy features. The Kiefer–Wolfowitz theorem guarantees that there exists a coreset that can ensure that φG is bounded, and that such a coreset has a small 
+
+O(d) size. Such a coreset can be formed using G-experimental design. In Section C.2, we consider using the linear MDP features as the policy features and constructing Dexp through limited interaction with the environment. 27 C.1 Kiefer–Wolfowitz Theorem and G-Experimental Design 
+
+We first introduce the Kiefer–Wolfowitz theorem (Kiefer and Wolfowitz, 1960) which guarantees that there exists a coreset Dexp and its corresponding distribution ρexp that can be used to bound φG.
+
+Proposition C.1 (Kiefer–Wolfowitz) . Let G := ∑(s,a)∈D exp ρexp (s, a) φ(s, a) φ(s, a)⊤ be the covariance matrix for any Dexp ⊂ S × A and ρ ∈ ∆(Dexp ). There exists a coreset Dexp and a distribution ρexp such that 
+
+sup 
+
+> (s,a)∈D exp
+
+∥φ(s, a)∥G−1 ≤ 2 da and |D exp | ≤ 4da log log (da + 4) + 28 . Note that the size of Dexp is also bounded by eO(da), suggesting that the computation cost of calculating the actor loss over Dexp is inexpensive. The problem of constructing such a coreset is often framed as G-experimental design, and it can typically be solved using numerous efficient approximation algorithms such as the Franke-Wolfe algorithm (Frank et al., 1956) as mentioned in Todd (2016); Lattimore and Szepesvári (2020). Using Dexp and ρexp produced by such methods to construct the actor loss in Algorithm 2 offers the guarantees that φG ≤ O (da), which is consequently used to bound the projection error in Lemma 4.1 as 
+
+ϵ ≤ O (da ϵbias + ϵopt ).We remark that the coreset construction can be done before the learning process in the actor-critic algorithm since it is independent of the linear MDP environment. However, these algorithms typically require traversing through all the policy features in S × A , which is not ideal for large state-action spaces. 
+
+## C.2 Exploratory Policy and Minimum Eigenvalue 
+
+Alternatively, we can choose to use the linear MDP features as the policy features (i.e., φ = ϕ) and construct 
+
+Dexp via interacting with the environment. Note that bounding φG is equivalent to controlling ∥ϕ(s, a)∥G−1
+
+for all (s, a) ∈ S × A . Consequently, given that ∥ϕ(s, a)∥2 ≤ 1 by the linear MDP assumption and since 
+
+∥ϕ(s, a)∥G−1 ≤ ∥ϕ(s, a)∥2
+
+λmin (G) = 1
+
+λmin (G) ,we only need a well-conditioned covariance matrix G that has a positive minimum eigenvalue. Several existing works (Hao et al., 2021; Agarwal et al., 2021b) assume access to an exploratory (not necessarily optimal) policy πexp that is able to collect such covariance matrices with minimum eigenvalue bounded away from 0. Given that, we can directly apply πexp to roll-out trajectories and collect observations, which can be used to construct Dexp and the corresponding covariance G.However, in practice, we rarely have access to such an oracle policy. Consequently, Wagenmaker et al. (2022) proposed a reward-free approach, CoverTraj , that can effectively collect such observations without assuming access to an exploratory policy. In particular, the CoverTraj algorithm offers the following theoretical guarantee. 
+
+Proposition C.2 (Wagenmaker et al. 2022, Theorem 4) . Fix h ∈ [H] and γ ∈ [0, 1 ]. Suppose there exists a problem-dependent constant ϵM > 0 such that sup π∈Π λmin 
+
+ Eπ
+
+ϕ(s, a) ϕ(s, a)⊤ ≥ ϵM. Running K rounds of 
+
+CoverTraj to collect Dexp = (sτ 
+
+> h
+
+, aτ 
+
+> h
+
+) K 
+
+> τ=1
+
+where K = eO
+
+ 1
+
+ϵM
+
+· max 
+
+ dc
+
+γ2 , d4 
+
+> c
+
+H3 log 3 1
+
+δ
+
+ 
+
+ensures that for any δ ∈ (0, 1 ), with probability of at least 1 − δ,
+
+λmin (G) ≥ ϵM
+
+γ2 ,
+
+where G = ∑(s,a)∈D exp ϕ(s, a) ϕ(s, a)⊤.
+
+28 Note that CoverTraj does not utilize the reward function of the MDP and merely use the transition kernel when interacting with the environment. Alternatively, Wagenmaker and Jamieson (2022) provides another approach, OptCov , that utilizes regret minimization algorithms to construct the desired covariance matrix. According to Wagenmaker and Jamieson (2022, Theorem 9), OptCov can also offer a similar guarantee of the minimum eigenvalue ensuring that 
+
+λmin (G) ≥ max 
+
+
+
+dc log 
+
+ 1
+
+δ
+
+
+
+, ϵM
+
+
+
+.To conclude, the Frank-Wolfe algorithm can be used to form a coreset and subsequently bound φG for any given policy features. If we use the linear MDP features as the policy features, we can construct Dexp by interacting with the environment. Either having access to an exploratory policy or running CoverTraj or 
+
+OptCOv can offer guarantees on the minimum eigenvalues of the covariance matrix, which will consequently control φG.
+
+# D Analyses for the Critic 
+
+## D.1 Proof of Lemma 5.1 
+
+In order to prove Lemma 5.1, we introduce the following “good” event for the estimated value function. 
+
+Lemma D.1 (Good Event) . There exists some C δ > 0 such that for any fixed δ ∈ (0, 1 ), the following event, 
+
+Eδ :=
+
+
+
+∀(t, h) ∈ [T] × [H] : ∑(s,a,s′ )∈D th
+
+ϕ(s, a)
+
+h bVth+1(s′) − Ph bVth+1(s, a)
+
+i  
+
+> (Λth)−1
+
+≤ Cδ H √dc
+
+
+
+,
+
+holds with probability at least 1 − δ (i.e., Pr (Eδ) ≥ 1 − δ). 
+
+The exact definition of Cδ varies between the on-policy and the off-policy settings. We will prove that Pr (Eδ) ≥ 1 − δ for the on-policy and off-policy setting in Section E and Section F respectively. Next, conditioned on the above event, we present a formal version of Lemma 5.1, which provides an upper and a lower bound for the model prediction error induced by the LMC critic. 
+
+Lemma D.2 (Formal version of Lemma 5.1) . Consider Algorithm 1 with the LMC critic from Algorithm 3. Condi-tioned on Eδ defined in Lemma D.1, if we choose that λ = 1, ζ =  2 H √dc Cδ + 8/3 −2, αh,t 
+
+> c
+
+= 1 / 2 λmax (Λth
+
+,Jt ≥ 2 κt log (1/ σ), and M = log (H T /δ)/ log (1/ (1 − c)) where κt = max h∈[H] λmax (Λth)/λmin (Λth), σ =
+
+1 / 4 H   Dt + 1 √dc
+
+, and c = 1 /(2√2eπ), then, for all (t, h, s, a) ∈ [T] × [H] × S × A and for any δ ∈ (0, 1 )
+
+, with probability at least 1 − δ,
+
+−ΓLMC × ∥ ϕ(s, a)∥(Λth )−1 ≤ ιth(s, a) ≤ 0 , (10) 
+
+where ΓLMC = Cδ H √dc + 43
+
+q 2 dc log (1/ δ)  
+
+> 3ζ
+
++ 43 ≤ O 
+
+
+
+Cδ H d c
+
+plog (1/ δ)
+
+
+
+.
+
+D.1.1 Preliminary Properties 
+
+In this section, we introduce some useful properties of LMC and state the supporting lemmas that will be helpful in proving the above result. First, we obtain the derivative of the critic loss defined in Algorithm 3. 
+
+∇Lth(wh) = Λthwh − bth, (11) 29 where Λth := ∑(s,a)∈D th
+
+ϕ(s, a) ϕ(s, a)⊤ + λ I and bth := ∑(s,a,s′ )∈D th
+
+h
+
+rh(s, a) + bVth+1(s′)
+
+i
+
+ϕ(s, a). Consequently, by setting ∇Lth(wh) = 0, we get the minimizer of Lth(wh) as 
+
+bwth := ( Λth)−1 bth . (12) We now introduce the following lemma, showing that the noisy gradient descent performed by the LMC critic ensures that the sampled critic parameter w follows a Gaussian distribution. 
+
+Lemma D.3 (Ishfaq et al. 2024a, Proposition B.1) . Consider Algorithm 1 with the LMC critic from Algorithm 3. For any (t, h, m) ∈ [T] × [H] × [M], the sampled parameters wt,m,Jt 
+
+> h
+
+follows a Gaussian distribution N
+
+
+
+μt,m,Jt 
+
+> h
+
+, Σt,m,Jt
+
+> h
+
+
+
+.The mean and the covariance are defined as 
+
+μt,Jt 
+
+> h
+
+= AJt 
+
+> t
+
+. . . AJ1 
+
+> 1
+
+w1,0 +
+
+> t
+
+# ∑
+
+> i=1
+
+AJt 
+
+> t
+
+. . . AJi+1 
+
+> i+1
+
+(I − AJi 
+
+> i
+
+) bwih , (13) 
+
+Σt,Jt 
+
+> h
+
+= 1
+
+ζ
+
+> t
+
+# ∑
+
+> i=1
+
+AJt 
+
+> t
+
+. . . AJi+1 
+
+> i+1
+
+(I − A2 Ji 
+
+> i
+
+) ( Λih)−1 (I + Ai)−1 AJi+1 
+
+> i+1
+
+. . . AJt 
+
+> t
+
+, (14) 
+
+where A t := I − αt 
+
+> c
+
+Λth for all t ∈ [T].
+
+Since wt,m,Jt 
+
+> h
+
+follows the Gaussian distribution of N
+
+
+
+μt,m,Jt 
+
+> h
+
+, Σt,m,Jt
+
+> h
+
+
+
+,
+
+D
+
+ϕh(s, a), wt,m,Jt
+
+> h
+
+E
+
+also follows the Gaus-sian distribution of N
+
+
+
+ϕh(s, a)⊤ μt,m,Jt 
+
+> h
+
+, ϕh(s, a)⊤ Σt,m,Jt 
+
+> h
+
+ϕh(s, a)
+
+
+
+. Therefore, we introduce the following lemmas to bound the terms related to the mean and variance. 
+
+Lemma D.4. Consider Algorithm 1 with the LMC critic from Algorithm 3. If we follow the hyperparameter choices of Lemma D.2, then for any (s, a) ∈ S × A ,
+
+D
+
+ϕ(s, a),
+
+
+
+μt,Jt 
+
+> h
+
+− bwth
+
+E 
+
+≤ 43 ∥ϕ(s, a)∥(Λth )−1 .
+
+Lemma D.5. Consider Algorithm 1 with the LMC critic from Algorithm 3. If we follow the hyperparameter choices of Lemma D.2, then for any (s, a) ∈ S × A ,
+
+12√6 ζ ∥ϕ(s, a)∥(Λth )−1 ≤ ∥ ϕ(s, a)∥Σt,m,Jth
+
+≤ 43
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 .Additionally, we outline the necessary supporting lemmas that are useful for bounding the model prediction error. Recall that Dt := sup h∈[H] |D th| represents the number of trajectories in Dt or the number of 
+
+(sh, ah, sh+1) tuples in Dth, where Dt = N in the on-policy setting, and Dt = t in the off-policy setting. 
+
+Lemma D.6. Consider Algorithm 1 with the LMC critic from Algorithm 3. For any (t, h) ∈ [T] × [H], it holds that 
+
+bwth 2 ≤ 2 H
+
+q
+
+dc |D t|/λ .
+
+Lemma D.7. Consider Algorithm 1 with the LMC critic from Algorithm 3. If we follow the hyperparameter choices of Lemma D.2, then for any (t, m, h) ∈ [T] × [M] × [H] and for any δ ∈ (0, 1 ), with probability at least 1 − δ,
+
+wt,m,Jt  
+
+> h2
+
+≤ Wt 
+
+> δ
+
+:= 16 3 H
+
+q
+
+dc |D t| +
+
+s
+
+2 d3 
+
+> c
+
+t
+
+3 ζ δ .
+
+Lemma D.8. Consider Algorithm 1 with the LMC critic from Algorithm 3. If we follow the hyperparameter choices of Lemma D.2, then for any (t, m, h, s, a) ∈ [T] × [M] × [H] × S × A and for any δ ∈ (0, 1 ), with probability at least 1 − δ,
+
+D
+
+ϕ(s, a), bwth − wt,m,Jt
+
+> h
+
+E
+
+≤ 83
+
+s
+
+2 dc log (1/ δ)
+
+3 ζ + 43
+
+!
+
+∥ϕ(s, a)∥(Λth )−1 .30 Lemma D.9. Consider Algorithm 1 with the LMC critic from Algorithm 3. Conditioned on Eδ defined in Lemma D.1, if we follow the hyperparameter choices of Lemma D.2, then for any (t, h, s, a) ∈ [T] × [H] × S × A and for any 
+
+δ ∈ (0, 1 ), it holds that 
+
+ϕ(s, a), bwth − rh(s, a) − Ph bVth+1(s, a) ≤ 3 Cδ H pdc ∥ϕ(s, a)∥(Λth )−1 .
+
+D.1.2 Main Analysis 
+
+We will use the above lemmas to complete the main proof in this section. 
+
+Proof of Lemma D.2. Optimism (RHS of Eq. (10)) Using the definition of the model prediction error, we need to show that with high probability, bQth(s, a) ≥ rh(s, a) + Ph bVth+1(s, a). Recall that bQth(s, a) = min 
+
+nD 
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+, H − h + 1
+
+o
+
+.Since rh(s, a) + Ph bVth+1(s, a) ≤ H − h + 1, when 
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+> H − h + 1, the statement is trivially true. Thus, we only need to consider the case when 
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+≤ H − h + 1 and thus bQth(s, a) = 
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+.Based on the mean and covariance matrix defined in Lemma D.3, we have that 
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+follows the distribution N
+
+
+
+ϕ(s, a)⊤μt,Jt 
+
+> h
+
+, ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)
+
+
+
+.In order to prove that bQth(s, a) ≥ rh(s, a) + Ph bVth+1(s, a), we consider the following variable: 
+
+Xt := rh(s, a) + Ph bVth+1(s, a) −
+
+D
+
+ϕ(s, a), μt,Jt
+
+> h
+
+Eq
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)
+
+,and will next show that |Xt| ≤ 1. First, we have that 
+
+rh(s, a) + Ph bVth+1(s, a) −
+
+D
+
+ϕ(s, a), μt,Jt
+
+> h
+
+E
+
+> (i)
+
+≤ rh(s, a) + Ph bVth+1(s, a) − ϕ(s, a), bwth +
+
+D
+
+ϕ(s, a), bwth − μt,Jt
+
+> h
+
+E
+
+> (ii)
+
+≤ Cδ H pdc ∥ϕ(s, a)∥(Λth )−1 + 43 ∥ϕ(s, a)∥(Λth )−1
+
+=
+
+
+
+Cδ H pdc + 43
+
+
+
+∥ϕ(s, a)∥(Λth )−1 ,where (i) uses the triangular inequality, and (ii) is implied by Lemmas D.4 and D.9. Therefore, 
+
+|Xt| = rh(s, a) + Ph bVth+1(s, a) −
+
+D
+
+ϕ(s, a), μt,Jt
+
+> h
+
+Eq
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)
+
+≤ pζ
+
+
+
+2 H pdcCδ + 8/3 
+
+
+
+.Since we choose ζ =  2 H √dcCδ + 8/3 −2, we have that |Xt| ≤ 1. Then, using Lemma D.12, we can get that Pr 
+
+D 
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+≥ rh(s, a) + Ph bVth+1(s, a)
+
+
+
+31 = Pr 
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+−
+
+D
+
+ϕ(s, a), μt,Jt
+
+> h
+
+Eq
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)
+
+≥ rh(s, a) + Ph bVth+1(s, a) −
+
+D
+
+ϕ(s, a), μt,Jt
+
+> h
+
+Eq
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)
+
+
+
+= Pr 
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+−
+
+D
+
+ϕ(s, a), μt,Jt
+
+> h
+
+Eq
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)
+
+≥ Xt
+
+
+
+≥ 12 √2π exp (−X2 
+
+> t
+
+/2 )
+
+≥ 12 √2eπ .The above result holds for any m ∈ [M]. Since we have M parallel critic parameters, it holds that Pr 
+
+
+
+∃(s, a) ∈ S × A : bQth(s, a) ≤ rh(s, a) + Ph bVth+1(s, a)
+
+
+
+= Pr 
+
+
+
+∃(s, a) ∈ S × A : max 
+
+> m∈[M]
+
+bQt,mh (s, a) ≤ rh(s, a) + Ph bVth+1(s, a)
+
+
+
+= Pr 
+
+
+
+∃(s, a) ∈ S × A : ∀m ∈ [M], bQt,mh (s, a) ≤ rh(s, a) + Ph bVth+1(s, a)
+
+
+
+≤ Pr 
+
+
+
+∀m ∈ [M], ∃(sm, am) ∈ S × A : bQt,mh (sm, am) ≤ rh(sm, am) + Ph bVth+1(sm, am)
+
+
+
+=
+
+> M
+
+# ∏
+
+> m=1
+
+Pr 
+
+
+
+∃(s, a) ∈ S × A : bQt,mh (s, a) ≤ rh(s, a) + Ph bVth+1(s, a)
+
+
+
+=
+
+> M
+
+# ∏
+
+> m=1
+
+
+
+1 − Pr 
+
+
+
+∀(s, a) ∈ S × A : bQt,mh (s, a) ≥ rh(s, a) + Ph bVth+1(s, a)
+
+ 
+
+=
+
+> M
+
+# ∏
+
+> m=1
+
+
+
+1 − Pr 
+
+
+
+∀(s, a) ∈ S × A :
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+≥ rh(s, a) + Ph bVth+1(s, a)
+
+ 
+
+≤
+
+
+
+1 − 12√2eπ
+
+M
+
+.This further implies that Pr  ∀(s, a) ∈ S × A : ιth(s, a) ≤ 0
+
+= Pr 
+
+
+
+∀(s, a) ∈ S × A : bQth(s, a) ≥ rh(s, a) + Ph bVth+1(s, a)
+
+
+
+= 1 − Pr 
+
+
+
+∃(s, a) ∈ S × A : bQth(s, a) ≤ rh(s, a) + Ph bVth+1(s, a)
+
+
+
+= 1 −
+
+
+
+1 − 12√2eπ
+
+M
+
+.Let 1 −
+
+
+
+1 − 12√2eπ
+
+M
+
+≥ 1 − δ/(H T ), which yields that M = log (H T /δ)/ log (1/ (1 − c)) where c =
+
+1/ (2√2eπ). Therefore, we have that Pr  ιth(s, a) ≤ 0, ∀(s, a) ∈ S × A  ≥ 1 − δ
+
+H T .Applying union bound over [H] and [T], we have that ιth(s, a) ≤ 0 with probability 1 − δ.32 Error Bound (LHS of Eq. (10)) We can lower bound ιth as follows. 
+
+−ιth(s, a) = bQth(s, a) − rh(s, a) − Ph bVth+1(s, a)= min 
+
+
+
+max 
+
+> m∈[M]
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+, H − h + 1
+
++
+
+− rh(s, a) − Ph bVth+1(s, a)
+
+≤ max 
+
+> m∈[M]
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+− rh(s, a) − Ph bVth+1(s, a)= max 
+
+> m∈[M]
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+− ϕ(s, a), bwth + ϕ(s, a), bwth − rh(s, a) − Ph bVth+1(s, a)
+
+≤ max 
+
+> m∈[M]
+
+D
+
+ϕ(s, a), wt,m,Jt
+
+> h
+
+E
+
+− ϕ(s, a), bwth + ϕ(s, a), bwth − rh(s, a) − Ph bVth+1(s, a)
+
+> (iii)
+
+≤ Cδ H pdc + 43
+
+s
+
+2 dc log (1/ δ)
+
+3 ζ + 43
+
+!
+
+∥ϕ(s, a)∥(Λth )−1 ,where (iii) is derived from Lemmas D.8 and D.9. This concludes the proof. 
+
+## D.2 Proofs of Preliminary Properties 
+
+D.2.1 Proof of Lemma D.3 Proof. For any (t, m) ∈ [T] × [M], the critic update rule at j-th round can be written as 
+
+wt,m,jh = wt,m,j−1 
+
+> h
+
+− αh,t
+
+c ∇Lth(wt,m,j−1 
+
+> h
+
+) + 
+
+q
+
+αh,t
+
+c ζ−1νt,m,jh .Considering j = Jt and plugging in Eq. (11), we have that 
+
+wt,m,Jt 
+
+> h
+
+= wt,m,Jt −1 
+
+> h
+
+− αh,t
+
+c
+
+
+
+Λth wt,m,Jt −1 
+
+> h
+
+− bth
+
+
+
++
+
+q
+
+αh,t
+
+c ζ−1 νt,m,Jt
+
+> h
+
+=
+
+
+
+I − αh,t
+
+c Λth
+
+
+
+wt,m,Jt −1 
+
+> h
+
++ αh,t
+
+c bth +
+
+q
+
+αh,t
+
+c ζ−1 νt,m,Jt
+
+> h
+> (i)
+
+=
+
+
+
+I − αh,t
+
+c Λth
+
+Jt
+
+wt,m,0  
+
+> h
+
++ 
+
+> Jt−1
+
+# ∑
+
+> l=0
+
+
+
+I − αh,t
+
+c Λth
+
+l 
+
+αh,t
+
+c bth +
+
+q
+
+αh,t
+
+c ζ−1 νt,m,Jt −lh
+
+
+
+=
+
+
+
+I − αh,t
+
+c Λth
+
+Jt
+
+wt,m,0  
+
+> h
+
++ αh,t
+
+c 
+
+> Jt−1
+
+# ∑
+
+> l=0
+
+
+
+I − αh,t
+
+c Λth
+
+l
+
+bth +
+
+q
+
+αh,t
+
+c ζ−1 
+
+> Jt−1
+
+# ∑
+
+> l=0
+
+
+
+I − αh,t
+
+c Λth
+
+l
+
+νt,m,Jt −lh
+
+> (ii)
+
+= AJt 
+
+> t
+
+wt,m,0  
+
+> h
+
++ αh,t
+
+c 
+
+> Jt−1
+
+# ∑
+
+> l=0
+
+Alt Λth bwth +
+
+q
+
+αh,t
+
+c ζ−1 
+
+> Jt−1
+
+# ∑
+
+> l=0
+
+Alt νt,m,Jt −lh
+
+> (iii)
+
+= AJt 
+
+> t
+
+wt,m,0  
+
+> h
+
++ ( I − At)
+
+
+
+A0 
+
+> t
+
++ A1 
+
+> t
+
++ . . . + AJt −1
+
+> t
+
+bwth +
+
+q
+
+αh,t
+
+c ζ−1 
+
+> Jt−1
+
+# ∑
+
+> l=0
+
+Altνt,m,Jt −lh
+
+> (iv)
+
+= AJt 
+
+> t
+
+wt,m,0  
+
+> h
+
++
+
+
+
+I − AJt
+
+> t
+
+bwth +
+
+q
+
+αh,t
+
+c ζ−1 
+
+> Jt−1
+
+# ∑
+
+> l=0
+
+Alt νt,m,Jt −lh .(i) comes from telescoping the previous equation from l = 0 to Jt − 1. (ii) uses the definition that At =
+
+I − αh,t
+
+c Λth and bth = Λth bwth. (iii) uses the definition of At. (iv) follows from I + A + . . . + An−1 = ( I −
+
+An)( I − A)−1. Since we set αh,t
+
+c = 1 / 2 λmax (Λth
+
+, At satisfies I ≻ At ≻ 0 for all t ∈ [T]. Note that we 33 warm-start the parameters from the previous episode and set wt,m,0 
+
+h = wt−1, m,Jt−1
+
+h . Therefore, by telescoping the above equation from i = 0 to t, we further have that 
+
+wt,m,Jt
+
+h = AJt
+
+t wt−1, m,Jt−1
+
+h +
+
+
+
+I − AJt
+
+t
+
+bwth +
+
+q
+
+αh,t
+
+c ζ−1
+
+Jt −1
+
+# ∑
+
+l=0
+
+Alt νt,m,Jt −lh
+
+= AJt
+
+t . . . AJ1
+
+1 w1, m,0 
+
+h +
+
+t
+
+# ∑
+
+i=1
+
+AJt
+
+t . . . AJi+1
+
+i+1
+
+
+
+I − AJi
+
+i
+
+bwih +
+
+t
+
+# ∑
+
+i=1
+
+q
+
+αi
+
+c ζ−1 AJt
+
+t . . . AJi+1
+
+i+1
+
+Ji −1
+
+# ∑
+
+l=0
+
+Ali νi,Ji −lh .Note that if ξ ∼ N(0, Id×d), then we have that A ξ + μ ∼ N(μ, A A ⊤) for any A ∈ Rd×d and μ ∈ Rd. This implies that wt,m,Jt
+
+h follows the Gaussian distribution N(μt,m,Jt
+
+h , Σt,m,Jt
+
+h ), where 
+
+μt,m,Jt
+
+h = AJt
+
+t . . . AJ1
+
+1 w1, m,0 
+
+h +
+
+t
+
+# ∑
+
+i=1
+
+AJt
+
+t . . . AJi+1
+
+i+1
+
+
+
+I − AJi
+
+i
+
+bwih .We then derive the covariance matrix Σt,m,Jt
+
+h . For any i ∈ [t], we denote that Ai+1 = AJt
+
+t . . . AJi+1
+
+i+1 . Therefore, 
+
+q
+
+αi
+
+c ζ−1 Ai+1
+
+Ji −1
+
+# ∑
+
+l=0
+
+Ali νi,Ji −lh =
+
+Ji −1
+
+# ∑
+
+l=0
+
+q
+
+αi
+
+c ζ−1 Ai+1 Ali νi,Ji −lh
+
+∼ N 0, 
+
+Ji −1
+
+# ∑
+
+l=0
+
+αi
+
+c ζ−1 Ai+1 Ali (Ai+1 Ali )⊤
+
+!
+
+∼ N 0, αi
+
+c ζ−1 Ai+1
+
+Ji −1
+
+# ∑
+
+l=0
+
+A2li
+
+!
+
+A⊤
+
+i+1
+
+!
+
+.This further implies that 
+
+Σt,m,Jt
+
+h =
+
+t
+
+# ∑
+
+i=1
+
+αi
+
+c ζ−1 Ai+1
+
+Ji −1
+
+# ∑
+
+l=0
+
+A2li
+
+!
+
+A⊤
+
+i+1
+
+=
+
+t
+
+# ∑
+
+i=1
+
+αi
+
+c ζ−1 AJt
+
+t . . . AJi+1
+
+i+1
+
+Ji −1
+
+# ∑
+
+l=0
+
+A2li
+
+!
+
+AJi+1
+
+i+1 . . . AJt
+
+t
+
+(v) 
+
+=
+
+t
+
+# ∑
+
+i=1
+
+αi
+
+c ζ−1 AJt
+
+t . . . AJi+1
+
+i+1
+
+
+
+I − A2Ji
+
+i
+
+  
+
+I − A2
+
+i
+
+−1
+
+AJi+1
+
+i+1 . . . AJt
+
+t
+
+=
+
+t
+
+# ∑
+
+i=1
+
+αi
+
+c ζ−1 AJt
+
+t . . . AJi+1
+
+i+1
+
+
+
+I − A2Ji
+
+i
+
+  
+
+Λih
+
+  
+
+Λih
+
+−1
+
+(I − Ai)−1 (I + Ai)−1 AJi+1
+
+i+1 . . . AJt
+
+t
+
+(vi) 
+
+=
+
+t
+
+# ∑
+
+i=1
+
+ζ−1 AJt
+
+t . . . AJi+1
+
+i+1
+
+
+
+I − A2Ji
+
+i
+
+  
+
+Λih
+
+−1
+
+(I + Ai)−1 AJi+1
+
+i+1 . . . AJt
+
+t .(v) uses the fact that I + A + . . . + An−1 = ( I − An)( I − A)−1, and (vi) uses the fact that αh,t
+
+c Λth = I − At.This concludes the proof. 
+
+D.2.2 Proof of Lemma D.4 Proof. Using Lemma D.3, we first have that 
+
+μt,Jt
+
+h = AJt
+
+t . . . AJ1
+
+1 w1, m,0 
+
+h +
+
+t
+
+# ∑
+
+i=1
+
+AJt
+
+t . . . AJi+1
+
+i+1
+
+
+
+I − AJi
+
+i
+
+bwih
+
+= AJt
+
+t . . . AJ1
+
+1 w1, m,0 
+
+h +
+
+t
+
+# ∑
+
+i=1
+
+AJt
+
+t . . . AJi+1
+
+i+1 bwih −
+
+t
+
+# ∑
+
+i=1
+
+AJt
+
+t . . . AJi
+
+i bwih
+
+34 = AJt 
+
+> t
+
+. . . AJ1 
+
+> 1
+
+w1, m,0  
+
+> h
+
++
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+bwih − bwi+1
+
+> h
+
+
+
+− AJt 
+
+> t
+
+. . . AJ1 
+
+> 1
+
+bw1 
+
+> h
+
++ bwth
+
+= AJt 
+
+> t
+
+. . . AJ1
+
+> 1
+
+
+
+w1, m,0  
+
+> h
+
+− bw1
+
+> h
+
+
+
++
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+bwih − bwi+1
+
+> h
+
+
+
++ bwth .This implies that 
+
+D
+
+ϕ(s, a),
+
+
+
+μt,Jt 
+
+> h
+
+− bwth
+
+E 
+
+= ϕ(s, a)⊤ AJt 
+
+> t
+
+. . . AJ1
+
+> 1
+
+
+
+w1, m,0  
+
+> h
+
+− bw1
+
+> h
+
+
+
++ ϕ(s, a)⊤ t−1
+
+# ∑
+
+> i
+
+=1
+
+AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+bwih − bwi+1
+
+> h
+
+
+
+> (i)
+
+= ϕ(s, a)⊤ t−1
+
+# ∑
+
+> i
+
+=0
+
+AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+bwih − bwi+1
+
+> h
+
+
+
+=
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=0
+
+ϕ(s, a)⊤ AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+bwih − bwi+1
+
+> h
+
+
+
+> (ii)
+
+≤
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=0
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αh,j
+
+c λmin 
+
+
+
+Λjh
+
+ Jj
+
+∥ϕ(s, a)∥2∥ bwih − bwi+1 
+
+> h
+
+∥2(iii) 
+
+≤
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=0
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αh,j
+
+c λmin 
+
+
+
+Λjh
+
+ Jj
+
+∥ϕ(s, a)∥2
+
+
+
+∥ bwih∥2 + ∥ bwi+1 
+
+> h
+
+∥2
+
+
+
+> (iv)
+
+≤ 4 H
+
+q
+
+dc |D t|/λ
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=0
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αh,j
+
+c λmin 
+
+
+
+Λjh
+
+ Jj
+
+∥ϕ(s, a)∥2(v) 
+
+≤ 4 H   Dt + 1 p dc/λ
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=0
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αh,j
+
+c λmin 
+
+
+
+Λjh
+
+ Jj
+
+∥ϕ(s, a)∥(Λih )−1
+
+> (vi)
+
+≤ 4 H   Dt + 1 p dc
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=0
+
+σt−i∥ϕ(s, a)∥(Λih )−1
+
+> (vii)
+
+≤ 4 H   Dt + 1 p dc
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=0
+
+σt−i
+
+!
+
+∥ϕ(s, a)∥(Λth )−1
+
+≤ 4 H   Dt + 1 p dc
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=0
+
+σt−i
+
+!
+
+∥ϕ(s, a)∥(Λth )−1
+
+= 4 H   Dt + 1 p dc
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+σi
+
+!
+
+∥ϕ(s, a)∥(Λth )−1
+
+> (viii)
+
+≤ 4 H   Dt + 1 p dc
+
+ σ
+
+1 − σ
+
+
+
+∥ϕ(s, a)∥(Λth )−1
+
+=
+
+ 11 − σ
+
+
+
+∥ϕ(s, a)∥(Λth )−1
+
+≤ 43 ∥ϕ(s, a)∥(Λth )−1 .For (i), we choose w1, m,0  
+
+> h
+
+= 0 and denote that bw0 
+
+> h
+
+= 0. (ii) comes from Ai ≺ (1 − αh,j
+
+c λmin 
+
+
+
+Λjh
+
+
+
+) I and the Hölder’s inequality. (iii) uses the triangular inequality. (iv) uses Lemma D.6. (v) uses the fact that 
+
+∥ϕ(s, a)∥ ≤ p|D t| + 1∥ϕ(s, a)∥(Λih )−1 . (vi) hold because we set λ = 1 and uses Lemma D.16 by setting 
+
+Jj ≥ κj log (1/ σ) where σ = 1 / 4 H   Dt + 1 √dc
+
+. (vii) follows from ∥ϕ(s, a)∥(Λih )−1 ≤ ∥ ϕ(s, a)∥2 ≤
+
+35 p|D t| + 1 ∥ϕ(s, a)∥(Λth )−1 . (viii) follows from ∑ti=1 σt ≤ ∑∞
+
+> i
+
+=1 σi ≤ σ/(1 − σ). This concludes the proof. 
+
+D.2.3 Proof of Lemma D.5 Proof. We first bound the RHS. Using Lemma D.3, we have that 
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)= 1
+
+ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤ AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+
+
+I − A2Ji
+
+  
+
+Λih
+
+−1
+
+(I + Ai)−1 AJi+1
+
+> i
+
++1 . . . AJt 
+
+> t
+
+ϕ(s, a)
+
+> (i)
+
+= 1
+
+ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤ Ai+1
+
+
+
+I − A2Ji
+
+  
+
+Λih
+
+−1
+
+(I + Ai)−1A⊤
+
+> i
+
++1 ϕ(s, a)
+
+> (ii)
+
+≤ 23 ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤Ai+1
+
+
+
+Λih
+
+−1
+
+− AJi
+
+> i
+
+
+
+Λih
+
+−1
+
+AJi
+
+> i
+
+
+
+A⊤
+
+> i
+
++1 ϕ(s, a)= 23 ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤Ai+1
+
+
+
+Λih
+
+−1
+
+A⊤
+
+> i
+
++1 ϕ(s, a) −
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤Ai
+
+
+
+Λih
+
+−1
+
+A⊤ 
+
+> i
+
+ϕ(s, a)
+
+!
+
+> (iii)
+
+≤ 23 ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤Ai+1
+
+
+
+Λih
+
+−1
+
+A⊤
+
+> i
+
++1 ϕ(s, a)= 23 ζ ∥ϕ(s, a)∥2
+
+(Λih )−1 +
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+A⊤
+
+> i
+
++1 ϕ(s, a) 2
+
+(Λih )−1
+
+!
+
+≤ 23 ζ ∥ϕ(s, a)∥2
+
+(Λth )−1 + 23 ζ
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αc λmin (Λjh)
+
+2 Jj
+
+∥ϕ(s, a)∥2
+
+(Λih )−1 .For (i), we denote Ai+1 = AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1 . (ii) follows from I + Ai ⪰ 32 I since we set αh,j
+
+c = 1 /
+
+
+
+2 λmax (Λjh)
+
+
+
+. In particular, it is easy to prove that A and (Λth)−1 are commuting matrices and thus 
+
+A2Ji
+
+
+
+Λih
+
+−1
+
+= A2Ji −1 (I − αh,t
+
+c Λth) ( Λth)−1
+
+= A2Ji −1 (Λth)−1 (I − αh,t
+
+c Λth)= A2Ji −1 (Λth)−1 A
+
+...
+
+= AJi (Λth)−1 AJi .(iii) follows from the fact that ∑ti=1 ϕ(s, a)⊤Ai
+
+ Λih
+
+−1 A⊤ 
+
+> i
+
+ϕ(s, a) > 0. Therefore, 
+
+ϕ(s, a)⊤
+
+Σt,Jt
+
+> h
+
+1/2 
+
+> 2
+
+=
+
+q
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)
+
+> (iv)
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 +
+
+s
+
+23 ζ
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αc λmin (Λjh)
+
+Jj
+
+∥ϕ(s, a)∥(Λih )−1
+
+> (v)
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 +
+
+s
+
+23 ζ
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+σt−i ∥ϕ(s, a)∥(Λih )−1
+
+> (vi)
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 +
+
+s
+
+2 (|D t| + 1)
+
+3 ζ
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+σt−i
+
+!
+
+∥ϕ(s, a)∥(Λth )−1
+
+36 (vii) 
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 +
+
+s
+
+2 (|D t| + 1)
+
+3 ζ
+
+ σ
+
+1 − σ
+
+
+
+∥ϕ(s, a)∥(Λth )−1
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 + 14
+
+s
+
+23 ζ
+
+ 11 − σ
+
+
+
+∥ϕ(s, a)∥(Λth )−1
+
+≤
+
+s
+
+23 ζ + 13
+
+s
+
+23 ζ
+
+!
+
+∥ϕ(s, a)∥(Λth )−1
+
+≤ 43
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 .(iv) follows from the fact that √a + b ≤ a + b for all a, b > 0. (v) uses Lemma D.16 by setting Jj ≥
+
+2 κj log (1/ σ) where σ = 1/  4 H   Dt + 1 √dc
+
+. (vi) follows from 
+
+∥ϕ(s, a)∥(Λih )−1 ≤ ∥ ϕ(s, a)∥2 ≤
+
+q
+
+|D t| + 1 ∥ϕ(s, a)∥(Λth )−1 .(vii) follows from ∑ti=1 σt−i ≤ ∑∞ 
+
+> i=1
+
+σi ≤ σ/(1 − σ).We then proceed to bound the LHS. Using the definition of Σt,Jt 
+
+> h
+
+from Eq. (14), we have 
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)=
+
+> t
+
+# ∑
+
+> i=1
+
+1
+
+ζ ϕ(s, a)⊤ AJt 
+
+> t
+
+. . . AJi+1
+
+> i+1
+
+
+
+I − A2Ji
+
+  
+
+Λih
+
+−1
+
+(I + Ai)−1 AJi+1 
+
+> i+1
+
+. . . AJt 
+
+> t
+
+ϕ(s, a)
+
+> (iii)
+
+≥ 12 ζ
+
+> t
+
+# ∑
+
+> i=1
+
+ϕ(s, a)⊤Ai+1
+
+
+
+I − A2Ji
+
+  
+
+Λih
+
+−1
+
+A⊤ 
+
+> i+1
+
+ϕ(s, a)= 12 ζ
+
+> t
+
+# ∑
+
+> i=1
+
+12 ζ ϕ(s, a)⊤Ai+1
+
+
+
+Λih
+
+−1
+
+− AJt
+
+> t
+
+
+
+Λih
+
+−1
+
+AJt
+
+> t
+
+
+
+A⊤ 
+
+> i+1
+
+ϕ(s, a)= 12 ζ
+
+> t−1
+
+# ∑
+
+> i=1
+
+ϕ(s, a)⊤Ai+1
+
+
+
+(Λih)−1 − (Λi+1 
+
+> h
+
+)−1
+
+A⊤ 
+
+> i+1
+
+ϕ(s, a)
+
+− 12 ζ ϕ(s, a)⊤ AJt 
+
+> t
+
+. . . AJ1 
+
+> 1
+
+(Λ1
+
+> h
+
+)−1 AJ1 
+
+> 1
+
+. . . AJt 
+
+> t
+
+ϕ(s, a) + 12 ζ ϕ(s, a)⊤(Λth)−1ϕ(s, a) ,where (iii) follows from (I + At)−1 ⪰ 12 I for all t ∈ [T].
+
+ϕ(s, a)⊤Ai+1
+
+
+
+(Λih)−1 − (Λi+1 
+
+> h
+
+)−1
+
+A⊤ 
+
+> i+1
+
+ϕ(s, a)
+
+≤ ϕ(s, a)⊤Ai+1 (Λih)−1 A⊤ 
+
+> i+1
+
+ϕ(s, a)
+
++
+
+D
+
+ϕ(s, a), Ai+1 (Λi+1 
+
+> h
+
+)−1 A⊤ 
+
+> i+1
+
+ϕ(s, a)
+
+E
+
+≤ ϕ(s, a)⊤Ai+1 (Λih)−1/2 2
+
++ ϕ(s, a)⊤Ai+1 (Λi+1 
+
+> h
+
+)−1/2 2
+
+=
+
+> t
+
+# ∏
+
+> j=i+1
+
+
+
+1 − αh,j
+
+c λmin (Λjh)
+
+2 Jj 
+
+∥ϕ(s, a)∥2  
+
+> (Λih)−1
+
++ ∥ϕ(s, a)∥2 
+
+> (Λi+1
+> h)−1
+
+
+
+≤ 2
+
+> t
+
+# ∏
+
+> j=i+1
+
+
+
+1 − αh,j
+
+c λmin (Λjh)
+
+2 Jj
+
+∥ϕ(s, a)∥22 ,37 where we used 0 < ∥ϕ(s, a)∥(Λih )−1 ≤ ∥ ϕ(s, a)∥2. Therefore, we have that 
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)
+
+≥ 12 ζ ∥ϕ(s, a)∥2  
+
+> (Λth)−1
+
+− 12 ζ
+
+> t
+
+# ∏
+
+> i=1
+
+
+
+1 − αh,j 
+
+> c
+
+λmin (Λih)
+
+2Ji
+
+∥ϕ(s, a)∥22
+
+− 1
+
+ζ
+
+> t−1
+
+# ∑
+
+> i=1
+> t
+
+# ∏
+
+> j=i+1
+
+
+
+1 − αh,j 
+
+> c
+
+λmin (Λjh)
+
+2 Jj
+
+∥ϕ(s, a)∥22(iv) 
+
+≥ 12 ζ ∥ϕ(s, a)∥2  
+
+> (Λth)−1
+
+− σt∥ϕ(s, a)∥22 −
+
+> t−1
+
+# ∑
+
+> i=1
+
+2 σi ∥ϕ(s, a)∥22
+
+!
+
+> (v)
+
+≥ 12 ζ ∥ϕ(s, a)∥2  
+
+> (Λth)−1
+
+1 −   Dt + 1 σt − 2   Dt + 1 t−1
+
+# ∑
+
+> i=1
+
+σi
+
+!
+
+≥ 12 ζ ∥ϕ(s, a)∥2 
+
+> (Λth)−1
+
+
+
+1 − σt−1 − 12 (1 − σ)
+
+
+
+≥ 12 ζ ∥ϕ(s, a)∥2 
+
+> (Λth)−1
+
+
+
+1 − 14 − 23
+
+
+
+= 124 ζ ∥ϕ(s, a)∥2  
+
+> (Λth)−1
+
+,where (iv) uses Lemma D.16 by setting Jj ≥ 2 κj log (1/ σ) where σ = 1 / 4 H   Dt + 1 √dc
+
+, and (v) use 
+
+∥ϕ(s, a)∥2 ≤ p|D t| + 1 ∥ϕ(s, a)∥(Λth )−1 . This concludes the proof. 
+
+D.2.4 Proof of Lemma D.6 Proof. Given the definition of bwth in Eq. (12), we have that 
+
+bwth =  Λth
+
+−1
+
+# ∑
+
+> (s,a)∈D th
+
+h
+
+rh(s, a) + bVth+1(s)
+
+i
+
+· ϕ(sh, a)
+
+≤
+
+r |D t|
+
+λ
+
+ ∑
+
+> (s,a)∈D th
+
+h
+
+rh(s, a) + bVth+1(s)
+
+i
+
+· ϕ(s, a) 2 
+
+> (Λth)−1
+
+
+
+> 1/2
+
+≤ 2 H
+
+r |D t|
+
+λ
+
+ ∑
+
+> (s,a)∈D th
+
+∥ϕ(s, a)∥2 
+
+> (Λth)−1
+
+
+
+> 1/2
+
+≤ 2 H
+
+q
+
+dc |D t|/λ ,where the first inequality follows from Lemma D.15, the second inequality is due to the fact that Vth ∈ [0, H]
+
+and the reward function is bounded by 1, and the last inequality follows from Lemma D.10. 
+
+D.2.5 Proof of Lemma D.7 Proof. From Lemma D.3, we know wt,m,Jt 
+
+> h
+
+follows Gaussian distribution N(μt,Jt 
+
+> h
+
+, Σt,Jt 
+
+> h
+
+). Therefore, we have 
+
+wt,m,Jt  
+
+> h2
+
+= μt,Jt 
+
+> h
+
++ ξt,Jt  
+
+> h2
+
+≤ μt,Jt 
+
+> h2
+
+| {z }
+
+> (I)
+
++ ξt,Jt 
+
+> h2
+
+| {z }
+
+> (II)
+
+,38 where ξt,Jt 
+
+> h
+
+∼ N(0, Σt,Jt 
+
+> h
+
+). We first start by bounding Term (I). Given Lemma D.3, by setting w1, m,0  
+
+> h
+
+= 0, we can obtain that 
+
+μt,Jt  
+
+> h2
+
+= AJt 
+
+> t
+
+. . . AJ1 
+
+> 1
+
+w1, m,0  
+
+> h
+
++
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+
+
+I − AJi
+
+> i
+
+bwih
+
+> 2
+
+≤
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+
+
+I − AJi
+
+> i
+
+bwih 2(i) 
+
+≤
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+
+
+I − AJi
+
+> i
+
+ 
+
+> 2
+
+bwih 2(ii) 
+
+≤ 2 H
+
+q
+
+dc |D t|
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+
+
+I − AJi
+
+> i
+
+
+
+> 2(iii)
+
+≤ 2 H
+
+q
+
+dc |D t|
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+∥At∥Jt 
+
+> 2
+
+. . . ∥Ai+1∥Ji+1
+
+> 2
+
+
+
+I − AJi
+
+> i
+
+
+
+> 2(iv)
+
+≤ 2 H
+
+q
+
+dc |D t|
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αh,j
+
+c λmin (Λjh)
+
+Jj 
+
+∥I∥2 + ∥AJi 
+
+> i
+
+∥2
+
+
+
+> (v)
+
+≤ 2 H
+
+q
+
+dc |D t|
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αh,j
+
+c λmin (Λjh)
+
+Jj 
+
+∥I∥2 + ∥Ai∥Ji
+
+> 2
+
+
+
+> (vi)
+
+≤ 2 H
+
+q
+
+dc |D t|
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αh,j
+
+c λmin (Λjh)
+
+Jj
+
+
+
+1 +
+
+
+
+1 − αi
+
+c λmin (Λih)
+
+Ji
+
+
+
+≤ 2 H
+
+q
+
+dc |D t|
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αh,j
+
+c λmin (Λjh)
+
+Jj
+
++
+
+> t
+
+# ∏
+
+> j
+
+=i
+
+
+
+1 − αh,j
+
+c λmin (Λjh)
+
+Jj
+
+!
+
+> (vii)
+
+≤ 2 H
+
+q
+
+dc |D t|
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+ 1 − 1/ (2 κj)Jj +
+
+> t
+
+# ∏
+
+> j
+
+=i
+
+ 1 − 1/ (2 κj)Jj
+
+!
+
+,(i) uses the definition of the matrix norm (i.e., ∥A∥2 := max x ∥A x ∥2
+
+∥x∥ =⇒ ∥A x ∥2 ≤ ∥ A∥2 ∥x∥2). (ii) uses Lemma D.6 and sets λ = 1. (iii) and (v) come from the submultiplicativity of matrix norm. (iv) and (vi) use the fact that ∥A∥2 ≤ λmax (A), and (iv) also uses the triangular inequality. (vii) uses the fact that we set 
+
+αh,j
+
+c = 1/ 
+
+
+
+2 λmax (Λjh)
+
+
+
+and denotes that κj = max h∈[H] λmax (Λjh)/λmin (Λjh).Using Lemma D.16. we can set Jj ≥ 2 κj log (1/ σ) where σ = 1/  4 H   Dt + 1 √dc
+
+. We can further get 
+
+∥μt,Jt 
+
+> h
+
+∥2 ≤ 2 H
+
+q
+
+dc |D t|
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+
+
+σt−i + σt−i+1
+
+≤ 4 H
+
+q
+
+dc |D t|
+
+> ∞
+
+# ∑
+
+> i
+
+=0
+
+σi
+
+= 4 H
+
+q
+
+dc |D t|
+
+ 11 − σ
+
+
+
+= 16 3 H
+
+q
+
+dc |D t| .39 Next, we continue to bound Term (II). Since ξt,Jt 
+
+> h
+
+∼ N(0, Σt,Jt 
+
+> h
+
+), using Lemma D.11, we have that Pr ξt,Jt  
+
+> h2
+
+≤
+
+r 1
+
+δ Tr 
+
+
+
+Σt,Jt
+
+> h
+
+!
+
+≥ 1 − δ .Recall from Lemma D.3 that 
+
+Σt,Jt 
+
+> h
+
+=
+
+> t
+
+# ∑
+
+> i=1
+
+1
+
+ζ AJt 
+
+> t
+
+. . . AJi+1
+
+> i+1
+
+
+
+I − A2Ji
+
+> i
+
+  
+
+Λih
+
+−1
+
+(I + Ai)−1 AJi+1 
+
+> i+1
+
+. . . AJt 
+
+> t
+
+.Therefore, we can use Lemma D.13 and derive that Tr 
+
+
+
+Σt,Jt
+
+> h
+
+
+
+=
+
+> t
+
+# ∑
+
+> i=1
+
+1
+
+ζ Tr 
+
+
+
+AJt 
+
+> t
+
+. . . AJi+1
+
+> i+1
+
+
+
+I − A2Ji
+
+> i
+
+  
+
+Λih
+
+−1
+
+(I + Ai)−1 AJi+1 
+
+> i+1
+
+. . . AJt
+
+> t
+
+
+
+≤
+
+> t
+
+# ∑
+
+> i=1
+
+1
+
+ζ Tr 
+
+
+
+AJt
+
+> t
+
+
+
+. . . Tr 
+
+
+
+AJi+1
+
+> i+1
+
+
+
+Tr 
+
+
+
+I − A2Ji
+
+> i
+
+
+
+Tr 
+
+
+
+Λih
+
+−1
+
+Tr 
+
+
+
+(I + Ai)−1
+
+Tr 
+
+
+
+AJi+1
+
+> i+1
+
+
+
+. . . Tr 
+
+
+
+AJt
+
+> t
+
+
+
+.To bound each term, we first have, Tr 
+
+
+
+AJi
+
+> i
+
+
+
+≤ Tr 
+
+
+
+1 − αi 
+
+> c
+
+λmin (Λih)
+
+Ji
+
+I
+
+
+
+≤ dc
+
+
+
+1 − αi 
+
+> c
+
+λmin (Λih)
+
+Ji
+
+≤ dc σ ≤ 1 , where the first inequality follows from the fact that AJi 
+
+> i
+
+≺  1 − αt
+
+> c
+
+λmin (Λth)Jj I. Similarly, since we set 0 < αh,j 
+
+> c
+
+< 1/  2 λmax (Λj), we have AJi 
+
+> i
+
+≻ 12Ji I and therefore, Tr 
+
+
+
+I − A2Ji
+
+> i
+
+
+
+≤
+
+
+
+1 − 122Ji
+
+
+
+dc < dc .Similarly, since we set 0 < αh,j 
+
+> c
+
+< 1/  2 λmax (Λj) and thus I + Ai ≻ 32 I, we have that Tr 
+
+
+
+(I + Ai)−1
+
+≤ 23 dc .Additionally, since all eigenvalues of Λih are greater than or equal to 1, Tr 
+
+
+
+(Λih)−1
+
+≤ dc · 1 = dc .Finally, we have that Tr 
+
+
+
+Σt,Jt
+
+> h
+
+
+
+≤
+
+> t
+
+# ∑
+
+> i=1
+
+1
+
+ζ · 23 · d3 
+
+> c
+
+= 2 d3
+
+> c
+
+3 ζ t .Therefore, using Lemma D.11, we have that Pr 
+
+ ξt,Jt  
+
+> h2
+
+≤
+
+s
+
+1
+
+δ · 2 d3
+
+> c
+
+3 ζ T
+
+ ≥ Pr ξt,Jt  
+
+> h2
+
+≤
+
+r 1
+
+δ Tr 
+
+
+
+Σt,Jt
+
+> h
+
+!
+
+≥ 1 − δ .Putting everything together, with probability at least 1 − δ, we can obtain that 
+
+wt,m,Jt  
+
+> h2
+
+≤ Wδ := 16 3 H
+
+q
+
+dc |D t| +
+
+s
+
+2 d3 
+
+> c
+
+t
+
+3 ζ δ .This concludes the proof. 40 D.2.6 Proof of Lemma D.8 Proof. To start, we decompose the LHS using the triangle inequality, 
+
+D
+
+ϕ(s, a), wt,m,Jt 
+
+> h
+
+− bwth
+
+E
+
+≤
+
+D
+
+ϕ(s, a), wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+E| {z }
+
+> (I)
+
++
+
+D
+
+ϕ(s, a), μt,Jt 
+
+> h
+
+− bwth
+
+E| {z }
+
+> (II)
+
+,where μt,Jt 
+
+> h
+
+is defined in Eq. (13). To bound Term (I), we first apply Hölder’s inequality and obtain that 
+
+D
+
+ϕ(s, a), wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+E
+
+≤ ϕ(s, a)⊤
+
+Σt,Jt
+
+> h
+
+1/2 
+
+> 2
+
+
+
+Σt,Jt
+
+> h
+
+−1/2 
+
+wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+
+
+> 2
+
+.Since wt,m,Jt 
+
+> h
+
+∼ N(μt,Jt 
+
+> h
+
+, Σt,Jt 
+
+> h
+
+), we know that 
+
+
+
+Σt,Jt
+
+> h
+
+−1/2 
+
+wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+
+
+∼ N(0, Idc×dc ). Therefore, Pr 
+
+ 
+
+Σt,Jt
+
+> h
+
+−1/2 
+
+wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+
+
+> 2
+
+≥ 2
+
+q
+
+dc log (1/ δ)
+
+
+
+≤ δ2 .Then, we continue to bound ϕ(s, a)⊤
+
+Σt,Jt
+
+> h
+
+1/2 
+
+> 2
+
+.
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)= 1
+
+ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤ AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1
+
+
+
+I − A2Ji
+
+  
+
+Λih
+
+−1
+
+(I + Ai)−1 AJi+1
+
+> i
+
++1 . . . AJt 
+
+> t
+
+ϕ(s, a)
+
+> (i)
+
+= 1
+
+ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤ Ai+1
+
+
+
+I − A2Ji
+
+  
+
+Λih
+
+−1
+
+(I + Ai)−1A⊤
+
+> i
+
++1 ϕ(s, a)
+
+> (ii)
+
+≤ 23ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤Ai+1
+
+
+
+Λih
+
+−1
+
+− AJi
+
+> i
+
+
+
+Λih
+
+−1
+
+AJi
+
+> i
+
+
+
+A⊤
+
+> i
+
++1 ϕ(s, a)= 23 ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤Ai+1
+
+
+
+Λih
+
+−1
+
+A⊤
+
+> i
+
++1 ϕ(s, a) −
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤Ai
+
+
+
+Λih
+
+−1
+
+A⊤ 
+
+> i
+
+ϕ(s, a)
+
+!
+
+> (iii)
+
+≤ 23 ζ
+
+> t
+
+# ∑
+
+> i
+
+=1
+
+ϕ(s, a)⊤Ai+1
+
+
+
+Λih
+
+−1
+
+A⊤
+
+> i
+
++1 ϕ(s, a)= 23 ζ ∥ϕ(s, a)∥2
+
+(Λih )−1 +
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+A⊤
+
+> i
+
++1 ϕ(s, a) 2
+
+(Λih )−1
+
+!
+
+≤ 23 ζ ∥ϕ(s, a)∥2
+
+(Λth )−1 + 23 ζ
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αc λmin (Λjh)
+
+2 Jj
+
+∥ϕ(s, a)∥2
+
+(Λih )−1 .For (i), we use the denotation that Ai+1 = AJt 
+
+> t
+
+. . . AJi+1
+
+> i
+
++1 . (ii) follows from I + Ai ≻ 32 I since we set αh,j
+
+c =
+
+1/ 
+
+
+
+2 λmax (Λjh)
+
+
+
+. (iii) follows from the fact that ∑ti=1 ϕ(s, a)⊤Ai
+
+ Λih
+
+−1 A⊤ 
+
+> i
+
+ϕ(s, a) > 0. Therefore, 
+
+ϕ(s, a)⊤
+
+Σt,Jt
+
+> h
+
+1/2 
+
+> 2
+
+=
+
+q
+
+ϕ(s, a)⊤ Σt,Jt 
+
+> h
+
+ϕ(s, a)
+
+> (iv)
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 +
+
+s
+
+23 ζ
+
+> t
+
+−1
+
+# ∑
+
+> i
+
+=1
+
+> t
+
+# ∏
+
+> j
+
+=i+1
+
+
+
+1 − αc λmin (Λjh)
+
+Jj
+
+∥ϕ(s, a)∥(Λih )−1
+
+41 (v) 
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 +
+
+s
+
+23 ζ
+
+> t−1
+
+# ∑
+
+> i=1
+
+σt−i ∥ϕ(s, a)∥(Λih )−1
+
+> (vi)
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 +
+
+s
+
+2 (|D t| + 1)
+
+3 ζ
+
+> t−1
+
+# ∑
+
+> i=1
+
+σt−i
+
+!
+
+∥ϕ(s, a)∥(Λth )−1
+
+> (vii)
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 +
+
+s
+
+2 (|D t| + 1)
+
+3 ζ
+
+ σ
+
+1 − σ
+
+
+
+∥ϕ(s, a)∥(Λth )−1
+
+≤
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 + 14
+
+s
+
+23 ζ
+
+ 11 − σ
+
+
+
+∥ϕ(s, a)∥(Λth )−1
+
+≤
+
+s
+
+23 ζ + 13
+
+s
+
+23 ζ
+
+!
+
+∥ϕ(s, a)∥(Λth )−1
+
+≤ 43
+
+s
+
+23 ζ ∥ϕ(s, a)∥(Λth )−1 .(iv) follows from the fact that √a + b ≤ a + b for all a, b > 0. (v) uses Lemma D.16 by setting Jj ≥ κj log (1/ σ)
+
+where σ = 1 / 4 H   Dt + 1 √dc
+
+. (vi) follows from ∥ϕ(s, a)∥(Λih )−1 ≤ ∥ ϕ(s, a)∥2 ≤ p|D t| + 1 ∥ϕ(s, a)∥(Λth )−1 .(vii) follows from ∑ti=1 σt−i ≤ ∑∞ 
+
+> i=1
+
+σi ≤ σ/(1 − σ). Therefore, we have Pr 
+
+D
+
+ϕ(s, a), wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+E
+
+≥ 83
+
+s
+
+2 dc log (1/ δ)
+
+3 ζ ∥ϕ(s, a)∥(Λth )−1
+
+!
+
+≤ Pr 
+
+
+
+ϕ(s, a)⊤
+
+Σt,Jt
+
+> h
+
+1/2 
+
+> 2
+
+
+
+Σt,Jt
+
+> h
+
+−1/2 
+
+wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+
+
+> 2
+
+≥ 2
+
+q
+
+dc log (1/ δ) ϕ(s, a)⊤
+
+Σt,Jt
+
+> h
+
+1/2 
+
+> 2
+
+
+
+= Pr 
+
+ 
+
+Σt,Jt
+
+> h
+
+−1/2 
+
+wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+
+
+> 2
+
+≥ 2
+
+q
+
+dc log (1/ δ)
+
+
+
+= δ2 ≤ δ .This implies that Pr 
+
+D
+
+ϕ(s, a), wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+E
+
+≤ 83
+
+s
+
+2 dc log (1/ δ)
+
+3 ζ ∥ϕ(s, a)∥(Λth )−1
+
+!
+
+≥ 1 − δ .Putting everything together, with probability at least 1 − δ,
+
+D
+
+ϕ(s, a), wt,m,Jt 
+
+> h
+
+− bwth
+
+E
+
+≤
+
+D
+
+ϕ(s, a), wt,m,Jt 
+
+> h
+
+− μt,Jt
+
+> h
+
+E
+
++
+
+D
+
+ϕ(s, a), μt,Jt 
+
+> h
+
+− bwth
+
+E
+
+≤ 83
+
+s
+
+2 dc log (1/ δ)
+
+3 ζ + 43
+
+!
+
+∥ϕ(s, a)∥(Λth )−1 .
+
+D.2.7 Proof of Lemma D.9 Proof. Recall that Ph V(s, a) := Es′ ∼Ph (·| s,a)V(s′) and Ph(· | s, a) = ⟨ϕ(s, a), ψh(·)⟩ due to the linear MDP assumption (Definition 2.1). We also denote that bΨth :=
+
+D
+
+ψh, bVth+1
+
+E 
+
+> S
+
+and thus Ph bVth+1(s, a) = 
+
+D
+
+ϕ(s, a), bΨth
+
+E
+
+.Then, we have that 
+
+Ph bVth+1(s, a) = 
+
+D
+
+ϕ(s, a), bΨth
+
+E
+
+42 = ϕ(s, a)⊤  Λth
+
+−1 Λth bΨth
+
+= ϕ(s, a)⊤  Λth
+
+−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a) ϕ(s, a)⊤ + λI
+
+ b Ψth
+
+= ϕ(s, a)⊤  Λth
+
+−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a)( Ph bVth+1)( s, a) + λ bΨth
+
+ .This further implies that 
+
+ϕ(s, a), bwth − rh(s, a) − Ph bVth+1(s, a)= ϕ(s, a)⊤ Λth
+
+−1
+
+# ∑ 
+
+> (s,a,s′)∈D th
+
+h
+
+rh(s, a) + bVth+1(s′)
+
+i
+
+· ϕ(s, a) − rh(s, a)
+
+− ϕ(s, a)⊤ Λth
+
+−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a)( Ph bVth+1)( s, a) + λ bΨth
+
+
+
+= ϕ(s, a)⊤(Λth)−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a)
+
+h bVth+1(s′) − Ph bVth+1(s, a)
+
+i| {z }
+
+> (I)
+
++ ϕ(s, a)⊤(Λth)−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+rh(s, a) ϕ(s, a)
+
+ − rh(s, a)
+
+| {z }
+
+> (II)
+
+− λ ϕ (s, a)⊤(Λth)−1 bΨth
+
+| {z }
+
+> (III)
+
+.We first start by bounding Term (I). With probability at least 1 − δ, it holds that 
+
+ϕ(s, a)⊤(Λth)−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a)
+
+h bVth+1(s′) − Ph bVth+1(s, a)
+
+i
+
+> (i)
+
+≤ ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a)
+
+h bVth+1(s′) − Ph bVth+1(s, a)
+
+i 
+
+> (Λth)−1
+
+∥ϕ(s, a)∥(Λth )−1
+
+> (ii)
+
+≤ Cδ H pdc ∥ϕ(s, a)∥(Λth )−1 ,where (i) follows from the Cauchy-Schwarz inequality, and (ii) follows from the good event defined in Lemma D.1. Next, we continue to bound Term (II). We observe that 
+
+ϕ(s, a)⊤(Λth)−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+rh(s, a) ϕ(s, a)
+
+ − rh(s, a)
+
+> (iii)
+
+= ϕ(s, a)⊤(Λth)−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+rh(s, a) ϕ(s, a)
+
+ − ϕ(s, a)⊤θh
+
+= ϕ(s, a)⊤(Λth)−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+rh(s, a) ϕ(s, a) − Λthθh
+
+
+
+43 = ϕ(s, a)⊤(Λth)−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+rh(s, a) ϕ(s, a) − ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a) ϕ(s, a)⊤ θh − λ θ h
+
+
+
+> (iv)
+
+= ϕ(s, a)⊤(Λth)−1
+
+ ∑ 
+
+> (s,a,s′)∈D th
+
+rh(s, a) ϕ(s, a) − ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a) rh(s, a) − λ θ h
+
+
+
+= −λ ϕ (s, a)⊤ (Λth)−1 θh
+
+> (v)
+
+≤ λ ∥ϕ(s, a)∥(Λth )−1 ∥θh∥(Λth )−1
+
+> (vi)
+
+≤ pλ dc ∥ϕ(s, a)∥(Λth )−1 .(iii) and (iv) follow from the definition rh(s, a) = ⟨ϕ(s, a), θh⟩. (v) applies the Cauchy-Schwarz inequality. (vi) follows from ∥ϕ(s, a)∥(Λth )−1 ≤ √1/ λ ∥ϕ(s, a)∥2 and ∥θh∥2 ≤ √dc (Definition 2.1). Lastly, we derive the bound for Term (III). 
+
+λ ϕ (s, a)⊤ (Λth)−1 bΨth
+
+> (vii)
+
+≤ λ ∥ϕ(s, a)∥(Λth )−1 bΨth (Λth )−1
+
+> (viii)
+
+≤ √λ ∥ϕ(s, a)∥(Λth )−1 bΨth 2
+
+≤ √λ ∥ϕ(s, a)∥(Λth )−1
+
+D
+
+ψh, bVth+1
+
+E 
+
+> S2
+
+= H √λ ∥ϕ(s, a)∥(Λth )−1
+
+Z 
+
+> s∈S
+
+ψh(s)
+
+ bVth+1(s)/H
+
+
+
+d s 2(xiv) 
+
+≤ H pλ dc ∥ϕ(s, a)∥(Λth )−1 .(vii) applies the Cauchy-Schwarz inequality. (viii) follows from bΨth (Λth )−1 ≤ √λ bΨth 2. (xiv) comes from the assumption that R 
+
+> s∈S
+
+ψh(s)
+
+ bVth+1(s)/H
+
+
+
+d s 2 ≤ √dc (Definition 2.1). Putting everything together and setting λ = 1, we have with probability at least 1 − δ,
+
+ϕ(s, a), bwth − rh(s, a) − Ph bVth+1(s, a)
+
+≤
+
+
+
+Cδ H pdc + pλ dc + H pλ dc
+
+
+
+∥ϕ(s, a)∥(Λth )−1
+
+= 3 Cδ H pdc ∥ϕ(s, a)∥(Λth )−1 .This concludes the proof. 
+
+## D.3 Technical Tools 
+
+Lemma D.10 (Jin et al. 2020, Lemma D.1) . Let Λ = λI + ∑ti=1 ϕiϕ⊤ 
+
+> i
+
+, where ϕi ∈ Rd and λ > 0. Then, 
+
+> t
+
+# ∑
+
+> i=1
+
+ϕ⊤ 
+
+> i
+
+(Λ)−1ϕi ≤ d .44 Lemma D.11 (Ishfaq et al. 2024a, Lemma E.1) . Given a multivariate normal distribution X ∼ N(0, Σd×d), for any 
+
+δ ∈ (0, 1 ], it hold that 
+
+Pr ∥X∥2 ≤
+
+r 1
+
+δ Tr (Σ)
+
+!
+
+≥ 1 − δ .
+
+Lemma D.12 (Abramowitz and Stegun 1948) . Suppose X is a Gaussian random variable X ∼ N(μ, σ2), where 
+
+σ > 0. For z ∈ [0, 1 ], it holds that 
+
+Pr (X > μ + z σ) ≥ e−z2/2 
+
+√8π and Pr (X < μ − z σ) ≥ e−z2/2 
+
+√8π .
+
+Additionally, for any z ≥ 1,e−z2/2 
+
+2 z √π ≤ Pr (|X − μ| > z σ) ≤ e−z2/2 
+
+z √π .
+
+Lemma D.13. If A and B are positive semi-definite square matrices of the same size, then 
+
+[Tr (AB )] 2 ≤ Tr (A2) Tr (B2) ≤ [Tr (A)] 2[Tr (B)] 2 .
+
+Lemma D.14. Given two symmetric positive semi-definite square matrices A and B such that A ⪰ B , it holds that 
+
+∥A∥2 ≥ ∥ B∥2.
+
+Proof. Note that A − B is also positive semi-definite. Then, we have that 
+
+∥B∥2 = sup 
+
+> ∥x∥=1
+
+x⊤ Bx ≤ sup 
+
+> ∥x∥=1
+
+
+
+x⊤ Bx + x⊤(A − B)x
+
+
+
+= sup 
+
+> ∥x∥=1
+
+x⊤ Ax = ∥A∥2 .
+
+Lemma D.15. Let A ∈ Rd×d be a positive definite matrix where its largest eigenvalue λmax (A) ≤ λ. Given that v1, . . . , vn are n vectors in Rd, it holds that 
+
+A
+
+> n
+
+# ∑
+
+> i=1
+
+vi ≤
+
+s
+
+λ n
+
+> n
+
+# ∑
+
+> i=1
+
+∥vi∥2 
+
+> A
+
+.
+
+Lemma D.16. Let Λ be a positive definite matrix and κ = λmax (Λ) 
+
+> λmin (Λ)
+
+be the condition number of Λ. If Λ ≻ I and J ≥ 2 κ log (1/ σ), then, for any σ > 0,
+
+(1 − 1/ (2 κ)) J < σ .
+
+Proof. The statement is equivalent to proving that 
+
+J ≥ log (1/ σ)
+
+log 
+
+ 11−1/ (2 κ)
+
+ .Since κ ≥ 1 and for any x ∈ (0, 1 ), e−x > 1 − x, we have that 
+
+e−1/ (2 κ) > 1 − 1/ (2 κ) = ⇒ log 
+
+ 11 − 1/ (2 κ)
+
+
+
+≥ 12 κ .Therefore, we have that 
+
+J ≥ 2 κ log (1/ σ) ≥ log (1/ σ)
+
+log 
+
+ 11−1/ (2 κ)
+
+ .This concludes the proof. 45 E Sample Complexity in the On-Policy Setting 
+
+## E.1 Proof of Good Event 
+
+Lemma E.1. Consider Algorithm 1 in the on-policy setting with λ = 1. Then, for any δ ∈ (0, 1 ), with probability at least 1 − δ, it holds that 
+
+# ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a)
+
+h bVth+1(s′) − Ph bVth+1(s, a)
+
+i 
+
+> (Λth)−1
+
+≤ Con  
+
+> δ
+
+Hpdc ,
+
+where C on  
+
+> δ
+
+= log (N/δ).
+
+Proof of Lemma E.1. Recall that Ph bVth+1(s, a) = Es′ ∼Ph
+
+h bVth+1(s′)
+
+i
+
+. Thus, E[ bVth+1(s′) − Ph bVth+1(s, a)] = 0. Also, bVth+1(s′) − Ph bVth+1(s, a) ≤ H. Therefore, bVth+1(s′) − Ph bVth+1(s, a) is zero-mean and H-sub Gaussian. Given that, we can invoke Lemma E.3. 
+
+# ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a)
+
+h bVth+1(s′) − Ph bVth+1(s, a)
+
+i 
+
+> (Λth)−1
+
+≤ √2 H
+
+vuutlog 
+
+" det (Λth)1/2 det (Λ0
+
+> h
+
+)−1/2 
+
+δ
+
+#
+
+= √2 H
+
+vuutlog 
+
+" N + λλ
+
+d/2 #
+
+− log (δ)= √2 H
+
+r dc
+
+2 log (N/δ)= H
+
+q
+
+dc log (N/δ) ,where the first equality follows from Lemma E.4, and the second equality holds by setting λ = 1. This concludes the proof. 
+
+## E.2 Proof of Theorem 6.1 
+
+Using Lemma E.1, we can instantiate Lemma D.2 in the on-policy setting with 
+
+Γon  
+
+> LMC
+
+= Con  
+
+> δ
+
+H pdc + 43
+
+s
+
+2 dc log (1/ δ)
+
+3 ζ + 43
+
+= H
+
+q
+
+dc log (N/δ) + 43
+
+s
+
+2 dc log (1/ δ)
+
+3 ζ + 43 .
+
+Proof of Theorem 6.1. The optimal gap for the mixture policy can be written as 
+
+E
+
+h
+
+V⋆ 
+
+> 1
+
+(s1) − VπT 
+
+> 1
+
+(s1)
+
+i
+
+= 1
+
+T
+
+> T
+
+# ∑
+
+> t=1
+
+
+
+V⋆ 
+
+> 1
+
+(s1) − Vπt 
+
+> 1
+
+(s1)
+
+
+
+.46 Then, to decompose the above summation, we have that 
+
+> T
+
+# ∑
+
+> t=1
+
+
+
+V⋆ 
+
+> 1
+
+(s1) − Vπt 
+
+> 1
+
+(s1)
+
+
+
+=
+
+> T
+
+# ∑
+
+> t=1
+
+
+
+V⋆ 
+
+> 1
+
+(s1) − bVt 
+
+> 1
+
+(s1)
+
+
+
++
+
+> T
+
+# ∑
+
+> t=1
+
+ bVt 
+
+> 1
+
+(s1) − Vπt 
+
+> 1
+
+(s1)
+
+
+
+.We can further decompose the first term by invoking Lemma E.2 with π = π⋆ and obtain that 
+
+V⋆ 
+
+> 1
+
+(s1) − bVt 
+
+> 1
+
+(s1) = 
+
+> H
+
+# ∑
+
+> h=1
+
+Eπ⋆
+
+hD 
+
+π⋆ 
+
+> h
+
+(· | s) − πth(· | s), bQth(s, ·)
+
+Ei 
+
++
+
+> H
+
+# ∑
+
+> h=1
+
+Eπ⋆
+
+h
+
+rh(s, a) + Ph bVth+1(s, a) − bQth(s, a)
+
+i
+
+.Similarly, we can decompose the second term by invoking Lemma E.2 with π = πt and get that 
+
+bVt 
+
+> 1
+
+(s1) − Vπt 
+
+> 1
+
+(s1) = 
+
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+hD 
+
+πth(· | s) − πth(· | s), bQth(s, ·)
+
+Ei 
+
+−
+
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+rh(s, a) + Ph bVth+1(s, a) − bQth(s, a)
+
+i
+
+= −
+
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+rh(s, a) + Ph bVth+1(s, a) − bQth(s, a)
+
+i
+
+.Therefore, using the definition of the model prediction error ι in Definition 5.1, we have 
+
+> T
+
+# ∑
+
+> t=1
+
+
+
+V⋆ 
+
+> 1
+
+(s1) − Vπt 
+
+> 1
+
+(s1)
+
+
+
+=
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπ⋆
+
+hD 
+
+π⋆ 
+
+> h
+
+(· | s) − πth(· | s), bQth(s, ·)
+
+Ei | {z }
+
+> (I) policy optimization (actor) error
+
++
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+ Eπ⋆ [ιth(s, a)] − Eπt [ιth(s, a)] | {z }
+
+> (II) policy evaluation (critic) error
+
+.
+
+Policy optimization error. We first start by bounding Term (I), the policy optimization (actor) error. Term (I) =
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Es∼π⋆
+
+hD 
+
+π⋆ 
+
+> h
+
+(· | s) − πth(· | s), bQth(s, ·)
+
+Ei 
+
+=
+
+> H
+
+# ∑
+
+> h=1
+
+Es∼π⋆
+
+> T
+
+# ∑
+
+> t=1
+
+D
+
+π⋆ 
+
+> h
+
+(· | s) − πth(· | s), bQth(s, ·)
+
+E!
+
+≤ H max 
+
+> (h,s)∈[H]×S
+> T
+
+# ∑
+
+> t=1
+
+D
+
+π⋆ 
+
+> h
+
+(· | s) − πth(· | s), bQth(s, ·)
+
+E!
+
+> (i)
+
+≤ H log |A| + ∑Tt=1 ϵth(·) ∞
+
+η + η H2 T
+
+2
+
+!
+
+> (ii)
+
+≤ H2
+
+q
+
+(log |A| + ϵ T)/2 √T
+
+> (iii)
+
+≤ O
+
+
+
+H2
+
+q
+
+log |A| √T + H2 √ϵ T
+
+
+
+.(i) follows from Theorem 4.1 with u = π∗ 
+
+> h
+
+(· | s). (ii) is obtained by setting η =
+
+√2 (log |A| +ϵ T)  
+
+> H√T
+
+. (iii) is based on that for all a, b ≥ 0, √a + b ≤ √a + √b.
+
+Policy evaluation error. Then, we continue to bound Term (II), the policy evaluation (critic) error. Term (II) =
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+ Eπ⋆ [ιth(s, a)] − Eπt [ιth(s, a)] 
+
+47 (iv) 
+
+≤ − 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt [ιth(s, a)] 
+
+> (v)
+
+≤ Γon 
+
+> LMC
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+≤ Γon  
+
+> LMC
+
+T max 
+
+> t∈[T]
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+.(iv) and (v) both follow from Lemma D.2, where (iv) is based on the optimism guarantee (RHS of Eq. (10)), while (v) is based on the error bound (LHS of Eq. (10)). 
+
+Bounding the sum of bonuses. Since Γon  
+
+> LMC
+
+is bounded, it suffices to bound Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+. Note that 
+
+Λth = ∑(s,a,s′ )∈D th
+
+ϕ(s, a) ϕ(s, a)⊤ + λ I, and Dth only depends on πt in the on-policy setting. (This is not true for the off-policy setting since Λth would depend on {π1, . . . , πt}.) We then index each data point in Dth as 
+
+n
+
+(sih, aih, sih+1)
+
+o
+
+> i∈[N]
+
+. Let Λt,ih =
+
+
+
+∑ij=1 ϕ(sjh, ajh) ϕ(sjh, ajh)⊤ + λ I
+
+
+
+. Then, we have that 
+
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+> (vi)
+
+≤ 1
+
+N
+
+> N
+
+# ∑
+
+> i=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+"
+
+∥ϕ(s, a)∥
+
+> Λt,ih
+> −1
+
+#
+
+= 1
+
+N
+
+> N
+
+# ∑
+
+> i=1
+> H
+
+# ∑
+
+> h=1
+
+ϕ(sih, aih)  
+
+> Λt,ih
+> −1
+
++ 1
+
+N
+
+> N
+
+# ∑
+
+> i=1
+> H
+
+# ∑
+
+> h=1
+
+Esh ∼P(·| sth−1 ath−1)   
+
+> ah∼πth(·| sh)
+
+"
+
+∥ϕ(s, a)∥
+
+> Λt,ih
+> −1
+
+#
+
+− ϕ(sih, aih) 
+
+> Λt,ih
+> −1
+
+| {z }
+
+> :=Mon
+> i,h
+
+,(15) where (vi) follows from the fact that Λt,ih ⪯ Λth.
+
+Applying the elliptical potential lemma. For the first term of Eq. (15), we have that 1
+
+N
+
+> N
+
+# ∑
+
+> i=1
+> H
+
+# ∑
+
+> h=1
+
+ϕ(sih, aih) 
+
+> Λt,ih
+> −1
+
+= 1
+
+N
+
+> H
+
+# ∑
+
+> h=1
+> N
+
+# ∑
+
+> i=1
+
+ϕ(sih, aih) 
+
+> Λt,ih
+> −1
+> (vii)
+
+≤ 1
+
+N
+
+> H
+
+# ∑
+
+> h=1
+
+√N
+
+> N
+
+# ∑
+
+> i=1
+
+ϕ(sih, aih) 2
+
+> 
+> Λt,ih
+> −1
+
+!1/2 (viii) 
+
+≤ O
+
+r dc H2 log (N/δ)
+
+N
+
+!
+
+.(vii) applies the Cauchy-Schwarz inequality, and (viii) follows the elliptical argument from Lemma E.5. 
+
+A martingale difference sequence. For the second term of Eq. (15), since for a fixed i ∈ [N],
+
+n
+
+Mon 
+
+> i,h
+
+o
+
+> h∈[H]
+
+forms a martingale sequence adapted to the filtration, 
+
+F on  
+
+> i,h
+
+=
+
+n
+
+(si 
+
+> τ
+
+, ai 
+
+> τ
+
+)
+
+o 
+
+> τ∈[h−1]
+
+,48 such that E
+
+h
+
+Mon  
+
+> i,h
+
+| F on 
+
+> i,h
+
+i
+
+= 0, where the expectation is with respect to the randomness in the policy and the environment at step h. Since |M on  
+
+> i,h
+
+| ≤ 1, we can apply the Azuma–Hoeffding inequality and obtain that Pr 
+
+> N
+
+# ∑
+
+> i=1
+> H
+
+# ∑
+
+> h=1
+
+Mon  
+
+> i,h
+
+≥ m
+
+!
+
+≥ exp 
+
+ −m2
+
+2 H N 
+
+
+
+.Setting m = p2 H N log (1/ δ) and using a union bound over i ∈ [N], with probability at least 1 − δ, it holds that 1
+
+N
+
+> N
+
+# ∑
+
+> i=1
+> H
+
+# ∑
+
+> h=1
+
+Mon  
+
+> i,h
+
+≤
+
+r 2 H log (1/ δ)
+
+N ≤ O 
+
+r H log (1/ δ)
+
+N
+
+!
+
+.
+
+Putting everything together. Therefore, we have that 
+
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+= 1
+
+N
+
+> N
+
+# ∑
+
+> i=1
+> H
+
+# ∑
+
+> h=1
+
+ϕ(sih, aih)  
+
+> Λt,ih
+> −1
+
++ 1
+
+N
+
+> N
+
+# ∑
+
+> i=1
+> H
+
+# ∑
+
+> h=1
+
+Mon  
+
+> i,h
+
+≤ O 
+
+r dc H2 log (N/δ)
+
+N
+
+!
+
+.It further implies that, with probability at least 1 − δ,Term (II) ≤ Γon  
+
+> LMC
+
+T max 
+
+> t∈[T]
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+> (ix)
+
+≤ O 
+
+s
+
+d3 
+
+> c
+
+H4 log 2(N/δ)
+
+N T
+
+
+
+≤ eO
+
+
+
+H2
+
+q
+
+d3 
+
+> c
+
+log |A| √T
+
+
+
+,where (ix) comes from setting N = T 
+
+> log |A|
+
+= H4 
+
+> ϵ2
+
+.Finally, putting everything together, with probability at least 1 − δ,
+
+E
+
+h
+
+V⋆ 
+
+> 1
+
+(s1) − VπT 
+
+> 1
+
+(s1)
+
+i
+
+= 1
+
+T (Term (I) + Term (II) ) = eO H2pd3 
+
+> c
+
+log |A| √T + H2 √ϵ
+
+!
+
+.This concludes the proof. 
+
+## E.3 Technical Tools 
+
+Lemma E.2 (Extended Value Difference) . Given any π, π′ ∈ ∆(A | S , H) and any Q -function bQ ∈ RH×|S|×|A| ,we define bVh(·) = Ea∼π′  
+
+> h(s,·)
+
+bQh(·, a) for any h ∈ [H]. Then, 
+
+bV1(s1) − Vπ 
+
+> 1
+
+(s1)=
+
+> H
+
+# ∑
+
+> h=1
+
+Es∼π
+
+hD 
+
+π′
+
+> h
+
+(s, ·) − πh(s, ·), bQh(s, ·)
+
+Ei 
+
++
+
+> H
+
+# ∑
+
+> h=1
+
+E(s,a)∼π
+
+"bQh(s, a) − rh(s, a) − ∑ 
+
+> s′∈S
+
+Ph(s′ | s, a) bVh+1(s′)
+
+#
+
+.49 Lemma E.3 (Concentration of Self-Normalized Processes (Abbasi-Yadkori et al., 2011, Theorem 1)) . Let 
+
+{xt}∞ 
+
+> t=1
+
+be a real-valued stochastic process with the correspond filtration {F t}∞ 
+
+> t=0
+
+such that xt is Ft−1-measurable, and x t is conditionally σ-sub-Gaussian for some σ > 0, i.e., 
+
+∀λ ∈ R, E[exp (λ xt) | F t−1] = exp (λ2 σ2/2 ) .
+
+Let {ϕt}∞ 
+
+> t=1
+
+be an Rd-valued stochastic process such that ϕt is Ft−1-measurable. Assume Λ0 is a d × d positive definite matrix, and let Λt = Λ0 + ∑ti=1 ϕi ϕ⊤ 
+
+> i
+
+. Then, for any δ > 0, with probability at least 1 − δ, for all t ≥ 0, it holds that 
+
+> t
+
+# ∑
+
+> i=1
+
+ϕi xi
+
+> 2
+> Λ−1
+> t
+
+≤ 2 σ2 log 
+
+"
+
+det (Λt)1/2 det (Λ0)−1/2 
+
+δ
+
+#
+
+.
+
+Lemma E.4 (Determinant-Trace Inequality (Abbasi-Yadkori et al., 2011, Lemma 10)) . Suppose X1, X2, . . . , Xt ∈
+
+Rd and for any s ∈ [t], ∥X∥2 ≤ L. Let Λt = λ I + ∑ts=1 Xs X⊤ 
+
+> s
+
+for some λ > 0. Then, for all t, it holds that 
+
+det (Λt) ≤ (λ + t L 2/d)d .
+
+Lemma E.5 (Abbasi-Yadkori et al. 2011, Lemma 11) . Suppose X1, X2, . . . , Xt ∈ Rd and for any s ∈ [t], ∥X∥2 ≤ L .Let Λt = Λ0 + ∑ts=1 Xs X⊤ 
+
+> s
+
+and λmin (Λ0) ≥ max 1, L2 . Then, for all t, it hold that 
+
+log 
+
+ det (Λt)
+
+det (Λ0)
+
+
+
+≤
+
+> t
+
+# ∑
+
+> s=1
+
+∥Xt∥2  
+
+> (Λt)−1
+
+≤ 2 log 
+
+ det (Λt)
+
+det (Λ0)
+
+
+
+.
+
+# F Sample Complexity in the Off-Policy Setting 
+
+## F.1 Covering Number (Proof of Lemma 6.1) 
+
+We first present a bound for the norm of the logit. 
+
+Lemma F.1. Consider Algorithm 1 with the NPG actor in Algorithm 2. Then, under Assumptions 4.1 and 4.2, for all 
+
+(t, h, s, a) ∈ [T] × [H] × S × A , it holds that 
+
+D
+
+φ(s, a), θt,Kt 
+
+> h
+
+(s, a)
+
+E
+
+≤ (ϵ + η H) t ,
+
+where ϵ is defined in Lemma 4.1. 
+
+Proof of Lemma F.1. We will prove this by induction. When t = 0, since we set θ0 
+
+> h
+
+= 0, the statement is trivially true. For t ≥ 1, assume that the statement stands true for t − 1. Since Algorithm 1 optimizes the actor loss up to some errors that are assumed to be bounded, using the triangular inequality, we have that 
+
+D
+
+φ(s, a), θt,Kt 
+
+> h
+
+(s, a)
+
+E
+
+=
+
+D
+
+φ(s, a), θt,Kt 
+
+> h
+
+− bθt,⋆
+
+> h
+
+E
+
++
+
+D
+
+φ(s, a), bθt,⋆ 
+
+> h
+
+(s, a)
+
+E
+
+≤ ϵopt +
+
+D
+
+φ(s, a), bθt,⋆ 
+
+> h
+
+(s, a)
+
+E
+
+≤ ϵopt +
+
+D
+
+φ(s, a), bθt,⋆ 
+
+> h
+
+(s, a) − θt−1, Kt−1 
+
+> h
+
+(s, a)
+
+E
+
+− η bQth(s, a)
+
++
+
+D
+
+φ(s, a), θt−1, Kt−1 
+
+> h
+
+(s, a)
+
+E
+
++ η bQth(s, a)
+
+≤ ϵopt + ϵbias +
+
+D
+
+φ(s, a), θt−1, Kt−1 
+
+> h
+
+(s, a)
+
+E
+
++ η bQth(s, a)
+
+≤ ϵ +
+
+D
+
+φ(s, a), θt−1, Kt−1 
+
+> h
+
+(s, a)
+
+E
+
++ η bQth(s, a)
+
+50 ≤ (ϵ + η H) t ,where bθt,⋆ 
+
+> h
+
+denotes the optimal actor parameters when optimizing over Dexp and ρexp ,
+
+D
+
+φ(s, a), θt−1, Kt−1 
+
+> h
+
+(s, a)
+
+E
+
++
+
+η bQth(s, a) is the optimization target in the actor loss of the projected NPG , and the last inequality uses the inductive hypothesis. This concludes the proof. 
+
+Proof of Lemma 6.1. Consider any Q, Q′ ∈ Q such that Q(·, ·) = min {⟨ ϕ(·, ·), w⟩, H}+ and Q′(·, ·) = 
+
+min {⟨ ϕ(·, ·), w′⟩, H}+. Therefore, we have that sup 
+
+> (s,a)∈S×A
+
+Q(s, a) − Q′(s, a) ≤ sup 
+
+> (s,a)∈S×A
+
+ϕ(s, a), w − w′
+
+≤ sup 
+
+> (s,a)∈S×A
+
+∥ϕ(s, a)∥ w − w′
+
+≤ 2 W ,where the first inequality uses the Cauchy-Schwarz inequality, and the second inequality uses Definition 2.1, the triangular inequality, and the definition of W.Consider any π, π′ ∈ Πlin such that π(· | s) ∝ exp (⟨ϕ(s, ·), θ⟩) and π′(· | s) ∝ exp (⟨ϕ(s, ·), θ′⟩). By invoking Lemma F.6 and using Lemma F.1, we can observe that for a fixed s ∈ S ,sup 
+
+> a∈A
+
+π(s, a) − π′(s, a) ≤ π(s, ·) − π′(s, ·) 1 ≤ 2
+
+r
+
+sup 
+
+> a
+
+|⟨ φ(s, a), θ − θ′⟩| ≤ 2
+
+p
+
+2 Z .Taking the sup over S, we get that sup 
+
+> (s,a)∈S×A
+
+π(s, a) − π′(s, a) ≤ 2
+
+p
+
+2 Z .Therefore, we can bound the logarithm of the covering number of the value function class as follows. log N∆(V ) ≤ log N∆/2 (Q) + log N∆/(2H)(Πlin )
+
+≤ dc log 1 + 4 W
+
+∆
+
+!
+
++ da log 1 + 8 H √2 Z
+
+∆
+
+!
+
+,where the first inequality follows from Lemma F.3, and the second inequality uses Lemma F.5. This concludes the proof. 
+
+## F.2 Proof of Good Event 
+
+Lemma F.2. Consider Algorithm 1 in the off-policy setting with λ = 1. Then, for any δ ∈ (0, 1 ), with probability at least 1 − δ, it holds that 
+
+# ∑
+
+> (s,a)∈D th
+
+ϕ(s, a)
+
+h bVth+1(s) − Ph bVth+1(s, a)
+
+i 
+
+> (Λth)−1
+
+≤ Coff  
+
+> δ
+
+H pdc ,
+
+where Coff  
+
+> δ
+
+= 3
+
+vuut 12 log (T + 1) + log 2 √2TH
+
+!
+
++ log 2
+
+δ + V ,51 V = dc log 1 + 4 W + 4 H √2 Z
+
+∆
+
+!
+
++ da log 1 + 4 H √2 Z
+
+∆
+
+!
+
+,
+
+W = 16 3 H pdc T +
+
+s
+
+2 d3 
+
+> c
+
+T
+
+3 ζ δ , Z = ( ϵ + η H) T .
+
+Proof of Lemma F.2. Since bV(·) ∈ [0. H], we can invoke Lemma F.4. Then, we have that for any ∆ > 0, with probability at least 1 − δ,
+
+# ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a)
+
+h bVth+1(s′) − Ph bVth+1(s, a)
+
+i 
+
+> (Λth)−1
+
+≤
+
+
+
+4 H2
+
+ dc
+
+2 log 
+
+ T + λλ
+
+
+
++ dc log 
+
+ N∆(V )
+
+∆
+
+
+
++ log 2
+
+δ
+
+
+
++ 8 T2∆2
+
+λ
+
+1/2 
+
+≤ 2H
+
+ dc
+
+2 log 
+
+ T + λλ
+
+
+
++ dc log 
+
+ N∆(V )
+
+∆
+
+
+
++ log 2
+
+δ
+
+1/2 
+
++ 2 √2T∆
+
+√λ .Setting λ = 1, ∆ = H   
+
+> 2√2T
+
+, we have that with probability at least 1 − δ,
+
+# ∑ 
+
+> (s,a,s′)∈D th
+
+ϕ(s, a)
+
+h bVth+1(s′) − Ph bVth+1(s, a)
+
+i 
+
+> (Λth)−1
+
+≤ 2 H pdc
+
+ 12 log (T + 1) + log 
+
+ N∆(V ) 
+
+> H
+> 2√2T
+
+ + log 2
+
+δ
+
+
+
+> 1/2
+
++ H
+
+≤ 3 H pdc
+
+"
+
+12 log (T + 1) + log 2 √2TH
+
+!
+
++ log 2
+
+δ + V
+
+#1/2 
+
+,where the last inequality uses Lemma 6.1 to bound the logarithm of the covering number. This concludes the proof. 
+
+## F.3 Proof of Theorem 6.2 
+
+We first instantiate Lemma D.2 in the off-policy setting. Given the above good event, we have that 
+
+Γoff  
+
+> LMC
+
+≤ O 
+
+
+
+Coff  
+
+> δ
+
+H d c
+
+q
+
+log (1/ δ)
+
+
+
+= eO
+
+
+
+H
+
+q
+
+d3 
+
+> c
+
+max {dc, da}
+
+
+
+.
+
+Proof of Theorem 6.2. Following the proof of Theorem 6.1 (Section E.2), we can use the same regret decomposition as follows. 
+
+> T
+
+# ∑
+
+> t=1
+
+
+
+V⋆ 
+
+> 1
+
+(s1) − Vπt 
+
+> 1
+
+(s1)
+
+
+
+=
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπ⋆
+
+hD 
+
+π⋆ 
+
+> h
+
+(· | s) − πth(· | s), bQth(s, ·)
+
+Ei | {z }
+
+> (I) policy optimization (actor) error
+
++
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+ Eπ⋆ [ιth(s, a)] − Eπt [ιth(s, a)] | {z }
+
+> (II) policy evaluation (critic) error
+
+.52 Term (I) can be bounded the same way as the proof in Section E.2. Hence, it suffices to only bound Term (II). Term (II) =
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπ⋆ [ιth(s, a)] − Eπt [ιth(s, a)] 
+
+> (i)
+
+≤ − 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt [ιth(s, a)] 
+
+> (ii)
+
+≤ Γoff 
+
+> LMC
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+ϕ(sth, ath) (Λth )−1
+
+i
+
+.(i) and (ii) both follow from Lemma D.2, where (i) is based on the optimism guarantee (RHS of Eq. (10)), while (ii) is based on the error bound (LHS of Eq. (10)). 
+
+Bounding the sum of bonuses. Since Γoff  
+
+> LMC
+
+is bounded, it suffices to bound Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+. We then index each data point in Dth as 
+
+n
+
+(sih, ath, sth+1)
+
+o 
+
+> t∈[T]
+
+and get that Λth = ∑Tt=1 ϕ(sth, ath)ϕ(sth, ath)⊤ + λ I. Then, we have that 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+=
+
+> T
+
+# ∑
+
+> i=1
+> H
+
+# ∑
+
+> h=1
+
+ϕ(sth, ath)  
+
+> Λt,ih
+> −1
+
++
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Esh ∼P(·| sth−1 ath−1)   
+
+> ah∼πth(·| sh)
+
+
+
+∥ϕ(sh, ah)∥(Λth )−1
+
+
+
+− ϕ(sth, ath) (Λth )−1
+
+| {z }
+
+> :=Moff
+> t,h
+
+. (16) 
+
+Applying the elliptical potential lemma. For the first term of Eq. (16), we have that 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+ϕ(sth, ath) (Λth )−1 =
+
+> H
+
+# ∑
+
+> h=1
+> T
+
+# ∑
+
+> t=1
+
+ϕ(sth, ath) (Λth )−1
+
+> (iii)
+
+≤
+
+> H
+
+# ∑
+
+> h=1
+
+√T
+
+> T
+
+# ∑
+
+> t=1
+
+ϕ(sth, ath) 2
+
+(Λth )−1
+
+!1/2 (iv) 
+
+≤ O 
+
+q 
+
+dc H2 T log (T/δ)
+
+
+
+.(iii) applies the Cauchy-Schwarz inequality, and (iv) follows the elliptical potential argument from Lemma E.5. 
+
+A martingale difference sequence. For the second term of Eq. (16), since 
+
+n
+
+Moff 
+
+> t,h
+
+o 
+
+> (t,h)∈[T]×[H]
+
+forms a martingale sequence adapted to the filtration, 
+
+F off  
+
+> t,h
+
+=
+
+n
+
+(si 
+
+> τ
+
+, ai 
+
+> τ
+
+)
+
+o 
+
+> (i,τ)∈[t−1]×[H]
+
+∪ (st 
+
+> τ
+
+, at 
+
+> τ
+
+) τ∈[h−1] ,such that E
+
+h
+
+Moff  
+
+> t,h
+
+| F off 
+
+> t,h
+
+i
+
+= 0. Since |M off  
+
+> i,h
+
+| ≤ 1, we can apply the Azuma–Hoeffding inequality and obtain that Pr 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Moff  
+
+> t,h
+
+≥ m
+
+!
+
+≥ exp 
+
+ −m2
+
+2 H T 
+
+
+
+.53 Setting m = p2 H T log (1/ δ), with probability at least 1 − δ, it holds that 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Moff  
+
+> t,h
+
+≤
+
+q
+
+2 H T log (1/ δ) ≤ O 
+
+q 
+
+H T log (1/ δ)
+
+
+
+.Therefore, we have that 
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+=
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+ϕ(sih, aih)  
+
+> Λt,ih
+> −1
+
++
+
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Moff  
+
+> i,h
+
+≤ O 
+
+q 
+
+dc H2 T log (T/δ)
+
+
+
+.It further implies that, with probability at least 1 − δ,Term (II) ≤ Γoff 
+
+> LMC
+> T
+
+# ∑
+
+> t=1
+> H
+
+# ∑
+
+> h=1
+
+Eπt
+
+h
+
+∥ϕ(s, a)∥(Λth )−1
+
+i
+
+≤ eO
+
+q 
+
+d3 
+
+> c
+
+max {dc, da} H4 T
+
+
+
+.
+
+Putting everything together. Therefore, we have that with probability at least 1 − δ,
+
+E
+
+h
+
+V⋆ 
+
+> 1
+
+(s1) − VπT 
+
+> 1
+
+(s1)
+
+i
+
+= 1
+
+T (Term (I) + Term (II) ) = eO H2 pd3 
+
+> c
+
+max {dc, da} log |A| √T + H2 √ϵ
+
+!
+
+.This concludes the proof. 
+
+## F.4 Technical Tools 
+
+Lemma F.3 (Zhong and Zhang, 2023, Lemma B.1) . Consider the value function class V = {⟨ Q(·, ·), bπ(· | · )⟩A |
+
+Q ∈ Q , bπ ∈ Π}. Then, it holds that 
+
+N∆(V ) ≤ N ∆/2 (Q) · N ∆/(2 H)(Π) .
+
+Lemma F.4 (Value-Aware Uniform Concentration (Jin et al., 2020, Lemma D.4)) . Let {st}∞ 
+
+> t=1
+
+be a stochastic process on the state space S with the correspond filtration {F t}∞ 
+
+> t=0
+
+such that st is Ft−1-measurable. Let {ϕt}∞ 
+
+> t=1
+
+be an 
+
+Rd-valued stochastic process such that ϕt is Ft−1-measurable, and ∥ϕt∥ ≤ 1. Let Λt = I + ∑ts=1 ϕs ϕ⊤ 
+
+> s
+
+. Assume V
+
+is a value function class such that sup s∈S |V(s)| ≤ H . Then, for any δ > 0, with probability at least 1 − δ, for all t ≥ 0 and any V ∈ V , it holds that 
+
+> t
+
+# ∑
+
+> i=1
+
+ϕi {V(si) − E[V(si) | F i−1]}
+
+> 2
+> Λ−1
+> t
+
+≤ 4 H2
+
+ d
+
+2 log 
+
+ t + λλ
+
+
+
++ log 
+
+ N∆
+
+δ
+
+ 
+
++ 8 t2 ∆2
+
+λ ,
+
+where N∆ represents the ∆-covering number of V with the distance measured by dist (V, V′) = sup s∈S |V(s) − V′(s)|.
+
+Lemma F.5 (Covering Number of Euclidean Ball) . For any ∆ > 0, the ∆-covering number, N∆, of the Euclidean ball of radius B > 0 in Rd satisfies that 
+
+N∆ ≤
+
+
+
+1 + 2B
+
+∆
+
+d
+
+.
+
+Lemma F.6 (Zhong and Zhang 2023, Lemma B.3) . For π, π′ ∈ ∆(A) and Z, Z′ : A → R+, if π(·) ∝ exp (Z(·)) 
+
+and π′(·) ∝ exp (Z′(·)) , then it holds that 
+
+π − π′ 
+
+> 1
+
+≤ 2
+
+q
+
+∥Z − Z′∥∞ .54 G Experiments 
+
+In this section, we evaluate the performance of our proposed algorithm with other methods on various benchmarks. In Section G.1, we test our proposed algorithm in two specific environments of linear MDPs. In Section G.2, we further conduct some ablation studies in the same two environments. In Section G.3, we test our proposed algorithm in large-scale deep RL applications (Atari (Mnih et al., 2013)) and compare its performance to two commonly used deep RL algorithms, PPO (Schulman et al., 2017b) in the on-policy setting and DQN (Mnih et al., 2015) in the off-policy setting. 
+
+## G.1 Experiments in Linear MDPs 
+
+First, we test our proposed algorithm in the randomly generated linear MDPs (Random MDP) and the linear MDP version of the Deep Sea (Osband et al., 2019). 
+
+G.1.1 Environment Setup 
+
+Our experimental setup is an extension of Ishfaq et al. (2024a). In particular, we extend the prior off-policy setting to test our proposed algorithm in the linear MDP version of the Deep Sea (Osband et al., 2019) and the Random MDP. In both experiments, we use the linear MDP features as the policy features (i.e., ϕ = φ), and we set d := dc = da to represent the feature dimension for both the actor and the critic parameters. 
+
+Figure 2: Example of the Deep Sea environment from Osband et al. (2019). For the Random MDP environment, we consider 15 states and 5 actions. For each state s ∈ S , we generate 
+
+ψh(s) ∈ Rd uniformly at random in [0, 1 ] and construct tile coded features. The agent always starts from state 0, receiving a small reward of 0.1 upon taking action 0, and obtains the maximum reward when reaching the final state and taking action 1. All other state-action pairs yield zero reward. Given this reward function and a randomly generated transition kernel, we solve for ψh and υh via minimizing least square errors following Definition 2.1 and use the corresponding Ph and rh to set up the environment. For the Deep Sea environment, we use a N × N grid with N = 10 where the agent always starts at (1, 1 ) and can move either bottom-right or bottom-left, receiving rewards of 0 and −0.01 /N respectively. Reaching the bottom-right corner yields a reward of 1. Furthermore, we generate the actor and critic features by projecting each state-action pair uniformly between [0, d − 1], which recovers one-hot encoded features when 
+
+d = |S| × |A| . Given the true transition probabilities and rewards, we solve for ψh and υh via minimizing least square errors following Definition 2.1 and use the corresponding Ph and rh to ensure the linearity of the MDP. 55 G.1.2 Coreset Construction 
+
+To implement our proposed algorithm, we need to conduct the experimental design to obtain Dexp and 
+
+ρexp . For this, we follow the offline G-Experimental design outlined in Algorithm 4 to construct a coreset. In particular, in each iteration, this greedy iterative algorithm traverses the entire state-action space and adds a data point to the coreset that has the highest marginal gain g(s, a) = ∥φ(s, a)∥G−1 . For a specific threshold 
+
+ϵG, the algorithm only terminates when gmax = max s,a∈(S×A ) g(s, a) ≤ ϵG, hence giving us direct control over sup (s,a)∈S×A ∥φ(s, a)∥G−1 . In practice, we find that it often selects too many data points, so we cap the coreset at 80% of the total data. 
+
+Algorithm 4 Coreset Construction Using G-Experimental Design  
+
+> 1:
+
+Input : features φ : S × A 7 → Rda , threshold ϵG ∈ R 
+
+> 2:
+
+Initialize : G = Ida×da , Dexp = ∅, gmax = ∞ 
+
+> 3:
+
+while gmax > ϵG do  
+
+> 4:
+
+gmax = 0 
+
+> 5:
+
+for (s, a) ∈ S × A do  
+
+> 6:
+
+g(s, a) = ∥φ(s, a)∥G−1 
+
+> 7:
+
+if gmax < g(s, a) then  
+
+> 8:
+
+(s⋆, a⋆) = ( s, a) 
+
+> 9:
+
+gmax = g(s, a) 
+
+> 10:
+
+Dexp = Dexp ∪ { (s⋆, a⋆)} 
+
+> 11:
+
+G = G + φ(s⋆, a⋆) φ(s⋆, a⋆)⊤
+
+G.1.3 Algorithms and Hyperparameters 
+
+We denote by LMC-NPG-EXP our proposed algorithm with an explicit log-linear policy parameterization that uses LMC for policy evaluation and projected NPG for policy optimization over the obtained coreset. We denote by LMC-NPG-IMP an idealized variant of NPG that does not have an explicit policy parameterization and maintains an implicit policy by storing all parameterized Q functions (and hence requires significantly more memory). As a baseline, we also consider the value-based algorithm LMC (Ishfaq et al., 2024a). In Table 3, we list the hyperparameters used across all experiments. For log-linear policies, the actor loss in Eq. (6) admits a closed-form solution, allowing us to avoid tuning of the actor learning rate αa and the number of actor updates Kt, by minimizing the objective exactly. In general, for non-linear models, inexact optimization (e.g., stochastic gradient descent) is usually required to optimize the actor loss. 
+
+Hyperparameter LMC LMC-NPG-IMP LMC-NPG-EXP 
+
+Policy Optimization Learning Rate ( η) ✗ [0.1, 1, 10, 100 ] [0.1, 1, 10, 100 ]
+
+Inverse Temperature ( ζ−1) [10 −2, 10 −3, 10 −4, 10 −5]
+
+Number of Critic Updates ( Jt) 100 Critic Learning Rate ( αc) [10 −2, 10 −3, 10 −4, 10 −5]
+
+Number of Episodes ( T) 600 Horizon Length ( H) 100 Table 3: Hyperparameter search space for our experiments in linear MDPs. 
+
+G.1.4 Experimental Results 
+
+Following the protocol of Ishfaq et al. (2024a), each algorithm is run with 20 random seeds. We sweep the hyperparameters as shown in Table 3 and report the best performance with 95% confidence intervals. 56 Figure 3: Comparison of LMC-NPG-EXP (our proposed framework), LMC-NPG-IMP (memory-intensive variant), and LMC (value-based baseline) in the Deep Sea environment. For the Random MDP, Figure 1 indicates that LMC-NPG-EXP closely matches LMC-NPG-IMP while outperforming the value-based baseline, LMC . For the linear MDP version of Deep Sea, Figure 3 showcases that LMC-NPG-EXP 
+
+can achieve comparable performance with LMC-NPG-IMP and LMC .
+
+## G.2 Ablation Studies 
+
+G.2.1 Ablation on Exploration 
+
+To study the impact of the exploration mechanism, LMC , in our proposed algorithm, we perform an ablation in the linear MDP variant of Deep Sea. For the baseline without exploration, we consider the same algorithm design as LMC-NPG-EXP and simply do not inject any noise into the LMC update. The results in Figure 4 indicate that when the feature dimensions of the critic and the actor are relatively small, the exploration mechanism is crucial for our proposed algorithm to achieve decent performance. 
+
+Figure 4: Ablation of the exploration mechanism for LMc-NPG-EXP .
+
+G.2.2 Ablation on Feature Dimensions 
+
+We also study the effect of the feature dimensions. We use the same feature for the MDP environment and the policy (i.e., ϕ = φ), and we denote that d := dc = da. The results in Figure 5 show that larger feature dimensions d for both the actor and the critic lead to greater performance of the proposed algorithm. 57 Figure 5: Effect of feature dimension d in Deep Sea. 
+
+Figure 6: LMC-NPG-EXP exhibits robustness to different choices of ζ−1.
+
+Figure 7: LMC-NPG-EXP exhibits robustness to different choices of M.
+
+G.2.3 Sensitivity to Inverse Temperature ( ζ−1)
+
+We study the sensitivity of our algorithm to the inverse temperature hyperparameter, ζ−1, in the Deep Sea environment. As shown Figure 6, we observe relatively robust performance for different choices of this hyperparameter across a range of different feature dimensions. 
+
+G.2.4 Sensitivity to the Number of Critic Samples ( M)
+
+We further study the effect of the number of critic samples, M, in the Deep Sea environment. We vary M
+
+across a range of different feature dimensions. Similarly, as shown in Figure 7, we find that the performance of our proposed algorithm remains relatively stable across the tested range of different feature dimensions. 58 G.3 Experiments Beyond Linear MDPs: Atari 
+
+G.3.1 Extension to Deep RL Applications 
+
+Compared to our theoretical results in the finite-horizon linear MDP setting, the Atari benchmark requires handling discounted problems with complex nonlinear function approximation. Consequently, starting from our theoretically principled algorithm, we make three mild changes and follow the same protocol as the practical version of LMC in Ishfaq et al. (2024a). Since we are not in the finite-horizon setting, we compute the value functions and Q functions in a forward fashion ( h = 1, . . . ) rather than backwards ( h = H, . . . , 1), which changes how the critic loss is formed in Algorithm 3. Moreover, instead of using stochastic gradient descent to optimize the LMC critic loss, we follow Ishfaq et al. (2024a) and use the practical version of LMC 
+
+that integrates Adam. Finally, rather than relying on the experimental design, at iteration t, we roll out the current policy to store state–action pairs in a buffer Dt and minimize the actor objective over (a subset of) it. Following such changes, we can extend our proposed algorithm beyond the linear function approximation and empirically test its performance against other commonly used algorithms. 
+
+G.3.2 Environment Setups and Hyperparameters 
+
+In the Atari experiments, we use the following setups. In the on-policy setting, we adopt the recommended hyperparameters from Raffin (2020) for PPO and our algorithm. In the off-policy setting, following prior work (Tomar et al., 2020), we use the default hyperparameters from stable baselines (Raffin et al., 2021) for DQN 
+
+and our algorithm. These setups are motivated by two considerations. First, we aim to evaluate the effect of different objectives without performing an extensive hyperparameter search. Second, the CNN-based actor and the critic architectures make large grid searches over multiple hyperparameters (e.g., framestack, λ in GAE, horizon length, and discount factor) computationally prohibitive. A complete list of hyperparameters used in the on-policy and off-policy Atari experiments is provided in Tables 4 and 5. Additionally, for the policy optimization learning rate η in our algorithm, we perform a grid search over {0.01, 0.1, 1.0 }.
+
+G.3.3 Experimental Results 
+
+As illustrated in Figure 8, our algorithm can achieve comparable or even better performance than PPO in the on-policy setting. Similarly, in the off-policy setting, our algorithm’s performance is comparable to or exceeds DQN in most considered games, as shown in Figure 9. These results underscore that our theoretically grounded approach holds significant practical value for large-scale deep RL applications. 59 Hyperparameter LMC-NPG-EXP PPO 
+
+Reward normalization ✗ ✗
+
+Observation normalization ✗ ✗
+
+Orthogonal weight initialization ✓ ✓
+
+Value function clipping ✗ ✗
+
+Gradient clipping ✗ ✓
+
+Probability ratio clipping ✗ ✓
+
+Clip range ✗ 0.1 Entropy coefficient 0 0.01 Number of inner loop updates ( m) 5 4Adam step-size 3 × 10 −4 2.5 × 10 −4
+
+Value Function Coefficient ✗ 0.5 Minibatch size 256 Framestack 4Number of environment copies 8GAE ( λ) 0.95 Horizon ( T) 128 Discount factor 0.99 Total number of timesteps 10 7
+
+Number of runs for plot averages 5Confidence interval for plot runs ∼ 95% 
+
+> Table 4: Hyperparameters for the Atari experiments in the on-policy setting.
+
+Hyperparameter LMC-NPG-EXP DQN 
+
+Reward normalization ✗ ✗
+
+Observation normalization ✗ ✗
+
+Orthogonal weight initialization ✗ ✗
+
+Value function clipping ✗ ✗
+
+Gradient clipping ✗ ✗
+
+Probability ratio clipping ✗ ✗
+
+Exploration LMC ϵ-greedy Adam step-size 3 × 10 −4
+
+Buffer size 10 6
+
+Minibatch size 256 Framestack 4Number of environment copies 8Discount factor 0.99 Total number of timesteps 10 7
+
+Number of runs for plot averages 5Confidence interval for plot runs ∼ 95% Table 5: Hyperparameters for the Atari experiments in the off-policy setting. 60 Figure 8: In the on-policy setting, LMC-NPG-EXP achieves comparable or better performance compared to PPO .
+
+Figure 9: In the off-policy setting, LMC-NPG-EXP achieves comparable or better performance compared to DQN .61

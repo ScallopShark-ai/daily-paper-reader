@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "extractor": "pdffigures2",
+  "figures": [
+    {
+      "url": "assets/figures/arxiv/2603.27971v2/fig-001.webp",
+      "caption": "Figure 4. Visual Comparison of Human surveyed and Automated Prototypes",
+      "page": 11,
+      "index": 1,
+      "width": 908,
+      "height": 610
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27971v2/fig-002.webp",
+      "caption": "Figure 5. User Study Overview",
+      "page": 11,
+      "index": 2,
+      "width": 908,
+      "height": 409
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27971v2/fig-003.webp",
+      "caption": "Table 2. Reward comparison on Car Racing, Bipedal Walker, and Humanoid Standup tasks",
+      "page": 7,
+      "index": 3,
+      "width": 631,
+      "height": 192
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27971v2/fig-004.webp",
+      "caption": "Figure 3. Comparison of Visual similarity between prototypes",
+      "page": 10,
+      "index": 4,
+      "width": 908,
+      "height": 429
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27971v2/fig-005.webp",
+      "caption": "Figure 7. Ablation study on Atari Pong environment",
+      "page": 13,
+      "index": 5,
+      "width": 833,
+      "height": 934
+    },
+    {
+      "url": "assets/figures/arxiv/2603.27971v2/fig-006.webp",
+      "caption": "Figure 6. Ablation study on BipedalWalker environment",
+      "page": 12,
+      "index": 6,
+      "width": 841,
+      "height": 933
+    }
+  ]
+}
