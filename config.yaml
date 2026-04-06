@@ -25,3 +25,111 @@ subscriptions:
     stage: A
     diff_threshold_pct: 15
   keyword_recall_mode: or
+  intent_profiles:
+    - tag: RL论文
+      description: 查找有关强化学习的相关论文
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: Reinforcement Learning
+          keyword_cn: 强化学习
+          query: Reinforcement Learning fundamental theories and algorithms
+        - keyword: Actor-Critic
+          keyword_cn: 演员-评论家框架
+          query: Actor-Critic framework and hybrid RL models
+        - keyword: Multi-Agent RL
+          keyword_cn: 多智能体强化学习
+          query: Multi-Agent Reinforcement Learning coordination and competition
+        - keyword: Proximal Policy Optimization
+          keyword_cn: 近端策略优化
+          query: PPO algorithm and robust policy optimization
+        - keyword: Model-Based RL
+          keyword_cn: 基于模型的强化学习
+          query: Model-Based Reinforcement Learning and world models
+        - keyword: Offline RL
+          keyword_cn: 离线强化学习
+          query: Offline Reinforcement Learning and batch RL techniques
+      intent_queries:
+        - query: State of the art reinforcement learning algorithms and survey papers
+          query_cn: 强化学习前沿算法及综述论文
+          enabled: true
+          source: manual
+          note: ''
+        - query: Recent breakthroughs in deep reinforcement learning research
+          query_cn: 深度强化学习研究的最新突破
+          enabled: true
+          source: manual
+          note: ''
+        - query: Applications of reinforcement learning in robotics and control
+          query_cn: 强化学习在机器人与控制领域的应用
+          enabled: true
+          source: manual
+          note: ''
+        - query: Theoretical foundations and convergence analysis of reinforcement learning
+          query_cn: 强化学习的理论基础与收敛性分析
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-04-06T09:24:01.741Z'
+    - tag: VLA
+      description: 帮我找到有关VLA领域的相关论文
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: VLA
+          keyword_cn: 视觉-语言-动作模型
+          query: Vision-Language-Action models in robotics
+        - keyword: Vision-Language-Action
+          keyword_cn: 视觉语言动作
+          query: Vision-Language-Action foundation models for embodied AI
+        - keyword: Embodied AI
+          keyword_cn: 具身智能
+          query: Embodied AI and robot learning research papers
+        - keyword: Multimodal Policy
+          keyword_cn: 多模态策略
+          query: Multimodal policy learning for robot manipulation
+        - keyword: OpenVLA
+          keyword_cn: OpenVLA
+          query: OpenVLA and open-source vision-language-action models
+        - keyword: Robot Learning
+          keyword_cn: 机器人学习
+          query: Large-scale robot learning with vision and language
+      intent_queries:
+        - query: State of the art Vision Language Action models for robotics
+          query_cn: 机器人领域最先进的VLA模型
+          enabled: true
+          source: manual
+          note: ''
+        - query: Recent advances in VLA foundation models for embodied AI
+          query_cn: 具身智能中VLA基础模型的最新进展
+          enabled: true
+          source: manual
+          note: ''
+        - query: Survey of vision language action models in robot learning
+          query_cn: 机器人学习中的视觉 语言 动作模型综述
+          enabled: true
+          source: manual
+          note: ''
+        - query: Architecture and training of VLA models for generalist robots
+          query_cn: 通用机器人的VLA模型架构与训练
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-04-06T09:24:48.892Z'
+source_backends:
+  arxiv:
+    papers_table: arxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_arxiv_papers
+    vector_rpc_exact: match_arxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_arxiv_papers_bm25
+    sync_table: arxiv_sync_status
+    sync_success_value: success
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
