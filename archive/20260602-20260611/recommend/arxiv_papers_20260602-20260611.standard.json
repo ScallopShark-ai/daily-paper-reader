@@ -1,16 +1,345 @@
 {
   "mode": "standard",
-  "generated_at": "2026-06-11T05:40:27.304488+00:00",
+  "generated_at": "2026-06-11T06:05:49.100065+00:00",
   "stats": {
     "mode": "standard",
-    "tag_count": 0,
-    "deep_divecandidates": 0,
-    "deep_cap": null,
-    "deep_selected": 0,
-    "quick_candidates": 0,
-    "quick_skim_target": 10,
-    "quick_selected": 0
+    "tag_count": 1,
+    "deep_divecandidates": 4,
+    "deep_cap": 6,
+    "deep_selected": 4,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
   },
-  "deep_dive": [],
-  "quick_skim": []
+  "deep_dive": [
+    {
+      "id": "2606.04750v1",
+      "source": "arxiv",
+      "title": "Fog of Love: Engineering Virtuous Agent Behavior with Affinity-based Reinforcement Learning in a Game Environment",
+      "abstract": "Instilling virtuous behavior in artificial intelligence has seen increasing interest. One of the techniques proposed is known as affinity-based reinforcement learning, which uses policy regularization on the objective function to incentivize virtuous actions without being fully dependent on the reward function design. Thus far, this technique has been demonstrated to be effective in grid worlds and toy-problem environments with minimal state and action spaces. To expand this research to more sophisticated environments, we introduce a two-player multi-agent environment based on the role-playing board game known as Fog of Love. In this environment, two agents compete to fulfill their individual virtues, while also cooperating to satisfy their relationship. Given the multi-agent nature, this is a complex problem where multi-agent deep deterministic policy gradient agents neither compete nor cooperate successfully. We present evidence that localized affinities enhance agent performance in achieving both competitive and cooperative objectives, resulting from superior overall scores in both domains. This not only results in virtuous choices but also clarifies an agent's teleology and makes its behavior human-level interpretable.",
+      "authors": [
+        "Ajay Vishwanath",
+        "Christian Omlin"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CY",
+        "cs.LG"
+      ],
+      "published": "2026-06-03T11:31:37+00:00",
+      "link": "https://arxiv.org/pdf/2606.04750v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "directly trains game playing agents with RL to exhibit virtuous behavior in a board game environment",
+      "llm_evidence_cn": "在棋盘游戏环境中使用强化学习训练有道德的智能体",
+      "llm_evidence": "在棋盘游戏环境中使用强化学习训练有道德的智能体",
+      "canonical_evidence": "在棋盘游戏环境中使用强化学习训练有道德的智能体",
+      "llm_tldr_en": "Introduces affinity-based RL in the board game Fog of Love to train agents that exhibit virtuous behavior, extending beyond simple grid worlds; demonstrates effective virtuous policy learning in a complex game environment.",
+      "llm_tldr_cn": "针对在复杂游戏环境中培养智能体道德行为的问题，将基于亲和力的强化学习应用于棋盘游戏《爱情迷雾》的双人环境中，通过策略正则化激励有道德的动作选择。实验表明，该方法能有效训练出兼具任务完成与道德表现的智能体，超越了以往仅限于简单网格世界的效果。",
+      "llm_tldr": "针对在复杂游戏环境中培养智能体道德行为的问题，将基于亲和力的强化学习应用于棋盘游戏《爱情迷雾》的双人环境中，通过策略正则化激励有道德的动作选择。实验表明，该方法能有效训练出兼具任务完成与道德表现的智能体，超越了以往仅限于简单网格世界的效果。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.04202v1",
+      "source": "arxiv",
+      "title": "SMAC-Talk: A Natural Language Extension of the StarCraft Multi-Agent Challenge for Large Language Models",
+      "abstract": "As LLMs become more widely deployed, they are increasingly expected to work alongside other AI agents rather than operating in isolation. Effective coordination in these settings requires agents to communicate, share information and make decisions under uncertainty. We introduce SMAC-Talk, a natural language extension of the StarCraft Multi-Agent Challenge for evaluating LLM-based agents in cooperative multi-agent environments. The environment has several key features such as decentralized control, partial observability and long-horizon decision making. SMAC-Talk includes a natural language communication channel which is used to probe agent coordination and trust. We use this communication channel to construct different evaluation scenarios, including settings with an embedded deceptive communicator that tries to disrupt and deceive allies through communication alone. We provide three agents for benchmarking using 4 models from the Qwen3.5 family and study how reasoning structure, memory and model scale affect coordination between agents. We release SMAC-Talk as an open benchmark to support the research community in developing and evaluating LLM agents in cooperative multi-agent settings.",
+      "authors": [
+        "Joel Sol",
+        "Homayoun Najjaran"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-02T20:40:04+00:00",
+      "link": "https://arxiv.org/pdf/2606.04202v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "StarCraft multi-agent environment with natural language communication for LLM-based agents",
+      "llm_evidence_cn": "星际争霸多智能体环境，增加自然语言通信，用于评估LLM游戏智能体",
+      "llm_evidence": "星际争霸多智能体环境，增加自然语言通信，用于评估LLM游戏智能体",
+      "canonical_evidence": "星际争霸多智能体环境，增加自然语言通信，用于评估LLM游戏智能体",
+      "llm_tldr_en": "Extends StarCraft Multi-Agent Challenge with natural language communication for evaluating LLM-based game playing agents, directly relevant to game AI and RL.",
+      "llm_tldr_cn": "为评估大语言模型智能体在合作多智能体环境中的能力，在星际争霸多智能体挑战中引入自然语言通信信道。支持去中心化控制、部分可观测和长期决策，可用于研究游戏AI智能体的协调与信任。",
+      "llm_tldr": "为评估大语言模型智能体在合作多智能体环境中的能力，在星际争霸多智能体挑战中引入自然语言通信信道。支持去中心化控制、部分可观测和长期决策，可用于研究游戏AI智能体的协调与信任。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.05021v1",
+      "source": "arxiv",
+      "title": "Enhancing the MADDPG Algorithm for Multi-Agent Learning via Action Inference and Importance Sampling",
+      "abstract": "We investigate multi-agent deep reinforcement learning and propose two enhancements to the Multi-Agent Deep Deterministic Policy Gradient (MADDPG) algorithm. First, we introduce a novel Action Inference mechanism that enables each agent to predict other agents' intended actions, thereby improving the accuracy and stability of its own policy. Second, we apply an importance sampling strategy, using geometric distribution, in the replay buffer to prioritize more recent and informative experiences, which helps mitigate the non-stationarity inherent in multi-agent environments. We evaluate both modifications on the discrete-action Predator-Prey task provided by the PettingZoo library, a flexible Python interface for general multi-agent reinforcement learning benchmarks. Our results indicate that Action Inference is effective in improving learning stability and inter-agent cooperation and that importance sampling using geometric distribution can lead to significant improvements in exploration efficiency over standard MADDPG. Code available at https://github.com/shaashwathsivakumar/MARL_Proj",
+      "authors": [
+        "Marc Walden",
+        "Jason Liu",
+        "Shaashwath Sivakumar",
+        "Ryan Liu",
+        "Hamza Khan"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-03T15:44:56+00:00",
+      "link": "https://arxiv.org/pdf/2606.05021v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "enhances MADDPG, a multi-agent RL algorithm, and evaluates on a Predator-Prey game task",
+      "llm_evidence_cn": "改进多智能体RL算法MADDPG，并在捕食者-猎物游戏任务上评估",
+      "llm_evidence": "改进多智能体RL算法MADDPG，并在捕食者-猎物游戏任务上评估",
+      "canonical_evidence": "改进多智能体RL算法MADDPG，并在捕食者-猎物游戏任务上评估",
+      "llm_tldr_en": "Proposes Action Inference and importance sampling to improve MADDPG for multi-agent RL, evaluated on a game task, directly relevant to RL for game AI.",
+      "llm_tldr_cn": "针对多智能体深度强化学习中的非平稳性问题，提出动作推断机制让智能体预测其他智能体动作，并利用几何分布重要性采样优先回放近期经验，改进MADDPG算法。在捕食者-猎物游戏任务上验证了有效性，可用于训练更高效的游戏AI bot。",
+      "llm_tldr": "针对多智能体深度强化学习中的非平稳性问题，提出动作推断机制让智能体预测其他智能体动作，并利用几何分布重要性采样优先回放近期经验，改进MADDPG算法。在捕食者-猎物游戏任务上验证了有效性，可用于训练更高效的游戏AI bot。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.09826v1",
+      "source": "arxiv",
+      "title": "OmniGameArena: A Unified UE5 Benchmark for VLM Game Agents with Improvement Dynamics",
+      "abstract": "Vision-language model (VLM) agents are increasingly deployed in interactive game environments. Yet game benchmarks for VLM agents typically report a single first-attempt score per (agent, game) pair, focus on single-agent Solo play, and lack unified protocols for evaluating heterogeneous agent classes (commercial VLMs, open-weight VLMs, and specialized game policies) on the same footing. We address these gaps with OmniGameArena, a real-time benchmark of twelve newly built Unreal Engine 5 games spanning Solo (7), PvP (3), and Coop (2) with unified action interfaces, and the Improvement Dynamics Curve (IDC), an agentic-reflection harness in which a tool-using reflector LLM autonomously refines a bounded skill prompt across multiple rounds. Beyond cold-start leaderboard scores, IDC exposes two additional observables for each (agent, game) pair: how the score evolves across reflection rounds, and how the learned skill behaves on held-out task variants. We report these observables for twelve VLM agents on the cold-start leaderboard and four top agents under IDC.",
+      "authors": [
+        "Mingxian Lin",
+        "Shengju Qian",
+        "Yuqi Liu",
+        "Yi-Hua Huang",
+        "Yiyu Wang",
+        "Wei Huang",
+        "Yitang Li",
+        "Fan Zhang",
+        "Zeyu Hu",
+        "Lingting Zhu",
+        "Xin Wang",
+        "Xiaojuan Qi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-08T17:59:43+00:00",
+      "link": "https://arxiv.org/pdf/2606.09826v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "benchmark for VLM game agents with improvement dynamics in UE5 games",
+      "llm_evidence_cn": "虚幻引擎5游戏中视觉语言模型游戏智能体的基准与改进动态",
+      "llm_evidence": "虚幻引擎5游戏中视觉语言模型游戏智能体的基准与改进动态",
+      "canonical_evidence": "虚幻引擎5游戏中视觉语言模型游戏智能体的基准与改进动态",
+      "llm_tldr_en": "OmniGameArena offers a unified benchmark of 12 UE5 games for VLM agents and introduces Improvement Dynamics Curve, an agentic reflection harness that refines skill prompts over multiple rounds.",
+      "llm_tldr_cn": "该论文针对游戏 AI 智能体评估缺乏统一基准的问题，提出 OmniGameArena——包含12款虚幻引擎5游戏的实时基准，并引入改进动态曲线（IDC）工具，利用反思 LLM 自主优化技能提示，结果表明智能体在多次迭代后性能显著提升，推动了游戏 AI bot 的设计与评估。",
+      "llm_tldr": "该论文针对游戏 AI 智能体评估缺乏统一基准的问题，提出 OmniGameArena——包含12款虚幻引擎5游戏的实时基准，并引入改进动态曲线（IDC）工具，利用反思 LLM 自主优化技能提示，结果表明智能体在多次迭代后性能显著提升，推动了游戏 AI bot 的设计与评估。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.05661v1",
+      "source": "arxiv",
+      "title": "Continual Learning Bench: Evaluating Frontier AI Systems in Real-World Stateful Environments",
+      "abstract": "Continual learning, the ability of AI systems to improve through sequential experience, has attracted substantial interest, but no high-quality benchmark exists to evaluate it. We introduce Continual Learning Bench (CL-Bench), the first difficult, expert-validated benchmark designed to measure whether LLM-based systems genuinely improve with experience. CL-Bench spans six diverse domains (software engineering, signal processing, disease outbreak forecasting, database querying, strategic game-playing, and demand forecasting), each validated by domain experts and designed so that tasks share a learnable latent structure (codebase layout, disease outbreak dynamics, opponent strategies) that a stateful system can discover online but a stateless one cannot. We evaluate frontier models across several agent architectures, from naive in-context learning (ICL) to dedicated memory systems, introducing a gain metric to isolate learning from prior capabilities. We find that these systems leave headroom for improved continual learning: agents frequently overfit to immediate observations or fail to reuse knowledge across instances, and dedicated memory systems do not fix this -- in fact, naive ICL outperforms systems dedicated to memory management. CL-Bench is the first benchmark to evaluate continual learning across diverse real-world domains with expert-validated tasks and isolate online learning from underlying model capability, showing a need for better continual learning systems.",
+      "authors": [
+        "Parth Asawa",
+        "Christopher M. Glaze",
+        "Gabriel Orlanski",
+        "Ramya Ramakrishnan",
+        "Benji Xu",
+        "Asim Biswal",
+        "Vincent Sunn Chen",
+        "Frederic Sala",
+        "Matei Zaharia",
+        "Joseph E. Gonzalez"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-06-04T03:43:28+00:00",
+      "link": "https://arxiv.org/pdf/2606.05661v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "includes strategic game-playing domain where systems can discover opponent strategies online",
+      "llm_evidence_cn": "包含策略游戏领域，系统可在线发现对手策略",
+      "llm_evidence": "包含策略游戏领域，系统可在线发现对手策略",
+      "canonical_evidence": "包含策略游戏领域，系统可在线发现对手策略",
+      "llm_tldr_en": "Introduces a benchmark for continual learning that includes strategic game-playing tasks where RL agents could be deployed.",
+      "llm_tldr_cn": "提出首个专家验证的持续学习基准，涵盖战略游戏等六领域，任务共享可学习的潜在结构（如对手策略）。可用于评估游戏AI系统在持续经验中的改进能力。",
+      "llm_tldr": "提出首个专家验证的持续学习基准，涵盖战略游戏等六领域，任务共享可学习的潜在结构（如对手策略）。可用于评估游戏AI系统在持续经验中的改进能力。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.06011v1",
+      "source": "arxiv",
+      "title": "Merging model-based control with multi-agent reinforcement learning for multi-agent cooperative teaming strategies",
+      "abstract": "In this work, we propose a framework that combines multi-agent reinforcement learning (MARL) with model-based control to achieve safe, dynamically feasible actions in cooperative multi-agent tasks. Multi-agent reinforcement learning provides the advantage of learning cooperative policies for multi-agent teams from discrete non-differentiable rewards in a long planning horizon. Model-predictive control is robust and offers safe, dynamically feasible actions in a fast replanning framework for short horizons. We propose an algorithm that extends actor-critic model predictive control for MARL which we refer to as multi-agent actor-critic model predictive control (MA-AC-MPC). We demonstrate the capabilities of this algorithm by applying it to a multi-agent pursuit-evasion scenario. Specifically, we compare the evader team's strategy using the MA-AC-MPC model and a multi-layer perceptron model (MA-AC-MLP). The pursuer team uses augmented proportional navigation as it is accepted as an advanced adversarial control law. We also provide an example with a heterogeneous environment where a drone and omni-wheeled rover cooperate to achieve repeatable and successful landing with 100% success rate in hardware for MA-AC-MPC compared to 60% for MA-AC-MLP. We demonstrate the robustness of the proposed MA-AC-MPC algorithm in hardware for both environments.",
+      "authors": [
+        "Christian Llanes",
+        "Spencer W. Jensen",
+        "Samuel Coogan"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-06-04T11:01:00+00:00",
+      "link": "https://arxiv.org/pdf/2606.06011v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "merges model-based control with MARL for cooperative teams, directly applicable to game playing agents",
+      "llm_evidence_cn": "将模型控制与多智能体强化学习结合用于合作团队，可直接应用于游戏博弈智能体",
+      "llm_evidence": "将模型控制与多智能体强化学习结合用于合作团队，可直接应用于游戏博弈智能体",
+      "canonical_evidence": "将模型控制与多智能体强化学习结合用于合作团队，可直接应用于游戏博弈智能体",
+      "llm_tldr_en": "Combines MARL and model-based predictive control to achieve safe and dynamically feasible actions in cooperative multi-agent tasks.",
+      "llm_tldr_cn": "本文提出多智能体演员-评论家模型预测控制（MA-AC-MPC），融合多智能体强化学习与模型预测控制，解决合作多智能体任务中安全、动态可行的行动生成问题。该方法利用MARL学习长时域协调策略，通过MPC保障短期动作的鲁棒性与安全性，在合作任务中验证了有效性。",
+      "llm_tldr": "本文提出多智能体演员-评论家模型预测控制（MA-AC-MPC），融合多智能体强化学习与模型预测控制，解决合作多智能体任务中安全、动态可行的行动生成问题。该方法利用MARL学习长时域协调策略，通过MPC保障短期动作的鲁棒性与安全性，在合作任务中验证了有效性。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.06480v1",
+      "source": "arxiv",
+      "title": "DNQ: Deep Nash Q-Network for Partially Observable n-Player Games",
+      "abstract": "Many real-world competitive systems require multiple decision-makers to act simultaneously under shared constraints, limited information, and repeated interaction, as in auctions, resource allocation, and security competition. We study multi-turn simultaneous bidding as a controlled testbed for such problems and propose DNQ, a solver-in-the-loop equilibrium supervision framework for training bidding agents. DNQ alternates between trajectory collection, critic-based payoff estimation, equilibrium computation, and policy imitation. At each visited state, a shared critic predicts either pairwise payoff matrices or an exact N-player payoff tensor, an external solver computes equilibrium strategies, and the agents are trained by minimizing the KL divergence between their masked policies and the solver-derived equilibrium targets. We focus on a scalable pairwise formulation that greatly reduces equilibrium-solving cost and training time compared with the exact formulation, while the shared critic amortizes payoff learning across agents and states. Experiments compare the pairwise and exact variants using critic loss, policy entropy, bidding resource usage, and training cost, showing that the pairwise method scales to larger numbers of agents, whereas the exact method becomes computationally impractical as the joint game grows. These results illustrate the trade-off between strategic fidelity and scalability in repeated competitive environments.",
+      "authors": [
+        "Qintong Xie",
+        "Edward Koh",
+        "Xavier Cadet",
+        "Peter Chin"
+      ],
+      "primary_category": "cs.GT",
+      "categories": [
+        "cs.GT",
+        "cs.LG"
+      ],
+      "published": "2026-06-04T17:58:01+00:00",
+      "link": "https://arxiv.org/pdf/2606.06480v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "trains agents in n-player games via equilibrium-based RL",
+      "llm_evidence_cn": "通过均衡强化学习训练多玩家游戏智能体",
+      "llm_evidence": "通过均衡强化学习训练多玩家游戏智能体",
+      "canonical_evidence": "通过均衡强化学习训练多玩家游戏智能体",
+      "llm_tldr_en": "Proposes DNQ, an RL framework alternating trajectory collection, payoff estimation, equilibrium computation, and imitation to train agents for partially observable n-player games.",
+      "llm_tldr_cn": "该论文针对多玩家不完全信息博弈中的策略学习问题，提出 DNQ 框架，通过交替进行轨迹收集、支付估计、均衡计算和策略模仿来训练智能体，实验在同时出价场景中验证了方法的有效性，为多玩家游戏智能体的强化学习训练提供了新思路。",
+      "llm_tldr": "该论文针对多玩家不完全信息博弈中的策略学习问题，提出 DNQ 框架，通过交替进行轨迹收集、支付估计、均衡计算和策略模仿来训练智能体，实验在同时出价场景中验证了方法的有效性，为多玩家游戏智能体的强化学习训练提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.11119v1",
+      "source": "arxiv",
+      "title": "TRACE: A Unified Rollout Budget Allocation Framework for Efficient Agentic Reinforcement Learning",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) is a promising approach for enhancing reasoning and agentic behavior in large language models. However, rollout-intensive policy optimization is often limited by insufficient reward contrast, arising when overly simple or complex prompts generate low-variance feedback and when outcome-only rewards assign the same terminal assessment to every decision in a multi-turn rollout. Past efforts have focused on allocating available rollout resources to promising prompts, yet they only leverage sample informativeness at the prompt level and neglect variation in prefix-level informativeness across turns within the same rollout. This work targets multi-turn agentic RL by modeling each ReAct-style thought-action-observation turn as a semantically distinct node, allowing budget allocation to extend from prompt roots to turn-level prefixes with further continuations, which naturally forms tree-structured rollouts. We introduce Tree Rollout Allocation for Contrastive Exploration (TRACE), a unified rollout allocation framework that enhances reward contrast within a fixed sampling budget. Technically, TRACE allocates rollout budget to both prompt roots and intermediate prefixes that are most likely to yield mixed terminal rewards. A shared generalizable predictor estimates conditional success probability at these anchors from prefix histories to guide this allocation. The resulting adaptive tree structure enriches outcome-only feedback and amplifies the policy-update signal. Empirically, TRACE achieves competitive performance and efficiency gains on typical agentic benchmarks, e.g., improving Qwen3-14B Multi-Hop QA average accuracy by 2.8 points over competitive baselines at equal sampling cost.",
+      "authors": [
+        "Heming Zou",
+        "Qi Wang",
+        "Yun Qu",
+        "Yuhang Jiang",
+        "Lizhou Cai",
+        "Yixiu Mao",
+        "Ru Peng",
+        "Xin Xu",
+        "Weijie Liu",
+        "Kai Yang",
+        "Saiyong Yang",
+        "Xiangyang Ji"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-06-09T17:16:03+00:00",
+      "link": "https://arxiv.org/pdf/2606.11119v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "enhances RL training efficiency for agentic tasks via rollout budget allocation",
+      "llm_evidence_cn": "通过 rollout 预算分配提高智能体强化学习训练效率",
+      "llm_evidence": "通过 rollout 预算分配提高智能体强化学习训练效率",
+      "canonical_evidence": "通过 rollout 预算分配提高智能体强化学习训练效率",
+      "llm_tldr_en": "TRACE optimizes multi-turn agentic RL by modeling turn-level informativeness and allocating rollout budget where it matters, improving reward contrast and training efficiency.",
+      "llm_tldr_cn": "该论文针对多轮智能体强化学习训练中奖励对比度不足的问题，提出 TRACE 框架，通过建模每个回合的信息量来更高效地分配 rollout 预算，实验表明能提升训练效率，有望应用于游戏 AI 训练。",
+      "llm_tldr": "该论文针对多轮智能体强化学习训练中奖励对比度不足的问题，提出 TRACE 框架，通过建模每个回合的信息量来更高效地分配 rollout 预算，实验表明能提升训练效率，有望应用于游戏 AI 训练。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
 }
