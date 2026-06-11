@@ -6,46 +6,43 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-02 ~ 2026-06-11
-- 运行时间：2026-06-11 06:15:06 UTC
+- 最新运行日期：2026-06-11
+- 运行时间：2026-06-11 21:03:14 UTC
 - 运行状态：成功
-- 本次总论文数：8
-- 精读区：4
-- 速读区：4
+- 本次总论文数：7
+- 精读区：2
+- 速读区：5
 
 ### 今日简报（AI）
-本周精读最高分论文探索用亲和力强化学习在恋爱迷雾中塑造道德智能体，另一篇为星际争霸多智能体挑战接入了自然语言对话。  
-情感衡量与语言协同正让AI在复杂博弈中展现更人性化的互动策略。  
-若想上手，可先体验这类游戏环境里的情感决策，理解“善意的智能”如何设计。
-- 详情：[/20260602-20260611/README](/20260602-20260611/README)
+今日精读两篇9.0分多智能体论文：一份开放域语言智能体协作基准，一项将一般和博弈导向帕累托相关均衡的框架。  
+最值得关注的是从开放协作基准到博弈均衡引导，两条路径都在让AI智能体学会高效合作。  
+建议从业者从速读中的“测试时强化学习记忆法”入手，低成本提升智能体持续学习能力。
+- 详情：[/202606/11/README](/202606/11/README)
 
 ### 精读区论文标签
-1. [Fog of Love: Engineering Virtuous Agent Behavior with Affinity-based Reinforcement Learning in a Game Environment](/20260602-20260611/2606.04750v1-fog-of-love-engineering-virtuous-agent-behavior-with-affinity-based-reinforcement-learning-in-a-game-environment)  
-   标签：评分：10.0/10、query:gah
-   evidence：在棋盘游戏环境中使用强化学习训练有道德的智能体
-2. [SMAC-Talk: A Natural Language Extension of the StarCraft Multi-Agent Challenge for Large Language Models](/20260602-20260611/2606.04202v1-smac-talk-a-natural-language-extension-of-the-starcraft-multi-agent-challenge-for-large-language-models)  
+1. [Benchmarking Open-Ended Multi-Agent Coordination in Language Agents](/202606/11/2606.08340v1-benchmarking-open-ended-multi-agent-coordination-in-language-agents)  
    标签：评分：9.0/10、query:gah
-   evidence：星际争霸多智能体环境，增加自然语言通信，用于评估LLM游戏智能体
-3. [Enhancing the MADDPG Algorithm for Multi-Agent Learning via Action Inference and Importance Sampling](/20260602-20260611/2606.05021v1-enhancing-the-maddpg-algorithm-for-multi-agent-learning-via-action-inference-and-importance-sampling)  
+   evidence：在生存游戏世界中测试多智能体协调的基准，包含强化学习智能体
+2. [Phi-Actor-Critic: Steering General-Sum Games to Pareto-Efficient Correlated Equilibria](/202606/11/2606.11284v1-phi-actor-critic-steering-general-sum-games-to-pareto-efficient-correlated-equilibria)  
    标签：评分：9.0/10、query:gah
-   evidence：改进多智能体RL算法MADDPG，并在捕食者-猎物游戏任务上评估
-4. [OmniGameArena: A Unified UE5 Benchmark for VLM Game Agents with Improvement Dynamics](/20260602-20260611/2606.09826v1-omnigamearena-a-unified-ue5-benchmark-for-vlm-game-agents-with-improvement-dynamics)  
-   标签：评分：8.0/10、query:gah
-   evidence：虚幻引擎5游戏中视觉语言模型游戏智能体的基准与改进动态
+   evidence：提出一种深度多智能体强化学习框架，在一般和博弈中实现社会有效均衡，可直接用于训练游戏博弈智能体。
 
 ### 速读区论文标签
-1. [Continual Learning Bench: Evaluating Frontier AI Systems in Real-World Stateful Environments](/20260602-20260611/2606.05661v1-continual-learning-bench-evaluating-frontier-ai-systems-in-real-world-stateful-environments)  
+1. [Entropy-Based Evaluation of AI Agents: A Lightweight Framework for Measuring Behavioral Patterns](/202606/11/2606.05872v2-entropy-based-evaluation-of-ai-agents-a-lightweight-framework-for-measuring-behavioral-patterns)  
+   标签：评分：7.0/10、query:gah
+   evidence：基于熵的AI代理行为模式评估框架，可直接用于分析游戏AI bot行为
+2. [Uncertainty-Aware LLM-Guided Policy Shaping for Sparse-Reward Reinforcement Learning](/202606/11/2606.06673v1-uncertainty-aware-llm-guided-policy-shaping-for-sparse-reward-reinforcement-learning)  
+   标签：评分：7.0/10、query:gah
+   evidence：不确定感知的LLM引导策略塑形用于稀疏奖励强化学习，可应用于游戏AI
+3. [From Player to Master: Enhancing Test-Time Learning of LLM Agents via Reinforcement Learning over Memory](/202606/11/2606.08656v1-from-player-to-master-enhancing-test-time-learning-of-llm-agents-via-reinforcement-learning-over-memory)  
+   标签：评分：7.0/10、query:gah
+   evidence：基于RL的记忆更新优化LLM智能体，可用于序列交互的游戏AI
+4. [PAWS: Preference Learning with Advantage-Weighted Segments](/202606/11/2606.11982v1-paws-preference-learning-with-advantage-weighted-segments)  
+   标签：评分：7.0/10、query:gah
+   evidence：基于偏好强化学习，片段级优势学习，从人类反馈中训练拟人化智能体
+5. [CCKS: Consensus-based Communication and Knowledge Sharing](/202606/11/2606.12281v1-ccks-consensus-based-communication-and-knowledge-sharing)  
    标签：评分：6.0/10、query:gah
-   evidence：包含策略游戏领域，系统可在线发现对手策略
-2. [Merging model-based control with multi-agent reinforcement learning for multi-agent cooperative teaming strategies](/20260602-20260611/2606.06011v1-merging-model-based-control-with-multi-agent-reinforcement-learning-for-multi-agent-cooperative-teaming-strategies)  
-   标签：评分：6.0/10、query:gah
-   evidence：将模型控制与多智能体强化学习结合用于合作团队，可直接应用于游戏博弈智能体
-3. [DNQ: Deep Nash Q-Network for Partially Observable n-Player Games](/20260602-20260611/2606.06480v1-dnq-deep-nash-q-network-for-partially-observable-n-player-games)  
-   标签：评分：6.0/10、query:gah
-   evidence：通过均衡强化学习训练多玩家游戏智能体
-4. [TRACE: A Unified Rollout Budget Allocation Framework for Efficient Agentic Reinforcement Learning](/20260602-20260611/2606.11119v1-trace-a-unified-rollout-budget-allocation-framework-for-efficient-agentic-reinforcement-learning)  
-   标签：评分：6.0/10、query:gah
-   evidence：通过 rollout 预算分配提高智能体强化学习训练效率
+   evidence：基于共识的通信机制用于合作多智能体强化学习，适用于合作游戏AI
 
 
 <div class="dpr-home-promo-card">

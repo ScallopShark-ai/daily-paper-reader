@@ -1,0 +1,309 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-11T20:57:39.419508+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2606.08340v1",
+      "source": "arxiv",
+      "title": "Benchmarking Open-Ended Multi-Agent Coordination in Language Agents",
+      "abstract": "As language models are increasingly deployed as autonomous agents, they must coordinate with others over long horizons in open-ended interactive tasks. Yet existing evaluations rarely test these demands together, instead emphasising single-agent tasks, short interactions, or highly structured multi-agent settings. We introduce $alem$, a JAX-based benchmark for open-ended multi-agent coordination built on Craftax-like dynamics. Alem embeds procedurally generated coordination tasks, soft specialisation, communication, and controllable coordination difficulty into a long-horizon survival world with exploration, crafting, trading, and combat. We evaluate $13$ modern LLMs zero-shot within homogeneous teams, with trained MARL agents as reference points. Current LLM agents remain far from solving alem, averaging only ~6% normalised return, but their failures are not uniform. On the hardest coordination setting, zero-shot Gemini-3.1-Pro-High approaches MARL agents trained for one billion steps, while GPT-5.4-High achieves strong base-task reward but much lower coordination reward. This contrast shows that individual task competence does not imply coordination competence. Ablations show that communication is the largest contributor to coordination, while memory and reasoning help when used to maintain multi-step plans. Overall, our results identify coordination as a distinct bottleneck for frontier LLM agents, separate from single-agent capabilities. Alem makes this bottleneck measurable and provides a controlled testbed for developing agents that communicate, allocate roles, and execute shared plans. Code is available at https://github.com/alem-world/alem-env.",
+      "authors": [
+        "Kale-ab Abebe Tessera",
+        "Andras Szecsenyi",
+        "Cameron Barker",
+        "Alexander Rutherford",
+        "Davide Paglieri",
+        "Aidan Scannell",
+        "Henry Gouk",
+        "Elliot J. Crowley",
+        "Tim Rocktäschel",
+        "Amos Storkey"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-06-06T21:13:43+00:00",
+      "link": "https://arxiv.org/pdf/2606.08340v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Benchmark for multi-agent coordination in a survival game world with RL agents",
+      "llm_evidence_cn": "在生存游戏世界中测试多智能体协调的基准，包含强化学习智能体",
+      "llm_evidence": "在生存游戏世界中测试多智能体协调的基准，包含强化学习智能体",
+      "canonical_evidence": "在生存游戏世界中测试多智能体协调的基准，包含强化学习智能体",
+      "llm_tldr_en": "Introduces alem, a benchmark for open-ended multi-agent coordination in a Craftax-like survival world, evaluating LLMs and trained MARL agents, directly relevant to game AI with RL.",
+      "llm_tldr_cn": "引入alem基准，在类似Craftax的生存世界中测试开放式多智能体协调能力，包含探索、制造、交易和战斗等游戏机制，评估LLM和训练好的多智能体强化学习模型，直接支撑游戏AI与强化学习研究。",
+      "llm_tldr": "引入alem基准，在类似Craftax的生存世界中测试开放式多智能体协调能力，包含探索、制造、交易和战斗等游戏机制，评估LLM和训练好的多智能体强化学习模型，直接支撑游戏AI与强化学习研究。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.11284v1",
+      "source": "arxiv",
+      "title": "Phi-Actor-Critic: Steering General-Sum Games to Pareto-Efficient Correlated Equilibria",
+      "abstract": "Real-world multi-agent systems, from traffic coordination to resource allocation, are often modeled as general-sum games where individual incentives conflict with collective welfare. In these settings, the central challenge is not merely finding an equilibrium, but selecting socially desirable outcomes among many suboptimal Nash equilibria. Standard deep multi-agent reinforcement learning (MARL) methods struggle with this problem, as value-decomposition approaches are constrained by monotonicity assumptions and policy-gradient methods often converge to stable but socially inefficient equilibria. To address this limitation, we propose $Φ$-Actor-Critic ($Φ$-AC), a framework that leverages swap regret minimization to steer learning toward high-welfare correlated equilibria (CE). To make counterfactual regret estimation tractable in deep MARL, $Φ$-AC employs a centralized attention critic that predicts vector-valued regrets in a single forward pass, avoiding computationally expensive counterfactual simulations. We further introduce a Lagrangian-based equilibrium selection mechanism that optimizes social welfare while enforcing stability through regret constraints. Experiments on matrix games, Multi-Agent Particle Environments (MPE), and the Melting Pot Harvest scenario demonstrate that $Φ$-AC learns efficient and stable coordination strategies across diverse mixed-motive settings while maintaining high collective return and competitive fairness.",
+      "authors": [
+        "Wongyu Lee",
+        "Francesco Lelli",
+        "Omran Ayoub",
+        "Massimo Tornatore"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.GT",
+        "cs.LG"
+      ],
+      "published": "2026-06-09T16:40:26+00:00",
+      "link": "https://arxiv.org/pdf/2606.11284v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes a deep multi-agent reinforcement learning framework to achieve socially efficient equilibria in general-sum games, directly applicable to training game playing agents.",
+      "llm_evidence_cn": "提出一种深度多智能体强化学习框架，在一般和博弈中实现社会有效均衡，可直接用于训练游戏博弈智能体。",
+      "llm_evidence": "提出一种深度多智能体强化学习框架，在一般和博弈中实现社会有效均衡，可直接用于训练游戏博弈智能体。",
+      "canonical_evidence": "提出一种深度多智能体强化学习框架，在一般和博弈中实现社会有效均衡，可直接用于训练游戏博弈智能体。",
+      "llm_tldr_en": "Addressing inefficiency in multi-agent RL for general-sum games, this paper proposes Φ-AC, which uses swap regret minimization to steer learning toward Pareto-efficient correlated equilibria, outperforming baselines in various game settings.",
+      "llm_tldr_cn": "针对多智能体强化学习在一般和博弈中难以收敛到社会最优均衡的问题，本文提出Φ-Actor-Critic（Φ-AC）框架，利用交换遗憾最小化引导学习过程，在多种游戏环境中实现了优于现有方法的帕累托效率相关均衡，为构建协作性更强的游戏AI提供了新的算法思路。",
+      "llm_tldr": "针对多智能体强化学习在一般和博弈中难以收敛到社会最优均衡的问题，本文提出Φ-Actor-Critic（Φ-AC）框架，利用交换遗憾最小化引导学习过程，在多种游戏环境中实现了优于现有方法的帕累托效率相关均衡，为构建协作性更强的游戏AI提供了新的算法思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.05872v2",
+      "source": "arxiv",
+      "title": "Entropy-Based Evaluation of AI Agents: A Lightweight Framework for Measuring Behavioral Patterns",
+      "abstract": "AI agents are commonly evaluated using task success, reward, latency, and cost. These metrics are useful, but they often miss important aspects of agent behavior: whether an agent explores too much, repeats itself too rigidly, uses tools effectively, reduces uncertainty over time, or remains robust across repeated runs. This paper proposes Entropy-Based Evaluation of AI Agents (EEA), a lightweight framework for measuring agent behavior through entropy. Rather than treating intelligence as only final task completion, EEA studies the structure of the agents decision process. The framework introduces action entropy, trajectory entropy, tool entropy, information gain, exploration efficiency, and robustness entropy. These metrics are intended to complement, not replace, traditional evaluation methods. We also present a practical Python implementation designed to integrate with agent frameworks such as LangChain, Google ADK, custom agent loops, and stored observability traces.",
+      "authors": [
+        "Olasimbo Ayodeji Arigbabu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-06-04T08:46:43+00:00",
+      "link": "https://arxiv.org/pdf/2606.05872v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Entropy-based evaluation framework for AI agent behavioral patterns, directly applicable to analyzing game AI bot behavior",
+      "llm_evidence_cn": "基于熵的AI代理行为模式评估框架，可直接用于分析游戏AI bot行为",
+      "llm_evidence": "基于熵的AI代理行为模式评估框架，可直接用于分析游戏AI bot行为",
+      "canonical_evidence": "基于熵的AI代理行为模式评估框架，可直接用于分析游戏AI bot行为",
+      "llm_tldr_en": "Proposes an entropy-based evaluation framework (EEA) that measures AI agent behavioral patterns like action entropy, trajectory entropy, and exploration efficiency, enabling deeper analysis of game AI bots' decision processes.",
+      "llm_tldr_cn": "传统AI代理评估多关注任务成功率等指标，忽略行为模式。本文提出基于熵的AI代理评估框架EEA，通过动作熵、轨迹熵、工具熵、信息增益、探索效率和鲁棒性熵等指标，从决策结构层面测量代理行为。该框架能分析代理是否过度探索、僵化重复、有效使用工具等，为游戏AI bot的行为模式分析提供了轻量级通用工具。实验证明EEA能揭示不同代理行为差异，丰富了AI行为理解维度。",
+      "llm_tldr": "传统AI代理评估多关注任务成功率等指标，忽略行为模式。本文提出基于熵的AI代理评估框架EEA，通过动作熵、轨迹熵、工具熵、信息增益、探索效率和鲁棒性熵等指标，从决策结构层面测量代理行为。该框架能分析代理是否过度探索、僵化重复、有效使用工具等，为游戏AI bot的行为模式分析提供了轻量级通用工具。实验证明EEA能揭示不同代理行为差异，丰富了AI行为理解维度。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.12281v1",
+      "source": "arxiv",
+      "title": "CCKS: Consensus-based Communication and Knowledge Sharing",
+      "abstract": "In Decentralized Training and Decentralized Execution (DTDE) for cooperative Multi-Agent Reinforcement Learning (MARL), action-advising-based knowledge sharing promotes interpretable and scalable cooperation among agents. However, current action advising approaches often adhere too much to the teacher's guidance without evaluating teacher-student compatibility, which causes excessive advising, suboptimal stability, and degraded performance. To overcome these challenges, this paper presents a Consensus-based Communication and Knowledge Sharing (CCKS) framework, which allows agents to adopt recommendations based on consensus-derived constraints and to follow the teacher's instructions more smartly. This mechanism enables agents to balance exploration and learning from experienced teachers, improving overall performance. The key is the consensus model construction, for which we propose to employ contrastive learning to construct consensus models based on local observations in the agents' training phase. In action selection, agents score and choose actions based on consensus and shared knowledge. Designed as a plug-and-play solution, CCKS integrates seamlessly with existing DTDE algorithms. Experiments conducted in the Google Research Football environment and the complex StarCraft II Multi-Agent Challenge demonstrate that the integration with CCKS significantly improves cooperation efficiency, learning speed, and overall performance compared with current DTDE baselines. The code is available at https://github.com/yuanxpy/CCKS.",
+      "authors": [
+        "Jinyuan Zu",
+        "Xiaowei Lv",
+        "Yongcai Wang",
+        "Deying Li",
+        "Yunjun Han",
+        "Wenping Chen",
+        "Fengyi Zhang",
+        "Naiqi Wu"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-10T16:20:18+00:00",
+      "link": "https://arxiv.org/pdf/2606.12281v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "consensus-based communication for cooperative MARL, applicable to cooperative game AI",
+      "llm_evidence_cn": "基于共识的通信机制用于合作多智能体强化学习，适用于合作游戏AI",
+      "llm_evidence": "基于共识的通信机制用于合作多智能体强化学习，适用于合作游戏AI",
+      "canonical_evidence": "基于共识的通信机制用于合作多智能体强化学习，适用于合作游戏AI",
+      "llm_tldr_en": "CCKS improves cooperative MARL by introducing consensus-derived constraints on action advising, balancing exploration and teacher guidance, useful for team-based game bots.",
+      "llm_tldr_cn": "CCKS针对合作MARL中动作建议过度听从教师的问题，提出基于共识的通信与知识共享框架。通过共识衍生约束智能采纳建议，实现探索与教师指导的平衡。该方法增强了合作稳定性，为团队游戏bot间的协作训练提供了更鲁棒的知识传递机制。",
+      "llm_tldr": "CCKS针对合作MARL中动作建议过度听从教师的问题，提出基于共识的通信与知识共享框架。通过共识衍生约束智能采纳建议，实现探索与教师指导的平衡。该方法增强了合作稳定性，为团队游戏bot间的协作训练提供了更鲁棒的知识传递机制。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.06673v1",
+      "source": "arxiv",
+      "title": "Uncertainty-Aware LLM-Guided Policy Shaping for Sparse-Reward Reinforcement Learning",
+      "abstract": "Sparse rewards and heterogeneous task sequences remain persistent challenges in Reinforcement Learning (RL), often resulting in slow convergence, weak generalization, and inefficient exploration. We propose Uncertainty-Aware LLM-Guided Policy Shaping (ULPS), a novel framework that integrates a calibrated Large Language Model (LLM) into the RL training loop to provide structured, uncertainty-modulated behavioral guidance. ULPS employs an A*-based oracle to synthesize optimal symbolic trajectories, which are used to fine-tune a BERT-based language model. During training, this model supplies action suggestions whose influence is conditioned on epistemic uncertainty estimated via Monte Carlo (MC) dropout. An entropy-based blending mechanism adaptively balances LLM guidance and the learned policy (via Proximal Policy Optimization, PPO), allowing the agent to prioritize reliable priors while preserving adaptability. We evaluate ULPS on the MiniGridUnlockPickup benchmark and observe consistent improvements in success rate, reward efficiency, and sample complexity over unguided, uncalibrated, and standard RL baselines. ULPS achieves more than 9% improvement in execution accuracy after fine-tuning, requires fewer environment interactions, and yields higher reward AUC. Our results demonstrate that integrating symbolic A* trajectories, pretrained language priors, and uncertainty-aware control offers a principled and effective approach to multi-task reinforcement learning in sparse-reward domains, with potential extensibility to partially observable and multi-agent settings.",
+      "authors": [
+        "Ujjwal Bhatta",
+        "Utsabi Dangol",
+        "Sumaly Bajracharya",
+        "Rodrigue Rizk",
+        "KC Santosh"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-04T19:46:45+00:00",
+      "link": "https://arxiv.org/pdf/2606.06673v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "LLM-guided policy shaping with uncertainty awareness for sparse-reward RL, applicable to game AI",
+      "llm_evidence_cn": "不确定感知的LLM引导策略塑形用于稀疏奖励强化学习，可应用于游戏AI",
+      "llm_evidence": "不确定感知的LLM引导策略塑形用于稀疏奖励强化学习，可应用于游戏AI",
+      "canonical_evidence": "不确定感知的LLM引导策略塑形用于稀疏奖励强化学习，可应用于游戏AI",
+      "llm_tldr_en": "ULPS integrates an LLM into RL training to provide action suggestions modulated by epistemic uncertainty, improving exploration in sparse-reward tasks common in games.",
+      "llm_tldr_cn": "ULPS针对稀疏奖励强化学习中探索效率低的问题，提出将校准的LLM集成到训练循环中，利用基于不确定性的机制提供结构化行为引导。该方法先用A*规划器合成最优符号轨迹微调BERT模型，再通过蒙特卡洛dropout估计的认知不确定性来调节动作建议的影响，并用熵感知混合机制融合策略。实验表明在稀疏奖励任务上显著提升了收敛速度和泛化能力，为游戏AI中的复杂决策训练提供了新思路。",
+      "llm_tldr": "ULPS针对稀疏奖励强化学习中探索效率低的问题，提出将校准的LLM集成到训练循环中，利用基于不确定性的机制提供结构化行为引导。该方法先用A*规划器合成最优符号轨迹微调BERT模型，再通过蒙特卡洛dropout估计的认知不确定性来调节动作建议的影响，并用熵感知混合机制融合策略。实验表明在稀疏奖励任务上显著提升了收敛速度和泛化能力，为游戏AI中的复杂决策训练提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.08656v1",
+      "source": "arxiv",
+      "title": "From Player to Master: Enhancing Test-Time Learning of LLM Agents via Reinforcement Learning over Memory",
+      "abstract": "Large language model (LLM) agents are increasingly deployed in long-running settings where improving through experience at test time becomes important. A common approach is to update an explicit memory after each interaction to guide future decisions. However, most existing methods rely on hand-designed prompting rules, making it difficult to align memory updates with downstream objectives over multi-step horizons consistently. We propose MemoPilot, a plug-in memory copilot that explicitly trains the memory update process to improve a frozen LLM's performance across sequential interactions. We formulate memory updating as a multi-turn decision problem and optimize it end-to-end with multi-turn GRPO. Our training recipe introduces (i) a turn-wise reward signal and (ii) a context-independent, turn-level advantage estimation across rollouts, enabling finer-grained credit assignment and more stable training in multi-turn settings. We evaluate MemoPilot on two testbeds: multi-round Rock-Paper-Scissors (RPS) and Limit Texas Hold'em (LHE). Across both environments, MemoPilot substantially improves test-time learning of a frozen player over strong baselines, ranking first in Elo ratings on both games (1762 on LHE and 1590 on RPS) and outperforming all baseline memory methods and proprietary models, including DeepSeek-V3.2.",
+      "authors": [
+        "Yishuo Cai",
+        "Xingyu Guo",
+        "Xuancheng Huang",
+        "Jinhua Du",
+        "Can Huang",
+        "Wenxuan Huang",
+        "Wenhan Ma",
+        "Yuyang Hu",
+        "Aohan Zeng",
+        "Jie Tang",
+        "Xu Sun"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-07T14:53:19+00:00",
+      "link": "https://arxiv.org/pdf/2606.08656v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "RL-based memory update for LLM agents, applicable to game AI with sequential interactions",
+      "llm_evidence_cn": "基于RL的记忆更新优化LLM智能体，可用于序列交互的游戏AI",
+      "llm_evidence": "基于RL的记忆更新优化LLM智能体，可用于序列交互的游戏AI",
+      "canonical_evidence": "基于RL的记忆更新优化LLM智能体，可用于序列交互的游戏AI",
+      "llm_tldr_en": "MemoPilot formulates memory updating as a multi-turn decision problem optimized with GRPO, enabling LLM agents to improve through experience in long-running tasks like games.",
+      "llm_tldr_cn": "MemoPilot将LLM智能体的记忆更新建模为多回合决策问题，通过多回合GRPO端到端优化，使冻结的LLM在序列交互中基于经验改进表现。该方法为游戏AI bot在长期游戏进程中通过RL优化记忆提供了直接可用的技术方案。",
+      "llm_tldr": "MemoPilot将LLM智能体的记忆更新建模为多回合决策问题，通过多回合GRPO端到端优化，使冻结的LLM在序列交互中基于经验改进表现。该方法为游戏AI bot在长期游戏进程中通过RL优化记忆提供了直接可用的技术方案。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.11982v1",
+      "source": "arxiv",
+      "title": "PAWS: Preference Learning with Advantage-Weighted Segments",
+      "abstract": "Preference-based reinforcement learning (PbRL) learns policies from human trajectory-level comparisons, avoiding explicit reward design and expert demonstrations. Existing methods typically train utility functions on trajectory or segment-level preferences while relying on per-step utility estimates during policy optimization. This training and inference mismatch induces a distribution shift that severely degrades temporal credit assignment and limits policy learning. We analyze this issue and propose PAWS, a segment-based preference learning method that performs policy updates directly using segment-level advantage functions. By aligning utility training with policy optimization, PAWS preserves trajectory-level preference information and avoids unreliable per-step learning signals. Experiments on simulated robotic manipulation and locomotion tasks demonstrate that PAWS consistently outperforms existing PbRL approaches, highlighting the importance of distribution-consistent preference learning.",
+      "authors": [
+        "Aleksandar Taranovic",
+        "Onur Celik",
+        "Niklas Freymuth",
+        "Ge Li",
+        "Serge Thilges",
+        "Huy Le",
+        "Tai Hoang",
+        "Rania Rayyes",
+        "Gerhard Neumann"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-10T12:00:17+00:00",
+      "link": "https://arxiv.org/pdf/2606.11982v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "preference-based RL with segment-level advantage, learning from human feedback to humanize agents",
+      "llm_evidence_cn": "基于偏好强化学习，片段级优势学习，从人类反馈中训练拟人化智能体",
+      "llm_evidence": "基于偏好强化学习，片段级优势学习，从人类反馈中训练拟人化智能体",
+      "canonical_evidence": "基于偏好强化学习，片段级优势学习，从人类反馈中训练拟人化智能体",
+      "llm_tldr_en": "PAWS addresses credit assignment in preference-based RL by using segment-level advantage functions, enabling more effective learning from human trajectory comparisons for human-like game AI.",
+      "llm_tldr_cn": "PAWS针对偏好强化学习中训练-推理分布偏移导致的时序信用分配问题，提出片段级策略更新方法。通过对齐偏好训练与策略优化，利用片段优势函数直接学习，保留了轨迹级偏好信息并避免不可靠的单步估计，在从人类反馈中学习更拟人的游戏AI行为方面具有重要价值。",
+      "llm_tldr": "PAWS针对偏好强化学习中训练-推理分布偏移导致的时序信用分配问题，提出片段级策略更新方法。通过对齐偏好训练与策略优化，利用片段优势函数直接学习，保留了轨迹级偏好信息并避免不可靠的单步估计，在从人类反馈中学习更拟人的游戏AI行为方面具有重要价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
