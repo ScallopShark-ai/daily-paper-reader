@@ -1,0 +1,39 @@
+{
+  "label": "2026-06-12",
+  "date": "2026-06-12",
+  "generated_at": "2026-06-12T20:56:10",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202606/12/2606.08274v1-toward-human-centered-multi-agent-systems-integrating-cognition-culture-values-and-cooperation-in-ai-agents",
+      "section": "deep",
+      "title_en": "Toward Human-Centered Multi-Agent Systems: Integrating Cognition, Culture, Values, and Cooperation in AI Agents",
+      "authors": "Safia Baloch, Rahemeen Khan",
+      "date": "2026-06-06",
+      "pdf": "https://arxiv.org/pdf/2606.08274v1",
+      "score": "8.0",
+      "evidence": "关于整合认知、文化、价值观与合作以实现AI智能体拟人化的综述",
+      "tldr": "随着大语言模型驱动的智能体在语言生成、规划、工具使用和协调方面不断进步，它们正从狭窄任务自动化迈向自主决策。然而，多数系统仍仅聚焦预测、优化和任务完成，未能捕捉人类在有限理性下、受文化、价值观、信任及社会规范影响的复杂决策本质。本综述从六个维度——智能体演化、人类认知与决策、语言文化社会语境、人类价值体系与信念、人机协作、多智能体协调与人类特征建模——全面梳理了认知科学、社会语言学、计算社会科学与AI对齐等领域的交叉研究。结果显示，当前工作彼此孤立，缺乏统一整合认知、文化、价值观和社会行为的框架，制约了以人为中心的自主智能发展。为此，我们倡导设计文化敏感、价值对齐、认知启发且协作型的多智能体系统，并指出未来研究方向与关键挑战，旨在推动AI从任务执行者转变为人文协作者。",
+      "tags": "query:gah",
+      "abstract_en": "The emergence of large language model (LLM)-based agents and multi-agent systems has enabled a shift from narrow task automation to more autonomous decision-making. Despite progress in language generation, planning, tool use, and coordination, most agents still treat intelligence as prediction, optimization, and task completion. Human environments are social and normative, where people reason under bounded rationality, communicate in culturally situated language, and make decisions guided by values, beliefs, trust, and social norms. This survey argues that future AI agents, especially those acting on behalf of humans, must move beyond task competence toward human-centered capabilities.   We review research across six areas: (1) evolution of intelligent agents, (2) human cognition and decision-making, (3) language, culture, and social context, (4) human values and belief systems, (5) human-agent collaboration, and (6) multi-agent coordination and modeling of human characteristics. We synthesize work from cognitive science, sociolinguistics, computational social science, and AI alignment, along with recent advances in LLM agents, cultural alignment benchmarks, preference learning, explainability, and agent societies. We identify a key gap: existing systems do not provide a unified framework integrating cognition, culture, values, and social behavior into autonomous agents. We conclude with directions for building culturally aware, value-aligned, cognitively grounded, and cooperative multi-agent systems.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/12/2606.08735v1-structure-conditioned-actor-critic-branches-for-quality-diversity-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Structure-Conditioned Actor-Critic Branches for Quality-Diversity Reinforcement Learning",
+      "authors": "Lianrong Zuo, Peilan Xu, Yong Liu, Wenjian Luo",
+      "date": "2026-06-07",
+      "pdf": "https://arxiv.org/pdf/2606.08735v1",
+      "score": "7.0",
+      "evidence": "质量-多样性RL生成多样化策略，可实现拟人化行为多变的游戏AI",
+      "tldr": "现有质量多样性强化学习方法主要关注策略评估后的多样化，忽略了候选策略生成分支的结构设计。针对此问题，提出SV-QD-RL框架，将候选策略建模为结构条件化的actor-critic分支，通过结构掩码与分支特定价值学习实现行为专精。实验表明，该方法在MuJoCo任务上构建出质量高且多样性强的策略库，并具备调度适应性。该工作揭示了结构-价值耦合对于生成多样化策略库的有效性，为QD-RL分支设计提供了新机制。",
+      "tags": "query:gah",
+      "abstract_en": "Quality-diversity reinforcement learning (QD-RL) aims to construct policy repertoires that contain both high-performing and behaviorally diverse policies. Existing QD-RL methods mainly diversify policy instances after rollout evaluation or use learned value information to improve policy quality and behavior targeting, while the learning branches that generate candidate policies remain less explored. This paper proposes SV-QD-RL, a structure-value coupled framework that represents each candidate as a structure-conditioned actor-critic branch. Each branch contains an actor, a structural mask, a branch-specific critic, a replay state, and evaluation attributes including behavior, return, sparsity, and value profile. The structural mask defines the actor subspace in which the branch learns, while the branch-specific critic and replay state shape its value-learning trajectory. A branch-aware QD archive then evaluates and retains branches according to behavioral quality, structural footprint, and value-profile information. Experiments on MuJoCo continuous-control tasks show that SV-QD-RL constructs policy repertoires with strong archive quality and behaviorally useful diversity. Ablation and diagnostic analyses further indicate that structural conditioning, critic differentiation, and memory-consistent refinement make complementary contributions to behavioral specialization. Schedule-aware repertoire evaluation shows that the learned archive provides selectable policy alternatives under changing behavior-level requirements. These results suggest that coupling actor structure with branch-specific value learning is an effective mechanism for generating diverse QD-RL policy repertoires.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
