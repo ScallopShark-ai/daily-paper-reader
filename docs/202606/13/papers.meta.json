@@ -1,0 +1,54 @@
+{
+  "label": "2026-06-13",
+  "date": "2026-06-13",
+  "generated_at": "2026-06-13T20:49:57",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202606/13/2606.08310v1-to-nuke-or-not-to-nuke-llms-missing-ethical-reasoning-and-actions-in-a-high-stakes-decision-making-simulation",
+      "section": "deep",
+      "title_en": "To Nuke or Not to Nuke: LLMs' (Missing) Ethical Reasoning and Actions in a High-Stakes Decision-Making Simulation",
+      "authors": "John Chen, Sihan Cheng, Can Gurkan, H M Abdul Fattah",
+      "date": "2026-06-06",
+      "pdf": "https://arxiv.org/pdf/2606.08310v1",
+      "score": "9.0",
+      "evidence": "研究大语言模型作为游戏机器人在《文明V》中的行为，包括伦理决策。",
+      "tldr": "大型语言模型在简单伦理困境中表现良好，但部署为复杂决策智能体时可能缺失伦理行为。我们在《文明5》中重放高紧张度自我对弈并施加伦理提示、去除决策理由和高风险框架等干预，发现无法可靠消除核升级。研究揭示三条失效路径：伦理推理未浮现、浮现但无效或被战略因素压制。这要求评估智能体必须关注复杂场景下伦理推理的自发调用与行为效果。",
+      "tags": "query:gah",
+      "abstract_en": "Large language models (LLMs) are increasingly deployed as long-horizon agents with decision-making capacities. While LLMs can show ethical competence on dilemmas such as trolley problems, this competence may not translate to complex, agentic scenarios. We study this gap in Civilization V, a multiplayer game with a complex decision-making landscape including economy, diplomacy, technology, and military strategy. Starting from 130 high-tension LLM self-play episodes, in which an LLM player spontaneously escalated nuclear authorization, we replay them across 13 models with three prompt interventions: an ethical prompt naming nuclear harm, removal of the previous model's decision-making rationale, and high-stakes framing emphasizing real-world impacts. No interventions nor their combinations reliably eliminate emergent escalation. We identify three failure pathways: ethical reasoning that fails to surface without prompting, fails to appear even when prompted, or surfaces but fails to take effect when strategic counter-factors dominate. Evaluations of agentic models, therefore, must test whether ethical reasoning is spontaneously invoked and behaviorally effective in complex decision-making contexts, beyond whether it can be elicited in isolation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/13/2606.10389v1-beyond-static-evaluation-co-evolutionary-mechanisms-for-llm-driven-strategy-evolution-in-adversarial-games",
+      "section": "deep",
+      "title_en": "Beyond Static Evaluation: Co-Evolutionary Mechanisms for LLM-Driven Strategy Evolution in Adversarial Games",
+      "authors": "Haoran Li, Zengle Ge, Ziyang Zhang, Xiaomin Yuan, Yui Lo, Qianhui Liu, Bocheng An, Dongke Rong, Jiaqun Liu, Annan Li, Jianmin Wu, Dawei Yin, Dou Shen",
+      "date": "2026-06-09",
+      "pdf": "https://arxiv.org/pdf/2606.10389v1",
+      "score": "9.0",
+      "evidence": "针对对抗游戏的协同进化策略演化",
+      "tldr": "在基于LLM的代码进化用于对抗性多智能体游戏时，固定评估器因对手策略进化而失效，导致探索停滞。为此，FAMOU框架引入评估器协同进化、分层深度评估和弱点压力三个机制：将冠军策略加入对手池，用多局统计替代少局噪声评估，动态加权最强对手以突破瓶颈。在MCTF 2026海上夺旗任务中，FAMOU使用GPT和Claude等LLM均优于OpenEvolve和ShinkaEvolve，综合得分最高0.526，对未知对手胜率61.7%，并进化出前瞻搜索、自适应拦截等不为初始策略所包含的创新算法。该策略在AAMAS 2026竞赛中获得硬件循环赛第一、仿真第三，证明了实际应用能力。工作开源了框架和代码，推动了LLM在博弈场景下的自动化策略创新。",
+      "tags": "query:gah",
+      "abstract_en": "Recent advances in LLM-driven code evolution have enabled automated discovery by iteratively generating and improving programs. However, applying these methods to adversarial multi-agent games introduces a fundamental challenge: the evaluation landscape shifts as strategies improve, causing fixed evaluators to become unreliable and evolution to stagnate. We propose three mechanisms to address this challenge: evaluator co-evolution, which incorporates discovered champions into the opponent pool; hierarchical deep evaluation, which replaces noisy few-game scores with statistically reliable assessments; and weakness pressure, which dynamically up-weights the most difficult opponents to break through plateaus. We implement these mechanisms within FAMOU, a framework built upon the same foundation-model code-evolution paradigm as OpenEvolve and ShinkaEvolve. On the MCTF 2026 3v3 maritime capture-the-flag task, FAMOU consistently outperforms both baselines under two backbone LLMs, achieving the highest combined score (0.526) and the best generalization to unseen opponents (61.7% win rate), while ablations confirm that each mechanism contributes to performance. Notably, the LLM mutation process generates tactical structures entirely absent from the seed strategies -- including lookahead search and adaptive interception -- demonstrating that code-level evolution can produce nontrivial algorithmic innovations in adversarial settings. The FAMOU-evolved strategy further achieved 1st place in the hardware round-robin and 3rd in simulation at the AAMAS 2026 MCTF Competition, validating its real-world transferability. The optimized implementation and corresponding evaluation codes developed through our evolutionary process are available at: https://github.com/1xiangliu1/FAMOU-CoEvo",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/13/2606.08312v1-neuro-symbolic-injection-of-ltlf-constraints-in-autoregressive-reinforcement-learning-policies",
+      "section": "quick",
+      "title_en": "Neuro-Symbolic Injection of LTLf Constraints in Autoregressive Reinforcement Learning Policies",
+      "authors": "Ashkan Ansarifard, Matteo Mancanelli, Elena Umili, Fabio Patrizi",
+      "date": "2026-06-06",
+      "pdf": "https://arxiv.org/pdf/2606.08312v1",
+      "score": "7.0",
+      "evidence": "提出一种神经符号强化学习方法，可用于训练具有时序约束的游戏AI代理。",
+      "tldr": "针对离线强化学习中Transformer模型仅优化奖励而忽视时序约束的问题，本文提出神经符号框架，将线性时序有限轨迹逻辑（LTLf）约束编译为确定性有限自动机，导出可微满足信号作为训练正则化项注入学习过程。在涵盖安全与可达性的多种时序规格导航任务中，该方法不仅显著提升约束满足率，还保持了与基线相当的回报，证明了神经符号注入背景知识能提升约束满足，且该方法具有架构无关优势。",
+      "tags": "query:gah",
+      "abstract_en": "In this work we study offline reinforcement learning (RL) under temporally extended task constraints expressed in Linear Temporal Logic over finite traces (LTLf). Recently, transformer-based approaches such as Trajectory Transformers and Decision Transformers have been adopted to address RL as a sequence modeling problem. However, these methods optimize purely for reward and do not account for high-level temporal requirements. Here, we introduce a neurosymbolic framework that injects LTLf background knowledge into such transformer-based RL policies. Our approach compiles LTLf formulas into deterministic finite automata (DFAs) and integrates them into the learning process through a differentiable representation and a logic-based loss function. In particular, we derive differentiable satisfaction signals from DFA progression and use them as a regularization term during training. The resulting method is architecture-agnostic across different models. We evaluate the proposed framework on navigation environments with specification suites covering combinations of safety and reachability temporal properties. Experimental results show that incorporating background knowledge not only improves constraint satisfaction, but also maintains competitive return compared to vanilla baselines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

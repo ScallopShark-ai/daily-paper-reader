@@ -6,26 +6,31 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-12
-- 运行时间：2026-06-12 20:56:03 UTC
+- 最新运行日期：2026-06-13
+- 运行时间：2026-06-13 20:49:46 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：1
+- 本次总论文数：3
+- 精读区：2
 - 速读区：1
 
 ### 今日简报（AI）
-今日聚焦人本多智能体系统与多样性强化学习，精读揭示AI协作需融合认知、文化、价值观与协作机制。最值得关注的是将人类社会科学注入多Agent训练，以及用结构条件分支实现质量-多样性探索的新范式。建议读者从“让AI学会合作”与“让探索更有方向”两个角度，关注跨学科融合对下一代智能系统的影响。
-- 详情：[/202606/12/README](/202606/12/README)
+1) 今日深挖大模型在核战推演中的“道德失语”与对抗博弈里的策略自我进化。
+2) 核按钮模拟揭示LLM伦理推理几乎空白；而协同进化机制让AI策略在零样本对抗中无需人类干预即可持续变强。
+3) 别再只看静态评测，去关注AI如何在博弈中自行“卷”出策略——那才是未来决策智能的真正战场。
+- 详情：[/202606/13/README](/202606/13/README)
 
 ### 精读区论文标签
-1. [Toward Human-Centered Multi-Agent Systems: Integrating Cognition, Culture, Values, and Cooperation in AI Agents](/202606/12/2606.08274v1-toward-human-centered-multi-agent-systems-integrating-cognition-culture-values-and-cooperation-in-ai-agents)  
-   标签：评分：8.0/10、query:gah
-   evidence：关于整合认知、文化、价值观与合作以实现AI智能体拟人化的综述
+1. [To Nuke or Not to Nuke: LLMs' (Missing) Ethical Reasoning and Actions in a High-Stakes Decision-Making Simulation](/202606/13/2606.08310v1-to-nuke-or-not-to-nuke-llms-missing-ethical-reasoning-and-actions-in-a-high-stakes-decision-making-simulation)  
+   标签：评分：9.0/10、query:gah
+   evidence：研究大语言模型作为游戏机器人在《文明V》中的行为，包括伦理决策。
+2. [Beyond Static Evaluation: Co-Evolutionary Mechanisms for LLM-Driven Strategy Evolution in Adversarial Games](/202606/13/2606.10389v1-beyond-static-evaluation-co-evolutionary-mechanisms-for-llm-driven-strategy-evolution-in-adversarial-games)  
+   标签：评分：9.0/10、query:gah
+   evidence：针对对抗游戏的协同进化策略演化
 
 ### 速读区论文标签
-1. [Structure-Conditioned Actor-Critic Branches for Quality-Diversity Reinforcement Learning](/202606/12/2606.08735v1-structure-conditioned-actor-critic-branches-for-quality-diversity-reinforcement-learning)  
+1. [Neuro-Symbolic Injection of LTLf Constraints in Autoregressive Reinforcement Learning Policies](/202606/13/2606.08312v1-neuro-symbolic-injection-of-ltlf-constraints-in-autoregressive-reinforcement-learning-policies)  
    标签：评分：7.0/10、query:gah
-   evidence：质量-多样性RL生成多样化策略，可实现拟人化行为多变的游戏AI
+   evidence：提出一种神经符号强化学习方法，可用于训练具有时序约束的游戏AI代理。
 
 
 <div class="dpr-home-promo-card">
