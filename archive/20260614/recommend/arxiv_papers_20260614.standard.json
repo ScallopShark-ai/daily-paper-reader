@@ -1,0 +1,52 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-14T20:45:49.153836+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2606.12852v1",
+      "source": "arxiv",
+      "title": "WISE: A Long-Horizon Agent in Minecraft with Why-Which Reasoning",
+      "abstract": "Rapid advances have been made in developing general-purpose embodied agent in environments like Minecraft through the adoption of LLM-augmented hierarchical approaches. Despite their promise, low-level controllers often become performance bottlenecks due to repeated execution failures. We argue that a key limitation is not only the lack of episodic memory, but also the decoupling of \\textit{what-where-when} memory from \\textit{which-why} reasoning. To address this, we propose \\textbf{WISE} (Which-Why Informed Semantic Explorer), a long-horizon agent framework with an enhanced low-level controller equipped with a Causal Event Graph that augments episodic memory with explicit causal structure linking observations to task relevance. Unlike prior work such as MrSteve, which relies on feature similarity for retrieval, WISE enables robust recall under viewpoint changes and supports opportunistic task reordering through causal reasoning. Building on this memory, we propose an Opportunistic Task Scheduler that dynamically re-prioritizes subtasks when causally relevant opportunities are detected. We further equip WISE with a multi-scale progressive exploration strategy to provide spatially comprehensive observations for downstream reasoning. Experiments show that WISE largely improves task success and efficiency on long-horizon sparse tasks, particularly in settings requiring adaptive decision-making.",
+      "authors": [
+        "Renmin Cheng",
+        "Changhao Chen"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-11T03:35:02+00:00",
+      "link": "https://arxiv.org/pdf/2606.12852v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "develops a long-horizon agent for Minecraft, directly addressing game AI bot design",
+      "llm_evidence_cn": "为Minecraft游戏开发长周期代理，直接涉及游戏AI机器人设计",
+      "llm_evidence": "为Minecraft游戏开发长周期代理，直接涉及游戏AI机器人设计",
+      "canonical_evidence": "为Minecraft游戏开发长周期代理，直接涉及游戏AI机器人设计",
+      "llm_tldr_en": "Proposes WISE, a Minecraft agent that integrates which-why reasoning with episodic memory via a Causal Event Graph to reduce low-level controller failures and improve long-horizon task performance.",
+      "llm_tldr_cn": "针对Minecraft中LLM增强分层代理的低层控制器常因缺乏情节记忆和因果推理而频繁执行失败的问题，提出WISE框架，通过因果事件图将“哪个-为何”推理与情节记忆相结合。实验表明该方法能显著减少执行失败，提升长周期游戏任务完成率，为认知增强的游戏AI机器人设计提供了新思路。",
+      "llm_tldr": "针对Minecraft中LLM增强分层代理的低层控制器常因缺乏情节记忆和因果推理而频繁执行失败的问题，提出WISE框架，通过因果事件图将“哪个-为何”推理与情节记忆相结合。实验表明该方法能显著减少执行失败，提升长周期游戏任务完成率，为认知增强的游戏AI机器人设计提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

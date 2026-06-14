@@ -1,0 +1,24 @@
+{
+  "label": "2026-06-14",
+  "date": "2026-06-14",
+  "generated_at": "2026-06-14T20:47:56",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202606/14/2606.12852v1-wise-a-long-horizon-agent-in-minecraft-with-why-which-reasoning",
+      "section": "deep",
+      "title_en": "WISE: A Long-Horizon Agent in Minecraft with Why-Which Reasoning",
+      "authors": "Renmin Cheng, Changhao Chen",
+      "date": "2026-06-11",
+      "pdf": "https://arxiv.org/pdf/2606.12852v1",
+      "score": "9.0",
+      "evidence": "为Minecraft游戏开发长周期代理，直接涉及游戏AI机器人设计",
+      "tldr": "在Minecraft等开放世界环境中，基于大语言模型的层次化智能体虽能处理复杂任务，但低层控制器由于缺乏情节记忆和“为什么-哪个”因果推理的耦合，常常陷入反复失败；先前方法如MrSteve依赖特征相似性检索，难以应对视角变化和机会主义任务重排，成为长期任务执行的瓶颈。WISE引入因果事件图，将观察事件按因果链结构化存储，不仅能在视角剧烈变化时稳健检索相关记忆，还通过机会主义任务调度器实时识别因果机会，动态重排子任务顺序；多尺度渐进探索策略则确保空间观察的全面性。在长时程稀疏任务测试中，WISE大幅提升了任务成功率和执行效率，展现出因果推理对自适应决策的催化作用。",
+      "tags": "query:gah",
+      "abstract_en": "Rapid advances have been made in developing general-purpose embodied agent in environments like Minecraft through the adoption of LLM-augmented hierarchical approaches. Despite their promise, low-level controllers often become performance bottlenecks due to repeated execution failures. We argue that a key limitation is not only the lack of episodic memory, but also the decoupling of \\textit{what-where-when} memory from \\textit{which-why} reasoning. To address this, we propose \\textbf{WISE} (Which-Why Informed Semantic Explorer), a long-horizon agent framework with an enhanced low-level controller equipped with a Causal Event Graph that augments episodic memory with explicit causal structure linking observations to task relevance. Unlike prior work such as MrSteve, which relies on feature similarity for retrieval, WISE enables robust recall under viewpoint changes and supports opportunistic task reordering through causal reasoning. Building on this memory, we propose an Opportunistic Task Scheduler that dynamically re-prioritizes subtasks when causally relevant opportunities are detected. We further equip WISE with a multi-scale progressive exploration strategy to provide spatially comprehensive observations for downstream reasoning. Experiments show that WISE largely improves task success and efficiency on long-horizon sparse tasks, particularly in settings requiring adaptive decision-making.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

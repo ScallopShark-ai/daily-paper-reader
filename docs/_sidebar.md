@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-06-14 <!--dpr-date:20260614-->
+    * 精读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/14/2606.12852v1-wise-a-long-horizon-agent-in-minecraft-with-why-which-reasoning" data-sidebar-item="{&quot;title&quot;: &quot;WISE: A Long-Horizon Agent in Minecraft with Why-Which Reasoning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.12852v1-wise-a-long-horizon-agent-in-minecraft-with-why-which-reasoning&quot;, &quot;score&quot;: &quot;9.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;为Minecraft游戏开发长周期代理，直接涉及游戏AI机器人设计&quot;}">WISE: A Long-Horizon Agent in Minecraft with Why-Which Reasoning</a>
   * 2026-06-13 <!--dpr-date:20260613-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/13/2606.08310v1-to-nuke-or-not-to-nuke-llms-missing-ethical-reasoning-and-actions-in-a-high-stakes-decision-making-simulation" data-sidebar-item="{&quot;title&quot;: &quot;To Nuke or Not to Nuke: LLMs&#x27; (Missing) Ethical Reasoning and Actions in a High-Stakes Decision-Making Simulation&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.08310v1-to-nuke-or-not-to-nuke-llms-missing-ethical-reasoning-and-actions-in-a-high-stakes-decision-making-simulation&quot;, &quot;score&quot;: &quot;9.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;研究大语言模型作为游戏机器人在《文明V》中的行为，包括伦理决策。&quot;}">To Nuke or Not to Nuke: LLMs&#x27; (Missing) Ethical Reasoning and Actions in a High-Stakes Decision-Making Simulation</a>

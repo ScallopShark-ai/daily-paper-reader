@@ -6,31 +6,28 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-13
-- 运行时间：2026-06-13 20:49:46 UTC
+- 最新运行日期：2026-06-14
+- 运行时间：2026-06-14 20:47:49 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：2
-- 速读区：1
+- 本次总论文数：1
+- 精读区：1
+- 速读区：0
 
 ### 今日简报（AI）
-1) 今日深挖大模型在核战推演中的“道德失语”与对抗博弈里的策略自我进化。
-2) 核按钮模拟揭示LLM伦理推理几乎空白；而协同进化机制让AI策略在零样本对抗中无需人类干预即可持续变强。
-3) 别再只看静态评测，去关注AI如何在博弈中自行“卷”出策略——那才是未来决策智能的真正战场。
-- 详情：[/202606/13/README](/202606/13/README)
+今日精读一篇高分论文，探讨如何在《我的世界》中让AI智能体完成长程任务，核心思路是“为什么选这个任务顺序”与“选哪个子任务”。
+
+最有启发的方向是：把复杂目标拆成多个子任务时，显式推理“为什么（Why）”和“哪个（Which）”，可大幅提升AI在开放世界中的规划与执行成功率。
+
+感兴趣的话，可以关注其用语言模型生成执行图再逐步验证的思路，这会帮你理解AI如何从“一步操作”走向“多步策划”。
+- 详情：[/202606/14/README](/202606/14/README)
 
 ### 精读区论文标签
-1. [To Nuke or Not to Nuke: LLMs' (Missing) Ethical Reasoning and Actions in a High-Stakes Decision-Making Simulation](/202606/13/2606.08310v1-to-nuke-or-not-to-nuke-llms-missing-ethical-reasoning-and-actions-in-a-high-stakes-decision-making-simulation)  
+1. [WISE: A Long-Horizon Agent in Minecraft with Why-Which Reasoning](/202606/14/2606.12852v1-wise-a-long-horizon-agent-in-minecraft-with-why-which-reasoning)  
    标签：评分：9.0/10、query:gah
-   evidence：研究大语言模型作为游戏机器人在《文明V》中的行为，包括伦理决策。
-2. [Beyond Static Evaluation: Co-Evolutionary Mechanisms for LLM-Driven Strategy Evolution in Adversarial Games](/202606/13/2606.10389v1-beyond-static-evaluation-co-evolutionary-mechanisms-for-llm-driven-strategy-evolution-in-adversarial-games)  
-   标签：评分：9.0/10、query:gah
-   evidence：针对对抗游戏的协同进化策略演化
+   evidence：为Minecraft游戏开发长周期代理，直接涉及游戏AI机器人设计
 
 ### 速读区论文标签
-1. [Neuro-Symbolic Injection of LTLf Constraints in Autoregressive Reinforcement Learning Policies](/202606/13/2606.08312v1-neuro-symbolic-injection-of-ltlf-constraints-in-autoregressive-reinforcement-learning-policies)  
-   标签：评分：7.0/10、query:gah
-   evidence：提出一种神经符号强化学习方法，可用于训练具有时序约束的游戏AI代理。
+- 本次无速读推荐。
 
 
 <div class="dpr-home-promo-card">
