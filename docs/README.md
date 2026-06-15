@@ -6,28 +6,32 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-14
-- 运行时间：2026-06-14 20:47:49 UTC
+- 最新运行日期：2026-06-15
+- 运行时间：2026-06-15 22:18:56 UTC
 - 运行状态：成功
-- 本次总论文数：1
-- 精读区：1
-- 速读区：0
+- 本次总论文数：3
+- 精读区：0
+- 速读区：3
 
 ### 今日简报（AI）
-今日精读一篇高分论文，探讨如何在《我的世界》中让AI智能体完成长程任务，核心思路是“为什么选这个任务顺序”与“选哪个子任务”。
-
-最有启发的方向是：把复杂目标拆成多个子任务时，显式推理“为什么（Why）”和“哪个（Which）”，可大幅提升AI在开放世界中的规划与执行成功率。
-
-感兴趣的话，可以关注其用语言模型生成执行图再逐步验证的思路，这会帮你理解AI如何从“一步操作”走向“多步策划”。
-- 详情：[/202606/14/README](/202606/14/README)
+速读三篇前沿研究，从个体行为建模到AI编码代理的底层逻辑。
+个体行为的隐式神经表征与编程语言对AI协作者的实质影响值得深挖。
+建议开发者优先关注不同编程语言如何左右你的AI编码搭档表现。
+- 详情：[/202606/15/README](/202606/15/README)
 
 ### 精读区论文标签
-1. [WISE: A Long-Horizon Agent in Minecraft with Why-Which Reasoning](/202606/14/2606.12852v1-wise-a-long-horizon-agent-in-minecraft-with-why-which-reasoning)  
-   标签：评分：9.0/10、query:gah
-   evidence：为Minecraft游戏开发长周期代理，直接涉及游戏AI机器人设计
+- 本次无精读推荐。
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [Implicit Neural Representations of Individual Behavior](/202606/15/2606.12200v1-implicit-neural-representations-of-individual-behavior)  
+   标签：评分：7.0/10、query:gah
+   evidence：从无标签游戏行为数据中学习策略表示，可用于研究游戏AI bot行为
+2. [Do programming languages still matter to your AI coding agent teammate? Evidence at scale from chess engines](/202606/15/2606.13763v1-do-programming-languages-still-matter-to-your-ai-coding-agent-teammate-evidence-at-scale-from-chess-engines)  
+   标签：评分：7.0/10、query:gah
+   evidence：大规模研究AI智能体构建棋类引擎，直接涉及游戏AI机器人开发
+3. [AgentSpec: Understanding Embodied Agent Scaffolds Through Controlled Composition](/202606/15/2606.14674v1-agentspec-understanding-embodied-agent-scaffolds-through-controlled-composition)  
+   标签：评分：6.0/10、query:gah
+   evidence：模块化智能体规范用于机器人设计，与游戏AI相关
 
 
 <div class="dpr-home-promo-card">
