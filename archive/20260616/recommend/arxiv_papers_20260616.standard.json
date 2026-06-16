@@ -1,0 +1,135 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-16T22:52:12.522765+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.16759v1",
+      "source": "arxiv",
+      "title": "Maximum Entropy Inverse Reinforcement Learning for Mean-Field Games with Average Reward",
+      "abstract": "We study inverse reinforcement learning for discrete-time, infinite-horizon mean-field games (MFGs) under an average-reward criterion. Expert demonstrations are assumed to arise from a stationary mean-field equilibrium under an unknown reward, and the goal is to recover a policy explaining the observed behaviour via the maximum causal entropy principle. We formulate the inverse problem by enforcing consistency with the expert mean-field term and long-run feature expectations, treating two reward classes within a unified occupation-measure framework. For finite-dimensional linear rewards, we give a convex dual reformulation with an explicit log-partition objective, and prove smoothness and curvature properties justifying constant-step-size gradient descent. For infinite-dimensional RKHS rewards, we develop a Lagrangian relaxation whose inner-maximising policy is characterised by a soft Bellman equation. The main obstacle is the absence of a discount-factor contraction. We resolve this by introducing a minorisation-based sub-stochastic kernel that yields a strict contraction of the soft Bellman operator. We establish Fréchet differentiability and Lipschitz smoothness of the log-likelihood score, leading to a gradient ascent algorithm with convergence guarantees. Two numerical examples, a malware-spread MFG and an RKHS-based consumer-choice model, show that the recovered policies closely match expert behaviour.",
+      "authors": [
+        "Şevket Kaan Alkır",
+        "Naci Saldı",
+        "Berkay Anahtarcı",
+        "Can Deha Karıksız"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-15T14:13:16+00:00",
+      "link": "https://arxiv.org/pdf/2606.16759v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Uses inverse RL to learn policies from expert demonstrations, enabling human-like game AI",
+      "llm_evidence_cn": "使用逆向RL从专家演示学习策略，实现类人游戏AI",
+      "llm_evidence": "使用逆向RL从专家演示学习策略，实现类人游戏AI",
+      "canonical_evidence": "使用逆向RL从专家演示学习策略，实现类人游戏AI",
+      "llm_tldr_en": "Proposes maximum entropy inverse RL for mean-field games to recover reward functions from expert demonstrations; formulates a convex dual and proves smoothness for stochastic gradient methods, enabling imitation of observed behavior.",
+      "llm_tldr_cn": "针对均场博弈中的逆强化学习问题，本文在平均奖励准则下，利用最大因果熵原理从专家演示恢复未知奖励函数。提出统一占有测度框架，通过凸对偶重构将问题转化为可计算的优化，并证明线性奖励情形的平滑性和曲率性质，为常数步长随机梯度法提供理论保证。这一方法为从群体博弈观察中学习类人决策策略铺平了道路。",
+      "llm_tldr": "针对均场博弈中的逆强化学习问题，本文在平均奖励准则下，利用最大因果熵原理从专家演示恢复未知奖励函数。提出统一占有测度框架，通过凸对偶重构将问题转化为可计算的优化，并证明线性奖励情形的平滑性和曲率性质，为常数步长随机梯度法提供理论保证。这一方法为从群体博弈观察中学习类人决策策略铺平了道路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.14418v1",
+      "source": "arxiv",
+      "title": "Causal Object-Centric Models for Planning with Monte Carlo Tree Search",
+      "abstract": "We introduce COMET (Causal Object-centric Model for Efficient Tree search), a model-based reinforcement learning algorithm that performs Monte Carlo Tree Search in a slot-structured latent space. COMET pairs a frozen unsupervised object-centric encoder with a transformer-based world model, in which actions are bound to objects through a novel action-slot fusion mechanism that is used in slot transition prediction. Policy and value heads use object-causal attention, modulating token interactions by learned per-slot relevance scores so that decision-making concentrates on task-relevant entities. COMET adds an explicit object-level inductive bias to MuZero-style latent planning. Across eight visually and dynamically diverse tasks from the Object-Centric Visual RL benchmark, ManiSkill, Robosuite, and VizDoom, COMET achieves a higher mean normalized score during the early stages of training compared to object-centric and monolithic baselines.",
+      "authors": [
+        "Rodion Vakhitov",
+        "Leonid Ugadiarov",
+        "Alexey Skrynnik",
+        "Aleksandr Panov"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-06-12T12:55:25+00:00",
+      "link": "https://arxiv.org/pdf/2606.14418v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Monte Carlo Tree Search planning with RL, directly applicable to game playing agents",
+      "llm_evidence_cn": "结合RL的蒙特卡洛树搜索规划，直接适用于游戏智能体",
+      "llm_evidence": "结合RL的蒙特卡洛树搜索规划，直接适用于游戏智能体",
+      "canonical_evidence": "结合RL的蒙特卡洛树搜索规划，直接适用于游戏智能体",
+      "llm_tldr_en": "Introduces COMET, using object-centric encoder and transformer world model with action-slot fusion for MCTS planning in latent space; object-causal attention improves performance across eight diverse tasks.",
+      "llm_tldr_cn": "当前基于模型的强化学习缺乏对象级别的结构化归纳偏置，限制了在视觉丰富环境中的高效规划。本文提出COMET，利用无监督对象编码器和Transformer世界模型，通过动作与对象槽位融合机制，在潜空间执行蒙特卡洛树搜索。实验在八个动态多样的任务上表明，对象因果注意力机制有效提升了规划性能和可解释性，为复杂场景下的高效决策提供新路径。",
+      "llm_tldr": "当前基于模型的强化学习缺乏对象级别的结构化归纳偏置，限制了在视觉丰富环境中的高效规划。本文提出COMET，利用无监督对象编码器和Transformer世界模型，通过动作与对象槽位融合机制，在潜空间执行蒙特卡洛树搜索。实验在八个动态多样的任务上表明，对象因果注意力机制有效提升了规划性能和可解释性，为复杂场景下的高效决策提供新路径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.14693v1",
+      "source": "arxiv",
+      "title": "Learning Coordinated Preference for Multi-Objective Multi-Agent Reinforcement Learning",
+      "abstract": "Cooperative multi-objective multi-agent reinforcement learning (MOMARL) models team decision making under multiple, potentially conflicting objectives. In this setting, conflicts arise not only across objectives but also across agents with different observations, roles, and contributions. We propose Preference Coordinated Multi-agent Policy Optimization (PCMA), which learns coordinated agent-specific preferences to enable complementary trade-offs among agents. Theoretically, we formulate cooperative MOMARL as a team-optimal game and show that, under suitable conditions, preference diversity can induce team improvement through a first-order improvement decomposition. Experiments on multiple cooperative MOMA environments and a practical traffic-control scenario show that PCMA improves both performance and trade-off coordination.",
+      "authors": [
+        "Pengxin Wang",
+        "Lihao Guo",
+        "Yi Xie",
+        "Bo Liu",
+        "Siyang Cao",
+        "Jingdi Chen"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-06-12T17:55:28+00:00",
+      "link": "https://arxiv.org/pdf/2606.14693v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Cooperative multi-agent RL with multi-objective optimization, applicable to game playing agents.",
+      "llm_evidence_cn": "协作多智能体多目标强化学习，适用于游戏AI代理。",
+      "llm_evidence": "协作多智能体多目标强化学习，适用于游戏AI代理。",
+      "canonical_evidence": "协作多智能体多目标强化学习，适用于游戏AI代理。",
+      "llm_tldr_en": "PCMA learns coordinated agent-specific preferences for cooperative multi-objective multi-agent RL, enabling complementary trade-offs and improving team performance, relevant for game playing agents.",
+      "llm_tldr_cn": "合作型多目标多智能体RL中目标与代理间冲突并存，本文提出PCMA，学习协调的代理特定偏好以实现互补权衡。在多个合作环境和战术任务中，PCMA提升了团队表现，为多智能体游戏AI协调提供方法。",
+      "llm_tldr": "合作型多目标多智能体RL中目标与代理间冲突并存，本文提出PCMA，学习协调的代理特定偏好以实现互补权衡。在多个合作环境和战术任务中，PCMA提升了团队表现，为多智能体游戏AI协调提供方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

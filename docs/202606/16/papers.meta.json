@@ -1,0 +1,54 @@
+{
+  "label": "2026-06-16",
+  "date": "2026-06-16",
+  "generated_at": "2026-06-16T22:57:25",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202606/16/2606.16759v1-maximum-entropy-inverse-reinforcement-learning-for-mean-field-games-with-average-reward",
+      "section": "deep",
+      "title_en": "Maximum Entropy Inverse Reinforcement Learning for Mean-Field Games with Average Reward",
+      "authors": "Şevket Kaan Alkır, Naci Saldı, Berkay Anahtarcı, Can Deha Karıksız",
+      "date": "2026-06-15",
+      "pdf": "https://arxiv.org/pdf/2606.16759v1",
+      "score": "9.0",
+      "evidence": "使用逆向RL从专家演示学习策略，实现类人游戏AI",
+      "tldr": "平均场博弈逆向强化学习中，需从专家稳态均衡演示恢复未知奖励函数。基于最大熵原则，在统一占有测度框架下处理线性和再生核希尔伯特空间奖励。对线性奖励给出凸对偶与显式log-partition梯度下降；对再生核希尔伯特空间奖励引入minorisation基次随机核，构造软贝尔曼严格收缩，突破无折扣因子压缩瓶颈，导出收敛梯度算法。数值实验表明恢复策略与专家行为高度匹配，为平均奖励多智能体逆优化提供了新方法论。",
+      "tags": "query:gah",
+      "abstract_en": "We study inverse reinforcement learning for discrete-time, infinite-horizon mean-field games (MFGs) under an average-reward criterion. Expert demonstrations are assumed to arise from a stationary mean-field equilibrium under an unknown reward, and the goal is to recover a policy explaining the observed behaviour via the maximum causal entropy principle. We formulate the inverse problem by enforcing consistency with the expert mean-field term and long-run feature expectations, treating two reward classes within a unified occupation-measure framework. For finite-dimensional linear rewards, we give a convex dual reformulation with an explicit log-partition objective, and prove smoothness and curvature properties justifying constant-step-size gradient descent. For infinite-dimensional RKHS rewards, we develop a Lagrangian relaxation whose inner-maximising policy is characterised by a soft Bellman equation. The main obstacle is the absence of a discount-factor contraction. We resolve this by introducing a minorisation-based sub-stochastic kernel that yields a strict contraction of the soft Bellman operator. We establish Fréchet differentiability and Lipschitz smoothness of the log-likelihood score, leading to a gradient ascent algorithm with convergence guarantees. Two numerical examples, a malware-spread MFG and an RKHS-based consumer-choice model, show that the recovered policies closely match expert behaviour.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/16/2606.14418v1-causal-object-centric-models-for-planning-with-monte-carlo-tree-search",
+      "section": "deep",
+      "title_en": "Causal Object-Centric Models for Planning with Monte Carlo Tree Search",
+      "authors": "Rodion Vakhitov, Leonid Ugadiarov, Alexey Skrynnik, Aleksandr Panov",
+      "date": "2026-06-12",
+      "pdf": "https://arxiv.org/pdf/2606.14418v1",
+      "score": "8.0",
+      "evidence": "结合RL的蒙特卡洛树搜索规划，直接适用于游戏智能体",
+      "tldr": "近年来，视觉强化学习在多物体动态场景中面临挑战，现有方法因缺乏物体级结构化先验，规划时难以聚焦任务相关实体。COMET（因果物体中心模型）采用冻结的Slot Attention编码器将图像分解为物体槽，在Transformer世界模型中通过动作-槽位融合机制将动作绑定到槽以预测状态转移，并利用物体因果注意力根据学习到的槽相关性分数调整交互权重，指导蒙特卡洛树搜索。在八个涵盖桌面操作和第一人称射击的视觉多样任务上，训练早期COMET的平均标准化得分明显高于基于像素和物体中心的基线。该工作首次将显式物体归纳偏置融入MuZero式隐空间规划，显著提升了样本效率与决策聚焦能力。",
+      "tags": "query:gah",
+      "abstract_en": "We introduce COMET (Causal Object-centric Model for Efficient Tree search), a model-based reinforcement learning algorithm that performs Monte Carlo Tree Search in a slot-structured latent space. COMET pairs a frozen unsupervised object-centric encoder with a transformer-based world model, in which actions are bound to objects through a novel action-slot fusion mechanism that is used in slot transition prediction. Policy and value heads use object-causal attention, modulating token interactions by learned per-slot relevance scores so that decision-making concentrates on task-relevant entities. COMET adds an explicit object-level inductive bias to MuZero-style latent planning. Across eight visually and dynamically diverse tasks from the Object-Centric Visual RL benchmark, ManiSkill, Robosuite, and VizDoom, COMET achieves a higher mean normalized score during the early stages of training compared to object-centric and monolithic baselines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/16/2606.14693v1-learning-coordinated-preference-for-multi-objective-multi-agent-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Learning Coordinated Preference for Multi-Objective Multi-Agent Reinforcement Learning",
+      "authors": "Pengxin Wang, Lihao Guo, Yi Xie, Bo Liu, Siyang Cao, Jingdi Chen",
+      "date": "2026-06-12",
+      "pdf": "https://arxiv.org/pdf/2606.14693v1",
+      "score": "6.0",
+      "evidence": "协作多智能体多目标强化学习，适用于游戏AI代理。",
+      "tldr": "多目标多智能体强化学习中，智能体因角色差异、观测局限和贡献不同而产生冲突，传统方法难以有效协调多目标间的权衡。本文提出偏好协调多智能体策略优化（PCMA）方法，通过学习各智能体特定的偏好函数，实现团队级互补性权衡。理论上，将协作问题建模为团队最优博弈，证明在适当条件下偏好多样性可带来一阶团队改进。实验在多个多目标多智能体协作场景和真实交通控制上验证，PCMA显著提升任务性能与权衡协调能力。",
+      "tags": "query:gah",
+      "abstract_en": "Cooperative multi-objective multi-agent reinforcement learning (MOMARL) models team decision making under multiple, potentially conflicting objectives. In this setting, conflicts arise not only across objectives but also across agents with different observations, roles, and contributions. We propose Preference Coordinated Multi-agent Policy Optimization (PCMA), which learns coordinated agent-specific preferences to enable complementary trade-offs among agents. Theoretically, we formulate cooperative MOMARL as a team-optimal game and show that, under suitable conditions, preference diversity can induce team improvement through a first-order improvement decomposition. Experiments on multiple cooperative MOMA environments and a practical traffic-control scenario show that PCMA improves both performance and trade-off coordination.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
