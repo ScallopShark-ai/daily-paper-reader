@@ -1,0 +1,261 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-17T21:41:55.502429+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2606.17657v1",
+      "source": "arxiv",
+      "title": "Using Cognitive Models to Improve Language Model Simulation of Human Persuasion Games",
+      "abstract": "People make decisions differently in strategic interactions. Some update beliefs like a Bayesian; others exhibit biases like motivated reasoning. Although creators of large language models use simulated humans for safety evaluations and training, they often fail to cover this breadth of human behavior. We argue that cognitive science and economics provide a convenient tool for doing so, making use of mathematical models of human decision-making. We propose an approach that we call Equation-to-Behavior Prompting for guiding large language models to match cognitive models, and evaluate this approach on persuasion games based on legal decision-making. We find that large models can approximate equation-based specifications -- Bayesian updating, affine distortion, motivated updating, and Grether's $α$-$β$ model -- using prompting, but small models fail to do so. However, training small models with reinforcement learning to adhere to mathematical rules, Equation-to-Behavior RL, reduces belief error by 26.5% in out-of-distribution parameterizations. We show that these simulations can help create diverse training environments; training small models to consider different kinds of decision-makers improves average belief change by 2.5%--12% over Bayesian-only training, even when persuading GPT-5-mini. Our work could improve human simulations for training and evaluation in increasingly realistic settings, and could also enable novel research into more complicated mathematical models of human decision-making.",
+      "authors": [
+        "Zirui Cheng",
+        "Zeyu Shen",
+        "Thomas L. Griffiths",
+        "Peter Henderson"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-16T08:16:17+00:00",
+      "link": "https://arxiv.org/pdf/2606.17657v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses cognitive models to guide LLMs in simulating human-like decision-making in persuasion games",
+      "llm_evidence_cn": "使用认知模型引导LLM在说服游戏中模拟人类决策",
+      "llm_evidence": "使用认知模型引导LLM在说服游戏中模拟人类决策",
+      "canonical_evidence": "使用认知模型引导LLM在说服游戏中模拟人类决策",
+      "llm_tldr_en": "This paper proposes Equation-to-Behavior Prompting to guide LLMs to match cognitive models of human decision-making in persuasion games, enabling more human-like game AI simulations.",
+      "llm_tldr_cn": "针对现有语言模型在战略互动中模拟人类行为时未能充分覆盖人类决策多样性的局限，本文提出将认知科学中的数学模型与大语言模型结合，通过方程到行为提示方法引导语言模型匹配贝叶斯更新、动机推理等认知模型。实验在法律决策说服游戏中表明，大型模型能近似这些基于方程的规范，从而更逼真地模拟人类博弈行为，为构建更具拟人化特征的博弈AI提供了新途径。",
+      "llm_tldr": "针对现有语言模型在战略互动中模拟人类行为时未能充分覆盖人类决策多样性的局限，本文提出将认知科学中的数学模型与大语言模型结合，通过方程到行为提示方法引导语言模型匹配贝叶斯更新、动机推理等认知模型。实验在法律决策说服游戏中表明，大型模型能近似这些基于方程的规范，从而更逼真地模拟人类博弈行为，为构建更具拟人化特征的博弈AI提供了新途径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.17838v1",
+      "source": "arxiv",
+      "title": "Environment-Grounded Automated Prompt Optimization for LLM Game Agents",
+      "abstract": "LLM agents in interactive environments are highly sensitive to their prompts, yet prompt engineering remains a manual, task-specific process. We introduce an automated prompt optimization framework for LLM agents that decomposes the observation-to-action pipeline into a goal-conditioned descriptor agent and an action selection agent, and iteratively refines each module's prompt through an LLM-driven evolutionary loop guided by environment returns. We propose a behavior analyzer to attribute episode outcomes to specific prompt components, and a mutator to propose targeted revisions to the prompt, before validating them through environment rollouts. We evaluate on all five BabyAI tasks in the BALROG benchmark, comparing our pipeline against BALROG's RobustCoTAgent under both plain and guided prompt initializations. Optimization improves performance consistently across tasks and conditions, without requiring updates to the model weights. On PutNext, a multi-step coordination task where the RobustCoTAgent achieves 0% success, our framework reaches up to 72.5% success rate using the same underlying LLM with optimized prompts. These results suggest that a multi-agent framework, combined with automatic prompt optimization, enhances LLMs without the need for fine-tuning or extensive human supervision.",
+      "authors": [
+        "Rean Clive Fernandes",
+        "Lukas Fehring",
+        "Theresa Eimer",
+        "Marius Lindauer",
+        "Matthias Feurer"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-16T12:06:27+00:00",
+      "link": "https://arxiv.org/pdf/2606.17838v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "automated prompt optimization for LLM game agents in BabyAI",
+      "llm_evidence_cn": "BabyAI环境中LLM游戏智能体的自动化提示优化",
+      "llm_evidence": "BabyAI环境中LLM游戏智能体的自动化提示优化",
+      "canonical_evidence": "BabyAI环境中LLM游戏智能体的自动化提示优化",
+      "llm_tldr_en": "Automates prompt design for LLM game agents by decomposing observation-to-action and using evolutionary optimization driven by environment returns, outperforming baselines on BALROG.",
+      "llm_tldr_cn": "LLM游戏智能体对提示极其敏感，但手工设计低效且任务特定。本文提出自动化提示优化框架，将观察-动作管道分解为目标条件描述器和动作选择器，通过环境奖励驱动的进化循环迭代优化提示，并在BALROG基准的BabyAI任务上验证，性能优于现有基线，为game agent开发提供了高效自动化方案。",
+      "llm_tldr": "LLM游戏智能体对提示极其敏感，但手工设计低效且任务特定。本文提出自动化提示优化框架，将观察-动作管道分解为目标条件描述器和动作选择器，通过环境奖励驱动的进化循环迭代优化提示，并在BALROG基准的BabyAI任务上验证，性能优于现有基线，为game agent开发提供了高效自动化方案。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.18010v1",
+      "source": "arxiv",
+      "title": "Co-Creativity at the Table: A Qualitative Analysis of Creative Interactions in the Podcast \"Adventure AI\"",
+      "abstract": "Tabletop role-playing games provide a unique environment for interaction with artificial intelligence (AI) due to their complex and collaborative nature. We analyze Adventure AI, a podcast featuring human-AI interactions in Dungeons & Dragons play, to examine how AI is and can be used in tabletop role-playing gaming and how players perceive this use. We complete a qualitative analysis of three seasons of this podcast, from 2023 to 2025, reporting on the overarching themes of roles of AI, roles of humans, the evaluations and failures of AI, and its treatment as a person and character at the table. There are many aspects of the game where artificial intelligence succeeds, while there are others where it is less appropriate. This analysis gives a basis for future work on where artificial intelligence should and should not be used in gaming spaces.",
+      "authors": [
+        "Hanna Dodd",
+        "Daniel G. Brown"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-06-16T14:54:57+00:00",
+      "link": "https://arxiv.org/pdf/2606.18010v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Qualitative analysis of AI as a character in Dungeons and Dragons, exploring anthropomorphism.",
+      "llm_evidence_cn": "定性分析AI在龙与地下城中作为角色的拟人化互动",
+      "llm_evidence": "定性分析AI在龙与地下城中作为角色的拟人化互动",
+      "canonical_evidence": "定性分析AI在龙与地下城中作为角色的拟人化互动",
+      "llm_tldr_en": "Analyzes a podcast of human-AI D&D gameplay to examine AI roles, successes, failures, and its treatment as a person, revealing anthropomorphism in game AI interactions.",
+      "llm_tldr_cn": "该研究对《Adventure AI》播客中人类与AI的龙与地下城游戏互动进行定性分析，考察AI在游戏中的角色、评价与失败，并探讨玩家如何将其视为人物和角色，揭示了桌游环境中游戏AI的拟人化现象及其影响。论文强调了AI在某些方面表现出色，但在其他方面仍有不足，为理解游戏AI的社会性交互提供了视角。",
+      "llm_tldr": "该研究对《Adventure AI》播客中人类与AI的龙与地下城游戏互动进行定性分析，考察AI在游戏中的角色、评价与失败，并探讨玩家如何将其视为人物和角色，揭示了桌游环境中游戏AI的拟人化现象及其影响。论文强调了AI在某些方面表现出色，但在其他方面仍有不足，为理解游戏AI的社会性交互提供了视角。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.14302v1",
+      "source": "arxiv",
+      "title": "Retrospective Progress-Aware Self-Refinement for LLM Agent Training",
+      "abstract": "LLM-based agents trained with reinforcement learning optimize step-wise action prediction but lack metacognitive awareness of task progress, inducing a gap that hinders long-horizon scaling. A pilot study reveals that online progress prompting hurts performance while retrospective demonstrations help, yet this capability cannot emerge from outcome-reward training alone. We present RePro, Retrospective Progress-Aware Training, a framework that trains agents to self-generate progress signals via a forward-then-reflect rollout paradigm: the agent executes actions online, then retrospectively reassesses its step-wise progress given the completed trajectory and known outcome. RePro initializes with a Retrospection Warmup that teaches reflection format from minimal external demonstrations, then further trains through RePro-PO with a composite reward that produces self-generated signals without continuous external supervision. Experiments on WebShop, ALFWorld, and Sokoban show that RePro enhances the Qwen family's performance, with up to $12\\%$ absolute success rate gains.",
+      "authors": [
+        "Xinbei Ma",
+        "Congmin Zheng",
+        "Jiyang Qiu",
+        "Jiale Hong",
+        "Yao Yao",
+        "Xiangmou Qu",
+        "Jiaxin Yin",
+        "Xingyu Lou",
+        "Jun Wang",
+        "Weiwen Liu",
+        "Weinan Zhang",
+        "Zhuosheng Zhang",
+        "Hai Zhao"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-12T09:38:47+00:00",
+      "link": "https://arxiv.org/pdf/2606.14302v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLM agent RL training with metacognitive progress awareness",
+      "llm_evidence_cn": "具有元认知进度感知的LLM智能体RL训练",
+      "llm_evidence": "具有元认知进度感知的LLM智能体RL训练",
+      "canonical_evidence": "具有元认知进度感知的LLM智能体RL训练",
+      "llm_tldr_en": "Proposes RePro, a framework that trains LLM agents to self-generate progress signals via retrospective assessment, improving long-horizon RL training.",
+      "llm_tldr_cn": "LLM智能体RL训练缺乏对任务进程的元认知，限制长序列扩展。提出RePro框架，通过前向执行-回顾反思范式训练智能体自我生成进度信号，并借助回顾热身教授反思格式。实验表明回顾性进度感知能提升性能，为LLM智能体的通用自我完善训练提供了新方法。",
+      "llm_tldr": "LLM智能体RL训练缺乏对任务进程的元认知，限制长序列扩展。提出RePro框架，通过前向执行-回顾反思范式训练智能体自我生成进度信号，并借助回顾热身教授反思格式。实验表明回顾性进度感知能提升性能，为LLM智能体的通用自我完善训练提供了新方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.17680v1",
+      "source": "arxiv",
+      "title": "EnvRL: Learn from Environment Dynamics in Agentic Reinforcement Learning",
+      "abstract": "Reinforcement learning (RL) has emerged as a powerful paradigm for training Large Language Models (LLMs) as agents. However, conventional RL methods for long-horizon agentic tasks often struggle with sparse outcome rewards. Intuitively, this overlooks the rich environment dynamics information contained in rollout interaction trajectories. We argue that the interaction experience inherently serves as an implicit supervision signal, reveals the underlying transition mechanisms of the environment, and enables the agent to construct a more accurate internal model of the environment.. Therefore, in this work, we investigate how to leverage this additional signal to improve policy learning. Specifically, we propose EnvRL, a framework that incorporates environment dynamics learning into agentic RL via two auxiliary objectives: state prediction and inverse dynamics. By jointly optimizing with the primary RL objective, we encourage the agent to internalize environment dynamics from its own interaction experience. Extensive experiments on two long-horizon agentic benchmarks demonstrate that EnvRL achieves significant improvements on success-rates over RL-only baselines, e.g., when trained with GRPO, lifting Qwen-2.5-1.5B-Instruct from 72.8% to 77.4% on ALFWorld, and from 56.8% to 67.0% on WebShop.",
+      "authors": [
+        "Zhitong Wang",
+        "Songze Li",
+        "Hao Peng",
+        "Shuzheng Si",
+        "Yi Wang",
+        "Maosong Sun",
+        "Juanzi Li"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-06-16T08:48:09+00:00",
+      "link": "https://arxiv.org/pdf/2606.17680v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL method leveraging environment dynamics for agent training, applicable to game AI.",
+      "llm_evidence_cn": "利用环境动态的RL方法，适用于游戏AI训练",
+      "llm_evidence": "利用环境动态的RL方法，适用于游戏AI训练",
+      "canonical_evidence": "利用环境动态的RL方法，适用于游戏AI训练",
+      "llm_tldr_en": "EnvRL incorporates environment dynamics from rollout trajectories as an auxiliary training signal to improve policy learning in sparse-reward agentic RL, by building an internal environment model.",
+      "llm_tldr_cn": "EnvRL利用智能体交互轨迹中的环境动态信息作为辅助训练信号，构建内部环境模型，以缓解稀疏奖励问题。该方法可帮助游戏AI更高效地学习复杂环境下的策略。",
+      "llm_tldr": "EnvRL利用智能体交互轨迹中的环境动态信息作为辅助训练信号，构建内部环境模型，以缓解稀疏奖励问题。该方法可帮助游戏AI更高效地学习复杂环境下的策略。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.17793v1",
+      "source": "arxiv",
+      "title": "ARES: A Platform for Adaptive Role-Based Evaluation of Social Engineering Risks in Human--AI Games",
+      "abstract": "This work introduces ARES, a platform and open pilot dataset for auditing adaptive social engineering risks in LLM-mediated social decision-making through controlled social games. ARES supports human--human, human--AI, and AI--AI settings, combining configurable game templates, role-conditioned LLM agents, psychology-informed participant profiling, structured interaction trees, and synchronised behavioural and biometric acquisition, filtering, and deep-learning-based feature extraction. The pilot dataset was collected from 15 participants interacting with a role-conditioned GPT-5.4 agent in two concatenated games: an adapted Prisoner's Dilemma and an Ultimatum Game. It comprises 340 GB of raw and processed multimodal data across six streams: interaction logs, video, screen recordings, gaze logs, smartwatch signals, and game/questionnaire metadata. These data include interaction paths, written justifications, psychological profiles, subjective feedback, perceived counterpart identity, game outcomes, and derived behavioural, facial, and gaze features. Alongside the dataset, we provide descriptive analyses to characterise the pilot release. Rigorous risk evaluation is essential for the deployment of secure AI systems, as it enables the identification and mitigation of vulnerabilities, ensures the protection of sensitive data, and supports compliance with evolving regulatory and ethical standards in society.",
+      "authors": [
+        "Roberto Daza",
+        "Javier Irigoyen",
+        "Ivan Lopez",
+        "Raquel Rodriguez-Carvajal",
+        "Laura Gomez",
+        "Julian Fierrez",
+        "Ruben Tolosana",
+        "Aythami Morales"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.DB"
+      ],
+      "published": "2026-06-16T11:11:58+00:00",
+      "link": "https://arxiv.org/pdf/2606.17793v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "A platform for evaluating social engineering risks in human-AI games, using role-conditioned LLM agents and psychology profiling",
+      "llm_evidence_cn": "用于评估人机游戏中社交工程风险的平台，利用角色条件化LLM代理和心理画像",
+      "llm_evidence": "用于评估人机游戏中社交工程风险的平台，利用角色条件化LLM代理和心理画像",
+      "canonical_evidence": "用于评估人机游戏中社交工程风险的平台，利用角色条件化LLM代理和心理画像",
+      "llm_tldr_en": "ARES is a configurable platform for auditing social engineering risks in human-AI games, providing insights into AI bot behavior through game templates, role-conditioned agents, and multimodal analysis.",
+      "llm_tldr_cn": "为解决人机交互中AI代理进行社交工程攻击的风险评估问题，本文提出ARES平台，通过可配置的游戏模板、角色条件化LLM代理、心理学知情参与者画像以及多模态行为数据采集与深度学习分析，支持人类-人类、人类-AI和AI-AI三种模式的受控博弈实验。试点数据集包含15名参与者与GPT-5.4代理在囚徒困境和最后通牒游戏中的交互，覆盖340GB原始和处理数据，为系统评估游戏AI拟人化行为及社交影响提供了可落地的框架与基准。",
+      "llm_tldr": "为解决人机交互中AI代理进行社交工程攻击的风险评估问题，本文提出ARES平台，通过可配置的游戏模板、角色条件化LLM代理、心理学知情参与者画像以及多模态行为数据采集与深度学习分析，支持人类-人类、人类-AI和AI-AI三种模式的受控博弈实验。试点数据集包含15名参与者与GPT-5.4代理在囚徒困境和最后通牒游戏中的交互，覆盖340GB原始和处理数据，为系统评估游戏AI拟人化行为及社交影响提供了可落地的框架与基准。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
