@@ -6,40 +6,31 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-17
-- 运行时间：2026-06-17 21:49:15 UTC
+- 最新运行日期：2026-06-18
+- 运行时间：2026-06-18 21:00:33 UTC
 - 运行状态：成功
-- 本次总论文数：6
-- 精读区：2
-- 速读区：4
+- 本次总论文数：3
+- 精读区：1
+- 速读区：2
 
 ### 今日简报（AI）
-用认知模型让AI学会“读心”说服，用环境反馈自动调优游戏智能体——今天我们从六篇最新论文中，看清了AI在社会交互与自主决策上的两个关键突破。  
-最值得关注的是：让语言模型像人类一样在劝说游戏中动态推测对手心智，以及无需人工设计的自动化提示词优化框架。  
-想跟上这波AI社交智能的快车，不妨从这两篇精读入手，感受“理解对手”和“环境自学”如何重塑游戏AI的下限。
-- 详情：[/202606/17/README](/202606/17/README)
+1) 今日精读多智能体强化学习新环境 R2D-RL，并速览 AI 欺骗检测与奖励塑形泛化两篇论文。  
+2) 重点看 RoboCup 2D 足球仿真如何成为多智能体协作与对抗的理想测试床，以及逆向图灵测试思路在检测 AI 欺骗对话中的尝试。  
+3) 对强化学习泛化感兴趣的读者，可从 R2D-RL 环境入手复现多智能体基线，再结合演化双层奖励塑形方法提升策略迁移能力。
+- 详情：[/202606/18/README](/202606/18/README)
 
 ### 精读区论文标签
-1. [Using Cognitive Models to Improve Language Model Simulation of Human Persuasion Games](/202606/17/2606.17657v1-using-cognitive-models-to-improve-language-model-simulation-of-human-persuasion-games)  
-   标签：评分：8.0/10、query:gah
-   evidence：使用认知模型引导LLM在说服游戏中模拟人类决策
-2. [Environment-Grounded Automated Prompt Optimization for LLM Game Agents](/202606/17/2606.17838v1-environment-grounded-automated-prompt-optimization-for-llm-game-agents)  
-   标签：评分：8.0/10、query:gah
-   evidence：BabyAI环境中LLM游戏智能体的自动化提示优化
+1. [R2D-RL: A RoboCup 2D Soccer Environment for Multi-Agent Reinforcement Learning](/202606/18/2606.18786v1-r2d-rl-a-robocup-2d-soccer-environment-for-multi-agent-reinforcement-learning)  
+   标签：评分：9.0/10、query:gah
+   evidence：用于训练游戏对局智能体的机器人足球多智能体强化学习环境
 
 ### 速读区论文标签
-1. [Co-Creativity at the Table: A Qualitative Analysis of Creative Interactions in the Podcast "Adventure AI"](/202606/17/2606.18010v1-co-creativity-at-the-table-a-qualitative-analysis-of-creative-interactions-in-the-podcast-adventure-ai)  
-   标签：评分：7.0/10、query:gah
-   evidence：定性分析AI在龙与地下城中作为角色的拟人化互动
-2. [Retrospective Progress-Aware Self-Refinement for LLM Agent Training](/202606/17/2606.14302v1-retrospective-progress-aware-self-refinement-for-llm-agent-training)  
+1. [RogueAI: A Reverse Turing Test for Detecting Licensed AI Deception in Dialogue](/202606/18/2606.13310v1-rogueai-a-reverse-turing-test-for-detecting-licensed-ai-deception-in-dialogue)  
    标签：评分：6.0/10、query:gah
-   evidence：具有元认知进度感知的LLM智能体RL训练
-3. [EnvRL: Learn from Environment Dynamics in Agentic Reinforcement Learning](/202606/17/2606.17680v1-envrl-learn-from-environment-dynamics-in-agentic-reinforcement-learning)  
+   evidence：识别欺骗性AI智能体的游戏，类人行为
+2. [Evolutionary Bilevel Reward Shaping for Generalization in Reinforcement Learning](/202606/18/2606.16236v1-evolutionary-bilevel-reward-shaping-for-generalization-in-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：利用环境动态的RL方法，适用于游戏AI训练
-4. [ARES: A Platform for Adaptive Role-Based Evaluation of Social Engineering Risks in Human--AI Games](/202606/17/2606.17793v1-ares-a-platform-for-adaptive-role-based-evaluation-of-social-engineering-risks-in-human--ai-games)  
-   标签：评分：6.0/10、query:gah
-   evidence：用于评估人机游戏中社交工程风险的平台，利用角色条件化LLM代理和心理画像
+   evidence：进化奖励塑造提升RL泛化能力，可直接应用于游戏AI bot训练
 
 
 <div class="dpr-home-promo-card">

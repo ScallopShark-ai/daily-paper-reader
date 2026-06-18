@@ -1,0 +1,54 @@
+{
+  "label": "2026-06-18",
+  "date": "2026-06-18",
+  "generated_at": "2026-06-18T21:00:41",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202606/18/2606.18786v1-r2d-rl-a-robocup-2d-soccer-environment-for-multi-agent-reinforcement-learning",
+      "section": "deep",
+      "title_en": "R2D-RL: A RoboCup 2D Soccer Environment for Multi-Agent Reinforcement Learning",
+      "authors": "Haobin Qin, Baofeng Zhang, Hidehisa Akiyama, Keisuke Fujii",
+      "date": "2026-06-17",
+      "pdf": "https://arxiv.org/pdf/2606.18786v1",
+      "score": "9.0",
+      "evidence": "用于训练游戏对局智能体的机器人足球多智能体强化学习环境",
+      "tldr": "机器人足球是多智能体强化学习的挑战性测试平台，但现有RoboCup 2D仿真平台因比赛架构难以直接对接Python多智能体工作流。R2D-RL通过共享内存和周期同步连接RCSS2D与HELIOS客户端，提供Python接口，支持全场与场景训练、离散混合动作空间及基于控球价值的奖励塑造。提供前场射门和十一对十一全场基准并给出基线结果，为多智能体研究提供了标准化环境。",
+      "tags": "query:gah",
+      "abstract_en": "Robot soccer is a challenging testbed for multi-agent reinforcement learning because it combines partial observability, cooperative and adversarial interaction, sparse rewards, and long-horizon tactical behavior. RoboCup 2D Soccer Simulation (RCSS2D) provides a mature robot-soccer platform, but its competition-oriented server-client architecture is difficult to use directly with modern Python-based MARL workflows. We introduce R2D-RL, a reinforcement learning environment that connects RCSS2D and HELIOS-based player clients to a Python MARL interface through shared-memory communication and cycle-level synchronization. R2D-RL supports full-field and scenario-based training with configurable opponents, Base discrete and Hybrid parameterized action spaces, action masks, expected possession value (EPV)-based reward shaping, and parallel execution. We provide front-goal scenarios and an 11-vs-11 full-field benchmark, together with baseline results.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/18/2606.13310v1-rogueai-a-reverse-turing-test-for-detecting-licensed-ai-deception-in-dialogue",
+      "section": "quick",
+      "title_en": "RogueAI: A Reverse Turing Test for Detecting Licensed AI Deception in Dialogue",
+      "authors": "Sara Candussio, Emanuele Ballarin, Lorenzo Bonin, Sandro Junior Della Rovere, Luca Bortolussi",
+      "date": "2026-06-11",
+      "pdf": "https://arxiv.org/pdf/2606.13310v1",
+      "score": "6.0",
+      "evidence": "识别欺骗性AI智能体的游戏，类人行为",
+      "tldr": "随着对话式人工智能通过图灵测试，信任而非身份成为核心问题。RogueAI游戏让人类审讯两个大型语言模型，其中一个被授权欺骗，目标是关停骗子。在467次发起会话的试点中，基于帮助性、简洁性、含糊等特征的启发式方法准确率达75.6%，而人类玩家仅56.6%，忽视了明显信号。该平台可作数据收集、教学和诚实模型评估的工具，揭示人机检测差距。",
+      "tags": "query:gah",
+      "abstract_en": "The original Turing Test asks a human judge to distinguish a machine from a person through dialogue. Three quarters of a century later, conversational systems pass this test in casual settings; the interesting epistemological question has shifted. We argue that the relevant modern variant asks not whether a dialogue partner is artificial, but whether it can be trusted. We present RogueAI, an interactive webapp that operationalizes this revisited test as a one-on-two interrogation game: a human player questions two indistinguishable Large Language Model agents, knowing that exactly one of them has been licensed to deceive within a shared fictional scenario. The player's task is to identify the deceptive agent and \"shut it off\" before a turn budget is exhausted. We further introduce AutoRogueAI, a procedural extension in which players co-design a custom scenario with a narrator agent that secretly chooses its own deception strategy. We describe the framing, sketch the abstract architecture and gameplay loop, and situate the artifact within recent work on LLM deception, social-deduction benchmarks, and scalable oversight via debate. A three-day pilot deployment (467 initiated sessions, 415 completed, 1876 interaction turns in Italian) provides early feasibility evidence and surfaces a concrete tension: the deceptive agent carries a reliable, locally-present linguistic signature - differential helpfulness, brevity, hedging - that a simple heuristic exploits at 75.6% accuracy, yet human players achieved only 56.6%, consistent with ignoring the most diagnostic signal entirely. We discuss what this gap implies for the artifact's use as a data-collection vehicle, a teaching tool, and an evaluation harness for honesty-trained models.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/18/2606.16236v1-evolutionary-bilevel-reward-shaping-for-generalization-in-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Evolutionary Bilevel Reward Shaping for Generalization in Reinforcement Learning",
+      "authors": "Ekasit Usaratniwart, Xilin Gao, Marc Ong, Youhei Akimoto",
+      "date": "2026-06-15",
+      "pdf": "https://arxiv.org/pdf/2606.16236v1",
+      "score": "6.0",
+      "evidence": "进化奖励塑造提升RL泛化能力，可直接应用于游戏AI bot训练",
+      "tldr": "强化学习在部署环境与训练环境不同时性能下降，现有域随机化等方法需要多样环境及完整轨迹观测，在隐私保护或仅有标量性能反馈的场景中失效。为此，本文提出进化双层奖励塑造方法GERS，将泛化问题建模为双层优化：上层采用CMA-ES进化策略调整奖励塑造参数以最大化验证环境的累积标量奖励，下层用该奖励函数在有限训练环境中学习策略。在多个连续控制任务上，GERS在未知测试环境泛化性显著优于标准RL基线，并达到与域随机化（需合并所有环境且可访问轨迹）相当的性能。结果表明GERS可在严格数据访问限制下有效提升RL泛化性能，为隐私敏感或黑盒评估的泛化问题提供了新解决方案。",
+      "tags": "query:gah",
+      "abstract_en": "Reinforcement learning (RL) often suffers from performance degradation when deployed in environments that differ from those encountered during training. Existing techniques such as domain randomization (DR) mitigate this, but require access to diverse training environments and full trajectory observability, assumptions that fail in privacy-preserving or restricted scenarios where only scalar performance metrics are available. We propose Generalization via Evolutionary Reward Shaping (GERS), a bilevel optimization approach to improve generalization on unseen test environments using only scalar feedback from validation environments. At the lower level, an RL agent guided via a reward function shaped by the upper level learns a policy on a limited set of training environments with accessible trajectory data; at the upper level, CMA-ES optimizes the reward shaping parameters to maximize the cumulative unshaped reward on separate validation environments for which trajectory access is unavailable. Results on continuous control tasks indicate that GERS outperforms the standard RL baseline on unseen test environments. GERS performance is comparable to DR, despite DR treating the combined set of training and validation environments of GERS as a single training set that requires trajectory access, whereas GERS cannot access validation trajectories. These results confirm that GERS effectively enhances generalization under restricted data access constraints.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

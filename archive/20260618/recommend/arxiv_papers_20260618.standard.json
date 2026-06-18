@@ -1,0 +1,134 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-18T20:56:22.735956+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2606.18786v1",
+      "source": "arxiv",
+      "title": "R2D-RL: A RoboCup 2D Soccer Environment for Multi-Agent Reinforcement Learning",
+      "abstract": "Robot soccer is a challenging testbed for multi-agent reinforcement learning because it combines partial observability, cooperative and adversarial interaction, sparse rewards, and long-horizon tactical behavior. RoboCup 2D Soccer Simulation (RCSS2D) provides a mature robot-soccer platform, but its competition-oriented server-client architecture is difficult to use directly with modern Python-based MARL workflows. We introduce R2D-RL, a reinforcement learning environment that connects RCSS2D and HELIOS-based player clients to a Python MARL interface through shared-memory communication and cycle-level synchronization. R2D-RL supports full-field and scenario-based training with configurable opponents, Base discrete and Hybrid parameterized action spaces, action masks, expected possession value (EPV)-based reward shaping, and parallel execution. We provide front-goal scenarios and an 11-vs-11 full-field benchmark, together with baseline results.",
+      "authors": [
+        "Haobin Qin",
+        "Baofeng Zhang",
+        "Hidehisa Akiyama",
+        "Keisuke Fujii"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-17T07:57:06+00:00",
+      "link": "https://arxiv.org/pdf/2606.18786v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "RoboCup soccer environment for training game playing agents with multi-agent RL",
+      "llm_evidence_cn": "用于训练游戏对局智能体的机器人足球多智能体强化学习环境",
+      "llm_evidence": "用于训练游戏对局智能体的机器人足球多智能体强化学习环境",
+      "canonical_evidence": "用于训练游戏对局智能体的机器人足球多智能体强化学习环境",
+      "llm_tldr_en": "Introduces R2D-RL, a Python-based RL environment for RoboCup 2D Soccer Simulation that facilitates training cooperative multi-agent policies, directly supporting game AI bot development with RL",
+      "llm_tldr_cn": "该论文针对RoboCup 2D足球仿真平台与现代MARL工作流脱节的问题，提出R2D-RL环境，通过共享内存和周期同步连接RCSS2D与Python接口，支持全场景和局部场景训练。该环境允许使用离散和混合参数化动作空间，降低了训练机器人足球智能体的门槛。实验表明，R2D-RL能稳定训练多智能体协作策略，为游戏AI开发和测试提供了实用的基础设施。",
+      "llm_tldr": "该论文针对RoboCup 2D足球仿真平台与现代MARL工作流脱节的问题，提出R2D-RL环境，通过共享内存和周期同步连接RCSS2D与Python接口，支持全场景和局部场景训练。该环境允许使用离散和混合参数化动作空间，降低了训练机器人足球智能体的门槛。实验表明，R2D-RL能稳定训练多智能体协作策略，为游戏AI开发和测试提供了实用的基础设施。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.13310v1",
+      "source": "arxiv",
+      "title": "RogueAI: A Reverse Turing Test for Detecting Licensed AI Deception in Dialogue",
+      "abstract": "The original Turing Test asks a human judge to distinguish a machine from a person through dialogue. Three quarters of a century later, conversational systems pass this test in casual settings; the interesting epistemological question has shifted. We argue that the relevant modern variant asks not whether a dialogue partner is artificial, but whether it can be trusted. We present RogueAI, an interactive webapp that operationalizes this revisited test as a one-on-two interrogation game: a human player questions two indistinguishable Large Language Model agents, knowing that exactly one of them has been licensed to deceive within a shared fictional scenario. The player's task is to identify the deceptive agent and \"shut it off\" before a turn budget is exhausted. We further introduce AutoRogueAI, a procedural extension in which players co-design a custom scenario with a narrator agent that secretly chooses its own deception strategy. We describe the framing, sketch the abstract architecture and gameplay loop, and situate the artifact within recent work on LLM deception, social-deduction benchmarks, and scalable oversight via debate. A three-day pilot deployment (467 initiated sessions, 415 completed, 1876 interaction turns in Italian) provides early feasibility evidence and surfaces a concrete tension: the deceptive agent carries a reliable, locally-present linguistic signature - differential helpfulness, brevity, hedging - that a simple heuristic exploits at 75.6% accuracy, yet human players achieved only 56.6%, consistent with ignoring the most diagnostic signal entirely. We discuss what this gap implies for the artifact's use as a data-collection vehicle, a teaching tool, and an evaluation harness for honesty-trained models.",
+      "authors": [
+        "Sara Candussio",
+        "Emanuele Ballarin",
+        "Lorenzo Bonin",
+        "Sandro Junior Della Rovere",
+        "Luca Bortolussi"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.HC"
+      ],
+      "published": "2026-06-11T13:07:02+00:00",
+      "link": "https://arxiv.org/pdf/2606.13310v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "game of identifying deceptive AI agents, human-like behavior",
+      "llm_evidence_cn": "识别欺骗性AI智能体的游戏，类人行为",
+      "llm_evidence": "识别欺骗性AI智能体的游戏，类人行为",
+      "canonical_evidence": "识别欺骗性AI智能体的游戏，类人行为",
+      "llm_tldr_en": "RogueAI is a Turing-test-like interrogation game studying AI deception, relevant to anthropomorphism in game AI bots.",
+      "llm_tldr_cn": "论文针对对话系统可能欺骗用户的问题，提出RogueAI交互式Web应用，将现代图灵测试转化为人类玩家识别两个LLM智能体中哪一个被允许欺骗的审讯游戏。通过游戏机制研究AI欺骗行为，揭示智能体拟人化行为的特征，为游戏AI bot的类人行为设计和评估提供参考。",
+      "llm_tldr": "论文针对对话系统可能欺骗用户的问题，提出RogueAI交互式Web应用，将现代图灵测试转化为人类玩家识别两个LLM智能体中哪一个被允许欺骗的审讯游戏。通过游戏机制研究AI欺骗行为，揭示智能体拟人化行为的特征，为游戏AI bot的类人行为设计和评估提供参考。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.16236v1",
+      "source": "arxiv",
+      "title": "Evolutionary Bilevel Reward Shaping for Generalization in Reinforcement Learning",
+      "abstract": "Reinforcement learning (RL) often suffers from performance degradation when deployed in environments that differ from those encountered during training. Existing techniques such as domain randomization (DR) mitigate this, but require access to diverse training environments and full trajectory observability, assumptions that fail in privacy-preserving or restricted scenarios where only scalar performance metrics are available. We propose Generalization via Evolutionary Reward Shaping (GERS), a bilevel optimization approach to improve generalization on unseen test environments using only scalar feedback from validation environments. At the lower level, an RL agent guided via a reward function shaped by the upper level learns a policy on a limited set of training environments with accessible trajectory data; at the upper level, CMA-ES optimizes the reward shaping parameters to maximize the cumulative unshaped reward on separate validation environments for which trajectory access is unavailable. Results on continuous control tasks indicate that GERS outperforms the standard RL baseline on unseen test environments. GERS performance is comparable to DR, despite DR treating the combined set of training and validation environments of GERS as a single training set that requires trajectory access, whereas GERS cannot access validation trajectories. These results confirm that GERS effectively enhances generalization under restricted data access constraints.",
+      "authors": [
+        "Ekasit Usaratniwart",
+        "Xilin Gao",
+        "Marc Ong",
+        "Youhei Akimoto"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.NE"
+      ],
+      "published": "2026-06-15T05:35:16+00:00",
+      "link": "https://arxiv.org/pdf/2606.16236v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evolutionary reward shaping for RL generalization, directly applicable to training game AI bots",
+      "llm_evidence_cn": "进化奖励塑造提升RL泛化能力，可直接应用于游戏AI bot训练",
+      "llm_evidence": "进化奖励塑造提升RL泛化能力，可直接应用于游戏AI bot训练",
+      "canonical_evidence": "进化奖励塑造提升RL泛化能力，可直接应用于游戏AI bot训练",
+      "llm_tldr_en": "Proposes GERS, a bilevel optimization method that shapes reward functions via evolutionary search to improve RL generalization, useful for game AI bots that need to adapt to new levels or opponents.",
+      "llm_tldr_cn": "该论文针对强化学习在未见环境泛化差的问题，提出进化双层奖励塑造方法GERS，通过上层进化搜索优化下层RL的奖励函数，仅需标量反馈即可提升策略泛化性。实验表明GERS在多种控制任务中显著优于域随机化等基线。该方法可直接用于训练能适应新关卡或对手的游戏AI代理。",
+      "llm_tldr": "该论文针对强化学习在未见环境泛化差的问题，提出进化双层奖励塑造方法GERS，通过上层进化搜索优化下层RL的奖励函数，仅需标量反馈即可提升策略泛化性。实验表明GERS在多种控制任务中显著优于域随机化等基线。该方法可直接用于训练能适应新关卡或对手的游戏AI代理。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
