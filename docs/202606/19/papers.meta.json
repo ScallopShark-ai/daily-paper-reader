@@ -1,0 +1,69 @@
+{
+  "label": "2026-06-19",
+  "date": "2026-06-19",
+  "generated_at": "2026-06-19T21:32:44",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202606/19/2606.20014v1-hierarchical-control-in-multi-agent-games-llm-based-planning-and-rl-execution",
+      "section": "deep",
+      "title_en": "Hierarchical Control in Multi-Agent Games: LLM-based Planning and RL Execution",
+      "authors": "Jannik Hösch, Alessandro Sestini, Florian Fuchs, Amir Baghi, Joakim Bergdahl, Konrad Tollmar, Jean-Philippe Barrette-LaPierre, Linus Gisslén",
+      "date": "2026-06-18",
+      "pdf": "https://arxiv.org/pdf/2606.20014v1",
+      "score": "10.0",
+      "evidence": "在竞争性多智能体游戏环境中使用RL训练游戏智能体",
+      "tldr": "多智能体强化学习因稀疏奖励、大状态空间等难以学习协调策略，本文提出分层架构，由大型语言模型（LLM）担任集中式战略控制器，从预训练的强化学习技能库中选择动作。在2v2夺点对抗中，与手工行为树相比胜率接近（46.4% vs 51.5%），显著优于无技能分解的端到端RL。用户研究表明60%参与者认为LLM+RL是最像人的，其行为适应性和战术多样性显著。无需手工规则，预训练LLM即可有效调度RL技能，实现有竞争力的多智能体协调与更高可信度。",
+      "tags": "query:gah",
+      "abstract_en": "Reinforcement learning (RL) has achieved strong performance in sequential decision-making, yet scaling to complex multi-agent environments remains challenging due to sparse rewards, large state-action spaces, and the difficulty of learning coordinated strategies. We propose a hierarchical architecture where a pretrained large language model (LLM) acts as a centralized strategic controller that selects among specialized RL skill policies for a team of agents, while RL policies handle reactive low-level execution. We evaluate this hybrid system in a competitive 2v2 King of the Hill environment against behavior tree (BT) and \\emph{``Flat''} RL (end-to-end training without skill decomposition) baselines. The LLM+RL system achieves task performance statistically equivalent to hand-crafted BT (46.4\\% vs 51.5\\% win rate, $p=0.103$) while both significantly outperform Flat RL trained without skill decomposition. A user study ($n=15$) reveals that 60\\% of participants perceive LLM+RL agents as the most human-like ($p=0.027$), citing behavioral adaptability and tactical variability. These results demonstrate that pretrained LLM reasoning can effectively orchestrate pretrained RL skills, achieving competitive multi-agent coordination and superior perceived believability without manual rule engineering.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/19/2606.20210v1-augmenting-game-ai-with-deep-reinforcement-learning",
+      "section": "deep",
+      "title_en": "Augmenting Game AI with Deep Reinforcement Learning",
+      "authors": "Alessandro Sestini, Joakim Bergdahl, Amir Baghi, Jean-Philippe Barrette-LaPierre, Florian Fuchs, Linus Gisslén",
+      "date": "2026-06-18",
+      "pdf": "https://arxiv.org/pdf/2606.20210v1",
+      "score": "10.0",
+      "evidence": "提出深度强化学习用于创建可信、类人的游戏AI角色",
+      "tldr": "手工编码的游戏AI难以产生复杂逼真行为，常导致沉浸感破坏。本文提出面向游戏开发的深度强化学习训练框架，通过游戏实例展示RL增强AI的部署实践，并识别了关键瓶颈。同时，论文指明了亟待解决的难题和未来研究方向，为工业界采用奠定基础。",
+      "tags": "query:gah",
+      "abstract_en": "Immersion in video games depends not only on graphics, audio, and game mechanics, but also on the quality of in-game characters. Producing believable characters, or game AI, remains a significant challenge as behavioral complexity is hard to capture with hand-coded systems. Game AI is a source of immersion and engagement; however, the limitations stemming from the challenges of creating game AI often lead to frustration and the breaking of the illusion of realism within the game. The introduction of machine learning models opens the door to creating more believable, authentic, and relatable characters in games. The promise is that they either learn from interacting with the game, or from player data, to develop true human-like behavior. In this paper, we envision more applications of reinforcement learning for game AI in the future. For this to materialize, current research limitations are prohibitive to broad deployment across game genres. Therefore, we propose a framework for training reinforcement learning models with a set of requirements in mind that are suited towards game AI and game development. We present examples of games with reinforcement learning-augmented game AI and describe the practicalities of deploying player-facing machine learning agents in modern games. Furthermore, we identify bottlenecks and hard problems in these areas, which we believe offer promising research directions to accelerate the adoption of machine learning in game AI for the video game industry.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/19/2606.19370v1-human-like-autonomy-emerges-from-self-play-and-a-pinch-of-human-data",
+      "section": "deep",
+      "title_en": "Human-like autonomy emerges from self-play and a pinch of human data",
+      "authors": "Daphne Cornelisse, Julian Hunt, Zixu Zhang, Waël Doulazmi, Kevin Joseph, Jaime Fernández Fisac, Eugene Vinitsky",
+      "date": "2026-06-11",
+      "pdf": "https://arxiv.org/pdf/2606.19370v1",
+      "score": "9.0",
+      "evidence": "结合自博弈强化学习和人类数据产生拟人化驾驶行为",
+      "tldr": "自我博弈强化学习通过大规模仿真替代人类演示训练驾驶策略，但纯自博弈易产生与人类不兼容的驾驶习惯，传统方法依赖繁琐的奖励工程和域随机化。本文提出用极少人类演示（仅30分钟）作为正则化目标，结合最小安全目标奖励，引导策略习得类人协调行为。训练仅需15小时单消费级GPU，数据用量较模仿学习减少2500倍。该方法表明少量人类数据如同调味料，能高效赋予自博弈策略类人自主性。",
+      "tags": "query:gah",
+      "abstract_en": "Self-play reinforcement learning has recently emerged as a way to train driving policies without any human data. It uses cheap, large-scale simulations to substitute expensive, large-scale human driving demonstrations. A key limitation of this approach is that policies trained through pure self-play can learn effective but alien driving conventions incompatible with people. Previous works attempt to mitigate such behavioral misalignments through extensive reward engineering and domain randomization, which are brittle and labor-intensive. Instead of completely discarding human demonstrations, our method treats them as a regularization objective on top of a minimal safe goal-reaching reward. Like the spice in a good stew, we find that a little human data goes a long way: our method uses only 30 minutes of human demonstrations, 2500x fewer than comparable imitation learning approaches. Resulting policies coordinate with held-out human trajectories and complete training in 15 hours on a single consumer-grade GPU. Videos and full source code are available at https://spiced-self-play.com/.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/19/2606.19893v1-metaresearcher-scaling-deep-research-via-self-reflective-reinforcement-learning-in-adversarial-virtual-environments",
+      "section": "quick",
+      "title_en": "MetaResearcher: Scaling Deep Research via Self-Reflective Reinforcement Learning in Adversarial Virtual Environments",
+      "authors": "Wei Yu, Suxing Liu, Minjie Yu, Jiahao Wang, Zhijian Zheng, Haocheng Deng, Bing Li",
+      "date": "2026-06-18",
+      "pdf": "https://arxiv.org/pdf/2606.19893v1",
+      "score": "6.0",
+      "evidence": "使用自反思强化学习在对抗性虚拟世界中训练深度研究智能体",
+      "tldr": "深度研究代理虽能自主收集与合成信息，但训练受限于静态环境、事实检索任务和低效结果导向强化学习。MetaResearcher通过引入动态对抗虚拟世界、发现型任务、自我反思元奖励与异构多智能体群，从四个维度扩展训练框架。实验预期在GAIA等基准上显著提升性能，并在对抗条件下增强认知鲁棒性，且训练零边际API成本。该工作为可规模化、强鲁棒的研究代理训练开辟了新路径。",
+      "tags": "query:gah",
+      "abstract_en": "Deep research agents have demonstrated remarkable capabilities in autonomous information gathering and synthesis, yet their training remains constrained by the static nature of simulated environments, the limits of fact-retrieval-only task designs, and the inefficiency of outcome-based reinforcement learning. In this work, we propose MetaResearcher, a novel framework that scales deep research agent training across four synergistic dimensions. First, we introduce an Evolving Virtual World that injects temporal dynamics and adversarial misinformation into the training environment, forcing agents to develop source credibility assessment and temporal conflict resolution skills. Second, we design Discovery-Oriented Tasks -- including hypothesis generation and contradiction resolution -- that transcend simple fact retrieval and push agents toward genuine research behaviors. Third, we propose a Self-Reflective Meta-Reward mechanism within the GRPO framework that jointly optimizes for answer correctness, search path efficiency, reflection depth, and tool call diversity, directly addressing the repetitive action loop problem observed in prior work. Fourth, we introduce a Heterogeneous Multi-Agent Swarm architecture comprising specialized Scout, Filter, and Synthesizer models that learn collaborative research strategies through coordinated reinforcement learning. Built upon the LiteResearcher infrastructure, MetaResearcher requires zero marginal API cost for training while targeting substantial improvements in both benchmark performance (GAIA, Xbench-DS) and epistemic robustness under adversarial conditions. We present the complete framework design, training methodology, and planned experimental validation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
