@@ -1,0 +1,224 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-21T21:04:34.213357+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2606.19752v1",
+      "source": "arxiv",
+      "title": "Temporal Self-Imitation Learning",
+      "abstract": "Long-horizon robot manipulation policies trained with reward shaping can still exploit dense rewards through inefficient interaction, while rare efficient behaviors may be forgotten during training. We argue that temporal efficiency itself provides a powerful and underutilized source of self-supervision for reinforcement learning. We introduce Temporal Self-Imitation Learning (TSIL), a reinforcement learning framework that mines temporally efficient successful trajectories generated during learning and converts them into reusable supervision for future policy improvement. TSIL progressively refines learning using configuration-conditioned adaptive temporal targets derived from fast successful trajectories, while preserving and replaying efficient behaviors through efficiency-weighted self-imitation learning. Across 15 distinct long-horizon manipulation tasks, TSIL consistently improves learning efficiency, task-completion efficiency, revisitation of fast successful behaviors, and robustness to unstable training conditions. More broadly, our results suggest that the temporal structure of successful behavior itself provides a scalable self-supervisory signal for reinforcement learning beyond manually engineered reward shaping alone.",
+      "authors": [
+        "Yinsen Jia",
+        "Boyuan Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-18T03:31:56+00:00",
+      "link": "https://arxiv.org/pdf/2606.19752v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Introduces an RL technique, Temporal Self-Imitation Learning, that leverages efficient trajectories, useful for training game AI bots",
+      "llm_evidence_cn": "引入时间自模仿学习强化学习技术，利用高效轨迹，可用于训练游戏AI机器人",
+      "llm_evidence": "引入时间自模仿学习强化学习技术，利用高效轨迹，可用于训练游戏AI机器人",
+      "canonical_evidence": "引入时间自模仿学习强化学习技术，利用高效轨迹，可用于训练游戏AI机器人",
+      "llm_tldr_en": "Temporal Self-Imitation Learning is an RL framework that mines temporally efficient trajectories for self-supervision, applicable to game AI training.",
+      "llm_tldr_cn": "针对长时域任务中强化学习效率低下的问题，本文提出时间自模仿学习（TSIL），利用训练中生成的高效成功轨迹构造自适应时间目标，并通过加权重放保持高效行为。在机器人操作实验中，TSIL显著提升了策略的时间效率。该框架对游戏AI等需要长期决策的领域同样具有应用价值。",
+      "llm_tldr": "针对长时域任务中强化学习效率低下的问题，本文提出时间自模仿学习（TSIL），利用训练中生成的高效成功轨迹构造自适应时间目标，并通过加权重放保持高效行为。在机器人操作实验中，TSIL显著提升了策略的时间效率。该框架对游戏AI等需要长期决策的领域同样具有应用价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.19336v1",
+      "source": "arxiv",
+      "title": "Learning User Simulators with Turing Rewards",
+      "abstract": "Learning to simulate human users in interactive settings could advance the training of agent assistants, evaluation of personalization systems, research in the social sciences, and more. Existing approaches generally do so by training a large language model (LLM) to match a single ground truth response, either by maximizing the log probability or by using a similarity reward. We instead propose {Turing-RL}: a Turing-Test-based reinforcement learning approach for training user simulator models. {Turing-RL} uses a discriminative Turing reward with an LLM judge to score how indistinguishable a generated response is from the real user's given the user's history, and the user simulator LLM learns to produce responses indistinguishable from what the user could have said with such rewards. Across two different domains--conversational chat and Reddit forum discussion--we find that {Turing-RL} consistently outperforms baseline methods on both LLM and human evaluation metrics. Our study suggests that optimizing for indistinguishability, rather than response matching, is effective for learning user simulators.",
+      "authors": [
+        "Yingshan Susan Wang",
+        "Cedegao E. Zhang",
+        "Linlu Qiu",
+        "Zexue He",
+        "Pengyuan Li",
+        "Alex Pentland",
+        "Roger P. Levy",
+        "Yoon Kim"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-17T17:58:48+00:00",
+      "link": "https://arxiv.org/pdf/2606.19336v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Turing-RL trains user simulators to be indistinguishable from humans, a method directly applicable to humanizing game AI bots.",
+      "llm_evidence_cn": "Turing-RL用图灵奖励训练用户模拟器，使其与人类不可区分，可直接用于拟人化游戏AI bot",
+      "llm_evidence": "Turing-RL用图灵奖励训练用户模拟器，使其与人类不可区分，可直接用于拟人化游戏AI bot",
+      "canonical_evidence": "Turing-RL用图灵奖励训练用户模拟器，使其与人类不可区分，可直接用于拟人化游戏AI bot",
+      "llm_tldr_en": "Existing user simulators match a single response; Turing-RL instead uses a Turing-test-based RL approach where an LLM judge provides a discriminative reward to train a simulator to produce responses indistinguishable from real humans, enabling more human-like interaction and directly applicable to anthropomorphizing game AI bots.",
+      "llm_tldr_cn": "针对现有用户模拟器训练难以生成充分拟人响应的问题，本文提出Turing-RL：一种基于图灵测试的强化学习方法。该方法利用LLM判别器对模拟器生成响应与真实用户响应的不可区分性进行打分，形成图灵奖励，并以此训练用户模拟LLM产生高度拟人的交互行为。实验表明，Turing-RL能有效生成与真实用户高度相似的响应，优于现有基于似然或相似度奖励的方法。该方法为构建更自然的人机交互模拟器提供了新途径，其思想可迁移至游戏AI bot的拟人化训练。",
+      "llm_tldr": "针对现有用户模拟器训练难以生成充分拟人响应的问题，本文提出Turing-RL：一种基于图灵测试的强化学习方法。该方法利用LLM判别器对模拟器生成响应与真实用户响应的不可区分性进行打分，形成图灵奖励，并以此训练用户模拟LLM产生高度拟人的交互行为。实验表明，Turing-RL能有效生成与真实用户高度相似的响应，优于现有基于似然或相似度奖励的方法。该方法为构建更自然的人机交互模拟器提供了新途径，其思想可迁移至游戏AI bot的拟人化训练。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.16215v1",
+      "source": "arxiv",
+      "title": "PACT: Privileged Trace Co-Training for Multi-Turn Tool-Use Agents",
+      "abstract": "Multi-turn tool-use agents must reason, call tools, and adapt to observations across several interaction turns. Post-training such agents is challenging, as reinforcement learning often suffers from sparse rewards and weak credit assignment despite matching the prompt-only inference setting, while supervised fine-tuning on expert traces provides dense process supervision but can over-constrain the model to fixed trajectories. To tackle this, we propose PACT, a Privileged trAce Co-Training framework for multi-turn tool-use agents. The key idea is to use expert traces only as training-time optimization signals rather than rollout-time hints. PACT keeps rollout generation prompt-only, then uses expert traces to guide optimization through two complementary signals: a trace-conditioned RL surrogate that evaluates prompt-only rollouts under expert-trace context, and a component-aware SFT loss that supervises reasoning prefixes and tool-calls with annealed strength. To reduce over-reliance on the training-only trace context, PACT further introduces a prompt-only anchoring. We also provide a latent-trace view that connects the two trace-based objectives and explains how expert traces can guide optimization without being used during rollout generation. Experiments on FTRL, BFCL, and ToolHop show that PACT consistently improves over strong SFT- and RL-based baselines, highlighting the value of privileged trace co-training for multi-turn tool-use learning.",
+      "authors": [
+        "Zhenbang Du",
+        "Jun Luo",
+        "Zhiwei Zheng",
+        "Xiangchi Yuan",
+        "Kejing Xia",
+        "Dachuan Shi",
+        "Qirui Jin",
+        "Qijia He",
+        "Shaofeng Zou",
+        "Yingbin Liang",
+        "Wenke Lee"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-15T04:46:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.16215v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes RL co-training with privileged expert traces for multi-turn agents, applicable to game AI training",
+      "llm_evidence_cn": "提出用特权专家轨迹协同训练强化学习多轮代理，可迁移至游戏AI训练",
+      "llm_evidence": "提出用特权专家轨迹协同训练强化学习多轮代理，可迁移至游戏AI训练",
+      "canonical_evidence": "提出用特权专家轨迹协同训练强化学习多轮代理，可迁移至游戏AI训练",
+      "llm_tldr_en": "PACT combines RL with expert traces for training multi-turn tool agents, a method transferable to game AI bot training.",
+      "llm_tldr_cn": "多轮工具代理的训练面临强化学习奖励稀疏和监督微调过约束的挑战。本文提出PACT框架，在强化学习基础上仅将专家轨迹作为训练信号，不用于推理时的提示。实验表明，该方法结合了两者优势，提高了代理的鲁棒性，为游戏AI等需要多轮交互的场景提供了新的训练思路。",
+      "llm_tldr": "多轮工具代理的训练面临强化学习奖励稀疏和监督微调过约束的挑战。本文提出PACT框架，在强化学习基础上仅将专家轨迹作为训练信号，不用于推理时的提示。实验表明，该方法结合了两者优势，提高了代理的鲁棒性，为游戏AI等需要多轮交互的场景提供了新的训练思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.18132v1",
+      "source": "arxiv",
+      "title": "Knowledge Reutilization in Meta-Reinforcement Learning",
+      "abstract": "Meta-reinforcement learning enables fast adaptation by extracting shared structure from related tasks, but existing end-to-end methods often couple task inference with embodiment-specific control. This coupling can obscure non-parametric task semantics, reduce sample efficiency, and limit cross-agent reuse. We propose a meta-knowledge reutilization framework that learns task-level knowledge on a dynamics-simplified agent and transfers it to heterogeneous agents. The framework uses a Bayesian non-parametric prior to organize latent task modes and a high-level policy to generate task-level magnitude guidance. To bridge reusable task knowledge with different embodiments, we introduce a semantic-magnitude interface and a lightweight temporal adaptor, which convert frozen meta-knowledge into temporally aligned subgoals for embodiment-specific low-level controllers. Experiments on multiple locomotion agents show that our framework reduces final-step tracking error by 94.75% -- 99.79% compared with recent state-of-the-art baselines and achieves comparable deployment performance with about 23.8% of their interaction data.",
+      "authors": [
+        "Yuan Meng",
+        "Bo Wang",
+        "Juan de los Rios Ruiz",
+        "Xiangtong Yao",
+        "Zhenshan Bing",
+        "Fuchun Sun",
+        "Alois Knoll"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-16T16:32:28+00:00",
+      "link": "https://arxiv.org/pdf/2606.18132v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes a meta-RL framework for reusing task knowledge across heterogeneous agents, a technique applicable to training game AI.",
+      "llm_evidence_cn": "提出了一种元强化学习框架，可跨异构智能体重用任务知识，适用于训练游戏AI。",
+      "llm_evidence": "提出了一种元强化学习框架，可跨异构智能体重用任务知识，适用于训练游戏AI。",
+      "canonical_evidence": "提出了一种元强化学习框架，可跨异构智能体重用任务知识，适用于训练游戏AI。",
+      "llm_tldr_en": "This paper presents a meta-RL framework that learns reusable task knowledge on a simplified agent and transfers it to different embodiments, improving sample efficiency and cross-agent generalization.",
+      "llm_tldr_cn": "现有元强化学习方法常将任务推断与具体控制耦合，导致跨智能体重用困难。本文提出元知识重用框架，在简化动力学智能体上学习任务级知识，并通过语义-幅度接口和轻量时间适配器将其迁移至异构智能体。实验表明该方法能提升样本效率和跨智能体泛化能力，为训练适应多环境的游戏AI提供了新思路。",
+      "llm_tldr": "现有元强化学习方法常将任务推断与具体控制耦合，导致跨智能体重用困难。本文提出元知识重用框架，在简化动力学智能体上学习任务级知识，并通过语义-幅度接口和轻量时间适配器将其迁移至异构智能体。实验表明该方法能提升样本效率和跨智能体泛化能力，为训练适应多环境的游戏AI提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.19328v1",
+      "source": "arxiv",
+      "title": "UBP2: Uncertainty-Balanced Preference Planning for Efficient Preference-based Reinforcement Learning",
+      "abstract": "Preference-based RL provides an approach to learning reward models from pairwise comparisons of behaviors, bypassing the need for explicit reward design. However, existing methods typically rely on passive data collection and suffer from poor sample efficiency, especially during the early stages of learning. We introduce a model-based approach that actively directs exploration by jointly reasoning over uncertainties in the reward, dynamics, and value functions. Our method, Uncertainty-Balanced Preference Planning (UBP2), uses ensembles of reward, dynamics, and value function models to evaluate candidate trajectories according to a unified score that combines expected reward, terminal value, and epistemic uncertainty. Planning under this objective yields an explicit tradeoff between exploitation and information acquisition without requiring ad hoc exploration heuristics. Under standard regularity assumptions, we establish sublinear regret guarantees for both finite-horizon and infinite-horizon settings. Empirically, experiments on the Meta-World benchmark show UBP2 achieves substantially higher sample efficiency than model-free preference-based methods and non-optimistic model-based baselines.",
+      "authors": [
+        "Mohamed Nabail",
+        "Leo Cheng",
+        "Jingmin Wang",
+        "Nicholas Rhinehart"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-06-17T17:54:32+00:00",
+      "link": "https://arxiv.org/pdf/2606.19328v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes uncertainty-balanced preference planning for efficient preference-based RL, relevant for training game AI agents with human feedback.",
+      "llm_evidence_cn": "提出不确定性平衡的偏好规划用于高效基于偏好的RL，可用于训练游戏AI智能体。",
+      "llm_evidence": "提出不确定性平衡的偏好规划用于高效基于偏好的RL，可用于训练游戏AI智能体。",
+      "canonical_evidence": "提出不确定性平衡的偏好规划用于高效基于偏好的RL，可用于训练游戏AI智能体。",
+      "llm_tldr_en": "UBP2 improves sample efficiency in preference-based RL by jointly reasoning over reward, dynamics, and value uncertainties, enabling faster learning of reward models from pairwise behavior comparisons.",
+      "llm_tldr_cn": "基于偏好的强化学习通过行为比较学习奖励模型，但现有方法样本效率低。本文提出不确定性平衡偏好规划（UBP2），通过联合推理奖励、动态和价值函数的不确定性，主动指导探索，在多个任务上显著提升了早期学习效率，为训练复杂游戏AI提供了更高效的学习范式。",
+      "llm_tldr": "基于偏好的强化学习通过行为比较学习奖励模型，但现有方法样本效率低。本文提出不确定性平衡偏好规划（UBP2），通过联合推理奖励、动态和价值函数的不确定性，主动指导探索，在多个任务上显著提升了早期学习效率，为训练复杂游戏AI提供了更高效的学习范式。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
