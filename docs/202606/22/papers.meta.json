@@ -1,0 +1,39 @@
+{
+  "label": "2026-06-22",
+  "date": "2026-06-22",
+  "generated_at": "2026-06-22T21:47:33",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202606/22/2606.17377v1-performance-driven-environment-abstraction-with-multi-timescale-learning",
+      "section": "quick",
+      "title_en": "Performance-Driven Environment Abstraction with Multi-Timescale Learning",
+      "authors": "Yue Guan, Dipankar Maity, Panagiotis Tsiotras",
+      "date": "2026-06-16",
+      "pdf": "https://arxiv.org/pdf/2606.17377v1",
+      "score": "7.0",
+      "evidence": "提出一种通用的强化学习环境抽象方法以改进决策，可应用于游戏AI训练",
+      "tldr": "针对大规模马尔可夫决策过程中的状态抽象问题，不同于传统保留几何或拓扑结构的方法，本文提出直接优化决策质量的性能驱动抽象方法。通过状态聚合与共享动作分布实现可控近似，并建立分离值函数误差与动作共享损失的性能保证。基于此分析，开发多时间尺度强化学习框架联合优化策略与树结构抽象，根据Q值差异动态细化和粗化状态区域。实验表明该方法实现显著状态压缩、样本效率提升和更快重规划，性能优于Actor-Critic基线。",
+      "tags": "query:gah",
+      "abstract_en": "We study performance-driven environment abstraction for decision-making in large Markov decision processes. Rather than preserving geometric or topological structure, we seek abstractions that directly optimize decision quality. We model abstraction as a controlled approximation obtained by aggregating the state space and enforcing a shared action distribution within each aggregated state. For a fixed partition, we establish a performance guarantee that separates value-function approximation error from the loss introduced by action sharing. Guided by this analysis, we develop a multi-timescale reinforcement learning framework that jointly adapts the policy and a tree-structured environment abstraction. The resulting algorithm refines and coarsens regions of the state space based on Q-value discrepancies, balancing performance against abstraction size and complexity. Empirical results demonstrate substantial state compression, improved sample efficiency, and faster replanning compared to actor-critic baselines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/22/2606.17551v1-reversal-q-learning",
+      "section": "quick",
+      "title_en": "Reversal Q-Learning",
+      "authors": "Aditya Oberai, Seohong Park, Sergey Levine",
+      "date": "2026-06-16",
+      "pdf": "https://arxiv.org/pdf/2606.17551v1",
+      "score": "6.0",
+      "evidence": "提出可应用于游戏AI训练的离线RL算法Reversal Q-learning",
+      "tldr": "离线强化学习中，流匹配等迭代生成模型能有效建模复杂行为，但现有方法常面临反向传播耗时和策略训练不足的问题。Reversal Q-learning (RQL) 在扩展MDP框架下，通过反转流生成虚拟在轨数据，并结合偏差-方差缩减技术，实现了高效的离线流策略训练。在50个挑战性机器人任务上，RQL取得最佳平均性能，优于当前最优的流基离线RL方法。该方法无需时间反向传播，充分利用价值函数，直接训练完整表达性流策略，为离线RL提供了新思路。",
+      "tags": "query:gah",
+      "abstract_en": "Iterative generative modeling techniques, such as flow matching, provide powerful tools to model complex behaviors for effective offline reinforcement learning (RL). In this work, we propose a new off-policy RL algorithm that trains a flow policy based on prior data. Our idea starts from the \"expanded\" Markov decision process (MDP) framework, which treats individual flow refinement steps as separate actions in an MDP. To enable off-policy RL within this framework, we apply two techniques: we generate virtual on-policy trajectories (by \"reversing\" flows) to make this framework compatible with prior data, and we apply a bias-and-variance reduction technique to mitigate the curse of horizon in off-policy RL. We call the resulting algorithm Reversal Q-learning (RQL). RQL has several advantages over previous flow-based RL methods: it does not suffer from backpropagation through time, makes better use of the learned value function, and directly trains the full, expressive flow policy. Through our experiments on 50 challenging simulated robotic tasks, we show that RQL leads to the best average offline RL performance compared to state-of-the-art flow-based offline RL algorithms.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

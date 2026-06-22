@@ -1,6 +1,10 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-06-22 <!--dpr-date:20260622-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/22/2606.17377v1-performance-driven-environment-abstraction-with-multi-timescale-learning" data-sidebar-item="{&quot;title&quot;: &quot;Performance-Driven Environment Abstraction with Multi-Timescale Learning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.17377v1-performance-driven-environment-abstraction-with-multi-timescale-learning&quot;, &quot;score&quot;: &quot;7.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;提出一种通用的强化学习环境抽象方法以改进决策，可应用于游戏AI训练&quot;}">Performance-Driven Environment Abstraction with Multi-Timescale Learning</a>
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/22/2606.17551v1-reversal-q-learning" data-sidebar-item="{&quot;title&quot;: &quot;Reversal Q-Learning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.17551v1-reversal-q-learning&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;提出可应用于游戏AI训练的离线RL算法Reversal Q-learning&quot;}">Reversal Q-Learning</a>
   * 2026-06-21 <!--dpr-date:20260621-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/21/2606.19752v1-temporal-self-imitation-learning" data-sidebar-item="{&quot;title&quot;: &quot;Temporal Self-Imitation Learning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.19752v1-temporal-self-imitation-learning&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;引入时间自模仿学习强化学习技术，利用高效轨迹，可用于训练游戏AI机器人&quot;}">Temporal Self-Imitation Learning</a>
