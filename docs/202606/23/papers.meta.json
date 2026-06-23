@@ -1,0 +1,69 @@
+{
+  "label": "2026-06-23",
+  "date": "2026-06-23",
+  "generated_at": "2026-06-23T21:56:18",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202606/23/2606.21975v1-irumai-reinforcement-learning-for-indian-rummy",
+      "section": "deep",
+      "title_en": "IRumAI: Reinforcement Learning for Indian Rummy",
+      "authors": "Vignesh Mohan",
+      "date": "2026-06-20",
+      "pdf": "https://arxiv.org/pdf/2606.21975v1",
+      "score": "10.0",
+      "evidence": "使用PPO和奖励塑形训练印度拉米纸牌RL代理",
+      "tldr": "印度拉米牌拥有庞大玩家基础且信息隐藏复杂，但长期缺乏强化学习研究。IRumAI首次将PPO与meld感知编码、死木奖励及双分支卷积网络结合，通过弱启发式训练和行为克隆预热，即以53.9%胜率击败未见过的搜索型最强对手。其推理速度达每动作0.33毫秒，比现有方法快7000倍以上，并展现出对手手牌隐式建模能力。",
+      "tags": "query:gah",
+      "abstract_en": "Despite its massive player base and complex hidden-information dynamics, Indian Rummy has received no reinforcement learning attention. Existing agents rely on combinatorial search, which is tactically strong but slow at inference. We present IRumAI, the first RL agent for the domain. IRumAI integrates Proximal Policy Optimization (PPO), meld-aware observation encoding, deadwood-driven reward shaping, and a dual-branch convolutional architecture. IRumAI is RL-trained solely against weak heuristics, after a one-time behaviour-cloning warm-start on stronger demonstration data. It generalises to defeat the entire baseline hierarchy, including a 53.9% win rate against the strongest search-based opponent unseen during RL training. Bypassing explicit search, IRumAI requires just 0.33 ms per action, which is over 7,000x faster than the state-of-the-art heuristic. Ablations validate our architectural choices, and linear probing reveals that the network implicitly models the opponent's hidden hand from public interactions.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/23/2606.23348v1-superhuman-ai-for-generalsio-using-self-play-reinforcement-learning",
+      "section": "deep",
+      "title_en": "Superhuman AI for Generals.io Using Self-Play Reinforcement Learning",
+      "authors": "Matej Straka, Viliam Lisý, Martin Schmid",
+      "date": "2026-06-22",
+      "pdf": "https://arxiv.org/pdf/2606.23348v1",
+      "score": "10.0",
+      "evidence": "自博弈强化学习训练超人游戏AI",
+      "tldr": "Generals.io是一款需同时处理长期规划与短期战术的实时战略游戏，存在严重不完全信息。我们构建JAX原生模拟器，单GPU每秒可模拟数千万帧，速度提升万倍。基于此，通过自博弈、策略梯度和稀疏胜负奖励端到端训练视觉Transformer，并采用顶端优势样本过滤与参数指数滑动平均。训练四天后在超5000人的1v1排行榜登顶，领先优势等同于第二名至第25名的差距；对两名顶级人类取得199-70的战绩。这表明高速模拟消除数据瓶颈后，简单自博弈RL即可在复杂不完全信息策略游戏中实现超人类AI。",
+      "tags": "query:gah",
+      "abstract_en": "We present a superhuman AI agent for Generals.io, a real-time strategy game that requires both long-horizon planning and short-term tactics under strong imperfect information. Trained for four days on 4x NVIDIA H200 GPUs, our agent reaches #1 on the public 1v1 leaderboard of over 5,000 human players, leading the second-ranked player by the same margin that separates second place from 25th, and beats the two top-ranked humans head-to-head with a combined 199-70 record across 269 ladder matches. A key enabler is a JAX-native simulator that reaches tens of millions of frames per second on a single GPU, roughly a 10,000x speedup over the prior simulator. On top of this, we train a vision transformer policy end-to-end by self-play with a policy-gradient loop and sparse win/loss reward, using top-advantage sample filtering and an exponential moving average of the policy parameters. Taken together, our findings highlight what matters, and what does not, once a fast simulator removes the data bottleneck.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/23/2606.20002v1-connect-the-dots-training-llms-for-long-lifecycle-agents-with-cross-domain-generalization-via-reinforcement-learning",
+      "section": "deep",
+      "title_en": "Connect the Dots: Training LLMs for Long-Lifecycle Agents with Cross-Domain Generalization Via Reinforcement Learning",
+      "authors": "Yanxi Chen, Weijie Shi, Yuexiang Xie, Boyi Hu, Yaliang Li, Bolin Ding, Jingren Zhou",
+      "date": "2026-06-18",
+      "pdf": "https://arxiv.org/pdf/2606.20002v1",
+      "score": "9.0",
+      "evidence": "使用端到端强化学习训练LLM代理，通过长序列推演在环境中持续探索和学习，可直接用于游戏玩代理。",
+      "tldr": "在长期部署场景中，LLM驱动的智能体需要持续探索环境、积累经验并迭代更新自身上下文，以适应新任务。为此，提出Connect the Dots (CoD)框架，设计端到端RL算法与特定任务环境，训练LLM在长序列中交替解决任务和更新上下文。实验证明，该RL训练有效，LLM习得的元能力在训练域内、跨域及Ralph-loop场景下均展现出泛化性。相关工作连接多个研究线索，为发展更强大的LLM智能体提供了新方向，代码已开源。",
+      "tags": "query:gah",
+      "abstract_en": "This work presents a general framework for training large language models (LLMs) to \"Connect the Dots\" (CoD), a meta-capability required by long-lifecycle agents: as an LLM-based AI agent gets deployed in an environment, it solves a long sequence of tasks while continuously exploring the environment, learning from its own experiences, and iteratively self-updating its context about the environment, thereby achieving progressively better performance on future tasks conditioned on the updated context. Major components of the CoD framework include: (1) algorithm design and infrastructure for end-to-end reinforcement learning (RL) with long rollout sequences interleaving solve-task and update-context episodes; (2) tasks and environments for incentivizing and eliciting the targeted meta-capability in LLMs during training, as well as for faithfully measuring progress during evaluation. We present proof-of-concept implementations of the CoD framework, including a GRPO-style RL algorithm with fine-grained credit assignment, as well as tasks and environments tailored to the targeted meta-capability (rather than domain-specific LLM capabilities or standard task-by-task RL). Empirical results validate the efficacy of end-to-end RL training in the CoD setting, and demonstrate the potential for out-of-distribution generalization -- within the training domains, across different domains, and from CoD to Ralph-loop settings -- of the elicited meta-capability. Our investigation of CoD connects several lines of prior works, and opens up new opportunities for advancing LLMs and AI agents. To facilitate further research and applications, we release our implementations at \\url{https://github.com/agentscope-ai/Trinity-RFT/tree/research/cod/examples/research_cod}.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/23/2606.21350v1-a-reward-petri-net-interpretation-of-temporal-behavior-trees",
+      "section": "deep",
+      "title_en": "A Reward-Petri-Net Interpretation of Temporal Behavior Trees",
+      "authors": "Till Schmeil, Günther Waxenegger-Wilfing, Sebastian Schirmer",
+      "date": "2026-06-19",
+      "pdf": "https://arxiv.org/pdf/2606.21350v1",
+      "score": "8.0",
+      "evidence": "行为树与强化学习结合，可用于游戏AI bot设计",
+      "tldr": "复杂长时域机器人任务中设计奖励函数困难，特别是含有层级结构和时序约束的场景。时间行为树（TBT）通过线性时序逻辑为叶节点添加时序属性，精确描述任务结构。本文提出将TBT翻译为Petri网，并根据结构自动分配奖励，形成奖励Petri网（RPN）。实验表明，TBT-RPN使强化学习在普通方法失败的任务中成功学习，显著提升样本效率，并允许灵活直观地控制学习进度，为基于行为树的奖励设计提供了形式化基础。",
+      "tags": "query:gah",
+      "abstract_en": "This paper introduces an interpretation of Temporal Behavior Trees (TBTs) as Reward-Petri-Nets (RPNs) for reinforcement learning (RL). Designing reward functions for complex, long-horizon robotic tasks is notoriously difficult, especially when tasks have hierarchical structure and temporal constraints. TBTs extend conventional behavior trees (BTs) used in robotic applications by incorporating temporal properties into their leaf nodes. This allows TBTs to represents not only the behavioral task structure defined by BT operators such as Sequence, Fallback, and Parallel, but also the task's temporal constraints. In this work, the constraints are specified in the leaf nodes using Linear Temporal Logic. In order to inform RL rewards using TBTs, we provide a translation from TBT into a Petri Net (PN) and show how rewards can be automatically assigned based on the TBT's structure, resulting in a RPN. In a series of increasingly challenging environments, we demonstrate how TBT-based rewards enable learning where vanilla RL fails, improve sample efficiency, and offer flexible, intuitive control over the learning progress. We showcase the learning impact by using different reward distribution schemes and TBT structures.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
