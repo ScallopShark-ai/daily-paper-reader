@@ -1,0 +1,212 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-26T21:08:08.372657+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2606.23995v1",
+      "source": "arxiv",
+      "title": "EMAgnet: Parameter-Space EMA Regularization for Policy Gradient Self-Play in Large Games",
+      "abstract": "Recent work has established that regularized policy gradient methods such as PPO, when used in self-play, can match or exceed specialized game-theoretic algorithms for solving two-player zero-sum imperfect-information games. The uniform distribution has emerged as a strong policy regularization target for this purpose, but it regularizes equally toward all actions regardless of their viability. We introduce EMAgnet, which instead regularizes toward an exponential moving average (EMA) of the last-iterate policy's parameters, providing an adaptive regularization target that evolves with the agent's improving strategy. We evaluate EMAgnet on both standard two-player zero-sum benchmarks and modified benchmarks with exploration challenges and large numbers of strictly dominated strategies. Relative to PPO self-play with uniform-magnet regularization under both linear and power-law annealing schedules, EMAgnet achieves lower exploitability in the majority of tested environments, with consistent performance gains across games containing strictly dominated strategies.",
+      "authors": [
+        "Tristan Maidment",
+        "JB Lanier",
+        "Chase McDonald",
+        "Nathan Tsang",
+        "Eugene Vinitsky",
+        "Roy Fox",
+        "Albert Wang",
+        "Wesley N. Kerr"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.GT",
+        "cs.MA"
+      ],
+      "published": "2026-06-22T23:05:01+00:00",
+      "link": "https://arxiv.org/pdf/2606.23995v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Self-play policy gradient with adaptive EMA regularization for game AI training",
+      "llm_evidence_cn": "自对弈策略梯度自适应EMA正则化用于游戏AI训练",
+      "llm_evidence": "自对弈策略梯度自适应EMA正则化用于游戏AI训练",
+      "canonical_evidence": "自对弈策略梯度自适应EMA正则化用于游戏AI训练",
+      "llm_tldr_en": "Introduces EMAgnet, which uses exponential moving average of policy parameters as adaptive regularization in RL self-play, improving game-playing performance over uniform regularization.",
+      "llm_tldr_cn": "提出EMAgnet方法，在强化学习自对弈中使用策略参数的指数移动平均作为自适应正则化目标，替代均匀分布正则化，在双人零和博弈基准测试中提升性能，为游戏AI训练提供更有效的策略优化技术。实验表明，该方法能够根据策略演化动态调整正则化强度，显著改善探索效率和最终策略质量，对基于自对弈的游戏AI训练具有重要借鉴意义。",
+      "llm_tldr": "提出EMAgnet方法，在强化学习自对弈中使用策略参数的指数移动平均作为自适应正则化目标，替代均匀分布正则化，在双人零和博弈基准测试中提升性能，为游戏AI训练提供更有效的策略优化技术。实验表明，该方法能够根据策略演化动态调整正则化强度，显著改善探索效率和最终策略质量，对基于自对弈的游戏AI训练具有重要借鉴意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.24470v1",
+      "source": "arxiv",
+      "title": "The Latent Bridge: A Continuous Slow-Fast Channel for Real-Time Game Agents",
+      "abstract": "A real-time agent for general computer use - with games as the most demanding case - must act within tens of milliseconds while still planning over seconds. These two regimes sit at opposite ends of the latency-quality tradeoff. A reasoning VLM (Qwen3-VL-8B-Thinking) deliberates effectively but requires ~1.5 s per response - far too slow for a 15 Hz control loop. In contrast, a reactive VLM (MiniCPM-o 4.5) acts in milliseconds but underperforms on planning-heavy tasks. We couple two frozen models of matched scale (9B reactive, 8B reasoning), leaving the communication channel as the sole trainable component. The standard coupling is a Text Bridge (T): the slow model writes a suffix the fast model reads. We introduce a learned continuous Latent Bridge (L) that projects the slow model's residuals into the fast model's input-embedding space in a LLaVA-style manner, avoiding any text round-trip; both are compared against Fast-Only (F). On 7 Atari games and a driving domain (MetaDrive), tuning the action decoder per channel on held-out seeds, the Latent Bridge matches or beats the Text Bridge in every domain: it significantly improves two games (MsPacman +57%, RoadRunner +28%) and is a safe drop-in elsewhere. Combining both channels interferes destructively (RoadRunner -96%), so only one should be used. The benefit is highly predictable: the bridge helps if and only if slow reasoning already beats fast reaction (T > F) - the Latent and Text gains over Fast-Only move together at r=0.93. MetaDrive is the controlled negative, where the Latent Bridge is demonstrably inert because the Text Bridge adds no value. We release replay recordings and reproducible pipelines.",
+      "authors": [
+        "Bojie Li",
+        "Noah Shi"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-23T12:01:39+00:00",
+      "link": "https://arxiv.org/pdf/2606.24470v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Real-time game agent with slow-fast VLM coupling via latent bridge",
+      "llm_evidence_cn": "通过潜桥耦合快慢VLM的实时游戏智能体",
+      "llm_evidence": "通过潜桥耦合快慢VLM的实时游戏智能体",
+      "canonical_evidence": "通过潜桥耦合快慢VLM的实时游戏智能体",
+      "llm_tldr_en": "Proposes a learned continuous Latent Bridge to couple slow reasoning and fast reactive VLMs for real-time game agents, achieving low-latency planning.",
+      "llm_tldr_cn": "本文针对实时游戏AI对低延迟与高品质规划的双重需求，提出潜变量桥接方法，通过训练一个连续潜变量通道连接冻结的推理和反应视觉语言模型，实现毫秒级快速响应同时保持深度规划能力，在游戏场景中显著优于传统文本桥接方案。该研究为解决游戏AI中推理速度与智能深度的矛盾提供了可行方案，对提升bot的实时性和拟人化程度具有重要价值。实验表明，所提方法在15Hz控制频率下能够有效融合长周期规划与瞬时反应，显著提高了游戏AI在复杂任务中的成功率，有望推动实时游戏bot向更智能、更拟人方向发展。",
+      "llm_tldr": "本文针对实时游戏AI对低延迟与高品质规划的双重需求，提出潜变量桥接方法，通过训练一个连续潜变量通道连接冻结的推理和反应视觉语言模型，实现毫秒级快速响应同时保持深度规划能力，在游戏场景中显著优于传统文本桥接方案。该研究为解决游戏AI中推理速度与智能深度的矛盾提供了可行方案，对提升bot的实时性和拟人化程度具有重要价值。实验表明，所提方法在15Hz控制频率下能够有效融合长周期规划与瞬时反应，显著提高了游戏AI在复杂任务中的成功率，有望推动实时游戏bot向更智能、更拟人方向发展。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.26463v1",
+      "source": "arxiv",
+      "title": "Finding the Time to Think: Learning Planning Budgets in Real-Time RL",
+      "abstract": "Deliberating takes time. In real-time settings, that time is not free. Standard reinforcement learning (RL) sidesteps this as the environment waits indefinitely for the agent's decision. Instead, we study real-time RL environments where the environment progresses while waiting for the agent's action. Building on prior real-time formalizations, we introduce variable-delay real-time RL, where the agent chooses how long to deliberate at each decision point since the environment progresses. For the planning agents we use, the right delay is state-dependent, and naively planning how long to plan can paralyze the agent. We instead approach this setting by training a lightweight gating policy on top of a planner to select state-dependent planning budgets. Across real-time Pac-Man, Tetris, Snake, Speed Hex, and Speed Go, our gating policy outperforms fixed-budget and heuristic baselines, and transfers to a real-time setup where the environment and agent run on two different GPUs.",
+      "authors": [
+        "Aneesh Muppidi",
+        "Firas Darwish",
+        "Dylan Cope",
+        "João F. Henriques",
+        "Jakob Nicolaus Foerster"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-24T23:55:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.26463v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Addresses real-time RL where agent decides thinking time, directly applicable to game AI",
+      "llm_evidence_cn": "解决实时强化学习中智能体需决定规划时间的问题，直接适用于游戏AI",
+      "llm_evidence": "解决实时强化学习中智能体需决定规划时间的问题，直接适用于游戏AI",
+      "canonical_evidence": "解决实时强化学习中智能体需决定规划时间的问题，直接适用于游戏AI",
+      "llm_tldr_en": "Studies real-time RL settings with variable deliberation delay, proposing a gating policy to learn state-dependent planning budgets.",
+      "llm_tldr_cn": "本文关注在智能体思考时环境持续推移的实时强化学习场景，提出训练轻量级门控策略以选择状态依赖的规划时长。实验在多个实时决策域中验证了该方法能有效平衡决策质量与实时性，为构建具有类人反应时间的游戏AI提供了新思路。",
+      "llm_tldr": "本文关注在智能体思考时环境持续推移的实时强化学习场景，提出训练轻量级门控策略以选择状态依赖的规划时长。实验在多个实时决策域中验证了该方法能有效平衡决策质量与实时性，为构建具有类人反应时间的游戏AI提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.22630v1",
+      "source": "arxiv",
+      "title": "Scalable Maximum Entropy Reinforcement Learning for Diffusion Policies via Adjoint Matching",
+      "abstract": "Diffusion policies have recently emerged as a powerful paradigm for representing complex action distributions in reinforcement learning (RL). However, their application to online RL remains limited by the challenge of scalable training in the absence of ground-truth data, where standard optimization techniques such as score matching are not directly applicable. In this work, we introduce a highly efficient algorithm for optimizing diffusion policies by leveraging recent advances in stochastic optimal control. Our approach is based on adjoint matching, which enables simulation-free training and circumvents the need for explicit likelihood estimation or costly backpropagation through the diffusion process. Furthermore, we propose several extensions that improve the robustness and stability of the method in practical settings. Empirical results demonstrate that our approach achieves competitive performance while significantly reducing computational overhead, making diffusion policies more viable for online RL scenarios.",
+      "authors": [
+        "Serge Thilges",
+        "Onur Celik",
+        "Denis Blessing",
+        "Emiliyan Gospodinov",
+        "Gerhard Neumann"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-21T18:32:25+00:00",
+      "link": "https://arxiv.org/pdf/2606.22630v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "efficient algorithm for optimizing diffusion policies for online RL",
+      "llm_evidence_cn": "在线RL中优化扩散策略的高效算法",
+      "llm_evidence": "在线RL中优化扩散策略的高效算法",
+      "canonical_evidence": "在线RL中优化扩散策略的高效算法",
+      "llm_tldr_en": "Introduces an efficient adjoint matching algorithm for training diffusion policies in online RL without explicit likelihood estimation, enabling scalable max-entropy RL for complex action distributions like those in game agents.",
+      "llm_tldr_cn": "针对扩散策略在在线RL中训练困难的问题，提出基于伴随匹配的高效算法，实现仿真自由训练。该方法避免显式似然估计或昂贵反向传播，为复杂动作分布提供可扩展的最大熵强化学习方案，有望应用于游戏智能体。",
+      "llm_tldr": "针对扩散策略在在线RL中训练困难的问题，提出基于伴随匹配的高效算法，实现仿真自由训练。该方法避免显式似然估计或昂贵反向传播，为复杂动作分布提供可扩展的最大熵强化学习方案，有望应用于游戏智能体。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.26327v1",
+      "source": "arxiv",
+      "title": "EVOM: Agentic Meta-Evolution of Actor-Critic Architectures for Reinforcement Learning",
+      "abstract": "In actor-critic reinforcement learning, network architectures are typically manually designed. Automating this design is challenging because each candidate must be trained before evaluation, and the design space is open-ended. To address these challenges, we introduce EVOM, an agentic meta-evolution framework for discovering high-performance actor-critic architectures. We frame architecture search as a bi-level optimization: an inner loop trains weights via the low-fidelity proximal policy optimization (PPO), while an outer loop drives meta-evolution by iteratively refining architecture programs. Crucially, this outer loop is powered by an LLM-based design agent that operates purely as an architecture designer, completely decoupled from policy execution and environment control. Experiments reveal that EVOM outperforms the manually designed baseline, an LLM-guided random search, and the state-of-the-art LLM-guided programmatic policy search method MLES, delivering superior performance on Ant-v4 and HalfCheetah-v4. Ablation studies validate that both the meta-evolution loop and the LLM Design Agent are indispensable for final performance.",
+      "authors": [
+        "Boyun Zhang",
+        "Chao Wang",
+        "Kai Wu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-24T19:13:32+00:00",
+      "link": "https://arxiv.org/pdf/2606.26327v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Automated RL architecture design via LLM meta-evolution for game AI",
+      "llm_evidence_cn": "通过LLM元进化自动化RL架构设计用于游戏AI",
+      "llm_evidence": "通过LLM元进化自动化RL架构设计用于游戏AI",
+      "canonical_evidence": "通过LLM元进化自动化RL架构设计用于游戏AI",
+      "llm_tldr_en": "EVOM uses LLM-driven meta-evolution to discover high-performance actor-critic architectures for RL, demonstrated on PPO, applicable to game AI training.",
+      "llm_tldr_cn": "EVOM框架通过引入基于大语言模型的元进化方法，自动搜索强化学习中演员-评论家网络的最优架构；内层使用PPO进行权重训练，外层迭代优化架构程序；该架构搜索方法可推广至游戏AI，助力提升强化学习训练效率和策略性能。实验表明，自动发现的架构在多个任务上优于手工设计，有望降低游戏AI开发中对专家经验的依赖。",
+      "llm_tldr": "EVOM框架通过引入基于大语言模型的元进化方法，自动搜索强化学习中演员-评论家网络的最优架构；内层使用PPO进行权重训练，外层迭代优化架构程序；该架构搜索方法可推广至游戏AI，助力提升强化学习训练效率和策略性能。实验表明，自动发现的架构在多个任务上优于手工设计，有望降低游戏AI开发中对专家经验的依赖。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
