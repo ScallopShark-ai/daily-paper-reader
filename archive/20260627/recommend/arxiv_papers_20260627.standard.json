@@ -1,0 +1,216 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-27T21:04:41.319707+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2606.27025v1",
+      "source": "arxiv",
+      "title": "Improving General Role-Playing Agents via Psychology-Grounded Reasoning and Role-Aware Policy Optimization",
+      "abstract": "Building general-purpose role-playing agents that faithfully portray any character from a natural-language profile remains challenging. The dominant paradigm -- supervised fine-tuning -- encourages behavioral mimicry without deep, human-like internal thought processes, resulting in poor out-of-distribution generalization. Therefore, we propose \\textbf{Psy-CoT}, a psychology-grounded chain-of-thought framework that decomposes pre-response reasoning into three role-specific steps -- \\emph{Interaction Perception}, \\emph{Psychological Empathy}, and \\emph{Logical Construction} -- so that the model \\emph{thinks dynamically} from the profile rather than merely mimicking surface patterns. While structured reasoning provides a foundation, it alone is insufficient; reinforcement learning is essential to further align the model with character fidelity. However, we observe that under LLM-based reward models, both generic phrases that hack the reward model and genuinely role-specific phrases receive identical gradient signals -- this hacking accumulates over training, misleading the model into treating both as equally optimal choices. To address this, we propose \\textbf{Role-Aware Policy Optimization (RAPO)}, which uses profile--token mutual information to weight gradients asymmetrically -- amplifying role-specific tokens under positive advantage while attenuating them under negative advantage. Experiments on CoSER, CharacterBench, and CharacterEval demonstrate that Psy-CoT outperforms existing role-playing CoT methods, and RAPO consistently surpasses GRPO across multiple model scales.",
+      "authors": [
+        "Zhenhua Xu",
+        "Dongsheng Chen",
+        "Jian Li",
+        "Yitong Lin",
+        "Zhebo Wang",
+        "Jiafu Wu",
+        "Yizhang Jin",
+        "Chengjie Wang",
+        "Meng Han",
+        "Yabiao Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-25T13:34:47+00:00",
+      "link": "https://arxiv.org/pdf/2606.27025v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes psychology-grounded reasoning for human-like role-playing agents",
+      "llm_evidence_cn": "提出基于心理学的推理以实现类人角色扮演智能体",
+      "llm_evidence": "提出基于心理学的推理以实现类人角色扮演智能体",
+      "canonical_evidence": "提出基于心理学的推理以实现类人角色扮演智能体",
+      "llm_tldr_en": "Proposes Psy-CoT, a psychology-grounded chain-of-thought framework that enables role-playing agents to think dynamically from profiles, improving human-like behavior over standard fine-tuning.",
+      "llm_tldr_cn": "现有角色扮演智能体在分布外泛化差，缺乏类人思维。本文提出Psy-CoT，一种基于心理学的思维链框架，将回应前推理分解为交互感知、心理共情和逻辑构建三步，使模型从角色设定动态思考而非表面模仿。实验表明该方法显著提升了角色扮演的忠实度和人类相似性。该工作为构建更逼真的游戏AI角色提供了方法基础。",
+      "llm_tldr": "现有角色扮演智能体在分布外泛化差，缺乏类人思维。本文提出Psy-CoT，一种基于心理学的思维链框架，将回应前推理分解为交互感知、心理共情和逻辑构建三步，使模型从角色设定动态思考而非表面模仿。实验表明该方法显著提升了角色扮演的忠实度和人类相似性。该工作为构建更逼真的游戏AI角色提供了方法基础。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.21085v1",
+      "source": "arxiv",
+      "title": "Sim2O: Efficient Offline-to-Online MARL via Joint Action Composition",
+      "abstract": "Offline-to-online adaptation serves as a pivotal paradigm for mitigating the prohibitive cost of online exploration by bootstrapping reinforcement learning from offline datasets. While this paradigm has been extensively studied in single-agent settings, its extension to Multi-Agent Reinforcement Learning (MARL) remains largely unexplored, despite its critical relevance to complex coordinated decision-making. To bridge this gap, we introduce Sim2O, an elegant and minimalist framework for offline-to-online MARL. Rather than treating adaptation as a monolithic joint decision, Sim2O conceptualizes it as a compositional process. Specifically, candidate joint actions are synthesized by dynamically blending offline and online action proposals across agents. By leveraging a centralized value function to evaluate these hybrid combinations, Sim2O identifies high-value coordination strategies without requiring auxiliary training objectives or structural overhead. Empirical evaluations across diverse benchmarks demonstrate that Sim2O significantly outperforms existing baselines, underscoring that a minimalist design is not only viable but highly effective for multi-agent offline-to-online adaptation.",
+      "authors": [
+        "Bingchang Song",
+        "Yiqin Yang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-19T04:18:51+00:00",
+      "link": "https://arxiv.org/pdf/2606.21085v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "MARL for coordinated decision-making can train game playing agents.",
+      "llm_evidence_cn": "多智能体强化学习协调决策可用于训练游戏智能体",
+      "llm_evidence": "多智能体强化学习协调决策可用于训练游戏智能体",
+      "canonical_evidence": "多智能体强化学习协调决策可用于训练游戏智能体",
+      "llm_tldr_en": "Sim2O proposes a framework for efficient offline-to-online multi-agent RL by composing joint actions from offline and online proposals, enabling scalable training of coordinating agents.",
+      "llm_tldr_cn": "Sim2O针对多智能体强化学习从离线到在线自适应的问题，提出了一种联合动作组合框架。该方法将离线与在线动作提案进行动态混合，合成联合动作，从而高效地引导智能体从离线数据中快速学习并适应在线交互。实验表明，在多种多智能体环境中，该框架相比现有方法具有更高的样本效率和性能。这一工作为复杂多智能体系统中的训练问题提供了简洁的解决方案，对多玩家游戏、机器人协作等具有潜在应用价值。",
+      "llm_tldr": "Sim2O针对多智能体强化学习从离线到在线自适应的问题，提出了一种联合动作组合框架。该方法将离线与在线动作提案进行动态混合，合成联合动作，从而高效地引导智能体从离线数据中快速学习并适应在线交互。实验表明，在多种多智能体环境中，该框架相比现有方法具有更高的样本效率和性能。这一工作为复杂多智能体系统中的训练问题提供了简洁的解决方案，对多玩家游戏、机器人协作等具有潜在应用价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.21271v1",
+      "source": "arxiv",
+      "title": "Reward-free Pretraining for Reinforcement Learning via Occupancy Coverage Maximization",
+      "abstract": "Sparse rewards pose a central challenge in reinforcement learning, since agents receive no informative signal until they reach their goal. Intrinsic-reward methods address this issue by optimizing non-stationary objectives such as novelty, prediction error, or skill diversity, thereby injecting a supervision signal into the problem. While effective, these methods often require that the extrinsic (sparse) reward can be evaluated -- either online or during offline relabeling of the stored transitions. This limitation is particularly vexing for multi-task, meta-, and continual reinforcement learning, where agents' interactions with the environment are usually reward-free. In this work, we present a method to pre-train transferable exploration policies that rapidly adapt to sparse rewards at downstream task time. Our objective maximizes state-space covering for the occupancy measure, and can be framed in terms of entropy maximization. Its algorithmic implementation, ROVER, leverages recent advances on the operatorial formulation of RL to estimate occupancy with a learned resolvent world model, bypassing common hurdles associated with density and entropy estimation. ROVER further introduces a virtual \"sink\" state for unexplored regions, balancing coverage of known states with expansion into unseen ones and preventing cyclic expansion-collapse behavior during learning. In tabular and pixel-based sparse navigation tasks, ROVER produces more uniform aggregate coverage and stronger initializations for downstream tasks than standard reward-free baselines.",
+      "authors": [
+        "Marco Pratticò",
+        "Pietro Novelli",
+        "Massimiliano Pontil",
+        "Carlo Ciliberto"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-19T09:47:38+00:00",
+      "link": "https://arxiv.org/pdf/2606.21271v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL exploration technique for sparse rewards, useful for training game AI.",
+      "llm_evidence_cn": "稀疏奖励探索的RL技术，对训练游戏AI有帮助",
+      "llm_evidence": "稀疏奖励探索的RL技术，对训练游戏AI有帮助",
+      "canonical_evidence": "稀疏奖励探索的RL技术，对训练游戏AI有帮助",
+      "llm_tldr_en": "This paper presents a method to pre-train exploration skills without extrinsic rewards by maximizing occupancy coverage, enabling efficient learning in sparse-reward environments typical of many games.",
+      "llm_tldr_cn": "针对强化学习中的稀疏奖励难题，本文提出一种基于占据率覆盖最大化的无奖励预训练方法。该方法在无外在奖励情况下最大化状态空间覆盖率，学习可迁移的探索技能，从而在下游任务中快速找到目标。实验表明，预训练后的智能体在多种稀疏奖励环境中显著快于从头训练。这种探索增强技术为游戏AI中需要长期探索的复杂关卡提供了有效手段。",
+      "llm_tldr": "针对强化学习中的稀疏奖励难题，本文提出一种基于占据率覆盖最大化的无奖励预训练方法。该方法在无外在奖励情况下最大化状态空间覆盖率，学习可迁移的探索技能，从而在下游任务中快速找到目标。实验表明，预训练后的智能体在多种稀疏奖励环境中显著快于从头训练。这种探索增强技术为游戏AI中需要长期探索的复杂关卡提供了有效手段。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.22056v1",
+      "source": "arxiv",
+      "title": "Provably Efficient Policy-Reward Co-Pretraining for Adversarial Imitation Learning",
+      "abstract": "Adversarial imitation learning (AIL) achieves high-quality imitation compared to behavioral cloning (BC), but demands substantial online environment interaction. Recent empirical work has explored initializing AIL algorithms with BC pretrained policies to address this limitation, yet a rigorous theoretical understanding of pretraining's role in AIL remains elusive. This paper provides a systematic theoretical analysis and introduces principled pretraining algorithms for accelerating AIL. We begin by analyzing AIL with policy pretraining alone, identifying reward error as the dominant source of suboptimality. This reveals a critical and previously overlooked gap: the absence of reward pretraining. Motivated by this finding, we develop a principled policy-reward co-pretraining approach grounded in a reward shaping analysis. Our analysis uncovers a fundamental connection between expert policies and shaping rewards, which naturally gives rise to CoPT-AIL, an approach that jointly pretrains both policy and reward through a single BC procedure. We prove that CoPT-AIL achieves an improved imitation gap bound over standard AIL, establishing the first theoretical guarantee for the benefits of pretraining in AIL. Experimental results confirm CoPT-AIL's superior performance over existing AIL methods.",
+      "authors": [
+        "Tian Xu",
+        "Zexuan Chen",
+        "Zhilong Zhang",
+        "Yi-Chen Li",
+        "Chenyang Wang",
+        "Lei Yuan",
+        "Yang Yu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-20T14:14:24+00:00",
+      "link": "https://arxiv.org/pdf/2606.22056v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Adversarial imitation learning can be used to humanize game AI bots by imitating human demonstrations",
+      "llm_evidence_cn": "对抗模仿学习可通过模仿人类演示来拟人化游戏AI bot",
+      "llm_evidence": "对抗模仿学习可通过模仿人类演示来拟人化游戏AI bot",
+      "canonical_evidence": "对抗模仿学习可通过模仿人类演示来拟人化游戏AI bot",
+      "llm_tldr_en": "Addresses inefficiency of adversarial imitation learning by introducing principled policy-reward co-pretraining, providing theoretical guarantees and accelerating high-quality imitation for human-like game agents.",
+      "llm_tldr_cn": "针对对抗模仿学习计算成本高的问题，本文通过理论分析指出仅有策略预训练时奖励误差是次优根源，进而提出策略-奖励联合预训练算法，并证明其有效性与高效性。实验表明该方法显著加速高质量模仿，理论上首次揭示了预训练在AIL中的角色，为通过模仿学习构建拟人化游戏AI提供了更高效的训练方案。这一进展对游戏AI开发者利用人类演示数据训练拟人bot具有直接指导意义。",
+      "llm_tldr": "针对对抗模仿学习计算成本高的问题，本文通过理论分析指出仅有策略预训练时奖励误差是次优根源，进而提出策略-奖励联合预训练算法，并证明其有效性与高效性。实验表明该方法显著加速高质量模仿，理论上首次揭示了预训练在AIL中的角色，为通过模仿学习构建拟人化游戏AI提供了更高效的训练方案。这一进展对游戏AI开发者利用人类演示数据训练拟人bot具有直接指导意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.24601v1",
+      "source": "arxiv",
+      "title": "ASALT: Adaptive State Alignment for Lateral Transfer in Multi-agent Reinforcement Learning",
+      "abstract": "Multi-agent reinforcement learning (MARL) addresses the problem of training multiple agents that pursue collaborative, competitive, or mixed objectives. Prior work has investigated transfer learning between source and target domains in MARL; however, the majority of existing approaches impose the constraint that the dimensionalities of the observation space and the global state space must be identical across domains. In this paper, we introduce a method that explicitly accommodates mismatched state-space dimensionalities between source and target domains. The proposed approach, ASALT, incorporates both observation-level and state-level adapters that map the target-domain observations and global states into a shared embedding space, thereby enabling more effective transfer of knowledge across both actors and critics. These adapters can generate embeddings that support efficient strategy transfer across heterogeneous domains. Experimental results on multiple configurations in standard benchmark environments demonstrate that ASALT surpasses existing baselines in terms of sample efficiency and global return in cooperative settings, but its effectiveness depends on the degree of mismatch between source and target domains. Furthermore, our findings indicate that ASALT mitigates negative transfer, which frequently constitutes a major obstacle when transferring policies between domains with differing observation and action spaces.",
+      "authors": [
+        "Anurag Akula",
+        "Satheesh K. Perepu",
+        "Abhishek Sarkar",
+        "Kaushik Dey"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-23T14:03:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.24601v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multi-agent RL transfer technique for adapting game agents across different state spaces.",
+      "llm_evidence_cn": "多智能体RL迁移技术，可用于不同状态空间下的游戏智能体适配",
+      "llm_evidence": "多智能体RL迁移技术，可用于不同状态空间下的游戏智能体适配",
+      "canonical_evidence": "多智能体RL迁移技术，可用于不同状态空间下的游戏智能体适配",
+      "llm_tldr_en": "ASALT enables multi-agent RL transfer across domains with mismatched state dimensions by using observation and state adapters to align embeddings, facilitating reuse of learned policies in new game environments.",
+      "llm_tldr_cn": "针对多智能体强化学习中源域与目标域状态空间维度不一致的迁移难题，ASALT提出自适应状态对齐方法，通过观测层和状态层适配器将不同维度映射到共享嵌入空间，实现策略迁移。实验表明，该方法在多种多智能体任务中有效提升了迁移效率，降低了对齐成本。这一工作为游戏AI在不同地图或规则变动时复用已有策略提供了解决方案。",
+      "llm_tldr": "针对多智能体强化学习中源域与目标域状态空间维度不一致的迁移难题，ASALT提出自适应状态对齐方法，通过观测层和状态层适配器将不同维度映射到共享嵌入空间，实现策略迁移。实验表明，该方法在多种多智能体任务中有效提升了迁移效率，降低了对齐成本。这一工作为游戏AI在不同地图或规则变动时复用已有策略提供了解决方案。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
