@@ -6,37 +6,34 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-27
-- 运行时间：2026-06-27 21:10:06 UTC
+- 最新运行日期：2026-06-28
+- 运行时间：2026-06-28 20:52:42 UTC
 - 运行状态：成功
-- 本次总论文数：5
-- 精读区：1
-- 速读区：4
+- 本次总论文数：4
+- 精读区：2
+- 速读区：2
 
 ### 今日简报（AI）
-今日精读1篇高分论文，速览4篇强化学习与智能体研究，聚焦角色扮演与策略优化。
-最值得关注：基于心理学推理的角色感知策略，让通用角色扮演智能体表现显著提升；多智能体协同与免奖励预训练方向亦有新进展。
-对AI角色扮演感兴趣的读者，可深入心理学知识库与策略微调方法，探索更拟人的交互设计。
-- 详情：[/202606/27/README](/202606/27/README)
+今日精读两篇高分论文，聚焦游戏作弊检测的零开销防御与多智能体迁移学习。  
+最值得关注的是《Shoot the Honey》用伪装策略实现毫秒级作弊检测，《GCT-MARL》则通过图对比迁移大幅提升多智能体协作效率。  
+建议开发者尝试将主动防御与表征迁移结合，用于在线游戏的实时反作弊和多机器人协作场景。
+- 详情：[/202606/28/README](/202606/28/README)
 
 ### 精读区论文标签
-1. [Improving General Role-Playing Agents via Psychology-Grounded Reasoning and Role-Aware Policy Optimization](/202606/27/2606.27025v1-improving-general-role-playing-agents-via-psychology-grounded-reasoning-and-role-aware-policy-optimization)  
+1. [Shoot the Honey, Cloak the Player: Towards Zero-Runtime-Overhead Proactive Defense and Detection for Visual Game Cheating](/202606/28/2606.25734v1-shoot-the-honey-cloak-the-player-towards-zero-runtime-overhead-proactive-defense-and-detection-for-visual-game-cheating)  
+   标签：评分：9.0/10、query:gah
+   evidence：提出针对FPS游戏中模仿人类的视觉自瞄作弊器的防御方法
+2. [GCT-MARL: Graph-Based Contrastive Transfer for Sample-Efficient Cooperative Multi-Agent Reinforcement Learning](/202606/28/2606.25073v1-gct-marl-graph-based-contrastive-transfer-for-sample-efficient-cooperative-multi-agent-reinforcement-learning)  
    标签：评分：8.0/10、query:gah
-   evidence：提出基于心理学的推理以实现类人角色扮演智能体
+   evidence：基于图对比学习的迁移方法，用于跨任务训练多个游戏智能体
 
 ### 速读区论文标签
-1. [Sim2O: Efficient Offline-to-Online MARL via Joint Action Composition](/202606/27/2606.21085v1-sim2o-efficient-offline-to-online-marl-via-joint-action-composition)  
+1. [Low Variance Trust Region Optimization with Independent Actors and Sequential Updates in Cooperative Multi-agent Reinforcement Learning](/202606/28/2606.25526v1-low-variance-trust-region-optimization-with-independent-actors-and-sequential-updates-in-cooperative-multi-agent-reinforcement-learning)  
+   标签：评分：7.0/10、query:gah
+   evidence：提出一种合作多智能体强化学习算法，采用信任域方法
+2. [Select-to-Act: Hierarchical Reinforcement Learning via Adaptive Language Guidance](/202606/28/2606.22350v1-select-to-act-hierarchical-reinforcement-learning-via-adaptive-language-guidance)  
    标签：评分：6.0/10、query:gah
-   evidence：多智能体强化学习协调决策可用于训练游戏智能体
-2. [Reward-free Pretraining for Reinforcement Learning via Occupancy Coverage Maximization](/202606/27/2606.21271v1-reward-free-pretraining-for-reinforcement-learning-via-occupancy-coverage-maximization)  
-   标签：评分：6.0/10、query:gah
-   evidence：稀疏奖励探索的RL技术，对训练游戏AI有帮助
-3. [Provably Efficient Policy-Reward Co-Pretraining for Adversarial Imitation Learning](/202606/27/2606.22056v1-provably-efficient-policy-reward-co-pretraining-for-adversarial-imitation-learning)  
-   标签：评分：6.0/10、query:gah
-   evidence：对抗模仿学习可通过模仿人类演示来拟人化游戏AI bot
-4. [ASALT: Adaptive State Alignment for Lateral Transfer in Multi-agent Reinforcement Learning](/202606/27/2606.24601v1-asalt-adaptive-state-alignment-for-lateral-transfer-in-multi-agent-reinforcement-learning)  
-   标签：评分：6.0/10、query:gah
-   evidence：多智能体RL迁移技术，可用于不同状态空间下的游戏智能体适配
+   evidence：基于语言指导的分层强化学习提高智能体训练效率
 
 
 <div class="dpr-home-promo-card">

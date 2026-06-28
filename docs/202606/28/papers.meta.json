@@ -1,0 +1,69 @@
+{
+  "label": "2026-06-28",
+  "date": "2026-06-28",
+  "generated_at": "2026-06-28T20:52:47",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202606/28/2606.25734v1-shoot-the-honey-cloak-the-player-towards-zero-runtime-overhead-proactive-defense-and-detection-for-visual-game-cheating",
+      "section": "deep",
+      "title_en": "Shoot the Honey, Cloak the Player: Towards Zero-Runtime-Overhead Proactive Defense and Detection for Visual Game Cheating",
+      "authors": "Jianing Wang, Chuqi Zhang, Yuancheng Jiang, Adil Ahmad, Shanqing Guo",
+      "date": "2026-06-24",
+      "pdf": "https://arxiv.org/pdf/2606.25734v1",
+      "score": "9.0",
+      "evidence": "提出针对FPS游戏中模仿人类的视觉自瞄作弊器的防御方法",
+      "tldr": "视觉自瞄外挂仅分析游戏渲染画面而不触碰内存，给传统反作弊带来挑战，现有防御难以兼顾实时保护与可靠检测。AimTrap作为首个端到端方案，融合对抗伪装与蜜罐两种纹理：ACT将玩家对自瞄隐身，AHT设置假目标诱骗自瞄锁定并记录轨迹，同时结合可微渲染合成鲁棒3D纹理实现低开销干扰。实际对先进自瞄的防御成功率最高96.9%，误报几近为零且无额外性能负担，为FPS游戏反作弊提供了一个兼顾实时防御与事后问责的新范式。",
+      "tags": "query:gah",
+      "abstract_en": "Visual aimbots have emerged as a serious cheating threat in first-person shooter (FPS) games, as they evade existing anti-cheat defenses by operating only on rendered frames rather than game memory. However, existing defenses fail to provide an end-to-end solution: post-hoc behavior detectors cannot protect match integrity in real time and are increasingly fragile against human-mimicking aimbots, while proactive runtime defenses often lack accountability, incur substantial overhead, or require intrusive system integration.   We present AimTrap, the first end-to-end defense against visual aimbots that combines real-time protection with post-game detection using two adversarial texture mechanisms. Adversarial Camouflage Textures (ACT) hide real players from aimbots, while Adversarial Honeypot Textures (AHT) lure aimbots into locking onto fake targets, yielding strong evidence of cheating. To make this practical, AimTrap integrates differentiable rendering with Expectation over Renderings for robust 3D texture synthesis, secure texture management, and a novel honeypot-interaction trajectory analysis pipeline for accurate cheating attribution.   In real-game evaluation against a state-of-the-art visual aimbot, ACT achieves 85.1% defense success, AHT achieves 96.9%. Compared with prior baselines, AimTrap attains extremely low false-positive rates, while incurring negligible runtime overhead. These results show that AimTrap provides a practical and effective end-to-end defense against visual aimbots.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/28/2606.25073v1-gct-marl-graph-based-contrastive-transfer-for-sample-efficient-cooperative-multi-agent-reinforcement-learning",
+      "section": "deep",
+      "title_en": "GCT-MARL: Graph-Based Contrastive Transfer for Sample-Efficient Cooperative Multi-Agent Reinforcement Learning",
+      "authors": "Animesh Animesh, Satheesh K Perepu, Kaushik Dey",
+      "date": "2026-06-23",
+      "pdf": "https://arxiv.org/pdf/2606.25073v1",
+      "score": "8.0",
+      "evidence": "基于图对比学习的迁移方法，用于跨任务训练多个游戏智能体",
+      "tldr": "在合作多智能体强化学习的实际部署场景中，为每个新环境或任务从头训练智能体既昂贵且样本效率低下。本文提出GCT-MARL，一个基于图对比学习的样本高效迁移框架。它在MAIL多视图图对比骨干上，结合每视图自适应加权对齐损失和两阶段训练协议，专门设计用于跨不同规模和群体构成的迁移。实验证明，在同构（同阵营内N变化）和异构（跨阵营、混合兵种）场景下，所提方法相比从零训练显著加速收敛，并支持通过顺序链接两阶段协议进行持续学习。这项工作提供了统一方法，缓解了当前MARL迁移的关键局限，并在方法论与实证层面带来新见解。",
+      "tags": "query:gah",
+      "abstract_en": "In cooperative multi-agent reinforcement learning (MARL), from a deployment perspective, it is challenging and expensive to train agents from scratch for each new environment or task. In this work, we propose GCT-MARL, a transfer learning framework that builds on the multi-view graph contrastive backbone of MAIL and augments it with a per-view, adaptively weighted alignment loss and a two-phase training protocol specifically designed for transfer across populations of varying sizes and compositions. We empirically demonstrate that the proposed framework markedly accelerates convergence on the target task relative to from-scratch training, in both homogeneous (within-faction, varying N) and heterogeneous (cross-faction and mixed unit-type) transfer scenarios. Furthermore, we show that the framework naturally supports continual learning by sequentially chaining the two-phase transfer protocol across a series of related tasks. Overall, this work provides a unified approach to mitigating key limitations in current MARL transfer methods with new insights at both methodological and empirical levels.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/28/2606.25526v1-low-variance-trust-region-optimization-with-independent-actors-and-sequential-updates-in-cooperative-multi-agent-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Low Variance Trust Region Optimization with Independent Actors and Sequential Updates in Cooperative Multi-agent Reinforcement Learning",
+      "authors": "Bang Giang Le, Viet Cuong Ta",
+      "date": "2026-06-24",
+      "pdf": "https://arxiv.org/pdf/2606.25526v1",
+      "score": "7.0",
+      "evidence": "提出一种合作多智能体强化学习算法，采用信任域方法",
+      "tldr": "合作多智能体信任域优化中，独立行动者顺序更新导致优势估计方差指数级增长，严重破坏训练稳定性。本文提出剪切目标约束优势函数波动，理论上保证单调改进与次线性收敛至ε-纳什均衡。据此开发两个实用算法，在StarCraft II等三个基准上超越现有方法，收敛稳定且优势方差大幅降低。该研究为多智能体协作训练提供了可靠的低方差解决方案，具有重要应用价值。",
+      "tags": "query:gah",
+      "abstract_en": "Cooperative multi-agent reinforcement learning assumes each agent shares the same reward function and can be trained effectively using the Trust Region framework of single-agent. Instead of relying on other agents' actions, the independent actors setting considers each agent to act based only on its local information, thus having more flexible applications. However, in the sequential update framework, it is required to re-estimate the joint advantage function after each individual agent's policy step. Despite the practical success of importance sampling, the updated advantage function suffers from exponentially high variance problems, which likely result in unstable convergence. In this work, we first analyze the high variance advantage both empirically and theoretically. To overcome this limitation, we introduce a clipping objective to control the upper bounds of the advantage fluctuation in sequential updates. With the proposed objective, we provide a monotonic bound with sub-linear convergence to $ε$-Nash Equilibria. We further derive two new practical algorithms using our clipping objective. The experiment results on three popular multi-agent reinforcement learning benchmarks show that our proposed method outperforms the tested baselines in most environments. By carefully analyzing different training settings, our proposed method is highlighted with both stable convergence properties and the desired low advantage variance estimation. For reproducibility purposes, our source code is publicly available at https://github.com/giangbang/Low-Variance-Trust-Region-MARL.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/28/2606.22350v1-select-to-act-hierarchical-reinforcement-learning-via-adaptive-language-guidance",
+      "section": "quick",
+      "title_en": "Select-to-Act: Hierarchical Reinforcement Learning via Adaptive Language Guidance",
+      "authors": "Hanping Zhang, Adam Koziak, Yuhong Guo",
+      "date": "2026-06-21",
+      "pdf": "https://arxiv.org/pdf/2606.22350v1",
+      "score": "6.0",
+      "evidence": "基于语言指导的分层强化学习提高智能体训练效率",
+      "tldr": "强化学习在序贯决策中应用广泛，但样本效率低下源于与环境的高昂交互成本。近期研究尝试引入自然语言指令以提升效率，然而多将整个指令作为单一条件，忽略其在任务不同阶段的差异化指导作用。本文提出HRLLI框架，将指令分解为分段元素，并设计选择-行动范式：高层语义策略依据状态动态选择最相关片段，低层策略据此执行动作，两者协同优化。在指令密集型环境RTFM中，HRLLI显著超越现有基线，表明显式建模自适应指令选择能极大增强强化学习的有效性，为复杂任务中高效利用语言知识开辟新方向。",
+      "tags": "query:gah",
+      "abstract_en": "Reinforcement Learning (RL) has been widely applied to sequential decision-making, yet it often suffers from poor sample efficiency due to costly interactions with the environment. A limited line of recent work has started exploring improving RL efficiency by leveraging external knowledge expressed in natural-language instructions. However, the few existing approaches typically treat the entire instruction as a single conditioning input, failing to account for the stage-dependent nature of language guidance, especially in complex environments. In this paper, we propose \\emph{Hierarchical Reinforcement Learning with Language Instructions (HRLLI)}, a hierarchical RL framework that explicitly models natural-language instructions as dynamically selectable semantic guidance during decision-making. HRLLI decomposes instructions into a set of piecewise guidance elements, where each instruction piece may become relevant at different stages of interaction with the environment. A novel hierarchical RL policy structure is then formulated in a \\emph{Select-to-Act} paradigm: a high-level semantic policy acts as a guidance selector that selects the most relevant instruction piece to the current state to guide the low-level agent's decision, while a low-level policy executes environment actions conditioned on the selected guidance. The two-level policies are learned simultaneously to maximize augmented expected returns from interactions with the environment. This design enables the agent to adaptively ground language instructions into stage-specific decisions during interaction. Experiments on the instruction-intensive RTFM benchmark show that HRLLI consistently outperforms strong instruction-conditioned RL baselines, demonstrating that explicitly modeling adaptive instruction selection significantly improves the effectiveness of RL.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

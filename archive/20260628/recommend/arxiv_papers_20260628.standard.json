@@ -1,0 +1,169 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-28T20:47:49.570865+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2606.25734v1",
+      "source": "arxiv",
+      "title": "Shoot the Honey, Cloak the Player: Towards Zero-Runtime-Overhead Proactive Defense and Detection for Visual Game Cheating",
+      "abstract": "Visual aimbots have emerged as a serious cheating threat in first-person shooter (FPS) games, as they evade existing anti-cheat defenses by operating only on rendered frames rather than game memory. However, existing defenses fail to provide an end-to-end solution: post-hoc behavior detectors cannot protect match integrity in real time and are increasingly fragile against human-mimicking aimbots, while proactive runtime defenses often lack accountability, incur substantial overhead, or require intrusive system integration.   We present AimTrap, the first end-to-end defense against visual aimbots that combines real-time protection with post-game detection using two adversarial texture mechanisms. Adversarial Camouflage Textures (ACT) hide real players from aimbots, while Adversarial Honeypot Textures (AHT) lure aimbots into locking onto fake targets, yielding strong evidence of cheating. To make this practical, AimTrap integrates differentiable rendering with Expectation over Renderings for robust 3D texture synthesis, secure texture management, and a novel honeypot-interaction trajectory analysis pipeline for accurate cheating attribution.   In real-game evaluation against a state-of-the-art visual aimbot, ACT achieves 85.1% defense success, AHT achieves 96.9%. Compared with prior baselines, AimTrap attains extremely low false-positive rates, while incurring negligible runtime overhead. These results show that AimTrap provides a practical and effective end-to-end defense against visual aimbots.",
+      "authors": [
+        "Jianing Wang",
+        "Chuqi Zhang",
+        "Yuancheng Jiang",
+        "Adil Ahmad",
+        "Shanqing Guo"
+      ],
+      "primary_category": "cs.CR",
+      "categories": [
+        "cs.CR"
+      ],
+      "published": "2026-06-24T12:00:10+00:00",
+      "link": "https://arxiv.org/pdf/2606.25734v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes defense against human-mimicking visual aimbots in FPS games",
+      "llm_evidence_cn": "提出针对FPS游戏中模仿人类的视觉自瞄作弊器的防御方法",
+      "llm_evidence": "提出针对FPS游戏中模仿人类的视觉自瞄作弊器的防御方法",
+      "canonical_evidence": "提出针对FPS游戏中模仿人类的视觉自瞄作弊器的防御方法",
+      "llm_tldr_en": "This paper presents AimTrap, an end-to-end defense combining real-time adversarial textures and post-game detection to combat visual aimbots that mimic human behavior, achieving zero runtime overhead and high detection accuracy.",
+      "llm_tldr_cn": "针对FPS游戏中视觉自瞄作弊器模拟人类行为难以实时检测的问题，本文提出AimTrap系统，结合两种对抗纹理机制实现实时防护与赛后检测。通过在游戏画面中嵌入对抗性图案，误导作弊器瞄准同时不影响人类玩家，并在赛后分析行为模式识别作弊者。实验证明该方法能以零运行时开销有效检测人模仿真自瞄，维护竞技公平性，对理解游戏AI拟人行为与反作弊研究有重要意义。",
+      "llm_tldr": "针对FPS游戏中视觉自瞄作弊器模拟人类行为难以实时检测的问题，本文提出AimTrap系统，结合两种对抗纹理机制实现实时防护与赛后检测。通过在游戏画面中嵌入对抗性图案，误导作弊器瞄准同时不影响人类玩家，并在赛后分析行为模式识别作弊者。实验证明该方法能以零运行时开销有效检测人模仿真自瞄，维护竞技公平性，对理解游戏AI拟人行为与反作弊研究有重要意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.25073v1",
+      "source": "arxiv",
+      "title": "GCT-MARL: Graph-Based Contrastive Transfer for Sample-Efficient Cooperative Multi-Agent Reinforcement Learning",
+      "abstract": "In cooperative multi-agent reinforcement learning (MARL), from a deployment perspective, it is challenging and expensive to train agents from scratch for each new environment or task. In this work, we propose GCT-MARL, a transfer learning framework that builds on the multi-view graph contrastive backbone of MAIL and augments it with a per-view, adaptively weighted alignment loss and a two-phase training protocol specifically designed for transfer across populations of varying sizes and compositions. We empirically demonstrate that the proposed framework markedly accelerates convergence on the target task relative to from-scratch training, in both homogeneous (within-faction, varying N) and heterogeneous (cross-faction and mixed unit-type) transfer scenarios. Furthermore, we show that the framework naturally supports continual learning by sequentially chaining the two-phase transfer protocol across a series of related tasks. Overall, this work provides a unified approach to mitigating key limitations in current MARL transfer methods with new insights at both methodological and empirical levels.",
+      "authors": [
+        "Animesh Animesh",
+        "Satheesh K Perepu",
+        "Kaushik Dey"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-06-23T18:31:27+00:00",
+      "link": "https://arxiv.org/pdf/2606.25073v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Graph-based contrastive transfer for training multiple game agents across tasks",
+      "llm_evidence_cn": "基于图对比学习的迁移方法，用于跨任务训练多个游戏智能体",
+      "llm_evidence": "基于图对比学习的迁移方法，用于跨任务训练多个游戏智能体",
+      "canonical_evidence": "基于图对比学习的迁移方法，用于跨任务训练多个游戏智能体",
+      "llm_tldr_en": "GCT-MARL uses graph contrastive representations and adaptive alignment to transfer knowledge between multi-agent RL tasks, accelerating training of cooperative game bots.",
+      "llm_tldr_cn": "针对多智能体强化学习中不同任务间从头训练成本高的问题，提出GCT-MARL框架，基于多视图图对比相异度，加入自适应加权对齐损失和两阶段训练协议，实现跨不同规模和组成的群体迁移。实验表明，该方法在同类和异类环境中显著加速目标任务的收敛。该技术可大幅减少游戏AI团队训练的环境交互需求。",
+      "llm_tldr": "针对多智能体强化学习中不同任务间从头训练成本高的问题，提出GCT-MARL框架，基于多视图图对比相异度，加入自适应加权对齐损失和两阶段训练协议，实现跨不同规模和组成的群体迁移。实验表明，该方法在同类和异类环境中显著加速目标任务的收敛。该技术可大幅减少游戏AI团队训练的环境交互需求。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.25526v1",
+      "source": "arxiv",
+      "title": "Low Variance Trust Region Optimization with Independent Actors and Sequential Updates in Cooperative Multi-agent Reinforcement Learning",
+      "abstract": "Cooperative multi-agent reinforcement learning assumes each agent shares the same reward function and can be trained effectively using the Trust Region framework of single-agent. Instead of relying on other agents' actions, the independent actors setting considers each agent to act based only on its local information, thus having more flexible applications. However, in the sequential update framework, it is required to re-estimate the joint advantage function after each individual agent's policy step. Despite the practical success of importance sampling, the updated advantage function suffers from exponentially high variance problems, which likely result in unstable convergence. In this work, we first analyze the high variance advantage both empirically and theoretically. To overcome this limitation, we introduce a clipping objective to control the upper bounds of the advantage fluctuation in sequential updates. With the proposed objective, we provide a monotonic bound with sub-linear convergence to $ε$-Nash Equilibria. We further derive two new practical algorithms using our clipping objective. The experiment results on three popular multi-agent reinforcement learning benchmarks show that our proposed method outperforms the tested baselines in most environments. By carefully analyzing different training settings, our proposed method is highlighted with both stable convergence properties and the desired low advantage variance estimation. For reproducibility purposes, our source code is publicly available at https://github.com/giangbang/Low-Variance-Trust-Region-MARL.",
+      "authors": [
+        "Bang Giang Le",
+        "Viet Cuong Ta"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-06-24T08:05:11+00:00",
+      "link": "https://arxiv.org/pdf/2606.25526v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "presents a cooperative multi-agent RL algorithm with trust region method",
+      "llm_evidence_cn": "提出一种合作多智能体强化学习算法，采用信任域方法",
+      "llm_evidence": "提出一种合作多智能体强化学习算法，采用信任域方法",
+      "canonical_evidence": "提出一种合作多智能体强化学习算法，采用信任域方法",
+      "llm_tldr_en": "This paper proposes a low-variance trust region method for cooperative MARL with independent actors and sequential updates, reducing variance in advantage estimation to improve stability and convergence in multi-agent settings.",
+      "llm_tldr_cn": "针对合作多智能体强化学习在顺序更新时联合优势函数估计方差指数增长导致训练不稳定的问题，本文提出一种低方差信任域优化方法。通过独立行动者设定与顺序更新结合，利用重采样技术降低优势函数方差，并在多个任务上验证了收敛性和稳定性提升。该方法为多智能体游戏AI训练提供了更稳定的算法基础。",
+      "llm_tldr": "针对合作多智能体强化学习在顺序更新时联合优势函数估计方差指数增长导致训练不稳定的问题，本文提出一种低方差信任域优化方法。通过独立行动者设定与顺序更新结合，利用重采样技术降低优势函数方差，并在多个任务上验证了收敛性和稳定性提升。该方法为多智能体游戏AI训练提供了更稳定的算法基础。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.22350v1",
+      "source": "arxiv",
+      "title": "Select-to-Act: Hierarchical Reinforcement Learning via Adaptive Language Guidance",
+      "abstract": "Reinforcement Learning (RL) has been widely applied to sequential decision-making, yet it often suffers from poor sample efficiency due to costly interactions with the environment. A limited line of recent work has started exploring improving RL efficiency by leveraging external knowledge expressed in natural-language instructions. However, the few existing approaches typically treat the entire instruction as a single conditioning input, failing to account for the stage-dependent nature of language guidance, especially in complex environments. In this paper, we propose \\emph{Hierarchical Reinforcement Learning with Language Instructions (HRLLI)}, a hierarchical RL framework that explicitly models natural-language instructions as dynamically selectable semantic guidance during decision-making. HRLLI decomposes instructions into a set of piecewise guidance elements, where each instruction piece may become relevant at different stages of interaction with the environment. A novel hierarchical RL policy structure is then formulated in a \\emph{Select-to-Act} paradigm: a high-level semantic policy acts as a guidance selector that selects the most relevant instruction piece to the current state to guide the low-level agent's decision, while a low-level policy executes environment actions conditioned on the selected guidance. The two-level policies are learned simultaneously to maximize augmented expected returns from interactions with the environment. This design enables the agent to adaptively ground language instructions into stage-specific decisions during interaction. Experiments on the instruction-intensive RTFM benchmark show that HRLLI consistently outperforms strong instruction-conditioned RL baselines, demonstrating that explicitly modeling adaptive instruction selection significantly improves the effectiveness of RL.",
+      "authors": [
+        "Hanping Zhang",
+        "Adam Koziak",
+        "Yuhong Guo"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-21T06:15:42+00:00",
+      "link": "https://arxiv.org/pdf/2606.22350v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Hierarchical RL with language instructions improves sample efficiency for training agents",
+      "llm_evidence_cn": "基于语言指导的分层强化学习提高智能体训练效率",
+      "llm_evidence": "基于语言指导的分层强化学习提高智能体训练效率",
+      "canonical_evidence": "基于语言指导的分层强化学习提高智能体训练效率",
+      "llm_tldr_en": "Introduces HRLLI, a hierarchical RL framework that uses language instructions as dynamic subgoals, improving sample efficiency for training agents in complex environments.",
+      "llm_tldr_cn": "针对强化学习样本效率低的问题，本文提出分层强化学习框架HRLLI，将自然语言指令建模为动态选择的子目标，根据训练阶段自适应调整指导。实验表明该方法在复杂环境中提升样本效率，其动态子目标选择机制有助于游戏AI等任务的分层决策。该工作为利用语言知识训练游戏AI等智能体提供了新思路。",
+      "llm_tldr": "针对强化学习样本效率低的问题，本文提出分层强化学习框架HRLLI，将自然语言指令建模为动态选择的子目标，根据训练阶段自适应调整指导。实验表明该方法在复杂环境中提升样本效率，其动态子目标选择机制有助于游戏AI等任务的分层决策。该工作为利用语言知识训练游戏AI等智能体提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
