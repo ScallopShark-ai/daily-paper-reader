@@ -6,34 +6,28 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-28
-- 运行时间：2026-06-28 20:52:42 UTC
+- 最新运行日期：2026-06-29
+- 运行时间：2026-06-29 20:36:25 UTC
 - 运行状态：成功
-- 本次总论文数：4
-- 精读区：2
-- 速读区：2
+- 本次总论文数：2
+- 精读区：1
+- 速读区：1
 
 ### 今日简报（AI）
-今日精读两篇高分论文，聚焦游戏作弊检测的零开销防御与多智能体迁移学习。  
-最值得关注的是《Shoot the Honey》用伪装策略实现毫秒级作弊检测，《GCT-MARL》则通过图对比迁移大幅提升多智能体协作效率。  
-建议开发者尝试将主动防御与表征迁移结合，用于在线游戏的实时反作弊和多机器人协作场景。
-- 详情：[/202606/28/README](/202606/28/README)
+今日通过行为实验逆向揭秘AI代码策略，并探索可解释的强化学习人类反馈框架。  
+最值得关注的是《RevengeBench》从行为中精准抽取隐藏代码策略（8.0分），以及《Themis》为RLHF注入可解释性（7.0分）。  
+下一步可关注模型策略的逆向测试与透明决策机制，避免被AI“伪装”所迷惑。
+- 详情：[/202606/29/README](/202606/29/README)
 
 ### 精读区论文标签
-1. [Shoot the Honey, Cloak the Player: Towards Zero-Runtime-Overhead Proactive Defense and Detection for Visual Game Cheating](/202606/28/2606.25734v1-shoot-the-honey-cloak-the-player-towards-zero-runtime-overhead-proactive-defense-and-detection-for-visual-game-cheating)  
-   标签：评分：9.0/10、query:gah
-   evidence：提出针对FPS游戏中模仿人类的视觉自瞄作弊器的防御方法
-2. [GCT-MARL: Graph-Based Contrastive Transfer for Sample-Efficient Cooperative Multi-Agent Reinforcement Learning](/202606/28/2606.25073v1-gct-marl-graph-based-contrastive-transfer-for-sample-efficient-cooperative-multi-agent-reinforcement-learning)  
+1. [RevengeBench: Reverse Engineering Code-Space Policies from Behavioral Experiments](/202606/29/2606.26094v1-revengebench-reverse-engineering-code-space-policies-from-behavioral-experiments)  
    标签：评分：8.0/10、query:gah
-   evidence：基于图对比学习的迁移方法，用于跨任务训练多个游戏智能体
+   evidence：从行为轨迹逆向工程游戏代理策略的基准
 
 ### 速读区论文标签
-1. [Low Variance Trust Region Optimization with Independent Actors and Sequential Updates in Cooperative Multi-agent Reinforcement Learning](/202606/28/2606.25526v1-low-variance-trust-region-optimization-with-independent-actors-and-sequential-updates-in-cooperative-multi-agent-reinforcement-learning)  
+1. [Themis: An explainable AI-enabled framework for Reinforcement Learning with Human Feedback](/202606/29/2606.24622v1-themis-an-explainable-ai-enabled-framework-for-reinforcement-learning-with-human-feedback)  
    标签：评分：7.0/10、query:gah
-   evidence：提出一种合作多智能体强化学习算法，采用信任域方法
-2. [Select-to-Act: Hierarchical Reinforcement Learning via Adaptive Language Guidance](/202606/28/2606.22350v1-select-to-act-hierarchical-reinforcement-learning-via-adaptive-language-guidance)  
-   标签：评分：6.0/10、query:gah
-   evidence：基于语言指导的分层强化学习提高智能体训练效率
+   evidence：基于人类反馈的强化学习框架，直接适用于训练类人游戏AI机器人
 
 
 <div class="dpr-home-promo-card">

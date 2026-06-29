@@ -1,0 +1,39 @@
+{
+  "label": "2026-06-29",
+  "date": "2026-06-29",
+  "generated_at": "2026-06-29T20:36:36",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202606/29/2606.26094v1-revengebench-reverse-engineering-code-space-policies-from-behavioral-experiments",
+      "section": "deep",
+      "title_en": "RevengeBench: Reverse Engineering Code-Space Policies from Behavioral Experiments",
+      "authors": "Babak Rahmani, Sebastian Dziadzio, Joschka Strüber, Sergio Hernández-Gutiérrez, Matthias Bethge",
+      "date": "2026-06-24",
+      "pdf": "https://arxiv.org/pdf/2606.26094v1",
+      "score": "8.0",
+      "evidence": "从行为轨迹逆向工程游戏代理策略的基准",
+      "tldr": "从行为观察推断智能体内部决策代码是富有挑战的逆问题。本文提出RevengeBench基准，通过学习器观测隐藏目标策略的博弈轨迹，并设计定制对手策略作为行为探针，以获取有效信息，然后提交可执行假设，用连续动作距离衡量恢复效果。在12个先进LLM上，恢复程度在初始距离闭合34%至72%之间，重建的策略在下游玩家对战中带来可测量的竞争优势，尤其对原本难以设计有效反制策略的弱模型。该工作将程序策略的行为恢复定位为代码空间中可处理的逆问题，为对手建模、策略可解释性及从观察推断潜在机制开辟新路径。",
+      "tags": "query:gah",
+      "abstract_en": "For most of scientific history, researchers studying behavior could only infer hidden mechanisms from outward actions: an inverse problem that becomes more tractable when observation is augmented by targeted intervention. We pose a computational analogue: given only behavioral traces of an agent in a game environment, can a learner reconstruct the underlying decision program as executable code, and how much does this reconstruction improve with the ability to design controlled experiments? We introduce RevengeBench, a benchmark of 75 LLM generated, Elo-calibrated policies across five game environments, drawn from CodeClash tournament trajectories. The learner observes the hidden target policy play against sampled opponents and designs behavioral probes in the form of custom opponent policies that elicit informative behavior. It then submits an executable hypothesis, which is evaluated using continuous action-distance metrics. We further validate that recovered code carries informative signal in downstream player-versus-player tournaments. Across twelve frontier LLMs, recovery quality varies substantially (34 to 72% of initial distance closed), with reconstructed policies yielding measurable competitive advantage, particularly for weaker models that otherwise struggle to design effective counter-strategies. Our benchmark positions behavioral recovery of programmatic policies as a tractable inverse problem in code-space, opening a path to opponent modeling, policy interpretability, and the broader question of inferring latent mechanisms from observations.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/29/2606.24622v1-themis-an-explainable-ai-enabled-framework-for-reinforcement-learning-with-human-feedback",
+      "section": "quick",
+      "title_en": "Themis: An explainable AI-enabled framework for Reinforcement Learning with Human Feedback",
+      "authors": "Andreas Chouliaras, Luke Connolly, Dimitris Chatzpoulos",
+      "date": "2026-06-23",
+      "pdf": "https://arxiv.org/pdf/2606.24622v1",
+      "score": "7.0",
+      "evidence": "基于人类反馈的强化学习框架，直接适用于训练类人游戏AI机器人",
+      "tldr": "当前缺少同时集成可解释性与人类反馈的公开强化学习框架。Themis首次将可解释AI与人类反馈结合，支持超200种环境，提供可配置的透明性测试与对齐评估。其奖励模型通过人类偏好训练，性能匹配甚至超越真实奖励；配套云平台自动缩放，在普通商用机上可支持上千用户并发实验。该框架填补了安全RL工具链空白，显著降低实验与部署门槛，推动可解释交互式学习研究。",
+      "tags": "query:gah",
+      "abstract_en": "Training safe Reinforcement Learning (RL) systems is inherently challenging, with no guarantee of avoiding unwanted behaviors. The most effective defenses against this are (i) transparency through explainability and (ii) alignment via human feedback. While both show promising results, no publicly available framework currently combines them. To address this, we introduce Themis, an XAI-enabled testing and evaluation framework for Reinforcement Learning from Human Feedback. Themis supports over 200 widely used environments and is easily configurable for experiments in RL, transparency, and alignment. Our results show that Themis can train reward models that match or outperform the environment's true reward signal using human preferences. We also provide a cloud-based platform for collecting human feedback and managing experiments. It is user-friendly, auto-scalable, and supports large participant groups across multiple experiments without extra development overhead. Tests show Themis can support one thousand users in back-to-back experiments on a modest commercial machine.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,94 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-29T20:32:52.067323+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.26094v1",
+      "source": "arxiv",
+      "title": "RevengeBench: Reverse Engineering Code-Space Policies from Behavioral Experiments",
+      "abstract": "For most of scientific history, researchers studying behavior could only infer hidden mechanisms from outward actions: an inverse problem that becomes more tractable when observation is augmented by targeted intervention. We pose a computational analogue: given only behavioral traces of an agent in a game environment, can a learner reconstruct the underlying decision program as executable code, and how much does this reconstruction improve with the ability to design controlled experiments? We introduce RevengeBench, a benchmark of 75 LLM generated, Elo-calibrated policies across five game environments, drawn from CodeClash tournament trajectories. The learner observes the hidden target policy play against sampled opponents and designs behavioral probes in the form of custom opponent policies that elicit informative behavior. It then submits an executable hypothesis, which is evaluated using continuous action-distance metrics. We further validate that recovered code carries informative signal in downstream player-versus-player tournaments. Across twelve frontier LLMs, recovery quality varies substantially (34 to 72% of initial distance closed), with reconstructed policies yielding measurable competitive advantage, particularly for weaker models that otherwise struggle to design effective counter-strategies. Our benchmark positions behavioral recovery of programmatic policies as a tractable inverse problem in code-space, opening a path to opponent modeling, policy interpretability, and the broader question of inferring latent mechanisms from observations.",
+      "authors": [
+        "Babak Rahmani",
+        "Sebastian Dziadzio",
+        "Joschka Strüber",
+        "Sergio Hernández-Gutiérrez",
+        "Matthias Bethge"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-24T17:59:46+00:00",
+      "link": "https://arxiv.org/pdf/2606.26094v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Benchmark for reverse engineering game agent policies from behavioral traces",
+      "llm_evidence_cn": "从行为轨迹逆向工程游戏代理策略的基准",
+      "llm_evidence": "从行为轨迹逆向工程游戏代理策略的基准",
+      "canonical_evidence": "从行为轨迹逆向工程游戏代理策略的基准",
+      "llm_tldr_en": "Introduces RevengeBench, a benchmark for inferring executable game policies from behavioral traces, using controlled experiments to improve reconstruction of hidden decision programs.",
+      "llm_tldr_cn": "提出RevengeBench基准，通过观察游戏环境中的行为轨迹，逆向推断隐藏的决策程序。该基准包含75个由大语言模型生成、经Elo校准的策略，覆盖五种游戏环境，旨在研究通过受控实验增强策略重建的能力。这项工作为分析游戏AI的行为提供了新工具。",
+      "llm_tldr": "提出RevengeBench基准，通过观察游戏环境中的行为轨迹，逆向推断隐藏的决策程序。该基准包含75个由大语言模型生成、经Elo校准的策略，覆盖五种游戏环境，旨在研究通过受控实验增强策略重建的能力。这项工作为分析游戏AI的行为提供了新工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.24622v1",
+      "source": "arxiv",
+      "title": "Themis: An explainable AI-enabled framework for Reinforcement Learning with Human Feedback",
+      "abstract": "Training safe Reinforcement Learning (RL) systems is inherently challenging, with no guarantee of avoiding unwanted behaviors. The most effective defenses against this are (i) transparency through explainability and (ii) alignment via human feedback. While both show promising results, no publicly available framework currently combines them. To address this, we introduce Themis, an XAI-enabled testing and evaluation framework for Reinforcement Learning from Human Feedback. Themis supports over 200 widely used environments and is easily configurable for experiments in RL, transparency, and alignment. Our results show that Themis can train reward models that match or outperform the environment's true reward signal using human preferences. We also provide a cloud-based platform for collecting human feedback and managing experiments. It is user-friendly, auto-scalable, and supports large participant groups across multiple experiments without extra development overhead. Tests show Themis can support one thousand users in back-to-back experiments on a modest commercial machine.",
+      "authors": [
+        "Andreas Chouliaras",
+        "Luke Connolly",
+        "Dimitris Chatzpoulos"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.HC"
+      ],
+      "published": "2026-06-23T14:20:42+00:00",
+      "link": "https://arxiv.org/pdf/2606.24622v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "RL with human feedback framework directly applicable to training human-like game AI bots",
+      "llm_evidence_cn": "基于人类反馈的强化学习框架，直接适用于训练类人游戏AI机器人",
+      "llm_evidence": "基于人类反馈的强化学习框架，直接适用于训练类人游戏AI机器人",
+      "canonical_evidence": "基于人类反馈的强化学习框架，直接适用于训练类人游戏AI机器人",
+      "llm_tldr_en": "Themis is an explainable AI framework for RL with human feedback, enabling safe and transparent training of agents aligned with human preferences, ideal for humanizing game bots.",
+      "llm_tldr_cn": "开发了Themis框架，结合可解释AI与人类反馈强化学习，提供安全透明的训练环境。支持200多个环境，能够利用人类偏好训练奖励模型，使智能体行为与人类期望对齐。这项工作为创建拟人化游戏AI bot提供了完整的工具链，有助于提升游戏AI的行为真实性和可接受度。",
+      "llm_tldr": "开发了Themis框架，结合可解释AI与人类反馈强化学习，提供安全透明的训练环境。支持200多个环境，能够利用人类偏好训练奖励模型，使智能体行为与人类期望对齐。这项工作为创建拟人化游戏AI bot提供了完整的工具链，有助于提升游戏AI的行为真实性和可接受度。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
