@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-01",
+  "date": "2026-07-01",
+  "generated_at": "2026-07-01T21:28:02",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/01/2606.26463v2-finding-the-time-to-think-learning-planning-budgets-in-real-time-rl",
+      "section": "quick",
+      "title_en": "Finding the Time to Think: Learning Planning Budgets in Real-Time RL",
+      "authors": "Aneesh Muppidi, Firas Darwish, Dylan Cope, João F. Henriques, Jakob Nicolaus Foerster",
+      "date": "2026-06-24",
+      "pdf": "https://arxiv.org/pdf/2606.26463v2",
+      "score": "7.0",
+      "evidence": "实时强化学习中的规划预算学习使智能体能够决定思考时间，适用于有时间压力的游戏AI训练。",
+      "tldr": "在实时强化学习中，环境不会等待智能体决策，思考时间直接影响系统性能。现有方法或固定规划步数，或简单启发式，无法根据状态调整。本文形式化可变延迟实时RL，智能体在每个决策点选择规划时长。为解决“规划如何规划”难题，提出在蒙特卡洛树搜索等规划器之上训练一个轻量门控网络，输出状态相关的规划预算。在实时Pac-Man、Tetris、Snake、Speed Hex等游戏上，该方法超越了固定预算和启发式基线，并成功迁移到GPU上的真实实时环境，验证了其有效性和实用性。该工作为实时决策中的自适应规划提供了新思路。",
+      "tags": "query:gah",
+      "abstract_en": "Deliberating takes time. In real-time settings, that time is not free. Standard reinforcement learning (RL) sidesteps this as the environment waits indefinitely for the agent's decision. Instead, we study real-time RL environments where the environment progresses while waiting for the agent's action. Building on prior real-time formalizations, we introduce variable-delay real-time RL, where the agent chooses how long to deliberate at each decision point since the environment progresses. For the planning agents we use, the right delay is state-dependent, and naively planning how long to plan can paralyze the agent. We instead approach this setting by training a lightweight gating policy on top of a planner to select state-dependent planning budgets. Across real-time Pac-Man, Tetris, Snake, Speed Hex, and Speed Go, our gating policy outperforms fixed-budget and heuristic baselines, and transfers to a real-time setup where the environment and agent run on two different GPUs.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/01/2606.24962v1-towards-scalable-multi-task-reinforcement-learning-with-large-decision-models",
+      "section": "quick",
+      "title_en": "Towards Scalable Multi-Task Reinforcement Learning with Large Decision Models",
+      "authors": "Thibaut Kulak",
+      "date": "2026-06-23",
+      "pdf": "https://arxiv.org/pdf/2606.24962v1",
+      "score": "6.0",
+      "evidence": "提出在多样RL环境上训练的大决策模型，可作为多游戏AI训练的基础。",
+      "tldr": "传统强化学习需为每个任务单独训练策略，难以跨异构环境泛化。本文探索用统一Transformer策略在大规模多样化环境集合中进行离线预训练，提出大决策模型LDM-v0。该模型在约1000个机器人、自动驾驶等环境中通过预测下一动作训练，性能匹配单独训练的特定任务策略。这证明了跨异构RL环境进行可扩展多任务预训练的可行性，为通用决策模型开辟新路径。",
+      "tags": "query:gah",
+      "abstract_en": "Recent progress in large-scale sequence modeling has shown that a single model can learn useful representations across highly diverse data distributions. Inspired by these advances, we investigate whether a unified transformer policy can be trained across large collections of heterogeneous reinforcement learning environments.   We introduce LDM-v0, a Large Decision Model trained offline on trajectories collected from thousands of environments spanning multiple domains and modalities. LDM-v0 is a multi-task, multi-modal transformer policy conditioned on histories of observations, actions, rewards, and termination signals, and trained through supervised next-action prediction over offline trajectories. We describe the environment infrastructure, automated data generation pipeline, model architecture, and training methodology used to build LDM-v0, and evaluate its performance across diverse environments. We show that a single pretrained model matches the performance of independently trained task-specific reference policies on approximately 1,000 environments including robotics, autonomous driving, inventory management, cybersecurity, trading, and video games. These results demonstrate the feasibility of large-scale offline pretraining across heterogeneous reinforcement learning environments using a single transformer policy.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
