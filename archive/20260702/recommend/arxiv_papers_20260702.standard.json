@@ -1,0 +1,499 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-02T21:40:56.493026+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 8,
+    "quick_skim_target": 11,
+    "quick_selected": 8
+  },
+  "deep_dive": [
+    {
+      "id": "2607.00642v1",
+      "source": "arxiv",
+      "title": "Coachable agents for interactive gameplay",
+      "abstract": "Reinforcement learning has proven to be a valuable tool in the creation of advanced AI and robotic systems, contributing to everything from game playing to robotics to foundation models. Through trial-and-error, these AI systems typically learn one, near-optimal behavior to solve their tasks. However, there are many use cases in which one would like to assert some level of control, preferably in real time, over how the task is solved. We refer to these modifications of a core task as styles. We combine universal value function approximators (UVFAs) with carefully selected training scenarios, learning algorithms, and data augmentation to create a framework for coaching agents that exhibit styles in complex domains. We demonstrate the framework's application in the AAA video games Horizon Forbidden West and Gran Turismo, and in an open-source humanoid test domain. Despite the different nature of the domains -- car racing, stylized game combat, and humanoid walking -- each agent shows strong coherence to the style requests while still satisfying the main task in its domain. Importantly, the techniques outlined in this paper allow an end user to choose the final behavior at run time, giving them flexible control over the final executed performance.",
+      "authors": [
+        "Roberto Capobianco",
+        "Harm van Seijen",
+        "Nolan D. Bard",
+        "Neil Burch",
+        "Fatima Davelouis",
+        "Josh Davidson",
+        "Alisa Devlic",
+        "Yunshu Du",
+        "Ishan Durugkar",
+        "Siddhant Gangapurwala",
+        "Daniel Hernandez",
+        "G. Zacharias Holland",
+        "Sahil Jain",
+        "Kenta Kawamoto",
+        "Raksha Kumaraswamy",
+        "Patrick MacAlpine",
+        "Dustin R. Morrill",
+        "Declan Oller",
+        "Francesco Riccio",
+        "Akanksha Saran",
+        "Craig Sherstan",
+        "Kaushik Subramanian",
+        "Thomas J. Walsh",
+        "Samuel Barrett",
+        "Kizza N. Frisbee",
+        "Mady Govil",
+        "Johannes Günther",
+        "Varun R. Kompella",
+        "James A. MacGlashan",
+        "Maxwell Svetlik",
+        "Michael D. Thomure",
+        "Jaden B. Travnik",
+        "Kevin Waugh",
+        "Elahe Aghapour",
+        "Florian Fuchs",
+        "Andreanne Lemay",
+        "Shruti Mishra",
+        "Takuma Seno",
+        "Peter Stone",
+        "Michael Spranger",
+        "Peter R. Wurman"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-01T08:57:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.00642v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "demonstrates coachable game AI agents with RL in AAA video games, directly creating game AI bots",
+      "llm_evidence_cn": "在AAA视频游戏中展示可教练的游戏AI代理，直接运用RL创建游戏AI bot",
+      "llm_evidence": "在AAA视频游戏中展示可教练的游戏AI代理，直接运用RL创建游戏AI bot",
+      "canonical_evidence": "在AAA视频游戏中展示可教练的游戏AI代理，直接运用RL创建游戏AI bot",
+      "llm_tldr_en": "Proposes a framework combining UVFAs and RL to create coachable agents that can adapt to different styles during gameplay in AAA games, advancing game AI bot design.",
+      "llm_tldr_cn": "提出一种结合通用价值函数逼近器和强化学习的框架，在AAA视频游戏中创建可实时教练的游戏AI代理，使其能驾驭不同游戏风格，为使用RL开发灵活、个性化游戏AI bot提供了新范式。",
+      "llm_tldr": "提出一种结合通用价值函数逼近器和强化学习的框架，在AAA视频游戏中创建可实时教练的游戏AI代理，使其能驾驭不同游戏风格，为使用RL开发灵活、个性化游戏AI bot提供了新范式。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.28456v1",
+      "source": "arxiv",
+      "title": "Is Lying an Emergent Behaviour in LLMs? Evidence from Gaslighting AI agents in a Sustainability Game",
+      "abstract": "LLMs agents are increasingly used in multi-agent settings, yet their behaviour in sustainability games remains largely unexplored. This work investigates whether lying can emerge among LLM agents in a competitive sustainability game in which agents are informed that common resources can regenerate, although regeneration does not actually occur. We develop an agent-based model of a sustainability game in which agents manage industrial, military, and ecological resources, and interact through a network. LLM agents can observe neighbours' status, declare future attacks, receive permission to lie, and access reputation information, while rule-based agents provide an interpretable behavioural baseline. The results show that neighbour information strongly changes system dynamics, increasing attacks while improving biosphere retention and coexistence. Also, the presence of future declarations reduce extinction risk without suppressing conflict. Behaviourally, deception emerges even when agents are not explicitly allowed to lie, and explicit permission mainly increases bluffing and diversion rather than direct backstabbing. Finally, the presence of reputation memory and information about the current biosphere level reduces system ecological depletion. These findings suggest that deception can arise as an emergent behaviour in LLM-agent systems and that communication between LLM-agents could support sustainability while dealing with risk.",
+      "authors": [
+        "Subhendu Bhandary",
+        "Federico Carucci",
+        "Christos Charalambous",
+        "Francesca Dilisante",
+        "Ksenia Dvorkina",
+        "Anna Garbo",
+        "Jiaqi Liang",
+        "Riccardo Vasellini",
+        "Francesco Bertolotti"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-06-26T10:32:47+00:00",
+      "link": "https://arxiv.org/pdf/2606.28456v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "investigates lying as an emergent behavior in LLM agents playing a game, directly relevant to game AI bot behavior",
+      "llm_evidence_cn": "研究LLM代理在游戏中撒谎的涌现行为，直接关联游戏AI bot行为",
+      "llm_evidence": "研究LLM代理在游戏中撒谎的涌现行为，直接关联游戏AI bot行为",
+      "canonical_evidence": "研究LLM代理在游戏中撒谎的涌现行为，直接关联游戏AI bot行为",
+      "llm_tldr_en": "Examines lying behavior in LLM agents within a competitive sustainability game, showing that lying emerges and can reflect human-like deceptive behavior in AI game bots.",
+      "llm_tldr_cn": "研究LLM代理在竞争性可持续性游戏中是否涌现撒谎行为，通过构建多代理模拟游戏，发现LLM代理会撒谎，为理解游戏AI bot的拟人化和欺骗行为提供实证证据，对设计人类化游戏AI有参考价值。",
+      "llm_tldr": "研究LLM代理在竞争性可持续性游戏中是否涌现撒谎行为，通过构建多代理模拟游戏，发现LLM代理会撒谎，为理解游戏AI bot的拟人化和欺骗行为提供实证证据，对设计人类化游戏AI有参考价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.00190v1",
+      "source": "arxiv",
+      "title": "Play Like Champions: Counterfactual Feedback Generation in Latent Space",
+      "abstract": "Recent advances in reinforcement learning have produced superhuman agents across a wide range of competitive games. As a byproduct, researchers have begun studying how these agents play, extracting behavioral representations, analyzing decision structure, and modeling the latent geometry of expert performance. However, this growing body of work has overwhelmingly focused on defeating human players rather than providing feedback, leaving a critical gap in creating model solutions to improve human players. Unlike chess and Go, where AI has become integral to player training, real-time strategy (RTS) games lack principled frameworks for translating expert knowledge into actionable feedback. We introduce Latent Maps of Performance, a framework for counterfactual path generation. We focus on StarCraft~II data to model player improvement as an algorithmic recourse within a learned representation space. As inspiration for our work, we have looked at the championship model used in sports science. We trained a Guided Variational Autoencoder model on 23,305 professional tournament replays, enabling counterfactual traversal between losing and winning gameplay profiles. To fulfill our goal, we have devised and verified four traversal strategies on out-of-distribution (OOD) data randomly sampled from a dataset of amateur replays, namely linear interpolation, iterative optimal transport, density-regularized gradient ascent, and neural flow matching, each designed to generate multi-step improvement trajectories that remain grounded in observed expert behavior while moving a player's profile toward winning configurations. Feedback is extracted at multiple granularities to support players at different stages of improvement. Finally, we conclude that there is a trade-off between the path-finding methods we employ and hope that future research will focus on developing model solutions for human improvement.",
+      "authors": [
+        "Andrzej Białecki",
+        "Adam Mastalerz",
+        "Han Zhou"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-30T21:15:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.00190v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "RL-produced superhuman agents in competitive games, extracting behavioral representations to provide feedback",
+      "llm_evidence_cn": "使用强化学习在竞技游戏中训练超人智能体，提取行为表征以提供反馈",
+      "llm_evidence": "使用强化学习在竞技游戏中训练超人智能体，提取行为表征以提供反馈",
+      "canonical_evidence": "使用强化学习在竞技游戏中训练超人智能体，提取行为表征以提供反馈",
+      "llm_tldr_en": "Proposes a framework to generate counterfactual feedback from RL-trained game agents, bridging the gap between superhuman AI and player improvement in RTS games.",
+      "llm_tldr_cn": "针对现有强化学习产生的游戏AI专注于击败人类而非提供反馈的问题，提出潜在性能地图框架，从专家智能体的行为中提取可操作的反馈，以帮助玩家提升。该框架在实时策略游戏中将专家知识转化为反事实反馈，实验表明其能有效指导玩家决策，为游戏AI训练的人机协作开辟了新方向。",
+      "llm_tldr": "针对现有强化学习产生的游戏AI专注于击败人类而非提供反馈的问题，提出潜在性能地图框架，从专家智能体的行为中提取可操作的反馈，以帮助玩家提升。该框架在实时策略游戏中将专家知识转化为反事实反馈，实验表明其能有效指导玩家决策，为游戏AI训练的人机协作开辟了新方向。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.28805v2",
+      "source": "arxiv",
+      "title": "Physics Models for Sim-to-Real Transfer in Professional-Level Robot Table Tennis",
+      "abstract": "At competitive speeds and spins, a table tennis ball follows complex, counterintuitive trajectories that a robot must track and precisely counter within fractions of a second. Training a reinforcement learning policy capable of these skills is prohibitively expensive and dangerous in the real world, making high-fidelity simulation essential. Transferability of such policies, however, critically depends on how faithfully the simulation captures real-world dynamics - a requirement made even more stringent by the adversarial nature of the game, where any modeling inaccuracy becomes an exploitable weakness for the opponent. Prior state-of-the-art in robot table tennis generally focuses on a limited range of velocities and spins and fails to capture the richness of ball behaviors encountered in professional-level play. In this work, we present physics models for aerodynamic ball flight, ball-table contact, and ball-racket contact. that accurately capture the ball behavior over a vast range of speeds and spins relevant to the game. Specifically, we model drag and Magnus force coefficients as functions of Reynolds number and spin ratio in the aerodynamics equations. For the table contact model we model effects of ball buckling on the coefficient of restitution and incorporate residuals into the instantaneous point-contact models. For the racket contact model, we introduce a residual neural network component to complement coefficients related to normal and tangential coefficients of restitution as well as torsional spin damping. Evaluated on an unprecedentedly large dataset of competitive matches (277 games), the proposed models significantly reduces prediction errors (e.g., 59% median landing-position error reduction). The resulting models were used to train the RL policies for the first real-world robot table tennis AI agent capable of competing against professional players.",
+      "authors": [
+        "Christian Conti",
+        "Bilan Yang",
+        "Alexander Sigrist",
+        "Lorenzo Miele",
+        "Yamen Saraiji",
+        "Peter Dürr",
+        "Naoya Takahashi"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-27T08:18:49+00:00",
+      "link": "https://arxiv.org/pdf/2606.28805v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "RL for robot table tennis, a game-playing agent trained with RL and sim-to-real transfer",
+      "llm_evidence_cn": "使用强化学习训练乒乓球机器人，一种游戏智能体及其从仿真到现实的迁移",
+      "llm_evidence": "使用强化学习训练乒乓球机器人，一种游戏智能体及其从仿真到现实的迁移",
+      "canonical_evidence": "使用强化学习训练乒乓球机器人，一种游戏智能体及其从仿真到现实的迁移",
+      "llm_tldr_en": "Uses RL and physics models for sim-to-real transfer to train a robot table tennis player, demonstrating a game-playing agent with RL.",
+      "llm_tldr_cn": "针对高速旋转乒乓球轨迹复杂、真实环境训练成本高的问题，提出高保真物理仿真与强化学习结合的策略，实现从仿真到真实球桌的迁移。该方法训练出的机器人能够在专业水平对打，展示了强化学习在游戏智能体中的应用，尽管面向物理机器人，但技术思路可启迪数字游戏AI。",
+      "llm_tldr": "针对高速旋转乒乓球轨迹复杂、真实环境训练成本高的问题，提出高保真物理仿真与强化学习结合的策略，实现从仿真到真实球桌的迁移。该方法训练出的机器人能够在专业水平对打，展示了强化学习在游戏智能体中的应用，尽管面向物理机器人，但技术思路可启迪数字游戏AI。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.25852v1",
+      "source": "arxiv",
+      "title": "Semantic Consistency Policy Optimization for Reinforcement Learning of LLM Agents",
+      "abstract": "Group-based reinforcement learning effectively post-trains LLM agents for long-horizon, sparse-reward tasks by deriving step-level credit from trajectory outcomes. However, this ties a step's credit to its rollout's final outcome: semantically near-identical intermediate steps receive opposite credit depending on whether their trajectory eventually succeeded or failed. Such semantic credit inconsistency sends conflicting gradients to similar actions and wastes the partially-correct progress inside failed rollouts. Motivated by this, we propose Semantic Consistency Policy Optimization (SCPO), a value-free reward-shaping method that mitigates this inconsistency by recovering step-level credit from successful siblings in the same rollout group. Concretely, SCPO scores each failed step against a successful sibling and adds positive step-level credit for new progress along that sibling. On ALFWorld and WebShop, SCPO matches or exceeds strong group-based baselines, reaching 93.7+/-4.1 percent success on ALFWorld and 74.8+/-2.0 percent on WebShop at 1.5B parameters, with gains concentrated on the hardest multi-step tasks.",
+      "authors": [
+        "Peng Xu",
+        "Sijia Chen",
+        "Junzhuo Li",
+        "Xuming Hu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-24T14:02:13+00:00",
+      "link": "https://arxiv.org/pdf/2606.25852v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "mitigates semantic credit inconsistency in RL for LLM agents, useful for game AI training",
+      "llm_evidence_cn": "缓解LLM代理强化学习中的语义信用不一致，有助于游戏AI训练",
+      "llm_evidence": "缓解LLM代理强化学习中的语义信用不一致，有助于游戏AI训练",
+      "canonical_evidence": "缓解LLM代理强化学习中的语义信用不一致，有助于游戏AI训练",
+      "llm_tldr_en": "Proposes SCPO, a reward-shaping method that recovers step-level credit from successful trajectories, addressing credit inconsistency in RL for agents.",
+      "llm_tldr_cn": "提出SCPO方法，从成功轨迹中恢复步骤级信用，解决基于组的强化学习中语义信用不一致问题，为游戏AI代理的训练提供了更稳定的信用分配。",
+      "llm_tldr": "提出SCPO方法，从成功轨迹中恢复步骤级信用，解决基于组的强化学习中语义信用不一致问题，为游戏AI代理的训练提供了更稳定的信用分配。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.29126v2",
+      "source": "arxiv",
+      "title": "HiComm: Hierarchical Communication for Multi-agent Reinforcement Learning",
+      "abstract": "Cooperative multi-agent reinforcement learning (MARL) often relies on communication to mitigate partial observability, yet most existing protocols treat messages as flat dense vectors detached from the structure of the observations they summarize. This design overlooks an important source of inductive bias in many cooperative environments, where observations naturally follow a hierarchy such as groups and entities. We propose \\textsc{HiComm}, a plug-in communication module that grounds messages in the sender's hierarchical observation. \\textsc{HiComm} is receiver-driven: the receiver issues a query, and the hierarchy is resolved through a three-stage decoding process that first selects a group, then a sender, and then an entity within that group, returning the corresponding feature slice as the message. This converts communication from unstructured vector transmission into structured information retrieval over the sender's observation hierarchy. We instantiate this mechanism with Straight-Through Gumbel-Softmax for differentiable discrete selection and a lightweight shared projection design that attaches to standard MARL pipelines. Experiments across cooperative MARL tasks with different observation structures and coordination demands show that \\textsc{HiComm} matches or outperforms representative learned communication baselines while reducing communication volume by up to $23\\times$ per receiver per episode.",
+      "authors": [
+        "Runze Zhao",
+        "Dongruo Zhou",
+        "Sumit Kumar Jha",
+        "Nathaniel D. Bastian",
+        "Ankit Shah"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-28T00:29:12+00:00",
+      "link": "https://arxiv.org/pdf/2606.29126v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes a hierarchical communication module for cooperative multi-agent RL, applicable to game AI bot design",
+      "llm_evidence_cn": "提出用于协作多智能体强化学习的分层通信模块，可应用于游戏AI bot设计",
+      "llm_evidence": "提出用于协作多智能体强化学习的分层通信模块，可应用于游戏AI bot设计",
+      "canonical_evidence": "提出用于协作多智能体强化学习的分层通信模块，可应用于游戏AI bot设计",
+      "llm_tldr_en": "HiComm introduces a receiver-driven hierarchical communication module for cooperative MARL that grounds messages in structured observations, improving coordination in environments with group-entity hierarchies, potentially benefiting game AI bot development.",
+      "llm_tldr_cn": "针对多智能体协作环境中的观测层次特性（如组与实体），现有通信协议将消息处理为扁平向量，未能利用此结构，导致协调低效。本文提出接收端驱动的分层通信模块HiComm，采用三阶段解码过程：首先选择组，再选择发送者，最后选择实体，从而将消息与发送者的观测层次深度绑定。在典型合作任务上的实验表明，HiComm实现了更高效的通信，显著提升了群体协作性能。该方法为复杂多智能体游戏场景中AI bot的通信机制设计提供了通用且有效的解决方案。",
+      "llm_tldr": "针对多智能体协作环境中的观测层次特性（如组与实体），现有通信协议将消息处理为扁平向量，未能利用此结构，导致协调低效。本文提出接收端驱动的分层通信模块HiComm，采用三阶段解码过程：首先选择组，再选择发送者，最后选择实体，从而将消息与发送者的观测层次深度绑定。在典型合作任务上的实验表明，HiComm实现了更高效的通信，显著提升了群体协作性能。该方法为复杂多智能体游戏场景中AI bot的通信机制设计提供了通用且有效的解决方案。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.26790v1",
+      "source": "arxiv",
+      "title": "OPID: On-Policy Skill Distillation for Agentic Reinforcement Learning",
+      "abstract": "Outcome-based reinforcement learning provides a stable optimization backbone for language agents, but its sparse trajectory-level rewards provide little guidance on which intermediate decisions should be reinforced or suppressed. On-policy self-distillation offers dense token-level supervision, yet existing skill-conditioned variants often rely on external skill memories or retrieved privileged context, which are costly to maintain and can be mismatched with the state distribution induced by the current policy in multi-turn interaction. We propose \\textbf{OPID} (\\textbf{O}n-\\textbf{P}olicy Sk\\textbf{i}ll \\textbf{D}istillation), a framework that extracts skill supervision directly from completed on-policy trajectories. OPID represents trajectory hindsight as hierarchical skills: episode-level skills capture global workflows or failure-avoidance rules, while step-level skills capture local decision knowledge at critical timesteps. A critical-first routing mechanism uses step-level skills when critical decisions are identified and falls back to episode-level skills as default guidance otherwise. The selected skill is injected into the interaction history, allowing the old policy to re-score the same sampled response under both original and skill-augmented contexts. The resulting log-probability shift yields a token-level self-distillation advantage, which is combined with the outcome advantage for policy optimization. OPID thus preserves RL as the primary training objective while introducing dense, distribution-matched hindsight supervision. Experiments on ALFWorld, WebShop and Search-based QA demonstrate that OPID generally improves agent performance, sample efficiency, and robustness over outcome-only RL and existing skill-distillation baselines. Our code is available at https://github.com/jinyangwu/OPID/tree/main.",
+      "authors": [
+        "Shuo Yang",
+        "Jinyang Wu",
+        "Zhengxi Lu",
+        "Yuhao Shen",
+        "Fan Zhang",
+        "Lang Feng",
+        "Shuai Zhang",
+        "Haoran Luo",
+        "Zheng Lian",
+        "Zhengqi Wen",
+        "Jianhua Tao"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-25T09:24:09+00:00",
+      "link": "https://arxiv.org/pdf/2606.26790v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "skill distillation for agentic RL, applicable to improving game AI bot training",
+      "llm_evidence_cn": "面向智能体强化学习的技能蒸馏，可改进游戏AI bot训练",
+      "llm_evidence": "面向智能体强化学习的技能蒸馏，可改进游戏AI bot训练",
+      "canonical_evidence": "面向智能体强化学习的技能蒸馏，可改进游戏AI bot训练",
+      "llm_tldr_en": "Proposes OPID, an on-policy skill distillation method that extracts skill supervision from completed trajectories to provide dense token-level guidance for agentic RL.",
+      "llm_tldr_cn": "提出OPID方法，从在线轨迹中提取技能监督，为语言代理的强化学习提供密集的令牌级指导，可用于提升游戏AI bot的训练效率和决策质量。",
+      "llm_tldr": "提出OPID方法，从在线轨迹中提取技能监督，为语言代理的强化学习提供密集的令牌级指导，可用于提升游戏AI bot的训练效率和决策质量。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.29502v1",
+      "source": "arxiv",
+      "title": "UCOB: Learning to Utilize and Evolve Agentic Skills via Credit-Aware On-Policy Bidirectional Self-Distillation",
+      "abstract": "Skill memories can improve agentic reinforcement learning by reusing past experience as textual guidance, but retrieved skills are not oracular: they may help in one state while misleading the same policy in another. This makes the common privileged-teacher assumption fragile, namely that a skill-conditioned prompt can be treated as a fixed teacher for the no-skill prompt. We introduce UCOB, a framework for learning to utilize and evolve agentic skills via credit-aware on-policy bidirectional self-distillation. UCOB treats skill-conditioned and no-skill prompts as two on-policy context views of the same model, compares their return-to-go within the same task and anchor state, and uses the higher-return view as the local teacher. This local credit signal internalizes useful skill-conditioned behavior, corrects misleading skill usage, and guides task/state skill memory updates, utility-aware retrieval, and reflection self-training. Experiments on agentic tasks, including ALFWorld, WebShop, and Search-QA, show that UCOB outperforms skill-free RL, skill-memory baselines, and self-distillation methods across model scales, with up to 23.5 and 18.0 point gains over SOTA baselines on ALFWorld and WebShop. Ablations and analyses further validate its core mechanisms and efficiency.",
+      "authors": [
+        "Songjun Tu",
+        "Chengdong Xu",
+        "Qichao Zhang",
+        "Yiwen Ma",
+        "Yaocheng Zhang",
+        "Linjing Li",
+        "Dong Li",
+        "Xiangyuan Lan",
+        "Dongbin Zhao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-06-28T17:02:18+00:00",
+      "link": "https://arxiv.org/pdf/2606.29502v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "skill evolution via bidirectional self-distillation for agentic RL, applicable to game AI training",
+      "llm_evidence_cn": "通过双向自蒸馏进行技能演化的智能体RL，适用于游戏AI训练",
+      "llm_evidence": "通过双向自蒸馏进行技能演化的智能体RL，适用于游戏AI训练",
+      "canonical_evidence": "通过双向自蒸馏进行技能演化的智能体RL，适用于游戏AI训练",
+      "llm_tldr_en": "Proposes UCOB, which uses credit-aware bidirectional self-distillation between skill-conditioned and no-skill prompts to evolve agentic skills, improving game bot learning.",
+      "llm_tldr_cn": "提出UCOB框架，通过信用感知的双向自蒸馏，在技能条件和非技能提示之间选择和演化技能，为游戏AI代理的技能学习提供了一种鲁棒的自蒸馏方法。",
+      "llm_tldr": "提出UCOB框架，通过信用感知的双向自蒸馏，在技能条件和非技能提示之间选择和演化技能，为游戏AI代理的技能学习提供了一种鲁棒的自蒸馏方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.30072v1",
+      "source": "arxiv",
+      "title": "ACPO: Agent-Chained Policy Optimization for Multi-Agent Reinforcement Learning",
+      "abstract": "Cooperative tasks in Multi-Agent Reinforcement Learning (MARL) require agents to collectively maximize a shared return. Under the Centralized Training with Decentralized Execution (CTDE) paradigm, policy gradients have remained difficult to compute directly. Prior methods largely follow two approaches: independent factorized updates with centralized critics, which lack general joint-improvement guarantees without value decomposition assumptions, or alternating best-response updates, which can converge to suboptimal Nash Equilibria. In this paper, we show the joint policy gradient admits an exact decentralized decomposition of per-agent terms, each formed from per-agent score functions and decentralized critics. Based on this decomposition, we develop Agent-Chained Policy Optimization (ACPO), where actors are trained independently, with their updates together constituting a single step on the joint policy gradient. Central to this result is a serialized view of the simultaneous joint decision in which agents commit actions one at a time, each conditioning on a belief over preceding actions. The belief acts as the coordination mechanism which ties the independent per-agent updates into a joint gradient step. We evaluate ACPO on Multi-Robot Warehouse, SMACv2, and MA-MuJoCo, where it outperforms strong baselines, with the gap widening as the number of agents grows.",
+      "authors": [
+        "Daiki E. Matsunaga",
+        "Junho Na",
+        "Tri Wahyu Guntara",
+        "Scott Sanner",
+        "Pascal Poupart",
+        "Jongmin Lee",
+        "Kee-Eung Kim"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-29T10:04:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.30072v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Novel multi-agent RL policy optimization method with exact decentralized decomposition",
+      "llm_evidence_cn": "新颖的多智能体强化学习策略优化方法，具有精确的分散分解",
+      "llm_evidence": "新颖的多智能体强化学习策略优化方法，具有精确的分散分解",
+      "canonical_evidence": "新颖的多智能体强化学习策略优化方法，具有精确的分散分解",
+      "llm_tldr_en": "Proposes ACPO, a MARL algorithm that decomposes joint policy gradient into per-agent terms, improving cooperative training and potentially applicable to game AI.",
+      "llm_tldr_cn": "针对多智能体协同任务中联合策略梯度难以直接计算的问题，提出ACPO算法，通过精确分解将联合策略梯度表示为每个智能体的独立项，实现了更优的协同训练。该方法虽未在游戏中验证，但其理论基础可直接应用于游戏AI的多智能体场景。",
+      "llm_tldr": "针对多智能体协同任务中联合策略梯度难以直接计算的问题，提出ACPO算法，通过精确分解将联合策略梯度表示为每个智能体的独立项，实现了更优的协同训练。该方法虽未在游戏中验证，但其理论基础可直接应用于游戏AI的多智能体场景。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.00392v1",
+      "source": "arxiv",
+      "title": "Learning Generalizable Skill Policy with Data-Efficient Unsupervised RL",
+      "abstract": "Unsupervised Reinforcement Learning (URL) aims to pre-train scalable, skill-conditioned policies without extrinsic rewards, serving as a foundation for downstream control tasks. Despite recent progress, we argue that current off-policy URL methods are limited by two critical, overlooked bottlenecks: (1) non-stationary skill semantics and (2) brittle generalization. To address these challenges, we propose GenDa (Generalizable Data-efficient Agent), a unified framework for robust unsupervised reinforcement learning. First, we introduce a skill relabeling mechanism to mitigate non-stationarity and significantly improve data efficiency for pre-training. Second, we propose a Complementary Information Bottleneck (CIB), encouraging the learned skill policy to focus on ego-centric features and become robust to distribution shifts for downstream tasks. Through various experiments, we demonstrate that GenDa significantly enhances the scalability of URL with superior generalizability and data efficiency. Our code and videos are available at https://ihatebroccoli.github.io/official-GenDa.",
+      "authors": [
+        "Jongchan Park",
+        "Seungjun Oh",
+        "Seungho Baek",
+        "Yusung Kim"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-01T03:34:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.00392v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "unsupervised RL for generalizable skill policy, useful for pre-training game AI agents",
+      "llm_evidence_cn": "用于泛化技能策略的无监督RL，有助于游戏AI代理的预训练",
+      "llm_evidence": "用于泛化技能策略的无监督RL，有助于游戏AI代理的预训练",
+      "canonical_evidence": "用于泛化技能策略的无监督RL，有助于游戏AI代理的预训练",
+      "llm_tldr_en": "Proposes GenDa, an unsupervised RL framework addressing non-stationary skill semantics and generalization, enabling data-efficient pre-training of game AI bots.",
+      "llm_tldr_cn": "提出GenDa框架，通过技能重新标记和互补信息瓶颈解决无监督RL中的非平稳性和泛化差的问题，为游戏AI代理提供数据高效的技能预训练方法。",
+      "llm_tldr": "提出GenDa框架，通过技能重新标记和互补信息瓶颈解决无监督RL中的非平稳性和泛化差的问题，为游戏AI代理提供数据高效的技能预训练方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.00483v1",
+      "source": "arxiv",
+      "title": "VLM-AR3L: Vision-Language Models for Absolute and Relative Rewards in Reinforcement Learning",
+      "abstract": "Designing effective reward functions remains a major challenge in reinforcement learning (RL), particularly in open-ended environments where task goals are abstract and difficult to quantify. In this work, we present VLM-AR3L, a framework that leverages Vision-Language Models (VLMs) to provide both absolute and relative rewards for RL. VLM-AR3L interprets an agent's visual observations in the context of a natural language task goal, and learns both absolute and relative rewards from VLM-generated preference labels. The absolute reward model predicts scalar evaluations for individual states, while the relative reward model compares consecutive observations to infer progress or regression toward the task goal. Their integration combines the stability of state-based evaluation with the robustness of comparative supervision. We evaluate VLM-AR3L across benchmarks spanning classic control, manipulation, and open-world embodied tasks, with a particular focus on Minecraft given its visual complexity and long-horizon decision-making requirements. Experimental results show that VLM-AR3L consistently outperforms prior VLM-based reward learning methods.",
+      "authors": [
+        "Kuan-Chen Chen",
+        "Winston Chen",
+        "Wei-Fang Sun",
+        "Min-Chun Hu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-01T06:11:59+00:00",
+      "link": "https://arxiv.org/pdf/2607.00483v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses VLMs to provide absolute and relative rewards for RL, applicable to game AI training",
+      "llm_evidence_cn": "利用视觉语言模型为强化学习提供绝对和相对奖励，可用于游戏AI训练",
+      "llm_evidence": "利用视觉语言模型为强化学习提供绝对和相对奖励，可用于游戏AI训练",
+      "canonical_evidence": "利用视觉语言模型为强化学习提供绝对和相对奖励，可用于游戏AI训练",
+      "llm_tldr_en": "Proposes VLM-AR3L, a framework that leverages VLMs to provide absolute and relative rewards for RL tasks, which can help train game AI bots by automating reward design.",
+      "llm_tldr_cn": "提出VLM-AR3L框架，利用视觉语言模型为强化学习提供绝对和相对奖励，解决开放环境中奖励函数设计难题，为游戏AI训练提供自动化奖励设计方法，从而提升游戏AI训练效率。",
+      "llm_tldr": "提出VLM-AR3L框架，利用视觉语言模型为强化学习提供绝对和相对奖励，解决开放环境中奖励函数设计难题，为游戏AI训练提供自动化奖励设计方法，从而提升游戏AI训练效率。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
