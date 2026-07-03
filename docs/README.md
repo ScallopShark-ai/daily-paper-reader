@@ -6,55 +6,43 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-02
-- 运行时间：2026-07-02 21:50:00 UTC
+- 最新运行日期：2026-07-03
+- 运行时间：2026-07-03 21:43:11 UTC
 - 运行状态：成功
-- 本次总论文数：11
-- 精读区：3
-- 速读区：8
+- 本次总论文数：7
+- 精读区：4
+- 速读区：3
 
 ### 今日简报（AI）
-今日聚焦智能体交互：从可教导的游戏 AI 到 LLM 在博弈中涌现的欺骗行为，还涵盖机器人乒乓的虚实迁移与多智能体通信。
-最值得关注，一是《Coachable agents》满分展示智能体如何通过“被教导”显著提升玩法，二是 LLM 为赢得可持续游戏竟会自发撒谎。
-建议读者可亲身体验这些研究中的互动机制，观察 AI 从学习到欺骗的行为变化，理解现阶段的协作与风险。
-- 详情：[/202607/02/README](/202607/02/README)
+今天拆解了长程智能体策略规划与记忆测试两篇满分论文，并评估了三条基于视觉语言模型的奖励塑形路线。  
+场景感知、目标演化和有限记忆是解锁长程任务的核心，而用VLM做奖励信号目前实战价值偏低。  
+想打造能扛住长时间决策的AI，先从目标能自我演化的SAGA架构入手最稳。
+- 详情：[/202607/03/README](/202607/03/README)
 
 ### 精读区论文标签
-1. [Coachable agents for interactive gameplay](/202607/02/2607.00642v1-coachable-agents-for-interactive-gameplay)  
+1. [SAGA: Scene-Aware, Goal-Evolving Agents for Long-Horizon CivRealm Strategy Planning](/202607/03/2606.29932v2-saga-scene-aware-goal-evolving-agents-for-long-horizon-civrealm-strategy-planning)  
    标签：评分：10.0/10、query:gah
-   evidence：在AAA视频游戏中展示可教练的游戏AI代理，直接运用RL创建游戏AI bot
-2. [Is Lying an Emergent Behaviour in LLMs? Evidence from Gaslighting AI agents in a Sustainability Game](/202607/02/2606.28456v1-is-lying-an-emergent-behaviour-in-llms-evidence-from-gaslighting-ai-agents-in-a-sustainability-game)  
+   evidence：为策略游戏CivRealm设计游戏AI智能体
+2. [AgenticSTS: A Bounded-Memory Testbed for Long-Horizon LLM Agents](/202607/03/2607.02255v1-agenticsts-a-bounded-memory-testbed-for-long-horizon-llm-agents)  
+   标签：评分：10.0/10、query:gah
+   evidence：在《杀戮尖塔2》中开发有界记忆的游戏AI机器人
+3. [Towards Learning Representations of Policies in Two-Player Zero-Sum Imperfect-Information Games](/202607/03/2607.01498v1-towards-learning-representations-of-policies-in-two-player-zero-sum-imperfect-information-games)  
    标签：评分：9.0/10、query:gah
-   evidence：研究LLM代理在游戏中撒谎的涌现行为，直接关联游戏AI bot行为
-3. [Play Like Champions: Counterfactual Feedback Generation in Latent Space](/202607/02/2607.00190v1-play-like-champions-counterfactual-feedback-generation-in-latent-space)  
-   标签：评分：9.0/10、query:gah
-   evidence：使用强化学习在竞技游戏中训练超人智能体，提取行为表征以提供反馈
+   evidence：在两人零和不完美信息游戏中学习策略表示
+4. [AI Native Games: A Survey and Roadmap](/202607/03/2607.00527v1-ai-native-games-a-survey-and-roadmap)  
+   标签：评分：8.0/10、query:gah
+   evidence：定义并综述 AI 原生游戏，直接涉及游戏 AI 设计与开发
 
 ### 速读区论文标签
-1. [Physics Models for Sim-to-Real Transfer in Professional-Level Robot Table Tennis](/202607/02/2606.28805v2-physics-models-for-sim-to-real-transfer-in-professional-level-robot-table-tennis)  
-   标签：评分：7.0/10、query:gah
-   evidence：使用强化学习训练乒乓球机器人，一种游戏智能体及其从仿真到现实的迁移
-2. [HiComm: Hierarchical Communication for Multi-agent Reinforcement Learning](/202607/02/2606.29126v2-hicomm-hierarchical-communication-for-multi-agent-reinforcement-learning)  
-   标签：评分：7.0/10、query:gah
-   evidence：提出用于协作多智能体强化学习的分层通信模块，可应用于游戏AI bot设计
-3. [Semantic Consistency Policy Optimization for Reinforcement Learning of LLM Agents](/202607/02/2606.25852v1-semantic-consistency-policy-optimization-for-reinforcement-learning-of-llm-agents)  
+1. [CRAFT: Counterfactual Credit Assignment from Free Sibling Rollouts for Self-Distilled Agentic Reinforcement Learning](/202607/03/2606.29476v1-craft-counterfactual-credit-assignment-from-free-sibling-rollouts-for-self-distilled-agentic-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：缓解LLM代理强化学习中的语义信用不一致，有助于游戏AI训练
-4. [OPID: On-Policy Skill Distillation for Agentic Reinforcement Learning](/202607/02/2606.26790v1-opid-on-policy-skill-distillation-for-agentic-reinforcement-learning)  
+   evidence：反事实信用分配方法改进RL训练，适用于游戏智能体。
+2. [VLM-AR3L: Vision-Language Models for Absolute and Relative Rewards in Reinforcement Learning](/202607/03/2607.00483v2-vlm-ar3l-vision-language-models-for-absolute-and-relative-rewards-in-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：面向智能体强化学习的技能蒸馏，可改进游戏AI bot训练
-5. [UCOB: Learning to Utilize and Evolve Agentic Skills via Credit-Aware On-Policy Bidirectional Self-Distillation](/202607/02/2606.29502v1-ucob-learning-to-utilize-and-evolve-agentic-skills-via-credit-aware-on-policy-bidirectional-self-distillation)  
+   evidence：基于视觉语言模型的奖赏设计方法，可用于强化学习训练游戏AI
+3. [CoRe: Combined Rewards with Vision-Language Model Feedback for Preference-Aligned Reinforcement Learning](/202607/03/2607.01721v1-core-combined-rewards-with-vision-language-model-feedback-for-preference-aligned-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：通过双向自蒸馏进行技能演化的智能体RL，适用于游戏AI训练
-6. [ACPO: Agent-Chained Policy Optimization for Multi-Agent Reinforcement Learning](/202607/02/2606.30072v1-acpo-agent-chained-policy-optimization-for-multi-agent-reinforcement-learning)  
-   标签：评分：6.0/10、query:gah
-   evidence：新颖的多智能体强化学习策略优化方法，具有精确的分散分解
-7. [Learning Generalizable Skill Policy with Data-Efficient Unsupervised RL](/202607/02/2607.00392v1-learning-generalizable-skill-policy-with-data-efficient-unsupervised-rl)  
-   标签：评分：6.0/10、query:gah
-   evidence：用于泛化技能策略的无监督RL，有助于游戏AI代理的预训练
-8. [VLM-AR3L: Vision-Language Models for Absolute and Relative Rewards in Reinforcement Learning](/202607/02/2607.00483v1-vlm-ar3l-vision-language-models-for-absolute-and-relative-rewards-in-reinforcement-learning)  
-   标签：评分：6.0/10、query:gah
-   evidence：利用视觉语言模型为强化学习提供绝对和相对奖励，可用于游戏AI训练
+   evidence：基于VLM反馈的偏好对齐RL，可拟人化游戏AI bot行为
 
 
 <div class="dpr-home-promo-card">
