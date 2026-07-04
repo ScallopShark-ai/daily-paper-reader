@@ -1,0 +1,96 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-04T21:15:26.802720+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.01525v1",
+      "source": "arxiv",
+      "title": "Mean Field Reinforcement Learning",
+      "abstract": "This monograph provides an introduction to mean field reinforcement learning through the lens of Markov decision processes arising from large-population stochastic control with mean field interactions and common noise. Starting from the connection between multi-agent reinforcement learning and mean field control, it develops the probabilistic, mathematical, and control-theoretic framework needed to formulate representative-agent learning problems, analyze their relationship with finite-population systems, and study both general and linear-quadratic models. The presentation includes dynamic programming principles, propagation-of-chaos limits, and theoretical analyses of tabular Q-learning and policy-gradient methods. It also discusses numerical implementations, including tabular schemes and deep reinforcement learning methods such as deep deterministic policy gradient. The goal is to give readers a coherent bridge between mean field control theory and reinforcement learning methodology, emphasizing the mathematical structure of the problems and the design of tractable learning approaches for large stochastic populations.",
+      "authors": [
+        "René Carmona",
+        "Mathieu Laurière"
+      ],
+      "primary_category": "math.OC",
+      "categories": [
+        "math.OC",
+        "cs.LG",
+        "cs.MA",
+        "math.PR"
+      ],
+      "published": "2026-07-01T22:44:24+00:00",
+      "link": "https://arxiv.org/pdf/2607.01525v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Mean field RL provides scalable multi-agent RL algorithms useful for game AI training",
+      "llm_evidence_cn": "平均场RL提供可扩展的多智能体RL算法，可用于游戏AI训练",
+      "llm_evidence": "平均场RL提供可扩展的多智能体RL算法，可用于游戏AI训练",
+      "canonical_evidence": "平均场RL提供可扩展的多智能体RL算法，可用于游戏AI训练",
+      "llm_tldr_en": "A comprehensive introduction to mean field RL for large-population games, offering techniques transferable to game AI bot training.",
+      "llm_tldr_cn": "该专著系统介绍了平均场强化学习，从多智能体强化学习与平均场控制的联系出发，阐述代表性智能体学习问题的数学框架。涵盖动态规划、混沌传播等理论，并提供Q学习和策略梯度的分析。该方法可扩展至大规模游戏AI训练，为避免维数灾难的bot协作提供新工具。",
+      "llm_tldr": "该专著系统介绍了平均场强化学习，从多智能体强化学习与平均场控制的联系出发，阐述代表性智能体学习问题的数学框架。涵盖动态规划、混沌传播等理论，并提供Q学习和策略梯度的分析。该方法可扩展至大规模游戏AI训练，为避免维数灾难的bot协作提供新工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.28182v1",
+      "source": "arxiv",
+      "title": "LLawCo: Learning Laws of Cooperation for Modeling Embodied Multi-Agent Behavior",
+      "abstract": "Embodied agents operating in decentralized and partially observable environments have attracted growing attention in recent years. However, existing large language model (LLM)-based agents often exhibit behaviors that are misaligned with their partners or inconsistent with the environment state, leading to inefficient cooperation and poor task success. To address this challenge, we propose a novel framework, Learning Laws of Cooperation (LLawCo), that enables embodied agents to autonomously align with both their partners and task objectives. Our framework allows agents to reflect on past failures to extract misaligned behavioral patterns, which are used to derive high-level behavioral laws, such as \"Talk when necessary\" and \"Wait for partner.\" These laws are explicitly incorporated into the agents' chains of thought via supervised fine-tuning, aligning their reasoning with task requirements and the behavior of other agents. To evaluate our approach, we introduce PARTNR-Dialog, a large-scale multi-agent communicative and cooperative planning benchmark built on the PARTNR environment. Experiments on existing tasks and our new benchmark demonstrate significant improvements in cooperative efficiency and task success rates. Across four backbone LLMs, our method achieves average success rate improvements of 4.5% on the PARTNR-Dialog benchmark and 6.8% on the TDW-MAT benchmark over state-of-the-art open-source communicative agent frameworks. See the LLawCo project page for details: https://www.merl.com/research/highlights/LLawCo",
+      "authors": [
+        "Qinhong Zhou",
+        "Chuang Gan",
+        "Anoop Cherian"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-06-26T15:26:12+00:00",
+      "link": "https://arxiv.org/pdf/2606.28182v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLawCo enables embodied agents to learn cooperative behavioral laws; applicable to designing cooperative game AI bots.",
+      "llm_evidence_cn": "LLawCo 让具身代理学习合作行为法则，可用于设计合作型游戏 AI 机器人。",
+      "llm_evidence": "LLawCo 让具身代理学习合作行为法则，可用于设计合作型游戏 AI 机器人。",
+      "canonical_evidence": "LLawCo 让具身代理学习合作行为法则，可用于设计合作型游戏 AI 机器人。",
+      "llm_tldr_en": "Proposes LLawCo framework that extracts misaligned behavioral patterns from failures to derive high-level cooperation laws, useful for building cooperative game AI agents.",
+      "llm_tldr_cn": "针对基于 LLM 的体现代理在分散式部分可观察环境中行为失配的问题，提出 LLawCo 框架，通过反思失败经验自动提取高阶行为法则（如“必要时交谈”）。该框架有助于开发协调一致的多智能体游戏 AI。",
+      "llm_tldr": "针对基于 LLM 的体现代理在分散式部分可观察环境中行为失配的问题，提出 LLawCo 框架，通过反思失败经验自动提取高阶行为法则（如“必要时交谈”）。该框架有助于开发协调一致的多智能体游戏 AI。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

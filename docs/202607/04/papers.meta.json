@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-04",
+  "date": "2026-07-04",
+  "generated_at": "2026-07-04T21:22:10",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/04/2607.01525v1-mean-field-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Mean Field Reinforcement Learning",
+      "authors": "René Carmona, Mathieu Laurière",
+      "date": "2026-07-01",
+      "pdf": "https://arxiv.org/pdf/2607.01525v1",
+      "score": "7.0",
+      "evidence": "平均场RL提供可扩展的多智能体RL算法，可用于游戏AI训练",
+      "tldr": "针对大规模多智能体系统中学习与控制的挑战，本专著从平均场控制理论与强化学习的联系出发，系统发展概率与数学框架，分析代表性智能体学习问题，涵盖一般与线性二次模型。核心内容包括动态规划原理、混沌传播极限及表格Q学习、策略梯度等算法的理论分析。展示了深度确定性策略梯度等数值实现方法，为平均场强化学习提供了理论与实践的桥梁，推动了大群体随机系统的可处理学习设计。",
+      "tags": "query:gah",
+      "abstract_en": "This monograph provides an introduction to mean field reinforcement learning through the lens of Markov decision processes arising from large-population stochastic control with mean field interactions and common noise. Starting from the connection between multi-agent reinforcement learning and mean field control, it develops the probabilistic, mathematical, and control-theoretic framework needed to formulate representative-agent learning problems, analyze their relationship with finite-population systems, and study both general and linear-quadratic models. The presentation includes dynamic programming principles, propagation-of-chaos limits, and theoretical analyses of tabular Q-learning and policy-gradient methods. It also discusses numerical implementations, including tabular schemes and deep reinforcement learning methods such as deep deterministic policy gradient. The goal is to give readers a coherent bridge between mean field control theory and reinforcement learning methodology, emphasizing the mathematical structure of the problems and the design of tractable learning approaches for large stochastic populations.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/04/2606.28182v1-llawco-learning-laws-of-cooperation-for-modeling-embodied-multi-agent-behavior",
+      "section": "quick",
+      "title_en": "LLawCo: Learning Laws of Cooperation for Modeling Embodied Multi-Agent Behavior",
+      "authors": "Qinhong Zhou, Chuang Gan, Anoop Cherian",
+      "date": "2026-06-26",
+      "pdf": "https://arxiv.org/pdf/2606.28182v1",
+      "score": "6.0",
+      "evidence": "LLawCo 让具身代理学习合作行为法则，可用于设计合作型游戏 AI 机器人。",
+      "tldr": "近年来，具身多智能体在分布式部分可观测环境中的合作任务受到广泛关注，但现有大语言模型驱动的智能体常出现推理与伙伴或环境不对齐，导致协作低效与任务失败。LLawCo框架通过让智能体反思失败经历，自动提取行为对齐规律（如“必要时交谈”、“等待伙伴”），并将其通过监督微调植入思维链，使推理过程自主对齐合作目标。在贡献的大规模多智能体通信协作基准PARTNR-Dialog和TDW-MAT上，LLawCo在四种骨干LLM上的平均成功率分别提升4.5%和6.8%，显著优于现有开源通信框架。这表明从失败中学习可迁移的合作规律能有效克服对齐问题，提升协作效率与成功率，并提供了新的评估基准。",
+      "tags": "query:gah",
+      "abstract_en": "Embodied agents operating in decentralized and partially observable environments have attracted growing attention in recent years. However, existing large language model (LLM)-based agents often exhibit behaviors that are misaligned with their partners or inconsistent with the environment state, leading to inefficient cooperation and poor task success. To address this challenge, we propose a novel framework, Learning Laws of Cooperation (LLawCo), that enables embodied agents to autonomously align with both their partners and task objectives. Our framework allows agents to reflect on past failures to extract misaligned behavioral patterns, which are used to derive high-level behavioral laws, such as \"Talk when necessary\" and \"Wait for partner.\" These laws are explicitly incorporated into the agents' chains of thought via supervised fine-tuning, aligning their reasoning with task requirements and the behavior of other agents. To evaluate our approach, we introduce PARTNR-Dialog, a large-scale multi-agent communicative and cooperative planning benchmark built on the PARTNR environment. Experiments on existing tasks and our new benchmark demonstrate significant improvements in cooperative efficiency and task success rates. Across four backbone LLMs, our method achieves average success rate improvements of 4.5% on the PARTNR-Dialog benchmark and 6.8% on the TDW-MAT benchmark over state-of-the-art open-source communicative agent frameworks. See the LLawCo project page for details: https://www.merl.com/research/highlights/LLawCo",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
