@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-05",
+  "date": "2026-07-05",
+  "generated_at": "2026-07-05T21:20:50",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/05/2607.01034v1-behavior-adaptive-conversational-agents-toward-a-fluid-personality-framework",
+      "section": "deep",
+      "title_en": "Behavior-Adaptive Conversational Agents: Toward a Fluid Personality Framework",
+      "authors": "Hasibur Rahman, Smit Desai",
+      "date": "2026-07-01",
+      "pdf": "https://arxiv.org/pdf/2607.01034v1",
+      "score": "8.0",
+      "evidence": "为代理提供流动人格校准，实现更类人的交互",
+      "tldr": "基于大语言模型的对话代理虽然能展现个性化人格和隐喻角色，但固定的风格常导致任务场景错位。现有证据表明，适中的个性表达和上下文匹配的隐喻角色优于极端或单一设定。为此，本文提出流体人格框架，根据任务上下文、用户目标与特质动态调整代理的隐喻角色（如教练、导师）与个性表达强度。该框架旨在提升目标导向任务中的信任、体验与采纳意愿，推动适应性行为改变。",
+      "tags": "query:gah",
+      "abstract_en": "Large language model (LLM)-based conversational agents (CAs) are now ubiquitous, creating new opportunities for AI-mediated behavior change. Their capacity to project nuanced personalities and adopt diverse metaphorical roles raises a design question: how should an agent's persona and personality be calibrated to the moment? Recent evidence suggests that (i) moderate personality expression outperforms low or high extremes on trust, enjoyment, and intention to adopt in goal-oriented tasks, and (ii) context-appropriate metaphors outperform static one-note assistants on user experience and uptake. Yet most CAs still fix both persona and style, risking misalignment when dynamics, urgency, and formality vary, for example in medical information seeking, fitness coaching, and reflective learning. We propose a Fluid Personality Framework that jointly adapts (1) the agent's metaphorical persona, such as coach, tutor, librarian, or tool, and (2) its personality expression intensity, low, medium, or high, as a function of task context, user goals and traits, and situational urgency. We sketch the framework and its core design dimensions.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/05/2606.32017v1-triage-role-typed-credit-assignment-for-agentic-reinforcement-learning",
+      "section": "quick",
+      "title_en": "TRIAGE: Role-Typed Credit Assignment for Agentic Reinforcement Learning",
+      "authors": "Yuanda Xu, Zhengze Zhou, Hejian Sang, Xiaomin Li, Jiaxin Zhang, Xinchen Du, Zhipeng Wang, Alborz Geramifard",
+      "date": "2026-06-30",
+      "pdf": "https://arxiv.org/pdf/2606.32017v1",
+      "score": "7.0",
+      "evidence": "提出角色类型信用分配用于智能体强化学习，可应用于游戏AI训练",
+      "tldr": "在智能体强化学习中，GRPO仅依赖最终结果信号分配统一信用，忽略失败轨迹中的有益探索和成功轨迹中的冗余动作。TRIAGE框架引入角色类型化信用分配，通过评判器将轨迹段分类为决定性进展、有用探索等，并施加固定规则的过程奖励，从而纠正结果导向的盲点。实验表明，TRIAGE在多个环境中提升成功率并减少交互步数，其主要增益来自对退化动作的可靠检测，而非简单增加密集奖励。",
+      "tags": "query:gah",
+      "abstract_en": "Agentic reinforcement learning requires assigning credit to environment-facing actions such as searches, clicks, edits, navigation commands, and object interactions. Standard GRPO uses the final verifier outcome as a uniform advantage over all action tokens. This outcome signal is useful but structurally incomplete: it punishes useful exploration in failed rollouts and reinforces redundant or regressive actions in successful rollouts. We propose TRIAGE, a role-typed credit assignment framework that adds a semantic role axis to outcome credit. A structured judge classifies each segment as decisive progress, useful exploration, no-progress infrastructure, or regression, and a fixed role-conditioned rule maps these labels to bounded segment-level process rewards. This keeps verifier outcomes as the source of optimization direction while correcting the two main blind spots of outcome-only credit. We further show that role-conditioned credit is the optimal segment-level correction expressible from role labels alone -- a projection of the per-segment advantage residual onto the role variable -- so that the fixed role constants reduce advantage estimation error whenever the judge is reliable, and we connect this to lower-variance policy gradients. Across ALFWorld, Search-QA, and WebShop, TRIAGE improves success rates over GRPO for two policy models and outperforms both a scalar judge-derived process reward and an outcome-supervised shared-backbone value baseline. Ablations show that the gain comes from role typing rather than merely adding dense rewards: reliable detection of regression inside successful trajectories is the dominant contributor, while exploration credit provides a consistent secondary gain; on completed ALFWorld and WebShop rollouts, TRIAGE also reduces environment-facing turns by an additional $10.4\\%$ and $14.8\\%$ relative to GRPO.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/05/2606.30966v1-hypole-hyperproperty-guided-multi-agent-reinforcement-learning-under-partial-observation",
+      "section": "quick",
+      "title_en": "HyPOLE: Hyperproperty-Guided Multi-Agent Reinforcement Learning under Partial Observation",
+      "authors": "Arshia Rafieioskouei, Tzu-Han Hsu, Matthew Lucas, Borzoo Bonakdarpour",
+      "date": "2026-06-29",
+      "pdf": "https://arxiv.org/pdf/2606.30966v1",
+      "score": "6.0",
+      "evidence": "提出HyPOLE框架，利用超属性指导多智能体强化学习，可应用于多智能体游戏代理。",
+      "tldr": "多智能体强化学习在部分可观察环境下，传统奖励塑形缺乏严格规范与表达力。HyPOLE框架首次引入超性质HyperLTL指导学习，结合集中训练分布执行技术合成策略。在SMAC等基准上显著优于基线，展示了形式化规范在MARL中的潜力。",
+      "tags": "query:gah",
+      "abstract_en": "Formal specification is a powerful tool to guide the learning process and provides significant advantages over reward shaping: (1) mathematical rigor; (2) expressiveness to specify objectives and constraints, and (3) the ability to define tactics to achieve objectives. However, these benefits remain largely unexplored in the context of Multi-Agent Reinforcement Learning (MARL). This paper introduces HyPOLE, a novel framework for MARL under partial observability, where learning is guided by the expressive power of the so-called hyperproperties and, in particular, the temporal logic HyperLTL. We integrate Centralized Training for Decentralized Execution (CTDE) techniques with HyPOLE to synthesize decentralized policies, and our evaluation on SMAC, MessySMAC, and WildFire benchmark demonstrates clear advantages over baselines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

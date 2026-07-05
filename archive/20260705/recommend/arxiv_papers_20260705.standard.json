@@ -1,0 +1,138 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-05T21:16:31.580829+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.01034v1",
+      "source": "arxiv",
+      "title": "Behavior-Adaptive Conversational Agents: Toward a Fluid Personality Framework",
+      "abstract": "Large language model (LLM)-based conversational agents (CAs) are now ubiquitous, creating new opportunities for AI-mediated behavior change. Their capacity to project nuanced personalities and adopt diverse metaphorical roles raises a design question: how should an agent's persona and personality be calibrated to the moment? Recent evidence suggests that (i) moderate personality expression outperforms low or high extremes on trust, enjoyment, and intention to adopt in goal-oriented tasks, and (ii) context-appropriate metaphors outperform static one-note assistants on user experience and uptake. Yet most CAs still fix both persona and style, risking misalignment when dynamics, urgency, and formality vary, for example in medical information seeking, fitness coaching, and reflective learning. We propose a Fluid Personality Framework that jointly adapts (1) the agent's metaphorical persona, such as coach, tutor, librarian, or tool, and (2) its personality expression intensity, low, medium, or high, as a function of task context, user goals and traits, and situational urgency. We sketch the framework and its core design dimensions.",
+      "authors": [
+        "Hasibur Rahman",
+        "Smit Desai"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.HC"
+      ],
+      "published": "2026-07-01T15:03:59+00:00",
+      "link": "https://arxiv.org/pdf/2607.01034v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Fluid personality calibration for agents enables more human-like interaction",
+      "llm_evidence_cn": "为代理提供流动人格校准，实现更类人的交互",
+      "llm_evidence": "为代理提供流动人格校准，实现更类人的交互",
+      "canonical_evidence": "为代理提供流动人格校准，实现更类人的交互",
+      "llm_tldr_en": "Proposes a fluid personality framework for LLM-based conversational agents that dynamically calibrate persona and metaphors to context, improving user trust, enjoyment, and adoption over static assistants.",
+      "llm_tldr_cn": "针对固定人格的对话代理在多变情境下易出现不匹配问题，本文提出一种流动人格框架，使LLM代理能根据对话动态、紧迫性和正式程度自适应调整人格和隐喻角色。实验表明，适度的人格表达和恰当的隐喻能显著提升用户信任、愉悦感和采纳意愿。该框架为设计更具人性化和适应性的游戏AI对话系统提供了可直接迁移的方法。",
+      "llm_tldr": "针对固定人格的对话代理在多变情境下易出现不匹配问题，本文提出一种流动人格框架，使LLM代理能根据对话动态、紧迫性和正式程度自适应调整人格和隐喻角色。实验表明，适度的人格表达和恰当的隐喻能显著提升用户信任、愉悦感和采纳意愿。该框架为设计更具人性化和适应性的游戏AI对话系统提供了可直接迁移的方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.32017v1",
+      "source": "arxiv",
+      "title": "TRIAGE: Role-Typed Credit Assignment for Agentic Reinforcement Learning",
+      "abstract": "Agentic reinforcement learning requires assigning credit to environment-facing actions such as searches, clicks, edits, navigation commands, and object interactions. Standard GRPO uses the final verifier outcome as a uniform advantage over all action tokens. This outcome signal is useful but structurally incomplete: it punishes useful exploration in failed rollouts and reinforces redundant or regressive actions in successful rollouts. We propose TRIAGE, a role-typed credit assignment framework that adds a semantic role axis to outcome credit. A structured judge classifies each segment as decisive progress, useful exploration, no-progress infrastructure, or regression, and a fixed role-conditioned rule maps these labels to bounded segment-level process rewards. This keeps verifier outcomes as the source of optimization direction while correcting the two main blind spots of outcome-only credit. We further show that role-conditioned credit is the optimal segment-level correction expressible from role labels alone -- a projection of the per-segment advantage residual onto the role variable -- so that the fixed role constants reduce advantage estimation error whenever the judge is reliable, and we connect this to lower-variance policy gradients. Across ALFWorld, Search-QA, and WebShop, TRIAGE improves success rates over GRPO for two policy models and outperforms both a scalar judge-derived process reward and an outcome-supervised shared-backbone value baseline. Ablations show that the gain comes from role typing rather than merely adding dense rewards: reliable detection of regression inside successful trajectories is the dominant contributor, while exploration credit provides a consistent secondary gain; on completed ALFWorld and WebShop rollouts, TRIAGE also reduces environment-facing turns by an additional $10.4\\%$ and $14.8\\%$ relative to GRPO.",
+      "authors": [
+        "Yuanda Xu",
+        "Zhengze Zhou",
+        "Hejian Sang",
+        "Xiaomin Li",
+        "Jiaxin Zhang",
+        "Xinchen Du",
+        "Zhipeng Wang",
+        "Alborz Geramifard"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-30T17:48:07+00:00",
+      "link": "https://arxiv.org/pdf/2606.32017v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes role-typed credit assignment for agentic RL, applicable to game AI training",
+      "llm_evidence_cn": "提出角色类型信用分配用于智能体强化学习，可应用于游戏AI训练",
+      "llm_evidence": "提出角色类型信用分配用于智能体强化学习，可应用于游戏AI训练",
+      "canonical_evidence": "提出角色类型信用分配用于智能体强化学习，可应用于游戏AI训练",
+      "llm_tldr_en": "TRIAGE introduces a role-typed credit assignment that segments agent actions by semantic role, improving over uniform rewards, useful for training game AI bots with RL.",
+      "llm_tldr_cn": "现有智能体强化学习常基于最终结果统一分配信用，导致无法区分有效探索与冗余动作。本文提出TRIAGE框架，引入语义角色轴区分动作段，通过结构化判断器将每段分类为关键进展、有用探索等，并依据角色规则分配差异化信用。实验表明，TRIAGE提升了信用分配精准性和策略学习效率，为训练精细控制的游戏AI机器人提供了方法基础。",
+      "llm_tldr": "现有智能体强化学习常基于最终结果统一分配信用，导致无法区分有效探索与冗余动作。本文提出TRIAGE框架，引入语义角色轴区分动作段，通过结构化判断器将每段分类为关键进展、有用探索等，并依据角色规则分配差异化信用。实验表明，TRIAGE提升了信用分配精准性和策略学习效率，为训练精细控制的游戏AI机器人提供了方法基础。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.30966v1",
+      "source": "arxiv",
+      "title": "HyPOLE: Hyperproperty-Guided Multi-Agent Reinforcement Learning under Partial Observation",
+      "abstract": "Formal specification is a powerful tool to guide the learning process and provides significant advantages over reward shaping: (1) mathematical rigor; (2) expressiveness to specify objectives and constraints, and (3) the ability to define tactics to achieve objectives. However, these benefits remain largely unexplored in the context of Multi-Agent Reinforcement Learning (MARL). This paper introduces HyPOLE, a novel framework for MARL under partial observability, where learning is guided by the expressive power of the so-called hyperproperties and, in particular, the temporal logic HyperLTL. We integrate Centralized Training for Decentralized Execution (CTDE) techniques with HyPOLE to synthesize decentralized policies, and our evaluation on SMAC, MessySMAC, and WildFire benchmark demonstrates clear advantages over baselines.",
+      "authors": [
+        "Arshia Rafieioskouei",
+        "Tzu-Han Hsu",
+        "Matthew Lucas",
+        "Borzoo Bonakdarpour"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LO",
+        "cs.MA"
+      ],
+      "published": "2026-06-29T23:03:05+00:00",
+      "link": "https://arxiv.org/pdf/2606.30966v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes HyPOLE, a framework for MARL guided by hyperproperties, which can be applied to multi-agent game playing.",
+      "llm_evidence_cn": "提出HyPOLE框架，利用超属性指导多智能体强化学习，可应用于多智能体游戏代理。",
+      "llm_evidence": "提出HyPOLE框架，利用超属性指导多智能体强化学习，可应用于多智能体游戏代理。",
+      "canonical_evidence": "提出HyPOLE框架，利用超属性指导多智能体强化学习，可应用于多智能体游戏代理。",
+      "llm_tldr_en": "HyPOLE uses temporal logic hyperproperties to guide multi-agent RL under partial observability, integrating CTDE for decentralized policies, applicable to game AI.",
+      "llm_tldr_cn": "多智能体强化学习中形式化规范的优势尚未充分探索。本文提出HyPOLE框架，利用超属性（特别是HyperLTL）指导部分可观测下的多智能体学习。结合集中训练分散执行技术合成去中心化策略。实验表明该方法能有效实现复杂目标，为多智能体游戏AI提供规范引导的学习范式。",
+      "llm_tldr": "多智能体强化学习中形式化规范的优势尚未充分探索。本文提出HyPOLE框架，利用超属性（特别是HyperLTL）指导部分可观测下的多智能体学习。结合集中训练分散执行技术合成去中心化策略。实验表明该方法能有效实现复杂目标，为多智能体游戏AI提供规范引导的学习范式。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
