@@ -1,0 +1,287 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-06T21:01:54.792000+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2606.29511v1",
+      "source": "arxiv",
+      "title": "Reinforcement Learning in Super Mario Bros: Curriculum, Pedagogy, and Optimal Level Design in World 1-1",
+      "abstract": "World 1-1 of Super Mario Bros is widely celebrated as a masterclass in game design: its progressive structure is credited with teaching players core mechanics through the level itself. We ask whether that structure is empirically measurable using reinforcement learning. We implement World 1-1 from scratch as a fully discrete environment and compare four algorithms -- Q-Learning, SARSA, Monte Carlo, and Deep Q-Network (DQN) -- across three progressively complex versions of the same level. Monte Carlo emerges as the strongest agent (94.9% $\\pm$ 1.5% win rate), outperforming DQN (76.4% $\\pm$ 3.4%) by learning to maximize intermediate rewards along winning paths rather than taking the most direct route. We then use Monte Carlo in a curriculum experiment permuting World 1-1's six canonical segments across twelve conditions. Canonical ordering converges fastest, achieves the highest learning efficiency, and is the only condition with zero catastrophic failures; no random permutation matches all three criteria simultaneously. These results provide, to the best of our knowledge, the first empirical validation that World 1-1's canonical design encodes genuine pedagogical structure: one that measurably accelerates learning and cannot be replicated by chance.",
+      "authors": [
+        "Jesse Ponnock",
+        "Lucas Ho"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-28T17:17:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.29511v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Uses Q-Learning, SARSA, Monte Carlo, DQN to train game playing agents in Super Mario Bros",
+      "llm_evidence_cn": "使用Q-Learning、SARSA、蒙特卡洛和DQN训练超级马里奥游戏智能体",
+      "llm_evidence": "使用Q-Learning、SARSA、蒙特卡洛和DQN训练超级马里奥游戏智能体",
+      "canonical_evidence": "使用Q-Learning、SARSA、蒙特卡洛和DQN训练超级马里奥游戏智能体",
+      "llm_tldr_en": "This paper trains RL agents in Super Mario Bros World 1-1, comparing algorithms and analyzing how level design teaches mechanics; Monte Carlo agent achieves 94.9% win rate by maximizing intermediate rewards, revealing optimal level design principles.",
+      "llm_tldr_cn": "针对游戏关卡设计教学性的量化问题，本文在自建的离散超级马里奥1-1环境中，比较了Q-Learning、SARSA、蒙特卡洛和DQN四种强化学习算法。研究发现蒙特卡洛智能体通过最大化路径中间奖励获得94.9%的胜率，优于直冲目标的DQN，并利用训练的智能体分析了关卡元素的教学顺序，为游戏AI训练和关卡设计提供了实证依据。",
+      "llm_tldr": "针对游戏关卡设计教学性的量化问题，本文在自建的离散超级马里奥1-1环境中，比较了Q-Learning、SARSA、蒙特卡洛和DQN四种强化学习算法。研究发现蒙特卡洛智能体通过最大化路径中间奖励获得94.9%的胜率，优于直冲目标的DQN，并利用训练的智能体分析了关卡元素的教学顺序，为游戏AI训练和关卡设计提供了实证依据。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.30454v1",
+      "source": "arxiv",
+      "title": "Collective cooperation without individual fidelity in LLM agents",
+      "abstract": "Large language models (LLMs) are increasingly used as agents in simulations of social systems, yet it remains unclear when their behavior can be interpreted as a faithful proxy for human decision-making. Here we test LLM agents against a direct empirical benchmark: a large-scale networked Prisoner's Dilemma experiment with human participants. Using the same interaction protocol, payoff structure, and network topologies, we compare nine open-weight LLMs with the human data. The selected model reproduces several macro-level features of cooperation dynamics, including the early decline and later stabilization of cooperation. This aggregate agreement, however, does not extend uniformly to finer levels of behavior. LLM populations underestimate individual-level heterogeneity and generate conditional cooperation patterns that differ from those observed in humans. Adding a fraction of random agents improves some aspects of micro-level agreement, but does not remove the mismatch in decision rules. These findings reveal a macro--micro dissociation in LLM-based social agents: collective outcomes can appear human-like even when the underlying behavioral distributions and mechanisms are not. They suggest that validating LLM agents as human surrogates requires comparisons across aggregate dynamics, individual heterogeneity, and context-dependent decision rules, rather than outcome-level agreement alone.",
+      "authors": [
+        "Henrique Ferraz de Arruda",
+        "Carlos Gracia Lázaro",
+        "Alberto Aleta",
+        "Yamir Moreno"
+      ],
+      "primary_category": "physics.soc-ph",
+      "categories": [
+        "physics.soc-ph",
+        "cs.AI"
+      ],
+      "published": "2026-06-29T15:22:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.30454v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Compares LLM agents to human behavior in Prisoner's Dilemma game, directly relevant to human-like game AI.",
+      "llm_evidence_cn": "在囚徒困境博弈中比较LLM代理与人类行为，直接涉及类人游戏AI。",
+      "llm_evidence": "在囚徒困境博弈中比较LLM代理与人类行为，直接涉及类人游戏AI。",
+      "canonical_evidence": "在囚徒困境博弈中比较LLM代理与人类行为，直接涉及类人游戏AI。",
+      "llm_tldr_en": "Evaluates LLM agents in a networked Prisoner's Dilemma against human data, showing macro similarity but micro differences, informing human-like game bot design.",
+      "llm_tldr_cn": "该论文将大规模网络囚徒困境实验中的人类行为与多个开源LLM代理的表现进行比较。结果显示，选定的模型在宏观层面复制了合作动态，如早期下降和后期稳定，但在个体层面存在偏差。该研究为设计具有类人合作行为的游戏AI bot提供了实证基准和启示。",
+      "llm_tldr": "该论文将大规模网络囚徒困境实验中的人类行为与多个开源LLM代理的表现进行比较。结果显示，选定的模型在宏观层面复制了合作动态，如早期下降和后期稳定，但在个体层面存在偏差。该研究为设计具有类人合作行为的游戏AI bot提供了实证基准和启示。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.31038v1",
+      "source": "arxiv",
+      "title": "LLM-Driven Personalities for Decision Making in Emergency Simulations",
+      "abstract": "For virtual humans to appear believable, they must exhibit agency and spatial awareness while interacting with their environment in ways that reflect competence and intelligence. At the core of these capabilities lies effective decision-making, which strongly shapes agent behavior. With the rapid advancement of artificial intelligence, Large Language Models (LLMs) have increasingly been explored as a mechanism to support such decision-making processes. In this work, we investigate the use of LLMs to drive decision-making in virtual humans within a simulated evacuation scenario, incorporating OCEAN personality traits into agent representations. Our goal is to evaluate how personality, expressed through language-based prompts, influences both individual behaviors and collective simulation outcomes. Our results demonstrate that LLM-driven personality profiles significantly impact agents' decisions, leading to distinct behavioral patterns across different traits. These findings suggest that heterogeneous crowds composed of LLM-guided agents can enhance the realism and variability of simulated environments, offering a flexible alternative to traditional rule-based approaches.",
+      "authors": [
+        "Stefano Calzolari",
+        "Rubens Montanha",
+        "Gabriel Schneider",
+        "Gustavo Wide",
+        "Paulo Knob",
+        "Francesco Strada",
+        "Andrea Bottino",
+        "Soraia Raupp Musse"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.AI"
+      ],
+      "published": "2026-06-30T02:15:22+00:00",
+      "link": "https://arxiv.org/pdf/2606.31038v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "LLM-driven personalities for virtual humans, relevant to humanizing game AI bots",
+      "llm_evidence_cn": "利用LLM赋予虚拟人类人格，与游戏AI bot拟人化相关",
+      "llm_evidence": "利用LLM赋予虚拟人类人格，与游戏AI bot拟人化相关",
+      "canonical_evidence": "利用LLM赋予虚拟人类人格，与游戏AI bot拟人化相关",
+      "llm_tldr_en": "Explores using LLMs with OCEAN personality traits to drive decision-making in virtual humans, providing a method to create more human-like AI behaviors potentially transferable to game bots.",
+      "llm_tldr_cn": "该工作探索了利用大语言模型注入OCEAN人格特质来驱动虚拟人类在紧急疏散场景中的决策行为。实验表明，通过提示词设定人格不仅影响了个体的行动选择，还改变了群体的动力学特征，使得虚拟人表现出更可信、更类人的行为模式。这一方法为游戏AI的角色塑造提供了新的范式，有助于开发更具个性和沉浸感的拟人化游戏bot。研究为在游戏环境中创建具有一致性格的AI角色提供了可行技术路线，有望增强玩家与游戏bot的社交互动体验。",
+      "llm_tldr": "该工作探索了利用大语言模型注入OCEAN人格特质来驱动虚拟人类在紧急疏散场景中的决策行为。实验表明，通过提示词设定人格不仅影响了个体的行动选择，还改变了群体的动力学特征，使得虚拟人表现出更可信、更类人的行为模式。这一方法为游戏AI的角色塑造提供了新的范式，有助于开发更具个性和沉浸感的拟人化游戏bot。研究为在游戏环境中创建具有一致性格的AI角色提供了可行技术路线，有望增强玩家与游戏bot的社交互动体验。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.30192v1",
+      "source": "arxiv",
+      "title": "Domain Adaptation with Adaptive Imagination for Visual Reinforcement Learning under Limited Target Data",
+      "abstract": "Sim-to-real transfer remains a major obstacle for reinforcement learning (RL), especially for vision-based control where image observations exacerbate the state-distribution shift between simulation and the real world. Domain adaptation (DA) is a promising remedy for this challenge. Prior sim-to-real DA works have demonstrated encouraging results, yet these approaches typically assume substantially more target data, which is not available in practice. Indeed, their performance degrades significantly when the target data budget is reduced. To address this challenge, we propose AIDA (Adaptive Imagination for Domain Adaptation), a domain adaptation framework for visual reinforcement learning that addresses sim-to-real transfer under scarce target data without requiring additional interaction with the target environment. Our key idea is adaptive imagination: generating reliable and semantic imagination rollouts to augment limited target data. Specifically, AIDA employs a distribution-shift-aware discriminator that truncates rollouts when imagined transitions drift into low-confidence regions, so that only reliable transitions contribute to the augmentation. On these reliable transitions, AIDA introduces a self-consistency loss that cycles through state -> image observation -> state, penalizing discrepancies between the original and reconstructed states. This provides additional adaptation signals beyond the scarce target data. Our experiments demonstrate that adaptive imagination effectively truncates unreliable rollouts. By enforcing a self-consistency loss on the resulting reliable transitions, AIDA learns semantically meaningful state representations and outperforms baselines across five MuJoCo tasks and two Gymnasium-Robotics tasks.",
+      "authors": [
+        "Hyunwoo Park",
+        "Sang-Hyun Lee"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-29T12:08:08+00:00",
+      "link": "https://arxiv.org/pdf/2606.30192v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "proposes a domain adaptation framework for visual RL that reduces target data needs",
+      "llm_evidence_cn": "提出视觉RL领域自适应框架，减少目标数据需求",
+      "llm_evidence": "提出视觉RL领域自适应框架，减少目标数据需求",
+      "canonical_evidence": "提出视觉RL领域自适应框架，减少目标数据需求",
+      "llm_tldr_en": "Proposes AIDA, a domain adaptation framework for visual RL that uses adaptive imagination to generate synthetic target data, reducing the need for real target samples and enabling efficient sim-to-real transfer.",
+      "llm_tldr_cn": "针对视觉强化学习中仿真到现实的迁移难题，本文提出AIDA框架，通过自适应想象力生成合成目标数据，大幅减少对真实目标样本的依赖，在少量目标数据下实现高效的域自适应。实验表明AIDA在降低目标数据预算时仍能保持性能，为游戏等领域的视觉RL应用提供了鲁棒的迁移方法。",
+      "llm_tldr": "针对视觉强化学习中仿真到现实的迁移难题，本文提出AIDA框架，通过自适应想象力生成合成目标数据，大幅减少对真实目标样本的依赖，在少量目标数据下实现高效的域自适应。实验表明AIDA在降低目标数据预算时仍能保持性能，为游戏等领域的视觉RL应用提供了鲁棒的迁移方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.00452v1",
+      "source": "arxiv",
+      "title": "Gauging, Measuring, and Controlling Critic Complexity in Actor-Critic Reinforcement Learning",
+      "abstract": "Actor-critic methods depend on learned critics, but critic quality is often evaluated only indirectly through return, temporal-difference error, or value loss. Critic complexity is introduced as an additional diagnostic and intervention dimension for actor-critic reinforcement learning. The analysis uses spectral effective-rank entropy, a rank-like summary of the singular-value distributions of critic weight matrices, to assess critic model complexity. Across TD3 and PPO experiments, critic complexity is tracked together with return and Monte Carlo value-estimation bias. The results show that critic complexity is measurable throughout training and is systematically associated with training behavior, while also making clear that the relationship is heterogeneous across algorithms, tasks, and hyperparameters. A direct complexity-control intervention is then evaluated by adding a spectral-entropy penalty to the critic loss. This intervention reliably changes the targeted spectral quantity, demonstrating that critic complexity can be controlled rather than only observed. Return effects are treated as task-dependent evidence rather than as a general performance claim, because overall complexity-control results vary.",
+      "authors": [
+        "Konstantin Garbers"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-01T05:10:14+00:00",
+      "link": "https://arxiv.org/pdf/2607.00452v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Critic complexity analysis in actor-critic RL, useful diagnostic for game AI training.",
+      "llm_evidence_cn": "actor-critic RL中评论家复杂度分析，可用于游戏AI训练诊断。",
+      "llm_evidence": "actor-critic RL中评论家复杂度分析，可用于游戏AI训练诊断。",
+      "canonical_evidence": "actor-critic RL中评论家复杂度分析，可用于游戏AI训练诊断。",
+      "llm_tldr_en": "Introduces critic complexity metric using spectral entropy, helping diagnose and improve actor-critic RL methods commonly used in game AI.",
+      "llm_tldr_cn": "该论文引入评论家复杂度指标，用谱有效秩熵衡量actor-critic强化学习中评论家权重矩阵的复杂度。在TD3和PPO实验中，复杂度与训练行为和值估计偏差相关，为游戏AI训练中调试和改进提供了新维度。",
+      "llm_tldr": "该论文引入评论家复杂度指标，用谱有效秩熵衡量actor-critic强化学习中评论家权重矩阵的复杂度。在TD3和PPO实验中，复杂度与训练行为和值估计偏差相关，为游戏AI训练中调试和改进提供了新维度。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.31377v1",
+      "source": "arxiv",
+      "title": "Stage-Transition Dense Reward Modeling for Reinforcement Learning",
+      "abstract": "Reinforcement learning for long-horizon robotic manipulation is often limited by sparse and delayed rewards, while manually designing dense shaping signals is costly and brittle to changes in environments and object configurations. This work proposes Stage-Transition Dense Reward (STDR), a visual reward-learning framework that converts unstructured expert videos into logically grounded dense rewards for training RL agents from scratch. STDR leverages semantic understanding to infer a task's stage structure from demonstrations, and delivers two complementary learning signals during online training: (i) stage-transition feedback that provides goal-directed reward, and (ii) within-stage progress feedback that supplies fine-grained guidance toward completing each stage. Furthermore, an out-of-distribution (OOD) detection mechanism and a grasping regulation module are integrated to enhance robustness and prevent reward hacking. Experiments on 14 manipulation tasks across MetaWorld, ManiSkill, and Franka Kitchen show that STDR consistently improves sample efficiency and success rates over multiple baselines, and matches or surpasses handcrafted dense rewards on several challenging tasks. Real-robot evaluations further indicate that STDR assigns stable, progress-aligned rewards on successful executions while producing appropriately low rewards for failures, suggesting robustness to visual noise and better-calibrated reward assignment across settings.",
+      "authors": [
+        "Yang Yang",
+        "Bingjie Chen",
+        "Zihan Wang",
+        "Yizhe Li",
+        "Guoping Pan",
+        "Yi Cheng",
+        "Houde Liu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-30T09:07:19+00:00",
+      "link": "https://arxiv.org/pdf/2606.31377v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Stage-transition dense reward modeling from expert videos, applicable to game AI reward design.",
+      "llm_evidence_cn": "从专家视频中建模阶段转换密集奖励，可用于游戏AI奖励设计。",
+      "llm_evidence": "从专家视频中建模阶段转换密集奖励，可用于游戏AI奖励设计。",
+      "canonical_evidence": "从专家视频中建模阶段转换密集奖励，可用于游戏AI奖励设计。",
+      "llm_tldr_en": "Introduces STDR, a visual reward-learning framework that extracts stage structures from demonstrations to provide dense rewards, which can be adapted for game AI training.",
+      "llm_tldr_cn": "该论文提出STDR框架，从非结构化专家视频中推断任务阶段结构，为强化学习提供阶段转换和阶段内进展反馈。该方法无需手工设计奖励，可迁移至游戏AI训练，降低奖励塑造成本。实验表明，密集奖励提升了从零训练的长程任务效率。",
+      "llm_tldr": "该论文提出STDR框架，从非结构化专家视频中推断任务阶段结构，为强化学习提供阶段转换和阶段内进展反馈。该方法无需手工设计奖励，可迁移至游戏AI训练，降低奖励塑造成本。实验表明，密集奖励提升了从零训练的长程任务效率。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.01897v1",
+      "source": "arxiv",
+      "title": "Rank-Then-Act: Reward-Free Control from Frame-Order Progress",
+      "abstract": "We introduce Rank-Then-Act (RTA), a framework for learning control policies from expert video demonstrations without environment rewards. RTA trains a Vision-Language Model (VLM) offline as a progress-based ordinal scorer, using a Group Relative Policy Optimization (GRPO) objective over shuffled frame sequences, which forces the model to recover temporal ordering from visual semantics rather than trivial time cues. Importantly, instead of using the scorer directly as a scalar reward model, we propose a correlation-based reward function for reinforcement learning: at each interaction window, we compute the Spearman rank correlation between predicted progress rankings and true temporal indices, yielding a bounded, scale-invariant learning signal. This design decouples reward learning from absolute calibration and enables stable transfer across tasks and environments. We evaluate RTA on discrete control benchmarks (PyBoy: Catrap, Kirby) and continuous control tasks (PointMaze, MetaWorld). RTA consistently matches or outperforms prior video-based reward learning methods and rank-based baselines, while demonstrating strong cross-task reuse of a single pretrained progress scorer. Our results suggest that correlation-structured supervision over video-derived ordinal signals is sufficient for policy learning, offering a scalable alternative to explicit reward design.",
+      "authors": [
+        "Yuriy Maksyuta",
+        "George Bredis",
+        "Ruslan Rakhimov",
+        "Daniil Gavrilov"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-02T08:50:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.01897v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Reward-free RL from video demonstrations, applicable to training game agents from gameplay videos",
+      "llm_evidence_cn": "从视频演示中进行无奖励强化学习，可应用于从游戏视频训练游戏智能体",
+      "llm_evidence": "从视频演示中进行无奖励强化学习，可应用于从游戏视频训练游戏智能体",
+      "canonical_evidence": "从视频演示中进行无奖励强化学习，可应用于从游戏视频训练游戏智能体",
+      "llm_tldr_en": "Rank-Then-Act learns control policies from expert video without environment rewards, using a VLM to rank progress and a correlation-based reward; useful for training game AI without engineered rewards.",
+      "llm_tldr_cn": "Rank-Then-Act提出了一种无需环境奖励、仅从专家视频演示中学习控制策略的新框架。它离线训练一个视觉语言模型作为进度序数评分器，并创新性地采用基于秩相关性的奖励信号进行强化学习，从而避免直接使用评分器带来的噪声。该方法在控制任务中展现了与有奖励方法相当的性能，为从大量已有的游戏回放中训练游戏AI bot提供了高效、易行的技术路径。该工作突破了传统RL对显式奖励的依赖，对于难以定义奖励函数的游戏任务尤其有价值。",
+      "llm_tldr": "Rank-Then-Act提出了一种无需环境奖励、仅从专家视频演示中学习控制策略的新框架。它离线训练一个视觉语言模型作为进度序数评分器，并创新性地采用基于秩相关性的奖励信号进行强化学习，从而避免直接使用评分器带来的噪声。该方法在控制任务中展现了与有奖励方法相当的性能，为从大量已有的游戏回放中训练游戏AI bot提供了高效、易行的技术路径。该工作突破了传统RL对显式奖励的依赖，对于难以定义奖励函数的游戏任务尤其有价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
