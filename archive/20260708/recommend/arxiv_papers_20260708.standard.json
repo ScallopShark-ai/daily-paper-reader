@@ -1,0 +1,402 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-08T21:35:47.848287+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2607.06514v1",
+      "source": "arxiv",
+      "title": "FootsiesGym: A Fighting Game Benchmark for Two-Player Zero-Sum Imperfect-Information Games",
+      "abstract": "We present FootsiesGym, an open-source environment for learning in a non-trivial two-player, zero-sum, imperfect-information game. Built on HiFight's minimalist 2D fighting game Footsies, it isolates the cyclic, non-transitive strategic interactions of fighting game neutral play while remaining simple enough for efficient analysis. We provide a vectorized simulator that enables high-throughput training on standard hardware, making the environment accessible and reproducible. We describe the design of the environment, benchmark several reinforcement learning algorithms, and discuss open research directions it enables. The code is available at https://github.com/como-research/FootsiesGym.",
+      "authors": [
+        "Chase McDonald",
+        "Nathan Tsang",
+        "Wesley N. Kerr"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.GT"
+      ],
+      "published": "2026-07-07T17:18:44+00:00",
+      "link": "https://arxiv.org/pdf/2607.06514v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Fighting game benchmark for training RL agents in two-player zero-sum imperfect-information game",
+      "llm_evidence_cn": "格斗游戏环境，用于训练双人零和不完全信息游戏中的强化学习智能体",
+      "llm_evidence": "格斗游戏环境，用于训练双人零和不完全信息游戏中的强化学习智能体",
+      "canonical_evidence": "格斗游戏环境，用于训练双人零和不完全信息游戏中的强化学习智能体",
+      "llm_tldr_en": "FootsiesGym is an open-source fighting game environment that isolates strategic interactions and enables high-throughput RL training, benchmarking several algorithms.",
+      "llm_tldr_cn": "FootsiesGym针对双人零和不完全信息游戏中的策略学习，基于格斗游戏Footsies构建简洁但非平凡的模拟环境。提供向量化模拟器以支持高通量强化学习训练，并基准了多种RL算法，为游戏AI研究提供了高效、可复现的测试平台。",
+      "llm_tldr": "FootsiesGym针对双人零和不完全信息游戏中的策略学习，基于格斗游戏Footsies构建简洁但非平凡的模拟环境。提供向量化模拟器以支持高通量强化学习训练，并基准了多种RL算法，为游戏AI研究提供了高效、可复现的测试平台。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.03473v1",
+      "source": "arxiv",
+      "title": "MUTE: Return-Preserving Communication Unlearning for Efficient Multi-Agent Coordination",
+      "abstract": "Inter-agent communication is critical for coordinating Multi-Agent Reinforcement Learning (MARL) agents under partial observability to perform effectively in cooperative games; however, real-world bandwidth constraints demand sparse interactions. Prior approaches primarily address this trade-off by optimizing information-theoretic surrogates. We argue that these statistical proxies are fundamentally misaligned with the true objective: a message can be highly informative yet irrelevant to the joint return of the task. In this work, we propose Message Unlearning for Targeted Efficiency (MUTE), a framework that views communication reduction as a value-guided machine unlearning problem. MUTE rigorously quantifies the Counterfactual Message Value using an attention-based estimator, and systematically unlearns the transmission of low-value messages from a policy trained without any communication constraints. This is achieved through a dual-objective mechanism that enforces communication sparsity while preserving the return of the original joint policy. We derive a theoretical upper bound on the performance gap induced by this sparsification, guaranteeing controlled return degradation. We also empirically evaluate MUTE on various complex multi-agent environments, achieving 80% to 90% bandwidth reduction while maintaining performance comparable to state-of-the-art baselines.",
+      "authors": [
+        "Rui Zuo",
+        "Qinwei Huang",
+        "Mingyang Li",
+        "Zhenhang Zhang",
+        "Simon Khan",
+        "Qinru Qiu"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA"
+      ],
+      "published": "2026-07-03T16:34:19+00:00",
+      "link": "https://arxiv.org/pdf/2607.03473v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Optimizes communication in cooperative multi-agent RL games",
+      "llm_evidence_cn": "优化协作多智能体强化学习游戏中的通信",
+      "llm_evidence": "优化协作多智能体强化学习游戏中的通信",
+      "canonical_evidence": "优化协作多智能体强化学习游戏中的通信",
+      "llm_tldr_en": "The paper presents MUTE, a value-guided communication reduction framework for MARL that unlearns irrelevant messages, preserving joint return while achieving sparse communication, directly useful for training efficient game AI bots in cooperative settings.",
+      "llm_tldr_cn": "该论文针对多智能体强化学习中通信带宽约束，提出基于价值引导的通信遗忘框架MUTE，定量评估消息的反事实回报贡献，遗忘与任务无关的消息，在保持联合回报的同时实现稀疏通信。该方法直接适用于协作游戏AI bot的训练，提升通信效率。",
+      "llm_tldr": "该论文针对多智能体强化学习中通信带宽约束，提出基于价值引导的通信遗忘框架MUTE，定量评估消息的反事实回报贡献，遗忘与任务无关的消息，在保持联合回报的同时实现稀疏通信。该方法直接适用于协作游戏AI bot的训练，提升通信效率。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.02802v1",
+      "source": "arxiv",
+      "title": "Seduced by the Narrative: Assessing Rule Adherence in Semi-Open Textual Sandboxes",
+      "abstract": "As LLMs are increasingly deployed as autonomous adjudicators in semi-open textual game environments, robust rule adherence becomes critical when user intent conflicts with system rules. However, these models are trained to be helpful and compliant, leaving them vulnerable to a class of attacks we term \\textit{Rhetorical Injection}, where adversarial users exploit narrative framing techniques such as pseudo-logical reasoning and authoritative coercion to bypass adjudication logic. We present CoC-Seduce, a multi-agent adversarial benchmark built on Tabletop Role-Playing Game (TRPG) mechanics, an ideal instantiation of semi-open environments where rules are explicit for adjudication, yet interaction remains entirely in natural language. Three frontier models, i.e., GPT-5.4, Claude Sonnet 4.6, Gemini 3.5 Flash, serve as adversarial generators producing 5,376 samples across 4 world settings and 16 skill categories. We then benchmark 20 target adjudicators against this corpus. Evaluation across 20 models reveals that neither model scale nor explicit reasoning mechanisms reliably confer adjudication robustness, with \\textsc{Pseudo-Logic} emerging as the dominant attack vector and cross-cultural settings exposing systematic knowledge gaps across all evaluated families. Project page: https://github.com/answerrtx/CoC-Seduce",
+      "authors": [
+        "Weiying Chen",
+        "Junlong Shen",
+        "Zhanyuan Guo",
+        "Xiaoou Zhou"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-07-02T22:25:35+00:00",
+      "link": "https://arxiv.org/pdf/2607.02802v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Assesses rule adherence of LLM agents in TRPG environments, relevant to human-like game AI",
+      "llm_evidence_cn": "评估LLM智能体在TRPG环境中遵守规则的情况，与类人游戏AI相关",
+      "llm_evidence": "评估LLM智能体在TRPG环境中遵守规则的情况，与类人游戏AI相关",
+      "canonical_evidence": "评估LLM智能体在TRPG环境中遵守规则的情况，与类人游戏AI相关",
+      "llm_tldr_en": "The paper introduces a benchmark for LLMs as game adjudicators, testing their vulnerability to rhetorical injection attacks that cause rule-breaking, contributing to the design of robust and human-like game AI bots.",
+      "llm_tldr_cn": "该论文研究了LLM在半开放文本沙盒游戏环境中作为裁决者时的规则遵守问题，提出叙事注入攻击，构建了基于桌游RPG的多智能体对抗基准。发现LLM易受叙事诱导而违反规则，这对开发健壮且类人的游戏AI bot具有重要启示。",
+      "llm_tldr": "该论文研究了LLM在半开放文本沙盒游戏环境中作为裁决者时的规则遵守问题，提出叙事注入攻击，构建了基于桌游RPG的多智能体对抗基准。发现LLM易受叙事诱导而违反规则，这对开发健壮且类人的游戏AI bot具有重要启示。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.02686v1",
+      "source": "arxiv",
+      "title": "ASK in the Dark: Uncertainty-Gated LLM Assistance under Partial Observability",
+      "abstract": "Reinforcement learning agents operating under partial observability must act on incomplete information, making them natural candidates for guidance from small language models (SLMs) that carry broad reasoning priors. Yet integrating SLM guidance into this setting has proven difficult: across all test environments, vanilla uncertainty-gated approaches achieve an overwrite rate at or near zero, meaning the SLM almost never contributes an independent action. We trace this failure to the bare egocentric prompt, which provides insufficient context for genuine reasoning, and identify it as a context problem rather than a capacity problem. We propose ASK+, which supplies the SLM with trajectory-aware context (a partially revealed map, visited positions, and action history) and structured chain-of-thought reasoning, converting it from a passive redundancy check into a more informative consultant that occasionally corrects the policy. We further establish that the predictive entropy signal used for selective querying measures action uncertainty rather than state uncertainty and remains informative in POMDPs, making uncertainty-gated assistance viable beyond fully observable settings. The stateful prompt drives substantial gains: on DoorKey, where vanilla ASK matches PPO (both 89%), ASK+ reaches 93% success; on FourRooms, success climbs from 53% to 70%; on HigherLower, accuracy reaches 73.7%, matching the SLM-only upper bound. Across all environments, Qwen3.5-2B matches or exceeds Qwen3.5-4B, confirming that prompt design and selective gating dominate the impact of model scale, enabling guidance without large models.",
+      "authors": [
+        "Juarez Monteiro",
+        "Nathan Gavenski",
+        "Guilherme Lima",
+        "Francisco Galuppo",
+        "Odinaldo Rodrigues",
+        "Adriano Veloso"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-02T18:26:05+00:00",
+      "link": "https://arxiv.org/pdf/2607.02686v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes ASK+ to integrate small language models into reinforcement learning agents under partial observability.",
+      "llm_evidence_cn": "提出ASK+方法，将小型语言模型集成到部分可观测下的强化学习智能体中。",
+      "llm_evidence": "提出ASK+方法，将小型语言模型集成到部分可观测下的强化学习智能体中。",
+      "canonical_evidence": "提出ASK+方法，将小型语言模型集成到部分可观测下的强化学习智能体中。",
+      "llm_tldr_en": "This paper addresses the failure of vanilla uncertainty-gated SLM guidance for RL agents under partial observability by providing trajectory-aware context, enabling effective SLM contribution.",
+      "llm_tldr_cn": "针对部分可观测环境下强化学习智能体难以有效利用小型语言模型（SLM）指导的问题，提出ASK+方法，通过轨迹感知上下文解决裸自我中心提示导致的上下文不足，使SLM能独立贡献动作。实验表明该方法显著提高了覆盖率和有效性。该方法为训练游戏AI等部分可观测环境的强化学习智能体提供了新的辅助手段。",
+      "llm_tldr": "针对部分可观测环境下强化学习智能体难以有效利用小型语言模型（SLM）指导的问题，提出ASK+方法，通过轨迹感知上下文解决裸自我中心提示导致的上下文不足，使SLM能独立贡献动作。实验表明该方法显著提高了覆盖率和有效性。该方法为训练游戏AI等部分可观测环境的强化学习智能体提供了新的辅助手段。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.04470v1",
+      "source": "arxiv",
+      "title": "Regime-Conditional Stabilisation of LLM-Augmented Cooperative Multi-Agent Reinforcement Learning",
+      "abstract": "Large Language Models (LLMs) offer a natural interface for translating human objectives into reward signals for cooperative multi-agent reinforcement learning (MARL), yet the training-time dynamics of this integration remain poorly understood. We show that dynamically updating LLM-generated reward weights during off-policy MARL violates the stationarity assumption of Potential-Based Reward Shaping (PBRS) and contaminates the experience replay buffer, whose stored transitions carry reward labels computed under stale shaping weights. We characterise the result as a regime-dependent failure whose severity depends on how competent the unshaped baseline already is. To control it we propose two stabilisation strategies: a Phase-Based Freeze Schedule that enforces strict stationarity within training phases, and Exponential Moving Average (EMA) smoothing that bounds per-episode weight drift. We evaluate across three cooperative environments and five random seeds with QMIX, complemented by an exploratory VDN extension, yielding a three-regime taxonomy. In the augmentative regime (Simple Spread), where the baseline is functional (74.4 %), EMA significantly improves success to 86.7 % ($+12.3$ pp, $p<0.01$) while naive dynamic updates collapse it to 15.2 %. In the essential regime (Level-Based Foraging), where the baseline is broken (0.1 %), any shaping unlocks the task (95.9 % under EMA). In the supplementary regime (SMAC 3m), where the baseline is near-saturated (98.8 %), stabilised shaping preserves performance (99.9 %) while unstabilised shaping adds variance without gain. These findings establish reward-signal stationarity as a necessary design constraint and indicate that regime placement is a practical predictor of whether dynamic LLM shaping helps or harms.",
+      "authors": [
+        "Faid Keddouri",
+        "Sohaib Houhou",
+        "Aissa Boulmerka",
+        "Nadir Farhi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "math.OC"
+      ],
+      "published": "2026-07-05T19:29:21+00:00",
+      "link": "https://arxiv.org/pdf/2607.04470v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "cooperative MARL with LLM rewards, useful for training game AI",
+      "llm_evidence_cn": "具有LLM奖励的合作多智能体强化学习，可用于训练游戏AI",
+      "llm_evidence": "具有LLM奖励的合作多智能体强化学习，可用于训练游戏AI",
+      "canonical_evidence": "具有LLM奖励的合作多智能体强化学习，可用于训练游戏AI",
+      "llm_tldr_en": "Proposes stabilization methods for LLM-augmented cooperative MARL, addressing replay buffer contamination and reward shaping non-stationarity, applicable to game AI training.",
+      "llm_tldr_cn": "针对LLM增强的合作多智能体强化学习中奖励权重动态更新破坏平稳性假设并污染经验回放缓冲区的问题，提出基于阶段和体制条件的稳定化策略。实验表明这些策略能够缓解训练不稳定性，为利用LLM生成奖励训练游戏AI等合作智能体提供了更可靠的方法。",
+      "llm_tldr": "针对LLM增强的合作多智能体强化学习中奖励权重动态更新破坏平稳性假设并污染经验回放缓冲区的问题，提出基于阶段和体制条件的稳定化策略。实验表明这些策略能够缓解训练不稳定性，为利用LLM生成奖励训练游戏AI等合作智能体提供了更可靠的方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.04293v1",
+      "source": "arxiv",
+      "title": "CausalGame: Benchmarking Causal Thinking of LLM Agents in Games",
+      "abstract": "Building AI Scientist agents with Large Language Models (LLMs) has recently attracted growing attention. Since scientific discovery fundamentally relies on uncovering causal relationships from observations, the capability of causal thinking, i.e., distinguishing causation from correlation and recognizing hidden biases, is essential to LLM agents. Although a number of benchmarks exist for AI Scientists, none explicitly incorporate challenges from selection bias, measurement error, and hidden confounders that widely exist in real-world scientific discovery. To this end, we present CausalGame, a benchmark that evaluates the causal thinking capabilities of LLM agents through interactive games. CausalGame asks LLM agents to actively design experimental protocols, collect observation data, and derive a final solution with an explanation report. To emulate realistic scientific discovery challenges, we design 14 scenarios that incorporate selection bias, measurement error, and hidden confounders. Across 30 LLM agents, none demonstrates reliable causal thinking: the best model reaches only 68.0% survival against analytical optima of 78-85%, and merely 5-7% of sessions receive credits on the causal-reasoning rubrics. CausalGame provides a scalable and controlled testbed for evaluating the causal thinking of AI Scientist agents.",
+      "authors": [
+        "Zhenhao Chen",
+        "Yongqiang Chen",
+        "Chenxi Liu",
+        "Junchi Yu",
+        "Xiangchen Song",
+        "Zijian Li",
+        "Jialin Li",
+        "Philip Torr",
+        "Bo Han",
+        "Kun Zhang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-07-05T13:08:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.04293v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Benchmarks causal thinking of LLM agents in interactive games, relevant to game AI bot behavior",
+      "llm_evidence_cn": "在交互式游戏中基准测试LLM智能体的因果思维，与游戏AI bot行为相关",
+      "llm_evidence": "在交互式游戏中基准测试LLM智能体的因果思维，与游戏AI bot行为相关",
+      "canonical_evidence": "在交互式游戏中基准测试LLM智能体的因果思维，与游戏AI bot行为相关",
+      "llm_tldr_en": "The paper presents CausalGame, a benchmark to evaluate LLM agents' causal reasoning in games, where agents design experiments, with implications for developing human-like game AI bots.",
+      "llm_tldr_cn": "该论文构建了CausalGame基准，通过交互式游戏评估LLM智能体的因果思维能力，要求智能体主动设计实验协议，应对选择偏差、测量误差等挑战。该工作为理解和改进游戏AI bot的推理行为提供了评测工具，有助于拟人化游戏AI的设计。",
+      "llm_tldr": "该论文构建了CausalGame基准，通过交互式游戏评估LLM智能体的因果思维能力，要求智能体主动设计实验协议，应对选择偏差、测量误差等挑战。该工作为理解和改进游戏AI bot的推理行为提供了评测工具，有助于拟人化游戏AI的设计。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.04409v1",
+      "source": "arxiv",
+      "title": "Learning Task-Sufficient World Models by Synergizing Agentic Exploration and Structured Modeling",
+      "abstract": "Learning and planning in imagination using world models provides an effective paradigm for training agents for decision-making. However, existing approaches often rely on high-dimensional latent spaces or generic visual embeddings that retain many factors irrelevant to control, limiting efficiency and generalization across tasks. To this end, we study how agents can learn world models with representations that are task-specific, minimal, and sufficient for decision-making. We achieve this via a closed-loop synergy between the agent and the world model, in which structured world-model learning distills task-sufficient representations from informative interaction data. On the agent side, agents actively probe the environment to collect informative trajectories that expose task-relevant latent factors, guided by an adaptive curriculum. On the world-model side, we learn structured representations over observations to distill compact, task-sufficient latent states from the collected interaction data. This synergy enables the empirical recovery of task-sufficient latent representations that capture all control-relevant factors. Leveraging these representations, the resulting policies achieve improved sample efficiency and generalization, including generalization across skills, object-skill compositions, and previously unseen tasks on standard continuous-control and robotic-manipulation benchmarks.",
+      "authors": [
+        "Fan Feng",
+        "Yujia Zheng",
+        "Minghao Fu",
+        "Yongqiang Chen",
+        "Guangyi Chen",
+        "Kevin Murphy",
+        "Biwei Huang",
+        "Kun Zhang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-05T17:02:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.04409v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes world model learning for RL, beneficial for training game AI agents",
+      "llm_evidence_cn": "提出用于强化学习的世界模型学习，有利于训练游戏AI智能体",
+      "llm_evidence": "提出用于强化学习的世界模型学习，有利于训练游戏AI智能体",
+      "canonical_evidence": "提出用于强化学习的世界模型学习，有利于训练游戏AI智能体",
+      "llm_tldr_en": "The paper addresses the inefficiency of generic world models for RL by jointly learning task-sufficient representations through agent exploration, improving decision-making and generalization, with potential to enhance game AI training.",
+      "llm_tldr_cn": "该论文针对通用世界模型在决策中效率低下的问题，通过智能体探索与结构化建模的协同，学习任务充分且最小的表征，从而提升决策与泛化能力。该方法可迁移至游戏AI训练，优化游戏智能体的学习与规划。",
+      "llm_tldr": "该论文针对通用世界模型在决策中效率低下的问题，通过智能体探索与结构化建模的协同，学习任务充分且最小的表征，从而提升决策与泛化能力。该方法可迁移至游戏AI训练，优化游戏智能体的学习与规划。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.05352v1",
+      "source": "arxiv",
+      "title": "Multiplayer Interactive World Models with Representation Autoencoders",
+      "abstract": "We introduce the first multiplayer world model for highly dynamic environments governed by complex physical interactions. Whereas single-player world models treat the other agents as part of the environment, ours conditions on the action streams of multiple agents, learning to attribute changes in the scene to the correct player and to stay coherent under arbitrary combinations of their actions. We study this problem in the game of Rocket League, where players compete and cooperate under fast, tightly coupled dynamics. Trained on 10,000 hours of gameplay collected with publicly available bots, our 5-billion-parameter latent diffusion model generates four-player matches in real time, producing 20 frames per second on a single Nvidia B200 GPU. Although trained only on short clips, its rollouts stay stable far beyond the training horizon: distributional quality holds steady out to five minutes, the longest horizon we measure, and in practice we observe rollouts continuing for hours with no sign of collapse. We systematically investigate the central design choices: the video codec, the generative objective, and the multiplayer conditioning scheme. In addition, we characterize how behavior changes with model and data scale, including the capabilities that emerge and the failure modes that persist. We further develop targeted evaluations that probe the model's physical understanding rather than visual appearance alone. To support continued research on multiplayer world models, we release our dataset, our full training and inference codebase, and a live demo.",
+      "authors": [
+        "Anthony Hu",
+        "Václav Volhejn",
+        "Adrien Ramanana Rahary",
+        "Chris Mulder",
+        "Aditya Makkar",
+        "Amélie Royer",
+        "Manu Orsini",
+        "Alyx Liao",
+        "Adam Jelley",
+        "Eloi Alonso",
+        "Florian Laurent",
+        "Fredrik Norén",
+        "James Swingos",
+        "Jan Hünermann",
+        "Kent Rollins",
+        "Lucas Hosseini",
+        "Matthieu Le Cauchois",
+        "Maxim Peter",
+        "Pim de Witte",
+        "Tim Brown",
+        "Vincent Micheli",
+        "Moritz Böhle",
+        "Gabriel de Marmiesse",
+        "Viktoriia Sharmanska",
+        "Lucia Specia",
+        "Michael Black",
+        "Patrick Pérez"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-06T17:31:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.05352v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Introduces multiplayer world model for Rocket League using bot gameplay data",
+      "llm_evidence_cn": "引入基于游戏bot数据的Rocket League多人世界模型",
+      "llm_evidence": "引入基于游戏bot数据的Rocket League多人世界模型",
+      "canonical_evidence": "引入基于游戏bot数据的Rocket League多人世界模型",
+      "llm_tldr_en": "Proposes first multiplayer world model for dynamic game environments, trained on 10k hours of bot gameplay in Rocket League, enabling real-time four-player match generation.",
+      "llm_tldr_cn": "该论文针对动态游戏环境中多智能体世界建模的空白，提出首个基于表示自编码器的多人世界模型。通过10,000小时Rocket League游戏bot数据训练，模型可实时生成四人比赛画面，为游戏智能体的环境模拟提供新思路。",
+      "llm_tldr": "该论文针对动态游戏环境中多智能体世界建模的空白，提出首个基于表示自编码器的多人世界模型。通过10,000小时Rocket League游戏bot数据训练，模型可实时生成四人比赛画面，为游戏智能体的环境模拟提供新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.05939v1",
+      "source": "arxiv",
+      "title": "Intercepting an Agile Target with Net-Carrying Drones using Competitive Multi-Agent Reinforcement Learning",
+      "abstract": "This article presents a solution to intercept an agile drone by a team of agile drone carrying catching nets. We formulate the problem as a competitive Multi-Agent Reinforcement Learning (MARL) task. To address the problem of nonstationarity and catastrophic forgetting of agents overfitting to the current opponent strategy, we train the pursuers and the evader using Multi-Agent Proximal Policy Optimization (MAPPO) with Prioritized Fictitious Self Play (PFSP). We train the agents in a high-fidelity simulator using low-level control commands, collective thrust and body rates (CTBR), to achieve agile flights for both the pursuers and the evader. We compare the performance of the trained policies in terms of catch rate, time to catch and crash rates, against heuristic baselines and show that our solution outperforms them. Ablation studies show that PFSP lead to more robust policies that can adapt to different opponent strategies, and that a low-level control commands are crucial for learning performing strategies in the pursuit-evasion task. Finally, a qualitative analysis of the learned behaviours highlights the emergence of cooperative tactics among the pursuers.",
+      "authors": [
+        "Timothée Gavin",
+        "Murat Bronz"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-07T07:41:09+00:00",
+      "link": "https://arxiv.org/pdf/2607.05939v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses competitive MARL to train drone agents in a game-like interception task",
+      "llm_evidence_cn": "使用竞争性多智能体强化学习在类游戏拦截任务中训练无人机智能体",
+      "llm_evidence": "使用竞争性多智能体强化学习在类游戏拦截任务中训练无人机智能体",
+      "canonical_evidence": "使用竞争性多智能体强化学习在类游戏拦截任务中训练无人机智能体",
+      "llm_tldr_en": "The paper trains drone agents to intercept an agile target using MAPPO with prioritized fictitious self-play, demonstrating high catch rates in a high-fidelity simulator, with methods applicable to training competitive game AI bots.",
+      "llm_tldr_cn": "该论文针对敏捷目标拦截问题，将其建模为竞争性多智能体强化学习任务，采用MAPPO与优先虚拟自我博弈训练追逐者和逃避者，在高保真模拟器中实现高捕获率。其方法可迁移至游戏AI bot训练，为竞争性多智能体场景提供了有效的学习范式。",
+      "llm_tldr": "该论文针对敏捷目标拦截问题，将其建模为竞争性多智能体强化学习任务，采用MAPPO与优先虚拟自我博弈训练追逐者和逃避者，在高保真模拟器中实现高捕获率。其方法可迁移至游戏AI bot训练，为竞争性多智能体场景提供了有效的学习范式。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
