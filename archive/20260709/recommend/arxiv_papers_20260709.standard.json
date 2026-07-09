@@ -1,0 +1,351 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-09T20:30:50.507631+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2607.06854v1",
+      "source": "arxiv",
+      "title": "A Gold-Standard Study of What Makes a Lightweight Game-Playing Agent Strong",
+      "abstract": "Reinforcement learning agents for imperfect-information card games are only as strong as the opponents they train against, and they are hard to grade, since they beat a random opponent over 99 percent of the time and only tie copies of themselves. So we build a strong, fixed, rule-based expert for Gin Rummy and use it only as a yardstick, never for training. It beats every agent we trained 70 to 99 percent of the time. Across more than a hundred runs, we isolate what makes a lightweight agent stronger. Trust region updates, a well-aimed reward, a curriculum of tougher opponents, warm starting, and keeping the best checkpoint all help, and stacking them lifts a self-play champion from about 30 to 36 percent against the expert. Several ideas did not pay off. Short-term and longer-term reward shaping, learned state embeddings, imitation and DAgger, and a live large language model opponent were each unhelpful, too slow, or too heavy to train at scale. Comparing MLP, convolutional, set-based, attention, and recurrent encoders shows that extra capacity does little to break the ceiling, suggesting the limit is information rather than network size. We add standard baselines (neural fictitious self-play and information set Monte Carlo search) and confirm the approach carries over to Leduc Hold'em, where the optimum is computable. The result is a lightweight, game-agnostic recipe that trains competitive agents without training on the expert, for any game a small model can handle, reported with robust statistics and released as a reusable package.",
+      "authors": [
+        "Nima Kelidari",
+        "Mohammadsaeed Haghi",
+        "Mahdi Salmani"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.GT"
+      ],
+      "published": "2026-07-07T23:11:21+00:00",
+      "link": "https://arxiv.org/pdf/2607.06854v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Uses RL to train agents for Gin Rummy, investigates techniques like trust region updates and curriculum opponents to make agents stronger",
+      "llm_evidence_cn": "使用强化学习训练金拉米牌代理，研究信任区域更新和对手课程等技术使代理更强",
+      "llm_evidence": "使用强化学习训练金拉米牌代理，研究信任区域更新和对手课程等技术使代理更强",
+      "canonical_evidence": "使用强化学习训练金拉米牌代理，研究信任区域更新和对手课程等技术使代理更强",
+      "llm_tldr_en": "Studies RL agents for Gin Rummy and finds that trust region updates, well-aimed reward, curriculum opponents, warm start, and keeping best checkpoint improve agent strength, lifting self-play champion from 30% to 36% against expert.",
+      "llm_tldr_cn": "本文针对不完美信息纸牌游戏，研究使轻量级强化学习代理变得更强的方法。通过构建一个固定的基于规则的专家作为衡量标准，而非用于训练，实验发现置信区域更新、针对性奖励、对手课程、热启动及保留最佳检查点等技巧均能提升代理强度，将这些技巧叠加可将自对弈冠军对抗专家的胜率从约30%提升至36%。该研究为游戏AI设计者提供了实用的强化学习训练策略。",
+      "llm_tldr": "本文针对不完美信息纸牌游戏，研究使轻量级强化学习代理变得更强的方法。通过构建一个固定的基于规则的专家作为衡量标准，而非用于训练，实验发现置信区域更新、针对性奖励、对手课程、热启动及保留最佳检查点等技巧均能提升代理强度，将这些技巧叠加可将自对弈冠军对抗专家的胜率从约30%提升至36%。该研究为游戏AI设计者提供了实用的强化学习训练策略。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.07498v1",
+      "source": "arxiv",
+      "title": "Reward-Adaptive Iterative Discovery: A Case Study on Automated Game Testing for NHL26",
+      "abstract": "Testing is a major effort for the gaming industry, requiring a significant part of development budget and people power. We present a case study on a development version of the ice hockey game EA SPORTS NHL 26, for which human playtesters test the goalie AI for behavioral exploits. To reduce the effort of re-testing the goalie AI after every game or behavior modification in the development phase, we propose Reward-Adaptive Iterative Discovery (RAID), a novel approach to automatically find exploits using an iterative Reinforcement Learning (RL) approach that trains a population of goal scoring agents. While previous approaches can already successfully find exploits, RL algorithms tend to overfit to a single solution. We introduce a simple extension on top of existing RL algorithms, such that they find multiple diverse high-quality solutions. For our first deployment of this approach, within a single experiment we were able to find six hockey scoring exploit strategies that were qualitatively similar to those that playtesters had found in hours-long manual testing sessions.",
+      "authors": [
+        "Florian Fuchs",
+        "Jessy Gosselin-Grant",
+        "Boris Skuin",
+        "Michele Petteni",
+        "Alessandro Sestini",
+        "Joakim Bergdahl",
+        "Amir Baghi",
+        "Linus Gisslén"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-08T14:57:39+00:00",
+      "link": "https://arxiv.org/pdf/2607.07498v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "RL-based automated testing trains goal-scoring agents to find goalie AI exploits",
+      "llm_evidence_cn": "基于强化学习的自动化测试训练射门智能体发现守门员AI漏洞",
+      "llm_evidence": "基于强化学习的自动化测试训练射门智能体发现守门员AI漏洞",
+      "canonical_evidence": "基于强化学习的自动化测试训练射门智能体发现守门员AI漏洞",
+      "llm_tldr_en": "Proposes RAID, an iterative RL method that trains a population of goal-scoring agents to find exploits in game AI, using reward adaptation to avoid overfitting; directly applies RL to create game-playing agents for testing, advancing game AI verification.",
+      "llm_tldr_cn": "为解决冰球游戏NHL26中守门员AI的漏洞测试耗时问题，提出奖励自适应迭代发现方法RAID。该方法采用强化学习迭代训练一组射门智能体，并通过奖励自适应机制避免策略过拟合，从而有效发现AI行为漏洞。实验表明RAID能显著减少人工测试工作量，为游戏AI的开发与验证提供了有效的RL工具。",
+      "llm_tldr": "为解决冰球游戏NHL26中守门员AI的漏洞测试耗时问题，提出奖励自适应迭代发现方法RAID。该方法采用强化学习迭代训练一组射门智能体，并通过奖励自适应机制避免策略过拟合，从而有效发现AI行为漏洞。实验表明RAID能显著减少人工测试工作量，为游戏AI的开发与验证提供了有效的RL工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.04153v1",
+      "source": "arxiv",
+      "title": "Mask-based Predictive Representations for Reinforcement Learning",
+      "abstract": "Vision-based deep reinforcement learning involves dealing with high-dimensional inputs of image information. It is crucial to abstract effective states from high-dimensional image inputs and limited samples for sample-efficient reinforcement learning. To address this challenge, inspired by fields such as natural language processing and computer vision, we propose a self-supervised task based on mask prediction as an auxiliary task for reinforcement learning. This non-reconstruction method uses the sequence information collected by the agent from the environment and the context information in the sequence to predict the masked information, thereby strengthening the agent's understanding of the task and learning effective representations. Combined with transformers, we find that the model reconstructs the masked input sequence in the latent space. By feeding the compressed representations learned by this method into reinforcement learning models, we observe an improvement in the sample efficiency of reinforcement learning. Moreover, the model outperforms state-of-the-art sample-efficient reinforcement learning methods on multiple continuous and discrete control benchmarks.",
+      "authors": [
+        "Kai Zhao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-05T07:42:00+00:00",
+      "link": "https://arxiv.org/pdf/2607.04153v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "mask prediction method for sample-efficient RL applicable to game AI training",
+      "llm_evidence_cn": "用于样本高效RL的掩码预测方法可应用于游戏AI训练",
+      "llm_evidence": "用于样本高效RL的掩码预测方法可应用于游戏AI训练",
+      "canonical_evidence": "用于样本高效RL的掩码预测方法可应用于游戏AI训练",
+      "llm_tldr_en": "Proposes a mask prediction auxiliary task for vision-based RL, improving sample efficiency by learning predictive representations from agent trajectories, potentially useful for training game AI agents.",
+      "llm_tldr_cn": "提出基于掩码预测的自监督辅助任务，用于视觉强化学习，通过预测序列中掩码信息来学习有效状态表征，提高样本效率。该方法可提升游戏AI智能体在图像输入下的学习速度。",
+      "llm_tldr": "提出基于掩码预测的自监督辅助任务，用于视觉强化学习，通过预测序列中掩码信息来学习有效状态表征，提高样本效率。该方法可提升游戏AI智能体在图像输入下的学习速度。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.04963v1",
+      "source": "arxiv",
+      "title": "STAPO: Selective Trajectory-Aware Policy Optimization for LLM Agent Training",
+      "abstract": "Reinforcement Learning (RL) is the dominant paradigm for training Large Language Model (LLM) agents on long-horizon tasks. However, sparse and delayed rewards often lead to trajectory neglect, in which agents lose focus on the task goal and interaction history at intermediate steps. Prior work has explored step-level supervision using Shannon-entropy-based uncertainty signals, which conflate inherent state complexity with agent confidence and therefore provide unreliable estimates of decision reliability. To address this issue, we propose normalized entropy, which measures confidence deviations relative to an agent's average behavior under a given state, thereby strengthening the association between low-quality actions and trajectory neglect. Building on this insight, we introduce Selective Trajectory-Aware Policy Optimization (STAPO), a hierarchical group-based RL framework. STAPO leverages normalized entropy to locate outlier steps associated with trajectory neglect and optimizes them via a joint mechanism of trajectory-aware reward and trajectory-independent penalty, enhancing trajectory awareness while preserving training stability. Extensive experiments on ALFWorld, WebShop, and Search-Augmented QA demonstrate that STAPO achieves state-of-the-art performance while substantially alleviating trajectory neglect, validating its effectiveness and robustness for agentic tasks.",
+      "authors": [
+        "Qiuyi Qi",
+        "Tian Liang",
+        "Mutian Bao",
+        "Jinjian Zhang",
+        "Dongnan Liu",
+        "Wei Zhou",
+        "Linjian Mo",
+        "Ming Kong",
+        "Jie Liu",
+        "Feng Zhang",
+        "Qiang Zhu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-06T11:50:06+00:00",
+      "link": "https://arxiv.org/pdf/2607.04963v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Introduces a RL policy optimization technique that mitigates trajectory neglect in long-horizon tasks, which can improve training of game AI bots for complex games.",
+      "llm_evidence_cn": "引入RL策略优化技术缓解长程任务中的轨迹忽视，有助于改进复杂游戏的AI机器人训练。",
+      "llm_evidence": "引入RL策略优化技术缓解长程任务中的轨迹忽视，有助于改进复杂游戏的AI机器人训练。",
+      "canonical_evidence": "引入RL策略优化技术缓解长程任务中的轨迹忽视，有助于改进复杂游戏的AI机器人训练。",
+      "llm_tldr_en": "STAPO addresses trajectory neglect in RL for long-horizon tasks using normalized entropy as a step-level supervision signal, which could enhance training stability for game AI bots in sparse-reward settings.",
+      "llm_tldr_cn": "长程任务中稀疏奖励导致RL智能体出现轨迹忽视。本文提出STAPO，利用归一化熵作为置信度偏差度量，构建选择性轨迹感知价值函数并应用后悔最小化策略优化。实验显示该方法有效改善中间步骤的决策质量，其思想可迁移至需要长期规划的电子游戏AI训练，提升代理人行为的连贯性。",
+      "llm_tldr": "长程任务中稀疏奖励导致RL智能体出现轨迹忽视。本文提出STAPO，利用归一化熵作为置信度偏差度量，构建选择性轨迹感知价值函数并应用后悔最小化策略优化。实验显示该方法有效改善中间步骤的决策质量，其思想可迁移至需要长期规划的电子游戏AI训练，提升代理人行为的连贯性。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.07178v1",
+      "source": "arxiv",
+      "title": "Entropy Pacing Policy Optimization for Multi-Task Agentic Reinforcement Learning",
+      "abstract": "Recent breakthroughs of Reinforcement Learning (RL) have highlighted its potential for complex agentic Large Language Model (LLM) tasks. However, existing efforts largely focus on single-task settings, whereas real-world deployment necessitates a generalist agent capable of solving multiple tasks simultaneously. In this work, we identify a critical yet underexplored phenomenon in multi-task agentic RL: different tasks can exhibit exploration-exploitation pace mismatch. Specifically, easier tasks may converge early to low-entropy policies that hinder learning on harder tasks, while harder tasks can, in turn, push easier tasks back toward high-entropy exploration. This back-and-forth interaction creates inter-task entropy crossovers and frequent entropy spikes. Inspired by this observation, we introduce Entropy Pacing Policy Optimization (EPPO) for multi-task agentic LLMs, which coordinates entropy across tasks to stabilize multi-task optimization. At the core of EPPO is a task-wise dynamic clipping mechanism that replaces the fixed clipping threshold in Group Relative Policy Optimization (GRPO) with a task entropy-aware adaptive bound, tightening updates for over-confident tasks while relaxing them for under-explored ones. Experiments on the multi-task agentic benchmarks demonstrate that the proposed EPPO yields results superior to its counterparts.",
+      "authors": [
+        "Zetian Hu",
+        "Shunyu Liu",
+        "Junjie Zhang",
+        "Yongcheng Jing",
+        "Ting-En Lin",
+        "Yongbin Li",
+        "Dacheng Tao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-08T09:13:05+00:00",
+      "link": "https://arxiv.org/pdf/2607.07178v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes a multi-task RL optimization method that addresses exploration-exploitation mismatch, directly applicable to training game AI that must master multiple tasks.",
+      "llm_evidence_cn": "提出多任务RL优化方法解决探索-利用节奏不匹配，可直接用于训练需要掌握多任务的游戏AI。",
+      "llm_evidence": "提出多任务RL优化方法解决探索-利用节奏不匹配，可直接用于训练需要掌握多任务的游戏AI。",
+      "canonical_evidence": "提出多任务RL优化方法解决探索-利用节奏不匹配，可直接用于训练需要掌握多任务的游戏AI。",
+      "llm_tldr_en": "Entropy Pacing Policy Optimization tackles the exploration-exploitation pace mismatch in multi-task agentic RL, which is common in game AI training scenarios with diverse objectives.",
+      "llm_tldr_cn": "现有智能体RL多聚焦单任务，多任务场景中易出现探索-利用节奏失配，简单任务过早收敛阻碍复杂任务学习。本文提出熵步调策略优化方法，通过调节任务间熵交叉动态平衡探索与利用，在多任务LLM智能体实验中提升整体性能。该方法可迁移至训练需同时处理多目标的游戏AI智能体。",
+      "llm_tldr": "现有智能体RL多聚焦单任务，多任务场景中易出现探索-利用节奏失配，简单任务过早收敛阻碍复杂任务学习。本文提出熵步调策略优化方法，通过调节任务间熵交叉动态平衡探索与利用，在多任务LLM智能体实验中提升整体性能。该方法可迁移至训练需同时处理多目标的游戏AI智能体。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.07435v1",
+      "source": "arxiv",
+      "title": "RLVP: Penalize the Path, Reward the Outcome",
+      "abstract": "Agents acting on our behalf in the real world (e.g. placing phone calls) must learn online from costly, often irreversible interactions rather than cheap simulator steps. Two things follow. First, deployability depends on the path, not only the outcome. An agent must respect outcome-neutral constraints such as not repeatedly calling an unresponsive user, respecting business hours, or completing required authentication constraints that outcome-based rewards cannot express, since violating them frequently improves apparent success. Second, because each interaction is expensive, the agent must learn efficiently from very few examples.   Reinforcement learning from verifiable rewards (RLVR) is blind to both challenges: it optimizes solely on the outcome and wastes expensive rollouts on all-fail groups where group-relative advantage collapses to zero. Attempts to densify supervision by rewarding progress target the hard-to-verify direction. In contrast, real agentic environments can cheaply detect bad moves. Since group-relative advantage is equivalent to within-group variance, a dense signal helps only when it supplies variance the outcome lacks. A verifiable penalty on the path meets this condition reliably, while a progress potential helps only where partial progress is reachable. The resulting recipe \"penalize the path, reward the outcome\" achieves high task success with near-zero violations, where outcome-only training violates constraints on nearly every episode. We provide four design rules for effective penalties, including avoidance of the inaction trap that arises when a penalty is used in isolation.",
+      "authors": [
+        "Bojie Li",
+        "Noah Shi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-08T14:06:14+00:00",
+      "link": "https://arxiv.org/pdf/2607.07435v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL with path penalty and outcome reward for constrained agent tasks",
+      "llm_evidence_cn": "强化学习对路径惩罚、结果奖励用于受限智能体任务",
+      "llm_evidence": "强化学习对路径惩罚、结果奖励用于受限智能体任务",
+      "canonical_evidence": "强化学习对路径惩罚、结果奖励用于受限智能体任务",
+      "llm_tldr_en": "Introduces RLVP to address path constraints and sample efficiency in online RL from verifiable rewards, penalizing undesired actions while rewarding outcomes; method transferable to training game AI agents that must follow rules.",
+      "llm_tldr_cn": "针对从可验证奖励中在线学习时的路径约束和样本效率问题，提出RLVP方法，通过惩罚不良路径并奖励最终结果来优化智能体行为。该方法能处理超出结果导向奖励表达的约束，实验表明在少量交互下即可学习正确行为，为游戏中需要遵守规则的AI bot训练提供了新思路。",
+      "llm_tldr": "针对从可验证奖励中在线学习时的路径约束和样本效率问题，提出RLVP方法，通过惩罚不良路径并奖励最终结果来优化智能体行为。该方法能处理超出结果导向奖励表达的约束，实验表明在少量交互下即可学习正确行为，为游戏中需要遵守规则的AI bot训练提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.07508v1",
+      "source": "arxiv",
+      "title": "Single-Rollout Asynchronous Optimization for Agentic Reinforcement Learning",
+      "abstract": "Reinforcement learning (RL) is becoming increasingly important for post-training large language models (LLMs). Previous RL pipelines for LLMs were mostly synchronous and batch-interleaved, which is inefficient for long-horizon agentic tasks. Recently, asynchronous RL has emerged as a more efficient alternative by updating the model as rollouts arrive. However, existing asynchronous RL systems often emphasize throughput, while leaving training stability and task effectiveness largely underexplored. For example, a key challenge is that group-wise sampling in the widely-used GRPO framework does not naturally fit asynchronous agentic training. In this paper, we present Single-rollout Asynchronous Optimization (SAO) to address the stability and off-policy challenges in asynchronous RL. To reduce off-policy effects and improve generalization, we replace group-wise sampling with single-rollout sampling, that is, using one rollout per prompt. We further improve this single-rollout strategy with practical value-model training designs. To improve optimization stability, we introduce a strict double-side token-level clipping strategy. SAO is able to train stably for one thousand steps and consistently outperform GRPO and its variants on agentic coding and reasoning benchmarks, such as SWE-Bench Verified, BeyondAIME, and IMOAnswerBench. We also demonstrate that single-rollout RL is particularly effective in a simulated online learning setting, where the model must adapt to changing evolving environments. To this end, SAO is successfully deployed in the agentic RL pipeline for training the open GLM-5.2 model (750B-A40B).",
+      "authors": [
+        "Zhenyu Hou",
+        "Yujiang Li",
+        "Jie Tang",
+        "Yuxiao Dong"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-08T15:02:19+00:00",
+      "link": "https://arxiv.org/pdf/2607.07508v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "asynchronous RL optimization for agentic tasks",
+      "llm_evidence_cn": "异步强化学习优化用于智能体任务",
+      "llm_evidence": "异步强化学习优化用于智能体任务",
+      "canonical_evidence": "异步强化学习优化用于智能体任务",
+      "llm_tldr_en": "Proposes SAO, a stable asynchronous RL method for long-horizon agent tasks, addressing stability and off-policy issues while improving efficiency; broadly applicable to training game AI agents.",
+      "llm_tldr_cn": "针对长时程智能体任务中异步强化学习的稳定性与效率问题，提出单次展开异步优化方法SAO。该方法解决了GRPO框架下群组采样不匹配的问题，通过异步更新提升训练效率并保持策略稳定性。实验表明SAO在智能体任务上有效，为训练游戏AI等智能体提供了可迁移的强化学习技术。",
+      "llm_tldr": "针对长时程智能体任务中异步强化学习的稳定性与效率问题，提出单次展开异步优化方法SAO。该方法解决了GRPO框架下群组采样不匹配的问题，通过异步更新提升训练效率并保持策略稳定性。实验表明SAO在智能体任务上有效，为训练游戏AI等智能体提供了可迁移的强化学习技术。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.07534v1",
+      "source": "arxiv",
+      "title": "Infinite Worlds with Versatile Interactions",
+      "abstract": "We present LingBot-World 2.0 (also known as LingBot-World-Infinity), an advanced iteration of LingBot-World featuring four distinct upgrades. (1) Our model achieves an unbounded interaction horizon while maintaining consistent output quality, benefiting from a carefully crafted causal pretraining paradigm. (2) Through distilling a real-time variant from the base model, our system guarantees rapid response time, sufficient to drive 720p video streams at 60 fps. (3) Compared to the previous version, this update introduces highly diverse interactive elements, comprising a broader spectrum of actions (e.g., attacking, archery, spell-casting, and shooting) alongside a richer variety of text-driven events. (4) We pioneer the integration of an agentic harness within the domain of world modeling, wherein a pilot agent is tasked with planning and executing character behaviors, while a director agent is responsible for synthesizing novel environmental elements as the scene progresses. Additionally, to facilitate a shared experience, we develop an interface that permits multiple players to simultaneously immerse themselves in this vivid world simulator. We pair our primary 14B model with a lightweight 1.3B counterpart, which supports effortless deployment on a single GPU.",
+      "authors": [
+        "Zelin Gao",
+        "Qiuyu Wang",
+        "Jiapeng Zhu",
+        "Jingye Chen",
+        "Zichen Liu",
+        "Qingyan Bai",
+        "Jiahao Wang",
+        "Yufeng Yuan",
+        "Hanlin Wang",
+        "Yichong Lu",
+        "Ka Leong Cheng",
+        "Haojie Zhang",
+        "Jian Gao",
+        "Tianrui Feng",
+        "Yuzheng Liu",
+        "Yao Yao",
+        "Yinghao Xu",
+        "Xing Zhu",
+        "Yujun Shen",
+        "Hao Ouyang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-08T15:33:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.07534v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Introduces an interactive world with game-like actions (attacking, archery, spell-casting) and an agentic harness, relevant to game AI bot development.",
+      "llm_evidence_cn": "提供带有游戏化动作（攻击、射箭、施法等）和智能体工具的交互世界，可用于游戏AI机器人设计。",
+      "llm_evidence": "提供带有游戏化动作（攻击、射箭、施法等）和智能体工具的交互世界，可用于游戏AI机器人设计。",
+      "canonical_evidence": "提供带有游戏化动作（攻击、射箭、施法等）和智能体工具的交互世界，可用于游戏AI机器人设计。",
+      "llm_tldr_en": "LingBot-World 2.0 offers an infinite interactive world with diverse game-like interactions and an integrated agentic harness, potentially serving as a rich environment for developing and testing game AI bots.",
+      "llm_tldr_cn": "为突破有限交互边界，本文提出LingBot-World 2.0，在无限交互场景中引入攻击、射箭、施法等多样的游戏化动作，并集成智能体工具。通过因果预训练和实时变体蒸馏，系统支持720p/60fps视频流且保持输出质量。该平台为游戏AI机器人提供了丰富的交互式开发与测试环境，拓展了智能体在开放世界中的应用可能。",
+      "llm_tldr": "为突破有限交互边界，本文提出LingBot-World 2.0，在无限交互场景中引入攻击、射箭、施法等多样的游戏化动作，并集成智能体工具。通过因果预训练和实时变体蒸馏，系统支持720p/60fps视频流且保持输出质量。该平台为游戏AI机器人提供了丰富的交互式开发与测试环境，拓展了智能体在开放世界中的应用可能。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
