@@ -1,0 +1,173 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-11T20:36:32.827642+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.05132v1",
+      "source": "arxiv",
+      "title": "When Agents Lie: Premeditation, Persistence, and Exploitation in Repeated Games",
+      "abstract": "As large language models are deployed as autonomous agents that communicate intentions before acting, a critical safety question is whether agents that publicly commit to actions will honor those commitments. We place LLM agents in repeated $n$-player games with a three-stage protocol that separates private intent, public announcement, and final action, allowing us to identify whether each deviation from a stated announcement was already planned during private deliberation. Evaluating three frontier models across six games in homogeneous and heterogeneous groups over 10 rounds, we report two findings. First, when agents deviate from their announcements, the deviation is predominantly already stated in their private plan (exceeding 90% in the highest-deception conditions), yet this is not a fixed model property: the same model ranges from perfect honesty to near-total deviation across games. Second, different models interpret announcements incompatibly, some as binding commitments and others as cheap talk, producing payoff gaps that emerge in Round~0 and persist across all 10 rounds. Systems that combine models from different providers therefore cannot assume shared announcement semantics and require empirical testing of model interactions before deployment.",
+      "authors": [
+        "Jerick Shi",
+        "Terry Jingcheng Zhang",
+        "Bernhard Schölkopf",
+        "Vincent Conitzer",
+        "Zhijing Jin"
+      ],
+      "primary_category": "cs.CY",
+      "categories": [
+        "cs.CY",
+        "cs.CL"
+      ],
+      "published": "2026-07-06T14:17:59+00:00",
+      "link": "https://arxiv.org/pdf/2607.05132v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Studies LLM agents' lying behavior in repeated games, analyzing premeditation and persistence.",
+      "llm_evidence_cn": "研究LLM智能体在重复博弈中的说谎行为，分析预谋与持续性。",
+      "llm_evidence": "研究LLM智能体在重复博弈中的说谎行为，分析预谋与持续性。",
+      "canonical_evidence": "研究LLM智能体在重复博弈中的说谎行为，分析预谋与持续性。",
+      "llm_tldr_en": "Analyzes LLM agents' dishonest behavior in repeated games, finding that deviations are premeditated and agents exploit each other.",
+      "llm_tldr_cn": "针对大型语言模型智能体在重复博弈中的承诺与行动一致性问题，本文通过分离私人意图、公开声明和最终行动的三阶段协议，研究智能体是否遵守其声明。实验发现智能体的偏离行为多为预谋，且持续性影响合作结果。该工作揭示了游戏AI智能体的行为特征，为安全部署提供了依据。",
+      "llm_tldr": "针对大型语言模型智能体在重复博弈中的承诺与行动一致性问题，本文通过分离私人意图、公开声明和最终行动的三阶段协议，研究智能体是否遵守其声明。实验发现智能体的偏离行为多为预谋，且持续性影响合作结果。该工作揭示了游戏AI智能体的行为特征，为安全部署提供了依据。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.08647v1",
+      "source": "arxiv",
+      "title": "Multi-Modal, Multi-Environment Machine Teaching for Robust Reward Learning",
+      "abstract": "As autonomous agents are increasingly deployed across diverse operational contexts, aligning their behavior with human intent demands reward functions that remain robust to such changes rather than overfitting to any single environment. Inverse reinforcement learning (IRL) provides a principled way to infer such objectives from human feedback. However, existing analyses of optimal teaching approaches for IRL focus on single-environment, demonstration-only settings, leaving underexplored how heterogeneous feedback modalities and environment dynamics jointly constrain reward functions that generalize across multiple environments. Because demonstrations in one MDP entangle reward information with that environments specific structure, the resulting rewards frequently fail to generalize when the agent is deployed in a new setting. We first analyze how different feedback modalities constrain rewards, showing that, in the unlimited-data regime, comparisons impose strictly stronger global constraints than other modalities. Beyond this theoretical analysis, we introduce a hierarchical machine teaching algorithm for reward learning that operates across multiple MDPs. The algorithm first greedily selects informative environments that expose complementary reward constraints, then strategically queries low-cost feedback within those environments. Empirically, our method achieves substantially lower regret and stronger generalization to held-out environments than uniform teaching baselines under identical feedback budgets, demonstrating the importance of multi-environment, multi-modal teaching for learning dynamics-robust reward functions.",
+      "authors": [
+        "Ali Larian",
+        "Qian Lin",
+        "Chang Zong Wu",
+        "Daniel S. Brown"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-09T16:18:16+00:00",
+      "link": "https://arxiv.org/pdf/2607.08647v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "inverse reinforcement learning for robust reward learning across environments",
+      "llm_evidence_cn": "跨环境的逆强化学习鲁棒奖励学习",
+      "llm_evidence": "跨环境的逆强化学习鲁棒奖励学习",
+      "canonical_evidence": "跨环境的逆强化学习鲁棒奖励学习",
+      "llm_tldr_en": "Addresses robust reward learning via inverse RL across multiple environments and feedback modalities, using machine teaching to infer generalized reward functions.",
+      "llm_tldr_cn": "为解决奖励函数在不同环境中过拟合的问题，提出多环境、多模态机器教导框架，利用逆强化学习从人类反馈中推断可泛化的奖励函数。该方法结合演示等多源反馈，通过优化教导策略确保奖励函数在环境变化下仍能对齐人类意图，对训练鲁棒且类人的游戏AI代理具有重要意义。",
+      "llm_tldr": "为解决奖励函数在不同环境中过拟合的问题，提出多环境、多模态机器教导框架，利用逆强化学习从人类反馈中推断可泛化的奖励函数。该方法结合演示等多源反馈，通过优化教导策略确保奖励函数在环境变化下仍能对齐人类意图，对训练鲁棒且类人的游戏AI代理具有重要意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.07235v1",
+      "source": "arxiv",
+      "title": "ORCAID: Oblique Rule-Based Continuous-Action Interpretation for Deep RL Policies",
+      "abstract": "Explainability remains a key issue in reinforcement learning (RL). Distilling an interpretable policy from an agent trained in a complex environment is particularly challenging when the action space is continuous. We introduce ORCAID, a novel method for extracting interpretable rule-based policies from RL agents operating in mixed continuous-discrete environments with continuous action spaces. Our main contribution is an efficient oblique decision tree training algorithm that partitions the state space by hyperplanes and fits local linear models. The key idea lies in a three-stage split search: efficient random initialization, local refinement, and backward elimination. Finally, adjacent leaves are merged to yield a concise set of interpretable rules describing a given deep RL policy. We evaluate ORCAID across multiple RL environments, demonstrating that the extracted rule-based policies maintain strong performance with a low number of parameters and can even be used to improve the performance of the original deep RL policy.",
+      "authors": [
+        "Ignacio D. Lopez-Miguel",
+        "Ezio Bartocci",
+        "Thomas Eiter",
+        "Martin Tappler"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.SE"
+      ],
+      "published": "2026-07-08T10:16:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.07235v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "extracts interpretable rule-based policies from deep RL agents",
+      "llm_evidence_cn": "从深度强化学习智能体中提取可解释的基于规则的策略",
+      "llm_evidence": "从深度强化学习智能体中提取可解释的基于规则的策略",
+      "canonical_evidence": "从深度强化学习智能体中提取可解释的基于规则的策略",
+      "llm_tldr_en": "Proposes ORCAID, a method for extracting oblique decision tree policies from deep RL agents with continuous actions, providing interpretable rules for agent behavior.",
+      "llm_tldr_cn": "针对连续动作空间下深度强化学习策略可解释性难题，提出ORCAID方法，通过高效斜决策树训练算法从RL智能体中提取可解释的规则策略。该方法利用超平面划分状态空间并拟合局部线性模型，最终合并叶节点生成简明规则，为理解和调试游戏AI bot的行为提供有力工具。",
+      "llm_tldr": "针对连续动作空间下深度强化学习策略可解释性难题，提出ORCAID方法，通过高效斜决策树训练算法从RL智能体中提取可解释的规则策略。该方法利用超平面划分状态空间并拟合局部线性模型，最终合并叶节点生成简明规则，为理解和调试游戏AI bot的行为提供有力工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.08193v1",
+      "source": "arxiv",
+      "title": "Open-ended Multi-agent Autocurricula via Visual Inspection of Policies with Multi-modal LLMs",
+      "abstract": "Open-ended curricula in Reinforcement Learning (RL) aim to train generally-capable agents by identifying tasks that facilitate learning increasingly complex skills. A major challenge when designing such curricula is assessing task difficulty relative to the agent's current learning progress. While previous work has explored using scalar task scores or textual summaries of the agent's behavior, here we study a different approach: directly inspecting policy behavior via recorded episode videos. We introduce a simple yet effective instantiation of this approach which leverages a Video Language Model (VLM) to both process these videos and provide curriculum recommendations, which we call Visual Inspection of Policies (VIP). Since videos can naturally contain any number of controllable agents, we empirically study VIP on the StarCraft Multi-Agent Challenge (SMAC). We show that even with a lightweight and openly accessible VLM (VideoLLaMa2-7B), VIP can use policy videos to generate more effective curricula than both its text-only ablation and methods that rely on scalar task scores.",
+      "authors": [
+        "Lorenzo Pantè",
+        "Andrea Fanti",
+        "Roberto Capobianco"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-09T07:48:36+00:00",
+      "link": "https://arxiv.org/pdf/2607.08193v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes autocurricula for RL using visual inspection of policies, directly applicable to training game-playing agents",
+      "llm_evidence_cn": "提出使用视觉检查策略的多智能体自动课程方法，可直接用于训练游戏AI代理",
+      "llm_evidence": "提出使用视觉检查策略的多智能体自动课程方法，可直接用于训练游戏AI代理",
+      "canonical_evidence": "提出使用视觉检查策略的多智能体自动课程方法，可直接用于训练游戏AI代理",
+      "llm_tldr_en": "This paper introduces a visual inspection-based autocurricula method for open-ended multi-agent RL, enabling agents to learn complex skills progressively, which is highly relevant for game AI training.",
+      "llm_tldr_cn": "针对开放领域强化学习中自动课程设计困难的问题，提出一种基于视频语言模型视觉检查策略行为的自动课程方法VIP。该方法通过分析智能体的行为视频来评估任务难度并推荐后续任务，实验表明能够训练出通用性更强的智能体，为游戏AI的训练提供了新的自动课程学习途径。",
+      "llm_tldr": "针对开放领域强化学习中自动课程设计困难的问题，提出一种基于视频语言模型视觉检查策略行为的自动课程方法VIP。该方法通过分析智能体的行为视频来评估任务难度并推荐后续任务，实验表明能够训练出通用性更强的智能体，为游戏AI的训练提供了新的自动课程学习途径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

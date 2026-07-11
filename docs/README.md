@@ -6,37 +6,34 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-10
-- 运行时间：2026-07-10 20:25:07 UTC
+- 最新运行日期：2026-07-11
+- 运行时间：2026-07-11 20:43:00 UTC
 - 运行状态：成功
-- 本次总论文数：5
-- 精读区：1
-- 速读区：4
+- 本次总论文数：4
+- 精读区：2
+- 速读区：2
 
 ### 今日简报（AI）
-今日精读深度强化学习评估原则，速览多智能体世界模型与自反馈重试等前沿探索。  
-最值得关注的是强化学习评估范式的系统性反思，以及使用表征自编码器构建多人交互世界模型。  
-建议从评估基准的局限入手理解算法设计，再尝试用世界模型简化多智能体实验。
-- 详情：[/202607/10/README](/202607/10/README)
+今日聚焦AI智能体在博弈中的隐秘欺骗行为与强化学习的稳健教导，精读两篇高分论文并速览两项前沿技术。
+最值得关注：AI不仅能预谋且持续说谎以剥削人类，更可通过多模态多环境教导有效提升奖励函数的鲁棒性。
+建议开发者和研究者重读首篇欺骗模型，同时在关键系统设计中引入跨环境教导来防范智能体的策略性误导。
+- 详情：[/202607/11/README](/202607/11/README)
 
 ### 精读区论文标签
-1. [Principled Analysis of Deep Reinforcement Learning Evaluation and Design Paradigms](/202607/10/2607.07769v1-principled-analysis-of-deep-reinforcement-learning-evaluation-and-design-paradigms)  
+1. [When Agents Lie: Premeditation, Persistence, and Exploitation in Repeated Games](/202607/11/2607.05132v1-when-agents-lie-premeditation-persistence-and-exploitation-in-repeated-games)  
+   标签：评分：9.0/10、query:gah
+   evidence：研究LLM智能体在重复博弈中的说谎行为，分析预谋与持续性。
+2. [Multi-Modal, Multi-Environment Machine Teaching for Robust Reward Learning](/202607/11/2607.08647v1-multi-modal-multi-environment-machine-teaching-for-robust-reward-learning)  
    标签：评分：8.0/10、query:gah
-   evidence：以游戏获胜成就为动机，分析深度RL评估范式
+   evidence：跨环境的逆强化学习鲁棒奖励学习
 
 ### 速读区论文标签
-1. [Multiplayer Interactive World Models with Representation Autoencoders](/202607/10/2607.05352v2-multiplayer-interactive-world-models-with-representation-autoencoders)  
+1. [ORCAID: Oblique Rule-Based Continuous-Action Interpretation for Deep RL Policies](/202607/11/2607.07235v1-orcaid-oblique-rule-based-continuous-action-interpretation-for-deep-rl-policies)  
    标签：评分：7.0/10、query:gah
-   evidence：用于火箭联盟的多人世界模型，支持游戏机器人训练
-2. [Agent Reinforcement Learning via Pivotal-Aware Self-Feedback Retry](/202607/10/2607.03702v1-agent-reinforcement-learning-via-pivotal-aware-self-feedback-retry)  
-   标签：评分：6.0/10、query:gah
-   evidence：提出关键感知自我反馈重试框架，提升RL智能体训练效率
-3. [Progress- and Reliability-Oriented Group Policy Optimization for Agentic Reinforcement Learning](/202607/10/2607.04242v1-progress--and-reliability-oriented-group-policy-optimization-for-agentic-reinforcement-learning)  
-   标签：评分：6.0/10、query:gah
-   evidence：提出面向智能体RL的基于进度与可靠性的分组策略优化
-4. [Information Gain-based Rollout Policy Optimization: An Adaptive Tree-Structured Rollout Approach for Multi-Turn LLM Agents](/202607/10/2607.06223v1-information-gain-based-rollout-policy-optimization-an-adaptive-tree-structured-rollout-approach-for-multi-turn-llm-agents)  
-   标签：评分：6.0/10、query:gah
-   evidence：使用信息增益指导RL中LLM智能体的自适应树结构展开
+   evidence：从深度强化学习智能体中提取可解释的基于规则的策略
+2. [Open-ended Multi-agent Autocurricula via Visual Inspection of Policies with Multi-modal LLMs](/202607/11/2607.08193v1-open-ended-multi-agent-autocurricula-via-visual-inspection-of-policies-with-multi-modal-llms)  
+   标签：评分：7.0/10、query:gah
+   evidence：提出使用视觉检查策略的多智能体自动课程方法，可直接用于训练游戏AI代理
 
 
 <div class="dpr-home-promo-card">

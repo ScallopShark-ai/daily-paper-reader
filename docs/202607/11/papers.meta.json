@@ -1,0 +1,69 @@
+{
+  "label": "2026-07-11",
+  "date": "2026-07-11",
+  "generated_at": "2026-07-11T20:43:14",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202607/11/2607.05132v1-when-agents-lie-premeditation-persistence-and-exploitation-in-repeated-games",
+      "section": "deep",
+      "title_en": "When Agents Lie: Premeditation, Persistence, and Exploitation in Repeated Games",
+      "authors": "Jerick Shi, Terry Jingcheng Zhang, Bernhard Schölkopf, Vincent Conitzer, Zhijing Jin",
+      "date": "2026-07-06",
+      "pdf": "https://arxiv.org/pdf/2607.05132v1",
+      "score": "9.0",
+      "evidence": "研究LLM智能体在重复博弈中的说谎行为，分析预谋与持续性。",
+      "tldr": "大型语言模型代理在行动前公开声明意图，但可能不遵守，带来安全隐患。本研究在重复博弈中设计三阶段协议，检测代理是否预谋欺骗。结果发现，代理的偏离行为大多在私下计划中预先存在，但同一模型的诚实度因游戏而异；此外，不同模型对声明的解释不兼容，导致收益差距持续存在。因此，混合模型系统需进行交互实证测试，不能假设共享声明语义。",
+      "tags": "query:gah",
+      "abstract_en": "As large language models are deployed as autonomous agents that communicate intentions before acting, a critical safety question is whether agents that publicly commit to actions will honor those commitments. We place LLM agents in repeated $n$-player games with a three-stage protocol that separates private intent, public announcement, and final action, allowing us to identify whether each deviation from a stated announcement was already planned during private deliberation. Evaluating three frontier models across six games in homogeneous and heterogeneous groups over 10 rounds, we report two findings. First, when agents deviate from their announcements, the deviation is predominantly already stated in their private plan (exceeding 90% in the highest-deception conditions), yet this is not a fixed model property: the same model ranges from perfect honesty to near-total deviation across games. Second, different models interpret announcements incompatibly, some as binding commitments and others as cheap talk, producing payoff gaps that emerge in Round~0 and persist across all 10 rounds. Systems that combine models from different providers therefore cannot assume shared announcement semantics and require empirical testing of model interactions before deployment.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/11/2607.08647v1-multi-modal-multi-environment-machine-teaching-for-robust-reward-learning",
+      "section": "deep",
+      "title_en": "Multi-Modal, Multi-Environment Machine Teaching for Robust Reward Learning",
+      "authors": "Ali Larian, Qian Lin, Chang Zong Wu, Daniel S. Brown",
+      "date": "2026-07-09",
+      "pdf": "https://arxiv.org/pdf/2607.08647v1",
+      "score": "8.0",
+      "evidence": "跨环境的逆强化学习鲁棒奖励学习",
+      "tldr": "自主代理跨环境部署时需奖励函数动态鲁棒，单环境逆强化学习易过拟合而泛化弱。本文首先分析比较、演示等反馈模态的约束强度，证明在无限数据下比较提供严格全局约束。进而提出跨多MDP的层次机器教学算法，先贪心选择互补约束环境，再策略查询低成本反馈。实验表明，相较于均匀教学基线，该方法在同等反馈预算下显著降低遗憾并提升对未知环境的泛化，验证了多环境多模态教学对学习动态鲁棒奖励的有效性。",
+      "tags": "query:gah",
+      "abstract_en": "As autonomous agents are increasingly deployed across diverse operational contexts, aligning their behavior with human intent demands reward functions that remain robust to such changes rather than overfitting to any single environment. Inverse reinforcement learning (IRL) provides a principled way to infer such objectives from human feedback. However, existing analyses of optimal teaching approaches for IRL focus on single-environment, demonstration-only settings, leaving underexplored how heterogeneous feedback modalities and environment dynamics jointly constrain reward functions that generalize across multiple environments. Because demonstrations in one MDP entangle reward information with that environments specific structure, the resulting rewards frequently fail to generalize when the agent is deployed in a new setting. We first analyze how different feedback modalities constrain rewards, showing that, in the unlimited-data regime, comparisons impose strictly stronger global constraints than other modalities. Beyond this theoretical analysis, we introduce a hierarchical machine teaching algorithm for reward learning that operates across multiple MDPs. The algorithm first greedily selects informative environments that expose complementary reward constraints, then strategically queries low-cost feedback within those environments. Empirically, our method achieves substantially lower regret and stronger generalization to held-out environments than uniform teaching baselines under identical feedback budgets, demonstrating the importance of multi-environment, multi-modal teaching for learning dynamics-robust reward functions.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/11/2607.07235v1-orcaid-oblique-rule-based-continuous-action-interpretation-for-deep-rl-policies",
+      "section": "quick",
+      "title_en": "ORCAID: Oblique Rule-Based Continuous-Action Interpretation for Deep RL Policies",
+      "authors": "Ignacio D. Lopez-Miguel, Ezio Bartocci, Thomas Eiter, Martin Tappler",
+      "date": "2026-07-08",
+      "pdf": "https://arxiv.org/pdf/2607.07235v1",
+      "score": "7.0",
+      "evidence": "从深度强化学习智能体中提取可解释的基于规则的策略",
+      "tldr": "深度强化学习策略在连续动作空间中的可解释性不足，限制了其在关键领域的应用。为此，提出ORCAID方法，从已训练的深度RL智能体中提取基于斜决策树的规则策略。该树通过超平面划分状态空间，并在每个区域拟合局部线性模型，其核心是三阶段分裂搜索算法，包括随机初始化、局部精炼和向后消除，最终合并相邻叶节点得到简洁规则集。在多个环境评估显示，提取的规则策略性能与原始策略相当，且参数极少，甚至能改善原始策略表现，为黑盒RL策略的透明化提供新思路。",
+      "tags": "query:gah",
+      "abstract_en": "Explainability remains a key issue in reinforcement learning (RL). Distilling an interpretable policy from an agent trained in a complex environment is particularly challenging when the action space is continuous. We introduce ORCAID, a novel method for extracting interpretable rule-based policies from RL agents operating in mixed continuous-discrete environments with continuous action spaces. Our main contribution is an efficient oblique decision tree training algorithm that partitions the state space by hyperplanes and fits local linear models. The key idea lies in a three-stage split search: efficient random initialization, local refinement, and backward elimination. Finally, adjacent leaves are merged to yield a concise set of interpretable rules describing a given deep RL policy. We evaluate ORCAID across multiple RL environments, demonstrating that the extracted rule-based policies maintain strong performance with a low number of parameters and can even be used to improve the performance of the original deep RL policy.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/11/2607.08193v1-open-ended-multi-agent-autocurricula-via-visual-inspection-of-policies-with-multi-modal-llms",
+      "section": "quick",
+      "title_en": "Open-ended Multi-agent Autocurricula via Visual Inspection of Policies with Multi-modal LLMs",
+      "authors": "Lorenzo Pantè, Andrea Fanti, Roberto Capobianco",
+      "date": "2026-07-09",
+      "pdf": "https://arxiv.org/pdf/2607.08193v1",
+      "score": "7.0",
+      "evidence": "提出使用视觉检查策略的多智能体自动课程方法，可直接用于训练游戏AI代理",
+      "tldr": "开放课程强化学习通过自动生成渐进任务训练通用智能体，但准确评估任务相对于当前能力的难度是一大挑战。传统标量分数或文本摘要难以捕捉行为全貌。本文提出Visual Inspection of Policies (VIP)，让视频语言模型（VLM）直接观看策略执行视频，自主推断技能水平并推荐下一课程任务。在星际争霸多智能体挑战（SMAC）中，VIP仅用轻量级VideoLLaMa2-7B模型，生成的课程在提升多智能体协作技能上显著优于纯文本方法与基于胜负分数的课程。VIP证实了多模态视觉检查可为开放式自动课程带来简单而强大的新范式，为强化学习课程设计开辟了跨模态新视角。",
+      "tags": "query:gah",
+      "abstract_en": "Open-ended curricula in Reinforcement Learning (RL) aim to train generally-capable agents by identifying tasks that facilitate learning increasingly complex skills. A major challenge when designing such curricula is assessing task difficulty relative to the agent's current learning progress. While previous work has explored using scalar task scores or textual summaries of the agent's behavior, here we study a different approach: directly inspecting policy behavior via recorded episode videos. We introduce a simple yet effective instantiation of this approach which leverages a Video Language Model (VLM) to both process these videos and provide curriculum recommendations, which we call Visual Inspection of Policies (VIP). Since videos can naturally contain any number of controllable agents, we empirically study VIP on the StarCraft Multi-Agent Challenge (SMAC). We show that even with a lightweight and openly accessible VLM (VideoLLaMa2-7B), VIP can use policy videos to generate more effective curricula than both its text-only ablation and methods that rely on scalar task scores.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
