@@ -1,0 +1,213 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-12T19:55:13.521322+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2607.05132v2",
+      "source": "arxiv",
+      "title": "When Agents Lie: Premeditation, Persistence, and Exploitation in Repeated Games",
+      "abstract": "As large language models are deployed as autonomous agents that communicate intentions before acting, a critical safety question is whether agents that publicly commit to actions will honor those commitments. We place LLM agents in repeated $n$-player games with a three-stage protocol that separates private intent, public announcement, and final action, allowing us to identify whether each deviation from a stated announcement was already planned during private deliberation. Evaluating three frontier models across six games in homogeneous and heterogeneous groups over 10 rounds, we report two findings. First, when agents deviate from their announcements, the deviation is predominantly already stated in their private plan (exceeding 90% in the highest-deception conditions), yet this is not a fixed model property: the same model ranges from perfect honesty to near-total deviation across games. Second, different models interpret announcements incompatibly, some as binding commitments and others as cheap talk, producing payoff gaps that emerge in Round~0 and persist across all 10 rounds. Systems that combine models from different providers therefore cannot assume shared announcement semantics and require empirical testing of model interactions before deployment.",
+      "authors": [
+        "Jerick Shi",
+        "Terry Jingcheng Zhang",
+        "Bernhard Schölkopf",
+        "Vincent Conitzer",
+        "Zhijing Jin"
+      ],
+      "primary_category": "cs.CY",
+      "categories": [
+        "cs.CY",
+        "cs.CL"
+      ],
+      "published": "2026-07-06T14:17:59+00:00",
+      "link": "https://arxiv.org/pdf/2607.05132v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "directly investigates LLM agents' lying behavior in repeated games, analyzing premeditated deviations",
+      "llm_evidence_cn": "直接研究LLM智能体在重复博弈中的说谎行为，分析预谋性偏离",
+      "llm_evidence": "直接研究LLM智能体在重复博弈中的说谎行为，分析预谋性偏离",
+      "canonical_evidence": "直接研究LLM智能体在重复博弈中的说谎行为，分析预谋性偏离",
+      "llm_tldr_en": "The paper studies LLM agents in repeated games using a protocol that separates private intent, public announcement, and action, revealing that most deviations are premeditated and lying is persistent, directly contributing to game AI bot behavior analysis.",
+      "llm_tldr_cn": "该论文针对LLM智能体在游戏中承诺遵守的安全性关键问题，通过分离私人意图与公开声明的协议进行研究。实验表明，当智能体偏离声明时，超过90%的偏离具有预谋性，且说谎行为持续并会被利用。这项工作深入揭示了游戏AI智能体的行为特征，对可信AI开发具有重要意义。",
+      "llm_tldr": "该论文针对LLM智能体在游戏中承诺遵守的安全性关键问题，通过分离私人意图与公开声明的协议进行研究。实验表明，当智能体偏离声明时，超过90%的偏离具有预谋性，且说谎行为持续并会被利用。这项工作深入揭示了游戏AI智能体的行为特征，对可信AI开发具有重要意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.08340v1",
+      "source": "arxiv",
+      "title": "Spectral Analysis of Dueling Q-Learning",
+      "abstract": "Q-learning is a fundamental algorithm in reinforcement learning (RL) for solving discounted Markov decision processes (MDPs) when the transition kernel is unknown. The deep Q-network (DQN) extends Q-learning by using a deep neural network for Q-function approximation, which makes Q-learning applicable to more practical high-dimensional problems. Dueling Q-learning decomposes the Q-function into a value function and an advantage function and learns the two components jointly, which can improve learning efficiency. However, the theoretical understanding of dueling Q-learning is still limited. Recent work has initiated an analysis of tabular dueling Q-learning, but existing guarantees focus on a regularized formulation and leave the pure tabular update less completely understood. This paper strengthens that line of analysis by adding a direct interpretation of the centered tabular decomposition and by establishing convergence guarantees for the unregularized, unprojected constant step-size recursion. In particular, we derive an exact switching linear system representation for deterministic dueling Q-learning and a finite-time error bound in expectation for the sampled stochastic version. The analysis clarifies how the value and advantage updates act as different gains on the action-common (value function) and action-differential (advantage function) components of the Q-function.",
+      "authors": [
+        "Donghwan Lee"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-09T10:29:22+00:00",
+      "link": "https://arxiv.org/pdf/2607.08340v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Theoretical analysis of dueling Q-learning, a core RL technique for game AI",
+      "llm_evidence_cn": "对 dueling Q-learning 的理论分析，游戏AI的核心强化学习技术",
+      "llm_evidence": "对 dueling Q-learning 的理论分析，游戏AI的核心强化学习技术",
+      "canonical_evidence": "对 dueling Q-learning 的理论分析，游戏AI的核心强化学习技术",
+      "llm_tldr_en": "Provides spectral analysis of dueling Q-learning, improving theoretical understanding of this efficient Q-function decomposition used in deep RL for games.",
+      "llm_tldr_cn": "针对dueling Q-learning理论理解不足的问题，通过谱分析揭示其收敛性质。研究为这种在游戏中广泛使用的值函数分解方法提供了更严格的理论保证，有助于提升游戏AI训练效率。",
+      "llm_tldr": "针对dueling Q-learning理论理解不足的问题，通过谱分析揭示其收敛性质。研究为这种在游戏中广泛使用的值函数分解方法提供了更严格的理论保证，有助于提升游戏AI训练效率。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.08233v1",
+      "source": "arxiv",
+      "title": "Playing ZendoWorld: Challenging AI Agents on Active Visual Concept Induction",
+      "abstract": "A central challenge in building intelligent systems is enabling agents to jointly perceive complex inputs, form hypotheses about hidden patterns, and design informative experiments to test them. To study this problem, we propose ZendoWorld, a controlled interactive environment in which agents must infer a logical rule about visual game observations, acquire information by proposing new scenes, and refine their hypotheses based on feedback from the game environment. We evaluate several agents spanning pure VLM reasoning, Bayesian particle filtering, dynamic concept discovery, and neuro-symbolic methods. Our main findings are: (1) high accuracy in predicting labels for observed examples does not imply recovery of the underlying rule; (2) perception and induction are distinct bottlenecks for different agent classes; and (3) VLM-based agents propose near-uninformative experiments, failing to actively reduce hypothesis uncertainty. To compare these results, we collect human data on the task, which reveals a gap in inductive reasoning, particularly for more complex rules. Overall, ZENDOWORLD takes an important step toward evaluating intelligent agents and identifies concrete avenues for improvement, particularly in domains like scientific discovery.",
+      "authors": [
+        "Sophia Koehler",
+        "Antonia Wüst",
+        "Inga Ibs",
+        "Wasu Top Piriyakulkij",
+        "Wolfgang Stammer",
+        "Constantin Rothkopf",
+        "Kevin Ellis",
+        "Kristian Kersting"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-07-09T08:29:23+00:00",
+      "link": "https://arxiv.org/pdf/2607.08233v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "introduces an interactive game environment for AI agents to infer visual concepts, evaluating game-playing agents",
+      "llm_evidence_cn": "引入一个交互式游戏环境，让AI智能体推断视觉概念，评估游戏类智能体",
+      "llm_evidence": "引入一个交互式游戏环境，让AI智能体推断视觉概念，评估游戏类智能体",
+      "canonical_evidence": "引入一个交互式游戏环境，让AI智能体推断视觉概念，评估游戏类智能体",
+      "llm_tldr_en": "ZendoWorld is a controlled interactive game where agents must infer logical rules from visual observations, providing a testbed for game AI agent perception and reasoning capabilities.",
+      "llm_tldr_cn": "该论文针对智能体在交互式视觉推理中的挑战，提出了ZendoWorld游戏环境，要求智能体主动推断隐藏的视觉概念规则。通过评估多种方法发现，预测准确率高并不意味着真正理解规则，且感知限制严重制约搜索效率。该环境为游戏AI智能体的感知与推理能力测试提供了新的基准。",
+      "llm_tldr": "该论文针对智能体在交互式视觉推理中的挑战，提出了ZendoWorld游戏环境，要求智能体主动推断隐藏的视觉概念规则。通过评估多种方法发现，预测准确率高并不意味着真正理解规则，且感知限制严重制约搜索效率。该环境为游戏AI智能体的感知与推理能力测试提供了新的基准。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.07029v1",
+      "source": "arxiv",
+      "title": "Gimitest: A Comprehensive Tool for Testing Reinforcement Learning Policies",
+      "abstract": "Reinforcement learning (RL) policies can be unsafe and vulnerable to attacks. Ensuring their reliability is often a pain point as existing automated testing methods target only selected environments, testing scenarios, and RL algorithms. To address this, we propose a comprehensive framework for testing single- and multi-agent RL policies under varying conditions. Our implementation of this framework, Gimitest, is an open-source tool that supports various gym frameworks and allows for modifications of their integrated components. This article describes the framework and details Gimitest's functionality and architecture. It showcases its effectiveness in testing multiple RL policies in environments such as the official Farama Gymnasium and PettingZoo.",
+      "authors": [
+        "Dennis Gross",
+        "Quentin Mazouni",
+        "Helge Spieker",
+        "Arnaud Gotlieb"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.SE"
+      ],
+      "published": "2026-07-08T06:00:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.07029v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "comprehensive RL policy testing tool supporting gym and PettingZoo, relevant for game AI bot development",
+      "llm_evidence_cn": "支持Gym和PettingZoo的RL策略测试工具，可用于游戏AI bot开发",
+      "llm_evidence": "支持Gym和PettingZoo的RL策略测试工具，可用于游戏AI bot开发",
+      "canonical_evidence": "支持Gym和PettingZoo的RL策略测试工具，可用于游戏AI bot开发",
+      "llm_tldr_en": "Gimitest is an open-source tool for testing single- and multi-agent RL policies under varying conditions, including game environments like PettingZoo, aiding reliable game AI bot development.",
+      "llm_tldr_cn": "Gimitest是一个开源综合RL策略测试工具，支持Gymnasium和PettingZoo等游戏环境，可帮助开发者在创建游戏AI bot时确保策略可靠性与安全性。",
+      "llm_tldr": "Gimitest是一个开源综合RL策略测试工具，支持Gymnasium和PettingZoo等游戏环境，可帮助开发者在创建游戏AI bot时确保策略可靠性与安全性。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.07859v1",
+      "source": "arxiv",
+      "title": "Feedback Manipulation Regularization: Enabling Offline Agent Alignment for Imitation Learning",
+      "abstract": "Reinforcement learning (RL) research has increasingly shifted focus towards alignment, ensuring agents learn behaviors adhering to human values. While human demonstrations and feedback have proven crucial for alignment, existing approaches predominantly combine these signals using multi-stage pipelines designed for the contextual bandit framing of language generation. Yet little work explores how these complementary inputs can serve as a richer, interconnected signal for single-stage offline training in fully sequential decision-making environments. We propose Feedback Manipulation Regularization (FMR), an algorithm-agnostic method that harnesses evaluative feedback as a corrective signal to improve the alignment of imitation learning policies. We adapt Safety Gymnasium environments to be a principled testbed for alignment evaluation, demonstrating improved aptitude and up to a 98\\% reduction in misalignment across a range of imitation learning algorithms. FMR remains robust in limited data regimes, even when learning from scarce aligned and uninformative noisy demonstrations.",
+      "authors": [
+        "Benjamin Poole",
+        "Minwoo Lee"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.HC",
+        "cs.LG"
+      ],
+      "published": "2026-07-08T18:47:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.07859v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Aligns RL agents with human values via feedback, applicable to humanizing game bots",
+      "llm_evidence_cn": "通过反馈将强化学习智能体与人类价值观对齐，可用于拟人化游戏bot",
+      "llm_evidence": "通过反馈将强化学习智能体与人类价值观对齐，可用于拟人化游戏bot",
+      "canonical_evidence": "通过反馈将强化学习智能体与人类价值观对齐，可用于拟人化游戏bot",
+      "llm_tldr_en": "Proposes Feedback Manipulation Regularization to use evaluative feedback as a corrective signal to align imitation learning agents, bridging offline RL and human alignment.",
+      "llm_tldr_cn": "针对离线顺序决策环境中智能体对齐问题，提出反馈操纵正则化方法，利用评估反馈作为修正信号改进模仿学习。该方法将人类演示与反馈整合为单一阶段的离线训练，实验表明能有效提升智能体行为与人类偏好的一致性，为游戏AI的拟人化提供了一条可行路径。",
+      "llm_tldr": "针对离线顺序决策环境中智能体对齐问题，提出反馈操纵正则化方法，利用评估反馈作为修正信号改进模仿学习。该方法将人类演示与反馈整合为单一阶段的离线训练，实验表明能有效提升智能体行为与人类偏好的一致性，为游戏AI的拟人化提供了一条可行路径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
