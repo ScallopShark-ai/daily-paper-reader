@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-13",
+  "date": "2026-07-13",
+  "generated_at": "2026-07-13T21:04:09",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/13/2607.08984v1-alphazero-in-sparsely-rewarded-games-limits-and-auxiliary-supervision",
+      "section": "deep",
+      "title_en": "AlphaZero in Sparsely Rewarded Games: Limits and Auxiliary Supervision",
+      "authors": "Brent Kong, Tejas Ram, Tony Yue Yu",
+      "date": "2026-07-09",
+      "pdf": "https://arxiv.org/pdf/2607.08984v1",
+      "score": "9.0",
+      "evidence": "AlphaZero加辅助监督用于游戏对弈",
+      "tldr": "AlphaZero在稀疏奖励博弈中表现强劲但未达完美，在四子棋和Chomp上无法维持最优轨迹。提出AlphaZero辅助损失AZAL，引入神谕策略监督以提升一致性。AZAL在Chomp的10x11板实现完美全盘神谕一致性，在四子棋提高匹配率并延迟首次错误，但未达完美。揭示外部监督对突破强化学习瓶颈的重要性，同时表明实现完美博弈仍需新方法。",
+      "tags": "query:gah",
+      "abstract_en": "AlphaZero has demonstrated that a neural-guided Monte Carlo Tree Search can achieve superhuman performance, but strong play does not necessarily imply perfect play. We study this gap in two oracle-evaluable domains with contrasting structure: Connect Four, a solved partisan game with exact game-theoretic values, and Chomp, an impartial game whose optimal play is governed by Grundy-number structure. Under a unified self-play $+$ MCTS pipeline, we compare vanilla AlphaZero, a multi-frame variant (limited to Chomp), and an AlphaZero Auxiliary Loss (AZAL) that adds oracle-derived policy supervision. We find that vanilla AlphaZero achieves strong play across both domains but cannot preserve the exact trajectories required for optimal play: in Connect Four, it fails to maintain the optimal line of play, while in Chomp, it fails to consistently restore the $g=0$ invariant. On rectangular Chomp boards, multi-frame inputs alone do not remove this gap. Nevertheless, AZAL substantially improves oracle consistency across multi-seeded full-game traces and sampled-state evaluations. On Chomp, AZAL reaches perfect full-game oracle consistency on 10x11 and high but not complete consistency on 9x10; on Connect Four, AZAL improves oracle-match rate and delays the first oracle mistake, but does not reach perfect play.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/13/2607.09336v1-shortcut-trajectory-planning-for-efficient-offline-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Shortcut Trajectory Planning for Efficient Offline Reinforcement Learning",
+      "authors": "Guanquan Wang, Yoshimasa Tsuruoka",
+      "date": "2026-07-10",
+      "pdf": "https://arxiv.org/pdf/2607.09336v1",
+      "score": "6.0",
+      "evidence": "离线强化学习轨迹规划实现高效学习",
+      "tldr": "离线强化学习中，扩散轨迹规划器推理成本高，而一致性规划器需两阶段蒸馏，增加训练开销与不稳定性。STP通过单阶段训练捷径模型，利用步长条件实现一步及少步可调推理，并以可行性校正的评论家筛选计划。在D4RL多类任务上，STP在简化训练流程的同时保持强劲性能，为快速生成式规划提供了高效新路径。",
+      "tags": "query:gah",
+      "abstract_en": "Diffusion-based trajectory planners have shown strong performance in offline reinforcement learning, but their iterative denoising process often incurs high inference cost. Consistency-based planners reduce the number of sampling steps, yet they typically rely on a two-stage teacher--student distillation pipeline that increases training cost and may introduce instability. We propose Shortcut Trajectory Planning (STP), an offline model-based reinforcement learning framework that incorporates shortcut models as efficient trajectory generators. STP trains a conditional shortcut trajectory model in a single stage, supports adjustable one-step and few-step inference through step-size conditioning, and selects candidate plans using a critic augmented with feasibility-aware correction. Across standard D4RL benchmarks, including locomotion, navigation, manipulation, and dexterous control tasks, STP achieves strong performance while simplifying the training pipeline for fast generative planning.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

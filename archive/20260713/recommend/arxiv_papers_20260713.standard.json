@@ -1,0 +1,95 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-13T21:00:01.434879+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.08984v1",
+      "source": "arxiv",
+      "title": "AlphaZero in Sparsely Rewarded Games: Limits and Auxiliary Supervision",
+      "abstract": "AlphaZero has demonstrated that a neural-guided Monte Carlo Tree Search can achieve superhuman performance, but strong play does not necessarily imply perfect play. We study this gap in two oracle-evaluable domains with contrasting structure: Connect Four, a solved partisan game with exact game-theoretic values, and Chomp, an impartial game whose optimal play is governed by Grundy-number structure. Under a unified self-play $+$ MCTS pipeline, we compare vanilla AlphaZero, a multi-frame variant (limited to Chomp), and an AlphaZero Auxiliary Loss (AZAL) that adds oracle-derived policy supervision. We find that vanilla AlphaZero achieves strong play across both domains but cannot preserve the exact trajectories required for optimal play: in Connect Four, it fails to maintain the optimal line of play, while in Chomp, it fails to consistently restore the $g=0$ invariant. On rectangular Chomp boards, multi-frame inputs alone do not remove this gap. Nevertheless, AZAL substantially improves oracle consistency across multi-seeded full-game traces and sampled-state evaluations. On Chomp, AZAL reaches perfect full-game oracle consistency on 10x11 and high but not complete consistency on 9x10; on Connect Four, AZAL improves oracle-match rate and delays the first oracle mistake, but does not reach perfect play.",
+      "authors": [
+        "Brent Kong",
+        "Tejas Ram",
+        "Tony Yue Yu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.GT",
+        "math.CO"
+      ],
+      "published": "2026-07-09T23:17:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.08984v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AlphaZero with auxiliary supervision for game playing",
+      "llm_evidence_cn": "AlphaZero加辅助监督用于游戏对弈",
+      "llm_evidence": "AlphaZero加辅助监督用于游戏对弈",
+      "canonical_evidence": "AlphaZero加辅助监督用于游戏对弈",
+      "llm_tldr_en": "This paper addresses AlphaZero's inability to achieve perfect play in sparsely rewarded games by proposing an auxiliary loss (AZAL) that uses oracle policy supervision. Experiments on Connect Four and Chomp show AZAL better preserves optimal trajectories, advancing RL-based game AI toward perfect play.",
+      "llm_tldr_cn": "该论文针对AlphaZero在稀疏奖励游戏中难以达到完美走棋的问题，提出AlphaZero辅助损失（AZAL）利用神谕策略监督来改善训练。在四子棋和吃子棋上的实验表明，AZAL能更有效地保持最优走棋轨迹，弥补原始AlphaZero在精确决策上的不足。该工作为训练更精准的游戏AI代理提供了新方法，对强化学习在完美游戏AI中的应用具有重要价值。",
+      "llm_tldr": "该论文针对AlphaZero在稀疏奖励游戏中难以达到完美走棋的问题，提出AlphaZero辅助损失（AZAL）利用神谕策略监督来改善训练。在四子棋和吃子棋上的实验表明，AZAL能更有效地保持最优走棋轨迹，弥补原始AlphaZero在精确决策上的不足。该工作为训练更精准的游戏AI代理提供了新方法，对强化学习在完美游戏AI中的应用具有重要价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.09336v1",
+      "source": "arxiv",
+      "title": "Shortcut Trajectory Planning for Efficient Offline Reinforcement Learning",
+      "abstract": "Diffusion-based trajectory planners have shown strong performance in offline reinforcement learning, but their iterative denoising process often incurs high inference cost. Consistency-based planners reduce the number of sampling steps, yet they typically rely on a two-stage teacher--student distillation pipeline that increases training cost and may introduce instability. We propose Shortcut Trajectory Planning (STP), an offline model-based reinforcement learning framework that incorporates shortcut models as efficient trajectory generators. STP trains a conditional shortcut trajectory model in a single stage, supports adjustable one-step and few-step inference through step-size conditioning, and selects candidate plans using a critic augmented with feasibility-aware correction. Across standard D4RL benchmarks, including locomotion, navigation, manipulation, and dexterous control tasks, STP achieves strong performance while simplifying the training pipeline for fast generative planning.",
+      "authors": [
+        "Guanquan Wang",
+        "Yoshimasa Tsuruoka"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-07-10T12:17:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.09336v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "offline RL trajectory planning for efficient learning",
+      "llm_evidence_cn": "离线强化学习轨迹规划实现高效学习",
+      "llm_evidence": "离线强化学习轨迹规划实现高效学习",
+      "canonical_evidence": "离线强化学习轨迹规划实现高效学习",
+      "llm_tldr_en": "Proposes Shortcut Trajectory Planning, an efficient offline model-based RL method using shortcut models, applicable to game playing agents.",
+      "llm_tldr_cn": "提出捷径轨迹规划（STP），一种高效的离线基于模型的强化学习方法，可用于训练游戏智能体。",
+      "llm_tldr": "提出捷径轨迹规划（STP），一种高效的离线基于模型的强化学习方法，可用于训练游戏智能体。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

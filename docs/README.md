@@ -6,35 +6,28 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-12
-- 运行时间：2026-07-12 20:04:13 UTC
+- 最新运行日期：2026-07-13
+- 运行时间：2026-07-13 21:03:59 UTC
 - 运行状态：成功
-- 本次总论文数：5
-- 精读区：2
-- 速读区：3
+- 本次总论文数：2
+- 精读区：1
+- 速读区：1
 
 ### 今日简报（AI）
-1) 今日精读两篇高分论文，直击AI在
-- 详情：[/202607/12/README](/202607/12/README)
+今日精读一篇9分研究，探讨AlphaZero在稀疏奖励游戏中的局限及如何通过辅助监督突破瓶颈。  
+这篇论文最值得关注的结论是：单纯依赖自我对弈在奖励极少的场景下会失效，引入人工先验或辅助任务可大幅提升探索效率。  
+对AI博弈感兴趣的话，不妨重点关注“辅助监督如何设计”这部分，能帮你更好地理解强化学习的实用边界。
+- 详情：[/202607/13/README](/202607/13/README)
 
 ### 精读区论文标签
-1. [When Agents Lie: Premeditation, Persistence, and Exploitation in Repeated Games](/202607/12/2607.05132v2-when-agents-lie-premeditation-persistence-and-exploitation-in-repeated-games)  
+1. [AlphaZero in Sparsely Rewarded Games: Limits and Auxiliary Supervision](/202607/13/2607.08984v1-alphazero-in-sparsely-rewarded-games-limits-and-auxiliary-supervision)  
    标签：评分：9.0/10、query:gah
-   evidence：直接研究LLM智能体在重复博弈中的说谎行为，分析预谋性偏离
-2. [Spectral Analysis of Dueling Q-Learning](/202607/12/2607.08340v1-spectral-analysis-of-dueling-q-learning)  
-   标签：评分：9.0/10、query:gah
-   evidence：对 dueling Q-learning 的理论分析，游戏AI的核心强化学习技术
+   evidence：AlphaZero加辅助监督用于游戏对弈
 
 ### 速读区论文标签
-1. [Playing ZendoWorld: Challenging AI Agents on Active Visual Concept Induction](/202607/12/2607.08233v1-playing-zendoworld-challenging-ai-agents-on-active-visual-concept-induction)  
-   标签：评分：7.0/10、query:gah
-   evidence：引入一个交互式游戏环境，让AI智能体推断视觉概念，评估游戏类智能体
-2. [Gimitest: A Comprehensive Tool for Testing Reinforcement Learning Policies](/202607/12/2607.07029v1-gimitest-a-comprehensive-tool-for-testing-reinforcement-learning-policies)  
+1. [Shortcut Trajectory Planning for Efficient Offline Reinforcement Learning](/202607/13/2607.09336v1-shortcut-trajectory-planning-for-efficient-offline-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：支持Gym和PettingZoo的RL策略测试工具，可用于游戏AI bot开发
-3. [Feedback Manipulation Regularization: Enabling Offline Agent Alignment for Imitation Learning](/202607/12/2607.07859v1-feedback-manipulation-regularization-enabling-offline-agent-alignment-for-imitation-learning)  
-   标签：评分：6.0/10、query:gah
-   evidence：通过反馈将强化学习智能体与人类价值观对齐，可用于拟人化游戏bot
+   evidence：离线强化学习轨迹规划实现高效学习
 
 
 <div class="dpr-home-promo-card">
