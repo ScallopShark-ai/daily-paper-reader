@@ -1,0 +1,69 @@
+{
+  "label": "2026-07-14",
+  "date": "2026-07-14",
+  "generated_at": "2026-07-14T21:46:24",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202607/14/2607.11432v1-generalizing-preference-based-reinforcement-learning-a-rationality-model-for-incomparability",
+      "section": "deep",
+      "title_en": "Generalizing Preference-based Reinforcement Learning: a Rationality Model for Incomparability",
+      "authors": "Simone Drago, Marco Mussi, Leonardo Bianconi, Alberto Maria Metelli",
+      "date": "2026-07-13",
+      "pdf": "https://arxiv.org/pdf/2607.11432v1",
+      "score": "9.0",
+      "evidence": "基于偏好的强化学习含不可比性，用于拟人决策",
+      "tldr": "传统偏好强化学习依赖成对比较，但专家常面临无法判断优劣的不可比较情形。本文形式化不可比较轨迹对的标注设置，提出一种基于Bradley-Terry模型的理性模型，通过多维奖励函数捕捉不可比较性，实现更精细的偏好建模。理论分析给出样本复杂度保证，实验表明模型能准确重建奖励函数并恢复帕累托前沿，且在专家不同理性程度下保持鲁棒。该工作拓宽了基于人类反馈的强化学习泛化能力。",
+      "tags": "query:gah",
+      "abstract_en": "In this work, we study the reinforcement learning (RL) problem from pairwise trajectory comparisons provided by a human expert. We generalize preference-based RL by formalizing a novel setting in which the expert can also label trajectory pairs as incomparable, i.e., when neither trajectory dominates the other. We introduce the learning problem and the desiderata that its solution should satisfy. Then, we propose a novel Bradley-Terry-inspired rationality model that effectively captures incomparabilities and infers a multi-dimensional reward function, and we study its properties. We provide a sample complexity analysis for learning the model parameters when a dataset is available. Finally, we evaluate our model's ability to reconstruct a reward function that aligns with the expert's comparisons in simulated environments and to recover the Pareto frontier of policies, along with a robustness analysis across varying levels of expert rationality.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/14/2607.11501v1-comparative-analysis-of-gat-and-bert-for-human-like-playtesting",
+      "section": "deep",
+      "title_en": "Comparative Analysis of GAT and BERT for Human-Like Playtesting",
+      "authors": "Kleio Fragkedaki, Theodoros Panagiotakopoulos, Matteo Biasielli, Hui Wang",
+      "date": "2026-07-13",
+      "pdf": "https://arxiv.org/pdf/2607.11501v1",
+      "score": "8.0",
+      "evidence": "使用GAT和BERT在解谜游戏中建模类人游戏测试行为。",
+      "tldr": "针对解谜游戏玩法测试中现有模型需持续特征工程、难以泛化的问题，提出基于通用化表示的方法，并对比了Transformer（BERT）和图注意力网络（GAT）两种架构。在糖果粉碎传奇游戏数据集上，实验表明BERT和GAT在复杂棋盘上均优于CNN基线，验证了通用化表示的有效性，为减少模型维护成本、适应游戏动态变化提供了新思路。",
+      "tags": "query:gah",
+      "abstract_en": "Accurately modeling and understanding player experience is crucial for designing engaging puzzle games. To achieve this, a common approach involves collecting diverse user data to train predictive playtesting models that mimic player behavior. However, existing data-driven methods often lack the ability to capture the full range of player strategies and require extensive feature engineering and network architecture modeling. This limitation becomes particularly evident when new game mechanics or features are introduced, which necessitate continual adjustments to the models. To addrss these challenges, we propose a more generalized representation that reduces - or even eliminates - the need for ongoing feature-engineering maintenance. Specifically, we investigate two general-purpose network architectures: (a) a transformer-based model (BERT) and (b) a graph attention model (GAT), both of which are designed to effectively capture the relational structure of Candy Crush Saga (CCS) game boards. Our experiments compare these approaches to Convolutional Neural Networks (CNN) baselines, revealing better performance on challenging board configurations and underscoring the benefits of our generalizable representation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/14/2607.10645v1-mafiascope-non-invasive-time-resolved-belief-probing-for-llm-agents-in-social-deduction-games",
+      "section": "quick",
+      "title_en": "MafiaScope: Non-Invasive, Time-Resolved Belief Probing for LLM Agents in Social Deduction Games",
+      "authors": "Ilia Karpov",
+      "date": "2026-07-12",
+      "pdf": "https://arxiv.org/pdf/2607.10645v1",
+      "score": "6.0",
+      "evidence": "探测在玩黑手党游戏的LLM智能体内部信念，揭示其社会推理行为。",
+      "tldr": "社交推理游戏中，LLM代理的公开行为难以反映其真实信念，缺乏有效测量工具。MafiaScope提出非侵入式、时间解析信念探测，每轮游戏后私密提问并依据真相自动评分，配合可视化和反事实重放分析信念动态。32场DeepSeek实验处理万余答案，显示代理校准误差0.17，过度预测被怀疑1.5倍。平台开源引擎、可视化及200余场跨模型数据集，为机器ToM提供标准化测试基准。",
+      "tags": "query:gah",
+      "abstract_en": "An LLM agent's public behaviour reveals little about its social reasoning: an agent that votes correctly may be guessing, and an agent that lies well leaves no trace of what it actually believes. We present MafiaScope, an open testbed that turns the social deduction game Mafia into a measurement instrument for machine Theory of Mind. After every public utterance, every agent privately answers a configurable set of structured probe questions; the answers never re-enter the game and are scored automatically against the ground truth the engine knows. An interactive visualizer renders the belief trajectories: impersonate mode shows the game as one agent sees it, panels chart timeline-aligned accuracy and calibration, and counterfactual replay forks any recorded step. In a 32-game DeepSeek case study with 13{,}815 parsed probe answers, stated confidence is poorly calibrated, with expected calibration error 0.17, agents over-predict being suspected 1.5 times, and a 30-fork replay experiment walks the counterfactual replay workflow end to end. Engine, viewer and a corpus of 200+ cross-model games are released under an open licence; live demo: https://karpovilia.github.io/mafiascope/; screencast: https://vimeo.com/1208920221.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/14/2607.10814v1-auditing-belief-conditioned-llm-agents-in-hidden-information-social-deduction-games",
+      "section": "quick",
+      "title_en": "Auditing Belief-Conditioned LLM Agents in Hidden-Information Social Deduction Games",
+      "authors": "Yuan Gao, Jiangyi Yang, Yao Zhao, Yichi Zhang",
+      "date": "2026-07-12",
+      "pdf": "https://arxiv.org/pdf/2607.10814v1",
+      "score": "6.0",
+      "evidence": "狼人杀游戏中LLM代理的可审计框架，跟踪信念状态并支持离线改进",
+      "tldr": "在隐藏信息多智能体游戏中，LLM智能体的决策过程不透明，难以评估。我们提出一个可审计框架，记录外部信念状态与行动-信念偏差，在9人狼人杀环境验证。主动信念条件将好方胜率从0.205显著提升至0.390，但行动-信念一致性低且非简单持有者受益。该框架将不透明行为转化为可重放证据，支持安全迭代与策略改进。",
+      "tags": "query:gah",
+      "abstract_en": "Evaluating LLM agents in hidden-information multi-agent settings is hard: final outcomes are high-variance and rarely reveal why an agent decided as it did. We study this in a 9-player Werewolf environment where agents act under strict, code-level information isolation, and we build an auditable framework that maintains an external belief state over hidden roles, logs belief updates and belief-action deviations as structured evidence, and supports a defensive offline improvement loop that reviews bad cases before any strategy change.   Across 1,080 frozen games spanning belief-disabled, active-belief, kernel-ablation, camp-restricted, consumption-policy, and high-load arms, and including a seed-paired A0/A1 comparison, the active-belief condition is associated with substantially better good-side outcomes: in the 200-seed A0/A1 comparison the good-side win rate rises from 0.205 to 0.390 (paired McNemar $χ^2 = 16.4$, $p < 0.001$), with fewer irreversible witch-poison errors. We do not, however, attribute this shift to belief content. Direct action-belief consistency is low ($\\approx 0.21$), and giving belief only to the werewolves helps the good side more than giving it only to the good side, which argues against a simple holder-benefit account; we therefore report the effect as an association and treat its mechanism as unresolved. The contribution is the audit framework itself: it makes the effect measurable, exposes low direct action-belief consistency, rejects an unreliable forced-consumption intervention with evidence, and separates strategy effects from load confounds. We accordingly position external belief in high-noise hidden-information games primarily as an auditable cognitive baseline that also carries decision-relevant signal, turning opaque agent behavior into replayable evidence for safer, controlled iteration.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

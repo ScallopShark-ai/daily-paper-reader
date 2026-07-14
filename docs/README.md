@@ -6,28 +6,34 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-13
-- 运行时间：2026-07-13 21:03:59 UTC
+- 最新运行日期：2026-07-14
+- 运行时间：2026-07-14 21:45:59 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：1
-- 速读区：1
+- 本次总论文数：4
+- 精读区：2
+- 速读区：2
 
 ### 今日简报（AI）
-今日精读一篇9分研究，探讨AlphaZero在稀疏奖励游戏中的局限及如何通过辅助监督突破瓶颈。  
-这篇论文最值得关注的结论是：单纯依赖自我对弈在奖励极少的场景下会失效，引入人工先验或辅助任务可大幅提升探索效率。  
-对AI博弈感兴趣的话，不妨重点关注“辅助监督如何设计”这部分，能帮你更好地理解强化学习的实用边界。
-- 详情：[/202607/13/README](/202607/13/README)
+今日精读聚焦偏好强化学习中的不可比性建模与图网络在类人游戏测试中的应用，并速览了LLM在社交推理游戏中的信念审计方法。  
+最值得关注的方向：为强化学习引入“不可比性”理性模型以处理偏好冲突，以及图注意力网络在模拟人类玩法上比纯文本模型更准确。  
+建议读者关注“不可比性”思路如何迁移至多目标决策，同时留意图网络在游戏设计自动化测试中的落地潜力。
+- 详情：[/202607/14/README](/202607/14/README)
 
 ### 精读区论文标签
-1. [AlphaZero in Sparsely Rewarded Games: Limits and Auxiliary Supervision](/202607/13/2607.08984v1-alphazero-in-sparsely-rewarded-games-limits-and-auxiliary-supervision)  
+1. [Generalizing Preference-based Reinforcement Learning: a Rationality Model for Incomparability](/202607/14/2607.11432v1-generalizing-preference-based-reinforcement-learning-a-rationality-model-for-incomparability)  
    标签：评分：9.0/10、query:gah
-   evidence：AlphaZero加辅助监督用于游戏对弈
+   evidence：基于偏好的强化学习含不可比性，用于拟人决策
+2. [Comparative Analysis of GAT and BERT for Human-Like Playtesting](/202607/14/2607.11501v1-comparative-analysis-of-gat-and-bert-for-human-like-playtesting)  
+   标签：评分：8.0/10、query:gah
+   evidence：使用GAT和BERT在解谜游戏中建模类人游戏测试行为。
 
 ### 速读区论文标签
-1. [Shortcut Trajectory Planning for Efficient Offline Reinforcement Learning](/202607/13/2607.09336v1-shortcut-trajectory-planning-for-efficient-offline-reinforcement-learning)  
+1. [MafiaScope: Non-Invasive, Time-Resolved Belief Probing for LLM Agents in Social Deduction Games](/202607/14/2607.10645v1-mafiascope-non-invasive-time-resolved-belief-probing-for-llm-agents-in-social-deduction-games)  
    标签：评分：6.0/10、query:gah
-   evidence：离线强化学习轨迹规划实现高效学习
+   evidence：探测在玩黑手党游戏的LLM智能体内部信念，揭示其社会推理行为。
+2. [Auditing Belief-Conditioned LLM Agents in Hidden-Information Social Deduction Games](/202607/14/2607.10814v1-auditing-belief-conditioned-llm-agents-in-hidden-information-social-deduction-games)  
+   标签：评分：6.0/10、query:gah
+   evidence：狼人杀游戏中LLM代理的可审计框架，跟踪信念状态并支持离线改进
 
 
 <div class="dpr-home-promo-card">

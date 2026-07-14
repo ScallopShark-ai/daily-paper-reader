@@ -1,0 +1,168 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-14T21:41:23.741569+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.11432v1",
+      "source": "arxiv",
+      "title": "Generalizing Preference-based Reinforcement Learning: a Rationality Model for Incomparability",
+      "abstract": "In this work, we study the reinforcement learning (RL) problem from pairwise trajectory comparisons provided by a human expert. We generalize preference-based RL by formalizing a novel setting in which the expert can also label trajectory pairs as incomparable, i.e., when neither trajectory dominates the other. We introduce the learning problem and the desiderata that its solution should satisfy. Then, we propose a novel Bradley-Terry-inspired rationality model that effectively captures incomparabilities and infers a multi-dimensional reward function, and we study its properties. We provide a sample complexity analysis for learning the model parameters when a dataset is available. Finally, we evaluate our model's ability to reconstruct a reward function that aligns with the expert's comparisons in simulated environments and to recover the Pareto frontier of policies, along with a robustness analysis across varying levels of expert rationality.",
+      "authors": [
+        "Simone Drago",
+        "Marco Mussi",
+        "Leonardo Bianconi",
+        "Alberto Maria Metelli"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-13T11:37:27+00:00",
+      "link": "https://arxiv.org/pdf/2607.11432v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "preference-based RL with incomparability for human-like decision making",
+      "llm_evidence_cn": "基于偏好的强化学习含不可比性，用于拟人决策",
+      "llm_evidence": "基于偏好的强化学习含不可比性，用于拟人决策",
+      "canonical_evidence": "基于偏好的强化学习含不可比性，用于拟人决策",
+      "llm_tldr_en": "Paper generalizes preference-based RL to allow incomparable trajectory pairs, capturing nuanced human preferences and enabling more human-like game AI training.",
+      "llm_tldr_cn": "传统基于偏好的强化学习要求人类专家对轨迹对给出优劣排序，但实际人类决策常存在不可比情境。本文提出允许专家标注轨迹对为不可比的新范式，并设计多维奖励推理的理性模型，克服了强制排序的失真问题。实验表明该方法能有效恢复人类偏好结构，为训练更符合人类决策特征的拟人化游戏AI提供了关键技术。",
+      "llm_tldr": "传统基于偏好的强化学习要求人类专家对轨迹对给出优劣排序，但实际人类决策常存在不可比情境。本文提出允许专家标注轨迹对为不可比的新范式，并设计多维奖励推理的理性模型，克服了强制排序的失真问题。实验表明该方法能有效恢复人类偏好结构，为训练更符合人类决策特征的拟人化游戏AI提供了关键技术。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.11501v1",
+      "source": "arxiv",
+      "title": "Comparative Analysis of GAT and BERT for Human-Like Playtesting",
+      "abstract": "Accurately modeling and understanding player experience is crucial for designing engaging puzzle games. To achieve this, a common approach involves collecting diverse user data to train predictive playtesting models that mimic player behavior. However, existing data-driven methods often lack the ability to capture the full range of player strategies and require extensive feature engineering and network architecture modeling. This limitation becomes particularly evident when new game mechanics or features are introduced, which necessitate continual adjustments to the models. To addrss these challenges, we propose a more generalized representation that reduces - or even eliminates - the need for ongoing feature-engineering maintenance. Specifically, we investigate two general-purpose network architectures: (a) a transformer-based model (BERT) and (b) a graph attention model (GAT), both of which are designed to effectively capture the relational structure of Candy Crush Saga (CCS) game boards. Our experiments compare these approaches to Convolutional Neural Networks (CNN) baselines, revealing better performance on challenging board configurations and underscoring the benefits of our generalizable representation.",
+      "authors": [
+        "Kleio Fragkedaki",
+        "Theodoros Panagiotakopoulos",
+        "Matteo Biasielli",
+        "Hui Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-13T12:54:18+00:00",
+      "link": "https://arxiv.org/pdf/2607.11501v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Models human-like playtesting behavior using GAT and BERT on puzzle games.",
+      "llm_evidence_cn": "使用GAT和BERT在解谜游戏中建模类人游戏测试行为。",
+      "llm_evidence": "使用GAT和BERT在解谜游戏中建模类人游戏测试行为。",
+      "canonical_evidence": "使用GAT和BERT在解谜游戏中建模类人游戏测试行为。",
+      "llm_tldr_en": "Compares graph attention networks and BERT for playtesting models that mimic human player strategies in puzzle games, reducing feature engineering.",
+      "llm_tldr_cn": "为了解决传统游戏测试模型需要大量特征工程且难以适应新玩法的问题，提出使用GAT和BERT来建模类人玩家行为。通过将游戏状态表示为图结构或文本序列，模型能够泛化不同策略并减少人工调整，实现更精确的玩家体验预测，为自动化游戏测试提供了新的数据驱动方法。",
+      "llm_tldr": "为了解决传统游戏测试模型需要大量特征工程且难以适应新玩法的问题，提出使用GAT和BERT来建模类人玩家行为。通过将游戏状态表示为图结构或文本序列，模型能够泛化不同策略并减少人工调整，实现更精确的玩家体验预测，为自动化游戏测试提供了新的数据驱动方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.10645v1",
+      "source": "arxiv",
+      "title": "MafiaScope: Non-Invasive, Time-Resolved Belief Probing for LLM Agents in Social Deduction Games",
+      "abstract": "An LLM agent's public behaviour reveals little about its social reasoning: an agent that votes correctly may be guessing, and an agent that lies well leaves no trace of what it actually believes. We present MafiaScope, an open testbed that turns the social deduction game Mafia into a measurement instrument for machine Theory of Mind. After every public utterance, every agent privately answers a configurable set of structured probe questions; the answers never re-enter the game and are scored automatically against the ground truth the engine knows. An interactive visualizer renders the belief trajectories: impersonate mode shows the game as one agent sees it, panels chart timeline-aligned accuracy and calibration, and counterfactual replay forks any recorded step. In a 32-game DeepSeek case study with 13{,}815 parsed probe answers, stated confidence is poorly calibrated, with expected calibration error 0.17, agents over-predict being suspected 1.5 times, and a 30-fork replay experiment walks the counterfactual replay workflow end to end. Engine, viewer and a corpus of 200+ cross-model games are released under an open licence; live demo: https://karpovilia.github.io/mafiascope/; screencast: https://vimeo.com/1208920221.",
+      "authors": [
+        "Ilia Karpov"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.MA",
+        "cs.SI"
+      ],
+      "published": "2026-07-12T08:20:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.10645v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Probes internal beliefs of LLM agents playing Mafia, revealing social reasoning behavior.",
+      "llm_evidence_cn": "探测在玩黑手党游戏的LLM智能体内部信念，揭示其社会推理行为。",
+      "llm_evidence": "探测在玩黑手党游戏的LLM智能体内部信念，揭示其社会推理行为。",
+      "canonical_evidence": "探测在玩黑手党游戏的LLM智能体内部信念，揭示其社会推理行为。",
+      "llm_tldr_en": "MafiaScope is a testbed that uses structured private probes after each utterance to measure belief accuracy and calibration of LLM agents in the social deduction game Mafia, enabling analysis of their theory of mind.",
+      "llm_tldr_cn": "MafiaScope是一个开放测试平台，将社会推理游戏黑手党转化为机器心理理论的测量工具。该平台在每次公开发言后通过结构化探测问题私下询问每位智能体的信念，并提供交互式可视化工具来追踪信念轨迹。实验自动评分与基准真相对比，显示智能体内部推理与公开行为的差异，为理解游戏AI智能体的社会认知能力提供了新方法。",
+      "llm_tldr": "MafiaScope是一个开放测试平台，将社会推理游戏黑手党转化为机器心理理论的测量工具。该平台在每次公开发言后通过结构化探测问题私下询问每位智能体的信念，并提供交互式可视化工具来追踪信念轨迹。实验自动评分与基准真相对比，显示智能体内部推理与公开行为的差异，为理解游戏AI智能体的社会认知能力提供了新方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.10814v1",
+      "source": "arxiv",
+      "title": "Auditing Belief-Conditioned LLM Agents in Hidden-Information Social Deduction Games",
+      "abstract": "Evaluating LLM agents in hidden-information multi-agent settings is hard: final outcomes are high-variance and rarely reveal why an agent decided as it did. We study this in a 9-player Werewolf environment where agents act under strict, code-level information isolation, and we build an auditable framework that maintains an external belief state over hidden roles, logs belief updates and belief-action deviations as structured evidence, and supports a defensive offline improvement loop that reviews bad cases before any strategy change.   Across 1,080 frozen games spanning belief-disabled, active-belief, kernel-ablation, camp-restricted, consumption-policy, and high-load arms, and including a seed-paired A0/A1 comparison, the active-belief condition is associated with substantially better good-side outcomes: in the 200-seed A0/A1 comparison the good-side win rate rises from 0.205 to 0.390 (paired McNemar $χ^2 = 16.4$, $p < 0.001$), with fewer irreversible witch-poison errors. We do not, however, attribute this shift to belief content. Direct action-belief consistency is low ($\\approx 0.21$), and giving belief only to the werewolves helps the good side more than giving it only to the good side, which argues against a simple holder-benefit account; we therefore report the effect as an association and treat its mechanism as unresolved. The contribution is the audit framework itself: it makes the effect measurable, exposes low direct action-belief consistency, rejects an unreliable forced-consumption intervention with evidence, and separates strategy effects from load confounds. We accordingly position external belief in high-noise hidden-information games primarily as an auditable cognitive baseline that also carries decision-relevant signal, turning opaque agent behavior into replayable evidence for safer, controlled iteration.",
+      "authors": [
+        "Yuan Gao",
+        "Jiangyi Yang",
+        "Yao Zhao",
+        "Yichi Zhang"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-07-12T16:03:30+00:00",
+      "link": "https://arxiv.org/pdf/2607.10814v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "auditable framework for LLM agents in Werewolf game, tracking belief states and enabling offline improvement",
+      "llm_evidence_cn": "狼人杀游戏中LLM代理的可审计框架，跟踪信念状态并支持离线改进",
+      "llm_evidence": "狼人杀游戏中LLM代理的可审计框架，跟踪信念状态并支持离线改进",
+      "canonical_evidence": "狼人杀游戏中LLM代理的可审计框架，跟踪信念状态并支持离线改进",
+      "llm_tldr_en": "Presents an auditable framework for LLM agents in Werewolf, tracking belief states and enabling offline improvement to address evaluation challenges in hidden-information games.",
+      "llm_tldr_cn": "针对隐藏信息多智能体环境中LLM代理决策难以评估的问题，本文提出一个可审计框架，在狼人杀游戏中维护外部信念状态，记录信念更新和行为偏差，并支持离线改进循环。通过1080场冻结游戏实验，比较了信念禁用、活跃信念等多种配置，结果显示信念条件代理表现更优，验证了可审计框架在提升游戏AI透明度和策略改进方面的有效性。",
+      "llm_tldr": "针对隐藏信息多智能体环境中LLM代理决策难以评估的问题，本文提出一个可审计框架，在狼人杀游戏中维护外部信念状态，记录信念更新和行为偏差，并支持离线改进循环。通过1080场冻结游戏实验，比较了信念禁用、活跃信念等多种配置，结果显示信念条件代理表现更优，验证了可审计框架在提升游戏AI透明度和策略改进方面的有效性。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
