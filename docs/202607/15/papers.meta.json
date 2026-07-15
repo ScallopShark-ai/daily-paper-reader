@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-15",
+  "date": "2026-07-15",
+  "generated_at": "2026-07-15T21:11:58",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/15/2607.12181v1-analysis-of-mutual-and-referential-human-and-robot-gazes-in-a-collaborative-word-association-game",
+      "section": "deep",
+      "title_en": "Analysis of Mutual and Referential Human and Robot Gazes in a Collaborative Word Association Game",
+      "authors": "Jens V. Rüppel, Tim Schreiter, Andrey Rudenko, Achim J. Lilienthal",
+      "date": "2026-07-13",
+      "pdf": "https://arxiv.org/pdf/2607.12181v1",
+      "score": "8.0",
+      "evidence": "研究协作单词游戏中机器人注视行为以实现类人交互",
+      "tldr": "机器人凝视是人机对话协调的关键要素，但多数研究集中于面对面社交，对高认知需求的任务导向交互研究有限。本文探究协作词语联想游戏中机器人凝视对人类视觉注意的影响，以及人类寻求确认时是否更频繁注视机器人。实验采用NAO机器人作为LLM驱动的对话伙伴，设置互视与参照凝视两种条件，并用眼动追踪眼镜记录参与者注视坐标、语音和关键事件。结果发现机器人凝视方向未改变对提议词语的首次注视时间，但当对话包含确认请求时，参与者注视机器人显著增多。结论表明在认知负荷大的任务中，语言沟通压倒凝视效应，为设计协调高效的机器人注视与话轮转换行为提供了实证见解。",
+      "tags": "query:gah",
+      "abstract_en": "Robot gaze is a major component of human-robot dialogue coordination. Most studies of gaze in human-robot dialogue focus on face-to-face social conversations, but little is known about gaze in demanding task-focused interactions. In this paper, we investigate how the gaze of a robot game partner affects human visual attention and if humans tend to direct confirmation-seeking gazes towards the robot. In our study, we let participants play a collaborative word association game with a NAO robot acting as an embodied, LLM-driven conversational partner. Our experiments are conducted under two conditions, which implement mutual and referential gazes of the robot respectively. We record participants' gaze using eye tracking glasses and analyze the interactions using gaze coordinates, speech segments, key events and areas of interests. We find that robot gaze orientation does not affect the time to first fixation on words the robot proposed. We also find that participants gaze more often at the robot when their dialogue line contains confirmation requests, compared to when it does not. Our results indicate (likely also due to the cognitively demanding nature of the game) that the verbal aspect of this task overshadows the effects of referential robot gaze. These findings offer valuable insights for designing and validating robot gaze and turn-taking behavior in collaborative tasks which require coordination and efficient communication.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/15/2607.07663v1-recursive-self-improvement-in-ai-from-bounded-self-refinement-to-autonomous-research-loops",
+      "section": "quick",
+      "title_en": "Recursive Self-Improvement in AI: From Bounded Self-Refinement to Autonomous Research Loops",
+      "authors": "Mingguang Chen, Licheng Wang, Bo Qu",
+      "date": "2026-07-08",
+      "pdf": "https://arxiv.org/pdf/2607.07663v1",
+      "score": "7.0",
+      "evidence": "综述涵盖自博弈等用于游戏AI的关键强化学习技术",
+      "tldr": "AI系统日益参与自身改进，但相关术语混淆了不同目标。本文基于1250篇论文提出分类法，按改进对象和闭环程度区分有界自精炼与开放式递归自改进，并引入评估信号的验证层级。发现自我改进强度严格遵循该层级，失效模式源于层级违反，研究瓶颈位于层级顶端。这为理解递归自我改进的极限与安全治理提供了统一框架。",
+      "tags": "query:gah",
+      "abstract_en": "AI systems increasingly participate in their own improvement: revising their outputs, adapting their own harnesses during deployment, training on data they generate, and, increasingly, conducting AI research itself. This literature is described under a vocabulary (\"self-refine,\" \"self-reward,\" \"self-play,\" \"self-evolve\") that conflates fundamentally different ambitions. We survey 1,250 arXiv papers (2024-2026) along two axes: what the system improves -- its behavior in deployment, its policy through training, its evaluator, or the research process itself -- and the degree of loop closure (human-in-the-loop to fully closed). The taxonomy separates bounded self-refinement -- convergent, evaluable, and already industrial practice -- from open-ended recursive self-improvement (RSI), which remains bounded by grounding requirements, collapse dynamics, and compute constraints on every measured axis. Its distinctive feature is a dedicated category for self-evaluation: every improvement loop is a claim that some signal can substitute for human judgment. We survey the evaluator design space -- judges, process reward models, verifiers, rubrics, meta-evaluation -- order the signals into a verification hierarchy from formal verifiers (strongest) to intrinsic self-assessment (weakest), and observe that demonstrated self-improvement strength tracks this hierarchy, that its failure modes (self-confirming loops, model collapse, diversity collapse) follow from its violations, and that the \"research direction-setting\" bottleneck keeping humans in the loop sits at the top of that hierarchy. We connect the technical literature to the theory of RSI limits and to the safety and governance questions raised by frontier-lab accounts of closing the loop, and identify governance-grade measurement of self-improvement as the field's most underpopulated niche.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

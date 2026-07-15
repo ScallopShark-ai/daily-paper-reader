@@ -1,0 +1,93 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-15T21:08:20.241890+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.12181v1",
+      "source": "arxiv",
+      "title": "Analysis of Mutual and Referential Human and Robot Gazes in a Collaborative Word Association Game",
+      "abstract": "Robot gaze is a major component of human-robot dialogue coordination. Most studies of gaze in human-robot dialogue focus on face-to-face social conversations, but little is known about gaze in demanding task-focused interactions. In this paper, we investigate how the gaze of a robot game partner affects human visual attention and if humans tend to direct confirmation-seeking gazes towards the robot. In our study, we let participants play a collaborative word association game with a NAO robot acting as an embodied, LLM-driven conversational partner. Our experiments are conducted under two conditions, which implement mutual and referential gazes of the robot respectively. We record participants' gaze using eye tracking glasses and analyze the interactions using gaze coordinates, speech segments, key events and areas of interests. We find that robot gaze orientation does not affect the time to first fixation on words the robot proposed. We also find that participants gaze more often at the robot when their dialogue line contains confirmation requests, compared to when it does not. Our results indicate (likely also due to the cognitively demanding nature of the game) that the verbal aspect of this task overshadows the effects of referential robot gaze. These findings offer valuable insights for designing and validating robot gaze and turn-taking behavior in collaborative tasks which require coordination and efficient communication.",
+      "authors": [
+        "Jens V. Rüppel",
+        "Tim Schreiter",
+        "Andrey Rudenko",
+        "Achim J. Lilienthal"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.HC"
+      ],
+      "published": "2026-07-13T22:00:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.12181v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Study of robot gaze behavior in a collaborative word game to achieve human-like interaction",
+      "llm_evidence_cn": "研究协作单词游戏中机器人注视行为以实现类人交互",
+      "llm_evidence": "研究协作单词游戏中机器人注视行为以实现类人交互",
+      "canonical_evidence": "研究协作单词游戏中机器人注视行为以实现类人交互",
+      "llm_tldr_en": "Investigates how mutual and referential gazes of a robot game partner affect human attention in a word association game, contributing to human-like game AI design by analyzing social gaze cues.",
+      "llm_tldr_cn": "本文研究协作单词联想游戏中机器人游戏伙伴的相互注视和参照注视对人类注意力的影响，通过分析社交注视线索，为设计具有人化行为的游戏AI bot提供实证依据。",
+      "llm_tldr": "本文研究协作单词联想游戏中机器人游戏伙伴的相互注视和参照注视对人类注意力的影响，通过分析社交注视线索，为设计具有人化行为的游戏AI bot提供实证依据。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.07663v1",
+      "source": "arxiv",
+      "title": "Recursive Self-Improvement in AI: From Bounded Self-Refinement to Autonomous Research Loops",
+      "abstract": "AI systems increasingly participate in their own improvement: revising their outputs, adapting their own harnesses during deployment, training on data they generate, and, increasingly, conducting AI research itself. This literature is described under a vocabulary (\"self-refine,\" \"self-reward,\" \"self-play,\" \"self-evolve\") that conflates fundamentally different ambitions. We survey 1,250 arXiv papers (2024-2026) along two axes: what the system improves -- its behavior in deployment, its policy through training, its evaluator, or the research process itself -- and the degree of loop closure (human-in-the-loop to fully closed). The taxonomy separates bounded self-refinement -- convergent, evaluable, and already industrial practice -- from open-ended recursive self-improvement (RSI), which remains bounded by grounding requirements, collapse dynamics, and compute constraints on every measured axis. Its distinctive feature is a dedicated category for self-evaluation: every improvement loop is a claim that some signal can substitute for human judgment. We survey the evaluator design space -- judges, process reward models, verifiers, rubrics, meta-evaluation -- order the signals into a verification hierarchy from formal verifiers (strongest) to intrinsic self-assessment (weakest), and observe that demonstrated self-improvement strength tracks this hierarchy, that its failure modes (self-confirming loops, model collapse, diversity collapse) follow from its violations, and that the \"research direction-setting\" bottleneck keeping humans in the loop sits at the top of that hierarchy. We connect the technical literature to the theory of RSI limits and to the safety and governance questions raised by frontier-lab accounts of closing the loop, and identify governance-grade measurement of self-improvement as the field's most underpopulated niche.",
+      "authors": [
+        "Mingguang Chen",
+        "Licheng Wang",
+        "Bo Qu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-08T17:19:50+00:00",
+      "link": "https://arxiv.org/pdf/2607.07663v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "survey covers self-play, a key RL technique for game AI",
+      "llm_evidence_cn": "综述涵盖自博弈等用于游戏AI的关键强化学习技术",
+      "llm_evidence": "综述涵盖自博弈等用于游戏AI的关键强化学习技术",
+      "canonical_evidence": "综述涵盖自博弈等用于游戏AI的关键强化学习技术",
+      "llm_tldr_en": "This survey taxonomizes recursive self-improvement in AI, highlighting self-play techniques foundational for training game AI agents.",
+      "llm_tldr_cn": "该综述对AI中的递归自改进研究进行分类，重点介绍自博弈等自我训练范式，这些技术对于训练游戏AI智能体具有基础性作用，为游戏AI开发提供了方法指导。",
+      "llm_tldr": "该综述对AI中的递归自改进研究进行分类，重点介绍自博弈等自我训练范式，这些技术对于训练游戏AI智能体具有基础性作用，为游戏AI开发提供了方法指导。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
