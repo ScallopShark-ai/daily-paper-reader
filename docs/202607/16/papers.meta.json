@@ -1,0 +1,69 @@
+{
+  "label": "2026-07-16",
+  "date": "2026-07-16",
+  "generated_at": "2026-07-16T20:01:07",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202607/16/2607.08964v1-long-horizon-terminal-bench-testing-the-limits-of-agents-on-long-horizon-terminal-tasks-with-dense-reward-based-grading",
+      "section": "quick",
+      "title_en": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading",
+      "authors": "Zongxia Li, Zhongzhi Li, Yucheng Shi, Ruhan Wang, Junyao Yang, Zhichao Liu, Xiyang Wu, Anhao Li, Yue Yu, Ninghao Liu, Lichao Sun, Haotao Mi, LeoweiLiang",
+      "date": "2026-07-09",
+      "pdf": "https://arxiv.org/pdf/2607.08964v1",
+      "score": "6.0",
+      "evidence": "基准包含交互式游戏类别，用密集奖励评估智能体",
+      "tldr": "现有终端基准大多聚焦于可在数分钟内完成的简单任务，仅以最终结果作为评价指标，导致奖励信号稀疏，难以全面衡量代理在长程任务上的规划与执行能力。为此，我们提出Long-Horizon-Terminal-Bench，一个包含46个长程终端任务的基准，覆盖实验复现、软件工程、多模态分析、交互游戏和科学计算等九大类别。每个任务均被分解为细粒度子任务，配备密集中间奖励和部分评分机制，从而精准捕捉代理在开放式工作流中的渐进进展，而非仅看最终成败。任务通常需数百个episode和数小时执行时间，重点考察长程规划、长上下文管理和迭代调试能力。我们评估了15个前沿模型，发现任务平均消耗990万token、231个episode和85.3分钟，即使最强模型在完美奖励阈值下的通过率也仅10.9%，平均通过率更是低至1.7%，凸显了巨大的改进空间。该基准不仅揭示了现有代理在长程任务上的关键瓶颈，也为未来研究提供了富有挑战性的评测平台。",
+      "tags": "query:gah",
+      "abstract_en": "AI agents have become capable of autonomously completing short, well-specified tasks. However, existing terminal benchmarks largely focus on simple problems that finish within minutes and are evaluated only by their final outcome. This setup overlooks intermediate progress and partial solutions, yielding sparse reward signals and an incomplete picture of agent capability. We introduce Long-Horizon-Terminal-Bench, a terminal benchmark of 46 long-horizon tasks spanning nine categories, including experiment reproduction, software engineering, multimodal analysis, interactive games, and scientific computing. Each task follows a Terminal-Bench-style setup with a reference solution or simulation engine, but is further decomposed into fine-grained graded subtasks. This design enables dense intermediate rewards and partial credit, allowing evaluation to capture not only whether an agent reaches the final goal, but also how far it progresses on open-ended workflows. Tasks in Long-Horizon-Terminal-Bench typically require hundreds of episodes and minutes to hours of execution, stressing long-horizon planning, long-context management, and iterative debugging rather than one-shot problem solving. We evaluate 15 frontier models and find that agents consume on average 9.9M tokens per task, with roughly 231 episodes and 85.3 minutes of execution time per run, making Long-Horizon-Terminal-Bench more demanding than prior terminal-based benchmarks. Even the strongest tested model achieves 15.2% pass@1 at a partial-reward threshold of 0.95 and 10.9% at a perfect-reward threshold of 1.0, while the mean pass rate across models is 4.3% and 1.7% under the two thresholds, respectively. These results reveal headroom for improvement. We further analyze failure modes and error patterns, and release Long-Horizon-Terminal-Bench to support future progress on long-horizon terminal agents.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/16/2607.12924v1-knowledge--and-gradient-guided-reinforcement-learning-for-parametrized-action-markov-decision-processes",
+      "section": "quick",
+      "title_en": "Knowledge- and Gradient-Guided Reinforcement Learning for Parametrized Action Markov Decision Processes",
+      "authors": "Jonas Ehrhardt, René Heesch, Oliver Niggemann",
+      "date": "2026-07-14",
+      "pdf": "https://arxiv.org/pdf/2607.12924v1",
+      "score": "6.0",
+      "evidence": "提出用于PAMDP的RL算法并整合领域知识",
+      "tldr": "参数化动作MDP中，RL算法需同时决策符号动作与连续参数，但通常以一次性估计参数导致样本效率低下，且可用的领域知识（如规则、安全约束）未被充分利用。为此，提出神经符号KGRL算法，融合Datalog知识库动态推导适用动作与可行参数范围以剪枝搜索空间，并采用梯度优化循环精细调整参数，增强探索效率和决策质量。实验表明，KGRL在多种PAMDP环境中样本效率和回合回报均大幅超越主流基线，且通过激活规则记录实现动作剪枝与参数约束的可解释性。KGRL为将先验知识有效融入参数化强化学习开辟了实用途径，显著提升样本效率与决策安全，兼顾可解释性。",
+      "tags": "query:gah",
+      "abstract_en": "In this paper, we study Reinforcement Learning in Parametrized Action Markov Decision Processes (PAMDP), where each decision consists of a symbolic action and numerical parameters. In such settings Reinforcement Learning algorithms typically determine parameters with one-shot estimators, which makes their training sample inefficient. Though in most PAMDP environments explicit but incomplete knowledge (e.g., rules, safety constraints, or expert heuristics) is available, it is rarely directly used to increase the sample-efficiency of training Reinforcement Learning agents. We step into this gap and propose our novel Neuro-Symbolic Knowledge- and Gradient-Guided Reinforcement Learning (KGRL) algorithm. KGRL uses domain knowledge in a Datalog knowledge base to derive the set of applicable actions and feasible parameters for a given state. This allows it to prune non-applicable actions from the decision-space and constrain the parameter spaces of the remaining actions. We then use a gradient-based parameter refinement loop to estimate the optimal parameters during training and deployment of the agent. By recording activated rules along the trajectory, KGRL additionally provides local procedural explanations on the pruning of actions and constraining of parameters. Overall, KGRL guides the agent's exploration and deployment toward feasible and constraint-aware decisions, while increasing sample efficiency during training. KGRL outperforms state-of-the-art RL baselines for PAMDPs in both, sample efficiency and episodic return.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/16/2607.13655v1-explaining-reinforcement-learning-agents-via-inductive-logic-programming",
+      "section": "quick",
+      "title_en": "Explaining Reinforcement Learning Agents via Inductive Logic Programming",
+      "authors": "Celeste Veronese, Edoardo Zorzi, Daniele Meli, Alessandro Farinelli",
+      "date": "2026-07-15",
+      "pdf": "https://arxiv.org/pdf/2607.13655v1",
+      "score": "6.0",
+      "evidence": "提供解释强化学习智能体行为的方法，可用于理解游戏AI机器人的决策",
+      "tldr": "可解释强化学习(XRL)旨在提升策略透明度，但多依赖用户研究且缺乏共享量化指标，逻辑规则的可解释性程度也缺少客观度量。本文提出基于规划的需求，采用归纳逻辑程序设计(ILP)提取策略的符号规则，并定义激活率、特征覆盖度、句法距离和语义距离等可解释性指标，用于量化规则与行为的一致性、特征作用及策略演化。实验在多个RL环境表明，指标可揭示动作特化的学习动态，提供超越全局特征重要性的细粒度洞察，并发掘多智能体协调、专业化与适应模式。工作为XRL建立了客观评估体系，并为策略迁移和泛化提供重要见解。",
+      "tags": "query:gah",
+      "abstract_en": "Explainable Reinforcement Learning (XRL) seeks to make Reinforcement Learning (RL) policies more transparent and interpretable, a key requirement in safety-critical and human-centric scenarios. However, it is mostly based on user studies, thus targeting the needs of a specific audience and lacking shared evaluation metrics. On the other hand, logic-based approaches within eXplainable Artificial Intelligence (XAI) provide compact, human-readable abstractions of decision-making. However, the systematic quantification of the explainability degree of logical representations remains an open problem. This work aims to advance the state of the art in XRL by introducing objective and planning-oriented metrics for policy explainability in RL settings. At the same time, it contributes to the field of logic for XAI by providing a principled way to quantify the explainability of logical rules, moving beyond common-sense assessments and simple propositional fragments. We employ Inductive Logic Programming (ILP) to extract symbolic representations of RL policies and define a novel set of explainability metrics, including activation rate, feature coverage, syntactic distance and semantic distance. These metrics quantify alignment between symbolic rules and agent behavior, the role of features in decision-making, and the evolution of policies during training and across agents in single and multi-agent RL. Experiments across different RL domains show that the proposed metrics highlight action-specific learning dynamics beyond global return, provide fine-grained insights into domain features beyond classical approaches for global feature importance estimation, and uncover coordination, specialization, and adaptation patterns in MARL. Moreover, they provide crucial insights for the transfer and generalization of action-specific policies.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/16/2607.13988v1-trace-turn-level-reward-assignment-via-credit-estimation-for-long-horizon-agents",
+      "section": "quick",
+      "title_en": "TRACE: Turn-level Reward Assignment via Credit Estimation for Long-Horizon Agents",
+      "authors": "Leitian Tao, Baolin Peng, Wenlin Yao, Tao Ge, Hao Cheng, Mike Hang Wang, Jianfeng Gao, Sharon Li",
+      "date": "2026-07-15",
+      "pdf": "https://arxiv.org/pdf/2607.13988v1",
+      "score": "6.0",
+      "evidence": "用于智能体强化学习的密集信用分配方法，适用于游戏智能体训练",
+      "tldr": "多轮智能体在执行长期复杂搜索时，由于轨迹包含数十甚至上百次工具调用，仅依赖最终结果奖励稀疏且高方差，失败轨迹中的有效动作也受到错误惩罚，信用分配成为核心挑战。TRACE将轨迹表示为工具调用边界的状态序列，从冻结参考模型获取答案对数概率并计算对数比值状态值，利用时序差分跨越冗余工具调用得到逐动作奖励，实现无评论家的密集奖励分配。在BrowseComp-Plus闭网基准上，TRACE将Qwen3-4B准确率从7.2提升至35.6，Qwen3-30B-A3B从8.4提升至42.6，学习曲线显示更早改善和更快收敛，且搜索能力可迁移至开网基准。该方法无需冷启动SFT、智能体中训练或实时网络数据，为纯RL提升基础模型工具使用能力提供了高效范式，并展示了纯RL在长程任务中的潜力。",
+      "tags": "query:gah",
+      "abstract_en": "Multi-turn agents solve complex tasks through extended sequences of tool interactions before producing a final answer, making credit assignment a fundamental challenge during post-training. Outcome rewards provide reliable supervision for short-horizon reasoning, but become sparse and high-variance as trajectories grow to tens or hundreds of tool calls. They can also be misleading: a failed rollout may contain many useful actions that move the agent closer to the goal, yet outcome-only training assigns them the same negative advantage as the eventual mistake. We propose TRACE (Turn-level Reward Assignment via Credit Estimation), a dense credit-assignment method for agentic reinforcement learning. TRACE represents rollouts as state transitions at tool-call boundaries, obtains gold-answer log-probabilities from a frozen reference model, transforms them into log-ratio state values, and derives per-action rewards as Temporal-Difference changes in those values. This requires no additional critic or process-label training, and its one-step log-ratio TD component telescopes across redundant tool calls. On long-horizon complex search, TRACE substantially improves base-model tool-use ability using pure RL, without a cold-start supervised fine-tuning stage, an agentic mid-training stage, or training on live-web data. On the closed-web BrowseComp-Plus benchmark, it raises Qwen3-4B from $7.2$ to $35.6$ and Qwen3-30B-A3B from $8.4$ to $42.6$. The learned search behavior also transfers to open-web benchmarks, and the learning curves show earlier improvement and faster convergence during RL training.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
