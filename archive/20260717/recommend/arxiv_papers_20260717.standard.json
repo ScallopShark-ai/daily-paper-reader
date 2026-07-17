@@ -1,0 +1,215 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-17T20:39:01.895586+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2607.14200v1",
+      "source": "arxiv",
+      "title": "Augmentations for Robust and Efficient Imitation Learning in Streamed Video Games",
+      "abstract": "Imitation learning is an appealing way to scale game-playing agents to complex 3D environments by training policies to map visual observations to actions from human demonstrations. However, these demonstrations are expensive to collect and modern game-playing is often done through streaming in which network delay and compression introduce spatiotemporally correlated visual artifacts that can cause a covariance shift at test time. To address these challenges, we propose streaming augmentations that mimic four types of artifacts commonly encountered during streaming with low-bandwidth network connection: pixelated blocks and scrubs, global blur, and ghosting. We instantiate our approach on top of predictive inverse dynamics models (PIDM), which combine future-state conditioning with an inverse dynamics policy in a learned latent space, and evaluate the impact of our augmentations across three tasks in modern 3D video games. Under stable streaming conditions, agents trained with spatiotemporal augmentations achieve up to 41% higher evaluation performance compared to agents trained without augmentations under an identical data budget. When network lag is introduced, agents trained with augmentations degrade by only 7.45% vs 49.82% of the original performance for agents trained only with the original data. These results clearly indicate that spatiotemporal augmentations tailored for the streaming setting are a simple yet powerful tool to train robust and efficient game-playing agents.",
+      "authors": [
+        "Somjit Nath",
+        "Abdelhak Lemkhenter",
+        "Pallavi Choudhury",
+        "Chris Lovett",
+        "Katja Hofmann",
+        "Sergio Valcarcel Macua",
+        "Lukas Schäfer"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-15T17:07:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.14200v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "trains game agents via imitation learning to achieve human-like gameplay",
+      "llm_evidence_cn": "通过模仿学习训练游戏智能体以实现类人游戏表现",
+      "llm_evidence": "通过模仿学习训练游戏智能体以实现类人游戏表现",
+      "canonical_evidence": "通过模仿学习训练游戏智能体以实现类人游戏表现",
+      "llm_tldr_en": "To combat visual artifacts from streaming that degrade imitation learning policies for game agents, the paper introduces augmentations mimicking common streaming distortions, making policies robust and enabling efficient training of human-like game-playing agents.",
+      "llm_tldr_cn": "该论文针对流媒体游戏场景下网络延迟和压缩引入的视觉伪影导致模仿学习策略性能下降的问题，提出了模拟像素块、模糊和鬼影等四种典型伪影的数据增强方法。将增强技术集成到预测逆动力学模型中，使策略能适应测试时的分布偏移，从而在3D游戏环境中高效训练出更稳健的类人游戏代理。实验表明，该方法显著提升了策略在流媒体条件下的表现，为训练实用化游戏AI提供了新的视角。",
+      "llm_tldr": "该论文针对流媒体游戏场景下网络延迟和压缩引入的视觉伪影导致模仿学习策略性能下降的问题，提出了模拟像素块、模糊和鬼影等四种典型伪影的数据增强方法。将增强技术集成到预测逆动力学模型中，使策略能适应测试时的分布偏移，从而在3D游戏环境中高效训练出更稳健的类人游戏代理。实验表明，该方法显著提升了策略在流媒体条件下的表现，为训练实用化游戏AI提供了新的视角。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.13172v1",
+      "source": "arxiv",
+      "title": "Learning Safe Agent Behaviour from Human Preferences and Justifications via World Models",
+      "abstract": "We address the problem of safely training an agent policy and deploying a good and safe policy, in settings where the environment dynamics are unknown and no suitable reward function is available. In the context of safety-critical environments, we consider traditional reinforcement learning impractical and resort to the resource of human input. We introduce DROPJ, a human-centred method for both safe training and deployment. We first learn a world model (a learned simulator) from a dataset of prior real-world trajectories. A human then plays the game in this learned simulator to extract several informative simulated trajectories. From these, we sample pairs of simulated trajectory segments and elicit from a human their preference over these segments, as well as a reason (justification) for their choice. We then train a reward model from these justified preferences and use it, together with the world model, to directly deploy the agent using model predictive control. Running real-user experiments, we find that generating informative simulated trajectories from a user significantly reduces the computational cost during training compared to other strategies, and can also improve the performance during deployment. In the context of training within a learned simulator, we show that the use of preferences rather than other types of feedback substantially improves the performance during deployment. We further demonstrate that safety justifications accompanying preferences can significantly enhance safety or prioritise user-prescribed aspects of safety associated with them during deployment.",
+      "authors": [
+        "Ilias Kazantzidis",
+        "Timothy J. Norman",
+        "Yali Du",
+        "Christopher T. Freeman"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-14T18:22:14+00:00",
+      "link": "https://arxiv.org/pdf/2607.13172v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Learns agent behavior from human preferences and justifications, enabling human-like behavior in games",
+      "llm_evidence_cn": "从人类偏好和解释中学习智能体行为，可实现游戏中类人行为",
+      "llm_evidence": "从人类偏好和解释中学习智能体行为，可实现游戏中类人行为",
+      "canonical_evidence": "从人类偏好和解释中学习智能体行为，可实现游戏中类人行为",
+      "llm_tldr_en": "Introduces DROPJ, a method that trains agents safely via human preferences in a learned world model, applicable to humanizing game AI bots.",
+      "llm_tldr_cn": "针对无奖励函数的安全关键环境，提出DROPJ方法：从真实轨迹学习世界模型，人类在模拟器中玩游戏以提供偏好的轨迹对和解释，进而训练策略。该方法可迁移用于游戏AI的拟人化训练，使智能体行为更符合人类期望。",
+      "llm_tldr": "针对无奖励函数的安全关键环境，提出DROPJ方法：从真实轨迹学习世界模型，人类在模拟器中玩游戏以提供偏好的轨迹对和解释，进而训练策略。该方法可迁移用于游戏AI的拟人化训练，使智能体行为更符合人类期望。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.14877v1",
+      "source": "arxiv",
+      "title": "PAC Learning in Turn-Based Stochastic Games with Reachability Objectives: A Decentralized Private Approach via Expected Conditional Distance",
+      "abstract": "Reachability is the most fundamental logical objective, yet it is notoriously difficult to learn in reinforcement learning settings: even for Markov decision processes, PAC learning of reachability is impossible without additional assumptions. This difficulty also holds in turn-based stochastic games (TBSGs), where two adversarial players interact on a finite state space. In this work, we consider turn-based stochastic games with reachability objectives. For such settings, adversarial learning, in which players are adversarial even in the learning phase, is impossible. Therefore, the goal is to consider learning, in which both players learn the unknown model together. In this spirit, previous literature on PAC learning in TBSGs considers (a)~public information shared by both players; and (b)~centralized learning, which means that players share the same learning algorithm. In this work, our contribution is two-fold. First, we relax these strong assumptions and ensure learning: (i)~with private information not shared with the other player; and (ii)~decentralized learning where the players do not share the same learning algorithm. To the best of our knowledge, this work is the first positive result for decentralized and private information learning of TBSGs with reachability objectives. Second, we introduce a game-theoretic generalization of the Expected Conditional Distance (ECD) parameter, which measures the expected length of reaching the target set. We establish a polynomial-sample complexity bound with respect to the number of states, actions, ECD parameter, and inverses of error tolerance and failure probability.",
+      "authors": [
+        "Ali Asadi",
+        "Krishnendu Chatterjee",
+        "Pavol Kebis"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.GT"
+      ],
+      "published": "2026-07-16T11:48:58+00:00",
+      "link": "https://arxiv.org/pdf/2607.14877v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Studies PAC learning of reachability in turn-based stochastic games, a formal game setting relevant to training multi-agent game playing agents with RL.",
+      "llm_evidence_cn": "研究回合制随机博弈中可达性的PAC学习，该形式化游戏设定与使用RL训练多智能体游戏代理相关。",
+      "llm_evidence": "研究回合制随机博弈中可达性的PAC学习，该形式化游戏设定与使用RL训练多智能体游戏代理相关。",
+      "canonical_evidence": "研究回合制随机博弈中可达性的PAC学习，该形式化游戏设定与使用RL训练多智能体游戏代理相关。",
+      "llm_tldr_en": "Addresses PAC learning of reachability in turn-based stochastic games with two adversarial players, proposing a decentralized private approach, contributing to RL theory for game playing agents.",
+      "llm_tldr_cn": "本文针对回合制随机博弈中可达性目标的PAC学习难题，提出一种去中心化私有方法，利用期望条件距离进行高效学习。在双玩家对抗性博弈设定下，该方法克服了对抗学习的不可能性，实现了协作模型学习。理论证明其可达到PAC可学习性，为多智能体游戏环境下的策略学习提供了新的理论基础，对开发更智能的游戏AI代理具有参考意义。",
+      "llm_tldr": "本文针对回合制随机博弈中可达性目标的PAC学习难题，提出一种去中心化私有方法，利用期望条件距离进行高效学习。在双玩家对抗性博弈设定下，该方法克服了对抗学习的不可能性，实现了协作模型学习。理论证明其可达到PAC可学习性，为多智能体游戏环境下的策略学习提供了新的理论基础，对开发更智能的游戏AI代理具有参考意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.13274v1",
+      "source": "arxiv",
+      "title": "Deconstructing Actor-Critic: A Large-scale Empirical Study of Design Components for Practitioners",
+      "abstract": "Reinforcement learning is increasingly being considered for controlling real-world systems, from fusion plasma and autonomous vehicles to drug discovery and drinking water treatment, where reliability is essential and tuning budgets are limited. Actor-critic algorithms share a set of design decisions, such as how the policy is updated, how it represents the distribution over actions, how its gradient is estimated, and how often it is updated relative to the value estimator. Using a control task derived from a real water treatment plant, we analyze over 33,000 experiments to determine how these components affect variability across runs and sensitivity to hyperparameters. Common defaults, such as Gaussian action distributions with pathwise gradient estimators, are among the least reliable configurations, whereas bounded distributions with adaptive update schedules remain robust across a wide range of settings. These findings offer empirical guidance to practitioners across scientific and engineering domains for understanding and making component-level decisions when adapting actor-critic methods to new real-world control settings.",
+      "authors": [
+        "Haseeb Shah",
+        "Lingwei Zhu",
+        "Adam White",
+        "Martha White"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-14T21:20:42+00:00",
+      "link": "https://arxiv.org/pdf/2607.13274v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Empirical analysis of actor-critic components applicable to RL game AI training",
+      "llm_evidence_cn": "对Actor-Critic组件的实证分析适用于强化学习游戏AI训练",
+      "llm_evidence": "对Actor-Critic组件的实证分析适用于强化学习游戏AI训练",
+      "canonical_evidence": "对Actor-Critic组件的实证分析适用于强化学习游戏AI训练",
+      "llm_tldr_en": "Large-scale study of actor-critic design choices on a control task, providing insights for RL practitioners, including game AI developers.",
+      "llm_tldr_cn": "通过对真实水处理厂控制任务进行超3.3万次实验，系统分析Actor-Critic算法中的策略更新、动作分布、梯度估计等设计组件对运行变异性和超参数敏感性的影响，为包括游戏AI在内的强化学习实践者提供选择指南。",
+      "llm_tldr": "通过对真实水处理厂控制任务进行超3.3万次实验，系统分析Actor-Critic算法中的策略更新、动作分布、梯度估计等设计组件对运行变异性和超参数敏感性的影响，为包括游戏AI在内的强化学习实践者提供选择指南。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.14393v1",
+      "source": "arxiv",
+      "title": "An offline approach to fNIRS-guided reinforcement learning for robot behavior",
+      "abstract": "Human-in-the-loop Reinforcement Learning has become a popular approach to training, finetuning, and aligning robot behavior with user preferences. Our paper explores the feasibility of using brain signals via functional near-infrared spectroscopy (fNIRS) to modulate robot learning in simulation. We compare agents trained on passive (observational) versus active (demonstrative) interaction tasks, and test multiple methods for enhancing the RL algorithm with the neural signal, focusing on parameter augmentation rather than replacement. We further examine how model granularity and noise affect agent learning. Our results show that this framework is effective: the neural signal improves learning when augmenting trajectory priorities and state-action q-values. Additionally, the framework learns successfully from offline data, offering a practical alternative for settings where real-time BCI setups are impractical or only limited data is available.",
+      "authors": [
+        "Julia Santaniello",
+        "Madelaine Brower",
+        "Benson Jiang",
+        "Donatello Sassaroli",
+        "Robert Jacob",
+        "Jivko Sinapov"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-15T22:12:39+00:00",
+      "link": "https://arxiv.org/pdf/2607.14393v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Uses human-in-the-loop reinforcement learning with brain signals to modulate agent behavior, a technique directly transferable to training game AI.",
+      "llm_evidence_cn": "使用人机协同强化学习和脑信号调节智能体行为，方法可直接迁移至游戏AI训练。",
+      "llm_evidence": "使用人机协同强化学习和脑信号调节智能体行为，方法可直接迁移至游戏AI训练。",
+      "canonical_evidence": "使用人机协同强化学习和脑信号调节智能体行为，方法可直接迁移至游戏AI训练。",
+      "llm_tldr_en": "This paper explores using fNIRS brain signals to modulate reinforcement learning for robot behavior alignment, showing that neural feedback improves learning when augmenting trajectory priorities, offering a transferable approach for human-guided training of game playing agents.",
+      "llm_tldr_cn": "本文针对机器人行为与用户偏好对齐问题，探索利用功能性近红外光谱(fNIRS)脑信号调节强化学习过程的可行性。提出一种离线强化学习框架，将神经信号用于增强轨迹优先级和状态-动作值估计，而非替代原有算法。模拟实验表明，该方法在被动观察和主动演示任务中均能提升学习效果，尤其在轨迹优先级增强时效益显著。这项工作证明了用生理信号引导智能体训练的潜力，为游戏AI bot的拟人化训练提供了可借鉴的人机交互式强化学习范式。",
+      "llm_tldr": "本文针对机器人行为与用户偏好对齐问题，探索利用功能性近红外光谱(fNIRS)脑信号调节强化学习过程的可行性。提出一种离线强化学习框架，将神经信号用于增强轨迹优先级和状态-动作值估计，而非替代原有算法。模拟实验表明，该方法在被动观察和主动演示任务中均能提升学习效果，尤其在轨迹优先级增强时效益显著。这项工作证明了用生理信号引导智能体训练的潜力，为游戏AI bot的拟人化训练提供了可借鉴的人机交互式强化学习范式。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

@@ -6,35 +6,37 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-16
-- 运行时间：2026-07-16 20:00:53 UTC
+- 最新运行日期：2026-07-17
+- 运行时间：2026-07-17 20:46:08 UTC
 - 运行状态：成功
-- 本次总论文数：4
-- 精读区：0
+- 本次总论文数：5
+- 精读区：1
 - 速读区：4
 
 ### 今日简报（AI）
-今日速读三篇强化学习前沿论文，聚焦长程任务评测、知识引导决策与可解释性方法。  
-可重点关注《Explaining RL Agents via Inductive Logic Programming》，用归纳逻辑编程让智能体行为更透明，是迈向可信AI的关键探索。  
-若对智能体推理或复杂任务评估感兴趣，可直接从该方向入手跟读实验细节。
-- 详情：[/202607/16/README](/202607/16/README)
+今日精读一篇8.0分论文，结合四篇速读，聚焦如何让游戏AI学得更快更稳，并探索用世界模型和人类反馈塑造安全行为。  
+最值得关注：用数据增强提升模仿学习的鲁棒性与效率，以及解构Actor-Critic设计组件的大规模实证为实践选型提供了清晰地图。  
+如果你想入门强化学习实战，优先看那篇Actor-Critic组件实证，它能帮你少走弯路；对游戏AI感兴趣的也别错过增强模仿学习那篇。
+- 详情：[/202607/17/README](/202607/17/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [Augmentations for Robust and Efficient Imitation Learning in Streamed Video Games](/202607/17/2607.14200v1-augmentations-for-robust-and-efficient-imitation-learning-in-streamed-video-games)  
+   标签：评分：8.0/10、query:gah
+   evidence：通过模仿学习训练游戏智能体以实现类人游戏表现
 
 ### 速读区论文标签
-1. [Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading](/202607/16/2607.08964v1-long-horizon-terminal-bench-testing-the-limits-of-agents-on-long-horizon-terminal-tasks-with-dense-reward-based-grading)  
+1. [Learning Safe Agent Behaviour from Human Preferences and Justifications via World Models](/202607/17/2607.13172v1-learning-safe-agent-behaviour-from-human-preferences-and-justifications-via-world-models)  
+   标签：评分：7.0/10、query:gah
+   evidence：从人类偏好和解释中学习智能体行为，可实现游戏中类人行为
+2. [Deconstructing Actor-Critic: A Large-scale Empirical Study of Design Components for Practitioners](/202607/17/2607.13274v1-deconstructing-actor-critic-a-large-scale-empirical-study-of-design-components-for-practitioners)  
+   标签：评分：7.0/10、query:gah
+   evidence：对Actor-Critic组件的实证分析适用于强化学习游戏AI训练
+3. [An offline approach to fNIRS-guided reinforcement learning for robot behavior](/202607/17/2607.14393v1-an-offline-approach-to-fnirs-guided-reinforcement-learning-for-robot-behavior)  
+   标签：评分：7.0/10、query:gah
+   evidence：使用人机协同强化学习和脑信号调节智能体行为，方法可直接迁移至游戏AI训练。
+4. [PAC Learning in Turn-Based Stochastic Games with Reachability Objectives: A Decentralized Private Approach via Expected Conditional Distance](/202607/17/2607.14877v1-pac-learning-in-turn-based-stochastic-games-with-reachability-objectives-a-decentralized-private-approach-via-expected-conditional-distance)  
    标签：评分：6.0/10、query:gah
-   evidence：基准包含交互式游戏类别，用密集奖励评估智能体
-2. [Knowledge- and Gradient-Guided Reinforcement Learning for Parametrized Action Markov Decision Processes](/202607/16/2607.12924v1-knowledge--and-gradient-guided-reinforcement-learning-for-parametrized-action-markov-decision-processes)  
-   标签：评分：6.0/10、query:gah
-   evidence：提出用于PAMDP的RL算法并整合领域知识
-3. [Explaining Reinforcement Learning Agents via Inductive Logic Programming](/202607/16/2607.13655v1-explaining-reinforcement-learning-agents-via-inductive-logic-programming)  
-   标签：评分：6.0/10、query:gah
-   evidence：提供解释强化学习智能体行为的方法，可用于理解游戏AI机器人的决策
-4. [TRACE: Turn-level Reward Assignment via Credit Estimation for Long-Horizon Agents](/202607/16/2607.13988v1-trace-turn-level-reward-assignment-via-credit-estimation-for-long-horizon-agents)  
-   标签：评分：6.0/10、query:gah
-   evidence：用于智能体强化学习的密集信用分配方法，适用于游戏智能体训练
+   evidence：研究回合制随机博弈中可达性的PAC学习，该形式化游戏设定与使用RL训练多智能体游戏代理相关。
 
 
 <div class="dpr-home-promo-card">
