@@ -6,37 +6,40 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-17
-- 运行时间：2026-07-17 20:46:08 UTC
+- 最新运行日期：2026-07-18
+- 运行时间：2026-07-18 21:13:49 UTC
 - 运行状态：成功
-- 本次总论文数：5
+- 本次总论文数：6
 - 精读区：1
-- 速读区：4
+- 速读区：5
 
 ### 今日简报（AI）
-今日精读一篇8.0分论文，结合四篇速读，聚焦如何让游戏AI学得更快更稳，并探索用世界模型和人类反馈塑造安全行为。  
-最值得关注：用数据增强提升模仿学习的鲁棒性与效率，以及解构Actor-Critic设计组件的大规模实证为实践选型提供了清晰地图。  
-如果你想入门强化学习实战，优先看那篇Actor-Critic组件实证，它能帮你少走弯路；对游戏AI感兴趣的也别错过增强模仿学习那篇。
-- 详情：[/202607/17/README](/202607/17/README)
+今日聚焦人类与AI伴侣在社交媒体上的互动，通过六篇论文洞察跨文化沟通、智能体决策与多代理协作。  
+最值得关注的是AI陪伴对话中的情感表达差异，以及多智能体探索失败的根本原因。  
+建议普通读者从“文化如何塑造AI交互”入手，尝试对比你与AI伴侣的聊天风格。
+- 详情：[/202607/18/README](/202607/18/README)
 
 ### 精读区论文标签
-1. [Augmentations for Robust and Efficient Imitation Learning in Streamed Video Games](/202607/17/2607.14200v1-augmentations-for-robust-and-efficient-imitation-learning-in-streamed-video-games)  
+1. [ExpressionCueLens: A Cross-Cultural Analysis of Human-AI Companion Conversations on Social Media](/202607/18/2607.13924v1-expressioncuelens-a-cross-cultural-analysis-of-human-ai-companion-conversations-on-social-media)  
    标签：评分：8.0/10、query:gah
-   evidence：通过模仿学习训练游戏智能体以实现类人游戏表现
+   evidence：分析人机交互中的拟人化表达
 
 ### 速读区论文标签
-1. [Learning Safe Agent Behaviour from Human Preferences and Justifications via World Models](/202607/17/2607.13172v1-learning-safe-agent-behaviour-from-human-preferences-and-justifications-via-world-models)  
+1. [Knowledge- and Gradient-Guided Reinforcement Learning for Parametrized Action Markov Decision Processes](/202607/18/2607.12924v2-knowledge--and-gradient-guided-reinforcement-learning-for-parametrized-action-markov-decision-processes)  
    标签：评分：7.0/10、query:gah
-   evidence：从人类偏好和解释中学习智能体行为，可实现游戏中类人行为
-2. [Deconstructing Actor-Critic: A Large-scale Empirical Study of Design Components for Practitioners](/202607/17/2607.13274v1-deconstructing-actor-critic-a-large-scale-empirical-study-of-design-components-for-practitioners)  
-   标签：评分：7.0/10、query:gah
-   evidence：对Actor-Critic组件的实证分析适用于强化学习游戏AI训练
-3. [An offline approach to fNIRS-guided reinforcement learning for robot behavior](/202607/17/2607.14393v1-an-offline-approach-to-fnirs-guided-reinforcement-learning-for-robot-behavior)  
-   标签：评分：7.0/10、query:gah
-   evidence：使用人机协同强化学习和脑信号调节智能体行为，方法可直接迁移至游戏AI训练。
-4. [PAC Learning in Turn-Based Stochastic Games with Reachability Objectives: A Decentralized Private Approach via Expected Conditional Distance](/202607/17/2607.14877v1-pac-learning-in-turn-based-stochastic-games-with-reachability-objectives-a-decentralized-private-approach-via-expected-conditional-distance)  
+   evidence：用于参数化动作的神经符号强化学习
+2. [Multi-Agent LLMs Fail to Explore Each Other](/202607/18/2607.11250v1-multi-agent-llms-fail-to-explore-each-other)  
    标签：评分：6.0/10、query:gah
-   evidence：研究回合制随机博弈中可达性的PAC学习，该形式化游戏设定与使用RL训练多智能体游戏代理相关。
+   evidence：部分可观察随机博弈中的多代理探索，改进游戏代理协调
+3. [When Does Reward Teach State? A Hidden-Automaton Instrument and the Group-Language Boundary](/202607/18/2607.11953v1-when-does-reward-teach-state-a-hidden-automaton-instrument-and-the-group-language-boundary)  
+   标签：评分：6.0/10、query:gah
+   evidence：探测RL代理是否学习潜在状态，使用自动机作为工具
+4. [When Does Reward Teach State? A Hidden-Automaton Instrument and the Group-Language Boundary](/202607/18/2607.11953v2-when-does-reward-teach-state-a-hidden-automaton-instrument-and-the-group-language-boundary)  
+   标签：评分：6.0/10、query:gah
+   evidence：探测RL代理是否学习潜在状态，使用自动机作为工具
+5. [RENEW: Towards Learning World Models and Repairing Model Exploitation from Preferences](/202607/18/2607.14180v1-renew-towards-learning-world-models-and-repairing-model-exploitation-from-preferences)  
+   标签：评分：6.0/10、query:gah
+   evidence：人类偏好修复世界模型利用，可应用于基于模型的游戏AI
 
 
 <div class="dpr-home-promo-card">

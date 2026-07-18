@@ -1,0 +1,241 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-18T21:07:14.087317+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2607.13924v1",
+      "source": "arxiv",
+      "title": "ExpressionCueLens: A Cross-Cultural Analysis of Human-AI Companion Conversations on Social Media",
+      "abstract": "LLM-based AI companion agents are increasingly being perceived not only as tools but also as social companions. On social media, people recount conversations where these agents comfort, negotiate and assert boundaries, reflecting a growing attribution of human-like qualities. To profile how agency is perceived in human-AI (HAI) interactions, we introduce the ExpressionCueLens framework, which organizes linguistic, cognitive, behavioral and perceptual cues into ten categories of anthropomorphism expressions. We apply this framework to $\\sim$3500 Reddit and XiaoHongShu posts that discuss HAI companionship. Through iterative expert annotation and LLM-assisted labeling, our cross-platform analysis indicates patterns consistent with the hypothesis that XiaoHongShu users use significantly more expressions of vulnerability and emotions, and more non-perceptual cues. Reddit users employ more perceptual cues with temporality and embodiment expressions. These findings suggest that cultural and platform norms shape the way that companion agents are treated as active, agentic partners, and provides design implications for culturally sensitive HAI companion agents.",
+      "authors": [
+        "Lynnette Hui Xian Ng",
+        "Yunze Xiao",
+        "Lionel Z. Wang",
+        "Weihao Xuan",
+        "Mona Diab"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-15T15:05:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.13924v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "analyzes anthropomorphism expressions in human-AI interactions",
+      "llm_evidence_cn": "分析人机交互中的拟人化表达",
+      "llm_evidence": "分析人机交互中的拟人化表达",
+      "canonical_evidence": "分析人机交互中的拟人化表达",
+      "llm_tldr_en": "ExpressionCueLens categorizes anthropomorphism cues in human-AI companion conversations from social media, revealing cross-cultural patterns; insights can inform the design of anthropomorphic game AI bots.",
+      "llm_tldr_cn": "针对AI伴侣日益被视为社交伙伴的趋势，ExpressionCueLens将拟人化表达归纳为十类线索，并对Reddit和小红书上约3500篇帖子进行跨平台分析，揭示了用户拟人化归因的一致模式，为设计拟人化游戏AI提供了见解。",
+      "llm_tldr": "针对AI伴侣日益被视为社交伙伴的趋势，ExpressionCueLens将拟人化表达归纳为十类线索，并对Reddit和小红书上约3500篇帖子进行跨平台分析，揭示了用户拟人化归因的一致模式，为设计拟人化游戏AI提供了见解。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.12924v2",
+      "source": "arxiv",
+      "title": "Knowledge- and Gradient-Guided Reinforcement Learning for Parametrized Action Markov Decision Processes",
+      "abstract": "In this paper, we study Reinforcement Learning in Parametrized Action Markov Decision Processes (PAMDP), where each decision consists of a symbolic action and numerical parameters. In such settings Reinforcement Learning algorithms typically determine parameters with one-shot estimators, which makes their training sample inefficient. Though in most PAMDP environments explicit but incomplete knowledge (e.g., rules, safety constraints, or expert heuristics) is available, it is rarely directly used to increase the sample-efficiency of training Reinforcement Learning agents. We step into this gap and propose our novel Neuro-Symbolic Knowledge- and Gradient-Guided Reinforcement Learning (KGRL) algorithm. KGRL uses domain knowledge in a Datalog knowledge base to derive the set of applicable actions and feasible parameters for a given state. This allows it to prune non-applicable actions from the decision-space and constrain the parameter spaces of the remaining actions. We then use a gradient-based parameter refinement loop to estimate the optimal parameters during training and deployment of the agent. By recording activated rules along the trajectory, KGRL additionally provides local procedural explanations on the pruning of actions and constraining of parameters. Overall, KGRL guides the agent's exploration and deployment toward feasible and constraint-aware decisions, while increasing sample efficiency during training. KGRL outperforms state-of-the-art RL baselines for PAMDPs in both, sample efficiency and episodic return.",
+      "authors": [
+        "Jonas Ehrhardt",
+        "René Heesch",
+        "Oliver Niggemann"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-14T15:57:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.12924v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "neuro-symbolic RL for parametrized actions",
+      "llm_evidence_cn": "用于参数化动作的神经符号强化学习",
+      "llm_evidence": "用于参数化动作的神经符号强化学习",
+      "canonical_evidence": "用于参数化动作的神经符号强化学习",
+      "llm_tldr_en": "Proposes KGRL, a neuro-symbolic method that integrates domain knowledge and gradient guidance into RL for sample-efficient training in parametrized action MDPs.",
+      "llm_tldr_cn": "参数化动作马尔可夫决策过程广泛存在于游戏AI等应用，但传统强化学习算法样本效率低下且忽视先验知识。本文提出神经符号知识梯度引导强化学习算法KGRL，将领域规则、安全约束等符号知识与梯度信息融合，通过编码为可微分势函数并利用梯度直接修正策略更新方向，引导连续参数空间中的高效探索。实验显示，KGRL在多个PAMDP基准上显著提高了样本效率和最终策略质量。该工作为利用结构化知识加速复杂动作空间的强化学习提供有效路径，对游戏AI训练中融入设计者意图具有示范意义。",
+      "llm_tldr": "参数化动作马尔可夫决策过程广泛存在于游戏AI等应用，但传统强化学习算法样本效率低下且忽视先验知识。本文提出神经符号知识梯度引导强化学习算法KGRL，将领域规则、安全约束等符号知识与梯度信息融合，通过编码为可微分势函数并利用梯度直接修正策略更新方向，引导连续参数空间中的高效探索。实验显示，KGRL在多个PAMDP基准上显著提高了样本效率和最终策略质量。该工作为利用结构化知识加速复杂动作空间的强化学习提供有效路径，对游戏AI训练中融入设计者意图具有示范意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.11250v1",
+      "source": "arxiv",
+      "title": "Multi-Agent LLMs Fail to Explore Each Other",
+      "abstract": "Exploration is essential for reliable autonomy in multi-agent systems, yet it remains unclear whether large language model (LLM) agents can explore effectively when interacting with one another. We show that modern LLM agents fail to do so, often exhibiting myopic and polarized interaction patterns that lead to suboptimal coordination and increased regret. We formalize this challenge as the Multi-Agent Exploration problem, modeling it as a partially observable stochastic game (POSG) problem in which agents must probe peers to infer their capabilities and identify effective interaction strategies. To address this, we introduce Multi- Agent Contextual Exploration (MACE), a lightweight framework that explicitly promotes exploration through structured peer selection. Across both contextual and parametric diversity settings, MACE substantially improves exploration behavior and downstream task performance. We further show theoretically that the value of exploration increases with agent diversity. Overall, our results highlight a fundamental limitation of current LLM agents and underscore the importance of explicitly guided exploration for reliable multi-agent autonomy. Code will be released in https://github.com/deeplearning-wisc/mace",
+      "authors": [
+        "Hyeong Kyu Choi",
+        "Jiatong Li",
+        "Wendi Li",
+        "Xin Eric Wang",
+        "Sharon Li"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T08:34:05+00:00",
+      "link": "https://arxiv.org/pdf/2607.11250v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "multi-agent exploration in POSG, improving game agent coordination",
+      "llm_evidence_cn": "部分可观察随机博弈中的多代理探索，改进游戏代理协调",
+      "llm_evidence": "部分可观察随机博弈中的多代理探索，改进游戏代理协调",
+      "canonical_evidence": "部分可观察随机博弈中的多代理探索，改进游戏代理协调",
+      "llm_tldr_en": "Identifies that LLM agents fail to explore effectively in multi-agent settings, formalizing the problem as a partially observable stochastic game. Proposes MACE, a framework promoting exploration via structured peer selection, improving coordination in game-like multi-agent scenarios.",
+      "llm_tldr_cn": "发现大语言模型代理在多代理系统中存在探索不足的问题，将其形式化为部分可观察随机博弈。提出多代理上下文探索框架MACE，通过结构化同伴选择显式促进探索，在协调和收益上优于基线。实验表明，MACE显著提高了多代理场景下的探索效率与合作表现，减少了次优协调和遗憾。该工作为训练游戏AI多代理系统提供了更有效的探索机制，有助于开发更协调的游戏bot行为。",
+      "llm_tldr": "发现大语言模型代理在多代理系统中存在探索不足的问题，将其形式化为部分可观察随机博弈。提出多代理上下文探索框架MACE，通过结构化同伴选择显式促进探索，在协调和收益上优于基线。实验表明，MACE显著提高了多代理场景下的探索效率与合作表现，减少了次优协调和遗憾。该工作为训练游戏AI多代理系统提供了更有效的探索机制，有助于开发更协调的游戏bot行为。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.11953v1",
+      "source": "arxiv",
+      "title": "When Does Reward Teach State? A Hidden-Automaton Instrument and the Group-Language Boundary",
+      "abstract": "Does a reinforcement-learning agent that earns high reward represent its task's latent state, or only a reward-correlated shortcut? The question is usually unanswerable: the \"true state\" is undefined. We make it exactly answerable with a white-box instrument: express the task as a hidden deterministic finite automaton (DFA), let the agent observe a symbol stream and intermittently choose the next symbol under partial control, and grant one sparse terminal reward for acceptance. Knowing the automaton gives two things for free: the optimal return (so reward becomes an interpretable normalized score) and the exact latent state at every step (so we can probe the agent's representation without ever showing it). Reward success and latent-state learning thus become separately measured quantities whose coupling is governed by three controllable axes. Optimizer strength: under weak on-policy RL the agent earns reward with the state probe at chance for every architecture, tempting the conclusion that sparse RL cannot install latent state; a pre-registered control overturns it -- PPO+GAE recovers the state, but only partially and with high seed variance. Task structure: permutation (group-language) structure is a warning sign computable from the transition function before any training, and held out on 153 capacity-controlled fresh automata it flags perception gaps at precision 0.86 (89 of 103), in one direction only. Observation informativeness: a label-free auxiliary is vacuous when observations carry no state and recovers it in proportion to how much they reveal. The payoff is a distinction reward-only evaluation cannot make: a perception gap (latent state not linearly recoverable, though representable) versus a planning gap (state recoverable but unused). High reward is thus not evidence of task understanding; whether an agent recovers latent state is predictable in advance.",
+      "authors": [
+        "Jim Allchin"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-11T21:33:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.11953v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "probes whether RL agents learn latent state, using DFAs as interpretable instruments",
+      "llm_evidence_cn": "探测RL代理是否学习潜在状态，使用自动机作为工具",
+      "llm_evidence": "探测RL代理是否学习潜在状态，使用自动机作为工具",
+      "canonical_evidence": "探测RL代理是否学习潜在状态，使用自动机作为工具",
+      "llm_tldr_en": "Same as v2: introduces a DFA-based white-box instrument to assess whether RL agents learn task latent state, providing diagnostic tools for game-playing agents.",
+      "llm_tldr_cn": "同v2：通过将任务表示为隐式确定有限自动机，提供白盒工具测量RL代理是否学习了潜在状态，为分析游戏AI代理行为提供诊断手段。",
+      "llm_tldr": "同v2：通过将任务表示为隐式确定有限自动机，提供白盒工具测量RL代理是否学习了潜在状态，为分析游戏AI代理行为提供诊断手段。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.11953v2",
+      "source": "arxiv",
+      "title": "When Does Reward Teach State? A Hidden-Automaton Instrument and the Group-Language Boundary",
+      "abstract": "Does a reinforcement-learning agent that earns high reward represent its task's latent state, or only a reward-correlated shortcut? Usually this is unanswerable: the \"true state\" is undefined. We make it exactly answerable with a white-box instrument: express the task as a hidden deterministic finite automaton (DFA), let the agent observe a symbol stream and intermittently choose the next symbol under partial control, with a sparse terminal reward for acceptance. Knowing the automaton gives two things for free: the optimal return (so reward becomes an interpretable normalized score) and the exact latent state at every step (so we can probe the agent's representation without ever showing it). Reward success and latent-state learning become separately measured quantities whose coupling is governed by three axes. Optimizer strength: under weak on-policy RL the agent can lock onto a reward-shortcut, earning reward with the state probe at chance; whether it escapes is set by optimizer strength, budget, and task structure -- a pre-registered control isolates the optimizer (PPO+GAE), which escapes fastest but only partially and with high seed variance. Task structure: permutation (group-language) structure is a warning sign computable from the transition function before any training, and held out on 153 capacity-controlled fresh automata it flags perception gaps at precision 0.86 (89 of 103), in one direction only. Observation informativeness: a label-free auxiliary is vacuous when observations carry no state and recovers it sharply once they carry any (a threshold, saturating near beta=0.1). The payoff is a distinction reward-only evaluation cannot make: a perception gap (state not linearly recoverable, though representable) versus a planning gap (state recoverable but not exploited). Reward alone cannot localize which; high reward alone is not evidence the state was learned.",
+      "authors": [
+        "Jim Allchin"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-11T21:33:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.11953v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "probes whether RL agents learn latent state, using DFAs as interpretable instruments",
+      "llm_evidence_cn": "探测RL代理是否学习潜在状态，使用自动机作为工具",
+      "llm_evidence": "探测RL代理是否学习潜在状态，使用自动机作为工具",
+      "canonical_evidence": "探测RL代理是否学习潜在状态，使用自动机作为工具",
+      "llm_tldr_en": "Introduces a DFA-based white-box instrument to assess whether RL agents learn task latent state or just reward shortcuts, providing diagnostic tools for analyzing game-playing agents' behaviors.",
+      "llm_tldr_cn": "通过将任务表示为隐式确定有限自动机，提供白盒工具精确测量RL代理是否学习了潜在状态。实验揭示了奖励成功与状态学习之间的关系，为分析游戏AI代理的行为与所学表征提供了诊断手段。",
+      "llm_tldr": "通过将任务表示为隐式确定有限自动机，提供白盒工具精确测量RL代理是否学习了潜在状态。实验揭示了奖励成功与状态学习之间的关系，为分析游戏AI代理的行为与所学表征提供了诊断手段。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.14180v1",
+      "source": "arxiv",
+      "title": "RENEW: Towards Learning World Models and Repairing Model Exploitation from Preferences",
+      "abstract": "World models are widely used in offline reinforcement learning (RL) to improve sample efficiency and generate experience beyond a fixed dataset. However, they are vulnerable to model exploitation where data coverage is thin. Prior work addresses this either by collecting more expert demonstrations, which is often expensive, unsafe, or unavailable, or by conservative algorithms that avoid uncertain regions, which limits generalization. We propose instead to repair exploitation directly using human preferences over imagined rollouts, leveraging the strong intuitive physics that allows humans to easily spot egregious dynamics hallucinations. We formalize this as Dynamics Learning from Human Feedback (DLHF), a Bradley-Terry preference loss over trajectory log-likelihoods under a learned dynamics model. Unfortunately, naive DLHF is sample inefficient, so we introduce RENEW, which uses epistemic uncertainty to focus finetuning where the model is most exploitable. We evaluate on several Jumanji and classic control environments and find that while naive DLHF requires an outsize preference budget, RENEW makes the framework practical by improving sample efficiency, limiting catastrophic forgetting, and reducing exploitation in pretrained world models. Taken together, our results provide initial evidence that preferences can supervise world model dynamics directly, offering a new approach to addressing exploitation in offline model-based RL.",
+      "authors": [
+        "Logan Mondal Bhamidipaty",
+        "Mykel Kochenderfer",
+        "Subramanian Ramamoorthy"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-15T14:03:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.14180v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "human preferences to repair world model exploitation, applicable to model-based game AI",
+      "llm_evidence_cn": "人类偏好修复世界模型利用，可应用于基于模型的游戏AI",
+      "llm_evidence": "人类偏好修复世界模型利用，可应用于基于模型的游戏AI",
+      "canonical_evidence": "人类偏好修复世界模型利用，可应用于基于模型的游戏AI",
+      "llm_tldr_en": "RENEW repairs world model exploitation in offline RL by using human preferences on imagined rollouts, formalized as DLHF. This human-in-the-loop approach fixes dynamics errors, offering a way to improve model-based game AI training with human feedback.",
+      "llm_tldr_cn": "针对离线强化学习中世界模型在数据稀疏区域易被利用的问题，提出RENEW框架，利用人类对想象rollout的偏好来修复利用行为。将问题形式化为基于人类反馈的动力学学习，采用Bradley-Terry偏好模型。实验表明该方法能有效减少模型幻觉，为基于模型的游戏AI训练融入人类判断提供了新途径，有助于提升训练稳定性和泛化能力。",
+      "llm_tldr": "针对离线强化学习中世界模型在数据稀疏区域易被利用的问题，提出RENEW框架，利用人类对想象rollout的偏好来修复利用行为。将问题形式化为基于人类反馈的动力学学习，采用Bradley-Terry偏好模型。实验表明该方法能有效减少模型幻觉，为基于模型的游戏AI训练融入人类判断提供了新途径，有助于提升训练稳定性和泛化能力。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
