@@ -1,0 +1,144 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-19T21:05:43.806659+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.15142v1",
+      "source": "arxiv",
+      "title": "Concept-Guided Spatial Regularization for World Models in Atari Pong",
+      "abstract": "World models are usually evaluated as components of model-based reinforcement learning (MBRL) systems, while the world models themselves are rarely studied in isolation.   We examine five representative visual world-model agents in Atari Pong: DreamerV3, DIAMOND, TWISTER, Simulus, and STORM. After reproducing their training pipelines and matching the reported agent performance, we freeze the learned world models and evaluate them with a closed-loop rollout diagnostic: a policy trained separately from the corresponding MBRL agent interacts with each frozen model, and the generated video trajectories are inspected for visual and dynamical errors. Across all five models, the rollouts contain clear failures, including ball disappearance, incorrect ball motion, and invalid ball-paddle interactions.   Beyond visual trajectories, we further evaluate them with pixel-space zero-shot MBRL, where a new policy is trained entirely inside a frozen world model and then evaluated in the real environment. Across all five models, the resulting policies substantially underperform those produced by the corresponding original MBRL training pipelines. The gap is particularly large for DreamerV3, whose mean return drops from -5.5 to -20.9, near the minimum Pong return of -21.   We hypothesize that insufficient modeling of task-critical concepts, such as the ball in Pong, may contribute to these failures. We therefore propose Concept-Guided Spatial Regularization (CGSReg), an auxiliary pixel reconstruction loss applied to segmented concept regions. Experiments show that CGSReg improves both closed-loop rollouts and pixel-space zero-shot MBRL in DreamerV3, DIAMOND, and TWISTER. Its effects vary across the remaining models and evaluation metrics, indicating that CGSReg alone does not address all world-model bottlenecks.",
+      "authors": [
+        "Yukuan Lu",
+        "Zaishuo Xia",
+        "Weyl Lu",
+        "Yubei Chen"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-16T15:46:44+00:00",
+      "link": "https://arxiv.org/pdf/2607.15142v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Concept-guided spatial regularization for world models in Atari Pong",
+      "llm_evidence_cn": "在Atari Pong中为世界模型提出概念引导空间正则化",
+      "llm_evidence": "在Atari Pong中为世界模型提出概念引导空间正则化",
+      "canonical_evidence": "在Atari Pong中为世界模型提出概念引导空间正则化",
+      "llm_tldr_en": "Diagnoses failures in world-model agents for Atari Pong and introduces concept-guided spatial regularization to enforce object-centric representations, producing more faithful video rollouts.",
+      "llm_tldr_cn": "针对视觉世界模型代理在Atari Pong中出现的球消失、运动失真等失败问题，该论文对五种代表性模型进行诊断，并提出概念引导空间正则化方法，利用物体概念先验约束学习，使生成的回滚视频更符合真实动力学。实验表明该方法显著减少了视觉和动力学错误，为构建更可靠、可解释的游戏世界模型提供了新视角，对基于模型的强化学习游戏代理具有重要意义。",
+      "llm_tldr": "针对视觉世界模型代理在Atari Pong中出现的球消失、运动失真等失败问题，该论文对五种代表性模型进行诊断，并提出概念引导空间正则化方法，利用物体概念先验约束学习，使生成的回滚视频更符合真实动力学。实验表明该方法显著减少了视觉和动力学错误，为构建更可靠、可解释的游戏世界模型提供了新视角，对基于模型的强化学习游戏代理具有重要意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.14485v1",
+      "source": "arxiv",
+      "title": "Step-Level Preference Learning for Generative Agents in Social Simulations",
+      "abstract": "Large language model (LLM)-based generative agents simulate human behavior through long-horizon decision-making processes that comprise intermediate steps such as planning, memory retrieval, reflection, and action selection. However, fine-grained human annotations of these intermediate steps remain scarce, and existing agents are not grounded in human preferences over such intermediate decisions. To address this gap, we introduce \\method, an interactive simulation interface that enables us to collect step-level human preference supervision over agent decision trajectories, leading to a dataset of 57K fine-grained annotations. We conduct step-level preference learning on open-weight language models using supervised finetuning and direct preference optimization on this data, consistently improving simulation fidelity, coordination, and interaction quality, and inducing more socially effective agent behavior. Our results show that step-level human supervision is an effective training signal for improving both local decision quality and long-horizon agent behavior.",
+      "authors": [
+        "Wenchang Gao",
+        "Pingyue Sheng",
+        "Lanlan Qiu",
+        "Yunfei Ma",
+        "Jian Zhao",
+        "Baicheng Chen",
+        "Kangda Wang",
+        "Yuyang Tian",
+        "Shunqiang Mao",
+        "Tianxing He"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-16T01:58:53+00:00",
+      "link": "https://arxiv.org/pdf/2607.14485v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "agents grounded in human preferences via step-level preference learning to simulate human-like behavior",
+      "llm_evidence_cn": "通过步级偏好学习使智能体符合人类偏好以模拟类人行为",
+      "llm_evidence": "通过步级偏好学习使智能体符合人类偏好以模拟类人行为",
+      "canonical_evidence": "通过步级偏好学习使智能体符合人类偏好以模拟类人行为",
+      "llm_tldr_en": "The paper introduces a method to collect step-level human preference annotations on agent trajectories and trains LLM-based agents to behave more human-like, directly applicable to humanizing game AI bots.",
+      "llm_tldr_cn": "该论文提出通过交互式仿真界面收集智能体决策轨迹的步级人类偏好标注，并利用监督微调与直接偏好优化训练语言模型，使智能体行为更贴合人类偏好；该方法可直接用于游戏AI拟人化，提升游戏bot的类人行为表现。",
+      "llm_tldr": "该论文提出通过交互式仿真界面收集智能体决策轨迹的步级人类偏好标注，并利用监督微调与直接偏好优化训练语言模型，使智能体行为更贴合人类偏好；该方法可直接用于游戏AI拟人化，提升游戏bot的类人行为表现。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.14777v1",
+      "source": "arxiv",
+      "title": "SEED: Self-Evolving On-Policy Distillation for Agentic Reinforcement Learning",
+      "abstract": "Large language models are increasingly trained as interactive agents for long-horizon tasks involving multi-turn interaction, tool use, and environment feedback. Outcome-based reinforcement learning (RL) provides a practical optimization paradigm, but its sparse trajectory-level rewards offer limited guidance on intermediate decisions, leaving a supervision gap between episode-level outcomes and token-level policy learning. We propose SEED (SElf-Evolving On-Policy Distillation), a self-evolving framework that converts completed on-policy trajectories into training-time hindsight skills and distills their behavioral effect back into the policy model. SEED first fine-tunes the policy to analyze completed trajectories and generate natural-language skills that capture reusable workflows, decisive observations, or failure-avoidance rules. During RL, the current policy both collects trajectories and serves as the analyzer that extracts hindsight skills from them. Policy updates therefore improve subsequent decision making and skill analysis together, allowing hindsight supervision to evolve with the policy. SEED then re-scores the sampled actions under ordinary and skill-augmented contexts, converting the skill-induced probability shift into a dense token-level on-policy distillation signal. This signal is jointly optimized with outcome-based RL, keeping the auxiliary supervision aligned with the current trajectory distribution. Extensive experiments on text-based and vision-based agentic tasks show that SEED consistently improves performance and sample efficiency, exhibiting robust generalization to unseen scenarios. Our code is available at https://github.com/jinyangwu/SEED.",
+      "authors": [
+        "Jinyang Wu",
+        "Shuo Yang",
+        "Zhengxi Lu",
+        "Fan Zhang",
+        "Yuhao Shen",
+        "Lang Feng",
+        "Haoran Luo",
+        "Zheng Lian",
+        "Shuai Zhang",
+        "Zhengqi Wen",
+        "Jianhua Tao"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-16T09:57:18+00:00",
+      "link": "https://arxiv.org/pdf/2607.14777v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Self-evolving on-policy distillation for agentic RL, applicable to game agent training",
+      "llm_evidence_cn": "自进化在策略蒸馏框架，可应用于游戏智能体训练",
+      "llm_evidence": "自进化在策略蒸馏框架，可应用于游戏智能体训练",
+      "canonical_evidence": "自进化在策略蒸馏框架，可应用于游戏智能体训练",
+      "llm_tldr_en": "SEED addresses the supervision gap in outcome-based RL by converting completed trajectories into hindsight skills and distilling them back, improving token-level policy learning for agent tasks.",
+      "llm_tldr_cn": "针对基于结果的强化学习中轨迹级奖励难以指导中间决策的问题，SEED框架将完成的在策略轨迹转化为事后技能，再将其行为效果蒸馏回策略模型，从而弥合了回合级结果与令牌级策略学习之间的监督差距。实验表明该方法提升了长周期智能体任务的学习效率，为训练更强大的游戏及其他智能体提供了通用RL增强技术。",
+      "llm_tldr": "针对基于结果的强化学习中轨迹级奖励难以指导中间决策的问题，SEED框架将完成的在策略轨迹转化为事后技能，再将其行为效果蒸馏回策略模型，从而弥合了回合级结果与令牌级策略学习之间的监督差距。实验表明该方法提升了长周期智能体任务的学习效率，为训练更强大的游戏及其他智能体提供了通用RL增强技术。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

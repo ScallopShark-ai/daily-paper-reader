@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-19",
+  "date": "2026-07-19",
+  "generated_at": "2026-07-19T21:10:30",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/19/2607.15142v1-concept-guided-spatial-regularization-for-world-models-in-atari-pong",
+      "section": "deep",
+      "title_en": "Concept-Guided Spatial Regularization for World Models in Atari Pong",
+      "authors": "Yukuan Lu, Zaishuo Xia, Weyl Lu, Yubei Chen",
+      "date": "2026-07-16",
+      "pdf": "https://arxiv.org/pdf/2607.15142v1",
+      "score": "9.0",
+      "evidence": "在Atari Pong中为世界模型提出概念引导空间正则化",
+      "tldr": "在Atari Pong场景中，现有世界模型普遍存在球消失、运动错误等视觉与动力学失败，严重制约基于模型的强化学习性能。本文提出概念引导的空间正则化方法，通过针对任务关键对象（如球）的辅助像素重建损失，强化世界模型对核心概念的建模。实验表明，该方法有效改善了DreamerV3等模型的闭环轨迹质量与零样本策略表现，但在不同模型上效果各异，揭示了世界模型的深层瓶颈。",
+      "tags": "query:gah",
+      "abstract_en": "World models are usually evaluated as components of model-based reinforcement learning (MBRL) systems, while the world models themselves are rarely studied in isolation.   We examine five representative visual world-model agents in Atari Pong: DreamerV3, DIAMOND, TWISTER, Simulus, and STORM. After reproducing their training pipelines and matching the reported agent performance, we freeze the learned world models and evaluate them with a closed-loop rollout diagnostic: a policy trained separately from the corresponding MBRL agent interacts with each frozen model, and the generated video trajectories are inspected for visual and dynamical errors. Across all five models, the rollouts contain clear failures, including ball disappearance, incorrect ball motion, and invalid ball-paddle interactions.   Beyond visual trajectories, we further evaluate them with pixel-space zero-shot MBRL, where a new policy is trained entirely inside a frozen world model and then evaluated in the real environment. Across all five models, the resulting policies substantially underperform those produced by the corresponding original MBRL training pipelines. The gap is particularly large for DreamerV3, whose mean return drops from -5.5 to -20.9, near the minimum Pong return of -21.   We hypothesize that insufficient modeling of task-critical concepts, such as the ball in Pong, may contribute to these failures. We therefore propose Concept-Guided Spatial Regularization (CGSReg), an auxiliary pixel reconstruction loss applied to segmented concept regions. Experiments show that CGSReg improves both closed-loop rollouts and pixel-space zero-shot MBRL in DreamerV3, DIAMOND, and TWISTER. Its effects vary across the remaining models and evaluation metrics, indicating that CGSReg alone does not address all world-model bottlenecks.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/19/2607.14485v1-step-level-preference-learning-for-generative-agents-in-social-simulations",
+      "section": "deep",
+      "title_en": "Step-Level Preference Learning for Generative Agents in Social Simulations",
+      "authors": "Wenchang Gao, Pingyue Sheng, Lanlan Qiu, Yunfei Ma, Jian Zhao, Baicheng Chen, Kangda Wang, Yuyang Tian, Shunqiang Mao, Tianxing He",
+      "date": "2026-07-16",
+      "pdf": "https://arxiv.org/pdf/2607.14485v1",
+      "score": "8.0",
+      "evidence": "通过步级偏好学习使智能体符合人类偏好以模拟类人行为",
+      "tldr": "基于大语言模型的生成式智能体通过多步中间决策模拟人类行为，但缺少步骤级人类偏好对齐。本文提出交互界面收集步骤级偏好数据，构建57K细粒度标注数据集，并利用监督微调与直接偏好优化进行学习，显著提升模拟保真度、协调性与交互质量。工作证明步骤级人类监督是改善局部决策与长程行为的有效训练信号，为高保真社会模拟提供新范式。",
+      "tags": "query:gah",
+      "abstract_en": "Large language model (LLM)-based generative agents simulate human behavior through long-horizon decision-making processes that comprise intermediate steps such as planning, memory retrieval, reflection, and action selection. However, fine-grained human annotations of these intermediate steps remain scarce, and existing agents are not grounded in human preferences over such intermediate decisions. To address this gap, we introduce \\method, an interactive simulation interface that enables us to collect step-level human preference supervision over agent decision trajectories, leading to a dataset of 57K fine-grained annotations. We conduct step-level preference learning on open-weight language models using supervised finetuning and direct preference optimization on this data, consistently improving simulation fidelity, coordination, and interaction quality, and inducing more socially effective agent behavior. Our results show that step-level human supervision is an effective training signal for improving both local decision quality and long-horizon agent behavior.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/19/2607.14777v1-seed-self-evolving-on-policy-distillation-for-agentic-reinforcement-learning",
+      "section": "quick",
+      "title_en": "SEED: Self-Evolving On-Policy Distillation for Agentic Reinforcement Learning",
+      "authors": "Jinyang Wu, Shuo Yang, Zhengxi Lu, Fan Zhang, Yuhao Shen, Lang Feng, Haoran Luo, Zheng Lian, Shuai Zhang, Zhengqi Wen, Jianhua Tao",
+      "date": "2026-07-16",
+      "pdf": "https://arxiv.org/pdf/2607.14777v1",
+      "score": "7.0",
+      "evidence": "自进化在策略蒸馏框架，可应用于游戏智能体训练",
+      "tldr": "在涉及多轮交互和工具使用的长程智能体任务中，基于结果的RL仅提供稀疏的轨迹级奖励，导致中间决策缺乏有效监督。SEED框架利用策略自演化，从完成的在策略轨迹中提炼后见技能，并转化为密集的token级蒸馏信号，与基于结果的RL联合优化，有效弥补了监督缺口。在文本和视觉任务上，SEED一致提升了性能和样本效率，并展现出对新场景的泛化能力。",
+      "tags": "query:gah",
+      "abstract_en": "Large language models are increasingly trained as interactive agents for long-horizon tasks involving multi-turn interaction, tool use, and environment feedback. Outcome-based reinforcement learning (RL) provides a practical optimization paradigm, but its sparse trajectory-level rewards offer limited guidance on intermediate decisions, leaving a supervision gap between episode-level outcomes and token-level policy learning. We propose SEED (SElf-Evolving On-Policy Distillation), a self-evolving framework that converts completed on-policy trajectories into training-time hindsight skills and distills their behavioral effect back into the policy model. SEED first fine-tunes the policy to analyze completed trajectories and generate natural-language skills that capture reusable workflows, decisive observations, or failure-avoidance rules. During RL, the current policy both collects trajectories and serves as the analyzer that extracts hindsight skills from them. Policy updates therefore improve subsequent decision making and skill analysis together, allowing hindsight supervision to evolve with the policy. SEED then re-scores the sampled actions under ordinary and skill-augmented contexts, converting the skill-induced probability shift into a dense token-level on-policy distillation signal. This signal is jointly optimized with outcome-based RL, keeping the auxiliary supervision aligned with the current trajectory distribution. Extensive experiments on text-based and vision-based agentic tasks show that SEED consistently improves performance and sample efficiency, exhibiting robust generalization to unseen scenarios. Our code is available at https://github.com/jinyangwu/SEED.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
