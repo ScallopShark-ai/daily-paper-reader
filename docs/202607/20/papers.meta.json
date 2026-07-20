@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-20",
+  "date": "2026-07-20",
+  "generated_at": "2026-07-20T20:24:58",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/20/2607.16097v1-understanding-reasoning-from-pretraining-to-post-training",
+      "section": "deep",
+      "title_en": "Understanding Reasoning from Pretraining to Post-Training",
+      "authors": "Jingyan Shen, Ang Li, Salman Rahman, Yifan Sun, Micah Goldblum, Matus Telgarsky, Pavel Izmailov",
+      "date": "2026-07-17",
+      "pdf": "https://arxiv.org/pdf/2607.16097v1",
+      "score": "9.0",
+      "evidence": "使用国际象棋作为受控测试平台，研究强化学习后训练对推理的影响",
+      "tldr": "强化学习对提升大型语言模型推理能力至关重要，但预训练如何塑造后续RL效果尚不明确。研究以国际象棋为受控测试平台，完整执行预训练到强化学习流程，并扩展到数学领域。结果发现后RL性能可由预训练损失预测，奖励提升斜率与预训练令牌数线性相关；RL在简单任务上放大已有偏好，在困难任务上挖掘隐藏能力。该工作定量刻画了预训练-RL接口，并提供了研究全流程推理的科学测试平台。",
+      "tags": "query:gah",
+      "abstract_en": "Reinforcement learning (RL) has become central to improving large language models (LLMs) on complex reasoning tasks, yet RL post-training is largely studied in isolation from the pretraining that precedes it. As a result, two basic questions remain open: (1) how do pretraining choices (model size, data) shape the returns to RL compute, and (2) what does RL actually do to the model? These questions are difficult to study in the standard LLM setting: pretraining corpora are vast and uncontrolled, making it hard to attribute behaviors to pretraining versus RL, and systematic compute sweeps across both stages are prohibitively expensive. To address these challenges, we use chess as a controlled testbed for studying reasoning across the full pretraining-to-post-training pipeline. We follow the standard LLM training pipeline by pretraining language models from 5M to 1B parameters on human chess games, supervised fine-tuning on synthetic reasoning traces, and running RL on chess puzzles with verifiable rewards. Using this framework, we find that the post-RL performance at given RL compute level is well-predicted from the pretraining loss, and slope of the RL reward curves improves approximately linearly with the pretraining tokens. Beyond scaling, we find that RL does not simply sharpen the SFT policy: on easy puzzles it amplifies correct moves the SFT policy already preferred, while on hard puzzles it surfaces correct moves that were nearly absent under SFT. We further test whether our findings transfer beyond chess by training a 1B language model on math-domain text, where the same predictive pattern emerges: longer-pretrained checkpoints reach higher post-RL performance and improve faster under RL. In sum, we provide a quantitative account of the pretraining-to-RL interface and a controlled testbed for studying the science of reasoning across the full pretraining-to-post-training pipeline.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/20/2607.14614v1-beyond-entropy-correctness-aware-advantage-shaping-via-contrastive-policy-optimization",
+      "section": "quick",
+      "title_en": "Beyond Entropy: Correctness-Aware Advantage Shaping via Contrastive Policy Optimization",
+      "authors": "Weiwen Xu, Jia Liu, Hou Pong Chan, Long Li, Deng Cai, Min Chen, Hao Zhang",
+      "date": "2026-07-16",
+      "pdf": "https://arxiv.org/pdf/2607.14614v1",
+      "score": "6.0",
+      "evidence": "提出一种通用强化学习技术（对比策略优化）用于优势塑造，可用于训练游戏AI",
+      "tldr": "强化学习中可验证奖励方法常用熵进行优势塑造，但熵无法区分有用不确定性与有害混淆。本文提出对比策略优化(CPO)，利用token级参考与原始生成分布间的对比分歧，实现正确性感知的优势塑造。实验表明，CPO在域内外任务上显著优于熵基线，且正确和错误响应分别支持探索与利用，平衡两者带来最佳性能。CPO解决了零优势问题，为RLVR提供了更有效的优势信号。",
+      "tags": "query:gah",
+      "abstract_en": "Reinforcement learning with verifiable rewards (RLVR) commonly uses entropy for advantage shaping. However, entropy cannot distinguish useful uncertainty from detrimental confusion, limiting its effectiveness as a correctness signal. We propose Contrastive Policy Optimization (CPO), which uses token-level contrastive disagreement between reference-guided and vanilla generation distributions for correctness-aware advantage shaping. Both theoretical and empirical results show that this disagreement reliably indicates token-level correctness. We further show that On-policy Distillation is a special case of CPO, where the posterior distribution is instantiated by an external teacher model. CPO also resolves the zero-advantage problem. Experiments on in-domain and out-of-domain benchmarks demonstrate that CPO substantially outperforms entropy-based RLVR methods while maintaining strong generalization. Further analysis shows that correct and incorrect responses naturally support exploration and exploitation respectively, and balancing both leads to the best performance.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

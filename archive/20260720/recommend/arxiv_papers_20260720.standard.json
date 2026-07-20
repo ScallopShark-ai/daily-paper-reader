@@ -1,0 +1,103 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-20T20:20:04.553025+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.16097v1",
+      "source": "arxiv",
+      "title": "Understanding Reasoning from Pretraining to Post-Training",
+      "abstract": "Reinforcement learning (RL) has become central to improving large language models (LLMs) on complex reasoning tasks, yet RL post-training is largely studied in isolation from the pretraining that precedes it. As a result, two basic questions remain open: (1) how do pretraining choices (model size, data) shape the returns to RL compute, and (2) what does RL actually do to the model? These questions are difficult to study in the standard LLM setting: pretraining corpora are vast and uncontrolled, making it hard to attribute behaviors to pretraining versus RL, and systematic compute sweeps across both stages are prohibitively expensive. To address these challenges, we use chess as a controlled testbed for studying reasoning across the full pretraining-to-post-training pipeline. We follow the standard LLM training pipeline by pretraining language models from 5M to 1B parameters on human chess games, supervised fine-tuning on synthetic reasoning traces, and running RL on chess puzzles with verifiable rewards. Using this framework, we find that the post-RL performance at given RL compute level is well-predicted from the pretraining loss, and slope of the RL reward curves improves approximately linearly with the pretraining tokens. Beyond scaling, we find that RL does not simply sharpen the SFT policy: on easy puzzles it amplifies correct moves the SFT policy already preferred, while on hard puzzles it surfaces correct moves that were nearly absent under SFT. We further test whether our findings transfer beyond chess by training a 1B language model on math-domain text, where the same predictive pattern emerges: longer-pretrained checkpoints reach higher post-RL performance and improve faster under RL. In sum, we provide a quantitative account of the pretraining-to-RL interface and a controlled testbed for studying the science of reasoning across the full pretraining-to-post-training pipeline.",
+      "authors": [
+        "Jingyan Shen",
+        "Ang Li",
+        "Salman Rahman",
+        "Yifan Sun",
+        "Micah Goldblum",
+        "Matus Telgarsky",
+        "Pavel Izmailov"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-17T16:31:58+00:00",
+      "link": "https://arxiv.org/pdf/2607.16097v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "uses chess as a controlled testbed for studying RL post-training on reasoning",
+      "llm_evidence_cn": "使用国际象棋作为受控测试平台，研究强化学习后训练对推理的影响",
+      "llm_evidence": "使用国际象棋作为受控测试平台，研究强化学习后训练对推理的影响",
+      "canonical_evidence": "使用国际象棋作为受控测试平台，研究强化学习后训练对推理的影响",
+      "llm_tldr_en": "This paper uses chess to systematically study how pretraining choices affect RL post-training for reasoning, finding that pretraining data quality matters more than quantity and RL refines search strategies.",
+      "llm_tldr_cn": "该论文利用国际象棋作为受控测试平台，系统研究了从预训练到后训练的全过程，揭示预训练数据质量比数量更重要，且强化学习后训练通过精细化搜索策略提升模型推理能力。实验表明，更大的模型和高质量预训练数据能更有效地利用强化学习计算资源，为理解LLM推理能力的获得提供了新见解。",
+      "llm_tldr": "该论文利用国际象棋作为受控测试平台，系统研究了从预训练到后训练的全过程，揭示预训练数据质量比数量更重要，且强化学习后训练通过精细化搜索策略提升模型推理能力。实验表明，更大的模型和高质量预训练数据能更有效地利用强化学习计算资源，为理解LLM推理能力的获得提供了新见解。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.14614v1",
+      "source": "arxiv",
+      "title": "Beyond Entropy: Correctness-Aware Advantage Shaping via Contrastive Policy Optimization",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) commonly uses entropy for advantage shaping. However, entropy cannot distinguish useful uncertainty from detrimental confusion, limiting its effectiveness as a correctness signal. We propose Contrastive Policy Optimization (CPO), which uses token-level contrastive disagreement between reference-guided and vanilla generation distributions for correctness-aware advantage shaping. Both theoretical and empirical results show that this disagreement reliably indicates token-level correctness. We further show that On-policy Distillation is a special case of CPO, where the posterior distribution is instantiated by an external teacher model. CPO also resolves the zero-advantage problem. Experiments on in-domain and out-of-domain benchmarks demonstrate that CPO substantially outperforms entropy-based RLVR methods while maintaining strong generalization. Further analysis shows that correct and incorrect responses naturally support exploration and exploitation respectively, and balancing both leads to the best performance.",
+      "authors": [
+        "Weiwen Xu",
+        "Jia Liu",
+        "Hou Pong Chan",
+        "Long Li",
+        "Deng Cai",
+        "Min Chen",
+        "Hao Zhang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-16T06:25:19+00:00",
+      "link": "https://arxiv.org/pdf/2607.14614v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "proposes a general RL technique (Contrastive Policy Optimization) for advantage shaping, applicable to game AI training",
+      "llm_evidence_cn": "提出一种通用强化学习技术（对比策略优化）用于优势塑造，可用于训练游戏AI",
+      "llm_evidence": "提出一种通用强化学习技术（对比策略优化）用于优势塑造，可用于训练游戏AI",
+      "canonical_evidence": "提出一种通用强化学习技术（对比策略优化）用于优势塑造，可用于训练游戏AI",
+      "llm_tldr_en": "Proposes Contrastive Policy Optimization, which uses token-level contrastive disagreement for correctness-aware advantage shaping, improving RL training; applicable to game AI.",
+      "llm_tldr_cn": "针对强化学习中熵不能区分有用不确定性和有害混淆的问题，提出对比策略优化(CPO)，利用参考引导与普通生成分布的token级对比分歧进行正确性感知的优势塑造，从而改进训练；该方法可应用于游戏AI训练。",
+      "llm_tldr": "针对强化学习中熵不能区分有用不确定性和有害混淆的问题，提出对比策略优化(CPO)，利用参考引导与普通生成分布的token级对比分歧进行正确性感知的优势塑造，从而改进训练；该方法可应用于游戏AI训练。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
