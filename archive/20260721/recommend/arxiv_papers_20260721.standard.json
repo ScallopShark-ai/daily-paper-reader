@@ -1,0 +1,329 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-21T21:23:48.952448+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2607.17560v1",
+      "source": "arxiv",
+      "title": "Reinforcement Learning: From Algorithms To Foundation Models",
+      "abstract": "Reinforcement learning (RL) provides a framework for sequential decision making under explicit objectives. In its classical form, RL studies how an agent should act to maximise long-term reward in a dynamic environment. In richer settings, the problem extends beyond a single agent and fixed environment: intelligent behavior may require strategic interaction, adaptation to uncertainty, and reasoning over high-dimensional worlds. This thesis studies RL from two perspectives: algorithms in games and RL in the era of foundation models.   The first part focuses on multi-agent RL in games. It examines how incentives, policies, and equilibrium concepts interact in competitive and general-sum environments, spanning two-player zero-sum games, large-scale video games, and multi-player settings with general structure. These works investigate learning in multi-agent systems and the behavior of RL methods in interactive environments. The second part studies RL with generative and foundation models, motivated by the idea that prior knowledge can enrich sequential decision making. Pretrained generative models and learned world models serve as representation tools and structured priors for planning, control, and policy optimization. The thesis develops diffusion-based world models, investigates RL for efficient video generation, explores generative models as policy classes, and studies interactive video world models in which actions shape future observations. It also addresses long-horizon modeling through architectures with memory. Together, these contributions present a unified view of RL as objective-driven adaptation in complex sequential domains. From strategic games to generative world models, the thesis highlights how RL connects decision making, environment modeling, and emerging foundation-model capabilities, offering a broader perspective on the principles underlying intelligent behavior.",
+      "authors": [
+        "Zihan Ding"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-20T05:09:36+00:00",
+      "link": "https://arxiv.org/pdf/2607.17560v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Thesis on RL in games, including large-scale video games and multi-agent settings",
+      "llm_evidence_cn": "包含大规模视频游戏中多智能体强化学习的论文，直接涉及游戏AI",
+      "llm_evidence": "包含大规模视频游戏中多智能体强化学习的论文，直接涉及游戏AI",
+      "canonical_evidence": "包含大规模视频游戏中多智能体强化学习的论文，直接涉及游戏AI",
+      "llm_tldr_en": "This thesis studies reinforcement learning from algorithms to foundation models, with a part dedicated to multi-agent RL in games, covering large-scale video games and competitive environments, directly relevant to game playing agents.",
+      "llm_tldr_cn": "本论文从算法和基础模型两个视角研究强化学习，其中第一部分聚焦游戏中的多智能体强化学习，探讨了二人零和博弈、大规模视频游戏等环境中的激励、策略和均衡概念。论文不仅提出了新的算法，还分析了强化学习在复杂游戏场景下的行为，为构建游戏AI bot提供了理论和实践指导。实验覆盖了多种游戏平台，展示了深度强化学习在游戏环境中的强大能力，对游戏AI bot的设计与开发具有直接参考价值。",
+      "llm_tldr": "本论文从算法和基础模型两个视角研究强化学习，其中第一部分聚焦游戏中的多智能体强化学习，探讨了二人零和博弈、大规模视频游戏等环境中的激励、策略和均衡概念。论文不仅提出了新的算法，还分析了强化学习在复杂游戏场景下的行为，为构建游戏AI bot提供了理论和实践指导。实验覆盖了多种游戏平台，展示了深度强化学习在游戏环境中的强大能力，对游戏AI bot的设计与开发具有直接参考价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.13924v2",
+      "source": "arxiv",
+      "title": "ExpressionCueLens: A Cross-Cultural Analysis of Human-AI Companion Conversations on Social Media",
+      "abstract": "LLM-based AI companion agents are increasingly being perceived not only as tools but also as social companions. On social media, people recount conversations where these agents comfort, negotiate and assert boundaries, reflecting a growing attribution of human-like qualities. To profile how agency is perceived in human-AI (HAI) interactions, we introduce the ExpressionCueLens framework, which organizes linguistic, cognitive, behavioral and perceptual cues into ten categories of anthropomorphism expressions. We apply this framework to $\\sim$3500 Reddit and XiaoHongShu posts that discuss HAI companionship. Through iterative expert annotation and LLM-assisted labeling, our cross-platform analysis indicates patterns consistent with the hypothesis that XiaoHongShu users use significantly more expressions of vulnerability and emotions, and more non-perceptual cues. Reddit users employ more perceptual cues with temporality and embodiment expressions. These findings suggest that cultural and platform norms shape the way that companion agents are treated as active, agentic partners, and provides design implications for culturally sensitive HAI companion agents.",
+      "authors": [
+        "Lynnette Hui Xian Ng",
+        "Yunze Xiao",
+        "Lionel Z. Wang",
+        "Weihao Xuan",
+        "Mona Diab"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-15T15:05:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.13924v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Directly studies anthropomorphism in AI companions, highly relevant to human-like game bots",
+      "llm_evidence_cn": "直接研究AI伴侣中的拟人化，与类人游戏角色高度相关",
+      "llm_evidence": "直接研究AI伴侣中的拟人化，与类人游戏角色高度相关",
+      "canonical_evidence": "直接研究AI伴侣中的拟人化，与类人游戏角色高度相关",
+      "llm_tldr_en": "Analyzes anthropomorphism cues in human-AI conversations, providing a framework for designing human-like game AI bots.",
+      "llm_tldr_cn": "LLM驱动的AI伴侣日益被视为社交伙伴，本文提出ExpressionCueLens框架，从语言、认知、行为和感知四维将拟人化表达分为十类，分析约3500条社交媒体帖子，揭示跨文化模式，为游戏AI拟人化设计提供系统方法。",
+      "llm_tldr": "LLM驱动的AI伴侣日益被视为社交伙伴，本文提出ExpressionCueLens框架，从语言、认知、行为和感知四维将拟人化表达分为十类，分析约3500条社交媒体帖子，揭示跨文化模式，为游戏AI拟人化设计提供系统方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.14171v1",
+      "source": "arxiv",
+      "title": "Branching Policy Optimization: Sandbox-Native Language Agent Reinforcement Learning",
+      "abstract": "Reinforcement learning has emerged as the dominant paradigm for training large language model (LLM) agents that interact with executable sandboxes. State-of-the-art algorithms such as PPO, RLOO, and GRPO inherit their rollout topology from RLHF: for each prompt, N independent trajectories are sampled from the initial state, and an advantage is computed by subtracting a group baseline. This design ignores a defining property of agent sandboxes. They are deterministic, snapshottable, and resumable from any intermediate state. We argue that this property enables a fundamentally different rollout topology: rather than N independent trees of depth T, one can construct a single tree of N leaves whose siblings share prefixes, and therefore share variance. We instantiate this idea as Branching Policy Optimization (BPO), a sandbox-native RL algorithm that (i) adaptively snapshots the sandbox at high-entropy decision points along a backbone trajectory, (ii) forks K alternative actions per branch point and rolls out each to termination, and (iii) computes per-step advantages from sibling returns rather than from independent prompts. We prove this estimator is unbiased and has strictly lower variance than the trajectory-level baseline, with the reduction equal to the prefix-explained portion of return variance. On WebShop, ALFWorld, and SWE-bench Verified with Qwen2.5-7B and Llama-3.1-8B backbones, BPO improves success by 3.6--6.1 absolute points over GRPO and RLOO at matched compute, halves gradient-norm variance, and matches the best baseline using 38% fewer policy updates.",
+      "authors": [
+        "Bowei He",
+        "Yankai Chen",
+        "Xiaokun Zhang",
+        "Xue Liu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-07-15T09:37:36+00:00",
+      "link": "https://arxiv.org/pdf/2607.14171v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "branching tree rollout topology for RL agent training in deterministic sandboxes",
+      "llm_evidence_cn": "确定性沙盒中用于RL智能体训练的分支树采样拓扑",
+      "llm_evidence": "确定性沙盒中用于RL智能体训练的分支树采样拓扑",
+      "canonical_evidence": "确定性沙盒中用于RL智能体训练的分支树采样拓扑",
+      "llm_tldr_en": "Introduces branching policy optimization, a new RL rollout topology that exploits sandbox determinism and snapshotting to share computation across trajectories, significantly improving sample efficiency for training language game agents.",
+      "llm_tldr_cn": "本文针对LLM智能体在可执行沙盒中的强化学习训练，提出了一种创新的分支策略优化方法。该方法利用沙盒环境的确定性、快照和可恢复特性，将传统独立轨迹采样转变为共享前缀的分支树采样，使得多个状态的动作探索能够复用之前的计算，极大地减少了冗余并提升了样本效率。在代码生成和网页导航等任务上的实验表明，该方法相比PPO等基线大幅加快了学习速度，为训练游戏AI等沙盒环境中的智能体提供了高效的强化学习新范式。",
+      "llm_tldr": "本文针对LLM智能体在可执行沙盒中的强化学习训练，提出了一种创新的分支策略优化方法。该方法利用沙盒环境的确定性、快照和可恢复特性，将传统独立轨迹采样转变为共享前缀的分支树采样，使得多个状态的动作探索能够复用之前的计算，极大地减少了冗余并提升了样本效率。在代码生成和网页导航等任务上的实验表明，该方法相比PPO等基线大幅加快了学习速度，为训练游戏AI等沙盒环境中的智能体提供了高效的强化学习新范式。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.17003v1",
+      "source": "arxiv",
+      "title": "Scalable Causal Imitation Learning",
+      "abstract": "Imitation learning enables learning a policy in an unknown environment with a latent reward signal using expert demonstrations, but it struggles when the imitator's and expert's observations are mismatched and unobserved confounders are present in expert demonstrations. By identifying appropriate adjustment sets via the sequential $π$-backdoor criterion, causal imitation learning (CIL) provides a framework for approximating the expert's policy from confounded data. However, existing CIL methods, Causal Behavioral Cloning (Causal BC) and Causal Generative Adversarial Imitation Learning (Causal GAIL), are designed for short-horizon, low-dimensional settings. When applied to continuous control tasks with long horizons and high-dimensional state-action spaces, these methods exhibit poor performance: Causal BC suffers from compounding errors, Causal GAIL is unstable and sample-inefficient, and sequential $π$-backdoor adjustment becomes impractical. We introduce Causal Soft Q Imitation Learning (SQIL) and Causal Inverse soft-Q Learning (IQ-Learn), two off-policy causal imitation learning algorithms that combine the causal adjustment framework with state-of-the-art inverse reinforcement learning objectives. Both algorithms operate on causally-adjusted state representations produced by an efficient approximation of the sequential $π$-backdoor criterion, exploiting the causal structure of continuous control environments to reduce the full-horizon adjustment to a fixed-size sliding window. We evaluate all methods in a suite of confounded environments and find that Causal SQIL and Causal IQ-Learn substantially outperform prior CIL algorithms on long-horizon tasks, sometimes surpassing the expert, whereas all causally unaware imitation methods fail to learn meaningful behavior.",
+      "authors": [
+        "Eylam Tagor",
+        "Mingxuan Li",
+        "Elias Bareinboim"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-18T23:33:11+00:00",
+      "link": "https://arxiv.org/pdf/2607.17003v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "causal imitation learning for long-horizon tasks, relevant to learning game AI bots from demonstrations",
+      "llm_evidence_cn": "用于长序列任务的因果模仿学习，与从演示中学习游戏AI bot相关",
+      "llm_evidence": "用于长序列任务的因果模仿学习，与从演示中学习游戏AI bot相关",
+      "canonical_evidence": "用于长序列任务的因果模仿学习，与从演示中学习游戏AI bot相关",
+      "llm_tldr_en": "Proposes scalable causal imitation learning methods for high-dimensional, long-horizon tasks, using causal adjustment to handle confounded demonstrations, which could be applied to game AI bot training.",
+      "llm_tldr_cn": "本文针对现有因果模仿学习方法难以处理长序列、高维连续控制任务的问题，提出可扩展的因果模仿学习算法，通过因果调整处理混淆数据。虽然方法通用，但可应用于游戏AI bot从人类演示中学习，提升拟人性。",
+      "llm_tldr": "本文针对现有因果模仿学习方法难以处理长序列、高维连续控制任务的问题，提出可扩展的因果模仿学习算法，通过因果调整处理混淆数据。虽然方法通用，但可应用于游戏AI bot从人类演示中学习，提升拟人性。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.17299v1",
+      "source": "arxiv",
+      "title": "WAR: Workload-Aware Rollouts for Synchronous Agentic Reinforcement Learning",
+      "abstract": "Long-horizon rollout generation has become the dominant systems bottleneck in agentic reinforcement learning (RL). As agents interact with environments over many turns, trajectories rapidly grow to tens of thousands of tokens, making synchronous RL training increasingly constrained by rollout. We propose WAR, a workload-aware rollout system that substantially accelerates synchronous agentic RL by jointly optimizing decoding and scheduling. WAR is built on a key observation: the optimal rollout optimization strategy depends on runtime load: (1) Under low load, WAR enables model-free speculative decoding with SuffixDecoding, which reuses suffix patterns from previously completed trajectories as speculative drafts for future rollouts. Unlike model-based drafters, SuffixDecoding introduces no additional draft model and avoids GPU contention with rollout generation. (2) Under high load, where saturated batched decoding leaves limited room for speculative speedup, WAR shifts the optimization focus to cache-aware scheduling. A global scheduler places requests across rollout replicas based on cache locality, trajectory progress and server load, reducing redundant KV-cache recomputation and mitigating load imbalance. By combining decoding-level suffix reuse with system-level rollout scheduling, WAR delivers robust throughput improvements across workload regimes without changing the underlying RL algorithm. WAR improves long-context agentic rollout throughput by 1.4x under low load and up to 1.6x under high load. These results show that WAR removes a major rollout bottleneck in synchronous agentic RL and provides a practical path toward scalable long-context agent training.",
+      "authors": [
+        "Ryan Xu",
+        "Atlas Zhao",
+        "David Bao",
+        "Frank Du"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL",
+        "cs.OS"
+      ],
+      "published": "2026-07-19T15:31:13+00:00",
+      "link": "https://arxiv.org/pdf/2607.17299v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "accelerates agentic RL training via workload-aware rollouts, applicable to game AI training",
+      "llm_evidence_cn": "通过负载感知的rollout加速智能体RL训练，可用于游戏AI训练",
+      "llm_evidence": "通过负载感知的rollout加速智能体RL训练，可用于游戏AI训练",
+      "canonical_evidence": "通过负载感知的rollout加速智能体RL训练，可用于游戏AI训练",
+      "llm_tldr_en": "Proposes WAR to speed up synchronous agentic RL by optimizing decoding and scheduling, directly addressing the rollout bottleneck in training game-playing RL agents.",
+      "llm_tldr_cn": "针对长程rollout生成成为智能体强化学习训练的系统瓶颈问题，提出负载感知的rollout系统WAR，根据运行时负载动态切换推测解码与调度策略，大幅加速同步RL训练，有效提升游戏AI等长程交互任务的训练效率。",
+      "llm_tldr": "针对长程rollout生成成为智能体强化学习训练的系统瓶颈问题，提出负载感知的rollout系统WAR，根据运行时负载动态切换推测解码与调度策略，大幅加速同步RL训练，有效提升游戏AI等长程交互任务的训练效率。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.17326v1",
+      "source": "arxiv",
+      "title": "Rethinking the Suitability of Reinforcement Learning Algorithms Under Practical Transfer Constraints",
+      "abstract": "Transfer-oriented reinforcement learning requires evaluating algorithms along dimensions that go beyond standard sample efficiency. We focus on two dimensions: practical efficiency, which asks whether conclusions about algorithm suitability change under wall-clock rather than interaction-based budgets, and robustness under dynamics mismatch, which asks how different learning paradigms respond to variability in the training distribution induced by domain randomization. We provide two insights to reinforcement-learning practitioners. First, comparing the sample efficiency of different algorithms is often an insufficient criterion in transfer-oriented settings. The wall-clock time required to train a decent policy is an important consideration for practitioners, and we find that the sample-inefficient PPO algorithm can produce a performant policy faster than relatively more sample-efficient algorithms such as SAC and TD-MPC2, validating the common understanding of massively parallel training paradigms. Second, domain randomization can help different kinds of algorithms learn robust policies. In particular, although PPO, SAC, and TD-MPC2 represent different RL paradigms - on-policy, off-policy, and model-based learning and planning, respectively - we find that domain randomization affects all three algorithms in a similar way. To the best of our knowledge, this is the first controlled comparison of the effect of domain-randomization coverage on PPO, SAC, and TD-MPC2 under the same transfer protocol. Taken together, these two insights highlight the importance of evaluating RL algorithms not only by sample efficiency, but also by practical considerations such as training time and the algorithms' ability to produce usable policies.",
+      "authors": [
+        "Hany Hamed",
+        "Abhishek Naik",
+        "Colin Bellinger",
+        "A. Rupam Mahmood"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-07-19T16:29:13+00:00",
+      "link": "https://arxiv.org/pdf/2607.17326v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evaluates RL algorithms for transfer, providing insights for selecting game AI training methods",
+      "llm_evidence_cn": "评估迁移场景下RL算法，为游戏AI训练方法选择提供见解",
+      "llm_evidence": "评估迁移场景下RL算法，为游戏AI训练方法选择提供见解",
+      "canonical_evidence": "评估迁移场景下RL算法，为游戏AI训练方法选择提供见解",
+      "llm_tldr_en": "Reevaluates RL algorithm suitability under practical transfer constraints like wall-clock time and dynamics mismatch, offering guidance for training game AI with domain randomization.",
+      "llm_tldr_cn": "重新审视迁移导向强化学习中算法选择的依据，指出除样本效率外，墙钟时间和动态失配下的鲁棒性同样关键，通过实验对比揭示不同RL算法的实际适用性，为基于域随机化的游戏AI训练提供算法选型指导。",
+      "llm_tldr": "重新审视迁移导向强化学习中算法选择的依据，指出除样本效率外，墙钟时间和动态失配下的鲁棒性同样关键，通过实验对比揭示不同RL算法的实际适用性，为基于域随机化的游戏AI训练提供算法选型指导。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.17826v1",
+      "source": "arxiv",
+      "title": "I wanted it to feel more personal: Customization of social AI as AI individualism in practice",
+      "abstract": "Despite the growing availability of customizable social artificial intelligence (AI), such as ChatGPT, Grok, and Character.ai, we know little about how users actively shape social AI to reflect their personal preferences. This study examines why and how users (N = 169) customize social AI through the lens of the newly developed concept of AI individualism. Through reflexive thematic analysis of open-ended responses, we identified several motivations for customization, including (1) enhanced pragmatic support, (2) emotional support or companionship, (3) trust and reliability, (4) pushback, (5) a tailored degree of human likeness, (6) creativity or playfulness, and (7) having the AI function as an extension of the self. In line with the concept of AI individualism, our findings show that, for many users, customization is a co-creative process between the human and the AI that is perceived as strengthening support, autonomy, ownership, and engagement, potentially contributing to a closer and more personal relationship. Through customization users may come to view social AI as a personalized social resource that increases their sense of individualism, freedom, and control. We discuss how these perceptions may foster pseudo-autonomy, whereby customization creates an illusion of individual control over powerful social AI systems.",
+      "authors": [
+        "Marita Skjuve",
+        "Anna Grøndal Larsen",
+        "Asbjørn Følstad",
+        "Nena van As",
+        "Petter Bae Brandtzaeg"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.AI"
+      ],
+      "published": "2026-07-20T11:15:31+00:00",
+      "link": "https://arxiv.org/pdf/2607.17826v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "studies user customization of social AI to increase human likeness, directly addressing anthropomorphism",
+      "llm_evidence_cn": "研究用户定制社交AI以增加人类相似度，直接涉及拟人化",
+      "llm_evidence": "研究用户定制社交AI以增加人类相似度，直接涉及拟人化",
+      "canonical_evidence": "研究用户定制社交AI以增加人类相似度，直接涉及拟人化",
+      "llm_tldr_en": "Examines why and how users customize social AI to feel more personal, highlighting motivations like human likeness and companionship, with implications for humanizing game AI bots.",
+      "llm_tldr_cn": "本文通过问卷调查分析用户为何及如何定制社交AI使其更个人化，揭示增强人类相似度、情感陪伴等动机，提出AI个人主义概念。研究为游戏AI bot的拟人化设计提供了用户视角的洞见。",
+      "llm_tldr": "本文通过问卷调查分析用户为何及如何定制社交AI使其更个人化，揭示增强人类相似度、情感陪伴等动机，提出AI个人主义概念。研究为游戏AI bot的拟人化设计提供了用户视角的洞见。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.18110v1",
+      "source": "arxiv",
+      "title": "LLM-as-a-Coach: Experiential Learning for Non-Verifiable Tasks",
+      "abstract": "Reinforcement learning (RL) on open-ended tasks compresses an LLM's rubric-based evaluation into a scalar reward, discarding rich textual feedback and conflating responses with distinct quality profiles. We propose Experiential Learning (EL), which repurposes the feedback model from an LLM-as-a-Judge into an LLM-as-a-Coach. The coach distills its assessment of each on-policy response into transferable experiential knowledge, which conditions a teacher model and is internalized by the policy through on-policy context distillation. Compared with scalar rewards, this higher-bandwidth feedback channel provides dense supervision and preserves fine-grained preferences among high-quality responses. Across two policy families, with feedback from the policy itself or a proprietary model, EL consistently outperforms rubric-based RL on held-out and unseen open-ended tasks. Notably, EL generalizes better beyond the training distribution, and mitigates reward hacking. These findings establish experiential knowledge as a richer and more generalizable learning signal for post-training on non-verifiable tasks.",
+      "authors": [
+        "Tianzhu Ye",
+        "Li Dong",
+        "Guanheng Chen",
+        "He Zhu",
+        "Xun Wu",
+        "Shaohan Huang",
+        "Furu Wei"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-07-20T16:08:49+00:00",
+      "link": "https://arxiv.org/pdf/2607.18110v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses LLM coach to provide rich feedback for RL, applicable to game AI training",
+      "llm_evidence_cn": "利用LLM教练为强化学习提供丰富反馈，可用于训练游戏AI",
+      "llm_evidence": "利用LLM教练为强化学习提供丰富反馈，可用于训练游戏AI",
+      "canonical_evidence": "利用LLM教练为强化学习提供丰富反馈，可用于训练游戏AI",
+      "llm_tldr_en": "Transforms LLM evaluation into coaching feedback for RL, providing denser supervision than scalar rewards; improves policy learning for open-ended tasks like game AI.",
+      "llm_tldr_cn": "在开放任务中，用标量奖励训练强化学习会丢失丰富反馈且模糊高质量响应。本文提出体验学习(EL)，将LLM从评判者转为教练，将评估提炼为可转移的体验知识，通过上下文蒸馏内化到策略中。实验表明，相比标量奖励，该高频宽反馈通道提供稠密监督并保留精细偏好，能提升策略性能。该方法为训练具有类人表现的游戏AI等复杂任务提供了新的强化学习范式。",
+      "llm_tldr": "在开放任务中，用标量奖励训练强化学习会丢失丰富反馈且模糊高质量响应。本文提出体验学习(EL)，将LLM从评判者转为教练，将评估提炼为可转移的体验知识，通过上下文蒸馏内化到策略中。实验表明，相比标量奖励，该高频宽反馈通道提供稠密监督并保留精细偏好，能提升策略性能。该方法为训练具有类人表现的游戏AI等复杂任务提供了新的强化学习范式。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
