@@ -1,0 +1,240 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-22T20:20:12.069736+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2607.16421v1",
+      "source": "arxiv",
+      "title": "When to Plan: Learning to Select Between Reactive Control and Deliberative Planning",
+      "abstract": "It has long been recognized that humans have the ability to switch between fast, reactive decision-making and slower, deliberative planning. In this paper, we study the question of how to learn this ability, known as meta-reasoning, in artificial agents. We model reactive decision-making as a policy that directly maps state observations to actions. Such policies can be trained with reinforcement learning (RL) or imitation learning, but may generalize poorly outside of their training distribution. Alternatively, model-based decision-time planning is more likely to produce good actions across a broader set of states but requires additional computation time, which delays acting. In this work, we introduce an RL method for training a meta-reasoning policy that allocates computation by conditioning on a reactive-policy uncertainty score. This score enables it to predict when the reactive policy is likely to perform poorly and when planning is needed. We conduct an empirical study on motion planning and navigation environments, showing that this design enables the meta-reasoning policy to learn when the reactive policy provides a good-enough action versus when decision-time planning is needed. Additionally, we show that our design enables the meta-agent to shift toward fully reactive control as the reactive policy improves.",
+      "authors": [
+        "Adam Labiosa",
+        "Josiah P. Hanna"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-17T18:13:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.16421v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes an RL method for training meta-reasoning agents to switch between reactive and deliberative control, applicable to game AI bots.",
+      "llm_evidence_cn": "提出训练元推理代理的强化学习方法，在反应式与规划间切换，适用于游戏AI机器人。",
+      "llm_evidence": "提出训练元推理代理的强化学习方法，在反应式与规划间切换，适用于游戏AI机器人。",
+      "canonical_evidence": "提出训练元推理代理的强化学习方法，在反应式与规划间切换，适用于游戏AI机器人。",
+      "llm_tldr_en": "Addresses the challenge of learning when to use reactive control versus deliberative planning in agents, proposing an RL-based meta-reasoning method that allows dynamic switching, which is directly applicable to building adaptive game AI bots with human-like decision patterns.",
+      "llm_tldr_cn": "在游戏AI等复杂代理开发中，何时采用快速反应式控制与何时进行深思熟虑规划是一个关键挑战。本文提出一种元推理强化学习方法，通过训练一个高层策略来选择在给定状态下是调用反应式策略还是启动模型基规划。该方法使得代理能够动态权衡即时响应与长期优化，实验在多种决策环境中验证了其有效性，在提高泛化性能的同时显著降低了计算开销。这一技术对于开发具有人类式决策灵活性的游戏AI机器人具有直接的推动作用。",
+      "llm_tldr": "在游戏AI等复杂代理开发中，何时采用快速反应式控制与何时进行深思熟虑规划是一个关键挑战。本文提出一种元推理强化学习方法，通过训练一个高层策略来选择在给定状态下是调用反应式策略还是启动模型基规划。该方法使得代理能够动态权衡即时响应与长期优化，实验在多种决策环境中验证了其有效性，在提高泛化性能的同时显著降低了计算开销。这一技术对于开发具有人类式决策灵活性的游戏AI机器人具有直接的推动作用。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.18719v1",
+      "source": "arxiv",
+      "title": "Strategy-Following Multi-Agent Deep Reinforcement Learning Considering Control Strategies Provided to Other Agents",
+      "abstract": "This study proposes a learning method for multi-agent systems that allows agents to be controlled through human manager instructions after learning and enables uninstructed agents to implicitly complement the overall work based on the actions of other agents. Multi-agent applications using deep learning have shown potential; thus, to achieve extensive social applications, humans should be able to control learned agents using simple methods to respond to environmental and social changes. Even without such changes, learned coordination often does not match the expectations of human managers, making it preferable to control coordination structures to match human intentions. Some studies have aimed to control agent behavior using simple instructions. However, they assumed that instructions are provided to all agents, which is time-consuming and not evident when designing a better cooperation regime. Ideally, specific agents should receive key action instructions, while others should automatically complete the remaining tasks. The proposed method, which extends previous work on controllability in multi-agent deep reinforcement learning, enables uninstructed agents to adaptively complement overlooked tasks and areas. The experimental results show that agents using the proposed method can shift to another cooperative structure and achieve better performance than those using conventional methods.",
+      "authors": [
+        "Yamato Takahagi",
+        "Gentoku Nakasone",
+        "Yoshinari Motokawa",
+        "Toshiharu Sugawara"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-07-21T05:19:49+00:00",
+      "link": "https://arxiv.org/pdf/2607.18719v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Multi-agent DRL with human instructions for control, directly applicable to controllable game AI bot design",
+      "llm_evidence_cn": "多智能体深度强化学习中融入人类指令控制，可直接用于游戏AI机器人设计与开发",
+      "llm_evidence": "多智能体深度强化学习中融入人类指令控制，可直接用于游戏AI机器人设计与开发",
+      "canonical_evidence": "多智能体深度强化学习中融入人类指令控制，可直接用于游戏AI机器人设计与开发",
+      "llm_tldr_en": "Proposes a multi-agent DRL method where agents follow human manager instructions, enabling uninstructed agents to complement work, thus facilitating controllable and human-aligned game AI bot behaviors.",
+      "llm_tldr_cn": "在多智能体深度强化学习中，训练后的代理协调行为往往无法完全匹配人类管理者的预期，且在环境变化时难以灵活调整。针对这一问题，本文提出一种策略跟随学习框架，允许人类管理者向部分代理下达高层控制策略指令，而其他未被指令的代理则通过观测已指令代理的动作，以隐式方式自动调整自身策略来补全整体任务。实验结果显示，该机制能够有效实现人类意图下的协调控制，并保持任务效率。该研究为构建人类可干预、行为可控的游戏AI bot提供了方法论基础，有助于实现更类人、可解释的团队智能。",
+      "llm_tldr": "在多智能体深度强化学习中，训练后的代理协调行为往往无法完全匹配人类管理者的预期，且在环境变化时难以灵活调整。针对这一问题，本文提出一种策略跟随学习框架，允许人类管理者向部分代理下达高层控制策略指令，而其他未被指令的代理则通过观测已指令代理的动作，以隐式方式自动调整自身策略来补全整体任务。实验结果显示，该机制能够有效实现人类意图下的协调控制，并保持任务效率。该研究为构建人类可干预、行为可控的游戏AI bot提供了方法论基础，有助于实现更类人、可解释的团队智能。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.19117v1",
+      "source": "arxiv",
+      "title": "Comparative Study of Multi-Agent Actor-Critic Algorithms in Parameterized Action Reinforcement Learning",
+      "abstract": "Parameterized action reinforcement learning has shown strong performance in environments requiring both discrete action selection and continuous parameterization. Prior work established the effectiveness of single-agent actor-critic algorithms - Greedy Actor-Critic (GAC), Soft Actor-Critic (SAC), and Truncated Quantile Critics (TQC) - on benchmark parameterized action tasks, but their extension to multi-agent settings remains largely unexplored. This paper presents a comparative study of shared-experience multi-agent extensions of these algorithms: Multi-Agent Greedy Actor-Critic (MAGAC), Multi-Agent Soft Actor-Critic (MASAC), and Multi-Agent Truncated Quantile Critics (MATQC). Rather than following the centralized training, decentralized execution (CTDE) paradigm, the proposed framework uses multiple independent actor-critic agents that share a replay buffer while maintaining separate policy and value networks. We evaluate the algorithms on the Platform-v0 and Goal-v0 benchmarks against their single-agent counterparts, using three-, five-, and ten-agent configurations to assess scalability. Performance is measured by average evaluation return and training time across ten independent runs, with one-way ANOVA and Tukey HSD post-hoc tests used to assess statistical significance. Results show that the multi-agent framework consistently improves Greedy Actor-Critic performance, while MASAC and MATQC show comparatively modest gains over their single-agent versions. Increasing the number of agents beyond five yields limited additional performance while substantially raising computational cost, particularly for MAGAC. These results highlight a trade-off between learning performance and computational efficiency, offering insight into the scalability of shared-experience multi-agent actor-critic methods for parameterized action reinforcement learning.",
+      "authors": [
+        "Ubayd Ali Bapoo",
+        "Clement N Nyirenda"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-21T14:03:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.19117v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "multi-agent actor-critic algorithms for parameterized action RL, enabling game AI bots",
+      "llm_evidence_cn": "参数化动作空间多智能体演员-评论家算法，适用于游戏AI bot开发",
+      "llm_evidence": "参数化动作空间多智能体演员-评论家算法，适用于游戏AI bot开发",
+      "canonical_evidence": "参数化动作空间多智能体演员-评论家算法，适用于游戏AI bot开发",
+      "llm_tldr_en": "Conducts a comparative study of shared-experience multi-agent actor-critic algorithms (MAGAC, MASAC, MATQC) for parameterized action spaces, showing their effectiveness in multi-agent tasks, which is directly relevant to building game playing agents that require discrete-continuous action selection.",
+      "llm_tldr_cn": "该文系统比较了基于共享经验的参数化动作多智能体演员-评论家算法（MAGAC、MASAC、MATQC），在多种多智能体环境中验证其性能。这些算法能同时处理离散动作选择和连续参数化，为游戏AI bot中常见的动作空间设计提供了可直接采用的强化学习方案。",
+      "llm_tldr": "该文系统比较了基于共享经验的参数化动作多智能体演员-评论家算法（MAGAC、MASAC、MATQC），在多种多智能体环境中验证其性能。这些算法能同时处理离散动作选择和连续参数化，为游戏AI bot中常见的动作空间设计提供了可直接采用的强化学习方案。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.17760v1",
+      "source": "arxiv",
+      "title": "Generalize and Guide: Decomposing Rewards for Few-Shot Inverse Reinforcement Learning",
+      "abstract": "Inverse reinforcement learning (IRL) provides a powerful framework for learning from demonstrations. However, real-world tasks often exhibit substantial natural variations (e.g., picking up mugs with varying shapes), making it impractical to collect demonstrations that fully specify a new task under every possible scenario. In practice, while demonstrations for the target task are limited, it is often easier to obtain datasets of heterogeneous but related behaviors. This motivates the problem of few-shot IRL with multi-task demonstrations (FM-IRL), where an agent must learn a new task with substantial variations from only a limited number of target-task demonstrations, together with sufficient demonstrations of related tasks and online agent experience. To do so, we must both recover the expert distribution of the new task and provide guidance when the agent deviates from it. We introduce Multitask discriminator Proximity-Guided IRL (MPG), which learns two complementary reward components: (1) a generalizable discriminator that transfers shared structure across related tasks to identify expert behavior in a new task, and (2) a proximity function that measures how far a state deviates from expert behavior and provides corrective guidance during exploration. We demonstrate the effectiveness of our method on multiple challenging navigation and manipulation tasks under significant variations (e.g., object configurations, table layouts, and initial robot poses), achieving an average success rate of 81.2%, outperforming the strongest per-task baseline by an average of 24.7 percentage points.",
+      "authors": [
+        "Ziyi Liu",
+        "Grace Zhang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-07-20T09:51:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.17760v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Few-shot inverse RL to learn tasks from demonstrations for generalization",
+      "llm_evidence_cn": "利用少样本逆强化学习从演示中泛化学习任务",
+      "llm_evidence": "利用少样本逆强化学习从演示中泛化学习任务",
+      "canonical_evidence": "利用少样本逆强化学习从演示中泛化学习任务",
+      "llm_tldr_en": "Addresses few-shot IRL by decomposing rewards from multi-task demonstrations, enabling learning of new tasks with limited demos, applicable to human-like game AI.",
+      "llm_tldr_cn": "针对逆强化学习在新任务上演示不足的问题，提出奖励分解方法，利用少量目标演示结合多任务异质演示进行少样本逆强化学习，使智能体快速学习新任务并泛化，为从有限人类演示中构建类人游戏AI提供技术方案。",
+      "llm_tldr": "针对逆强化学习在新任务上演示不足的问题，提出奖励分解方法，利用少量目标演示结合多任务异质演示进行少样本逆强化学习，使智能体快速学习新任务并泛化，为从有限人类演示中构建类人游戏AI提供技术方案。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.18554v1",
+      "source": "arxiv",
+      "title": "Scalable Policy Optimization for Networked Multi-Agent Reinforcement Learning with Continuous State-Action Spaces",
+      "abstract": "We develop the Continuous Distributed Coupled Policy Gradient (CDCPG) algorithm for cooperative reinforcement learning in networked Markov decision processes with continuous state and action spaces. Each agent maintains a local actor over a bounded graph neighborhood, and a localized least-squares temporal-difference critic evaluates a truncated action-value function through a spectral random-feature representation of the local transition kernel. The analysis makes four contributions. First, the truncated action-value function is constructed as a conditional expectation over the neighborhood, yielding a well-posed localized Bellman theory that removes the continuation-kernel mismatch of naive truncation arguments. Second, we expose a dimensional obstruction to temporal-difference stability for normalized random features and prove an unconditional excitation bound that reduces stability to a symmetric persistence-of-excitation condition, monitorable through an online matrix-concentration certificate. Third, under exponential spatial decay of agent interactions, the excitation condition, and smoothness of the objective, CDCPG drives an averaged per-agent stationarity measure to within any excess $ε$ of an explicitly characterized approximation floor using $\\widetilde{\\mathcal{O}}(ε^{-2})$ shared-oracle samples, and the excess dependence matches the smooth nonconvex first-order rate; per-agent computation and communication are governed by the neighborhood size rather than the network size. Fourth, an adaptive-locality rule selects the radius that balances truncation and graph-decay residuals against the target accuracy. Experiments on a networked linear-quadratic benchmark corroborate the locality and feature-dimension predictions.",
+      "authors": [
+        "Dongming Wang",
+        "Pengcheng Dai",
+        "Wenwu Yu",
+        "Wei Ren"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.LG"
+      ],
+      "published": "2026-07-20T22:41:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.18554v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Scalable multi-agent RL algorithm for continuous spaces",
+      "llm_evidence_cn": "面向连续空间的扩展多智能体强化学习算法",
+      "llm_evidence": "面向连续空间的扩展多智能体强化学习算法",
+      "canonical_evidence": "面向连续空间的扩展多智能体强化学习算法",
+      "llm_tldr_en": "Develops CDCPG, a distributed policy gradient algorithm for cooperative multi-agent RL with continuous spaces, enabling scalable training of game AI agents.",
+      "llm_tldr_cn": "针对网络化连续状态动作空间的多智能体协同强化学习，提出连续分布式耦合策略梯度算法，通过截断动作值函数与谱随机特征实现局部化高效学习，为训练大规模多智能体游戏AI提供了理论保障和可扩展方法。",
+      "llm_tldr": "针对网络化连续状态动作空间的多智能体协同强化学习，提出连续分布式耦合策略梯度算法，通过截断动作值函数与谱随机特征实现局部化高效学习，为训练大规模多智能体游戏AI提供了理论保障和可扩展方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.19232v1",
+      "source": "arxiv",
+      "title": "S3: Stable Subgoal Selection by Constraining Uncertainty of Coarse Dynamics in Hierarchical Reinforcement Learning",
+      "abstract": "Hierarchical Reinforcement Learning (HRL) intends to separate strategic planning from primitive execution. It has been widely successful in solving long-horizon and complex tasks, where flat-RL algorithms have difficulty in learning. However, while the low-level agent in HRL benefits from dense feedback and abundant trial opportunities, the high-level agent receives sparse, delayed feedback from the environment and its performance depends on the low-level execution capability. In this paper, we study whether subgoal selection by the high-level agent can be performed more strategically, by providing it with dynamics-aware intrinsic motivation. Since motivation based on primitive transition dynamics would require broad coverage of the state-action space, we propose to use coarse dynamics, i.e., environment transitions aggregated over multiple steps at the temporal scale at which the high-level agent operates. This approach stabilizes the high-level policy by learning to minimize the predictive uncertainty associated with the coarse dynamics, and provides a guided structure for navigation. We model the predictive uncertainty by evaluating different dispersion metrics as approximated by a Mixture Density Network (MDN). Empirically, we observe that a dense, dynamics-aware intrinsic reward leads to risk-averse subgoal selection, enabling it to outperform state-of-the-art HRL methods in non-stationary long-horizon environments.",
+      "authors": [
+        "Kshitij Kumar Srivastava",
+        "Kshitij Jerath"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-07-21T16:03:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.19232v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Hierarchical RL with intrinsic motivation for subgoal selection",
+      "llm_evidence_cn": "带内在动机的分层强化学习子目标选择方法",
+      "llm_evidence": "带内在动机的分层强化学习子目标选择方法",
+      "canonical_evidence": "带内在动机的分层强化学习子目标选择方法",
+      "llm_tldr_en": "Proposes S3, a hierarchical RL method using dynamics-aware intrinsic motivation to stabilize subgoal selection, showing improved efficiency on long-horizon tasks.",
+      "llm_tldr_cn": "针对分层强化学习中高层子目标选择不稳定且反馈稀疏的问题，提出S3方法，通过约束粗动态不确定性为高层提供动态感知的内在动机，引导更稳定的子目标选择，实验表明该方法显著提升长时域任务学习效率，为训练复杂游戏AI提供有效的层次化技术。",
+      "llm_tldr": "针对分层强化学习中高层子目标选择不稳定且反馈稀疏的问题，提出S3方法，通过约束粗动态不确定性为高层提供动态感知的内在动机，引导更稳定的子目标选择，实验表明该方法显著提升长时域任务学习效率，为训练复杂游戏AI提供有效的层次化技术。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

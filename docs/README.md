@@ -6,46 +6,40 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-21
-- 运行时间：2026-07-21 21:35:47 UTC
+- 最新运行日期：2026-07-22
+- 运行时间：2026-07-22 20:24:19 UTC
 - 运行状态：成功
-- 本次总论文数：8
-- 精读区：2
-- 速读区：6
+- 本次总论文数：6
+- 精读区：3
+- 速读区：3
 
 ### 今日简报（AI）
-今日聚焦：从强化学习算法到基础模型的路线图，与AI伴侣对话的跨文化洞察。
-最值得深读的是满分综述《Reinforcement Learning: From Algorithms To Foundation Models》，以及揭示人机社交表达差异的《ExpressionCueLens》。
-建议读者从RL基础模型的训练范式入手，同时关注AI个性化在实际社交场景中引发的“个体主义”倾向。
-- 详情：[/202607/21/README](/202607/21/README)
+今日研读重点在智能体如何自主决策反应速度与深思规划，以及多智能体间的策略协调学习。  
+最值得关注的是动态切换“反应控制与深思规划”的时机学习，以及将控制策略主动提供给其他智能体的多智能体跟随思路。  
+建议读者从“何时规划”这篇切入，思考动态决策在复杂协作任务中的应用潜力。
+- 详情：[/202607/22/README](/202607/22/README)
 
 ### 精读区论文标签
-1. [Reinforcement Learning: From Algorithms To Foundation Models](/202607/21/2607.17560v1-reinforcement-learning-from-algorithms-to-foundation-models)  
-   标签：评分：10.0/10、query:gah
-   evidence：包含大规模视频游戏中多智能体强化学习的论文，直接涉及游戏AI
-2. [ExpressionCueLens: A Cross-Cultural Analysis of Human-AI Companion Conversations on Social Media](/202607/21/2607.13924v2-expressioncuelens-a-cross-cultural-analysis-of-human-ai-companion-conversations-on-social-media)  
-   标签：评分：9.0/10、query:gah
-   evidence：直接研究AI伴侣中的拟人化，与类人游戏角色高度相关
+1. [When to Plan: Learning to Select Between Reactive Control and Deliberative Planning](/202607/22/2607.16421v1-when-to-plan-learning-to-select-between-reactive-control-and-deliberative-planning)  
+   标签：评分：8.0/10、query:gah
+   evidence：提出训练元推理代理的强化学习方法，在反应式与规划间切换，适用于游戏AI机器人。
+2. [Strategy-Following Multi-Agent Deep Reinforcement Learning Considering Control Strategies Provided to Other Agents](/202607/22/2607.18719v1-strategy-following-multi-agent-deep-reinforcement-learning-considering-control-strategies-provided-to-other-agents)  
+   标签：评分：8.0/10、query:gah
+   evidence：多智能体深度强化学习中融入人类指令控制，可直接用于游戏AI机器人设计与开发
+3. [Comparative Study of Multi-Agent Actor-Critic Algorithms in Parameterized Action Reinforcement Learning](/202607/22/2607.19117v1-comparative-study-of-multi-agent-actor-critic-algorithms-in-parameterized-action-reinforcement-learning)  
+   标签：评分：8.0/10、query:gah
+   evidence：参数化动作空间多智能体演员-评论家算法，适用于游戏AI bot开发
 
 ### 速读区论文标签
-1. [Branching Policy Optimization: Sandbox-Native Language Agent Reinforcement Learning](/202607/21/2607.14171v1-branching-policy-optimization-sandbox-native-language-agent-reinforcement-learning)  
-   标签：评分：7.0/10、query:gah
-   evidence：确定性沙盒中用于RL智能体训练的分支树采样拓扑
-2. [WAR: Workload-Aware Rollouts for Synchronous Agentic Reinforcement Learning](/202607/21/2607.17299v1-war-workload-aware-rollouts-for-synchronous-agentic-reinforcement-learning)  
-   标签：评分：7.0/10、query:gah
-   evidence：通过负载感知的rollout加速智能体RL训练，可用于游戏AI训练
-3. [I wanted it to feel more personal: Customization of social AI as AI individualism in practice](/202607/21/2607.17826v1-i-wanted-it-to-feel-more-personal-customization-of-social-ai-as-ai-individualism-in-practice)  
-   标签：评分：7.0/10、query:gah
-   evidence：研究用户定制社交AI以增加人类相似度，直接涉及拟人化
-4. [LLM-as-a-Coach: Experiential Learning for Non-Verifiable Tasks](/202607/21/2607.18110v1-llm-as-a-coach-experiential-learning-for-non-verifiable-tasks)  
-   标签：评分：7.0/10、query:gah
-   evidence：利用LLM教练为强化学习提供丰富反馈，可用于训练游戏AI
-5. [Scalable Causal Imitation Learning](/202607/21/2607.17003v1-scalable-causal-imitation-learning)  
+1. [Generalize and Guide: Decomposing Rewards for Few-Shot Inverse Reinforcement Learning](/202607/22/2607.17760v1-generalize-and-guide-decomposing-rewards-for-few-shot-inverse-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：用于长序列任务的因果模仿学习，与从演示中学习游戏AI bot相关
-6. [Rethinking the Suitability of Reinforcement Learning Algorithms Under Practical Transfer Constraints](/202607/21/2607.17326v1-rethinking-the-suitability-of-reinforcement-learning-algorithms-under-practical-transfer-constraints)  
+   evidence：利用少样本逆强化学习从演示中泛化学习任务
+2. [Scalable Policy Optimization for Networked Multi-Agent Reinforcement Learning with Continuous State-Action Spaces](/202607/22/2607.18554v1-scalable-policy-optimization-for-networked-multi-agent-reinforcement-learning-with-continuous-state-action-spaces)  
    标签：评分：6.0/10、query:gah
-   evidence：评估迁移场景下RL算法，为游戏AI训练方法选择提供见解
+   evidence：面向连续空间的扩展多智能体强化学习算法
+3. [S3: Stable Subgoal Selection by Constraining Uncertainty of Coarse Dynamics in Hierarchical Reinforcement Learning](/202607/22/2607.19232v1-s3-stable-subgoal-selection-by-constraining-uncertainty-of-coarse-dynamics-in-hierarchical-reinforcement-learning)  
+   标签：评分：6.0/10、query:gah
+   evidence：带内在动机的分层强化学习子目标选择方法
 
 
 <div class="dpr-home-promo-card">
