@@ -1,0 +1,423 @@
+Title: When Reasoning Narrows the Move: Diversity Collapse in LLM Game Play
+
+URL Source: https://arxiv.org/pdf/2607.19523v1
+
+Published Time: Thu, 23 Jul 2026 00:08:53 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+# When Reasoning Narrows the Move: Diversity Collapse in LLM Game Play 
+
+Junyi Sha ∗
+
+Department of Civil and Environmental Engineering MIT Cambridge, MA 02139 
+
+jsha@mit.edu 
+
+Renfei Tan ∗
+
+Institute for Data, Systems, and Society MIT Cambridge, MA 02139 
+
+rftan@mit.edu 
+
+David Simchi-Levi 
+
+Department of Civil and Environmental Engineering MIT Cambridge, MA 02139 
+
+dslevi@mit.edu 
+
+Abstract 
+
+Supervised fine-tuning (SFT) is widely used to adapt large language models to downstream tasks, but its effect on behavioral diversity in sequential decision-making remains under-explored. We study this question in a controlled suite of deterministic board games based on tic-tac-toe variants, where optimal actions are exactly computable and diversity can be measured directly. Across state-level evaluation, arena gameplay, and training trajectories, we find that reasoning-mode generation frequently suppresses action diversity without uniformly improving action accuracy. Furthermore, standard SFT improves accuracy but often induces premature diversity collapse, which exceeds what is minimally required by the accuracy–diversity tradeoff. We then show that action augmentation, which trains on all optimal actions per state rather than a single demonstrated action, would partially mitigates this effect. Our results identify narrow-support imitation as a source of policy collapse in LLM decision-making and suggest that preserving action support during SFT is important for maintaining exploratory behavior. 
+
+1 Introduction 
+
+Recent advances in large language models (LLMs) have significantly expanded their capabilities in complex reasoning and task execution, motivating their use in decision-making settings. However, effectively aligning these models with task-specific objectives remains a key challenge. A standard approach to improving downstream performance is Supervised Fine-Tuning (SFT). SFT fine-tunes a pre-trained model on a set of high-quality prompt-response demonstrations, and throughout the process the model would imitate desired behavior. SFT has proven highly effective, particularly for tasks requiring structured outputs and strict formats. However, an important concern is that SFT may systematically suppress output diversity. Because the training objective encourages the model to match the empirical distribution of the training data, it tends to favor reproducing patterns observed during training [O’Mahony et al., 2024]. In decision-making settings, this issue is particularly critical, as diversity underpins exploration, which is essential for discovering high-quality actions and adapting to previously unseen states [Hong et al., 2018, Li 
+
+> ∗Equal Contribution, author ordered alphabetically. Preprint. arXiv:2607.19523v1 [cs.CL] 21 Jul 2026
+
+Figure 1: Overview of game environments. et al., 2024]. A loss of diversity may therefore limit performance and hinder subsequent post-training methods such as reinforcement learning [Kirk et al., 2023, Murthy et al., 2025]. Understanding how SFT impacts action diversity is therefore crucial for developing more effective training pipelines and improving LLM’s decision-making abilities. Games offer a clean and controlled environment for studying this question. First of all, games have well-defined state, action, and reward spaces, which enables precise evaluation of policies. In contrast, in real-world domains such as coding, theorem proving, or business planning, it is hard to define the performance and diversity of a policy. In addition, one can separate performance (Did the model achieve a high score or favorable outcome?) from diversity (How broad was the set of actions the model actually played?), which is often confounded in messy field settings [Cipolina-Kun et al., 2025, Park et al., 2024]. Finally, games allow large-scale experimentation involving repeated trajectories, making it feasible to systematically evaluate interventions such as prompting strategies or exploration incentives [Topsakal et al., 2024, Xi et al., 2025, Zhang et al., 2024]. In this work, we focus on board games involving tic-tac-toe and its variants [Mishra et al., 2025], which are all two-player sequential games that are deterministic and with complete information. Despite strong performance in many tasks, one may be surprised to find that LLM has performance only comparable to a one-step lookahead player even on the simplest and solved tic-tac-toe game [Duan et al., 2024, Mishra et al., 2025]. Our central finding is that improved performance and reduced diversity are related, but not equivalent. Reasoning-mode generation consistently compresses action diversity, often without a corresponding improvement in accuracy. This suggests that reasoning does not merely make the model more optimal; it can also amplify weak action preferences and concentrate the policy around a single move. We then study how this collapse evolves during fine-tuning. Checkpoint-level trajectories show that diversity loss often occurs early, before the model reaches high accuracy. Moreover, by comparing model trajectories to an iso-accuracy entropy ceiling, we find that much of the entropy loss exceeds what is minimally required by improved accuracy. In other words, SFT does not only move the model along an accuracy-diversity tradeoff; it can push the policy below that frontier. Finally, we test whether increasing action support in the SFT data can mitigate this effect. Training on all optimal actions per state preserves substantially more diversity than training on a single demon-strated action. However, action augmentation alone is not sufficient: the direct augmented model often remains less accurate. The strongest configuration is the combination of action-augmented data and reasoning-mode generation, which achieves competitive accuracy while preserving non-trivial behavioral diversity. Together, these results show that diversity collapse is a measurable and avoidable failure mode of narrow-support imitation in LLM decision-making. 
+
+2 Related Work 
+
+Large Language Model Game-playing. Many recent works have investigated LLM’s performance in games. However, empirical studies show that LLMs remain surprisingly fragile in simple, fully-2solved decision-making environments [Mishra et al., 2025]. Across grid-based games [Topsakal et al., 2024, Duan et al., 2024], chess [Wen et al., 2025, Kolasani et al., 2025] and imperfect-information card games [Su et al., 2025], models often fail to reliably execute correct strategies. In grid-based games such as tic-tac-toe, Duan et al. [2024] show that LLMs consistently underperform classical search-based agents, while Topsakal et al. [2024] further find that failures are concentrated in immediate decision-making. Similar limitations extend beyond grid-based settings: van Wetten et al. [2025] show that fine-tuning improves rule analysis but not execution, while Jiang et al. [2025] report near-zero accuracy on spatial planning tasks. Taken together, this literature highlights that LLMs struggle to act reliably in sequential decision-making tasks. However, existing evaluations primarily focus on the quality of actions, leaving open the study on action diversity and its impact on performance. 
+
+Output Diversity in Supervised Fine-tuning. In supervised fine-tuning, models are trained to imitate curated examples [Ouyang et al., 2022, Bai et al., 2022]. However, the same imitation objective that improve task performance can also narrow the model’s output distribution [Kirk et al., 2023, Murthy et al., 2025]. Recent work attributes this phenomenon to mode collapse during fine-tuning [O’Mahony et al., 2024], the mismatch between cross-entropy training and the existence of multiple valid outputs [Li et al., 2024], and the entropy-suppressing effects of structured formats [Yun et al., 2025]. To this end, multiple approaches have been proposed to preserve diversity including data diversification [Tirumala et al., 2023] and loss objective modification [Li et al., 2024, Chen et al., 2026, Zhang et al., 2026, Xi et al., 2025]. These findings motivate our study of SFT in games: unlike open-ended text generation, board games provide a finite and verifiable action space, allowing us to measure whether SFT collapses the policy toward a small set of demonstrated actions even when alternative legal or strategically valid actions exist. 
+
+Action Diversity in Offline Reinforcement Learning. Our setting is closely related to offline reinforcement learning (Offline RL), which studies the problem of learning decision-making policies from fixed datasets without further online interaction [Levine et al., 2020]. Classic work shows that offline RL suffer from covariate shift because small errors may move the learner into states that are poorly covered by the demonstration distribution [Ross et al., 2011], emphasizing that dataset coverage and distributional support are central to downstream policy quality [Fu et al., 2020]. Recent sequence-modeling approaches, including Decision Transformer, Trajectory Transformer, and RvS, further blur the boundary between supervised learning and offline RL by treating trajectory-conditioned decision-making as a supervised sequence-modeling problem [Chen et al., 2021, Janner et al., 2021, Emmons et al., 2021]. Most relevant to our work, several recent papers study how diverse demonstrations or heterogeneous offline datasets can be leveraged to recover multiple high-quality behaviors rather than a single averaged policy [Yue et al., 2024, Mao et al., 2024, Petitbois et al., 2025]. This perspective suggests that action diversity determines the strategies represented in the training data and can affect whether subsequent optimization discovers better behavior. 
+
+3 Game and Player Setup 
+
+We design experiments to characterize how reasoning-mode output and supervised fine-tuning procedure affect an LLM policy’s playing strength and behavioral diversity in board games. The setup uses four deterministic two-player turn-based games, four baselines policies per game, and six LLM players built from Qwen3-8B [Yang et al., 2025]. Further implementation details for players, evaluation, SFT data generation and training, as well as metrics are collected in Appendix A. 
+
+Preliminaries. We model each game deterministic as a Markov Decision Process (MDP) 
+
+⟨S , A, P, r ⟩, where S is the state space, A is the action space, P fis the transition kernel together with initial state distribution, and r is the reward function. Two players alternately observe the current state 
+
+st and take actions at according to their policies πA, π B . After at is taken, the game transitions to a new state st+1 according to P , and rewards are assigned through r(st, a t). This process produces a trajectory τ = ( s1, a 1, · · · , s T , a T ). For all games considered in this work, rewards are only assigned at terminal states and players use discount factor γ = 1 . Rewards of 1, 1/2, and 0 correspond to win, draw, and loss respectively. 3Environments and Players. We consider standard Tic-Tac-Toe ( ottt ) and three variants proposed by [Mishra et al., 2025]: cttt , dttt , and sttt . An overview of the games is shown in Figure 1. We select these games for three reasons. First, the rules, states, and actions are simple and can be represented naturally in text prompts. Second, despite their simplicity, the games contain nontrivial tactical patterns and remain challenging for LLMs [Mishra et al., 2025]. Third, all games can be solved optimally through recursive search, which provides a clear performance reference. For each game, we construct four baseline players and six LLM players. The baseline players span different levels of playing strength and action diversity, ranging from random play to minimax-optimal play. Details of the baseline policies are provided in Appendix A.1. For LLM players, we focus on 
+
+Qwen3-8B and its fine-tuned variants. We additionally evaluate other open-weight models of similar scale in Appendix B.1. We consider two output modes: direct generation and reasoning generation. For each mode, we evaluate the base model together with two fine-tuned variants, resulting in six LLM players in total. All players share the same prompting framework. A fixed system prompt specifies the required output format. The user prompt contains the game rules, current board state, and legal actions. Only the current state is provided. Past trajectories are omitted so that the model acts purely as a Markovian policy π(at | st) conditioned only on the current state. In Appendix B.3, we experiment with GEPA prompt optimization [Agrawal et al., 2025] and show that prompt optimization alone is insufficient for strong gameplay performance. 
+
+Supervised Fine-tuning. Our experiments focus on how SFT affects action diversity. For each game, we construct four SFT datasets that share the same state pool and the same total number of training rows. The state pool is generated through Monte-Carlo random self-play. Each sampled state is solved using the strongest baseline policy. We then reduce the collected states to a fixed training budget using visit-count selection. The datasets vary along two dimensions: (i) action support, namely whether each state is paired with a single optimal action or all optimal actions, and (ii) output format, namely whether the response contains only the final action (direct) or includes an explicit reasoning trace (reasoning). Combining these two dimensions yields four dataset variants: plain-direct , aug-direct , plain-reason ,and aug-reason . Here, plain denotes datasets containing one demonstrated optimal action per state, while aug includes all optimal actions returned by the solver. Similarly, direct contains only the final action output, whereas reason additionally includes a reasoning trace before the action. This design isolates the effects of action support and reasoning format while controlling for state coverage and total training tokens. For reasoning datasets, the reasoning trace evaluates every legal action and annotates its tactical consequence under the solver, such as immediate wins, forced blocks, fork creation, or balanced continuations. The trace then concludes with the set of optimal actions. We fine-tune Qwen3-8B using LoRA and save one adapter after each epoch. The final-epoch adapter is used as the deployed SFT player. We additionally retain three intermediate checkpoints from each run for the diversity dynamics analysis in 5. Training hyperparameters are listed in Appendix A.4. 
+
+4 Main Experiments: Policy Evaluation and Game-Playing 
+
+4.1 Policy Analysis 
+
+To study what each LLM player has learned at the state level, we evaluate every player on a curated state pool of 200 board states per game, consisting of 100 training states and 100 held-out (“new”) states. For each state, we sample N = 8 independent action predictions. Trained states are sampled from the SFT state pool used for fine-tuning. New states are generated through random self-play and de-duplicated against the training set. Within each pool, we balance five tactical categories with increasing reasoning depth: win , block , fork , fork-deny , and positional . We additionally balance x-to-move and o-to-move positions. We exclude states in which every legal action is optimal, such as fully symmetric forced-draw positions, since these states trivialize accuracy evaluation. We evaluate both accuracy and action diversity . For a policy π, we define action diversity as the expected action entropy ES∼μ[H(π(· | S))] under either the training-state distribution μtrain or the new-state distribution μnew . The results are shown in Figure 2. 
+
+Reasoning suppresses diversity without uniformly improving accuracy. Switching from direct to reasoning mode is associated with a substantial reduction in action diversity. Across the trained 40.0                  
+
+> 0.5
+> 1.0
+> 1.5
+> Diversity (bits)
+> (trained states)
+> ottt cttt dttt sttt
+> 0.0 0.5 1.0
+> Accuracy
+> 0.0
+> 0.5
+> 1.0
+> 1.5
+> Diversity (bits)
+> (new states)
+> 0.0 0.5 1.0
+> Accuracy
+> 0.0 0.5 1.0
+> Accuracy
+> 0.0 0.5 1.0
+> Accuracy
+> Base SFT-Plain SFT-Aug Direct Reasoning Direct Reasoning
+
+Figure 2: State-level accuracy-diversity profiles per game on trained states (top row) and new states (bottom row). Each panel plots the six model configurations, with arrows connecting direct to reasoning mode within the same variant. Rightward movement indicates higher accuracy, while downward movement indicates lower empirical action entropy. and new state pools, reasoning exhibits lower entropy than direct mode in 21 out of 24 scenarios; in the remaining three cases, both modes already produce nearly deterministic outputs. Most direct-to-reasoning transitions are dominated by downward movement rather than rightward movement. This effect is especially pronounced in the base model, on which we observe the most significant reduction in diversity. Nevertheless, this reduction is not consistently accompanied by higher accuracy. Substantial accuracy improvements are observed only in game ottt , while the other three variants show little or even negative effect from reasoning. Thus, the lower diversity of reasoning-mode players cannot be explained purely as a consequence of more optimal (and therefore more convergent) play. One possible explanation is that the model already contains weak preferences over actions before reasoning begins. During reasoning, intermediate evaluations and justifications repeatedly reinforce these preferences, even when multiple actions remain strategically equivalent. As the reasoning trajec-tory progresses, small initial asymmetries may therefore become amplified, eventually concentrating probability mass onto a single action. 
+
+Plain SFT improves accuracy but induces near mode-collapse behavior. Standard supervised fine-tuning substantially improves state-level accuracy relative to the Base model, especially on trained states. However, this improvement is accompanied by a sharp reduction in action diversity. The effect is particularly strong when combined with reasoning mode. Across games, plain-reason achieves strong accuracy on trained states but exhibits near-zero entropy, indicating an almost deterministic policy despite the existence of multiple strategically equivalent actions. Even plain-direct 
+
+produces substantially lower diversity than the Base direct model. These results suggest that plain SFT drives the model toward a near mode-collapse regime, where the policy memorizes and repeatedly selects a single preferred action for each state. Reasoning further amplifies this concentration effect, causing the policy distribution to collapse even when the accuracy improvement is marginal. 
+
+Reasoning combined with action-augmented SFT preserves non-trivial diversity. Action-augmented SFT partially mitigates this diversity collapse by exposing the model to multiple optimal actions during training. Compared with plain-reason , aug-reason achieves similar accuracy on trained states while retaining substantially higher entropy across all games. The same pattern persists on new states, where aug-reason remains competitive in accuracy while preserving significantly more diversity than plain-reason .5Notably, reasoning combined with action-augmented training is the only setting that consistently maintains non-trivial diversity at relatively high accuracy. This suggests that increasing the demon-strated action support during SFT can partially decouple performance improvement from policy collapse. 
+
+4.2 Arena Game-play 
+
+State-level evaluation provides a controlled view of a model’s local decision-making ability, but it does not fully characterize actual game-play. During a game, the trajectory depends jointly on both players, and many states may never be visited. To evaluate realized gameplay behavior, we let the four baseline players and six LLM players compete in an arena setting. For each pair of baseline players, we run 1000 games with one player assigned to x and the other to o, followed by another 1000 games with roles reversed. For each pair consisting of one LLM player and one baseline player, we run 100 + 100 games under the two role assignments. The six LLM players do not play against each other, ensuring that all LLM evaluations use the same controlled opponent pool. 1000 1200 1400 
+
+> Elo
+> 2.0
+> 2.5
+> 3.0
+> 3.5
+> 4.0
+> 4.5
+> 5.0
+> 5.5
+> 6.0
+> Trajectory entropy  HMM ( )
+> heuristic
+> minimax
+> one-step
+> random
+
+ottt     
+
+> 1000 1100 1200 1300 1400
+> Elo
+> 3.0
+> 3.5
+> 4.0
+> 4.5
+> 5.0
+> 5.5
+> 6.0
+> 6.5
+> heuristic
+> minimax
+> one-step random
+
+cttt      
+
+> 800 1000 1200 1400 1600 1800
+> Elo
+> 3
+> 4
+> 5
+> 6
+> Trajectory entropy  HMM ( )
+> heuristic
+> minimax
+> one-step
+> random
+
+dttt     
+
+> 800 1000 1200 1400 1600
+> Elo
+> 3.0
+> 3.5
+> 4.0
+> 4.5
+> 5.0
+> 5.5
+> 6.0
+> 6.5
+> heuristic
+> minimax
+> one-step random
+
+sttt  
+
+> Base
+> SFT-Plain
+> SFT-Aug
+> Direct
+> Reasoning
+> Direct Reasoning
+> random
+> heuristic
+> one-step
+> minimax
+
+Figure 3: Arena-level Elo-diversity profiles per game. For each game, we visualize the joint tradeoff between playing strength and behavioral diversity. The six LLM configurations are plotted alongside four reference baselines: random , heuristic , one-step , and minimax . Arrows connect each direct-mode model to its reasoning-mode counterpart within the same variant. Rightward movement corresponds to higher Elo, whereas downward movement corresponds to lower trajectory entropy. Transparent point clouds show the empirical spread of B = 1000 stratified bootstrap replicates around each estimate. 
+
+Metrics. We evaluate playing strength using the Elo rating system [Elo, 1978], which is widely used in competitive games such as Chess and Go. Each player is assigned a scalar rating, and 6rating differences determine expected game outcomes. For two players with ratings RA and RB , the expected reward of player A is E[rA] = 1 /(1 + exp( − ln 10( RA − RB )/τ )) .Beyond Elo, we also measure behavioral diversity through trajectory entropy. Given two policies πA
+
+and πB , their interaction induces a trajectory distribution pπA,π B (τ ) over complete game trajectories. We define trajectory entropy as HπA,π B (τ ) = − P 
+
+> τ
+
+pπA,π B (τ ) log pπA,π B (τ ). Against an opponent pool π1, . . . , π K with mixture weights pk, diversity is measured by the conditional entropy H(τ | K)
+
+where K ∼ pk. We note that the trajectory entropy decomposed into accumulated action entropy of 
+
+πA and πB under an induced state distribution μ(s):
+
+H(τ ) = 
+
+> T
+
+X
+
+> t=1
+
+H(at | st−1) = 
+
+> ⌊T / 2⌋
+
+X
+
+> i=1
+
+X
+
+> s
+
+μ2i(s)H(πA(· | s)) + μ2i+1 (s)H(πB (· | s)) . (1) From this decomposition, one can see that trajectory entropy reflects both the stochasticity of player policies and the state distribution induced by gameplay. It is therefore not purely a property of a single policy. Nevertheless, it captures realized behavioral diversity against a fixed opponent pool, which we view as a practically meaningful measure of gameplay diversity. Performance and diversity are also not independent. Policies with stronger play often concentrate probability mass on a narrower set of strategically strong trajectories, naturally reducing entropy. However, our experiments reveal many LLM players with very low diversity despite relatively weak performance. This suggests that premature diversity collapse can emerge even far from optimal play, and therefore cannot be explained solely by a performance-diversity tradeoff. 
+
+Bootstrap Uncertainty. To quantify uncertainty in arena evaluation, we use a stratified nonpara-metric bootstrap. For each condition, games are partitioned by opponent and playing role. Within each stratum, games are resampled with replacement at the original sample size. For each bootstrap replicate b = 1 , . . . , B , we recompute the statistic of interest ˆθ(b) 
+
+> c
+
+, either Elo or trajectory entropy. For comparisons between conditions c and c′, we compute the bootstrap contrast ˆ∆(b) = ˆθc (b) − ˆθc ′(b).
+
+Results and Conclusions. Figure 3 shows that the main patterns identified in Section 4.1 persist under realized gameplay trajectories. Across games, transitions from direct to reasoning mode are typically dominated by reductions in trajectory entropy rather than improvements in Elo. In several cases, reasoning substantially lowers diversity while producing only marginal gains in playing strength. Similarly, plain SFT improves Elo relative to the Base model but often drives the policy toward low-diversity regimes. This effect is especially pronounced for reasoning-mode players, which frequently exhibit sharp entropy collapse despite remaining far from minimax-level performance. These observations further support the hypothesis that standard SFT induces premature policy concentration rather than merely reflecting convergence toward optimal play. Compared with plain SFT variants, aug SFT consistently preserves higher trajectory entropy while maintaining competitive Elo. In particular, aug-reason is the only configuration that repeatedly achieves relatively strong gameplay performance together with non-trivial behavioral diversity. This suggests that exposing the model to multiple optimal actions during fine-tuning can partially counteract the entropy collapse induced by standard imitation learning and reasoning. 
+
+5 Diversity Dynamics During Fine-tuning 
+
+The previous section evaluates only the final deployed SFT adapter. Two questions remain unan-swered: when during fine-tuning does the diversity collapse identified in Figures 2 and 3 emerge, and 
+
+how much of that collapse is mechanically induced by improved accuracy as opposed to representing additional policy concentration beyond the necessary accuracy-diversity tradeoff. To study these questions, we re-run the policy evaluation from Section 4.1 on intermediate checkpoints collected throughout fine-tuning. 
+
+Experimental setup. For every (game , variant , mode ) configuration, we evaluate three interme-diate LoRA adapters in addition to the final checkpoint analyzed in Section 4.1. For ottt , cttt ,and dttt , we evaluate epochs {1, 6, 12 , 18 }. For sttt , where training is shorter, we evaluate epochs 70                            
+
+> 1
+> 2
+> 3
+> Diversity (bits)
+> (trained states)
+> ottt cttt dttt sttt
+> 0.0 0.2 0.4 0.6 0.8 1.0
+> Accuracy
+> 0
+> 1
+> 2
+> 3
+> Diversity (bits)
+> (new states)
+> 0.0 0.2 0.4 0.6 0.8 1.0
+> Accuracy
+> 0.0 0.2 0.4 0.6 0.8 1.0
+> Accuracy
+> 0.0 0.2 0.4 0.6 0.8 1.0
+> Accuracy
+> Base (e0) SFT-Plain SFT-Aug early final iso-accuracy entropy ceiling
+
+(a) Direct mode. 0                            
+
+> 1
+> 2
+> 3
+> Diversity (bits)
+> (trained states)
+> ottt cttt dttt sttt
+> 0.0 0.2 0.4 0.6 0.8 1.0
+> Accuracy
+> 0
+> 1
+> 2
+> 3
+> Diversity (bits)
+> (new states)
+> 0.0 0.2 0.4 0.6 0.8 1.0
+> Accuracy
+> 0.0 0.2 0.4 0.6 0.8 1.0
+> Accuracy
+> 0.0 0.2 0.4 0.6 0.8 1.0
+> Accuracy
+> Base (e0) SFT-Plain SFT-Aug early final iso-accuracy entropy ceiling
+
+(b) Reasoning mode. 
+
+Figure 4: Per-game accuracy-diversity trajectories across SFT epochs on trained states (top row of each subfigure) and new states (bottom row). Lighter shades indicate earlier epochs, while full saturation corresponds to the final adapter. The Base model (blue) is plotted at epoch = 0 and serves as the common starting point for both SFT variants. The dashed black curve denotes the iso-accuracy entropy ceiling of (2) , representing the maximum mean action entropy achievable at a given mean accuracy on the corresponding state pool. 
+
+{1, 4, 8, 12 }. The pre-fine-tuning Qwen3-8B base model provides the common epoch = 0 initializa-tion point for both Direct and Reasoning modes. All other evaluation settings remain identical to Section 4.1, including the same curated 200-state evaluation pool, N = 8 action samples per state, and identical decoding hyperparameters. This produces a five-point trajectory in the accuracy-diversity plane for each SFT variant and output mode within every game. 
+
+Iso-accuracy entropy ceiling. To distinguish accuracy-induced concentration from additional diversity collapse, we compare each model against an analytic upper envelope that we call the 
+
+iso-accuracy entropy ceiling . The ceiling answers the following question: among all policies with a fixed accuracy level, what is the maximum achievable action entropy? Consider a state s with 
+
+ks optimal actions among ns legal actions. Let ps denote the policy’s probability mass assigned to optimal actions, i.e., its per-state accuracy. For fixed ps, entropy is maximized when probability mass is distributed uniformly across the optimal-action set and uniformly across the sub-optimal set. This yields the per-state entropy ceiling 
+
+Hmax 
+
+s (ps) = h2(ps) + ps log 2 ks + (1 − ps) log 2(ns − ks), (2) 8where h2(·) denotes the binary entropy function. Averaging this quantity across the evaluation state pool produces the dashed black curve in Figure 4. No policy with the same mean accuracy can achieve higher mean entropy on that state pool. Therefore, the gap between a model trajectory and the ceiling measures diversity loss beyond what is mechanically required by improved accuracy. 
+
+Diversity collapse emerges early during fine-tuning and exceeds the accuracy-induced tradeoff. 
+
+Across games and evaluation pools, most trajectories move rapidly downward in the accuracy– diversity plane during the first few epochs of fine-tuning, indicating that diversity collapses substan-tially faster than accuracy improves. This effect is especially pronounced for plain SFT variants, which often approach near-deterministic behavior long before reaching high accuracy. In contrast, aug 
+
+variants consistently remain closer to the iso-accuracy entropy ceiling throughout training, preserving substantially more diversity at comparable accuracy levels. The gap between observed trajectories and the ceiling further shows that much of the entropy reduction cannot be explained purely by improved accuracy or convergence toward optimal play. Instead, standard SFT appears to induce additional policy concentration beyond what is mechanically required by the accuracy-diversity tradeoff, whereas action-augmented training partially mitigates this effect. 
+
+6 Conclusion 
+
+We study how supervised fine-tuning shapes action diversity in LLM decision-making using a controlled suite of board games. Across state-level policy evaluation, arena gameplay, and checkpoint-level training trajectories, we find that standard SFT improves accuracy but often drives the policy toward premature diversity collapse. This collapse is especially strong under reasoning-mode generation and is not fully explained by the accuracy-diversity tradeoff: models often lose more entropy than is necessary to achieve their observed accuracy. Action-augmented SFT, which trains on multiple optimal actions per state, partially mitigates this collapse and preserves non-trivial diversity at comparable performance. These results suggest that narrow-support imitation can make LLM policies overly concentrated even in simple sequential decision problems. Our study is limited to small deterministic games and a single main model family. In real-world applications such as recommendation, planning, and autonomous agents, similar diversity collapse may lead to overly concentrated behaviors, reduced exploration, and loss of valid alternatives. This could limit robustness and adaptability, highlighting the importance of training objectives that preserve action diversity, and motivating further research on diversity-aware training and evaluation in more complex decision-making settings. 
+
+References 
+
+Lakshya A Agrawal, Shangyin Tan, Dilara Soylu, Noah Ziems, Rishi Khare, Krista Opsahl-Ong, Arnav Singhvi, Herumb Shandilya, Michael J Ryan, Meng Jiang, et al. Gepa: Reflective prompt evolution can outperform reinforcement learning. arXiv preprint arXiv:2507.19457 , 2025. Yuntao Bai, Andy Jones, Kamal Ndousse, Amanda Askell, Anna Chen, Nova DasSarma, Dawn Drain, Stanislav Fort, Deep Ganguli, Tom Henighan, et al. Training a helpful and harmless assistant with reinforcement learning from human feedback. arXiv preprint arXiv:2204.05862 , 2022. Lili Chen, Kevin Lu, Aravind Rajeswaran, Kimin Lee, Aditya Grover, Misha Laskin, Pieter Abbeel, Aravind Srinivas, and Igor Mordatch. Decision transformer: Reinforcement learning via sequence modeling. Advances in neural information processing systems , 34:15084–15097, 2021. Yijie Chen, Yijin Liu, and Fandong Meng. Sed-sft: Selectively encouraging diversity in supervised fine-tuning. arXiv preprint arXiv:2602.07464 , 2026. Lucia Cipolina-Kun, Marianna Nezhurina, and Jenia Jitsev. Game reasoning arena: A framework and benchmark for assessing reasoning capabilities of large language models via game play. arXiv preprint arXiv:2508.03368 , 2025. Jinhao Duan, Renming Zhang, James Diffenderfer, Bhavya Kailkhura, Lichao Sun, Elias Stengel-Eskin, Mohit Bansal, Tianlong Chen, and Kaidi Xu. Gtbench: Uncovering the strategic reasoning capabilities of llms via game-theoretic evaluations. In Advances in Neural Information Processing Systems , volume 37, pages 28219–28253, 2024. 9Arpad E. Elo. The Rating of Chessplayers, Past and Present . B. T. Batsford, London, 1978. Scott Emmons, Benjamin Eysenbach, Ilya Kostrikov, and Sergey Levine. Rvs: What is essential for offline rl via supervised learning? arXiv preprint arXiv:2112.10751 , 2021. Justin Fu, Aviral Kumar, Ofir Nachum, George Tucker, and Sergey Levine. D4rl: Datasets for deep data-driven reinforcement learning. arXiv preprint arXiv:2004.07219 , 2020. Zhang-Wei Hong, Tzu-Yun Shann, Shih-Yang Su, Yi-Hsiang Chang, Tsu-Jui Fu, and Chun-Yi Lee. Diversity-driven exploration strategy for deep reinforcement learning. Advances in neural information processing systems , 31, 2018. Michael Janner, Qiyang Li, and Sergey Levine. Offline reinforcement learning as one big sequence modeling problem. Advances in neural information processing systems , 34:1273–1286, 2021. Yulun Jiang, Yekun Chai, Maria Brbi´ c, and Michael Moor. Marble: A hard benchmark for multimodal spatial reasoning and planning. arXiv preprint arXiv:2506.22992 , 2025. Robert Kirk, Ishita Mediratta, Christoforos Nalmpantis, Jelena Luketina, Eric Hambro, Edward Grefenstette, and Roberta Raileanu. Understanding the effects of rlhf on llm generalisation and diversity. arXiv preprint arXiv:2310.06452 , 2023. Sai Kolasani, Maxim Saplin, Nicholas Crispino, Kyle Montgomery, Jared Quincy Davis, Matei Zaharia, Chi Wang, and Chenguang Wang. Llm chess: Benchmarking reasoning and instruction-following in llms through chess. arXiv preprint arXiv:2512.01992 , 2025. Sergey Levine, Aviral Kumar, George Tucker, and Justin Fu. Offline reinforcement learning: Tutorial, review, and perspectives on open problems. arXiv preprint arXiv:2005.01643 , 2020. Ziniu Li, Congliang Chen, Tian Xu, Zeyu Qin, Jiancong Xiao, Zhi-Quan Luo, and Ruoyu Sun. Preserv-ing diversity in supervised fine-tuning of large language models. arXiv preprint arXiv:2408.16673 ,2024. Yihuan Mao, Chengjie Wu, Xi Chen, Hao Hu, Ji Jiang, Tianze Zhou, Tangjie Lv, Changjie Fan, Zhipeng Hu, Yi Wu, et al. Stylized offline reinforcement learning: Extracting diverse high-quality behaviors from heterogeneous datasets. In The Twelfth International Conference on Learning Representations , 2024. Prakamya Mishra, Jiang Liu, Jialian Wu, Xiaodong Yu, Zicheng Liu, and Emad Barsoum. Ttt-bench: A benchmark for evaluating reasoning ability with simple and novel tic-tac-toe-style games. arXiv preprint arXiv:2506.10209 , 2025. Sonia Krishna Murthy, Tomer Ullman, and Jennifer Hu. One fish, two fish, but not the whole sea: Alignment reduces language models’ conceptual diversity. In Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers) , pages 11241–11258, 2025. Long Ouyang, Jeffrey Wu, Xu Jiang, Diogo Almeida, Carroll Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, et al. Training language models to follow instructions with human feedback. Advances in neural information processing systems , 35:27730– 27744, 2022. Laura O’Mahony, Leo Grinsztajn, Hailey Schoelkopf, and Stella Biderman. Attributing mode collapse in the fine-tuning of large language models. In ICLR 2024 Workshop on Mathematical and Empirical Understanding of Foundation Models , volume 2, page 2, 2024. Chanwoo Park, Xiangyu Liu, Asuman Ozdaglar, and Kaiqing Zhang. Do llm agents have regret? a case study in online learning and games. arXiv preprint arXiv:2403.16843 , 2024. Mathieu Petitbois, Rémy Portelas, Sylvain Lamprier, and Ludovic Denoyer. Offline learning of controllable diverse behaviors. arXiv preprint arXiv:2504.18160 , 2025. 10 Stéphane Ross, Geoffrey Gordon, and Drew Bagnell. A reduction of imitation learning and structured prediction to no-regret online learning. In Proceedings of the fourteenth international conference on artificial intelligence and statistics , pages 627–635. JMLR Workshop and Conference Proceedings, 2011. Jiayi Su, Meiling Tao, Xuechen Liang, Yangfan He, Yiling Tao, and Miao Zhang. Enhancing commentary strategies for guandan: A study of llms in game commentary generation. Symmetry ,17(8):1274, 2025. Kushal Tirumala, Daniel Simig, Armen Aghajanyan, and Ari Morcos. D4: Improving llm pretraining via document de-duplication and diversification. Advances in Neural Information Processing Systems , 36:53983–53995, 2023. Oguzhan Topsakal, Colby Jacob Edell, and Jackson Bailey Harper. Evaluating large language models with grid-based game competitions: An extensible LLM benchmark and leaderboard. arXiv preprint arXiv:2407.07796 , 2024. Version 2. Fien van Wetten, Aske Plaat, and Max van Duijn. Baba is llm: reasoning in a game with dynamic rules. In International Joint Conference on Computational Intelligence , pages 60–77. Springer, 2025. Qianfeng Wen, Zhenwei Tang, and Ashton Anderson. Chessqa: Evaluating large language models for chess understanding. arXiv preprint arXiv:2510.23948 , 2025. Zhiheng Xi, Jixuan Huang, Chenyang Liao, Baodai Huang, Honglin Guo, Jiaqi Liu, Rui Zheng, Junjie Ye, Jiazheng Zhang, Wenxiang Chen, et al. Agentgym-rl: Training llm agents for long-horizon decision making through multi-turn reinforcement learning. arXiv preprint arXiv:2509.08755 ,2025. An Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chang Gao, Chengen Huang, Chenxu Lv, et al. Qwen3 technical report. arXiv preprint arXiv:2505.09388 ,2025. Sheng Yue, Jiani Liu, Xingyuan Hua, Ju Ren, Sen Lin, Junshan Zhang, and Yaoxue Zhang. How to leverage diverse demonstrations in offline imitation learning. arXiv preprint arXiv:2405.17476 ,2024. Longfei Yun, Chenyang An, Zilong Wang, Letian Peng, and Jingbo Shang. The price of format: Diversity collapse in llms. arXiv preprint arXiv:2505.18949 , 2025. Alex Zhang, Ananya Parashar, and Dwaipayan Saha. A simple framework for intrinsic reward-shaping for rl using llm feedback, 2024. Dylan Zhang, Yufeng Xu, Haojin Wang, Qingzhi Chen, and Hao Peng. Good sft optimizes for sft, better sft prepares for reinforcement learning. arXiv preprint arXiv:2602.01058 , 2026. 11 Appendix 
+
+A Implementation Details 
+
+A.1 Arena Players 
+
+Table 1 summarizes the players introduced in our arena: four deterministic policies and three open-source language models. We select the deterministic policies to provide interpretable anchors that span both skill and behavioral diversity, yielding broad coverage of the Elo-versus-diversity 2D space. We intentionally use open-source (open-weight) LLMs rather than closed proprietary APIs so that all models can be fine-tuned under a consistent training setup, enabling controlled analysis of how fine-tuning changes both playing strength and decision diversity while preserving reproducibility. 
+
+Player Description 
+
+random Uniform random choice among legal cells at each decision. Anchors low skill and a high-entropy player for calibrating diversity metrics. 
+
+heuristic Scores each legal cell by its participation count across all winning lines/planes (game-specific); samples uniformly among the highest-scoring cells 
+
+one_step Takes immediate win if available; otherwise blocks opponent immediate win; otherwise falls back to a default legal-action policy 
+
+minimax Exact game-theoretic search for ottt/cttt/dttt (value-optimal; depth-to-mate tie-breaking); depth-limited negamax with alpha-beta pruning, transposition table, center-first move ordering, and a positional heuristic at the depth cutoff ( d=4 ) for sttt 
+
+Qwen3-8B Open-weight Alibaba Qwen 3 checkpoint (8B parameters), decoder-only. 
+
+Gemma-3-12B Open-weight Google Gemma 3 checkpoint (12B parameters), decoder-only. 
+
+Llama-3.1-8B Open-weight Meta Llama 3.1 checkpoint (8B parameters), decoder-only. 
+
+Table 1: Players in the arena experiments: four deterministic policies (top) and three open LLM agents (bottom). 
+
+A.2 Prompts for Different Games 
+
+For Qwen3, the system prompt and per-turn user prompt were identical in the thinking and non-thinking settings; the only difference was whether the chat template was rendered with thinking enabled. For each game, the Qwen3 prompt consisted of two parts: a system message and a per-turn user message. The system message was shared across all games, while the per-turn user message specified the rules and game state for the particular game being played. The exact prompts used are listed below. 
+
+Shared System Message 
+
+> You are a strategic game-playing assistant. Follow the user’s game rules exactly. You may reason step-by-step before answering. After your reasoning, output exactly one action block of the form: <action>{"move": <value>}</action> The JSON inside <action> must be valid, and <value> must be one of the legal actions.
+
+Per-turn User Messages 
+
+oTTT 
+
+> You are playing OrdinaryTicTacToe. Rules: Standard 3x3 Tic-Tac-Toe with letter labels. Players X and O alternate placing their mark on any empty cell. A player wins by occupying any full row, full column, or full diagonal (three in a line). If all 9 cells fill without any player forming a line, the game is a draw. X moves first. Cells are labeled A-I as: A B C D E F G H I Winning lines (8 total): rows ABC, DEF, GHI; columns ADG, BEH, CFI; diagonals AEI, CEG. Example: if X holds {A, B} and plays C, X completes row ABC and wins.
+
+12 You are: <role> Board: <row1> ---------<row2> ---------<row3> Cell labels: A B C D E F G H I Legal actions: <legal> After any reasoning, emit exactly one action block of the form: <action>{"move": <action_label>}</action> The JSON key must be "move" and the value must be one of the legal actions. 
+
+dTTT 
+
+You are playing DoubleTicTacToe. Rules: Double Tic-Tac-Toe has 15 cells: a 3x3 grid (A-I) plus a 3x2 extension to the right (J-O), laid out as: A B | C | J K D E | F | L M G H | I | N O Players X and O alternate placing their mark on any empty cell. X moves first. A player wins by completing any one of the 15 winning lines (three cells in a line). If all 15 cells fill without any player completing a line, the game is a draw. Winning lines: ABC, DEF, GHI, ADG, BEH, CFI, AEI, CEG, CJK, FLM, INO, JLN, KMO, CLO, KLI. Example: if X holds {A, B} and plays C, X completes line ABC and wins. You are: <role> Board: <a> <b> | <c> | <j> <k> <d> <e> | <f> | <l> <m> <g> <h> | <i> | <n> <o> Labels: A B | C | J K D E | F | L M G H | I | N O Legal actions: <legal> After any reasoning, emit exactly one action block of the form: <action>{"move": <action_label>}</action> The JSON key must be "move" and the value must be one of the legal actions. 
+
+cTTT 
+
+You are playing CubeTicTacToe. Rules: Cube Tic-Tac-Toe is played on the 12 corners of two unit cubes that share one square face, forming a 2x1x1 cuboid. The shared-face corners are B, C, G, F; the left cube also has A, D, H, E, and the right cube also has I, J, L, K. Players X and O alternate placing their mark on any empty corner. X moves first. A player wins by fully occupying all four corners of any one of the 23 winning rectangles in 3D space. If all 12 corners fill without any rectangle being fully owned, the game is a draw. Winning rectangles (23 total): Face (11): ABCD, EFGH, ABFE, BCGF, CDHG, ADHE, BIJC, FKLG, BIKF, IJLK, JCGL Diagonal (12): ACGE, BDHF, ABGH, DCFE, ADGF, BCHE, BJLF, ICGK, BILG, CJKF, BCLK, IJFG Example: if X holds {A, C, G} and plays E, X completes diagonal rectangle ACGE and wins. You are: <role> Occupied by X: <x-cells> Occupied by O: <o-cells> Winning rectangles (23 total): Face (11): ABCD, EFGH, ABFE, BCGF, CDHG, ADHE, BIJC, FKLG, BIKF, IJLK, JCGL Diagonal (12): ACGE, BDHF, ABGH, DCFE, ADGF, BCHE, BJLF, ICGK, BILG, CJKF, BCLK, IJFG Board labels: A, B, C, D, E, F, G, H, I, J, K, L Legal actions: <legal> After any reasoning, emit exactly one action block of the form: <action>{"move": <action_label>}</action> The JSON key must be "move" and the value must be one of the legal actions. 
+
+sTTT 
+
+You are playing SquaresTicTacToe. Rules: Squares Tic-Tac-Toe is played on a 5x5 grid (cells labeled A-Y, row-major). Players X and O alternate placing their mark on any empty cell. X moves first. A player wins by occupying 4 cells that form a square. A square may be either: (a) an axis-aligned 2x2 square (four corners of a unit square), or (b) a tilted (diamond) square of any size that fits inside the 5x5 board. Label layout (row-major): A B C D E F G H I J K L M N O P Q R S T U V W X Y If all 25 cells fill without any player forming a square, the game is a draw. Example (2x2): {A, B, F, G} is a square. Example (diamond): {C, G, I, M} is a square (C top, G left, I right, M bottom). 
+
+13 You are: <role> Board: <row1> <row2> <row3> <row4> <row5> Labels: A B C D E F G H I J K L M N O P Q R S T U V W X Y Legal actions: <legal> After any reasoning, emit exactly one action block of the form: <action>{"move": <action_label>}</action> The JSON key must be "move" and the value must be one of the legal actions. 
+
+A.3 SFT Dataset Construction: Base, Augmented, Thinking, and Thinking-Augmented 
+
+For each game, we generate four supervised fine-tuning datasets from the same selected state pool, with identical row count and aligned state order across variants. The only differences are the target action choice and whether synthetic reasoning is included. 
+
+Step 1: Monte Carlo state pool. We run random self-play rollouts and collect non-terminal states until a game-specific unique-state target is reached (or a maximum rollout limit is hit). For each visited state, we store the board snapshot, current player, and visit count. 
+
+Step 2: Solver labels. Each pooled state is solved with the game solver to obtain: • the optimal action set A⋆s ,• a canonical best action (the first optimal action), • solver-side metadata (e.g., optimal-play outcome and its numeric encoding). 
+
+Step 3: Popularity-based selection under a row budget. For each game and split, we set a row budget B, i.e., the target number of training examples to generate for each dataset variant. States are sorted by Monte Carlo visit count (descending), then selected in that order. For a selected state s, let 
+
+Ks = |A⋆s | be the number of optimal actions. We allocate Ks rows to that state. Selection continues until the cumulative row count reaches B. If adding the final state would exceed B, we truncate that state’s allocation to the remaining rows. Therefore, 
+
+X
+
+> s∈S selected
+
+Ks = B. 
+
+Step 4: Construct four supervision variants. From the same selected state set, we construct four aligned supervision variants by crossing two factors: • Action supervision type : single-target vs. multi-target . Single-target uses one canonical optimal move per state, while multi-target exposes all optimal moves as valid supervision. • Reasoning content : without reasoning vs. with reasoning . The reasoning variants prepend a brief explanatory rationale before the final action. This yields four datasets: (i) single-target, (ii) multi-target (action-augmented), (iii) single-target with reasoning, and (iv) multi-target with reasoning. All four are derived from the same underlying state distribution so that comparisons isolate the effects of action augmentation and reasoning augmentation. 
+
+Prompt and row format (all variants). All variants share the same prompt structure and row schema: each example uses a common system-message template and a game-specific observation prompt (encoding rules and current state), and stores the same core fields for training/analysis (e.g., game/state identifiers, observation text, target action, action label/text/block, optimal-action set, prompt/messages, and target string). The only formatting difference across variants is the thinking flag: reasoning-augmented variants are rendered with thinking enabled, while plain variants are rendered with thinking disabled. 14 A.4 SFT Hyperparameters 
+
+We select Qwen3-8B as the base model for all fine-tuning experiments in this paper based on its strong and consistent zero-shot performance across the four game variants. As shown in Figure 5, Qwen3-8B achieves the highest Elo among the three candidate LLMs in the two open-rule-space games, oTTT and dTTT, while remaining competitive in cTTT and sTTT. At the same time, Qwen3-8B exhibits relatively low trajectory diversity compared with the other LLM baselines, making it a particularly useful starting point for our study: it provides a strong performance baseline while still leaving clear headroom to test whether fine-tuning can recover or increase behavioral diversity. This combination of high competence and comparatively limited diversity makes Qwen3-8B the most suitable base model for analyzing how fine-tuning reshapes both strength and strategic variety across rule variants.                     
+
+> Hyperparameter Value
+> Base model Qwen/Qwen3-8B Epochs 18 (ottt, cttt, dttt) / 12 (sttt) Learning rate 1×10 −4
+> Per-device batch size 8Workers (DDP) 4Effective batch size 32 Max sequence length 1024 Label mode assistant-only (loss on response tokens) LoRA r= 32 , α = 64 ,dropout = 0 .05
+> LoRA target modules q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj Gradient checkpointing enabled for thinking-trace variants Compute 4×NVIDIA H100 GPUs per run
+
+Table 2: SFT training hyperparameters for Qwen3-8B on the tic-tac-toe family. The epoch budget is reduced for sttt because its larger boards and longer contexts make each training epoch more expensive. 15 B Additional Experiments 
+
+B.1 Other Baseline LLMs 
+
+We select Qwen3-8B as the base model for all fine-tuning experiments in this paper based on its competitive zero-shot performance across the four game variants. As shown in Figure 5, Qwen3-8B achieves the highest Elo rating among the three candidate LLMs in the two open-rule-space games, oTTT and dTTT. In cTTT and sTTT, Qwen3-8B remains competitive. This consistent strong performance in the games makes Qwen3-8B the most suitable base for studying how fine-tuning shapes game-playing behavior across rule variants. 
+
+Figure 5: Elo rating versus trajectory entropy HMM (τ ) for three instruction-tuned LLMs (Qwen3-8B, Gemma-3-12B, Llama-3.1-8B, all at temperature 0.6) compared against deterministic baselines across four game variants. 
+
+B.2 Temperature Study 
+
+A natural first response to trajectory collapse is to raise the temperature of the model at inference time: higher temperature increases sampling randomness and, in principle, should diversify the model’s output distribution without requiring any changes to the weights or training data. To test whether temperature alone is sufficient to recover diversity, Figure 6 applies a three-temperature sweep T ∈ { 0.3, 0.8, 1.3} to two Qwen3-8B variants - base and plain SFT - using the non-thinking mode in both cases. 16 Quantity Estimate 95% bootstrap CI One-sided p Conclusion                                           
+
+> ∆Hbase (0 .8−0.3) 0.727 [0.644, 0.814] <0.001 Temp increases diversity (Base)
+> ∆Hplain sft (0 .8−0.3) 0.088 [0.023, 0.148] 0.004 Temp increases diversity (SFT)
+> I0.8−0.3= ∆ Hplain sft −∆Hbase -0.639 [-0.744, -0.535] <0.001 Diminished after SFT
+> ∆Hbase (1 .3−0.8) 0.481 [0.392, 0.566] <0.001 Temp increases diversity (Base)
+> ∆Hsft (1 .3−0.8) 0.059 [-0.003, 0.120] 0.030 Weak positive gain after SFT
+> I1.3−0.8= ∆ Hsft −∆Hbase -0.422 [-0.531, -0.310] <0.001 Diminished after SFT
+
+Table 3: Segment-wise bootstrap tests for temperature effects on diversity. One-sided p-values are empirical bootstrap tail probabilities in the directional hypothesis. 
+
+Figure 6: Elo versus Diversity plot for base and plain_sft Qwen3-8B model For the base model, temperature has a clear, consistent effect on diversity across both increments: 
+
+∆Hbase (0 .8−0.3) = 0 .727 (95% CI [0 .644 , 0.814] , p < 0.001 ) and ∆Hbase (1 .3−0.8) = 0 .481 
+
+(95% CI [0 .392 , 0.566] , p < 0.001 ), confirming that each step up in temperature meaningfully widens the base model’s action distribution. After supervised fine-tuning, however, the same tem-perature increments produce dramatically smaller gains: ∆Hsft (0 .8−0.3) = 0 .088 (p = 0 .004 )and ∆Hsft (1 .3−0.8) = 0 .059 (p = 0 .030 ). The interaction effects I0.8−0.3 = −0.639 (95% CI 
+
+[−0.744 , −0.535] ) and I1.3−0.8 = −0.422 (95% CI [−0.531 , −0.310] ) are both strongly negative and significant (Table 3), confirming that the diversity gain from raising temperature is substantially diminished after SFT across both segments of the sweep. This pattern is also visible in Figure 6: the base model’s cloud spans a wide range of the entropy axis as temperature varies, while the SFT model’s three conditions cluster tightly, regardless of temperature. Taken together, these results suggest that while temperature scaling can improve diversity on the base model, it does not effectively counteract the distributional compression introduced by SFT—once the model has collapsed, raising temperature alone is insufficient to recover meaningful behavioral diversity. 
+
+B.3 Prompt Engineering: GEPA 
+
+To improve the performance of LLMs on playing Tic-Tac-Toe, a natural step is to conduct prompt engineering. Other literature has explicitly studied how different representations of the board can change a model’s performance [Topsakal et al., 2024]. 17 Figure 7: Elo rating versus diversity for Qwen3-8B before and after GEPA prompt optimization. GEPA (Genetic-Pareto) is a reflective prompt optimizer introduced by Agrawal et al. [2025] that learns high-level behavioral rules from natural language feedback rather than from scalar reward gradients. Given an AI system and a task metric, GEPA samples rollouts, reflects on them in natural language to diagnose failures and propose prompt revisions, and then tests candidate updates. To avoid collapsing to a single locally optimal prompt, it maintains a Pareto front of prompts, tracking top performers across different problem instances, and uses genetic-style mutation to combine complementary lessons across generations. The method is reported in Agrawal et al. [2025] to require far fewer rollouts than RL-based approaches. We apply GEPA to the base Qwen3-8B model. Out of all candidate prompts explored, two produced measurable Elo improvements. The results in Figure 7 use Advancement 2, the final and best-performing prompt from the GEPA run. GEPA moves Qwen3-8B significantly upward in Elo, but the gain comes with a clear reduction in Hraw and Hsymmetrical : the optimized prompt narrows the model’s move distribution, concentrating play on a smaller set of strategies. Hdiff drops further toward zero as well. Against heuristic , the base model produces 96 unique full-game paths out of 200 games (48%), while under the GEPA prompt that falls to just 6 (3%). Against minimax , only 2 distinct paths remain out of 200. Crucially, even with the best prompt GEPA found, the Elo improvement is modest relative to this diversity cost, and the model still falls well short of one_step . This suggests that prompt engineering alone is insufficient to close the skill gap, and that improving the model’s underlying game knowledge requires direct weight updates. 18

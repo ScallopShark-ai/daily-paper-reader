@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-23",
+  "date": "2026-07-23",
+  "generated_at": "2026-07-23T21:44:03",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/23/2607.19523v1-when-reasoning-narrows-the-move-diversity-collapse-in-llm-game-play",
+      "section": "deep",
+      "title_en": "When Reasoning Narrows the Move: Diversity Collapse in LLM Game Play",
+      "authors": "Junyi Sha, Renfei Tan, David Simchi-Levi",
+      "date": "2026-07-21",
+      "pdf": "https://arxiv.org/pdf/2607.19523v1",
+      "score": "9.0",
+      "evidence": "研究LLM在确定性棋类游戏中的行为多样性坍塌，影响AI bot的行为多样性",
+      "tldr": "大语言模型经监督微调用于决策时，其对行为多样性的影响未被充分探索。本研究在井字棋变体游戏中进行控制实验，发现推理模式生成常抑制动作多样性而未提升准确率，标准微调导致过早多样性崩溃，超出必要权衡。我们提出动作增强方法，训练所有最优动作而非单一演示，可部分缓解该问题。结果表明窄支持模仿是策略崩溃根源，保留动作支持对维持探索至关重要。",
+      "tags": "query:gah",
+      "abstract_en": "Supervised fine-tuning (SFT) is widely used to adapt large language models to downstream tasks, but its effect on behavioral diversity in sequential decision-making remains under-explored. We study this question in a controlled suite of deterministic board games based on tic-tac-toe variants, where optimal actions are exactly computable and diversity can be measured directly. Across state-level evaluation, arena gameplay, and training trajectories, we find that reasoning-mode generation frequently suppresses action diversity without uniformly improving action accuracy. Furthermore, standard SFT improves accuracy but often induces premature diversity collapse, which exceeds what is minimally required by the accuracy-diversity tradeoff. We then show that action augmentation, which trains on all optimal actions per state rather than a single demonstrated action, would partially mitigates this effect. Our results identify narrow-support imitation as a source of policy collapse in LLM decision-making and suggest that preserving action support during SFT is important for maintaining exploratory behavior.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/23/2607.17038v1-reward-driven-llm-agent-workflows-synthesizing-pomdp-routing-and-self-correction-for-autonomous-decision-making",
+      "section": "quick",
+      "title_en": "Reward-Driven LLM Agent Workflows: Synthesizing POMDP Routing and Self-Correction for Autonomous Decision-Making",
+      "authors": "Amez Amanj Ali, Kuo-Kun Tseng",
+      "date": "2026-07-19",
+      "pdf": "https://arxiv.org/pdf/2607.17038v1",
+      "score": "6.0",
+      "evidence": "使用POMDP路由和自纠正奖励模型的LLM智能体工作流",
+      "tldr": "当前大语言模型智能体在长程规划与稀疏奖励环境中表现不佳，本文提出一种基于部分可观测马尔可夫决策过程（POMDP）路由与自校正奖励驱动的工作流架构。该架构结合强化学习与图记忆，在ALFWorld和WebShop任务中较ReAct基线提升24.5%成功率。消融实验显示，自校正奖励模块有效抑制幻觉，为复杂自主系统提供可扩展的参考框架。",
+      "tags": "query:gah",
+      "abstract_en": "This paper addresses key technical challenges in current large language model (LLM) agent applications, including long-horizon planning, sparse reward attribution, and dynamic environmental interaction, by designing and optimizing an intelligent agent workflow. The proposed architecture is based on the synthesis of core AI paradigms: Visual, Language, Generative, Graph, Multimodal, Reinforcement, and Agent Intelligence. Unlike conventional baseline models that rely on static prompting and lack robust perception-action loops, our approach introduces a Partially Observable Markov Decision Process (POMDP) routing mechanism. This mechanism is augmented with an internal, self-correcting reward model that evaluates decision trajectories before execution. By integrating multimodal inputs and advanced reinforcement learning principles (such as proximal policy optimization and value function approximation), the agent maintains long-term structural memory and dynamically adapts its reasoning pathways to mitigate error accumulation. Empirical experiments on the ALFWorld embodied simulation environment and the WebShop online navigation benchmark demonstrate a 24.5% absolute improvement in task success rate and trajectory efficiency over mainstream baselines like the standard ReAct framework. Comprehensive ablation studies confirm the significant contribution of the reward-driven critique module in suppressing hallucination rates. This research bridges theoretical foundations of reinforcement learning and graph-based memory with autonomous agent workflows. Ultimately, the resulting architecture offers a practical, scalable reference framework for developing artificial intelligence technologies in complex, multi-step autonomous systems. Code is available at https://github.com/01Amez/RLAW_Implementation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/23/2607.19809v1-dreamer-cpc-message-learning-with-world-models-for-decentralized-multi-agent-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Dreamer-CPC: Message Learning with World Models for Decentralized Multi-agent Reinforcement Learning",
+      "authors": "Taisuke Takayama, Naoto Yoshida, Tadahiro Taniguchi",
+      "date": "2026-07-22",
+      "pdf": "https://arxiv.org/pdf/2607.19809v1",
+      "score": "6.0",
+      "evidence": "提出去中心化模型基础的多智能体强化学习方法，结合世界模型和消息学习，可用于训练游戏AI智能体",
+      "tldr": "去中心化多智能体强化学习中，现有通信方法仅依赖当前观察，无法传递历史信息，导致在部分可观测场景下性能受限。本文提出Dreamer-CPC，将集体预测编码集成到DreamerV3世界模型中，使每个智能体独立维护世界模型，从反映历史的潜在状态推断并交换消息。在非合作任务和观测缺失任务上，该方法显著优于仅依赖当前观察的通信基线，在缺失观测任务中回报提升4-5倍。研究证明，基于世界模型的消息学习能有效利用历史动态，增强去中心化协作。",
+      "tags": "query:gah",
+      "abstract_en": "In multi-agent reinforcement learning (MARL), inter-agent communication is effective for improving performance under partial observability. Representation learning-based approaches enable decentralized agents to learn messages grounded in their own observations, but they rely only on current observations and cannot convey information accumulated over time. We propose Dreamer-CPC, a decentralized model-based MARL method that integrates message learning based on Collective Predictive Coding (CPC) into the world model of DreamerV3. Each agent independently maintains a world model and a message module, and infers and exchanges messages from the latent states of the world model that reflect the history of past observations and actions. We evaluated Dreamer-CPC in two environments: Observer, a non-cooperative information-sharing task, and CatchApple, a newly introduced task in which task-relevant observations are temporarily missing. In both environments, Dreamer-CPC outperformed IPPO-CPC, an existing CPC-based method that generates messages from current observations, as well as no-communication baselines. In particular, in CatchApple, Dreamer-CPC achieved 4 to 5 times the episode return of IPPO-CPC, demonstrating effective coordination where other methods fail due to missing observations. These results suggest that communication grounded in the latent dynamics of world models can support decentralized decision-making when current observations alone are insufficient.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

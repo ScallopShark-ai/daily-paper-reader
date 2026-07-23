@@ -1,0 +1,128 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-23T21:37:33.695974+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.19523v1",
+      "source": "arxiv",
+      "title": "When Reasoning Narrows the Move: Diversity Collapse in LLM Game Play",
+      "abstract": "Supervised fine-tuning (SFT) is widely used to adapt large language models to downstream tasks, but its effect on behavioral diversity in sequential decision-making remains under-explored. We study this question in a controlled suite of deterministic board games based on tic-tac-toe variants, where optimal actions are exactly computable and diversity can be measured directly. Across state-level evaluation, arena gameplay, and training trajectories, we find that reasoning-mode generation frequently suppresses action diversity without uniformly improving action accuracy. Furthermore, standard SFT improves accuracy but often induces premature diversity collapse, which exceeds what is minimally required by the accuracy-diversity tradeoff. We then show that action augmentation, which trains on all optimal actions per state rather than a single demonstrated action, would partially mitigates this effect. Our results identify narrow-support imitation as a source of policy collapse in LLM decision-making and suggest that preserving action support during SFT is important for maintaining exploratory behavior.",
+      "authors": [
+        "Junyi Sha",
+        "Renfei Tan",
+        "David Simchi-Levi"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-21T19:10:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.19523v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "studies diversity collapse in LLM playing deterministic board games, affecting behavioral diversity",
+      "llm_evidence_cn": "研究LLM在确定性棋类游戏中的行为多样性坍塌，影响AI bot的行为多样性",
+      "llm_evidence": "研究LLM在确定性棋类游戏中的行为多样性坍塌，影响AI bot的行为多样性",
+      "canonical_evidence": "研究LLM在确定性棋类游戏中的行为多样性坍塌，影响AI bot的行为多样性",
+      "llm_tldr_en": "Supervised fine-tuning in LLMs for game play often reduces action diversity without improving accuracy, a diversity-accuracy tradeoff issue, and a method is proposed to mitigate premature diversity collapse.",
+      "llm_tldr_cn": "本文研究大语言模型在棋类游戏决策中的行为多样性问题，发现推理式生成和监督微调会导致动作多样性过早坍塌，且超出准确率-多样性权衡的最小需求；提出一种缓解方法，旨在保持游戏AI的策略多样性和类人行为，对设计多样化游戏bot有参考意义。",
+      "llm_tldr": "本文研究大语言模型在棋类游戏决策中的行为多样性问题，发现推理式生成和监督微调会导致动作多样性过早坍塌，且超出准确率-多样性权衡的最小需求；提出一种缓解方法，旨在保持游戏AI的策略多样性和类人行为，对设计多样化游戏bot有参考意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.17038v1",
+      "source": "arxiv",
+      "title": "Reward-Driven LLM Agent Workflows: Synthesizing POMDP Routing and Self-Correction for Autonomous Decision-Making",
+      "abstract": "This paper addresses key technical challenges in current large language model (LLM) agent applications, including long-horizon planning, sparse reward attribution, and dynamic environmental interaction, by designing and optimizing an intelligent agent workflow. The proposed architecture is based on the synthesis of core AI paradigms: Visual, Language, Generative, Graph, Multimodal, Reinforcement, and Agent Intelligence. Unlike conventional baseline models that rely on static prompting and lack robust perception-action loops, our approach introduces a Partially Observable Markov Decision Process (POMDP) routing mechanism. This mechanism is augmented with an internal, self-correcting reward model that evaluates decision trajectories before execution. By integrating multimodal inputs and advanced reinforcement learning principles (such as proximal policy optimization and value function approximation), the agent maintains long-term structural memory and dynamically adapts its reasoning pathways to mitigate error accumulation. Empirical experiments on the ALFWorld embodied simulation environment and the WebShop online navigation benchmark demonstrate a 24.5% absolute improvement in task success rate and trajectory efficiency over mainstream baselines like the standard ReAct framework. Comprehensive ablation studies confirm the significant contribution of the reward-driven critique module in suppressing hallucination rates. This research bridges theoretical foundations of reinforcement learning and graph-based memory with autonomous agent workflows. Ultimately, the resulting architecture offers a practical, scalable reference framework for developing artificial intelligence technologies in complex, multi-step autonomous systems. Code is available at https://github.com/01Amez/RLAW_Implementation.",
+      "authors": [
+        "Amez Amanj Ali",
+        "Kuo-Kun Tseng"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-19T02:51:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.17038v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLM agent workflow with POMDP routing and self-correcting reward model",
+      "llm_evidence_cn": "使用POMDP路由和自纠正奖励模型的LLM智能体工作流",
+      "llm_evidence": "使用POMDP路由和自纠正奖励模型的LLM智能体工作流",
+      "canonical_evidence": "使用POMDP路由和自纠正奖励模型的LLM智能体工作流",
+      "llm_tldr_en": "Introduces an LLM agent workflow with POMDP routing and self-correcting reward model, enhancing long-horizon planning and dynamic interaction.",
+      "llm_tldr_cn": "为解决LLM智能体在长期任务中规划能力不足和奖励稀疏问题，提出一种融合POMDP路由与自纠正奖励模型的工作流架构。通过整合视觉、语言、强化等多种智能范式，该框架在动态环境中实现了更鲁棒的决策。为通用智能体设计提供了新方法。",
+      "llm_tldr": "为解决LLM智能体在长期任务中规划能力不足和奖励稀疏问题，提出一种融合POMDP路由与自纠正奖励模型的工作流架构。通过整合视觉、语言、强化等多种智能范式，该框架在动态环境中实现了更鲁棒的决策。为通用智能体设计提供了新方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.19809v1",
+      "source": "arxiv",
+      "title": "Dreamer-CPC: Message Learning with World Models for Decentralized Multi-agent Reinforcement Learning",
+      "abstract": "In multi-agent reinforcement learning (MARL), inter-agent communication is effective for improving performance under partial observability. Representation learning-based approaches enable decentralized agents to learn messages grounded in their own observations, but they rely only on current observations and cannot convey information accumulated over time. We propose Dreamer-CPC, a decentralized model-based MARL method that integrates message learning based on Collective Predictive Coding (CPC) into the world model of DreamerV3. Each agent independently maintains a world model and a message module, and infers and exchanges messages from the latent states of the world model that reflect the history of past observations and actions. We evaluated Dreamer-CPC in two environments: Observer, a non-cooperative information-sharing task, and CatchApple, a newly introduced task in which task-relevant observations are temporarily missing. In both environments, Dreamer-CPC outperformed IPPO-CPC, an existing CPC-based method that generates messages from current observations, as well as no-communication baselines. In particular, in CatchApple, Dreamer-CPC achieved 4 to 5 times the episode return of IPPO-CPC, demonstrating effective coordination where other methods fail due to missing observations. These results suggest that communication grounded in the latent dynamics of world models can support decentralized decision-making when current observations alone are insufficient.",
+      "authors": [
+        "Taisuke Takayama",
+        "Naoto Yoshida",
+        "Tadahiro Taniguchi"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.LG"
+      ],
+      "published": "2026-07-22T06:42:03+00:00",
+      "link": "https://arxiv.org/pdf/2607.19809v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes Dreamer-CPC, a decentralized model-based MARL method with world models and message learning, applicable to training game AI agents",
+      "llm_evidence_cn": "提出去中心化模型基础的多智能体强化学习方法，结合世界模型和消息学习，可用于训练游戏AI智能体",
+      "llm_evidence": "提出去中心化模型基础的多智能体强化学习方法，结合世界模型和消息学习，可用于训练游戏AI智能体",
+      "canonical_evidence": "提出去中心化模型基础的多智能体强化学习方法，结合世界模型和消息学习，可用于训练游戏AI智能体",
+      "llm_tldr_en": "Dreamer-CPC introduces a decentralized model-based MARL method integrating message learning into DreamerV3 world models, enabling agents to communicate history-informed latent states for better cooperation under partial observability, relevant for game AI bots.",
+      "llm_tldr_cn": "Dreamer-CPC针对多智能体强化学习中通信方法仅依赖当前观测的局限，提出将集体预测编码融入DreamerV3世界模型的去中心化方法。每个智能体从反映历史观测的潜状态中推断并交换消息。实验表明该方法有效提升了部分可观测下的协作效率，为训练合作类游戏AI智能体提供了新途径。",
+      "llm_tldr": "Dreamer-CPC针对多智能体强化学习中通信方法仅依赖当前观测的局限，提出将集体预测编码融入DreamerV3世界模型的去中心化方法。每个智能体从反映历史观测的潜状态中推断并交换消息。实验表明该方法有效提升了部分可观测下的协作效率，为训练合作类游戏AI智能体提供了新途径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

@@ -6,40 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-22
-- 运行时间：2026-07-22 20:24:19 UTC
+- 最新运行日期：2026-07-23
+- 运行时间：2026-07-23 21:43:52 UTC
 - 运行状态：成功
-- 本次总论文数：6
-- 精读区：3
-- 速读区：3
+- 本次总论文数：3
+- 精读区：1
+- 速读区：2
 
 ### 今日简报（AI）
-今日研读重点在智能体如何自主决策反应速度与深思规划，以及多智能体间的策略协调学习。  
-最值得关注的是动态切换“反应控制与深思规划”的时机学习，以及将控制策略主动提供给其他智能体的多智能体跟随思路。  
-建议读者从“何时规划”这篇切入，思考动态决策在复杂协作任务中的应用潜力。
-- 详情：[/202607/22/README](/202607/22/README)
+今日聚焦大型语言模型在游戏博弈、自主决策与多智能体协作中的新发现。最值得关注的是，更强的推理能力反而会导致策略多样性崩溃，让模型陷入单一而脆弱的行动模式。如果想让人工智能更灵活，不妨从一个“兼容并蓄”的视角重新思考推理与探索的平衡。
+- 详情：[/202607/23/README](/202607/23/README)
 
 ### 精读区论文标签
-1. [When to Plan: Learning to Select Between Reactive Control and Deliberative Planning](/202607/22/2607.16421v1-when-to-plan-learning-to-select-between-reactive-control-and-deliberative-planning)  
-   标签：评分：8.0/10、query:gah
-   evidence：提出训练元推理代理的强化学习方法，在反应式与规划间切换，适用于游戏AI机器人。
-2. [Strategy-Following Multi-Agent Deep Reinforcement Learning Considering Control Strategies Provided to Other Agents](/202607/22/2607.18719v1-strategy-following-multi-agent-deep-reinforcement-learning-considering-control-strategies-provided-to-other-agents)  
-   标签：评分：8.0/10、query:gah
-   evidence：多智能体深度强化学习中融入人类指令控制，可直接用于游戏AI机器人设计与开发
-3. [Comparative Study of Multi-Agent Actor-Critic Algorithms in Parameterized Action Reinforcement Learning](/202607/22/2607.19117v1-comparative-study-of-multi-agent-actor-critic-algorithms-in-parameterized-action-reinforcement-learning)  
-   标签：评分：8.0/10、query:gah
-   evidence：参数化动作空间多智能体演员-评论家算法，适用于游戏AI bot开发
+1. [When Reasoning Narrows the Move: Diversity Collapse in LLM Game Play](/202607/23/2607.19523v1-when-reasoning-narrows-the-move-diversity-collapse-in-llm-game-play)  
+   标签：评分：9.0/10、query:gah
+   evidence：研究LLM在确定性棋类游戏中的行为多样性坍塌，影响AI bot的行为多样性
 
 ### 速读区论文标签
-1. [Generalize and Guide: Decomposing Rewards for Few-Shot Inverse Reinforcement Learning](/202607/22/2607.17760v1-generalize-and-guide-decomposing-rewards-for-few-shot-inverse-reinforcement-learning)  
+1. [Reward-Driven LLM Agent Workflows: Synthesizing POMDP Routing and Self-Correction for Autonomous Decision-Making](/202607/23/2607.17038v1-reward-driven-llm-agent-workflows-synthesizing-pomdp-routing-and-self-correction-for-autonomous-decision-making)  
    标签：评分：6.0/10、query:gah
-   evidence：利用少样本逆强化学习从演示中泛化学习任务
-2. [Scalable Policy Optimization for Networked Multi-Agent Reinforcement Learning with Continuous State-Action Spaces](/202607/22/2607.18554v1-scalable-policy-optimization-for-networked-multi-agent-reinforcement-learning-with-continuous-state-action-spaces)  
+   evidence：使用POMDP路由和自纠正奖励模型的LLM智能体工作流
+2. [Dreamer-CPC: Message Learning with World Models for Decentralized Multi-agent Reinforcement Learning](/202607/23/2607.19809v1-dreamer-cpc-message-learning-with-world-models-for-decentralized-multi-agent-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：面向连续空间的扩展多智能体强化学习算法
-3. [S3: Stable Subgoal Selection by Constraining Uncertainty of Coarse Dynamics in Hierarchical Reinforcement Learning](/202607/22/2607.19232v1-s3-stable-subgoal-selection-by-constraining-uncertainty-of-coarse-dynamics-in-hierarchical-reinforcement-learning)  
-   标签：评分：6.0/10、query:gah
-   evidence：带内在动机的分层强化学习子目标选择方法
+   evidence：提出去中心化模型基础的多智能体强化学习方法，结合世界模型和消息学习，可用于训练游戏AI智能体
 
 
 <div class="dpr-home-promo-card">
