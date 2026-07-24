@@ -1,0 +1,430 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-24T20:40:23.800879+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 4,
+    "deep_cap": 6,
+    "deep_selected": 4,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2607.20973v1",
+      "source": "arxiv",
+      "title": "Deep Reinforcement-Learning-Guided Model Predictive Control for Preventing Overtakes in Autonomous Racing",
+      "abstract": "This paper addresses defensive blocking in autonomous racing, where a vehicle must prevent a faster opponent from overtaking while operating near its dynamic limits. Different from lap-time minimization, we formulate defense as a spatial occupancy regulation problem via a hierarchical reinforcement-learning guided model predictive control framework. A Soft Actor-Critic strategic layer operates in the Frenet domain to generate geometry-aware defensive references, which are embedded into the nonlinear model predictive control formulation as spatial regularization under friction constraints. Evaluated on the Thunderhill West circuit in simulation, the framework increases average overtake time from 8.8 s to 14.6 s while significantly reducing opponent progress. Meanwhile, it allows the vehicle to utilize 83.4% of available tire force. The framework achieves a 33.3 ms mean solve time (13.9 ms std), supporting real-time high-speed adversarial interaction.",
+      "authors": [
+        "Yufei Xi",
+        "Yijie Liao",
+        "Tulga Ersal"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-23T06:50:59+00:00",
+      "link": "https://arxiv.org/pdf/2607.20973v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Deep RL trained racing agent for defensive blocking in autonomous racing game",
+      "llm_evidence_cn": "深度强化学习训练的竞速游戏防守型驾驶智能体",
+      "llm_evidence": "深度强化学习训练的竞速游戏防守型驾驶智能体",
+      "canonical_evidence": "深度强化学习训练的竞速游戏防守型驾驶智能体",
+      "llm_tldr_en": "Proposes a hierarchical RL-guided MPC framework for autonomous racing, training a defensive agent to prevent overtakes, demonstrating game AI capabilities in a racing simulator.",
+      "llm_tldr_cn": "针对自动驾驶竞速中的防守阻挡问题，提出分层强化学习引导的模型预测控制框架。策略层使用SAC生成防守参考，嵌入NMPC实现空间占据调节，在仿真赛道中将平均超越时间从8.8秒提升至14.6秒，验证了游戏AI在动态对抗任务中的有效性。",
+      "llm_tldr": "针对自动驾驶竞速中的防守阻挡问题，提出分层强化学习引导的模型预测控制框架。策略层使用SAC生成防守参考，嵌入NMPC实现空间占据调节，在仿真赛道中将平均超越时间从8.8秒提升至14.6秒，验证了游戏AI在动态对抗任务中的有效性。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.20952v1",
+      "source": "arxiv",
+      "title": "The Weight of Silence: A Causal Case for Weights Over the Scratchpad in Latent Chess Reasoning",
+      "abstract": "Latent, or silent, reasoning lets language models carry out intermediate computation in continuous vector space instead of words, and is widely assumed to function as an internal scratchpad the model actively consults during inference. Whether that assumption survives reinforcement learning has not been tested directly: existing causal analyses of latent reasoning are confined to math and logic tasks, and compare a model's reliance on its thoughts within a single checkpoint, never before and after an RL stage. We train a chess-playing model through a staged latent-reasoning curriculum followed by reinforcement learning, and find legality climbs monotonically to 61% (from a 48% pre-RL baseline) while checkmate confabulation is eliminated entirely. To locate this gain, we run a six-condition causal intervention suite on the same model before and after RL: substituting or adding matched noise to the latent thought vectors leaves performance unchanged, ablating them causes only mild degradation, and only exact-zero vectors cause collapse. This robustness gap is itself the finding: under exact-zero corruption, legality collapses to 1% pre-RL versus 9% post-RL, a gap that survives correction for testing across the full battery; milder conditions trend similarly without independently reaching significance. RL appears to add robustness to disruption, not reliance on thought content. These results push back against the field's default assumption that latent thoughts function as an actively consulted inference-time scratchpad, and instead indicate latent reasoning's principal effect here is shaping the model's parameters during training. We also demonstrate a working RL gain in chess, a domain outside the math and logic settings where multiple groups report the same latent-reasoning-plus-RL recipe failing to improve accuracy over SFT.",
+      "authors": [
+        "Ishan S. Kshirsagar"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-07-23T06:18:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.20952v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "trains a chess-playing model with reinforcement learning, directly relevant to RL for game AI",
+      "llm_evidence_cn": "使用强化学习训练国际象棋模型，直接相关于游戏AI的RL技术",
+      "llm_evidence": "使用强化学习训练国际象棋模型，直接相关于游戏AI的RL技术",
+      "canonical_evidence": "使用强化学习训练国际象棋模型，直接相关于游戏AI的RL技术",
+      "llm_tldr_en": "Investigates latent reasoning in chess-playing LMs, trains with curriculum and RL, finding RL boosts move legality (61%) and reduces confabulation, causally strengthening reliance on weights over scratchpad.",
+      "llm_tldr_cn": "该论文研究国际象棋语言模型中的潜在推理，通过课程学习和强化学习训练模型，发现RL将走法合法性从48%提升至61%并减少幻觉，因果分析表明RL加强了模型对权重而非草稿板的依赖，为游戏AI的推理机制提供新见解。",
+      "llm_tldr": "该论文研究国际象棋语言模型中的潜在推理，通过课程学习和强化学习训练模型，发现RL将走法合法性从48%提升至61%并减少幻觉，因果分析表明RL加强了模型对权重而非草稿板的依赖，为游戏AI的推理机制提供新见解。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.18597v1",
+      "source": "arxiv",
+      "title": "A Self-Evolving Default Action for Cooperative Tasks with Continuous Action Space",
+      "abstract": "Counterfactual credit assignment has proven effective in multi-agent reinforcement learning (MARL) for discrete action spaces, yet its extension to continuous-action cooperative tasks remains challenging. Existing methods that approximate the counterfactual baseline via Monte Carlo sampling often introduce bias into policy gradients and fail to guarantee convergence to local optima, as the sampled actions may not have been sufficiently trained. To address these limitations, we propose SAFE, a novel MARL framework that employs a counterfactual baseline conditioned on a self-evolving default action sampled from each agent's experience buffer. This design naturally extends to continuous action spaces without relying on additional simulations, reward models, or environment-specific prior knowledge. The baseline accurately quantifies each agent's contribution, and introduces no bias into the deterministic policy gradient, ensuring convergence to local optima. Extensive experiments on cooperative vehicular tasks demonstrate that SAFE consistently outperforms state-of-the-art models.",
+      "authors": [
+        "Shuangyao Huang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-07-21T00:17:55+00:00",
+      "link": "https://arxiv.org/pdf/2607.18597v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "MARL with self-evolving default action for continuous cooperative tasks, useful for game AI",
+      "llm_evidence_cn": "具有自演化默认动作的多智能体强化学习，可用于连续合作任务游戏AI",
+      "llm_evidence": "具有自演化默认动作的多智能体强化学习，可用于连续合作任务游戏AI",
+      "canonical_evidence": "具有自演化默认动作的多智能体强化学习，可用于连续合作任务游戏AI",
+      "llm_tldr_en": "Proposes SAFE, a MARL framework using self-evolving default actions for counterfactual credit assignment in continuous action spaces, applicable to training game AI agents in cooperative games.",
+      "llm_tldr_cn": "针对连续动作空间中的反事实信用分配问题，提出SAFE框架，采用自演化默认行动作为反事实基线。该方法可直接应用于合作型游戏AI训练，解决连续动作下多智能体策略更新的偏差问题。",
+      "llm_tldr": "针对连续动作空间中的反事实信用分配问题，提出SAFE框架，采用自演化默认行动作为反事实基线。该方法可直接应用于合作型游戏AI训练，解决连续动作下多智能体策略更新的偏差问题。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.20668v1",
+      "source": "arxiv",
+      "title": "From Agent Failures to Text Policies: What Works and What Breaks",
+      "abstract": "TextGrad improves language-model systems by revising text from feedback. Its core thesis is that natural-language feedback can act as a gradient for optimizing text components without changing model weights. Applying it to agents is harder because feedback arrives only after a sequence of actions, making it difficult to identify which decision caused failure. We study this problem by separating the ability to follow a useful policy from the ability to learn that policy from experience. Our main finding is a clear gap between these two abilities. Human-written policies improve two frozen 7B agents on TextWorldExpress by 5.0 success points, showing that useful policy text exists. However, policies generated from agent trajectories do not reliably outperform fixed prompting, even with richer traces, counterfactual evidence, or iterative GEPA search. The main challenge for agent-level TextGrad is therefore not executing textual policy updates, but reliably generating and selecting them from experience.",
+      "authors": [
+        "Jaideep Ray",
+        "Ankit Goyal"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-07-22T19:08:19+00:00",
+      "link": "https://arxiv.org/pdf/2607.20668v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Text-based game agents with policy learning from failures, evaluated on TextWorldExpress",
+      "llm_evidence_cn": "在TextWorldExpress文本游戏上评估从失败中学习策略的智能体",
+      "llm_evidence": "在TextWorldExpress文本游戏上评估从失败中学习策略的智能体",
+      "canonical_evidence": "在TextWorldExpress文本游戏上评估从失败中学习策略的智能体",
+      "llm_tldr_en": "Studies text-based agents in TextWorldExpress, showing that human-written policies significantly outperform learned policies from agent trajectories, highlighting the gap between policy following and learning.",
+      "llm_tldr_cn": "研究文本游戏环境中智能体的策略学习问题，在TextWorldExpress上对比人类编写的策略与从轨迹中学到的策略。发现人类策略能显著提升成功率，而从失败中自动生成的策略效果不佳，揭示了策略跟随与策略学习之间的差距。该工作直接探索了游戏AI bot的行为和设计，尤其适用于文本冒险类游戏。",
+      "llm_tldr": "研究文本游戏环境中智能体的策略学习问题，在TextWorldExpress上对比人类编写的策略与从轨迹中学到的策略。发现人类策略能显著提升成功率，而从失败中自动生成的策略效果不佳，揭示了策略跟随与策略学习之间的差距。该工作直接探索了游戏AI bot的行为和设计，尤其适用于文本冒险类游戏。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.17191v1",
+      "source": "arxiv",
+      "title": "Toward Anthropomorphic Dialogue: A Closed-Loop Framework for Human-Like Chat Generation, Evaluation, and Preference Alignment",
+      "abstract": "Human-like private chat requires more than fluent response generation: a system must preserve persona, relationship, memory, bounded knowledge, medium-specific timing, and a coherent multi-turn arc. We present AnthroDial, a closed-loop framework that formulates anthropomorphic dialogue as a joint problem of system architecture, executable evaluation, and diagnostic alignment. It combines (1) a role-conditioned scheduled dialogue runtime with persona and scenario cards, long-term memory, virtual time, and single-draft message decisions; (2) an executable benchmark with an L0 validity gate, five per-turn dimensions, and five dialogue-level dimensions; and (3) a post-training pipeline that filters 16,436 scheduled-decision examples for SFT and applies GRPO with a cognitive-diagnostic, ZPD-aware reward. The reward maintains Kalman-filtered capability estimates for each behavioral dimension, upweights dimensions with larger capability deficits, and uses rollout scores as task-level ZPD matches to focus optimization on learnable weak skills. On a benchmark with 55 personas, 50 scenarios, 50 persona-scenario bindings, and 100 role-conditioned cases per model, we evaluate 16 systems spanning frontier baselines, open models, thinking/no-think variants, and SFT/RL ablations. The strongest non-trained baseline reaches 32.00% strict ACC, while Qwen3.6-27B-SFT+RL reaches 39.00% strict ACC and a 98.5 overall score. In the 9B no-think setting, SFT and RL improve strict ACC from 0.00% to 13.00% and 18.37%. These results show that anthropomorphic dialogue benefits when generation, evaluation, and reward shaping share the same behavioral dimensions.",
+      "authors": [
+        "Wentao Liu",
+        "Siyu Song",
+        "Xi Chen",
+        "Youjia Li",
+        "Xiaokun Wang",
+        "Min Ji",
+        "Ji Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-19T11:06:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.17191v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Closed-loop framework for human-like chat, applicable to anthropomorphic game bots",
+      "llm_evidence_cn": "用于类人聊天的闭环框架，可应用于拟人化游戏bot",
+      "llm_evidence": "用于类人聊天的闭环框架，可应用于拟人化游戏bot",
+      "canonical_evidence": "用于类人聊天的闭环框架，可应用于拟人化游戏bot",
+      "llm_tldr_en": "Presents AnthroDial, a framework for generating and evaluating human-like dialogue with persona and memory, useful for creating anthropomorphic game NPCs.",
+      "llm_tldr_cn": "针对拟人化对话，提出AnthroDial闭环框架，联合解决系统架构、可执行评估与诊断对齐问题。该框架通过角色条件、长期记忆和单次草稿决策实现类人聊天生成，适用于游戏NPC拟人化，提升游戏交互的自然感。",
+      "llm_tldr": "针对拟人化对话，提出AnthroDial闭环框架，联合解决系统架构、可执行评估与诊断对齐问题。该框架通过角色条件、长期记忆和单次草稿决策实现类人聊天生成，适用于游戏NPC拟人化，提升游戏交互的自然感。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.18368v1",
+      "source": "arxiv",
+      "title": "Neuro-Symbolic Meta-Policies for Temporal Knowledge-Graph Memory under Partial Observability",
+      "abstract": "Partially observable reinforcement learning requires deciding what to retain, retrieve, and forget over time. We introduce a neuro-symbolic meta-policy that learns which symbolic memory heuristic to apply at each decision point while keeping execution symbolic. Our setting uses temporal knowledge-graph memory in RoomKG, where hidden state and observations are represented as Resource Description Framework (RDF) graphs and memory is augmented with temporal RDF triple annotations. The model combines knowledge-graph encoding of memory contents with value heads for question answering, exploration, and forgetting, yielding a controller that is both adaptive and inspectable. This gives the work a direct Semantic Web grounding through RDF-based representation, annotation-compatible graph semantics, and graph-based symbolic operations over explicit memory state. On train/test room splits at long-term memory capacity of 512, the qualifier-aware StarE-GNN configuration achieves the best held-out performance among the compared symbolic, neural, and neuro-symbolic systems while preserving step-level traceability of memory-management decisions.",
+      "authors": [
+        "Taewoon Kim",
+        "Vincent François-Lavet",
+        "Michael Cochez"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-20T17:55:00+00:00",
+      "link": "https://arxiv.org/pdf/2607.18368v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL-based neuro-symbolic memory meta-policy, applicable to game AI agents",
+      "llm_evidence_cn": "基于RL的神经符号记忆元策略，可用于游戏AI智能体",
+      "llm_evidence": "基于RL的神经符号记忆元策略，可用于游戏AI智能体",
+      "canonical_evidence": "基于RL的神经符号记忆元策略，可用于游戏AI智能体",
+      "llm_tldr_en": "Introduces a neuro-symbolic meta-policy for memory management in partially observable RL, using temporal knowledge graphs; transferable to game AI for adaptive memory.",
+      "llm_tldr_cn": "针对部分可观察强化学习中的记忆管理，提出神经符号元策略，利用时序知识图谱动态选择记忆操作。该方法可为游戏AI提供可解释的记忆控制，提升其在需要记忆信息的游戏环境中的决策能力。",
+      "llm_tldr": "针对部分可观察强化学习中的记忆管理，提出神经符号元策略，利用时序知识图谱动态选择记忆操作。该方法可为游戏AI提供可解释的记忆控制，提升其在需要记忆信息的游戏环境中的决策能力。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.20834v1",
+      "source": "arxiv",
+      "title": "Offline RL with Hierarchical Action Chunking",
+      "abstract": "Offline goal-conditioned reinforcement learning (RL) holds the promise of learning general-purpose policies from static datasets. However, scaling these methods to long-horizon tasks remains a challenge due to the curse of horizon, where value estimation errors can compound through long chains of bootstrapped Bellman backups. Existing hierarchical approaches mitigate this by decomposing tasks into subgoals, yet they often rely on low-level controllers that suffer from myopic execution and biased value estimates. In this work, we propose Hierarchical Implicit Q-Chunking (HiQC), an offline goal-conditioned RL algorithm that combines high-level latent planning with low-level action chunking. By conditioning the low-level critic on temporally extended action sequences, HiQC enables unbiased k-step value backups, compressing the horizon at both the planning and execution levels. We theoretically demonstrate that this dual decomposition results in a tighter bound on value error under a bounded per-backup error model compared to standard hierarchy or flat chunking alone. Empirically, HiQC achieves the highest aggregate performance among the compared methods on the OGBench suite, with its largest gains on long-horizon navigation tasks such as humanoid-giant.",
+      "authors": [
+        "Ahad Jawaid"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-23T01:48:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.20834v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Offline RL method improves long-horizon policy learning, applicable to game agents",
+      "llm_evidence_cn": "离线强化学习方法改进长序列策略学习，可用于游戏智能体",
+      "llm_evidence": "离线强化学习方法改进长序列策略学习，可用于游戏智能体",
+      "canonical_evidence": "离线强化学习方法改进长序列策略学习，可用于游戏智能体",
+      "llm_tldr_en": "Proposes HiQC, an offline goal-conditioned RL algorithm that combines high-level latent planning with low-level action chunking to mitigate value estimation errors in long-horizon tasks, demonstrating improved performance over baselines.",
+      "llm_tldr_cn": "针对离线目标导向强化学习在长时域任务中价值估计误差累积导致性能下降的难题，本文提出分层隐式Q-分块算法(HiQC)，结合高层潜在规划与低层动作分块，在多个长时域基准上相比现有方法取得显著提升，为解决游戏AI中的长时决策问题提供了有力工具。",
+      "llm_tldr": "针对离线目标导向强化学习在长时域任务中价值估计误差累积导致性能下降的难题，本文提出分层隐式Q-分块算法(HiQC)，结合高层潜在规划与低层动作分块，在多个长时域基准上相比现有方法取得显著提升，为解决游戏AI中的长时决策问题提供了有力工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.21106v1",
+      "source": "arxiv",
+      "title": "AttriMem: Attribution-Guided Process Feedback for Agent Memory Learning",
+      "abstract": "Effective memory is crucial for LLM agents, yet constructing it effectively remains challenging. A memory-construction policy decides what information to extract, store, update, compress, or discard as interactions accumulate. Heuristic memory methods rely on subjective, task-specific rules, which can misalign with downstream objectives and limit cross-task adaptability. RL-based methods, by contrast, learn from task feedback but mainly use outcome- or module-level rewards. These coarse signals indicate task success but cannot identify which intermediate memory contents support the final answer, creating a fine-grained credit-assignment bottleneck. However, constructing such process feedback is prohibitively difficult because intermediate memory decisions lack unique ground-truth targets, while the appropriate credit varies with the agent's uncertain reasoning trajectory and therefore cannot be specified in advance. We propose AttriMem, an attribution-guided process-feedback framework for learning memory-construction policies with RL. AttriMem augments the global outcome reward with local rewards derived from token-level contributions to the final answer. Experiments on long-horizon dialogue question answering show that AttriMem outperforms retrieval-based, heuristic, and RL-based baselines, generalizes across benchmarks and answer models, stabilizes RL optimization.",
+      "authors": [
+        "Qinfeng Li",
+        "Yuntai Bao",
+        "Xinyan Yu",
+        "Hongze Chen",
+        "Wenqi Zhang",
+        "Xuhong Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-23T09:35:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.21106v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL-based memory learning for agents, transferable to game AI training",
+      "llm_evidence_cn": "基于强化学习的智能体记忆学习方法，可迁移至游戏AI训练",
+      "llm_evidence": "基于强化学习的智能体记忆学习方法，可迁移至游戏AI训练",
+      "canonical_evidence": "基于强化学习的智能体记忆学习方法，可迁移至游戏AI训练",
+      "llm_tldr_en": "Proposes AttriMem, an attribution-guided process feedback method for agent memory learning, addressing fine-grained credit assignment in RL memory policies, applicable to training game AI agents with better memory.",
+      "llm_tldr_cn": "为解决智能体记忆学习中的细粒度信用分配问题，提出AttriMem方法，利用归因引导的过程反馈训练记忆策略。该方法可应用于游戏AI智能体，提升其记忆能力，从而在复杂游戏中表现更佳。",
+      "llm_tldr": "为解决智能体记忆学习中的细粒度信用分配问题，提出AttriMem方法，利用归因引导的过程反馈训练记忆策略。该方法可应用于游戏AI智能体，提升其记忆能力，从而在复杂游戏中表现更佳。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.21120v1",
+      "source": "arxiv",
+      "title": "Relative Value Learning",
+      "abstract": "In reinforcement learning, critics typically estimate absolute state values $V(s)$, estimating how good a particular situation is in isolation. However, it turns out that only differences in value are relevant for control. Motivated by this, we propose Relative Value Learning (RV), a framework that learns value differences directly via an antisymmetric function $Δ(s_i, s_j) = V(s_i) - V(s_j)$. We introduce a pairwise Bellman operator and prove it is a $γ$-contraction with a unique fixed point equal to the true value differences, derive well-posed $1$-step, $n$-step and $λ$-return targets and reconstruct generalized advantage estimation from pairwise differences to obtain an unbiased policy-gradient estimator (R-GAE). Beyond theoretical results, we integrate RV with PPO and achieve competitive performance on the Atari benchmark (49 ALE games) compared to standard PPO, indicating that relative value estimation is an effective alternative to absolute critics.",
+      "authors": [
+        "Marc Höftmann",
+        "Jan Robine",
+        "Stefan Harmeling"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-23T09:55:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.21120v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "learning value differences for RL, applicable to game AI training",
+      "llm_evidence_cn": "学习价值差异的强化学习方法，可用于游戏AI训练",
+      "llm_evidence": "学习价值差异的强化学习方法，可用于游戏AI训练",
+      "canonical_evidence": "学习价值差异的强化学习方法，可用于游戏AI训练",
+      "llm_tldr_en": "Introduces Relative Value Learning (RV) that learns value differences directly via an antisymmetric function, with theoretical guarantees and competitive PPO performance.",
+      "llm_tldr_cn": "提出相对价值学习（RV）框架，直接学习状态价值差异而非绝对价值。引入成对贝尔曼算子并证明收敛性，推导出无偏策略梯度估计器R-GAE。与PPO集成后表现竞争力，为强化学习提供新范式，可改善游戏AI的价值估计和训练效率。",
+      "llm_tldr": "提出相对价值学习（RV）框架，直接学习状态价值差异而非绝对价值。引入成对贝尔曼算子并证明收敛性，推导出无偏策略梯度估计器R-GAE。与PPO集成后表现竞争力，为强化学习提供新范式，可改善游戏AI的价值估计和训练效率。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.21302v1",
+      "source": "arxiv",
+      "title": "Expert Behavior Prior Reinforcement Learning",
+      "abstract": "Behavior prior reinforcement learning (BPRL) has emerged as a promising paradigm to improve sample efficiency in online reinforcement learning (RL) by leveraging policy priors derived from offline demonstrations. However, most existing BPRL methods rely on static offline datasets, which often suffer from low data diversity and suboptimal trajectory quality. This reliance restricts the effectiveness of policy priors, hindering both policy exploitation and stability during online training. Consequently, agents are prone to inefficient exploration and unstable learning dynamics. To address these limitations, we deviate from existing offline pre-training methods and propose an Expert Behavior Prior (EBP) algorithm. Specifically, we introduce a Q-guided conditional variational autoencoder (Q-CVAE) that learns to generate expert policy priors directly from the online replay buffer. This enables the generation of high-value actions for guiding policy updates without relying on pre-collected expert trajectories. To further enhance policy exploitation, we propose an expert policy guidance (EPG) mechanism that selects expert actions from a generative support set, and we integrate a policy gradient correction (PGC) module to harmonize Q-guidance with expert supervision, promoting stable and consistent policy improvement. Extensive experiments conducted on robotic control (Gym, PyBullet) and industrial control (DMControl) benchmarks demonstrate that EBP significantly outperforms state-of-the-art online RL algorithms, achieving higher sample efficiency and more stable convergence.",
+      "authors": [
+        "Gong Gao",
+        "Weidong Zhao",
+        "Xianhui Liu",
+        "Ning Jia"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-23T13:26:57+00:00",
+      "link": "https://arxiv.org/pdf/2607.21302v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL with expert behavior priors to improve sample efficiency in online training",
+      "llm_evidence_cn": "利用专家行为先验提升在线训练样本效率的强化学习",
+      "llm_evidence": "利用专家行为先验提升在线训练样本效率的强化学习",
+      "canonical_evidence": "利用专家行为先验提升在线训练样本效率的强化学习",
+      "llm_tldr_en": "Proposes Expert Behavior Prior (EBP) algorithm using Q-guided conditional VAE to generate diverse behavior priors interactively, improving sample efficiency and stability in online RL.",
+      "llm_tldr_cn": "针对现有行为先验强化学习方法依赖静态离线数据集、数据多样性低和轨迹质量差的问题，提出专家行为先验（EBP）算法。该算法通过Q引导的条件变分自编码器在线交互式生成多样化行为先验，提升样本效率和训练稳定性。实验表明EBP能有效改善策略探索和收敛，对游戏AI训练具有方法论借鉴意义。",
+      "llm_tldr": "针对现有行为先验强化学习方法依赖静态离线数据集、数据多样性低和轨迹质量差的问题，提出专家行为先验（EBP）算法。该算法通过Q引导的条件变分自编码器在线交互式生成多样化行为先验，提升样本效率和训练稳定性。实验表明EBP能有效改善策略探索和收敛，对游戏AI训练具有方法论借鉴意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.21419v1",
+      "source": "arxiv",
+      "title": "PATS: Policy-Aware Training Scaffolding for Agentic Reinforcement Learning",
+      "abstract": "In long-horizon LLM agent reinforcement learning, weak policies often repeat similar failures, producing uninformative rollout trajectories and limiting effective policy optimization. Existing skill-centric methods improve exploration by optimizing, filtering, or internalizing reusable skills. However, they remain centered on the skills themselves rather than being designed as adaptive training-time support for the evolving policy. To address this, we propose a policy-centric training paradigm that reframes skills as a dynamic training scaffold. Our framework, Pats, converts rollout groups from the latest policy into evidence cards and uses task-specific evaluation to adjust the context used in subsequent rollouts. Concrete guidance helps weak policies to complete challenging tasks. As policy improves, redundant context is revised or removed to reduce reliance on explicit guidance while preserving useful rollout variation. The policy is optimized with environmental rewards using standard RLVR, and the training scaffold is discarded at deployment. On ALFWorld and WebShop, Pats improves over strong baselines by up to 18.6%. Across seven search-augmented QA benchmarks, it remains competitive while using 32.1% fewer prompt tokens than the baseline.",
+      "authors": [
+        "Yipeng Shi",
+        "Zhipeng Ma",
+        "Yue Wang",
+        "Qitai Tan",
+        "Yang Li",
+        "Peng Chen",
+        "Zhengzhou Zhu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-23T15:24:35+00:00",
+      "link": "https://arxiv.org/pdf/2607.21419v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL training scaffold method for agents could generalize to game AI",
+      "llm_evidence_cn": "智能体强化学习训练脚手架方法有望推广到游戏AI",
+      "llm_evidence": "智能体强化学习训练脚手架方法有望推广到游戏AI",
+      "canonical_evidence": "智能体强化学习训练脚手架方法有望推广到游戏AI",
+      "llm_tldr_en": "Proposes PATS, a policy-centric RL training paradigm that uses dynamic scaffolds to improve policy optimization in long-horizon tasks, enhancing learning efficiency.",
+      "llm_tldr_cn": "针对长时域LLM智能体强化学习中弱策略重复失败导致训练低效的问题，提出策略中心训练范式PATS，将策略滚动组转化为证据卡并动态调整后续上下文，在复杂任务中显著提升策略学习效率和表现，其思路可迁移至游戏AI训练。",
+      "llm_tldr": "针对长时域LLM智能体强化学习中弱策略重复失败导致训练低效的问题，提出策略中心训练范式PATS，将策略滚动组转化为证据卡并动态调整后续上下文，在复杂任务中显著提升策略学习效率和表现，其思路可迁移至游戏AI训练。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
