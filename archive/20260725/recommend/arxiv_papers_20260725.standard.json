@@ -1,0 +1,96 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-25T20:32:20.657430+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.17191v2",
+      "source": "arxiv",
+      "title": "Toward Anthropomorphic Dialogue: A Closed-Loop Framework for Human-Like Chat Generation, Evaluation, and Preference Alignment",
+      "abstract": "Human-like private chat requires more than fluent response generation: a system must preserve persona, relationship, memory, bounded knowledge, medium-specific timing, and a coherent multi-turn arc. We present AnthroDial, a closed-loop framework that formulates anthropomorphic dialogue as a joint problem of system architecture, executable evaluation, and diagnostic alignment. It combines (1) a role-conditioned scheduled dialogue runtime with persona and scenario cards, long-term memory, virtual time, and single-draft message decisions; (2) an executable benchmark with an L0 validity gate, five per-turn dimensions, and five dialogue-level dimensions; and (3) a post-training pipeline that filters 16,436 scheduled-decision examples for SFT and applies GRPO with a cognitive-diagnostic, ZPD-aware reward. The reward maintains Kalman-filtered capability estimates for each behavioral dimension, upweights dimensions with larger capability deficits, and uses rollout scores as task-level ZPD matches to focus optimization on learnable weak skills. On a benchmark with 55 personas, 50 scenarios, 50 persona-scenario bindings, and 100 role-conditioned cases per model, we evaluate 16 systems spanning frontier baselines, open models, thinking/no-think variants, and SFT/RL ablations. The strongest non-trained baseline reaches 32.00% strict ACC, while Qwen3.6-27B-SFT+RL reaches 39.00% strict ACC and a 98.5 overall score. In the 9B no-think setting, SFT and RL improve strict ACC from 0.00% to 13.00% and 18.37%. These results show that anthropomorphic dialogue benefits when generation, evaluation, and reward shaping share the same behavioral dimensions.",
+      "authors": [
+        "Wentao Liu",
+        "Siyu Song",
+        "Xi Chen",
+        "Youjia Li",
+        "Xiaokun Wang",
+        "Min Ji",
+        "Ji Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-19T11:06:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.17191v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "closed-loop framework for human-like chat, enabling anthropomorphic game dialogue",
+      "llm_evidence_cn": "实现人性化聊天的闭环框架，可赋予游戏角色拟人化对话能力",
+      "llm_evidence": "实现人性化聊天的闭环框架，可赋予游戏角色拟人化对话能力",
+      "canonical_evidence": "实现人性化聊天的闭环框架，可赋予游戏角色拟人化对话能力",
+      "llm_tldr_en": "AnthroDial provides a role-conditioned scheduled dialogue runtime and evaluation benchmark for anthropomorphic chat, aligning models via post-training, directly supporting human-like game AI bots.",
+      "llm_tldr_cn": "AnthroDial 提出一个闭环框架，通过角色调度的对话运行时、多维可执行评估以及偏好对齐后训练，实现具备记忆、时间感和连贯弧光的拟人化私聊，为游戏 AI 角色的类人交互提供了系统化方案，有望提升游戏角色的真实感。",
+      "llm_tldr": "AnthroDial 提出一个闭环框架，通过角色调度的对话运行时、多维可执行评估以及偏好对齐后训练，实现具备记忆、时间感和连贯弧光的拟人化私聊，为游戏 AI 角色的类人交互提供了系统化方案，有望提升游戏角色的真实感。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.19555v1",
+      "source": "arxiv",
+      "title": "CHMAS: A Coupled Hierarchical Framework for Multi-Agent Reinforcement Learning",
+      "abstract": "Multi-agent reinforcement learning (MARL) systems face fundamental   challenges in balancing global coordination with local execution   across different temporal scales. This paper introduces the Coupled   Hierarchical Multi-Agent System (CHMAS), a novel framework that   decomposes multi-agent decision-making into centralized strategic   planning and distributed tactical execution with bidirectional   information flow. The strategic layer integrates all agents' states   with an exclusive global environmental state to generate guidance   actions every $T$ timesteps, while tactical agents execute   distributed policies augmented by strategic guidance and local   neighborhood observations. Unlike existing hierarchical approaches   with unidirectional control, CHMAS establishes a feedback mechanism   where accumulated tactical rewards influence strategic objectives   through a coupling coefficient $λ$, ensuring strategic plans   remain grounded in tactical feasibility. To address the   non-stationarity inherent in hierarchical learning, we propose an   asynchronous update protocol where strategic parameters update every   $N_f$ tactical episodes, allowing tactical policies to converge to   quasi-stationary points between strategic changes. We present both a   general bi-level formulation capturing full system dynamics and a   tractable additive approximation enabling rigorous analysis.   Theoretical analysis proves that this asynchronous scheme achieves   $\\mathcal{O}(\\log K/\\sqrt{K})$ convergence for the strategic layer   after $K$ strategic updates under standard assumptions. Experimental   validation in a multi-agent foraging domain demonstrates successful   learning of spatially partitioned exploration strategies, with both   layers converging stably despite hierarchical coupling.",
+      "authors": [
+        "Dongming Wang",
+        "Jie Xu",
+        "Yanyu Zhang",
+        "Wei Ren"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA"
+      ],
+      "published": "2026-07-21T20:22:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.19555v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "hierarchical MARL framework balancing global coordination and local execution",
+      "llm_evidence_cn": "分层MARL框架平衡全局协调与局部执行",
+      "llm_evidence": "分层MARL框架平衡全局协调与局部执行",
+      "canonical_evidence": "分层MARL框架平衡全局协调与局部执行",
+      "llm_tldr_en": "CHMAS decomposes multi-agent RL into centralized strategic planning and distributed tactical execution with bidirectional info flow, improving coordination across time scales.",
+      "llm_tldr_cn": "现有多智能体RL面临不同时间尺度下全局协调与局部执行的平衡难题。CHMAS框架将决策分解为集中式策略层和分布式战术层，引入双向信息流，策略层整合全局状态生成引导动作，战术层据此执行本地策略。实验表明优于单向分层方法。该框架可为游戏AI中多角色协同提供通用设计范式。",
+      "llm_tldr": "现有多智能体RL面临不同时间尺度下全局协调与局部执行的平衡难题。CHMAS框架将决策分解为集中式策略层和分布式战术层，引入双向信息流，策略层整合全局状态生成引导动作，战术层据此执行本地策略。实验表明优于单向分层方法。该框架可为游戏AI中多角色协同提供通用设计范式。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
