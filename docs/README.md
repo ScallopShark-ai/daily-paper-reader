@@ -6,28 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-25
-- 运行时间：2026-07-25 20:36:51 UTC
+- 最新运行日期：2026-07-26
+- 运行时间：2026-07-26 20:57:44 UTC
 - 运行状态：成功
 - 本次总论文数：2
-- 精读区：1
-- 速读区：1
+- 精读区：0
+- 速读区：2
 
 ### 今日简报（AI）
-今日聚焦对话智能化与多智能体协同：精读闭环式拟人对话框架，速览分层多智能体强化新思路。  
-最值得关注的是将生成、评估与偏好对齐融为一体的闭环设计，让聊天机器人更像人；以及通过耦合层级降低多智能体协作的复杂度。  
-想跟上进展？不妨先对比人类反馈式对话评估与对齐的实现路径，再拓展到多智能体系统的分层训练逻辑。
-- 详情：[/202607/25/README](/202607/25/README)
+今日速览两篇强化学习论文，聚焦物理世界模型的动作探索与在线学习的最优策略识别。
+最值得看的方向：融合物理、动作、视觉的世界模型（PAVXploreRL）尝试突破探索瓶颈；非渐近保证为在线RL的策略识别提供了可量化的收敛结论。
+后续可关注这类模型在具身智能场景的落地，或把理论保证用于实际对话/推荐系统的策略迭代。
+- 详情：[/202607/26/README](/202607/26/README)
 
 ### 精读区论文标签
-1. [Toward Anthropomorphic Dialogue: A Closed-Loop Framework for Human-Like Chat Generation, Evaluation, and Preference Alignment](/202607/25/2607.17191v2-toward-anthropomorphic-dialogue-a-closed-loop-framework-for-human-like-chat-generation-evaluation-and-preference-alignment)  
-   标签：评分：8.0/10、query:gah
-   evidence：实现人性化聊天的闭环框架，可赋予游戏角色拟人化对话能力
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [CHMAS: A Coupled Hierarchical Framework for Multi-Agent Reinforcement Learning](/202607/25/2607.19555v1-chmas-a-coupled-hierarchical-framework-for-multi-agent-reinforcement-learning)  
+1. [PAVXploreRL: Physical-Action-Visual World Model Reinforcement Learning with Action Exploration](/202607/26/2607.16602v2-pavxplorerl-physical-action-visual-world-model-reinforcement-learning-with-action-exploration)  
+   标签：评分：7.0/10、query:gah
+   evidence：基于RL的物理动作视觉世界模型学习与动作探索，可用于游戏环境
+2. [Non-Asymptotic Best Policy Identification Guarantees in Online Reinforcement Learning](/202607/26/2607.17201v1-non-asymptotic-best-policy-identification-guarantees-in-online-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：分层MARL框架平衡全局协调与局部执行
+   evidence：在线RL的非渐近最优策略识别，一种游戏AI强化学习技术
 
 
 <div class="dpr-home-promo-card">

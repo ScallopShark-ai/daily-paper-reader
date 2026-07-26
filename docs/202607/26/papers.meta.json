@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-26",
+  "date": "2026-07-26",
+  "generated_at": "2026-07-26T20:57:57",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/26/2607.16602v2-pavxplorerl-physical-action-visual-world-model-reinforcement-learning-with-action-exploration",
+      "section": "quick",
+      "title_en": "PAVXploreRL: Physical-Action-Visual World Model Reinforcement Learning with Action Exploration",
+      "authors": "Han Wang, Zijun Wang, Shuoshuo Xue, Rui Cao, Fengjiao Cheng, Xiaodan Liang, Roy Ka-Wei Lee",
+      "date": "2026-07-18",
+      "pdf": "https://arxiv.org/pdf/2607.16602v2",
+      "score": "7.0",
+      "evidence": "基于RL的物理动作视觉世界模型学习与动作探索，可用于游戏环境",
+      "tldr": "动作条件世界模型需满足物理合理性(P)、动作遵循(A)和视觉保真度(V)，但现有方法依赖专家演示和像素重建，未显式优化PAV目标，泛化受限。为此提出PAVXploreRL，一种基于预训练潜世界模型的RL框架，用奖励显式优化PAV目标，并引入噪声驱动探索分布外动作，无需配对视频。多个基准上平均提升5.6%，生成视频PAV质量更高，策略评估更可靠，减少了Ctrl-World等模型的过高估计偏差。为具身AI世界模型提供了新训练范式。",
+      "tags": "query:gah",
+      "abstract_en": "Action-conditioned world models are a key component of embodied AI, serving as scalable policy evaluators that reduce reliance on expensive real-world rollouts. To accurately capture diverse action-induced dynamics, such models should satisfy three key objectives-Physical Plausibility (P), Action Adherence (A), and Visual Fidelity (V), collectively referred to as PAV-while remaining robust to both in-distribution (ID) expert demonstrations and out-of-distribution (OOD) actions. However, existing methods primarily rely on ID action-video pairs and pixel-level reconstruction losses, which do not explicitly optimize PAV objectives and generalize poorly beyond expert data. To address this, we propose PAVXploreRL, a reinforcement learning framework built on a pretrained latent world model that explicitly optimizes PAV objectives through reward-driven training. To improve action generalization, our method jointly leverages ID trajectories and noise-driven OOD action exploration, without paired video supervision. Experiments show that PAVXploreRL consistently outperforms pretrained baselines, achieving a 5.6% average gain across benchmarks and producing higher-quality PAV properties. As a policy evaluator, it also yields more reliable performance estimates and reduces the overestimation bias of prior expert-only world models such as Ctrl-World. Code: https://github.com/Social-AI-Studio/PAVXploreRL",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/26/2607.17201v1-non-asymptotic-best-policy-identification-guarantees-in-online-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Non-Asymptotic Best Policy Identification Guarantees in Online Reinforcement Learning",
+      "authors": "Joseph Lazzaro, Alessio Russo, Aldo Pacchiano",
+      "date": "2026-07-19",
+      "pdf": "https://arxiv.org/pdf/2607.17201v1",
+      "score": "6.0",
+      "evidence": "在线RL的非渐近最优策略识别，一种游戏AI强化学习技术",
+      "tldr": "在在线表格型强化学习中，最佳策略识别（BPI）旨在高置信地找出最优策略的同时最小化探索样本量。现有算法如Navigate and Stop (NaS)虽具渐近最优性，但缺乏有限样本保证。本文首次对NaS算法进行非渐近分析，证明其样本复杂度不仅由特征时间决定，还显式依赖于MDP的连通性及最优特征时间的曲率等实例相关量。该结果为BPI问题提供了更精确的理论刻画，对实际探索策略设计具有指导意义。",
+      "tags": "query:gah",
+      "abstract_en": "In this work we study the Best Policy Identification (BPI) problem in online, tabular Reinforcement Learning. This is an active sequential hypothesis testing problem in which the learner's objective is to identify an optimal policy in a Markov Decision Process (MDP) with high confidence, while minimizing the expected sample complexity to do so. We consider an online setting with deterministic rewards, where the agent must strategically navigate through the MDP in order to effectively explore. Previous works in the literature have provided asymptotically optimal methods for BPI, such as the Navigate and Stop (NaS) algorithm and its variants, however existing analysis remains asymptotic. In this work, we fill that gap by providing the first non-asymptotic sample complexity guarantees for NaS, showing that its sample complexity depends not only on the characteristic time, but also on the connectivity of the underlying MDP, the curvature of the optimal characteristic time, and other instance-dependent quantities. We identify these additional attributes and make explicit their contributions to the overall sample complexity.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

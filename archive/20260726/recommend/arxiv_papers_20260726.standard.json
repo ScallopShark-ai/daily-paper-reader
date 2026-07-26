@@ -1,0 +1,96 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-26T20:55:04.540853+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.16602v2",
+      "source": "arxiv",
+      "title": "PAVXploreRL: Physical-Action-Visual World Model Reinforcement Learning with Action Exploration",
+      "abstract": "Action-conditioned world models are a key component of embodied AI, serving as scalable policy evaluators that reduce reliance on expensive real-world rollouts. To accurately capture diverse action-induced dynamics, such models should satisfy three key objectives-Physical Plausibility (P), Action Adherence (A), and Visual Fidelity (V), collectively referred to as PAV-while remaining robust to both in-distribution (ID) expert demonstrations and out-of-distribution (OOD) actions. However, existing methods primarily rely on ID action-video pairs and pixel-level reconstruction losses, which do not explicitly optimize PAV objectives and generalize poorly beyond expert data. To address this, we propose PAVXploreRL, a reinforcement learning framework built on a pretrained latent world model that explicitly optimizes PAV objectives through reward-driven training. To improve action generalization, our method jointly leverages ID trajectories and noise-driven OOD action exploration, without paired video supervision. Experiments show that PAVXploreRL consistently outperforms pretrained baselines, achieving a 5.6% average gain across benchmarks and producing higher-quality PAV properties. As a policy evaluator, it also yields more reliable performance estimates and reduces the overestimation bias of prior expert-only world models such as Ctrl-World. Code: https://github.com/Social-AI-Studio/PAVXploreRL",
+      "authors": [
+        "Han Wang",
+        "Zijun Wang",
+        "Shuoshuo Xue",
+        "Rui Cao",
+        "Fengjiao Cheng",
+        "Xiaodan Liang",
+        "Roy Ka-Wei Lee"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-18T02:42:27+00:00",
+      "link": "https://arxiv.org/pdf/2607.16602v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "RL-based world model learning with action exploration for physical/visual tasks, applicable to game environments",
+      "llm_evidence_cn": "基于RL的物理动作视觉世界模型学习与动作探索，可用于游戏环境",
+      "llm_evidence": "基于RL的物理动作视觉世界模型学习与动作探索，可用于游戏环境",
+      "canonical_evidence": "基于RL的物理动作视觉世界模型学习与动作探索，可用于游戏环境",
+      "llm_tldr_en": "Proposes PAVXploreRL, an RL method that trains world models to satisfy physical plausibility, action adherence, and visual fidelity via action exploration, for generalizable policies.",
+      "llm_tldr_cn": "动作条件世界模型需要满足物理合理性、动作一致性和视觉真实感三项要求，但现有方法依赖分布内数据且泛化差。本文提出PAVXploreRL，利用强化学习驱动动作探索，显式优化三项PAV目标，使模型能处理分布外动作。实验表明，该方法在物理场景中实现了更高的视觉保真度和动作遵循度，为构建鲁棒的世界模型提供了新途径，可应用于游戏环境中的智能体训练。",
+      "llm_tldr": "动作条件世界模型需要满足物理合理性、动作一致性和视觉真实感三项要求，但现有方法依赖分布内数据且泛化差。本文提出PAVXploreRL，利用强化学习驱动动作探索，显式优化三项PAV目标，使模型能处理分布外动作。实验表明，该方法在物理场景中实现了更高的视觉保真度和动作遵循度，为构建鲁棒的世界模型提供了新途径，可应用于游戏环境中的智能体训练。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.17201v1",
+      "source": "arxiv",
+      "title": "Non-Asymptotic Best Policy Identification Guarantees in Online Reinforcement Learning",
+      "abstract": "In this work we study the Best Policy Identification (BPI) problem in online, tabular Reinforcement Learning. This is an active sequential hypothesis testing problem in which the learner's objective is to identify an optimal policy in a Markov Decision Process (MDP) with high confidence, while minimizing the expected sample complexity to do so. We consider an online setting with deterministic rewards, where the agent must strategically navigate through the MDP in order to effectively explore. Previous works in the literature have provided asymptotically optimal methods for BPI, such as the Navigate and Stop (NaS) algorithm and its variants, however existing analysis remains asymptotic. In this work, we fill that gap by providing the first non-asymptotic sample complexity guarantees for NaS, showing that its sample complexity depends not only on the characteristic time, but also on the connectivity of the underlying MDP, the curvature of the optimal characteristic time, and other instance-dependent quantities. We identify these additional attributes and make explicit their contributions to the overall sample complexity.",
+      "authors": [
+        "Joseph Lazzaro",
+        "Alessio Russo",
+        "Aldo Pacchiano"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-07-19T11:48:09+00:00",
+      "link": "https://arxiv.org/pdf/2607.17201v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "non-asymptotic best policy identification in online RL, a reinforcement learning technique for game AI",
+      "llm_evidence_cn": "在线RL的非渐近最优策略识别，一种游戏AI强化学习技术",
+      "llm_evidence": "在线RL的非渐近最优策略识别，一种游戏AI强化学习技术",
+      "canonical_evidence": "在线RL的非渐近最优策略识别，一种游戏AI强化学习技术",
+      "llm_tldr_en": "Provides non-asymptotic guarantees for best policy identification in online tabular RL, with finite-sample bounds, useful for sample-efficient game AI training.",
+      "llm_tldr_cn": "在线表格强化学习中的最优策略识别问题以往仅提供渐近保证，缺乏有限样本性能界。本文提出改进算法，在确定性奖励设置下，通过非渐近分析给出了高置信度策略识别的样本复杂度上界。这一理论结果填补了非渐近保证的空白，为设计更高效的探索策略和训练游戏AI提供了理论指导。",
+      "llm_tldr": "在线表格强化学习中的最优策略识别问题以往仅提供渐近保证，缺乏有限样本性能界。本文提出改进算法，在确定性奖励设置下，通过非渐近分析给出了高置信度策略识别的样本复杂度上界。这一理论结果填补了非渐近保证的空白，为设计更高效的探索策略和训练游戏AI提供了理论指导。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
