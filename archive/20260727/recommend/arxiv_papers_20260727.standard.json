@@ -1,0 +1,337 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-27T21:21:06.801286+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2607.21993v1",
+      "source": "arxiv",
+      "title": "Three-Body Alignment: Aligning Chess Agent with Human Reasoning through Reranked Rationale",
+      "abstract": "As reasoning agents become increasingly complex, aligning their underlying reasoning and decision-making processes with human conceptual models is a challenge for AI security and safety. When modelling expert knowledge, understanding how to characterise and integrate insights from agents with fundamentally different reasoning architectures is necessary for safe and predictable deployment. We investigate this alignment through a \\emph{three-body alignment} in chess, analysing the semantic divergence between rationales produced by human experts (Grandmasters), engine-assisted human commentators (who rationalise the outputs of efficiently updatable neural networks, or NNUEs), and Large Language Models (LLMs). Our contributions include: (1) A novel multisource rationale dataset, constructed using an agentic data engineering pipeline to transform unstructured expert commentary into structured, queryable data for alignment evaluation. (2) An empirical analysis of the semantic embedding space. Using t-SNE visualisation, we demonstrate that these sources form distinct clusters, confirming significant heterogeneity and reflecting fundamentally different conceptual approaches to the same environment. (3) An experiment demonstrating that reranking mechanisms can improve human alignment, while quantifying the explicit trade-off with tactical performance, offering a pathway for more interpretable agent decision-making. (4) The preliminary development of an enriched chess narrative dataset structure, designed to lay the groundwork for future evaluations of text rationale similarity and to address the limitations of standard dense retrieval. (5) Finally, we open-source our chess rationales dataset\\footnote{Hugging Face: https://huggingface.co/datasets/jaymarichua/trichess} to support developing novel techniques that integrate diverse expert knowledge into human-aligned intelligent agents.",
+      "authors": [
+        "Jaymari Chua",
+        "Chen Wang",
+        "Liming Zhu",
+        "Lina Yao"
+      ],
+      "primary_category": "cs.GT",
+      "categories": [
+        "cs.GT"
+      ],
+      "published": "2026-07-24T05:38:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.21993v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "aligns chess agent reasoning with human grandmaster reasoning",
+      "llm_evidence_cn": "将国际象棋智能体的推理与人类大师的推理对齐",
+      "llm_evidence": "将国际象棋智能体的推理与人类大师的推理对齐",
+      "canonical_evidence": "将国际象棋智能体的推理与人类大师的推理对齐",
+      "llm_tldr_en": "Proposes three-body alignment to align chess agent rationales with human reasoning, improving semantic similarity to expert explanations and enhancing human-like game AI.",
+      "llm_tldr_cn": "针对国际象棋智能体推理与人类推理存在差异的问题，提出三体对齐方法，通过重排序解释来对齐智能体与人类大师的思维。实验表明该方法能提高解释的语义相似度，为人机对齐和拟人化游戏AI提供新思路。",
+      "llm_tldr": "针对国际象棋智能体推理与人类推理存在差异的问题，提出三体对齐方法，通过重排序解释来对齐智能体与人类大师的思维。实验表明该方法能提高解释的语义相似度，为人机对齐和拟人化游戏AI提供新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.19928v1",
+      "source": "arxiv",
+      "title": "Continuous-Time Reinforcement Learning for $N$-Player Stochastic Differential Games with Exploratory Policies",
+      "abstract": "We study continuous-time reinforcement learning for $N$-player noncooperative stochastic differential games. Each player adopts an entropy-regularized exploratory policy; given the others' actions, the optimal response is a Gibbs distribution, and a Nash equilibrium requires these $N$ conditional distributions to be jointly compatible. We prove that the natural equilibrium concept -- simultaneous Hamiltonian maximization -- is equivalent to this compatibility, and establish a necessary and sufficient condition expressed as a computable cross-partial criterion on the optimal $q$-functions. Nash equilibria exist unconditionally for decoupled and symmetric games. When compatibility fails, a coordinate path integral construction yields an approximate correlated equilibrium with explicit quadratic KL-divergence bounds that vanish locally uniformly as the exploration weight $γ\\to\\infty$. A $q$-function framework for the $N$-player game extends the single-agent $q$-learning theory of [21], with weak martingale characterizations motivating model-free on-policy and off-policy algorithms. The framework extends to the ergodic (infinite-horizon) setting with the same locally uniform $O_R(1/γ)$ asymptotic rates.",
+      "authors": [
+        "Jisheng Liu",
+        "Jing Zhang"
+      ],
+      "primary_category": "math.OC",
+      "categories": [
+        "math.OC"
+      ],
+      "published": "2026-07-22T09:00:00+00:00",
+      "link": "https://arxiv.org/pdf/2607.19928v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "RL for N-player stochastic games directly relevant to game playing agents",
+      "llm_evidence_cn": "N玩家随机博弈的强化学习直接适用于游戏智能体",
+      "llm_evidence": "N玩家随机博弈的强化学习直接适用于游戏智能体",
+      "canonical_evidence": "N玩家随机博弈的强化学习直接适用于游戏智能体",
+      "llm_tldr_en": "Studies continuous-time RL for N-player stochastic differential games with entropy-regularized exploratory policies, establishing necessary and sufficient conditions for Nash equilibria and providing a computational criterion for game AI agents.",
+      "llm_tldr_cn": "本文研究N玩家非合作随机微分博弈中的连续时间强化学习，每个玩家采用熵正则化探索策略，纳什均衡要求条件分布联合兼容。证明了同时哈密顿最大化等价于兼容性，并建立了基于最优q函数的交叉偏导必要与充分条件。该理论为多智能体游戏AI提供了连续时间决策的解析框架和收敛性保证，对复杂对抗环境下的智能体设计有重要价值。",
+      "llm_tldr": "本文研究N玩家非合作随机微分博弈中的连续时间强化学习，每个玩家采用熵正则化探索策略，纳什均衡要求条件分布联合兼容。证明了同时哈密顿最大化等价于兼容性，并建立了基于最优q函数的交叉偏导必要与充分条件。该理论为多智能体游戏AI提供了连续时间决策的解析框架和收敛性保证，对复杂对抗环境下的智能体设计有重要价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.16999v1",
+      "source": "arxiv",
+      "title": "Counterfactual Shapley Credit Assignment",
+      "abstract": "The Credit Assignment Problem (CAP) is fundamental to developing efficient and explainable Reinforcement Learning (RL) agents. Existing frameworks, whether relying on temporal contiguity or hindsight-conditioned reward reweighting, frequently fail to attribute properly between an agent's policy (skill) and environmental stochasticity (luck). A principled approach to CAP must isolate the true causal drivers of observed outcomes from spurious correlations and environmental randomness. We introduce Counterfactual Shapley Credit Assignment, a novel framework grounded in causal theory that attributes credit and blame via the Counterfactual Shapley Value ($φ$-value). By redistributing environmental rewards, $φ$-values enhance temporal credit assignment across three critical dimensions: sparse causality, high stochasticity, and delayed rewards, all while preserving the optimal policy. We derive a consistent estimator that computes $φ$-values efficiently, enabling a new class of policy gradient methods, $φ$-PPO, combined with Prioritized Trajectory Replay (PTR). Empirical results demonstrate that $φ$-values align precisely to the ground truth causes of task rewards with superior sample efficiency in challenging environments where prior state-of-the-art methods fail to converge.",
+      "authors": [
+        "Mingxuan Li",
+        "Kaizhan-Lee",
+        "Elias Bareinboim"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-18T23:28:20+00:00",
+      "link": "https://arxiv.org/pdf/2607.16999v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "novel RL credit assignment method to improve training efficiency, applicable to game AI",
+      "llm_evidence_cn": "新颖的RL信用分配方法，可提升训练效率，适用于游戏AI",
+      "llm_evidence": "新颖的RL信用分配方法，可提升训练效率，适用于游戏AI",
+      "canonical_evidence": "新颖的RL信用分配方法，可提升训练效率，适用于游戏AI",
+      "llm_tldr_en": "Introduces Counterfactual Shapley Credit Assignment, a causal theory-based method that redistributes rewards to properly attribute credit, enhancing RL training; can improve game AI agent learning.",
+      "llm_tldr_cn": "针对传统信用分配方法难以区分智能体技能与环境随机性的问题，本文提出反事实Shapley信用分配框架，基于因果理论通过反事实Shapley值重新分配奖励，从而更准确地归因。该方法从状态、动作和时间三个维度增强时间信用分配，实验表明可提升RL训练效率和可解释性。对于游戏AI bot训练，更准确的信用分配能让bot更快学会正确行为，减少试错，提高最终策略的鲁棒性，对使用强化学习训练游戏AI具有普遍的方法改进价值。实验在经典RL基准上验证了有效性。",
+      "llm_tldr": "针对传统信用分配方法难以区分智能体技能与环境随机性的问题，本文提出反事实Shapley信用分配框架，基于因果理论通过反事实Shapley值重新分配奖励，从而更准确地归因。该方法从状态、动作和时间三个维度增强时间信用分配，实验表明可提升RL训练效率和可解释性。对于游戏AI bot训练，更准确的信用分配能让bot更快学会正确行为，减少试错，提高最终策略的鲁棒性，对使用强化学习训练游戏AI具有普遍的方法改进价值。实验在经典RL基准上验证了有效性。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.17149v1",
+      "source": "arxiv",
+      "title": "A Diagnostic Framework for AI Agent Behavior",
+      "abstract": "AI agents increasingly act within the same clinical, political, scientific, and social systems that behavioral scientists study. Evaluating these systems requires source-level diagnosis: the same behavioral pattern may arise from an agent representational substrate or from the roles, objectives, interaction structures, and governance rules that shape its expression. This Perspective proposes a diagnostic framework for AI agent behavior: layer attribution. The foundational computational layer defines what behaviors are possible through architecture, memory, perception, attention, and representation. The behavioral modulation layer shapes how those capacities are expressed through identity, resources, objectives, social interaction, institutional constraints, and governance. The framework clarifies three consequences: surrogate validity is a model-task-layer relation, human-AI divergence provides diagnostic evidence, and governance requires source attribution before intervention. Treating AI agents as behavioral actors therefore requires evaluation methods that determine where behavior originates before deciding how to explain, validate, or govern it.",
+      "authors": [
+        "Xichen Zhang",
+        "Yingjie Zhang",
+        "Tianshu Sun"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CY"
+      ],
+      "published": "2026-07-19T09:14:27+00:00",
+      "link": "https://arxiv.org/pdf/2607.17149v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "diagnostic framework for AI agent behavior, applicable to analyzing game bot behavior",
+      "llm_evidence_cn": "用于分析AI agent行为的诊断框架，可应用于游戏bot行为分析",
+      "llm_evidence": "用于分析AI agent行为的诊断框架，可应用于游戏bot行为分析",
+      "canonical_evidence": "用于分析AI agent行为的诊断框架，可应用于游戏bot行为分析",
+      "llm_tldr_en": "Proposes a layer attribution framework to diagnose AI agent behavior by separating contributions of computational and modulation layers, useful for improving game bot behavior.",
+      "llm_tldr_cn": "针对AI智能体行为诊断缺乏系统方法的问题，提出一种层次归因框架，将行为归因到计算层与行为调制层。该框架可帮助游戏AI bot开发者辨识行为缺陷来源，从而优化拟人化决策。",
+      "llm_tldr": "针对AI智能体行为诊断缺乏系统方法的问题，提出一种层次归因框架，将行为归因到计算层与行为调制层。该框架可帮助游戏AI bot开发者辨识行为缺陷来源，从而优化拟人化决策。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.20767v1",
+      "source": "arxiv",
+      "title": "Rushes: A Human Preference Dataset for Pluralistic Alignment",
+      "abstract": "We introduce Rushes, a dataset and benchmark for studying revealed human engagement preferences in interactive narrative environments. Rushes is collected through a game interface where users interact with AI-generated branching narratives and select one choice from a small, explicit candidate set at each decision point. Each interaction logs the full candidate set, the user's choice, and the evolving narrative context, yielding time-ordered trajectories with persistent user-level identifiers. Rushes contains 44,226 decision events from 8,167 unique users across six games, capturing sequential, personalized engagement behavior rather than static judgments. We show that user choices exhibit structured, non-random patterns, quantified by a low choice entropy relative to a uniform baseline. We position Rushes as a diagnostic benchmark for pluralistic alignment and demonstrate a robust Engagement Gap: state-of-the-art LLMs, including GPT-5, fail to outperform simple baselines. While classical Matrix Factorization (SVD) captures measurable personalized signal (37.7%), frontier LLMs (34.23%) struggle to even match the Popularity Baseline (36.4%) on event-level choice prediction. This gap suggests that single, population-level objectives, like those used in modern RLHF, appear insufficient to capture heterogeneous, context-dependent engagement signals. As a result, even highly capable models default to majority preferences rather than adapting to individual trajectories. We release Rushes to support research into pluralistic alignment and sequential decision-making in generative systems. The full code for the platform and dataset will be available here: https://github.com/microsoft/rushes",
+      "authors": [
+        "Michael Xu",
+        "Jorge Leandro",
+        "Sudha Rao",
+        "Weijia Xu",
+        "Nebojsa Jojic",
+        "Gabriel DesGarennes",
+        "Chris Quirk",
+        "Bill Dolan"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-22T22:32:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.20767v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "human preference dataset from interactive game environments for aligning AI behavior",
+      "llm_evidence_cn": "来自互动游戏环境的人类偏好数据集用于对齐AI行为",
+      "llm_evidence": "来自互动游戏环境的人类偏好数据集用于对齐AI行为",
+      "canonical_evidence": "来自互动游戏环境的人类偏好数据集用于对齐AI行为",
+      "llm_tldr_en": "Introduces Rushes, a dataset of human decisions in AI-generated branching narratives collected through a game interface, capturing sequential, personalized engagement behavior useful for training human-like game AI.",
+      "llm_tldr_cn": "本文提出Rushes数据集，通过游戏界面收集用户与AI生成的分支叙事互动中的选择行为，包含4.4万次决策事件，记录候选集、用户选择和叙事上下文。分析显示用户选择呈结构化非随机，选择熵较低。该数据集为理解人类在游戏叙事中的偏好提供了基准，可用于训练更具人类化行为特征的游戏AI智能体。",
+      "llm_tldr": "本文提出Rushes数据集，通过游戏界面收集用户与AI生成的分支叙事互动中的选择行为，包含4.4万次决策事件，记录候选集、用户选择和叙事上下文。分析显示用户选择呈结构化非随机，选择熵较低。该数据集为理解人类在游戏叙事中的偏好提供了基准，可用于训练更具人类化行为特征的游戏AI智能体。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.21290v1",
+      "source": "arxiv",
+      "title": "Multi-Task Learning for Heterogeneous Prediction from Video Game State with Transfer Learning",
+      "abstract": "Multi-task learning (MTL) is a promising approach for prediction tasks derived from video game state data, as modern game telemetry provides multiple related supervision signals from the same structured observations. We study whether a shared model trained jointly across tasks in team-based multiplayer games can improve generalization while reducing training and inference cost compared to specialized single-task models. We adapt a multimodal architecture for endpoint prediction to a general multi-task setting that combines rasterized vision inputs, global match context, and per-unit state information through an image encoder and attention-based interaction modeling. Experiments on a large proprietary World of Tanks dataset compare single-task and multi-task training, evaluate weighting strategies for mixed losses and conflicting gradients, and test pre-training/fine-tuning under limited target-data regimes. We also examine within-game transfer across game maps under structured environment shift.",
+      "authors": [
+        "Jonas Peché",
+        "Aliaksei Tsishurou",
+        "Alexander Zap",
+        "Günter Wallner"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-23T13:12:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.21290v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "MTL for prediction from video game state data in team-based multiplayer games",
+      "llm_evidence_cn": "多任务学习用于团队多人游戏的视频游戏状态预测",
+      "llm_evidence": "多任务学习用于团队多人游戏的视频游戏状态预测",
+      "canonical_evidence": "多任务学习用于团队多人游戏的视频游戏状态预测",
+      "llm_tldr_en": "Studies multi-task learning for prediction from game telemetry in team-based games, using a multimodal architecture with transfer learning; shows improved generalization over single-task models.",
+      "llm_tldr_cn": "针对多人团队游戏中多种预测任务利用相同游戏状态数据的特性，研究多任务学习框架，采用多模态架构融合图像、全局上下文和单位信息，结合迁移学习提升预测泛化能力。在《坦克世界》数据集上验证了共享模型在降低训练成本的同时提升性能。该方法可为游戏AI bot的状态理解和决策提供支撑。",
+      "llm_tldr": "针对多人团队游戏中多种预测任务利用相同游戏状态数据的特性，研究多任务学习框架，采用多模态架构融合图像、全局上下文和单位信息，结合迁移学习提升预测泛化能力。在《坦克世界》数据集上验证了共享模型在降低训练成本的同时提升性能。该方法可为游戏AI bot的状态理解和决策提供支撑。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.21557v1",
+      "source": "arxiv",
+      "title": "OpenForgeRL: Train Harness-native Agents in Any Environment",
+      "abstract": "Modern AI agents rely on elaborate inference harnesses such as Claude Code, Codex, and OpenClaw to drive multi-turn reasoning, tool use, and access to external systems. While powerful, these complex harnesses also make agents hard to train end-to-end with open infrastructure, whose SFT/RL stacks cannot natively express stateful, multi-process harness inference. To address this, we present OpenForgeRL, an open-source framework for training harness-based agents end-to-end in diverse environments. OpenForgeRL achieves this with a lightweight proxy that serves the harness's model calls while recording them as training data for a standard RL codebase (e.g., veRL), and a Kubernetes orchestrator that runs each rollout in its own remote container, together enabling training on any harness in any environment at scale. By decoupling training and inference, OpenForgeRL allows researchers to easily train, study, and improve agents directly in the real harnesses and environments they are deployed with. We validate our framework across diverse, complex harnesses and environments, spanning tool/claw-based agents and multimodal GUI browser- and computer-use agents. Using only hundreds to a few thousand tasks, OpenForgeClaw reaches 31.7 pass^3 and 55.9 pass@3 on ClawEval and 33.7 on QwenClawBench. OpenForgeGUI reaches 37.7 on OSWorld-Verified, 63.0 on Online-Mind2Web, and 72.3 on WebVoyager. Both outperform open baselines of similar size on nearly all benchmarks, and in the GUI setting match or surpass models several times larger. Beyond benchmarks, we analyze how harness choice (e.g., ZeroClaw, OpenClaw, Codex) and RL shape agent behavior. We find that some harnesses are substantially harder to learn than others, and that RL improves agentic reliability, such as self-verification, tool coverage, and completing multi-step plans, though critical abilities such as error recovery remain weak.",
+      "authors": [
+        "Xiao Yu",
+        "Baolin Peng",
+        "Ruize Xu",
+        "Hao Zou",
+        "Qianhui Wu",
+        "Hao Cheng",
+        "Wenlin Yao",
+        "Nikhil Singh",
+        "Zhou Yu",
+        "Jianfeng Gao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-23T17:38:30+00:00",
+      "link": "https://arxiv.org/pdf/2607.21557v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "open-source framework for training agents with RL in any environment, including games",
+      "llm_evidence_cn": "开源框架，用RL在任意环境（含游戏）中训练智能体",
+      "llm_evidence": "开源框架，用RL在任意环境（含游戏）中训练智能体",
+      "canonical_evidence": "开源框架，用RL在任意环境（含游戏）中训练智能体",
+      "llm_tldr_en": "OpenForgeRL is an open-source RL framework that enables end-to-end training of complex harness-native agents in any environment, including games, by recording harness model calls as training data.",
+      "llm_tldr_cn": "针对现代AI智能体依赖复杂推理框架难以端到端训练的问题，OpenForgeRL提出一种开源框架，通过轻量级代理记录harness调用并将其转为标准RL训练数据，结合Kubernetes编排实现任意环境下的智能体训练。该框架可直接应用于游戏AI bot的开发，让研究员无需搭建专用RL基础设施即可训练出善于多步推理和工具调用的游戏智能体，降低了用强化学习创造游戏AI的门槛。实验表明，该框架在SWE-bench等任务上取得了有竞争力的结果，证明其有效性。这一工作使得训练复杂的游戏AI agent变得更简单、更可行，对游戏AI bot的设计和开发具有实际推动价值。",
+      "llm_tldr": "针对现代AI智能体依赖复杂推理框架难以端到端训练的问题，OpenForgeRL提出一种开源框架，通过轻量级代理记录harness调用并将其转为标准RL训练数据，结合Kubernetes编排实现任意环境下的智能体训练。该框架可直接应用于游戏AI bot的开发，让研究员无需搭建专用RL基础设施即可训练出善于多步推理和工具调用的游戏智能体，降低了用强化学习创造游戏AI的门槛。实验表明，该框架在SWE-bench等任务上取得了有竞争力的结果，证明其有效性。这一工作使得训练复杂的游戏AI agent变得更简单、更可行，对游戏AI bot的设计和开发具有实际推动价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.21557v2",
+      "source": "arxiv",
+      "title": "OpenForgeRL: Train Harness-native Agents in Any Environment",
+      "abstract": "Modern AI agents rely on elaborate inference harnesses such as Claude Code, Codex, and OpenClaw to drive multi-turn reasoning, tool use, and access to external systems. While powerful, these complex harnesses also make agents hard to train end-to-end with open infrastructure, whose SFT/RL stacks cannot natively express stateful, multi-process harness inference. To address this, we present OpenForgeRL, an open-source framework for training harness-based agents end-to-end in diverse environments. OpenForgeRL achieves this with a lightweight proxy that serves the harness's model calls while recording them as training data for a standard RL codebase (e.g., veRL), and a Kubernetes orchestrator that runs each rollout in its own remote container, together enabling training on any harness in any environment at scale. By decoupling training and inference, OpenForgeRL allows researchers to easily train, study, and improve agents directly in the real harnesses and environments they are deployed with. We validate our framework across diverse, complex harnesses and environments, spanning tool/claw-based agents and multimodal GUI browser- and computer-use agents. Using only hundreds to a few thousand tasks, OpenForgeClaw reaches 31.7 pass^3 and 55.9 pass@3 on ClawEval and 33.7 on QwenClawBench. OpenForgeGUI reaches 37.7 on OSWorld-Verified, 63.0 on Online-Mind2Web, and 72.3 on WebVoyager. Both outperform open baselines of similar size on nearly all benchmarks, and in the GUI setting match or surpass models several times larger. Beyond benchmarks, we analyze how harness choice (e.g., ZeroClaw, OpenClaw, Codex) and RL shape agent behavior. We find that some harnesses are substantially harder to learn than others, and that RL improves agentic reliability, such as self-verification, tool coverage, and completing multi-step plans, though critical abilities such as error recovery remain weak.",
+      "authors": [
+        "Xiao Yu",
+        "Baolin Peng",
+        "Ruize Xu",
+        "Hao Zou",
+        "Qianhui Wu",
+        "Hao Cheng",
+        "Wenlin Yao",
+        "Nikhil Singh",
+        "Zhou Yu",
+        "Jianfeng Gao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-23T17:38:30+00:00",
+      "link": "https://arxiv.org/pdf/2607.21557v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "open-source framework for training agents with RL in any environment, including games",
+      "llm_evidence_cn": "开源框架，用RL在任意环境（含游戏）中训练智能体",
+      "llm_evidence": "开源框架，用RL在任意环境（含游戏）中训练智能体",
+      "canonical_evidence": "开源框架，用RL在任意环境（含游戏）中训练智能体",
+      "llm_tldr_en": "OpenForgeRL is an open-source RL framework that enables end-to-end training of complex harness-native agents in any environment, including games, by recording harness model calls as training data.",
+      "llm_tldr_cn": "针对现代AI智能体依赖复杂推理框架难以端到端训练的问题，OpenForgeRL提出一种开源框架，通过轻量级代理记录harness调用并将其转为标准RL训练数据，结合Kubernetes编排实现任意环境下的智能体训练。该框架可直接应用于游戏AI bot的开发，让研究员无需搭建专用RL基础设施即可训练出善于多步推理和工具调用的游戏智能体，降低了用强化学习创造游戏AI的门槛。实验表明，该框架在SWE-bench等任务上取得了有竞争力的结果，证明其有效性。这一工作使得训练复杂的游戏AI agent变得更简单、更可行，对游戏AI bot的设计和开发具有实际推动价值。",
+      "llm_tldr": "针对现代AI智能体依赖复杂推理框架难以端到端训练的问题，OpenForgeRL提出一种开源框架，通过轻量级代理记录harness调用并将其转为标准RL训练数据，结合Kubernetes编排实现任意环境下的智能体训练。该框架可直接应用于游戏AI bot的开发，让研究员无需搭建专用RL基础设施即可训练出善于多步推理和工具调用的游戏智能体，降低了用强化学习创造游戏AI的门槛。实验表明，该框架在SWE-bench等任务上取得了有竞争力的结果，证明其有效性。这一工作使得训练复杂的游戏AI agent变得更简单、更可行，对游戏AI bot的设计和开发具有实际推动价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
