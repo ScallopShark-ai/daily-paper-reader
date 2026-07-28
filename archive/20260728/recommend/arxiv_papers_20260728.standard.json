@@ -1,0 +1,329 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-28T21:26:23.673827+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2607.21653v1",
+      "source": "arxiv",
+      "title": "Molt: A Scalable PyTorch-Native Training Framework for Agentic Reinforcement Learning",
+      "abstract": "Agentic reinforcement learning research is constant algorithm modification, new estimators, new pipeline stages, new rollout schemes, and in mainstream frameworks each change threads through layers of trainer, distributed backend, and rollout glue: the cost lands on the researcher at every iteration. Molt is a PyTorch-native training framework built to keep that cost small: a codebase compact and clean enough for a researcher to hold in their head, and for an AI coding assistant to read and reason about in its entirety, so the algorithm flow can be traced and changed end to end. The agent is an ordinary program, and one asynchronous loop trains multimodal and mixture-of-experts policies while never training on a token it did not generate, consistent in tokens, policy versions, and model semantics. Leanness does not cost performance: under a matched, fully asynchronous protocol, Molt is statistically comparable to a state-of-the-art Megatron-based stack. Molt is open source and provides recipes and containers at https://github.com/NVIDIA-NeMo/labs-molt.",
+      "authors": [
+        "Jian Hu",
+        "Huiying Li",
+        "Hao Zhang",
+        "Binfeng Xu",
+        "Yifan Zhang",
+        "Shaokun Zhang",
+        "Hemil Desai",
+        "Michael Demoret",
+        "Pavlo Molchanov",
+        "Jan Kautz",
+        "Yi Dong"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL",
+        "cs.DC"
+      ],
+      "published": "2026-07-22T18:06:15+00:00",
+      "link": "https://arxiv.org/pdf/2607.21653v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "PyTorch-native training framework for agentic reinforcement learning, directly applicable to training game AI bots",
+      "llm_evidence_cn": "面向智能体强化学习的PyTorch原生训练框架，可直接用于训练游戏AI智能体",
+      "llm_evidence": "面向智能体强化学习的PyTorch原生训练框架，可直接用于训练游戏AI智能体",
+      "canonical_evidence": "面向智能体强化学习的PyTorch原生训练框架，可直接用于训练游戏AI智能体",
+      "llm_tldr_en": "Molt is a PyTorch-native training framework for agentic RL that simplifies algorithm modification and supports multimodal policies, making it directly applicable to training game AI bots with RL.",
+      "llm_tldr_cn": "Molt是一个面向智能体强化学习的PyTorch原生训练框架，解决了现有框架在算法修改、流水线调整和分布式后端上的高额研究者负担。它提供紧凑清晰的代码库，支持多模态和混合专家策略的异步训练，并确保不训练非自产生成的令牌。该框架使研究人员能够以低成本追踪和修改算法流程，为训练游戏AI智能体提供了高效、可扩展的基础设施，加速了强化学习在游戏智能体开发中的应用。",
+      "llm_tldr": "Molt是一个面向智能体强化学习的PyTorch原生训练框架，解决了现有框架在算法修改、流水线调整和分布式后端上的高额研究者负担。它提供紧凑清晰的代码库，支持多模态和混合专家策略的异步训练，并确保不训练非自产生成的令牌。该框架使研究人员能够以低成本追踪和修改算法流程，为训练游戏AI智能体提供了高效、可扩展的基础设施，加速了强化学习在游戏智能体开发中的应用。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.22732v1",
+      "source": "arxiv",
+      "title": "Spatial Reasoning in LLM Game Agents: Impact of Causal Context and Multi-Step Planning",
+      "abstract": "LLM-based game agents often perform poorly on more complex tasks. This work examines whether these failures are linked to limited spatial reasoning and evaluates whether causal prompt augmentation and multi-step planning can improve win-rates while managing response latency. Using the open-source Qwen3 model family, we conduct experiments across varying model scales, reasoning modes, and planning horizons. We further introduce a focused GVGAI benchmark consisting of three custom games with five difficulty levels to isolate spatial navigation. The evaluation follows two paradigms: an initial ``positioning experiment'' to test an agent's ability to find its exact coordinates, and a study of game-play success. Our results show that while larger models with an enabled thinking mode identify their positions more accurately, overall performance in coordinate matching remains limited for smaller models. Win rates decrease as game levels and layout complexity increase, validating the benchmark's difficulty scaling. Integrating causal context into the prompts tends to improve the agents' success rates, particularly for bigger models. While enabling thinking mode and longer planning horizons significantly improve performance, multi-step planning further reduces mean per-step response times, offering a practical trade-off between reasoning depth and execution speed.",
+      "authors": [
+        "Mohit Jiwatode",
+        "Ronja Fuchs",
+        "Robin Schmöcker",
+        "Bodo Rosenhahn",
+        "Alexander Dockhorn"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-22T12:10:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.22732v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Studies spatial reasoning behavior of LLM game agents",
+      "llm_evidence_cn": "研究LLM游戏代理的空间推理行为",
+      "llm_evidence": "研究LLM游戏代理的空间推理行为",
+      "canonical_evidence": "研究LLM游戏代理的空间推理行为",
+      "llm_tldr_en": "Investigates whether LLM game agents' failures in complex tasks are due to spatial reasoning limitations, and tests causal prompt augmentation and multi-step planning to improve win rates, using Qwen3 models on a custom GVGAI benchmark.",
+      "llm_tldr_cn": "针对LLM游戏代理在复杂任务中表现不佳的问题，本文探索其与空间推理局限的关联，并提出因果提示增强与多步规划方法。实验在基于GVGAI的三个自定义游戏基准上进行，测试不同规模Qwen3模型并评估胜率与响应延迟，结果表明该方法能有效提升游戏代理的空间推理与决策能力，为智能游戏AI的设计提供了新思路。",
+      "llm_tldr": "针对LLM游戏代理在复杂任务中表现不佳的问题，本文探索其与空间推理局限的关联，并提出因果提示增强与多步规划方法。实验在基于GVGAI的三个自定义游戏基准上进行，测试不同规模Qwen3模型并评估胜率与响应延迟，结果表明该方法能有效提升游戏代理的空间推理与决策能力，为智能游戏AI的设计提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.18597v2",
+      "source": "arxiv",
+      "title": "A Self-Evolving Default Action for Cooperative Tasks with Continuous Action Space",
+      "abstract": "Counterfactual credit assignment has proven effective in multi-agent reinforcement learning (MARL) for discrete action spaces, yet its extension to continuous-action cooperative tasks remains challenging. Existing methods that approximate the counterfactual baseline via Monte Carlo sampling often introduce bias into policy gradients and fail to guarantee convergence to local optima, as the sampled actions may not have been sufficiently trained. To address these limitations, we propose SAFE, a novel MARL framework that employs a counterfactual baseline conditioned on a self-evolving default action sampled from each agent's experience buffer. This design naturally extends to continuous action spaces without relying on additional simulations, reward models, or environment-specific prior knowledge. The baseline accurately quantifies each agent's contribution, and introduces no bias into the deterministic policy gradient, ensuring convergence to local optima. Extensive experiments on cooperative vehicular tasks demonstrate that SAFE consistently outperforms state-of-the-art models.",
+      "authors": [
+        "Shuangyao Huang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-07-21T00:17:55+00:00",
+      "link": "https://arxiv.org/pdf/2607.18597v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "MARL with self-evolving default action for cooperative tasks",
+      "llm_evidence_cn": "针对合作任务的基于自演化默认动作的多智能体强化学习",
+      "llm_evidence": "针对合作任务的基于自演化默认动作的多智能体强化学习",
+      "canonical_evidence": "针对合作任务的基于自演化默认动作的多智能体强化学习",
+      "llm_tldr_en": "Proposes SAFE, a MARL framework with a self-evolving default action baseline for continuous cooperative tasks, improving policy gradient and convergence.",
+      "llm_tldr_cn": "连续动作空间下的多智能体合作任务中，现有反事实基线方法常采用蒙特卡洛采样引入偏差，影响策略梯度收敛。本文提出SAFE框架，利用从每个智能体经验缓冲区采样的自演化默认动作构建反事实基线，无需额外模拟即可自然扩展至连续动作空间。该方法有效减少了梯度估计偏差，有助于游戏AI中多智能体协作策略的稳定训练，为连续控制游戏bot的设计提供了可靠的算法支撑。",
+      "llm_tldr": "连续动作空间下的多智能体合作任务中，现有反事实基线方法常采用蒙特卡洛采样引入偏差，影响策略梯度收敛。本文提出SAFE框架，利用从每个智能体经验缓冲区采样的自演化默认动作构建反事实基线，无需额外模拟即可自然扩展至连续动作空间。该方法有效减少了梯度估计偏差，有助于游戏AI中多智能体协作策略的稳定训练，为连续控制游戏bot的设计提供了可靠的算法支撑。",
+      "llm_tags": [
+        "query:gah:composite"
+      ],
+      "matched_query_tag": "query:gah:composite",
+      "matched_query_text": "Papers central to 强化学习和游戏AI bot及拟人化相关论文, especially work that connects or combines: reinforcement learning techniques for training game AI; game AI bot design and development; human-like game artificial intelligence; game playing agents with reinforcement learning; behavior of game AI bots; anthropomorphism in AI game bots; Papers on using reinforcement learning to create game AI bots; Research on humanizing game AI bots.",
+      "matched_requirement_id": "req-composite-gah",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.19199v1",
+      "source": "arxiv",
+      "title": "Conservative Query and Adaptive Regularization for Offline RL Under Uncertainty Estimation",
+      "abstract": "Offline reinforcement learning (RL) aims to learn an effective policy from a static dataset, but its performance is fundamentally limited by dataset coverage. Action preference queries leverage expert feedback without additional environment interaction, enabling policy improvement during offline training. However, existing methods still face two key challenges: selecting informative preference queries and effectively exploiting the collected feedback. Current approaches typically rely only on the distance between policy actions and dataset actions for query selection, while enforcing fixed constraints that keep the policy close to queried preferences. Such strategies often lead to unstable policy updates and integrate poorly with value regularization. To address these limitations, we propose Conservative Query and Adaptive Regularization under Uncertainty Estimation, a lightweight framework that jointly improves preference querying and preference exploitation. Specifically, we employ a Morse network to estimate the uncertainty of policy actions with respect to the offline dataset. Based on this uncertainty, we introduce a conservative query strategy that selectively queries actions near the dataset to preserve Bellman-update stability, together with an uncertainty-aware adaptive regularization scheme that dynamically adjusts data-level constraints during policy optimization. We integrate our framework with CQL and evaluate it extensively on the D4RL benchmark. Experimental results demonstrate superior or competitive performance across a wide range of tasks.",
+      "authors": [
+        "Li-Rong Zhou",
+        "Qin-Wen Luo",
+        "Sheng-Jun Huang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-21T15:34:06+00:00",
+      "link": "https://arxiv.org/pdf/2607.19199v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "offline RL with adaptive regularization and expert queries",
+      "llm_evidence_cn": "带有自适应正则化和专家查询的离线强化学习",
+      "llm_evidence": "带有自适应正则化和专家查询的离线强化学习",
+      "canonical_evidence": "带有自适应正则化和专家查询的离线强化学习",
+      "llm_tldr_en": "Improves offline RL policy learning using informative action preference queries and adaptive regularization, applicable to training game AI from static data.",
+      "llm_tldr_cn": "离线强化学习受限于数据覆盖度，而现有查询方法在选择信息性偏好和利用反馈上存在不足。本文提出一种基于保守查询和自适应正则化的离线RL改进方法，根据策略动作与数据集动作距离选择查询，并采用动态约束调节专家反馈强度。实验表明该方法能稳定提升策略性能，尤其在数据集质量较低时，为利用历史游戏对战数据训练人类化游戏AI提供了有效的离线学习路径。",
+      "llm_tldr": "离线强化学习受限于数据覆盖度，而现有查询方法在选择信息性偏好和利用反馈上存在不足。本文提出一种基于保守查询和自适应正则化的离线RL改进方法，根据策略动作与数据集动作距离选择查询，并采用动态约束调节专家反馈强度。实验表明该方法能稳定提升策略性能，尤其在数据集质量较低时，为利用历史游戏对战数据训练人类化游戏AI提供了有效的离线学习路径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.20822v1",
+      "source": "arxiv",
+      "title": "Robust Asynchronous Q-Learning under Reward and State Corruption via Batching",
+      "abstract": "Motivated by reinforcement learning in harsh environments, we consider the problem of learning an optimal policy subject to adversarially corrupted feedback. Specifically, at each time-step, an adversary can perturb both the reward and state observations of the learner following the Huber contamination model. To defend against such data corruption, we propose {\\texttt{BR-Async-Q}}: a novel, epoch-based, robust \\(Q\\)-learning algorithm built upon two key ideas: (i) partitioning the online data stream into batches to reduce variance, and (ii) constructing robust estimates of the Bellman optimality operator using such batched data. We prove a high-probability $\\ell_\\infty$ error bound for {\\texttt{BR-Async-Q}} that matches that for vanilla \\(Q\\)-learning, up to a small additive term that scales with the fraction of corrupted samples. To our knowledge, this provides the first robustness guarantee for asynchronous \\(Q\\)-learning subject to both reward and state corruption. Furthermore, when only rewards are corrupted, the dependence of our algorithm's bound on the corruption fraction is minimax optimal.",
+      "authors": [
+        "Sreejeet Maity",
+        "Aritra Mitra"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2026-07-23T01:21:05+00:00",
+      "link": "https://arxiv.org/pdf/2607.20822v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Robust Q-learning algorithm for corrupted rewards and states, applicable to noisy game RL environments",
+      "llm_evidence_cn": "针对奖励和状态污染的鲁棒Q学习算法，适用于噪声游戏强化学习环境",
+      "llm_evidence": "针对奖励和状态污染的鲁棒Q学习算法，适用于噪声游戏强化学习环境",
+      "canonical_evidence": "针对奖励和状态污染的鲁棒Q学习算法，适用于噪声游戏强化学习环境",
+      "llm_tldr_en": "BR-Async-Q is a robust Q-learning method using batching to handle adversarial corruption of rewards and states, which can be used for training game AI agents under unreliable feedback.",
+      "llm_tldr_cn": "针对强化学习中奖励和状态可能被对手污染的问题，本文提出鲁棒异步Q学习算法BR-Async-Q。该方法通过将在线数据流分批处理并构建鲁棒的贝尔曼最优算子估计来防御数据腐败。理论证明该算法在高概率下具有与标准Q学习相当的收敛误差界，为在恶劣环境（如不完美反馈的游戏环境）中训练游戏AI智能体提供了可靠的技术。",
+      "llm_tldr": "针对强化学习中奖励和状态可能被对手污染的问题，本文提出鲁棒异步Q学习算法BR-Async-Q。该方法通过将在线数据流分批处理并构建鲁棒的贝尔曼最优算子估计来防御数据腐败。理论证明该算法在高概率下具有与标准Q学习相当的收敛误差界，为在恶劣环境（如不完美反馈的游戏环境）中训练游戏AI智能体提供了可靠的技术。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.21302v2",
+      "source": "arxiv",
+      "title": "Expert Behavior Prior Reinforcement Learning",
+      "abstract": "Behavior prior reinforcement learning (BPRL) has emerged as a promising paradigm to improve sample efficiency in online reinforcement learning (RL) by leveraging policy priors derived from offline demonstrations. However, most existing BPRL methods rely on static offline datasets, which often suffer from low data diversity and suboptimal trajectory quality. This reliance restricts the effectiveness of policy priors, hindering both policy exploitation and stability during online training. Consequently, agents are prone to inefficient exploration and unstable learning dynamics. To address these limitations, we deviate from existing offline pre-training methods and propose an Expert Behavior Prior (EBP) algorithm. Specifically, we introduce a Q-guided conditional variational autoencoder (Q-CVAE) that learns to generate expert policy priors directly from the online replay buffer. This enables the generation of high-value actions for guiding policy updates without relying on pre-collected expert trajectories. To further enhance policy exploitation, we propose an expert policy guidance (EPG) mechanism that selects expert actions from a generative support set, and we integrate a policy gradient correction (PGC) module to harmonize Q-guidance with expert supervision, promoting stable and consistent policy improvement. Extensive experiments conducted on robotic control (Gym, PyBullet) and industrial control (DMControl) benchmarks demonstrate that EBP significantly outperforms state-of-the-art online RL algorithms, achieving higher sample efficiency and more stable convergence.",
+      "authors": [
+        "Gong Gao",
+        "Weidong Zhao",
+        "Xianhui Liu",
+        "Ning Jia"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-23T13:26:57+00:00",
+      "link": "https://arxiv.org/pdf/2607.21302v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "EBP algorithm improves RL sample efficiency with expert priors, useful for game AI",
+      "llm_evidence_cn": "EBP算法通过专家先验提高RL样本效率，适用于游戏AI",
+      "llm_evidence": "EBP算法通过专家先验提高RL样本效率，适用于游戏AI",
+      "canonical_evidence": "EBP算法通过专家先验提高RL样本效率，适用于游戏AI",
+      "llm_tldr_en": "Proposes Expert Behavior Prior (EBP) to overcome low diversity and suboptimal quality in offline BPRL, using Q-guided conditional VAE to learn expert priors, enhancing online RL; applicable to game agent training.",
+      "llm_tldr_cn": "针对行为先验强化学习中离线数据多样性和质量不足的问题，提出专家行为先验（EBP）算法，利用Q引导条件变分自编码器学习专家先验，提升在线RL样本效率和稳定性，可有效训练游戏智能体。",
+      "llm_tldr": "针对行为先验强化学习中离线数据多样性和质量不足的问题，提出专家行为先验（EBP）算法，利用Q引导条件变分自编码器学习专家先验，提升在线RL样本效率和稳定性，可有效训练游戏智能体。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.21876v1",
+      "source": "arxiv",
+      "title": "Variance-Reduced Q-Learning over Static and Time-Varying Networks",
+      "abstract": "We investigate a decentralized reinforcement learning problem involving multiple agents that interact with the same Markov Decision Process (MDP). The agents can exchange information over a network to collectively learn the optimal state-action value function. For this setting, we introduce a novel epoch-based distributed $Q$-learning algorithm called VRDQ, where within each epoch, agents locally estimate the Bellman optimality operator and diffuse information using a consensus-based protocol. For both static and time-varying networks, we establish high-probability finite-time convergence rates for VRDQ that enjoy linear speedups from collaboration. Crucially, we prove that such speedups in sample-complexity require only $\\tilde{O}(1)$ communication, substantially improving upon the communication costs in prior work.",
+      "authors": [
+        "Sreejeet Maity",
+        "Feng Zhu",
+        "Aritra Mitra",
+        "Robert W. Heath"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2026-07-24T00:24:09+00:00",
+      "link": "https://arxiv.org/pdf/2607.21876v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Decentralized multi-agent Q-learning for collaborative learning, applicable to multi-agent game AI",
+      "llm_evidence_cn": "去中心化多智能体Q学习用于协作学习，适用于多智能体游戏AI",
+      "llm_evidence": "去中心化多智能体Q学习用于协作学习，适用于多智能体游戏AI",
+      "canonical_evidence": "去中心化多智能体Q学习用于协作学习，适用于多智能体游戏AI",
+      "llm_tldr_en": "VRDQ is an epoch-based distributed Q-learning algorithm for multiple agents sharing an MDP, achieving linear speedup with minimal communication, useful for training collaborative game bots.",
+      "llm_tldr_cn": "本文研究多智能体共享同一MDP的去中心化强化学习，提出基于分时期和共识的分布式Q学习算法VRDQ。该算法使智能体在静态和时变网络上协作学习最优状态-动作价值函数，仅需极少的通信开销即可实现线性加速。这为训练需要协作的游戏AI智能体提供了样本效率高、通信需求低的算法基础。",
+      "llm_tldr": "本文研究多智能体共享同一MDP的去中心化强化学习，提出基于分时期和共识的分布式Q学习算法VRDQ。该算法使智能体在静态和时变网络上协作学习最优状态-动作价值函数，仅需极少的通信开销即可实现线性加速。这为训练需要协作的游戏AI智能体提供了样本效率高、通信需求低的算法基础。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.23726v1",
+      "source": "arxiv",
+      "title": "Hierarchical Soft Actor-Critic for Sparse-Reward Long-Horizon Reinforcement Learning",
+      "abstract": "Exploration in sparse-reward long-horizon tasks poses significant challenges for reinforcement learning. To address these challenges, we propose a two-level Hierarchical Reinforcement Learning (HRL) framework. The first level handles high-level strategic planning, while the low-level uses the continuous-control Soft Actor-Critic (SAC) algorithm, and they utilize entropy-regularized policy optimization. The proposed framework was trained and evaluated using the Search-and-Rescue-2 (SAR-2) dataset. HRL-SAC effectively addresses sparse-reward long-horizon search problems characterized by delayed rewards and continuous control, and its outperforming the flat SAC baseline reinforcement learning in terms of success rates, coverage efficiency, and convergence. These findings indicate that hierarchical entropy-regularized policies are a promising solution to tackle long-horizon sparse-reward reinforcement learning tasks.",
+      "authors": [
+        "Zahra Abdalla Elashaal",
+        "Afef Hfaiedh",
+        "Nahla Khraief",
+        "Issmail Ellabib",
+        "Giansalvo Cirrincione"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-07-26T15:41:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.23726v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "HRL-SAC for long-horizon tasks, applicable to game AI",
+      "llm_evidence_cn": "分层SAC用于长时域任务，可应用于游戏AI",
+      "llm_evidence": "分层SAC用于长时域任务，可应用于游戏AI",
+      "canonical_evidence": "分层SAC用于长时域任务，可应用于游戏AI",
+      "llm_tldr_en": "Proposes a two-level HRL with SAC for sparse-reward long-horizon tasks, outperforming flat SAC on search-and-rescue; method transferable to game AI.",
+      "llm_tldr_cn": "针对稀疏奖励长时域任务探索困难问题，提出两层分层强化学习框架，上层策略规划，下层用SAC连续控制，在搜索救难任务上成功率和覆盖效率均优于平面SAC基线，方法可迁移至游戏AI领域。",
+      "llm_tldr": "针对稀疏奖励长时域任务探索困难问题，提出两层分层强化学习框架，上层策略规划，下层用SAC连续控制，在搜索救难任务上成功率和覆盖效率均优于平面SAC基线，方法可迁移至游戏AI领域。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
