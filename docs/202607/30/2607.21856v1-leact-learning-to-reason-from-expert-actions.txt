@@ -1,0 +1,1017 @@
+Title: LeAct: Learning to Reason from Expert Actions
+
+URL Source: https://arxiv.org/pdf/2607.21856v1
+
+Published Time: Mon, 27 Jul 2026 00:14:39 GMT
+
+Number of Pages: 27
+
+Markdown Content:
+# LeAct : Learning to Reason from Expert Actions 
+
+Ziran Yang ∗ Chengshuai Shi Raj Ghugare Benjamin Eysenbach Karthik Narasimhan Chi Jin 
+
+Princeton University 
+
+## Abstract 
+
+Modern reasoning models depend on reasoning data, today sourced from human annotations or distilled from stronger LLMs. However, a rich and largely untapped source of supervision lies in expert systems (e.g., game engines, classical planners, theorem provers), which routinely produce near-optimal actions across diverse domains. But these experts are silent: they commit to an action without writing down the chain of thought (CoT) behind it. Recovering that CoT as natural-language reasoning would distill expert knowledge into a student that generalizes beyond the demonstrated actions. We treat it as a latent variable and study how to recover it from the action alone. Our approach, LeAct (Le arning to reason from 
+
+Act ions), optimizes this latent variable: the student samples candidate CoTs for each expert action, and we retain those that measurably improve its own probability of recovering the action. Across imperfect-information games at multiple scales and a simulated robotics benchmark, LeAct reaches the solver’s numerical floor on small enumerable games. At larger scale, it is 5× closer to the solver than the strongest expert-iteration baseline. At Flop Hold’em ( ∼ 10 9 infosets), LeAct 
+
+wins head-to-head by +60 mbb/g, and on the robotics probe it is the only training recipe that improves on direct imitation. We present a principled framework and the result: expert systems become a categorically new source of reasoning teachers for foundation models. 
+
+## 1 Introduction 
+
+Building chain-of-thought (CoT) data is now a crucial bottleneck for reasoning language models [ 33 ,11 ]. There is no shortage of work trying to scale beyond human annotation by automatically labeling CoT, either through distillation from stronger LLMs [ 14 , 30 , 11 ] or by bootstrapping a model’s own outputs [ 58 , 10 , 37 ]. But these methods rarely close the loop directly on the CoT itself. Filtering on synthetic CoT typically targets answer correctness or surface plausibility. But whether the CoT actually contributes to the student’s prediction remains uncertain. We draw from a different source: silent action experts (game solvers [ 62 , 45 , 6 ], classical planners, robotic planners [ 46 ], theorem provers [ 26 ]). Each commits to a near-optimal action at every state, but neither the action nor the reasoning behind it is expressed in natural language. The naive approach, asking a student LLM to write a CoT for each expert action, runs into rationalization [ 50 , 22 ]: the CoT can be plausible while bearing no causal link to the action it accompanies. We close the loop instead. For every state-action pair, the student samples multiple candidate CoTs, and we retain only those that raise the student’s own probability of recovering the expert action. The filter is the load-bearing step: replacing it with random ranking erases the advantage in our ablations. 
+
+LeAct (Le arning to reason from Act ions) realizes this idea as an iterative training pipeline (Fig. 1). The conventional reason-then-act paradigm [ 56 ] takes reasoning as input and produces actions at inference time; LeAct runs that loop in reverse at training time, conditioning on the expert action,                   
+
+> ∗Correspondence: zirany@princeton.edu
+> Preprint. arXiv:2607.21856v1 [cs.LG] 23 Jul 2026 expert action y*
+> 1Backward Generation
+> sample CoT given y*
+> z ~ q t( z | x, y* )
+> N candidates
+> 2Forward Scoring
+> log-density gain of CoT
+> Δ = log p(y* | x, z) − log p(y* | x)
+> filter z
+> iterate
+> Trained
+> Model
+> inference: obs →
+> CoT →
+> action
+> 1Backward Generation
+> x= (King ♣, sequence: call–raise–call)
+> y* = (fold: 0.0, call: 0.3, raise: 0.7)
+> Sample N = 3 candidate CoTs:
+> z₁ fold, board scary…
+> z₂ call is top, raise for value…
+> z₃ call, control pot size…
+> Worked example
+> K
+
+♥
+
+> K
+
+♣         
+
+> (Leduc Hold'em, single infoset)
+> 2Forward Δ scoring
+> z₁ fold, board scary… Δ = −0.05 ✗
+> z₂ call is top, raise for value… Δ = +0.18 ✓
+> z₃ call, control pot size… Δ = +0.04 ✓
+> Expert
+> Oracle
+> High-Δ CoTs: new data “distilled” from expert oracle
+
+Figure 1: LeAct turns silent action experts into reasoning teachers. For each state x, the student samples candidate explanations conditioned on the oracle’s action π∗(· | x). We keep those that raise the student’s predicted probability of the action and use them as CoT to fine-tune the student. sampling reasoning that recovers it, and training on the reasoning that survived the filter. The recipe accepts any action-only oracle: a CFR solver, a deep RL policy, or a frontier LLM committed to a single demonstration trajectory. We test all three families: CFR solvers on enumerable poker settings like Leduc Hold’em [ 44 ]; a DeepCFR [6] policy on Flop Hold’em ( ∼ 10 9 infosets); and frontier-LLM successful trajectories on a simulated robotics benchmark [9]. 
+
+Contributions. We make three: a new non-LLM source of CoT supervision, a latent-variable derivation of the algorithm, and empirical results on various games and a robotics benchmark. • A non-LLM data source for CoT supervision. Rather than mining intermediate text [ 37 , 58 ], 
+
+LeAct converts a structured action policy π∗(· | x) from any non-LLM oracle into natural-language reasoning data, a categorically distinct supervision modality from prior CoT pipelines. • A principled algorithm (§3). We treat the CoT as a latent variable connecting state X to expert action Y ∗ ∼ π∗, and derive a learning procedure from this view. The E-step reduces to ranking candidate CoTs by how much each helps the student’s own decision-making, and the M-step prescribes π∗ as the SFT target. LeAct sits in the recent line of latent-EM self-improvement [ 37 ], but anchors the latent to an external expert action rather than to text the model itself produced. • Empirical results (§5–6). We test LeAct on imperfect-information games [ 21 ] at multiple scales and on a simulated robotics cube-stacking benchmark [ 9]. A student trained with LeAct matches the expert solver on small games, beats both behavior-cloning and expert-iteration baselines at the large games we test, and is the only recipe that improves on direct imitation in our robotics setting. The advantage holds on unseen states, and we trace it to the explanation-selection step. 
+
+## 2 Related Work 
+
+The closed-loop feedback gap in CoT supervision. There is no shortage of CoT-supervision work: humans label rationales by hand [ 55 , 17 ], stronger LLMs distill them into smaller students [ 14 , 30 , 11 ], and self-improvement loops mine latent thoughts from text the model itself produces [ 58 , 15 , 59 ,10 , 42 , 37 ]. What none of these provide is a closed-loop feedback signal that decides which CoTs are worth training on by checking them against an external authority. Existing pipelines either skip the filter entirely (annotation, distillation), filter by binary correctness against a single verifiable answer [ 58 , 10 , 42 ], or filter by the model’s own likelihood [ 37 , 7 ]. In every case the supervision signal is either absent or LLM-internal. LeAct fills this gap: each candidate CoT survives only if it measurably increases the student’s own probability of recovering an external oracle’s action, closing the loop with supervision that originates outside the LLM family. 2External verifiable feedback for training reasoning. A second line of work uses an external oracle or verifier as the training signal, instead of (or alongside) text the LLM itself produced. Pairing a generator with an external checker is a long-running training recipe across game outcomes, formal verifiers, and theorem provers [ 41 , 29 , 40 , 48 , 16 , 34 , 25 , 26 , 61 , 23 , 31 ]. In the LLM-reasoning literature this signal takes three forms. At the outcome level, reinforcement learning with verifiable rewards [ 39 , 11 , 19 , 33 , 13 , 28 , 18 , 52 ] runs RL against a binary reward when the final answer matches ground truth. Expert Iteration [ 2] and rejection sampling fine-tuning [ 8 , 57 , 47 ] use the same outcome signal in an SFT loop: sample candidates, keep those the oracle endorses, fine-tune on the survivors. At the step level, process reward models [ 51 , 24 , 53 , 60 , 38 ] train a separate verifier and apply it to each reasoning step. LeAct uses a graded version of the Expert Iteration signal: each candidate CoT is scored by how much it raises the student’s probability of the oracle’s full action distribution, a continuous signal that works where the optimal action is mixed and no single token is the correct answer. Conditioning the backward CoT on the expert action is a hindsight-relabelling step [ 1, 27 ], re-pairing each state with an outcome the model knows is correct. A complementary line treats reasoning itself as inference-time search [ 12 , 43 ]; LeAct acts at training time, selecting which CoT samples become supervision rather than how to deploy them. 
+
+## 3 Method 
+
+The goal is to convert action-only oracles into thinking traces for training LLMs. Two obstacles: the reasoning trace z is never observed, inherently a latent variable; and the observed actions are in structured game action space rather than text, modality misalignment. We design a closed-loop that adapts Ruan et al. [37] ’s proposal-and-score framework to our scope of action supervision instead of text backfilling. 
+
+3.1 Problem Formulation Setup. We consider a decision-making setting where states x ∈ X are drawn from a task of interest, in which an action oracle (a CFR solver, a classical planner, a verifiable controller, or a trained policy) supplies a per-state expert action distribution π∗( · | x). The student LLM follows a reason-then-act paradigm, generating an intermediate chain-of-thought z before committing to an action y; we model this explicitly by treating z as a latent reasoning variable and factoring the joint distribution as 
+
+pθ (z, y | x) = pθ (z | x) pθ (y | x, z ). Training data is {(xi, π ∗( · | xi)) }i: we observe states and expert policies but no reasoning traces. 
+
+Objective. Maximise the marginal log-likelihood of expert actions under the student LLM, 
+
+J (θ) = Ex Ey∼π∗(·| x)
+
+log pθ (y | x), (1) intractable because pθ (y | x) = P 
+
+> z
+
+pθ (z | x) pθ (y | x, z ) marginalises a latent natural-language trace. The outer expectation Ey∼π∗ is realised at the M-step (§3.3): closed-form against π∗ when the oracle exposes a full distribution, and a Dirac mass when it commits to a single action. 
+
+3.2 A View from Variational-EM Backward proposal and IWAE bound. Introduce a backward proposal qbwd (z | x, y ), instantiated by prompting the LLM to generate a CoT given (x, y ), and draw N candidates z1, . . . , z N ∼ qbwd (· | 
+
+x, y ) per state. The N -sample importance-weighted bound [7], which we denote LN (θ), is 
+
+J (θ) ≥ L N (θ) := Ex Ey∼π∗ Ez1..N ∼qbwd (·| x,y )
+
+"
+
+log 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+pθ (zi, y | x)
+
+qbwd (zi | x, y )
+
+#
+
+, (2) strictly tighter than the standard ELBO and exact as N → ∞ , holding for any qbwd including a fixed LLM (which sidesteps the variational gradient through qbwd that the N =1 ELBO would require). Burda et al. [7, Eq. 8] show that the gradient of LN (θ) is a per-sample weighted SFT update, 
+
+∇θ LN = Ex Ey∼π∗ Ez1..N ∼qbwd 
+
+" NX
+
+> i=1
+
+ewi ∇θ log pθ (zi, y | x)
+
+#
+
+, (3) 3with normalised soft weights ewi = wi/ P 
+
+> j
+
+wj and wi = pθ (zi, y | x)/q bwd (zi | x, y ), and qbwd 
+
+held fixed at the previous-round parameters within each round, evolving across rounds through the shared M-step updates. 
+
+Factorising the IWAE weight wi into a task term and a proposal term. Bayes’ rule factorises each per-sample weight wi from Eq. (3) as 
+
+wi = pθ (y | x, z i)
+
+pθ (y | x)
+
+| {z } 
+
+> = exp ∆( zi;x,y )
+
+· pθ (zi | x)
+
+qbwd (zi | x, y )
+
+| {z } 
+
+> ρ(zi;x,y )
+
+· pθ (y | x), (4) with ∆( z; x, y ) := log pθ (y | x, z ) − log pθ (y | x). The marginal pθ (y | x) is constant in i and cancels in ewi = wi/ P 
+
+> j
+
+wj . The two remaining factors live on opposite sides of the action–CoT modality boundary. ∆ is a ratio over the structured expert action y (a probability vector or discrete label whose task-level meaning is independent of its language rendering), and asks whether zi raises the student’s probability of y (implementation in §3.3). ρ is a ratio over the free-form CoT zi,which has no such structured target; it measures whether the proposal exploited y in generating zi,not whether zi usefully decides y. We therefore approximate ewi ∝ exp ∆( zi; x, y ), retaining the task-grounded factor; dropping ρ is unavailable to latent-text variants without an action anchor [ 37 ]. §6 verifies the resulting ∆-only filter is load-bearing; App. A.1 gives the bound-level statement and the conditions under which the ρ-drop preserves ranking. 
+
+LeAct objective. Substituting ewi ∝ e∆( zi; x,y ) into Eq. (3) yields the (approximate) M-step that defines the LeAct training objective: 
+
+max  
+
+> θ
+
+Ex Ey∼π∗(·| x) Ez1..N ∼qbwd 
+
+h NX
+
+> i=1
+
+ewi log pθ (zi, y | x)
+
+| {z }
+
+> SFT loss
+
+i
+
+, ewi = e∆( zi; x,y )
+
+PNj=1 e∆( zj ; x,y ) . (5) In §3.3 we approximate this softmax with a hard top-K filter to recover a plain joint SFT loss. 
+
+3.3 LeAct in Practice 
+
+We now specify the three stages that produce the SFT dataset D and realise the M-step: backward generation of CoT candidates, forward-delta evaluation with top-K selection, and expert-policy forcing combined with joint backward supervision. 
+
+Backward generation (E-step proposal). We instantiate the backward proposal qbwd by prompting the current student. The prompt gives the state x and a qualitative summary ˜π∗ of the expert distribution π∗(· | x) (for example, “mostly fold with occasional calls”), and asks the student to explain why this strategy is optimal. We draw N candidates z1, . . . , z N per state. The qualitative redaction prevents the backward generator from copying π∗ verbatim from its prompt (example traces in App. G). Conditioning on the expert action anchors the explanation in a known-good answer rather than searching forward for one, applying the hindsight-relabelling intuition (§2) to CoT supervision: the silent action becomes a teaching signal once paired with the explanation it licenses. 
+
+Forward delta scoring and top-K selection. For each candidate zn we evaluate ∆( zn; x, y ) from Eq. (4) , with both terms read off the student’s parsed textual policy line over actions (implementation and fidelity audit in App. A.4). The conditional log pθ (y | x, z n) uses the line decoded under the candidate trace; the baseline log pθ (y | x) = log Ez∼pθ (z|x)
+
+pθ (y | x, z ) is estimated by Monte Carlo from M self-generated forward traces z(i) ∼ pθ (z | x) (no gold-action conditioning). We then form the per-state average ¯∆( z; x) = Ey∼π∗ [∆( z; x, y )] . For oracles that commit to a single action rather than a distribution, the log-likelihood terms in ∆( z; x, y ) are replaced with a heuristic action-match reward against y∗; the rest of the pipeline is unchanged. Carrying the softmax weights ewi ∝ e∆i into the M-step costs O(N · |X | ). We sparsify in two complementary steps: 
+
+Zx = top -Kzj ∼ qbwd : ¯∆( zj ; x) > 0 , D = {(x, z ) : x ∈ X , z ∈ Z x}. (6) The positive- ¯∆ filter is a semantic admission criterion (only baseline-beating traces enter SFT), not a soft-weight approximation; it is what makes the round-over-round bound non-decreasing. The top-K
+
+4Algorithm 1: The LeAct algorithm                                                                       
+
+> Input :Expert oracle π∗, initial model θ0, states X, backward prompt template Pbwd , candidates
+> N, selection count K, rounds R
+> Output : Trained model θR
+> for round r= 1 ,2, . . . , R do
+> // E-step: backward generation
+> for each state x∈ X do
+> Sample z1, . . . , z N∼pθr−1
+>  · | Pbwd (x, ˜π∗(x)) 
+> // E-step: forward delta scoring (impl. App. A.4)
+> for each candidate (x, z j)do
+> ¯∆j←¯∆( zj;x)// average ∆from Eq. (4) ,y∼π∗(· | x)
+> // Hard top-Kon positive deltas
+> for each state xdo
+> Zx←top -K{zj: ¯∆j>0}
+> // M-step: forward + backward joint SFT
+> Dfwd
+> r← { (x, (z, π ∗(· | x))) : x∈ X , z ∈ Z x}Dbwd
+> r← { (( x, ˜π∗), z ) : x∈ X , z ∈ Z x}
+> θr←SFT  θr−1,Dfwd
+> r∪ D bwd
+> r
+> 
+> return θR
+
+indicator is the softmax truncation, cutting cost to O(K · |X | ). The gate tightens across rounds: as the student improves, traces that merely match its current forward output drop out. 
+
+Expert-policy forcing and joint backward supervision (M-step). Applying the top-K filter from Eq. (6) to the LeAct objective Eq. (5) reduces the M-step to a joint SFT loss L = Lfwd + Lbwd on the selected traces D. Lfwd trains the forward student on inputs x to emit z followed by the oracle’s full action distribution π∗(· | x). The analogy is teacher forcing in sequence modelling: there the ground-truth token replaces the model’s own sample as the next-step target; here the oracle’s distribution replaces any student-decoded policy as the action target. We call this expert-policy forcing (EPF). 
+
+Lbwd retrains the backward proposal on inputs (x, ˜π∗) to emit z, the reweighted-wake-sleep [ 4]update on qbwd . EPF is closed-form against a distributional oracle, and reduces to standard SFT on the single action when the oracle commits to one. Across rounds, Lbwd tracks qbwd to the posterior under the current student, monotonically tightening the IWAE bound. Full formulae are in App. A.2; iteration dynamics are in App. C. 
+
+## 4 Experimental Setup 
+
+We evaluate LeAct on six imperfect-information games (Leduc Hold’em at three scales, Liar’s Dice, 3-Player Leduc, Flop Hold’em) and the BuilderBench [ 9] robotics cube-stacking benchmark, summarised in Table 1; per-domain rules and oracle construction are in App. H.1, F. 
+
+Recipe and baselines. We use Qwen3-8B [ 35 ] as the student LLM throughout. Fixing the backbone is by design: it isolates supervision quality from model scale, Qwen3-8B is a representative open-weight student, and 8B fits within the compute budget required to fully train all seven settings. The base model lacks the game-specific forward/backward competence to seed reasoning traces directly, so the two iterative methods (C OT E XIT and LeAct ) both initialise from a frontier-LLM-generated coldstart corpus and run 3 training rounds. The coldstart is shared per-setting between the two, so any gap between them is attributable to the iteration phase. Full setup details are in App. H. • NOCOT BC skips the CoT-candidate step: a single SFT pass on (x, π ∗(· | x)) pairs without a reasoning channel. Because it produces no CoT, it is not directly comparable on a data-centric basis with the iterative methods; we report it as a memorisation anchor. • COT E XIT is standard expert iteration [ 2, 41 ] with a thinking model: each round samples N =8 
+
+forward rollouts (z, y ) per state, ranks them by KL of the model’s parsed action distribution to the oracle, retains the top-K=2 as next-round SFT data, and uses the parsed action distribution itself (not π∗) as the action target (the standard expert-iteration practice; we ablate this in §6). • LeAct samples N =8 backward CoT candidates per state conditioned on the expert action, ranks them by forward delta against the student’s own self-baseline ( M =4 parallel forward decodings, 5Table 1: Evaluation spans four orders of magnitude in scale across game families and a robotics domain. Per-setting oracle, metric, and regime.                                  
+
+> Domain Scale Oracle Metric Regime (split) Leduc 6r2s 4,032 CFR Exploitability Imitation (full tree) Leduc 10r4s 47,040 CFR Exploitability Both (full / rank-split) Leduc 13r4s 79,872 CFR Exploitability Imitation (full tree) Liar’s Dice 24,576 CFR Exploitability Imitation (full tree) 3-Player Leduc 13,878 CFR NashConv Imitation (full tree) Flop Hold’em (FHP) ∼10 9DeepCFR KL + mbb/g Generalisation (20K hold-out) BuilderBench 46 tasks Frontier-LLM traj. task progress Both (in-domain / OOD)
+> “Both” = the game is evaluated under both imitation (full tree) and generalisation (held-out split) regimes.
+
+no gold-action conditioning), retains the top-K=2 as next-round SFT data, and uses π∗ as the action target (expert-policy forcing). This is not a design choice: the M-step prescribes it (§3.2), and empirically it is also the better target (§6). Two reasons we do not implement RL/policy-gradient baselines (e.g., GRPO [ 11 ]): this work targets SFT / mid-training, and C OT E XIT already approximates a coarse-grained REINFORCE through its rollout-and-bootstrap loop. Each round retains K=2 CoTs per state. C OT E XIT trains on the forward direction only ( K|X | examples per round), while LeAct ’s M-step jointly trains forward and backward directions ( 2K|X | per round). For each (method, setting) we report at the round (out of 3) with the best evaluation metric. Per-round dynamics, the stopping rule, and R1-only separation evidence are in App. C. 
+
+Two output formats. The seven settings split into two regimes by what the model emits at decoding time. The six imperfect-information games (Leduc, Liar’s Dice, 3-Player Leduc, FHP) ask the model to output a mixed-strategy distribution per state. Each forward decode emits a parsed action distribution whose KL to the oracle π∗ is the unit of supervision. BuilderBench instead asks for a single JSON action per turn over a multi-turn cube-stacking rollout: success is multi-step progress. Absolute scores are not comparable across regimes; only within-regime method ordering is. Because BuilderBench’s per-state KL is unavailable when the oracle commits to a single action, we replace forward-delta scoring (and C OT E XIT’s ranking) with a heuristic action-match reward against the oracle’s action y∗ for both methods (App. D.2.1); the rest of the recipe is unchanged. 
+
+Metrics. For two-player zero-sum games (Leduc, Liar’s Dice) we report exploitability (best-response gap to Nash; 0 = Nash). For 3-Player Leduc we report NashConv [ 20 ], an n-player generalisation that reduces to 2× exploitability when n=2 . At FHP we report mean KL to the DeepCFR teacher and chip-outcome win rate in mbb/g (milli-big-blinds per game, the standard heads-up play-strength unit; App. D.3). On BuilderBench we report cube-placement progress (per-task fraction of cubes placed at target positions, averaged over 64 inference rollouts per task and then across tasks). All reasoning-game metrics are reported under single (one CoT → one action) and BON (per infoset, the candidate with smallest KL to π∗ across N samples; oracle-aware), the standard inference-time scaling axis [54]. All are lower-is-better, except BuilderBench’s cube-placement progress. 
+
+Evaluation regime. Imitation is evaluated on the full game tree at enumerable scales (Leduc, Liar’s Dice, 3-Player Leduc) and on BuilderBench’s in-domain 26 -task partition (where the trajectory pool produced at least one fully-successful episode). Generalisation is evaluated on a held-out infoset split at FHP, a feature-disjoint rank-split at Leduc 10r4s (test ranks never appear in training), and BuilderBench’s OOD 20 -task partition (where the best-of-3 frontier-model trajectory pool produced no successful trajectory; App. H.2). 
+
+## 5 Results 
+
+LeAct treats expert actions as imitation supervision while producing a latent CoT alongside each action; the empirical question is whether this latent helps relative to imitation without latent (N OCOT BC) or with self-generated latent that bypasses our backward-and-score loop (C OT E XIT). We organise the comparison along two axes. Imitation quality (§5.1): under matched coldstart and data budget, how closely does the trained forward policy track the expert? We measure across enumerable game scales (Leduc 4K– 80 K), player counts (3-player Leduc), game families (Liar’s 610 3             
+
+> 10 2
+> 10 1
+> 10 0gpt-5.5
+> Single-sample Coldstart NoCoT BC CoT ExIt LeAct
+> Leduc 6r2s
+> (4K)
+> Leduc 10r4s
+> (47K)
+> Leduc 13r4s
+> (80K)
+> Liar's Dice
+> (24K)
+> 3P Leduc
+> (14K)
+> 10 3
+> 10 2
+> 10 1
+> 10 0
+> Best-of-N(N= 8 )
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Single
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> N= 64
+> Exploitability / NashConv (  )
+> Progress (  )
+> BuilderBench
+> in-domain
+
+Figure 2: Imitation quality: LeAct matches N OCOT BC where memorisation fits, and dominates where it doesn’t. Five game settings (4K–80K infosets, log y-axis, lower better, B ON uses N =8 )and BuilderBench in-domain 26 tasks (linear y-axis, higher better; N =64 ). Numbers in Table 8. Dice), and domains (BuilderBench cube-stacking). Generalisation (§5.2): does the advantage persist on states the model never saw during training, where memorisation alone would not transfer? We test on the Flop Hold’em hold-out infoset, the Leduc rank-split, and BuilderBench’s OOD task partition. 
+
+5.1 Imitation 
+
+LeAct matches or beats both baselines on B ON inference everywhere outside the 6r2s memorisation regime (Fig. 2). The B ON advantage comes from generation diversity rather than higher single-sample quality: at Leduc 10r4s, LeAct ’s single-to-B ON ratio is several times that of N OCOT’s, and on BuilderBench in-domain LeAct starts at the lowest single-sample progress but leads at B ONacross all four recipes. The CoT spreads the per-state action distribution, so B ON catches better samples than any single draw. 
+
+Scaling on poker. At 6r2s ( 4K infosets) the Nash table fits in model capacity and N OCOT’s tabular memorisation suffices. At 13r4s ( 80 K infosets) memorisation breaks: N OCOT BC also stalls (App. D.1), so the matched C OT E XIT ablation (same coldstart, same supervision, same data (game states) for training) stalling 5.4× worse on single-sample and 4× worse on B ON than LeAct isolates backward-delta selection as the load-bearing component, not the presence of a CoT itself. The trend is consistent: as scale grows, the value of selecting which CoTs to learn from grows. 
+
+Cross-domain results. Beyond two-player Leduc the same imitation gap appears in three further regimes (different game family, multi-player, robotics). On Liar’s Dice (different game family), 
+
+LeAct lands within solver-evaluation noise of the CFR oracle. On 3-player Leduc, LeAct lands within solver noise while E XIT stalls well above it. At n ≥ 3 players the 2P-zero-sum convergence guarantee for best-response iteration fails (Banach contraction [ 3]), so E XIT’s table-fit policies have no monotone-improvement guarantee across rounds; only LeAct ’s reasoning-based policy stays self-consistent across roles. On BuilderBench cube-stacking in-domain set (using a frontier-LLM successful trajectory pool as oracle), LeAct is the only training recipe whose B ON progress clears the joint coldstart anchor; the matched C OT E XIT comparator even regresses below it (Table 8). Absolute KL and exploitability values are not directly comparable across these games: action-space size and Nash-policy concentration both differ, and large game trees like FHP have many infosets where the optimal move is near-deterministic, pulling the average KL floor lower. What is interpretable across rows is therefore the within-game ordering rather than the absolute scale. 7Table 2: LeAct generalises across three held-out regimes. (a) KL ( ↓) on a random infoset hold-out (FHP) and a feature-disjoint rank-split (Leduc 10r4s, test ranks never appear in training); cube-placement progress ( ↑) on the BuilderBench (BB) OOD partition. Two frontier-anchor rows: gpt-5.5 pass@ 1 on FHP (a comparator, not data source); the best-of-3 frontier-LLM trajectory pool used as BuilderBench SFT data, evaluated as a strength baseline on the same OOD partition. (b) FHP chip outcome in mbb/g over 50 K paired hands (head-to-head; ± standard error). Details in App. D.3, D.2.2.                                       
+
+> (a) Held-out generalisation. Leduc 10r4s ( ↓)FHP 20 K ( ↓)BB OOD ( ↑)Method Single BONSingle BONProgress gpt-5.5 ——0.7530 ——Frontier traj. ————0.4923 Coldstart 2.462 0.332 0.0321 0.0018 0.4815 NOCOT BC 2.110 0.574 0.0145 0.0049 0.3980 COT E XIT2.071 0.459 0.0053 0.0011 0.4361
+> LeAct 0.716 0.168 0.0019 0.0005 0.5777
+> (b) FHP chip outcome.
+
+NOCOT COT LeAct 
+
+NOCOT — +41 ±31 −60 ±13 
+
+COT −41 ±31 — −62 ±28 
+
+LeAct +60 ±13 +62 ±28 —
+
+5.2 Generalisation 
+
+LeAct carries its advantage to states the model never saw during training, across three regimes: a random infoset hold-out at million-scale (FHP), a feature-disjoint rank-split at medium scale (Leduc 10r4s), and a task-level OOD partition on BuilderBench. Random hold-outs test that the trained policy is not memorising the training infosets; feature-disjoint splits stress transfer along an axis the model never saw; the BuilderBench OOD partition stresses generalisation beyond the supervised demonstration distribution. 
+
+Random hold-out at scale: FHP. Flop Hold’em has on the order of 10 9 playable infosets, several orders of magnitude beyond the 80 K training infosets, so even random sampling exposes the policy to a state distribution it has never been trained on, making FHP a natural generalisation testbed even under the random hold-out regime. The absolute KL floor is small because most infosets have near-trivial optimal strategy (preflop fold lines on weak hands). The within-regime ordering is nonetheless sharp: LeAct beats both baselines, and a frontier zero-shot anchor (gpt-5.5; Table 2a) lands orders of magnitude worse. Even a strong general reasoner is therefore severely under-optimised at producing calibrated numerical mixed strategies for a fine-grained game. Chip-outcome head-to-head (Table 2b) corroborates the KL ordering. 
+
+Feature-disjoint shift: Leduc 10r4s rank-split. The rank-split (train ranks {2, 4, 6, 8, T}, test 
+
+{3, 5, 7, 9, J}) forces the model to transfer along a feature axis it never saw during training, a stronger distribution-shift test than random hold-out. All three methods are retrained from scratch for this split: the joint coldstart corpus is regenerated on the train ranks alone, and C OT E XIT and LeAct 
+
+then iterate from this rank-restricted coldstart base. The test ranks {3, 5, 7, 9, J} are never seen during coldstart or any iteration round. LeAct ’s ∼3× lead over C OT E XIT on the held-out ranks (Table 2a) shows that the imitation gap is not memorisation residue, though absolute values remain an order of magnitude above the imitation regime (single 0.716 vs 0.037 ): the gain reduces catastrophic generalisation failure rather than achieving clean transfer. 
+
+Task-level OOD on BuilderBench. The OOD partition is 20 tasks that no frontier model in the best-of-3 trajectory pool fully solved, so the SFT data contains no golden trajectory for any of these. We report cube-placement progress , a partial-solve metric (fraction of cubes correctly placed), so non-zero scores correspond to placing some cubes correctly even when the task is not solved end-to-end. LeAct leads on this partition (Table 2a), and the gain is broad-based across tasks rather than concentrated on a few easy ones, so the model makes measurable progress on tasks it had no demonstration for. 
+
+## 6 Analysis 
+
+§5.1 establishes that backward-delta selection drives LeAct ’s gap over the matched C OT E XIT
+
+comparator. This section runs four probes that test whether the gap might instead come from one of four alternatives, and closes with a compute-overhead analysis. (1) Could any ranking rule have 8Single BoN       
+
+> 10 2
+> 10 1
+> Exploitability (  )
+> (a) Delta selection is informative
+> Random ranking
+> Forward delta
+> Leduc 10r4s
+> (21% / 79%)
+> Leduc 13r4s
+> (15% / 85%)
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> 1.2
+> Mean +  ( ) +0.77
+> +0.42
+> +1.00
+> +0.78
+> (b) Without verbatim *wins on +
+> With verbatim *
+> Without verbatim *
+
+Figure 3: Two falsifiers of the shortcut hypothesis for backward-delta selection. (a) Forward-delta vs. random ranking on Single and B ON (Leduc 10r4s). (b) Mean +∆ 
+
+by verbatim-π∗ status. Method Regime Single ( ↓) BON ( ↓)Coldstart — 1.6701 0.2824 COT E XIT EPF 1.0278 0.6191 COT E XIT no-EPF 0.4432 0.0599       
+
+> LeAct EPF 0.1566 0.0019
+> LeAct no-EPF 1.0565 0.1940
+
+Table 3: Method and supervision tar-get are entangled We cross method (C OT E XIT vs LeAct ) with expert-policy forcing (use the oracle’s π∗ vs the model’s own action) on Leduc 10r4s .Matched pairings: LeAct +EPF and COT E XIT+no-EPF. done equally well? (2) Does our parsed-string proxy faithfully measure the formal ∆? (3) Is the gain just memorising surface features (e.g. Nash numbers)? (4) Or is it the supervision-target choice (not backward delta) doing the work? 
+
+Delta selection is informative, not random. To test this, we replace forward-delta ranking with random ranking on Leduc 10r4s, sharpened to top-1 (so any gap comes from the ranking rule, not the data budget). Forward-delta beats random on both single and B ON exploitability (Fig. 3a). LeAct ’s gain therefore comes from which CoTs we keep, not just from keeping any K = 2 subset. 
+
+The textual proxy faithfully reads the formal ∆. LeAct scores CoT candidates by reading the model’s parsed policy distribution, not by computing the token-level log-likelihoods that the formal 
+
+∆ is defined over. This is a proxy. We check whether it ranks the same way the formal ∆ would: on Leduc 13r4s, the parsed-string ¯∆ and a token-level estimator ∆ll agree on the top-1 CoT in 89 –98% 
+
+of states (App. A.4, Table 5). 
+
+The selection signal is not memorised Nash numbers. If LeAct ’s scorer were just rewarding CoTs that quote oracle probabilities verbatim (e.g., “fold 0.376 ”), then CoTs without such verbatim numbers would score worse. We split the backward pool by verbatim-π∗ presence: at both Leduc 10r4s and 13r4s, the larger “no verbatim” stratum has a higher mean positive delta than the smaller “with verbatim” stratum (Fig. 3b). The held-out generalisation results (§5.2) corroborate: a memorisation shortcut would not transfer to unseen states. 
+
+The gap is backward delta, not the supervision target. To separate target choice from method choice, we run a 2 × 2 crossing method (C OT E XIT vs LeAct ) with target ( expert-policy forcing or EPF, vs the model’s own action). Each cell is a separate run from the shared Leduc 10r4s coldstart, iterated for 2 rounds at matched data budget. The principled pairs are the diagonals: LeAct +EPF (the M-step prescribes π∗) and C OT E XIT+no-EPF (standard ExIt does not relabel actions). Only these diagonal cells beat coldstart (Table 3). The off-diagonals collapse because in poker the CoT’s textual policy line and the model’s decoded action are essentially the same: supervising one with the other is self-referential and provides no new signal (App. E.1). Within the diagonal, LeAct +EPF dominates COT E XIT+no-EPF on both Single ( 0.16 vs 0.44 ) and B ON ( 0.0019 vs 0.06 ), so backward-delta scoring carries the gap, not the EPF target. The cross-domain BuilderBench replication breaks this coupling and recovers a clean ordering on both axes (App. D.2.2). 
+
+Compute overhead. LeAct and C OT E XIT both generate N CoTs per state during training (backward for LeAct , forward for C OT E XIT); LeAct ’s only extra cost is M parallel short action generation for forward scoring, negligible relative to the shared long CoT generation pass. The two methods therefore incur essentially the same training compute. 
+
+## 7 Conclusion 
+
+The key idea of this paper is that many domains already have a silent domain-specific expert, and that the reasoning trace these experts cannot articulate can be recovered by the student itself and filtered against the expert’s own actions. This opens a new data source for reasoning supervision that does not require a human annotator or a stronger LLM, and the oracle itself need not be exact. At Flop Hold’em we score against a DeepCFR teacher, and on BuilderBench against a pool of frontier-model trajectories, in both cases without modification to the recipe. 9Other silent experts (protein structure predictors, formal proof checkers, robotic-control libraries) are natural candidates for the same recipe, and the most direct algorithmic extension is merging LeAct 
+
+with online RL, where the oracle’s action distribution can serve as a process-level baseline for credit assignment. How LeAct interacts with frontier-scale students, beyond the 8B fixed here, is another direct extension. 10 References 
+
+[1] Marcin Andrychowicz, Filip Wolski, Alex Ray, Jonas Schneider, Rachel Fong, Peter Welinder, Bob McGrew, Josh Tobin, Pieter Abbeel, and Wojciech Zaremba. Hindsight experience replay. In Advances in Neural Information Processing Systems , volume 30, 2017. [2] Thomas Anthony, Zheng Tian, and David Barber. Thinking fast and slow with deep learning and tree search. In Advances in Neural Information Processing Systems , volume 30, 2017. [3] Stefan Banach. Sur les opérations dans les ensembles abstraits et leur application aux équations intégrales. Fundamenta Mathematicae , 3(1):133–181, 1922. [4] Jörg Bornschein and Yoshua Bengio. Reweighted wake-sleep. In International Conference on Learning Representations (ICLR) , 2015. arXiv:1406.2751. [5] Noam Brown and Tuomas Sandholm. Superhuman AI for multiplayer poker. Science , 365 (6456):885–890, 2019. [6] Noam Brown, Adam Lerer, Sam Gross, and Tuomas Sandholm. Deep counterfactual regret minimization. In Proceedings of the 36th International Conference on Machine Learning (ICML) , volume 97 of PMLR , pages 793–802, 2019. [7] Yuri Burda, Roger Grosse, and Ruslan Salakhutdinov. Importance weighted autoencoders. In 
+
+International Conference on Learning Representations , 2016. [8] Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman. Training verifiers to solve math word problems. arXiv preprint arXiv:2110.14168 ,2021. [9] Raj Ghugare, Roger Creus Castanyer, Catherine Ji, Kathryn Wantlin, Jin Schofield, Karthik Narasimhan, and Benjamin Eysenbach. BuilderBench: The building blocks of intelligent agents, 2025. URL https://arxiv.org/abs/2510.06288 .[10] Caglar Gulcehre, Tom Le Paine, Srivatsan Srinivasan, Ksenia Konyushkova, Lotte Weerts, Abhishek Sharma, Aditya Siddhant, Alex Ahern, Miaosen Wang, Chenjie Gu, Wolfgang Macherey, Arnaud Doucet, Orhan Firat, and Nando de Freitas. Reinforced self-training (ReST) for language modeling. arXiv preprint arXiv:2308.08998 , 2023. [11] Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, et al. DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning. Nature , 645(8081):633–638, 2025. doi: 10.1038/s41586-025-09422-z. arXiv:2501.12948. [12] Shibo Hao, Yi Gu, Haodi Ma, Joshua Jiahua Hong, Zhen Wang, Daisy Zhe Wang, and Zhit-ing Hu. Reasoning with language model is planning with world model. arXiv preprint arXiv:2305.14992 , 2023. [13] Alex Havrilla, Yuqing Du, Sharath Chandra Raparthy, Christoforos Nalmpantis, Jane Dwivedi-Yu, Maksym Zhuravinskyi, Eric Hambro, Sainbayar Sukhbaatar, and Roberta Raileanu. Teaching large language models to reason with reinforcement learning. arXiv preprint arXiv:2403.04642 ,2024. [14] Namgyu Ho, Laura Schmid, and Se-Young Yun. Large language models are reasoning teachers. 
+
+arXiv preprint arXiv:2212.10071 , 2023. [15] Arian Hosseini, Xingdi Yuan, Nikolay Malkin, Aaron Courville, Alessandro Sordoni, and Rishabh Agarwal. V-STaR: Training verifiers for self-taught reasoners. arXiv preprint arXiv:2402.06457 , 2024. [16] Thomas Hubert, Rishi Mehta, Laurent Sartran, et al. Olympiad-level formal mathemati-cal reasoning with reinforcement learning. Nature , 651:607–613, 2025. doi: 10.1038/ s41586-025-09833-y. 11 [17] Takeshi Kojima, Shixiang Shane Gu, Machel Reid, Yutaka Matsuo, and Yusuke Iwasawa. Large language models are zero-shot reasoners. Advances in Neural Information Processing Systems ,35:22199–22213, 2022. [18] Aviral Kumar, Vincent Zhuang, Rishabh Agarwal, Yi Su, John D Co-Reyes, Avi Singh, Kate Baumli, Shariq Iqbal, Colton Bishop, Rebecca Roelofs, et al. Training language models to self-correct via reinforcement learning. arXiv preprint arXiv:2409.12917 , 2024. [19] Nathan Lambert, Jacob Morrison, Valentina Pyatkin, Shengyi Huang, Hamish Ivison, Faeze Brahman, Lester James V. Miranda, Alisa Liu, Nouha Dziri, Shane Lyu, et al. Tulu 3: Pushing frontiers in open language model post-training. arXiv preprint arXiv:2411.15124 , 2024. [20] Marc Lanctot, Vinicius Zambaldi, Audrunas Gruslys, Angeliki Lazaridou, Karl Tuyls, Julien Pérolat, David Silver, and Thore Graepel. A unified game-theoretic approach to multiagent reinforcement learning. In Advances in Neural Information Processing Systems , volume 30, pages 4191–4204, 2017. [21] Marc Lanctot, Edward Lockhart, Jean-Baptiste Lespiau, Vinicius Zambaldi, Satyaki Upadhyay, Julien Pérolat, Sriram Srinivasan, Finbarr Timbers, Karl Tuyls, Shayegan Omidshafiei, et al. OpenSpiel: A framework for reinforcement learning in games. arXiv preprint arXiv:1908.09453 ,2019. [22] Tamera Lanham, Anna Chen, Ansh Radhakrishnan, Benoit Steiner, Carson Denison, Danny Hernandez, Dustin Li, Esin Durmus, Evan Hubinger, Jackson Kernion, et al. Measuring faithfulness in chain-of-thought reasoning. arXiv preprint arXiv:2307.13702 , 2023. [23] Zenan Li, Ziran Yang, Deyuan He, Haoyu Zhao, Andrew Zhao, Shange Tang, Kaiyu Yang, Aarti Gupta, Zhendong Su, and Chi Jin. Goedel-Code-Prover: Hierarchical proof search for open state-of-the-art code verification. arXiv preprint arXiv:2603.19329 , 2026. [24] Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. Let’s verify step by step. In 
+
+International Conference on Learning Representations (ICLR) , 2024. arXiv:2305.20050. [25] Yong Lin, Shange Tang, Bohan Lyu, Jiayun Wu, Hongzhou Lin, Kaiyu Yang, Jia Li, Mengzhou Xia, Danqi Chen, Sanjeev Arora, and Chi Jin. Goedel-Prover: A frontier model for open-source automated theorem proving. arXiv preprint arXiv:2502.07640 , 2025. [26] Yong Lin, Shange Tang, Bohan Lyu, Ziran Yang, Jui-Hui Chung, Haoyu Zhao, Lai Jiang, Yihan Geng, Jiawei Ge, Jingruo Sun, Jiayun Wu, et al. Goedel-Prover-V2: Scaling formal theorem proving with scaffolded data synthesis and self-correction. arXiv preprint arXiv:2508.03613 ,2025. [27] Hao Liu, Carmelo Sferrazza, and Pieter Abbeel. Chain of hindsight aligns language mod-els with feedback. In International Conference on Learning Representations (ICLR) , 2024. arXiv:2302.02676. [28] Trung Quoc Luong, Xinbo Zhang, Zhanming Jie, Peng Sun, Xiaoran Jin, and Hang Li. ReFT: Reasoning with reinforced fine-tuning. In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL) , 2024. arXiv:2401.08967. [29] Chengdong Ma, Ziran Yang, Hai Ci, Jun Gao, Minquan Gao, Xuehai Pan, and Yaodong Yang. Evolving diverse red-team language models in multi-round multi-agent games. IEEE Transactions on Pattern Analysis and Machine Intelligence , 2026. doi: 10.1109/TPAMI.2026. 3694367. [30] Lucie Charlotte Magister, Jonathan Mallinson, Jakub Adamek, Eric Malmi, and Aliaksei Severyn. Teaching small language models to reason. In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers) , pages 1773–1781, 2023. arXiv:2212.08410. [31] Meta Fundamental AI Research Diplomacy Team (FAIR). Human-level play in the game of Diplomacy by combining language models with strategic reasoning. Science , 378(6624): 1067–1074, 2022. 12 [32] Matej Moravˇ cík, Martin Schmid, Neil Burch, Viliam Lisý, Dustin Morrill, Nolan Bard, Trevor Davis, Kevin Waugh, Michael Johanson, and Michael Bowling. DeepStack: Expert-level artificial intelligence in heads-up no-limit poker. Science , 356(6337):508–513, 2017. [33] OpenAI. OpenAI o1 system card, 2024. URL https://arxiv.org/abs/2412.16720 .[34] Stanislas Polu and Ilya Sutskever. Generative language modeling for automated theorem proving. 
+
+arXiv preprint arXiv:2009.03393 , 2020. [35] Qwen Team. Qwen3 technical report. arXiv preprint arXiv:2505.09388 , 2025. [36] Geoffrey Roeder, Yuhuai Wu, and David K Duvenaud. Sticking the landing: Simple, lower-variance gradient estimators for variational inference. In Advances in Neural Information Processing Systems , 2017. [37] Yangjun Ruan, Neil Band, Chris J Maddison, and Tatsunori Hashimoto. Reasoning to learn from latent thoughts. arXiv preprint arXiv:2503.18866 , 2025. [38] Amrith Setlur, Chirag Nagpal, Adam Fisch, Xinyang Geng, Jacob Eisenstein, Rishabh Agarwal, Alekh Agarwal, Jonathan Berant, and Aviral Kumar. Rewarding progress: Scaling automated process verifiers for LLM reasoning. arXiv preprint arXiv:2410.08146 , 2024. [39] Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, Y.K. Li, Y. Wu, and Daya Guo. Deepseekmath: Pushing the limits of mathematical reasoning in open language models. arXiv preprint arXiv:2402.03300 , 2024. [40] Chengshuai Shi, Wenzhe Li, Xinran Liang, Yizhou Lu, Wenjia Yang, Ruirong Feng, Seth Karten, Ziran Yang, Zihan Ding, Gabriel Sarch, Danqi Chen, Karthik Narasimhan, and Chi Jin. Odysseus: Scaling VLMs to 100+ turn decision-making in games via reinforcement learning. 
+
+arXiv preprint arXiv:2605.00347 , 2026. [41] David Silver, Thomas Hubert, Julian Schrittwieser, Ioannis Antonoglou, Matthew Lai, Arthur Guez, Marc Lanctot, Laurent Sifre, Dharshan Kumaran, Thore Graepel, et al. A general reinforcement learning algorithm that masters chess, shogi, and Go through self-play. Science ,362(6419):1140–1144, 2018. [42] Avi Singh, John D Co-Reyes, Rishabh Agarwal, Ankesh Anand, Piyush Patil, Xavier Garcia, Peter J Liu, James Harrison, Jaehoon Lee, Kelvin Xu, et al. Beyond human data: Scaling self-training for problem-solving with language models. Transactions on Machine Learning Research , 2024. [43] Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. Scaling LLM test-time compute op-timally can be more effective than scaling model parameters. arXiv preprint arXiv:2408.03314 ,2024. [44] Finnegan Southey, Michael Bowling, Bryce Larson, Carmelo Piccione, Neil Burch, Darse Billings, and Chris Rayner. Bayes’ bluff: Opponent modelling in poker. In Proceedings of the Twenty-First Conference on Uncertainty in Artificial Intelligence , pages 550–558, 2005. [45] Oskari Tammelin. Solving large imperfect information games using CFR+. arXiv preprint arXiv:1407.5042 , 2014. [46] Marc Toussaint. Logic-geometric programming: An optimization-based approach to combined task and motion planning. In Proceedings of the 24th International Joint Conference on Artificial Intelligence (IJCAI) , pages 1930–1936, 2015. [47] Hugo Touvron, Louis Martin, Kevin Stone, et al. Llama 2: Open foundation and fine-tuned chat models. arXiv preprint arXiv:2307.09288 , 2023. [48] Trieu H. Trinh, Yuhuai Wu, Quoc V. Le, He He, and Thang Luong. Solving olympiad ge-ometry without human demonstrations. Nature , 625(7995):476–482, 2024. doi: 10.1038/ s41586-023-06747-5. 13 [49] George Tucker, Dieterich Lawson, Shixiang Gu, and Chris J Maddison. Doubly reparameterized gradient estimators for Monte Carlo objectives. In International Conference on Learning Representations , 2019. [50] Miles Turpin, Julian Michael, Ethan Perez, and Samuel R. Bowman. Language models don’t always say what they think: Unfaithful explanations in chain-of-thought prompting. In Advances in Neural Information Processing Systems (NeurIPS) , 2023. arXiv:2305.04388. [51] Jonathan Uesato, Nate Kushman, Ramana Kumar, Francis Song, Noah Siegel, Lisa Wang, Antonia Creswell, Geoffrey Irving, and Irina Higgins. Solving math word problems with process- and outcome-based feedback. arXiv preprint arXiv:2211.14275 , 2022. [52] Huaijie Wang, Shibo Hao, Hanze Dong, Shenao Zhang, Yilin Bao, Ziran Yang, and Yi Wu. Offline reinforcement learning for LLM multi-step reasoning. arXiv preprint arXiv:2412.16145 ,2024. [53] Peiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, Damai Dai, Yifei Li, Deli Chen, Yu Wu, and Zhifang Sui. Math-Shepherd: Verify and reinforce LLMs step-by-step without human annotations. In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL) , pages 9426–9439, 2024. arXiv:2312.08935. [54] Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. Self-consistency improves chain of thought reasoning in language models. arXiv preprint arXiv:2203.11171 , 2023. [55] Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia, Ed Chi, Quoc Le, and Denny Zhou. Chain-of-thought prompting elicits reasoning in large language models. Advances in Neural Information Processing Systems , 35:24824–24837, 2022. [56] Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao. ReAct: Synergizing reasoning and acting in language models. In International Conference on Learning Representations (ICLR) , 2023. arXiv:2210.03629. [57] Zheng Yuan, Hongyi Yuan, Chengpeng Li, Guanting Dong, Keming Lu, Chuanqi Tan, Chang Zhou, and Jingren Zhou. Scaling relationship on learning mathematical reasoning with large language models. arXiv preprint arXiv:2308.01825 , 2023. [58] Eric Zelikman, Yuhuai Wu, Jesse Mu, and Noah D Goodman. STaR: Bootstrapping reasoning with reasoning. Advances in Neural Information Processing Systems , 35:15476–15488, 2022. [59] Eric Zelikman, Georges Harik, Yijia Shao, Varuna Jayasiri, Nick Haber, and Noah D Goodman. Quiet-STaR: Language models can teach themselves to think before speaking. arXiv preprint arXiv:2403.09629 , 2024. [60] Dan Zhang, Sining Zhoubian, Ziniu Hu, Yisong Yue, Yuxiao Dong, and Jie Tang. ReST-MCTS*: LLM self-training via process reward guided tree search. In Advances in Neural Information Processing Systems (NeurIPS) , 2024. arXiv:2406.03816. [61] Haoyu Zhao, Ziran Yang, Jiawei Li, Deyuan He, Zenan Li, Chi Jin, Venugopal V. Veeravalli, Aarti Gupta, and Sanjeev Arora. AlgoVeri: An aligned benchmark for verified code generation on classical algorithms. arXiv preprint arXiv:2602.09464 , 2026. [62] Martin Zinkevich, Michael Johanson, Michael Bowling, and Carmelo Piccione. Regret mini-mization in games with incomplete information. In Advances in Neural Information Processing Systems , volume 20, 2007. 14 A Formulation: Derivations 
+
+This appendix gives the derivations summarised in §3.2: (i) the IWAE bound, per-sample importance-weight factorisation, and rho-dropped soft-weight approximation that define the LeAct training objective (App. A.1); (ii) the M-step target-choice derivation for expert-policy forcing (App. A.2); (iii) the correspondence between formal quantities and LeAct algorithm components (App. A.3); and (iv) the textual policy proxy that bridges the formal ∆ to its parsed-policy implementation (App. A.4). 
+
+A.1 From the ELBO to the LeAct Objective 
+
+This appendix expands §3.2 line by line. The derivation specialises the importance-weighted varia-tional bound (IWAE) of Burda et al. [7] to a setting in which the proposal qbwd (z | x, y ) is a fixed (within a round) LLM that conditions on (x, y ), and in which two of the four log-likelihood terms in the importance weight are intractable under a decoder-only model. The same IWAE bound was recently applied to latent reasoning data synthesis on unlabelled text corpora by Ruan et al. [37] ; the present derivation differs in bounding the conditional likelihood log pθ (y | x) for an expert-anchored target y ∼ π∗ rather than the corpus marginal log p(X), which enables the additional reduction of the IWAE soft weight to a forward delta (Step 3). The argument proceeds in four steps: (i) introduce the backward proposal and obtain an ELBO valid for any choice of qbwd , including a fixed LLM; (ii) factorise the importance ratio via Bayes’ rule; (iii) keep only the two computable terms, yielding ∆;(iv) re-weight the ELBO by e∆ and replace the soft weighting by a hard top-K filter for tractable SFT. 
+
+Step 1: IWAE bound via a backward proposal. The marginal log-likelihood of an expert action 
+
+y ∼ π∗( · | x) under the student is log pθ (y | x) = log P 
+
+> z
+
+pθ (z | x) pθ (y | x, z ), intractable over natural-language traces. Introduce a backward proposal qbwd (z | x, y ) (instantiated by prompting the LLM to generate a CoT given (x, y )) and draw N candidates z1, . . . , z N ∼ qbwd (· | x, y ) i.i.d. The 
+
+N -sample importance-weighted bound of Burda et al. [7] is 
+
+log pθ (y | x) ≥ Ez1..N ∼qbwd 
+
+"
+
+log 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+pθ (zi | x) pθ (y | x, z i)
+
+qbwd (zi | x, y )
+
+#
+
+, (7) strictly tighter than the standard ELBO at N =1 and exact in the limit N → ∞ . Taking the outer expectation over x and y ∼ π∗ gives the population IWAE bound, 
+
+J (θ) ≥ Ex Ey∼π∗ Ez1..N ∼qbwd 
+
+"
+
+log 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+pθ (zi, y | x)
+
+qbwd (zi | x, y )
+
+#
+
+. (8) Burda et al. [7] show (their Eq. 8) that the gradient of Eq. (8) reduces to a per-sample SFT update with normalised soft weights, 
+
+∇θ LN = Ez1..N 
+
+" NX
+
+> i=1
+
+ewi ∇θ log pθ (zi, y | x)
+
+#
+
+, ewi = wi
+
+PNj=1 wj
+
+, wi = pθ (zi, y | x)
+
+qbwd (zi | x, y ) , (9) with qbwd held fixed at θr−1 within the round (so ∇θ log qbwd = 0 for the per-round bound); the inner term log pθ (zi, y | x) is exactly the joint SFT loss on (x, z i, y ).The lower bound in Eq. (8) is valid for any choice of qbwd (z | x, y ), including a fixed LLM, and N > 1 tightens it strictly over the N =1 ELBO without optimising qbwd ’s parameters. This sidesteps the standard variational-inference gradient on qbwd (expensive when qbwd is an LLM) that would otherwise be required to tighten the ELBO further. The per-sample weights wi = pθ (zi, y |
+
+x)/q bwd (zi | x, y ) inside the log-mean are importance weights between the joint pθ (z, y | x) and the proposal qbwd (z | x, y ); Bayes’ rule factorises them in Step 2. Within each LeAct round, qbwd is held fixed at θr−1; across rounds it evolves alongside the shared model parameters that the M-step trains, recovering an approximate-EM alternation (the correspondence is summarised in App. A.3). The practical pipeline additionally augments the M-step with an explicit backward SFT term (§3.3), which arises as the reverse-KL update on qbwd in the reweighted-wake-sleep regime; Step 5 below derives this. 15 Step 2: per-sample importance-weight factorisation. For each sample zi with qbwd (zi | x, y ) > 0,Bayes’ rule factorises the unnormalised IWAE weight wi = pθ (zi, y | x)/q bwd (zi | x, y ) as 
+
+wi = pθ (y | x, z i)
+
+pθ (y | x)
+
+| {z } 
+
+> = exp ∆( zi;x, y )
+
+· pθ (zi | x)
+
+qbwd (zi | x, y )
+
+| {z } 
+
+> ρ(zi;x, y )
+
+· pθ (y | x), (10) with ∆( z; x, y ) := log pθ (y | x, z ) − log pθ (y | x). The factor pθ (y | x) does not depend on 
+
+i and so cancels in the normalised weight ewi = wi/ P 
+
+> j
+
+wj ; only exp ∆ i and ρi remain. The first factor exp ∆ i is computable from the student’s own logits: log pθ (y | x, z i) is a teacher-forced log-likelihood of the action under the student conditioned on zi, and log pθ (y | x) = log Ez′∼pθ (·| x)[pθ (y | x, z ′)] is estimable by Monte Carlo from a small number of forward sam-ples (§3.3). 
+
+Step 3: keeping the computable terms in the soft weight. Dropping the i-independent pθ (y | x)
+
+that cancels in ewi, the log per-sample weight admits the additive decomposition 
+
+log wi ∝ log pθ (y | x, z i) − log pθ (y | x)
+
+| {z } 
+
+> ∆( zi;x, y )
+
++ log pθ (zi | x) − log qbwd (zi | x, y )
+
+| {z }  
+
+> log ρ(zi;x, y )
+
+.
+
+The first two terms (forming ∆) are computable from the student’s logits: log pθ (y | x, z i) is a teacher-forced action log-likelihood, and log pθ (y | x) = log Ez′∼pθ (·| x)[pθ (y | x, z ′)] is estimable by Monte Carlo from a small number of forward samples (§3.3). In practice the last two terms are difficult to compute and we omit them. LeAct therefore approximates the unnormalised IWAE soft weight by 
+
+wLeAct (zi; x, y ) := exp ∆( zi; x, y ), (11) i.e. replaces the soft weight ewi ∝ e∆i · ρi by the rho-dropped surrogate ewLeAct  
+
+> i
+
+∝ e∆i . This ρ-drop is the design choice the expert-anchored setting enables: without an external action target (e.g., latent-text variational EM [ 37 ]), the IWAE weight has no separable ∆ and ρ remains entangled with the bound. §6 verifies empirically that the resulting ∆-only filter is load-bearing. 
+
+When dropping ρ is safe. The action anchor in the backward prompt fixes the conditioned target 
+
+y across all candidates, so ρi varies with zi only through how well each candidate trace explains the same fixed y. For high-probability oracle actions, ρi concentrates and acts approximately as a constant scaling factor across candidates, so the ranking induced by e∆i matches the ranking induced by e∆i ρi up to ties. The drop biases ranking only when ρi correlates with ∆i across candidates, which would require the backward proposal to systematically place mass on high-∆ traces in a way that cancels with the forward likelihood. We did not observe this regime in our experiments: §6 confirms that the ∆-only filter is informative against random ranking, and App. A.4 shows that the parsed-policy proxy ranking agrees with a token-level ∆ll estimator on 89 –98% of states (a domain where ρ correlation with ∆ would surface as proxy-vs-token disagreement). For oracles with low-probability actions or backward proposals concentrated on rare reasoning paths, an empirical ρ
+
+estimate or a token-level ∆ proxy would be more conservative. 
+
+Step 4: the LeAct objective and the hard top-K sparsification. Substituting the rho-dropped surrogate ewLeAct  
+
+> i
+
+∝ e∆i into the IWAE gradient (Eq. (9)) gives the (approximate) M-step 
+
+max  
+
+> θ
+
+Ex Ey∼π∗ Ez1..N ∼qbwd 
+
+" NX
+
+> i=1
+
+ewLeAct  
+
+> i
+
+log pθ (zi, y | x)
+
+#
+
+, ewLeAct  
+
+> i
+
+= e∆i
+
+PNj=1 e∆j
+
+, (12) which is the form the paper takes as the LeAct training objective (Eq. (5) ). LeAct replaces the softmax weighting ewLeAct  
+
+> i
+
+with a hard top-K filter on the average delta ¯∆( z; x) := Ey∼π∗ [∆( z; x, y )] (a sparse approximation that keeps only the high-weight candidates): train on (x, z, π ∗(· | x)) tuples with z ∈ Z x = top -Kzj ∼ qbwd : ¯∆( zj ; x) > 0 , and use the full oracle distribution π∗(· | x) as the action target, the expert-policy-forcing M-step derived in App. A.2. The two-step approximation (dropping the intractable ρ factor from the soft weight, then sparsifying the soft weight to a hard top-K filter) is what we mean by “approximate IWAE M-step”. 
+
+Step 5: joint backward supervision as the reverse-KL update on the proposal. Steps 1–4 fix qbwd 
+
+within a round and only update the shared model parameters in pθ . The IWAE bound is tightest when 
+
+qbwd matches the true posterior pθ (z | x, y ): at N =1 the gap is exactly KL  qbwd ( · | x, y ) ∥ pθ ( · | 
+
+16 x, y ), and at N > 1 the gap is a soft generalisation of the same divergence [ 7]. Reducing this gap requires a separate update step on qbwd . The natural choice (gradient ascent on the IWAE bound itself with respect to qbwd ’s parameters) is the “wake-phase” update of variational EM, but its signal-to-noise ratio degrades as qbwd approaches the posterior, requiring the STL/DReG corrections of Roeder et al. [36] , Tucker et al. [49] ; for an LLM-parameterised proposal this is also expensive (each gradient step requires backprop through the IWAE log-mean). Reweighted wake-sleep [ 4 ] replaces the wake-phase update with a reverse-direction KL, 
+
+min 
+
+> qbwd
+
+KL  pθ ( · | x, y ) qbwd ( · | x, y ) = min 
+
+> qbwd
+
+Ez∼pθ ( ·| x,y )
+
+− log qbwd (z | x, y ) + const , (13) which is a maximum-likelihood objective on qbwd with samples drawn from the posterior. The posterior is itself intractable, so we importance-sample from qbwd : Ez∼pθ ( ·| x,y )
+
+− log qbwd (z |
+
+x, y ) = Ez1..N ∼qbwd 
+
+P  
+
+> i
+
+ewi (− log qbwd (zi | x, y )) , recovering the same self-normalised IWAE weights ewi used in Step 4. Substituting the rho-dropped surrogate ewLeAct  
+
+> i
+
+∝ e∆i and then the hard top-K indicator on Zx used by the M-step yields the practical update 
+
+Lbwd (θ) = − E(x,z )∈D r
+
+log pθ (z | x, ˜π∗), (14) i.e., supervised cross-entropy training of qbwd on the same selected positive-∆ traces Dr that drive the M-step (with ˜π∗ the redacted-distribution prompt as defined in §3.2). Because qbwd shares parameters with pθ (one decoder, two prompts), the wake-sleep update lands on the same θ and Eq. (14) is the joint backward term in §3.3. Across rounds, this update tracks qbwd to the moving posterior under the current student, monotonically tightening the IWAE bound from one round to the next under the standard reweighted-wake-sleep guarantee [ 4]; the empirical effect of including this term is ablated in App. C. 
+
+EM as a special case. Setting N = 1 collapses Eq. (8) back to the standard ELBO, and further setting 
+
+qbwd ( · | x, y ) = pθ(t−1) (z | x, y ) gives the standard variational-EM E-step, in which case ρ ≡ 1,the soft weight exp ∆ is also ≡ 1, and the bound is tight. LeAct replaces this true posterior with an LLM-defined backward proposal at N > 1, which is what introduces both the ρ residual and the 
+
+exp ∆ correction; alternating Eq. (8) maximisation with such a proposal recovers approximate-EM. The LeAct –EM correspondence is summarised in App. A.3. 
+
+A.2 Expert-Policy Forcing: the Exact M-Step Target 
+
+The outer expectation Ey∼π∗ [ · ] in the LeAct objective Eq. (5) (equivalently the second expectation in Eq. (8)) admits two implementations. 
+
+Sampled-action target. Draw ˜y ∼ π∗ and minimise − log pθ (˜ y | x, z ). This is the standard expert-iteration choice and keeps the (z, ˜y) pair internally consistent because both were decoded together. 
+
+Expert-distribution target (expert-policy forcing). Because the oracle supplies the full π∗, the outer expectation can be evaluated exactly: 
+
+Ey∼π∗
+
+− log pθ (y | x, z ) = H(π∗) + DKL 
+
+ π∗( · | x) ∥ pθ ( · | x, z ), (15) so minimising the left-hand side with respect to θ is equivalent to minimising DKL (π∗ ∥ pθ ( · | x, z )) ,i.e., the SFT target is the exact oracle distribution, independent of whichever policy was decoded at generation time. 
+
+When the two choices matter. For mixed Nash equilibria the two gradients differ. Delta scoring (Eq. (4) ) already evaluates ∆ against the action distribution under π∗, so taking π∗ as the SFT target keeps the E- and M-steps aligned on the same distribution. §6 shows this alignment is load-bearing: removing it reverses which algorithm wins at 47K information sets. 
+
+The two-part loss. The selected traces Dr are reused in two prompt formats that share the same θ.The forward loss 
+
+Lfwd (θ; Dr ) = − E(x, z )∈D r
+
+h
+
+log pθ (z | x) + Ey∼π∗(·| x)
+
+log pθ (y | x, z )i
+
+(16) trains the student to produce z from x and then the oracle’s full action distribution π∗(· | x) given 
+
+(x, z ). The backward loss 
+
+Lbwd (θ; Dr ) = − E(x, z )∈D r
+
+log pθ (z | x, ˜π∗) (17) 17 retrains the proposal qbwd on the same selected z given the (x, ˜π∗) prompt, the wake-sleep update on 
+
+qbwd derived in App. A.1 Step 5. The full M-step minimises L = Lfwd + Lbwd , treating the forward and backward formats as two views of the same trace pool Dr .
+
+A.3 Algorithm–Formulation Correspondence 
+
+Table 4 maps each formal quantity from App. A.1 to its LeAct counterpart. Table 4: Mapping from the IWAE bound to the LeAct algorithm. Each formal quantity (App. A.1) corresponds to a concrete pipeline component.                                                    
+
+> Formal quantity LeAct ’s approximation Algorithm component Proposal qbwd (z|x, y )Backward decode at θr−1, redacted ˜π∗Backward generation Per-sample IWAE weight wi=e∆iρipθ(y|x)wLeAct
+> i=e∆i(ρidropped) Forward delta scoring Softmax weight ewi∝e∆iHard top-Kon positive ¯∆( z;x)Top-Kselection Joint loss log pθ(z, y |x)SFT on (x, z, y )tuples Supervised fine-tuning Outer expectation Ey∼π∗[·]Target =π∗(· | x)Expert-policy forcing
+
+The full procedure is collected in Algorithm 1 (main text §3.3). 
+
+A.4 Textual Policy Proxy: From ∆ to Implementation 
+
+The formal definition ∆( z; x, y ) = log pθ (y | x, z ) − log pθ (y | x) in Eq. (4) reads log pθ (y | x, z )
+
+as the decoder’s next-token log-likelihood of the action under the student conditioned on z. Our implementation does not score the action token by token. Instead, the model is supervised during SFT to emit a textual policy line of the form “ Action: a \n Policy: {ai : pi}i” alongside its reasoning trace, and the scoring pipeline reads ∆ off this line. This appendix bridges the formal ∆
+
+used in §3.2 and App. A.1 to the parsed-policy quantity b∆ that our pipeline actually evaluates. 
+
+The implementation quantity. At scoring time we parse the textual policy line into a distribution 
+
+ˆπθ (· | x, z ) over legal actions and compute the average-delta proxy 
+
+b∆( z; x) = − KL  π∗(· | x) ∥ ˆπθ (· | x, z ) − − KL  π∗(· | x) ∥ ˆπθ (· | x) ,
+
+where ˆπθ (· | x) is averaged over Monte-Carlo forward samples without conditioning on a backward 
+
+z.
+
+Equivalence to ¯∆ under proxy correctness. Up to the entropy term H(π∗) that cancels between the two KLs, 
+
+b∆( z; x) = Ey∼π∗(·| x)
+
+log ˆ πθ (y | x, z ) − log ˆ πθ (y | x),
+
+which equals the average delta ¯∆( z; x) := Ey∼π∗ [∆( z; x, y )] used by the hard top-K filter (footnote of Eq. (5) ) whenever ˆπθ (· | x, z ) = pθ (· | x, z ) on the action support. So the implementation evaluates an Ey∼π∗ -averaged version of the formal ∆ for free, and the soft →hard reduction is the only step left. 
+
+When the proxy diverges from the decoder distribution. The textual policy is a self-report: the model is free to write rounded numbers, to disagree with the action token it just emitted, or to omit minor mass that the decoder would still place on rare actions. A token-level evaluation log pθ (y | x, z )
+
+via teacher forcing would instead read the next-token logit at the action position and is the literal quantity in Eq. (4) . The two coincide only when the textual line faithfully matches the decoder’s softmax over the action vocabulary. 
+
+Why the proxy suffices in our setting. Three properties keep the substitution lossless in practice. First, the SFT objective (App. A.2) supervises both the reasoning trace and the policy line, so training and scoring read off the same textual channel rather than two unaligned views of the model. Second, ¯∆ is a difference between two quantities both computed from the same parser and the same continuation format; any systematic bias in the textual self-report shifts ˆπθ (· | x, z ) and ˆπθ (· | x) in the same direction and cancels in the delta. Third, because the M-step targets the oracle π∗ rather than the parsed line, scoring noise propagates only through which zn are kept; the resulting Dr remains anchored to π∗.18 Selection-Fidelity Audit. We quantify the agreement between ¯∆ (the parsed-policy proxy used by the M-step) and a token-level estimator ∆ll (z; x) := log pθ (t∗(x) | x, z ) − 1
+
+> M
+
+P 
+
+> m
+
+log pθ (t∗(x) |
+
+x, z fwd  
+
+> m
+
+), where t∗(x) is the canonical policy line Policy: {ai : p∗ 
+
+> i
+
+}i and zfwd  
+
+> m
+
+are M =4 student-decoded forward CoTs scored without backward conditioning. Because the hard top-K M-step consumes only the within-infoset ordering of positives, the load-bearing audit metric is the within-infoset top-1 agreement. On a 100K-candidate audit over 16 ,977 multi-candidate Leduc-13r4s infosets, when ∆ll ’s within-infoset top-1 falls on an infoset containing some positive- ¯∆ candidate, that selection is also positive under ¯∆ in 89% of cases (base coldstart); on well-trained LeAct iterates this conditional rate reaches 98% (Table 5). Global rank correlation across all candidates is moderate (ρ ≈ 0.65 ), reflecting scale disagreement on candidates the M-step never sees; this is a secondary diagnostic rather than a load-bearing fidelity number.              
+
+> Audit subset Ninf top-1hit | ∃ >0sign concord.
+> 100 K candidates, base coldstart 16 ,977 0.89 0.80 5K candidates, base coldstart 74 0.93 0.81 5K candidates, best LeAct iterate 74 0.98 0.84
+
+Table 5: Parsed-policy proxy ¯∆ agrees with token-level ∆ll on the load-bearing top-1 selection (89–98%). Selection-Fidelity Audit on Leduc-13r4s, decisive-Nash subset ( h(π∗)/ log |A| ≤ 0.95 ). 
+
+Ninf counts multi-candidate infosets. top-1 hit | ∃ >0 is the fraction of ∆ll -top-1 picks with positive 
+
+¯∆, conditional on the infoset containing at least one positive- ¯∆ candidate. Sign concord. is Pr( ¯∆>0 |
+
+∆ll >0) .
+
+Boundary cases. We clip parsed KL values at 10 (rare deterministic outputs against a mixed π∗ would otherwise diverge), and we treat candidates with malformed policy lines as having no information by routing them through a deterministic fallback on the parsed action. Replacing the textual proxy with token-level log pθ (y | x, z ) scoring is a straightforward substitution that we leave to future work; we do not expect the qualitative findings of §5 to change, since both estimators agree in expectation under a faithfully-trained policy line. 
+
+## B Ablation Studies: Selection, Scoring, and Supervision 
+
+Top-K selection rate ablation (Leduc 13r4s). We ablate the selection count K ∈ { 1, 2, 4} in the Leduc 13r4s R2 pool with N =8 per infoset and matched hyperparameters (coldstart base, lr = 5 × 10 −6, matched training budget). Table 6 reports per-epoch results. K=1 underperforms 
+
+K≥2 across all checkpoints, confirming that aggressive top-1 selection discards useful gradient. Between K=2 and K=4 the cells are close: K=2 wins at ep1 (single 0.41 vs 0.61 , B ON 0.107 vs 
+
+0.110 ) and the gap is similar in the opposite direction at ep2–3, with neither setting dominating across all six cells. Because the two are comparable on selection quality and K=2 halves the per-round SFT data budget, we standardise on K=2 across the paper (Table 11) for compute efficiency. Table 6: K=1 underperforms K≥2; K=2 and K=4 are comparable. Top-K selection ablation on the Leduc 13r4s R2 pool ( N =8 , matched HP). Per-epoch single and B ON exploitability; bold =best per metric across all cells. All variants share the same R2 pool, base (Leduc 10r4s joint coldstart), lr = 5 ×10 −6, 3 epochs.                            
+
+> Single ↓BON↓
+> Kep1 ep2 ep3 ep1 ep2 ep3 10.7891 1.0900 0.4863 0.1285 0.1121 0.1392 20.4125 0.3915 0.4004 0.1069 0.0753 0.1282 40.6073 0.3248 0.3932 0.1097 0.0563 0.0518
+
+Panel C: Within-LeAct component ablation on Liar’s Dice. A within-LeAct ablation isolates the relative contribution of the joint forward–backward coldstart vs. the backward delta scoring stage. With the joint coldstart fixed at 100% infoset coverage, removing the scoring stage stops the policy at exploitability 0.439 (coverage-only, no scoring); restoring the scoring stage brings the policy to 19 0.019 (R1) and 0.002 (R2). The 219 × R2 gain is attributable to selection alone, once the coldstart contribution is held constant. Table 7: Backward scoring drives the 219 × R2 gain on Liar’s Dice; coverage alone stops at 
+
+0.439 . Joint coldstart fixed at 100% infoset coverage; only the backward delta scoring stage is toggled.              
+
+> Component Variant Scale Single BONBackward scoring Joint coldstart, no scoring LD 0.439 0.251 Joint coldstart +scoring (R2) LD 0.002 0.001
+
+## C Iteration Dynamics 
+
+A distinctive feature of LeAct is its ability to iterate: the improved model both generates better backward reasoning and serves as a tighter forward scorer. Per-domain headline numbers appear in Table 8; this appendix isolates two questions that table does not address: which E-step variant to run, and when to stop. 
+
+E-step variant comparison. We compare three E-step variants from the same R1 base on Leduc 10r4s: DAgger (expert backward prompts, model forward scorer), Joint (self-generated backward traces, joint SFT), and REINFORCE (self-generated backward traces, forward-only SFT). The ranking REINFORCE > JOINT > DA GGER is consistent across metrics. R EINFORCE wins because the model’s own backward traces are more compatible with its forward reasoning than expert-generated ones, and forward-only SFT avoids introducing noise from the backward task during training. 
+
+Iteration stopping rule. LeAct halts at the round when the policy first matches the oracle’s distribution. Three diagnostics indicate the floor has been reached: (i) close-fraction (KL < 0.1)saturating at 1.0 (Liar’s Dice R2 reaches NashConv 0.002 and close-frac 1.0); (ii) single-sample exploitability falling below the prior round’s B ON (Leduc 13r4s R2 single 0.092 below R1 B ON
+
+0.036 ); (iii) single-sample KL falling below ∼0.002 at 10 9-scale (FHP R2 single KL 0.0019 ). The rule is prospective: once any of (i)–(iii) fires at round r, we report round-r as the headline cell and do not extend to r+1 . Applying it yields different per-setting termination points: 3-Player Leduc meets (i) at R1 (close-fraction = 1 at the solver floor); Leduc 6r2s/10r4s/13r4s, Liar’s Dice, and FHP terminate at R2 once one of (i)–(iii) fires; BuilderBench is reported at R1 due to compute. 
+
+LeAct ’s contribution is the closed-loop backward-and-score algorithm itself, not a depth claim about iteration count. At matched coldstart and data budget, R1 alone already separates LeAct from forward C OT E XIT across every reasoning-game setting (for instance, Leduc 13r4s R1 single 0.097 
+
+vs. C OT E XIT R1 0.501 ; Liar’s Dice R1 0.019 vs. 0.671 ); iteration is a means of tightening once the oracle’s distribution is matched, not the source of the imitation gap. 
+
+## D Additional Results 
+
+D.1 Numerical Detail for Fig. 2 
+
+Table 8 reports the full numerical breakdown behind Fig. 2 of §5.1, including stds over multi-seed evaluation and the gpt-5.5 zero-shot anchor at the smallest setting. 
+
+Error Bar Calculation. For the five game-setting rows, error bars are standard deviations across 
+
+3 inference-rollout seeds of the single trained policy per cell (each seed reseeds the vLLM sam-pler, producing a distinct sampled policy on the full game tree; std is taken across the 3 resulting exploitability or NashConv values). BuilderBench is also single-trained per cell; we substitute an inference-side proxy with a larger seed count. Let T = 26 (number of in-domain tasks) and 
+
+S be the number of inference seeds ( S = 64 for trained cells; S = 16 for the joint coldstart eval). Define xt,s ∈ [0 , 1] as the cube-placement ratio (fraction of cubes placed at target) on task 
+
+t in seed s. The Single column reports ¯μ = 1
+
+> T
+
+P 
+
+> t
+
+μt where μt = 1
+
+> S
+
+P 
+
+> s
+
+xt,s , with error bar 
+
+σsingle = std( ¯ x1, ¯x2, . . . , ¯xS ) , ¯xs = 1
+
+> T
+
+P 
+
+> t
+
+xt,s , i.e. the per-seed cross-task mean is computed once per inference seed and the std is taken across the S resulting values. The B ON column uses 20 Table 8: Numerical detail behind Fig. 2. Game rows: exploitability or NashConv (lower better); BuilderBench row: cube-placement progress (higher better). B ON uses N =8 for games and N =64 
+
+for BuilderBench (single max per task, no across-seed std). Bold = best per metric per row. gpt-5.5 
+
+is a frontier zero-shot anchor (Pass@1, medium reasoning effort) reported on the smallest setting only; FHP lives in Table 2a (generalisation-only at this scale).                                                                                                                    
+
+> gpt-5.5 Single BONSetting (# infosets) Metric Cold. NOCOT BC COT E XITLeAct Cold. NOCOT BC COT E XITLeAct
+> Leduc 6r2s (4K) expl. ( ↓)0.799 1.351 ±0.226 0.003 ±0.001 0.087 ±0.018 0.016 ±0.004 0.107 ±0.026 0.001 ±0.0002 0.029 ±0.007 0.006 ±0.002
+> Leduc 10r4s (47K) expl. ( ↓)—1.670 ±0.063 0.024 ±0.009 0.319 ±0.089 0.037 ±0.024 0.282 ±0.011 0.002 ±0.0003 0.058 ±0.016 0.0008 ±0.0002
+> Leduc 13r4s (80K) expl. ( ↓)—0.687 ±0.068 0.498 ±0.050 0.501 ±0.016 0.092 ±0.033 0.402 ±0.018 0.334 ±0.036 0.087 ±0.005 0.022 ±0.004
+> Liar’s Dice (24K) expl. ( ↓)—0.818 ±0.082 0.018 ±0.003 0.156 ±0.024 0.002 ±0.001 0.784 ±0.058 0.009 ±0.002 0.043 ±0.007 0.001 ±0.0002
+> 3-Player Leduc (14K) NashConv (↓)—1.482 ±0.103 0.773 ±0.041 0.473 ±0.057 0.005 ±0.001 0.354 ±0.082 0.770 ±0.024 0.146 ±0.028 0.003 ±0.001
+> BuilderBench (26 tasks) Progress ( ↑)—0.5448 ±0.028 —0.5017 ±0.038 0.3527 ±0.068 0.8229 —0.7006 0.8853
+
+best-of-N =64 , max s xt,s per task; this collapses the seed dimension to one value per task, so no across-seed std is defined and we omit error bars there. 
+
+D.2 BuilderBench: Partition and SFT-Headroom Diagnostic 
+
+BuilderBench serves as the cross-domain probe and the low-recall half of the EPF × method ablation (§6). The benchmark is a robotics cube-manipulation task (UR5e arm, MuJoCo, 51 tasks from cube-1 to cube-50). The expert oracle is a pool of golden trajectories from three frontier models (GPT-5.2 as a CoT agent, plus Claude Opus 4.6 and Gemini 3 Flash as reflexion agents, first successful episode per model). The model is Qwen3-8B, and the pipeline matches the one used for game domains (BuilderBench coldstart corpus details in App. H.3): joint forward–backward coldstart SFT on the frontier-model trajectories, backward generation on held-out trajectories, forward delta scoring with top-K selection, then SFT. 
+
+D.2.1 Heuristic Action-Match Reward 
+
+BuilderBench’s expert oracle commits to a single JSON action y∗ per state (action type, target cube id, and target position) rather than a distribution over actions, so the log-likelihood terms in ∆( z; x, y )
+
+from Eq. (4) are not directly defined. We substitute a heuristic action-match reward r(y; y∗) that grades partial overlap on the three action attributes: 
+
+r(y; y∗) = 
+
+
+
+1 action type and cube id matched, ∥∆pos ∥2 ≤ 1 cm ,
+
+max  0, 1 − ∥ ∆pos ∥2
+
+ action type and cube id matched, larger position offset ,
+
+0.1 action type matched only ,
+
+0 otherwise .
+
+(18) The candidate’s forward delta becomes the with-CoT vs. without-CoT reward gap ∆( z; x, y ∗) = 
+
+r(yz ; y∗) − r(y∅; y∗), where yz and y∅ are the actions the model decodes with and without the candidate CoT z in context. The rest of the M-step pipeline (positive-delta filter, top-K selection) is unchanged. 
+
+D.2.2 Cross-Domain Replication of the Poker 2 × 2
+
+Coldstart anchor. After joint coldstart SFT (3 epochs), the model reaches aggregate pass@ 64 = 15 /46 on the 46-task BB-51 denominator (5 context-overflow tasks excluded; §6, Table 3). The zero-shot Qwen3-8B base reaches 6/46 .
+
+Method ×EPF interaction. Running the full LeAct loop ( N =8 backward candidates per task, forward delta scoring, top-K selection, 3 SFT epochs) and crossing with the EPF axis produces the four cells reported in Table 3: (LeAct , EPF) = 21 /46 , (LeAct , no-EPF ) = 14 /46 , (EXIT +
+
+COT, EPF) = 10 /46 , and (EXIT + COT, no-EPF ) = 2 /46 . Only the diagonal that combines backward generation with EPF clears the coldstart anchor of 15 /46 ; the worst cell sits an order of magnitude below the best, separating the four configurations along both axes. 
+
+Diagnosis. Forward scoring picks up signal on this domain ( 25% of backward candidates receive positive delta, well above the noise floor) and translates into end-task improvement, but only under the EPF supervision target. Ablating either the backward pool (C OT E XIT pipeline) or the EPF 21 target costs absolute pass@ 64 , in either combination. This is the same dependence structure as poker (§6), now visible on a non-game domain whose oracle and metric have nothing to do with Nash policies. The non-trivial positive-delta rate shows the scoring signal is alive on this domain, so the failure of the three off-diagonal cells cannot be attributed to delta-scoring collapse—it has to be a supervision-target effect, which is what EPF controls. 
+
+Implication for LeAct ’s scope. BuilderBench establishes that LeAct adds aggregate end-task value when the supervision target is the oracle distribution itself; without EPF the pipeline regresses on this domain. The same domain doubles as a low-recall mechanism probe: the cross-domain 2 × 2 on EPF × method (§6) uses BuilderBench as the low-recall half (continuous-valued action arguments rarely repeat across states), and the pass@ 64 ordering ( LeAct + EPF > LeAct + no-EPF >
+
+EXIT + COT + EPF > EXIT + COT + no-EPF ) rules out the “no-EPF collapses LeAct ” explanation that high-recall poker invites. BuilderBench therefore contributes both generalisation evidence (§5.2) and mechanism evidence (§6) to the paper’s claims. 
+
+D.3 Flop Hold’em: Win-Rate Methodology KL summary. The hold-out KL summary is in Table 2a of the main text (§5.2); this subsection focuses on the chip-outcome (win-rate) analysis that complements it. 
+
+Setup. Methodology recapped here for self-containment: paired self-play, model-vs-model (not model-vs-teacher), chip outcomes averaged over N =50 ,000 paired hands with two seatings ( 25 ,000 
+
+each, identical card sequences, alternating Button vs Big Blind to remove positional bias). Outcomes in milli-big-blinds per game (mbb/g; one game = one hand in 2-player poker). 95% confidence intervals from per-hand chip-delta variance ( CI 95 = 1 .96 · SEM ). Sampling: temperature 1.0,max-tokens = 1024 . Both methods compared use expert-policy forcing (matched supervision target). 
+
+What the chip-outcome adds beyond KL. LeAct and C OT E XIT use matched supervision (both targets are the oracle Nash policy), so the chip-outcome gap isolates the contribution of backward delta scoring on top of forward KL-to-Nash ranking; this is the same controlled ablation as the KL Table 2a, but on play-strength rather than distribution-faithfulness. 
+
+Scope of the win-rate matrix. The matrix in Table 2b is restricted to trained-vs-trained comparisons across the three trained methods (N OCOT BC, C OT E XIT, LeAct ) that share the same supervision target (the DeepCFR teacher’s expert action). The SFT coldstart is reported in the hold-out KL summary (Table 2a; coldstart single-sample KL 0.0321 vs. trained-method 0.0019 –0.0145 ) but excluded from the chip-outcome matrix because it is not the output of any iteration round. 
+
+## E Mechanism Validation: Nash-Number Recall in CoT and Delta Scoring 
+
+The qualitative redaction in §3.3 prevents the backward generator from copying π∗ from its prompt, but trained CoTs may still contain Nash-plausible numbers as a side effect of expert-policy supervision: the M-step internalises π∗, and the same model reused as the backward proposal can re-emit Nash-like values without ever seeing them as input. This appendix records the CoT–policy coherence diagnostic that grounds the EPF × method 2 × 2 pattern in §6. 
+
+E.1 CoT–Policy Coherence Diagnostic 
+
+§6 identifies CoT–policy coherence and the resulting Nash-number recall shortcut as the mechanism of the 2 × 2 EPF × method interaction (Table 3). This subsection records the diagnostic that grounds that account. 
+
+CoT–policy coherence. EXIT+CoT’s SFT target without EPF is an internally self-consistent 
+
+(CoT, policy ) trace: both components are produced by a single forward decode of the current model, so the gradient does not have to reconcile two independently produced signals. LeAct ’s SFT target without EPF, by contrast, is a hybrid: the CoT was produced by the backward model (which saw π∗ qualitatively), while the policy line is the forward model’s decoded distribution. The prediction is that per-sample coherence (measured as 1 − DKL (πCoT ∥ πpolicy line )) should be higher for E XIT+CoT merge samples than for LeAct merge samples in the no-EPF regime, and inspecting merged SFT data suffices to test it. 22 Diagnostic (R1 merge files, ∼ 188 K lines per cell). We measure DKL (πCoT ∥ πpolicy line ) on the R1 SFT merge data for all four cells. 
+
+EPF row. Cell A’s per-sample KL distribution is right-shifted relative to cell C across the bulk of the support, consistent with the prediction. 
+
+No-EPF row. The surface ordering is reversed (cell B is more coherent than cell D), but inspection shows that the large majority ( 93 .6% ) of LeAct ’s no-EPF backward CoTs restate π∗ verbatim, because the backward generator saw the qualitative Nash context and the coldstart model was already near-Nash, so the CoT and the model’s decoded policy line trivially agree. This “Nash-recall shortcut” is a degenerate form of coherence: the CoT does not analyse, it echoes, and because the SFT action target in the no-EPF regime is the model’s own decode rather than π∗, the gradient reinforces the model’s residual Nash errors instead of correcting them. The symmetric flip is cell C (E XIT+CoT with EPF), where replacing the self-decoded (CoT, policy ) pair with π∗ breaks the trace’s internal consistency. 
+
+Synthesis. The four cells share one mechanism: CoT–policy coherence plus supervision-target choice together determine whether the gradient aligns with Nash (winning cells A, D) or with a memorised shortcut (losing cells B, C). 
+
+## F Oracle Construction for Large Games 
+
+We document oracle construction per game scale: exact CFR /CFR+ via OpenSpiel ’s tabular enumer-ation for games up to ∼80K infosets (App. F.1), and a streaming DeepCFR enumeration for Flop Hold’em where tabular enumeration exhausts memory (App. F.2). 
+
+F.1 Exact CFR for Small-to-Medium Games 
+
+For all games reported in the main paper (Leduc 6r2s through 13r4s, Liar’s Dice, 3-player Leduc), we use vanilla CFR or CFR+ to compute the exact Nash equilibrium policy table, enumerating the full information set space via OpenSpiel ’s to_tabular() function and storing the resulting |X | × |A| 
+
+policy matrix on disk. This is feasible up to ∼80,000 information sets on a standard 256 GB RAM node; larger games cause out-of-memory failures during tabular enumeration. 
+
+F.2 DeepCFR Streaming Enumeration for Flop Hold’em Poker 
+
+For Flop Hold’em Poker (FHP), the standard tabular enumeration via to_tabular() exhausts available RAM at 1.5 TB MaxRSS before completing, making exact CFR table construction infeasible on current hardware. We developed a trajectory-based streaming enumeration method that avoids materialising the full game tree in memory. 
+
+Method. We run DeepCFR [6] on FHP using OpenSpiel’s PyTorch implementation (open_spiel.python.pytorch.deep_cfr ), which trains neural network value/strategy approxi-mators from sampled game trajectories. The game is specified via OpenSpiel’s universal_poker 
+
+configuration matching the Brown et al. FHP benchmark (2-player limit hold’em, 2 betting rounds, blinds 50/100, raise size 100, 200 BB stacks). Rather than tabularising the final strategy network by querying it at all information sets simultaneously, we enumerate infosets incrementally : during each CFR traversal we record the (infoset, policy) pair encountered in the trajectory, deduplicate across traversals via a hash table, and write policy entries to disk as they are first seen. This streaming approach decouples memory consumption from game-tree size, requiring only O(|trajectory depth |)
+
+live memory per traversal rather than O(|X | ).
+
+Configuration. We run 1,000 outer DeepCFR iterations on OpenSpiel’s PyTorch implementation, then draw 10 6 on-policy trajectories from the converged policy for streaming enumeration; end-to-end wall-clock is approximately 22 minutes on a single CPU node and produces a ∼570 MB jsonl teacher table that we use throughout the paper. 
+
+Results. The streaming enumeration produced 2,343 ,732 unique infoset policies, substantially more than any other game in our experiments (see Table 9). Policy coverage converges monotonically along policy-induced trajectories: after the first 50K traversals, coverage stalls around 60% of newly-encountered infosets; ∼500K traversals already saturate at >99% in-support coverage, and we 23 extend the run to 10 6 trajectories for margin. The full FHP game tree (which contains ∼ 10 9 unique infosets [ 6] including off-policy subtrees not visited by external-sampling MCCFR) is therefore larger than the teacher’s 2,343 ,732 -infoset table. This affects only out-of-table queries when the teacher would itself be queried as a self-play opponent (see App. D.3); KL evaluation is computed exclusively on the held-out subset of the teacher’s 2,343 ,732 infosets and is therefore unaffected. 
+
+Limitation. DeepCFR provides an approximate Nash policy rather than an exact one; the approxima-tion error decreases with more traversals but does not reach zero. For the purposes of LeAct oracle supervision, we treat the converged DeepCFR policy as a high-quality proxy for π∗, analogous to how approximate CFR-family solvers (continual re-solving with neural counterfactual value networks [ 32 ], MCCFR-blueprint [5]) are used in large-scale poker AI. Table 9: Tabular CFR scales to 80K infosets; FHP requires streaming DeepCFR . Oracle ex-ploitability is 0 for exact CFR by definition and approximate for DeepCFR .                      
+
+> Game # Infosets Oracle Method Leduc 6r2s 4,032 Exact CFR to_tabular()
+> Leduc 10r4s 47,040 Exact CFR to_tabular()
+> Leduc 13r4s 79,872 Exact CFR to_tabular()
+> Liar’s Dice 24,576 Exact CFR to_tabular()
+> 3-Player Leduc 13,878 Exact CFR to_tabular()
+> Flop Hold’em Poker 2,343,732 DeepCFR (approx.) Streaming enumeration
+
+## G Prompt Format and Representative Examples 
+
+We show the prompt interface and one matched pair of backward-generated traces. The pair illustrates what the forward-delta filter rewards and rejects; it is not used as quantitative evidence. 
+
+G.1 Prompt and Output Format 
+
+The forward prompt provides the information state and legal actions and asks the student for a reasoning trace followed by a policy. The backward prompt uses the same state but reveals only a qualitative summary of the expert action and asks for reasoning alone. Exact oracle probabilities are not shown to the backward generator.                      
+
+> Forward prompt and output schema
+> user: Information state: [Round 2][Player: 0][Private: 7h] [Public: 3d][Sequences: cb] Legal actions: [Fold, Call, Raise] What is your action? assistant: <think>...reasoning...</think> Policy: {Fold: pf, Call: pc, Raise: pr}
+> Backward prompt and output schema
+> user: Information state: [Round 2][Player: 0][Private: 7h] [Public: 3d][Sequences: cb] Legal actions: [Fold, Call, Raise] Optimal strategy description: Fold often; call sometimes; raise never. Explain the reasoning without quoting probabilities. assistant: <think>...reasoning only...</think>
+
+The M-step target π∗(· | x) is supplied separately and is never parsed from the backward output. A candidate survives only when conditioning the forward model on it increases the per-token log-probability of the expert policy relative to the student’s self-generated reasoning baseline (App. A.4). 24 G.2 Matched Positive- and Negative-Delta Traces 
+
+For the state above, the expert qualitatively prefers folding, mixes in calls, and avoids raising. The following positive-delta trace connects observable features to that action structure:   
+
+> Positive-delta candidate
+> <think> The private card does not pair the board, and the opponent’s bet after a check is evidence of a stronger range. Calling retains some value against bluffs and weaker unpaired hands, but raising is unattractive because stronger hands continue and weaker hands often fold. The action should therefore lean toward folding, mix in calls, and rarely raise. </think>
+
+By contrast, a circular restatement of the revealed action contains no state-dependent explanation and receives negligible or negative delta:   
+
+> Non-positive-delta candidate
+> <think> The optimal strategy is to fold most of the time, call occasionally, and avoid raising because this is the optimal strategy. </think>
+
+These examples isolate the intended distinction: the filter rewards reasoning that makes the expert action more predictable from the state, not prose that merely repeats the action description. 
+
+## H Additional Experimental Details 
+
+H.1 Domain Summary 
+
+Table 10: Domain summary with infoset count, oracle, and metric. Leduc “ N rM s” is N ranks ×
+
+M suits per rank (so 10r4s = 40-card deck); Liar’s Dice uses the 1d6f variant; 3-Player Leduc uses 
+
+3r2s parameters. †FHP’s infoset count is the full-tree estimate [ 6]; the streaming DeepCFR teacher covers 2,343 ,732 unique infosets along policy-induced trajectories (App. F).                                  
+
+> Domain # Info Sets Players Expert Oracle Evaluation Metric Leduc 6r2s 4,032 2CFR Nash Exploitability Leduc 10r4s 47,040 2CFR Nash Exploitability Leduc 13r4s 79,872 2CFR Nash Exploitability Liar’s Dice (1d6f) 24,576 2CFR Nash Exploitability 3-Player Leduc 3r2s 13,878 3CFR Nash NashConv Flop Hold’em (FHP) †∼10 92DeepCFR KL to teacher BuilderBench 51 tasks 1Frontier-model trajectories Pass@ K, cube placement
+
+H.2 BuilderBench Task Partition 
+
+We evaluate on 46 of the 51 BuilderBench tasks ( 5 are excluded for exceeding the 8,192 -token context window), split by trajectory-pool success. In-domain (26 tasks): at least one of the three frontier oracles (Claude Opus 4.6, Gemini 3 Flash, GPT-5.2) produced a fully-successful episode in the trajectory pool, so the SFT data contains a golden trace. OOD (20 tasks): the best-of-3 frontier-model trajectory pool produced no successful trajectory, so any progress on these tasks is net-new training signal beyond the teacher pool. Per-oracle solve counts: Claude Opus 4.6 24 /51 ; Gemini 3 Flash 
+
+24 /51 ; GPT-5.2 15 /51 ; any-oracle union 26 /51 . Solve-status lists are fixed by oracle data collection and do not change across LeAct iterations. 
+
+H.3 Coldstart Construction 
+
+The coldstart phase fine-tunes Qwen3-8B on a domain-specific format-priming corpus. Three coldstart variants are used across our experiments: N OCOT (state → action only), C OT (state → forward CoT → action), and joint forward+backward (one SFT mix containing both forward training pairs and backward state, action → CoT pairs). The corpus source depends on what the oracle provides. 25 Leduc, Liar’s Dice, 3-player Leduc. Frontier-LLM sub-agents (Claude, Gemini, GPT-5) are prompted to produce candidate (CoT, action) pairs at every infoset; the action target is then replaced by the CFR solver’s exact Nash distribution before SFT. For joint variants, the backward direction is prompted with the oracle’s qualitative action summary (e.g., “mostly fold with occasional calls”) rather than exact probabilities, the same redaction protocol used in LeAct ’s E-step (§3.3) to discourage Nash-number recall. Coldstart corpus sizes per setting: 4,032 examples for Leduc 6r2s (N OCOT, full coverage of all 4,032 infosets), 2,800 for Leduc 10r4s joint ( 1,400 forward + 1,400 backward, a sampled subset of the 47 ,040 infosets to keep frontier-LLM API generation cost bounded), ≈ 49 ,000 
+
+for Liar’s Dice joint (full coverage of all 24 ,576 infosets in both directions), and 27 ,756 for 3-player Leduc joint ( 13 ,878 forward + 13 ,878 backward, full coverage). Leduc 13r4s reuses the Leduc 10r4s joint-coldstart checkpoint rather than running a fresh coldstart, isolating the scaling effect from coldstart variance. 
+
+Flop Hold’em. Exact CFR is intractable, so coldstart CoTs are generated off-GPU by frontier-model sub-agents (Claude Opus 4.6 / Sonnet 4.6 / Haiku 4.5) prompted with the infoset description and the DeepCFR teacher’s policy. Each sub-agent emits a ⟨reasoning, action, policy ⟩ triple in a single forward pass; the reasoning block embeds both the forward justification and the backward explanation, so no separate backward direction is generated. Outputs are validated for hole-card faithfulness (both hole cards named or referenced by exact-card token) and flop-rank coverage before inclusion, guarding against Leduc-style framing. The resulting corpus contains 1,510 NOCOT and 1,510 COTexamples ( 3,020 merged for joint). 
+
+BuilderBench. The coldstart corpus is the frontier-model trajectory pool itself: the first successful episode per (task, model) pair from three frontier agents (GPT-5.2 as a CoT-and-act agent, Claude Opus 4.6 and Gemini 3 Flash as reflexion agents). The joint forward+backward SFT mix contains 
+
+14 ,144 examples across the 51 BuilderBench tasks; the resulting checkpoint is the “Coldstart” anchor in Table 3 b. All coldstart SFT runs use 3 epochs at lr 1×10 −4 for poker domains and BuilderBench, 2×10 −5 for FHP; remaining hyperparameters follow Table 11. 
+
+H.4 Hyperparameters 
+
+Table 11 summarises the training hyperparameters used across all domains and methods. All experiments use Qwen3-8B as the base model, LLaMA-Factory for SFT with FSDP full_shard on 2–4 NVIDIA H200 GPUs, and vLLM for inference. Sampling parameters: temperature T = 1 .0, top-
+
+p = 0 .95 , top-k disabled, frequency penalty 0, repetition penalty 1 (vLLM defaults), max generation 
+
+4,096 tokens for game domains and 8,192 tokens for BuilderBench. Table 11: Training hyperparameters per experimental condition. Learning rates and epoch counts are scale-tuned: small Leduc variants tolerate aggressive schedules under full coverage, while 13r4s and FHP use longer warmup to avoid collapse on a wider distribution. We standardise on top-2
+
+selection across the paper; N =8 –16 for backward sampling.                                                                  
+
+> Setting Method Epochs LR Selection KGen. NGPUs Leduc 6r2s ExIt / LeAct 1–3 2e-6 – 5e-6 top-2 8–32 2Leduc 10r4s NoCoT BC 12e-6 top-2 8–32 2Leduc 10r4s LeAct 1–3 2e-6 – 5e-6 top-2 82–4 Leduc 13r4s NoCoT BC 31e-5 top-2 84Leduc 13r4s LeAct 35e-6 top-2 8–16 4–8 Liar’s Dice LeAct 32e-6 top-2 823-Player Leduc LeAct 32e-6 top-2 82FHP ( ∼10 9)LeAct (DeepCFR )35e-5 top-2 88BuilderBench LeAct 1–3 1e-5 top-2 8–32 4
+
+All experiments share the following defaults: AdamW ( β1 = 0 .9, β2 = 0 .999 , weight decay 0.01 )with cosine LR decay and a 3% linear warmup; max sequence length 2048 tokens for game domains and 8192 for BuilderBench; per-device batch 4–8, giving an effective batch of 16 –64 depending on GPU count; bf16 mixed precision under PyTorch FSDP full_shard with Qwen3DecoderLayer 
+
+wrapping. Each headline cell is trained once per (method, setting) and evaluated under 3 inference seeds; reported single-sample / B ON metrics are best-across-epochs on the full game tree, with std across the 3 evaluations reported in Table 8. 26 H.5 E-Step Load-Bearing Ablation Study 
+
+Two ablations test whether backward-delta selection contributes signal beyond what coverage alone provides; both share the production training recipe summarised above. 
+
+Random vs forward-delta ranking ( K=1 sharpening). We compare random ranking and forward-delta ranking on the same LeAct R2 backward pool at Leduc 10r4s, sharpened to K=1 per infoset (within-pool IoU ≈ 0.13 instead of ≈ 0.50 at K=4 ) so that each arm commits to a single CoT per infoset and exposes the within-positive ranking signal. Both arms train from the same coldstart base on the same R2 backward pool with hyperparameters held matched; the comparison is between selection rules, not between training pipelines. Reported metrics (Fig. 3a) are full-tree single-sample and B ON-of-8 exploitability on all 47 K Leduc 10r4s infosets at the best epoch in each arm. 
+
+Recall-stratified delta on backward pools. On the LeAct R2 backward pools at Leduc 10r4s (N =374 ,272 candidates) and Leduc 13r4s ( N =638 ,976 candidates; N =393 ,512 after filtering trivial-policy states), we compute mean positive forward delta partitioned by whether each candidate CoT contains at least one verbatim Nash probability. Stratification is on the full unfiltered candidate pool (not on selected CoTs), so the partition spans the entire pre-selection distribution; per-stratum positive-delta means are reported in Fig. 3b. Verbatim detection uses exact substring matching against the per-state π∗ probabilities at three-decimal resolution. 
+
+H.6 Compute Budget 
+
+Table 12 estimates the GPU-hours for each phase of the experimental pipeline. Generation and scoring are the dominant costs. Table 12: Per-phase GPU-hour estimates on NVIDIA H200 (141GB). Generation and scoring scale with infoset count and dominate at small to mid scales; SFT becomes the largest single phase only at FHP. Units suppressed in cells; FHP figures are observed R1 wall-times. † FHP coldstart CoT was generated off-GPU by frontier-model agents (Claude Opus 4.6 / Sonnet 4.6 / Haiku 4.5); the < 1
+
+figure is the action-only forward pass over the coldstart trace pool.                                                      
+
+> Phase Leduc 10r4s Leduc 13r4s Liar’s Dice FHP
+> CFR solver (CPU) 0.5h 2h 0.5h DeepCFR (pre-trained) Coldstart data gen 484<1†
+> Coldstart SFT 24216 ExIt generation ( N=8 )816 810 ExIt SFT (per round) 28216
+> LeAct backward gen ( N=8 )16 32 822
+> LeAct forward scoring 16 32 88
+> LeAct SFT (per round) 416 430 Evaluation (per checkpoint) 2424
+> Total per LeAct round ∼38 ∼84 ∼22 ∼64
+
+The total compute for the reported experiments (including all iterations, ablations, and baselines) is approximately 1,500 GPU-hours on H200s. The full research project, including failed experiments and hyperparameter searches, consumed approximately 5,000 GPU-hours. 27

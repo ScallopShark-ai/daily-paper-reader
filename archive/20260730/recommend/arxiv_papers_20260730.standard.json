@@ -1,0 +1,303 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-30T21:36:18.160712+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2607.26393v1",
+      "source": "arxiv",
+      "title": "CaM-Wolf: Causal-Aware Multimodal Agents for Social Deduction Games",
+      "abstract": "Social deduction games (SDGs) such as Werewolf have become challenging testbeds for AI agents. These games require complex social skills such as reasoning, deception, and collaboration. While recent advances in large language models (LLMs) have driven significant progress in SDG agents, current approaches are predominantly text-based, overlooking the multimodal nature that is fundamental to human social interaction. To bridge this gap, we introduce CaM-Wolf, the first SDG agent that integrates multimodal perception and generation. CaM-Wolf processes video inputs from other players, employs a causal-aware Reasoner trained via reinforcement learning to establish logical chains between observable behaviors and hidden roles, and presents itself through an animated avatar. Our experiments and user study show that CaM-Wolf achieves superior agent gameplay performance and enhances the quality of human-AI interaction. This work represents a significant advancement towards creating more human-like AI agents capable of participating in nuanced social dynamics. Our code is available at https://3dagentworld.github.io/avatar_wolf.",
+      "authors": [
+        "Zheng Zhang",
+        "Nanjie Yao",
+        "Jiarui He",
+        "Deheng Ye",
+        "Peilin Zhao",
+        "Hao Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-29T01:58:36+00:00",
+      "link": "https://arxiv.org/pdf/2607.26393v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "multimodal social deduction game agent with causal RL and animated avatar",
+      "llm_evidence_cn": "多模态社交推理游戏智能体，结合因果强化学习和动画分身",
+      "llm_evidence": "多模态社交推理游戏智能体，结合因果强化学习和动画分身",
+      "canonical_evidence": "多模态社交推理游戏智能体，结合因果强化学习和动画分身",
+      "llm_tldr_en": "CaM-Wolf is the first multimodal social deduction game agent integrating video perception, causal RL reasoning, and animated avatar generation to play Werewolf with human-like social skills, demonstrating complex strategies, deception, and collaboration.",
+      "llm_tldr_cn": "针对现有社交推理游戏智能体仅限文本交互、缺乏多模态人类社交能力的问题，提出CaM-Wolf智能体，通过视频输入感知其他玩家、因果感知推理器经强化学习训练建立行为-角色逻辑链，并以动画分身呈现，实现了更拟人化的多轮策略博弈。实验在狼人杀游戏中展现出复杂策略、欺骗与协作行为，表明该框架能有效弥合AI与人类社交智能鸿沟。",
+      "llm_tldr": "针对现有社交推理游戏智能体仅限文本交互、缺乏多模态人类社交能力的问题，提出CaM-Wolf智能体，通过视频输入感知其他玩家、因果感知推理器经强化学习训练建立行为-角色逻辑链，并以动画分身呈现，实现了更拟人化的多轮策略博弈。实验在狼人杀游戏中展现出复杂策略、欺骗与协作行为，表明该框架能有效弥合AI与人类社交智能鸿沟。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.21856v1",
+      "source": "arxiv",
+      "title": "LeAct: Learning to Reason from Expert Actions",
+      "abstract": "Modern reasoning models depend on reasoning data, today sourced from human annotations or distilled from stronger LLMs. However, a rich and largely untapped source of supervision lies in expert systems (e.g., game engines, classical planners, theorem provers), which routinely produce near-optimal actions across diverse domains. But these experts are silent: they commit to an action without writing down the chain of thought (CoT) behind it. Recovering that CoT as natural-language reasoning would distill expert knowledge into a student that generalizes beyond the demonstrated actions. We treat it as a latent variable and study how to recover it from the action alone. Our approach, LeAct (Learning to reason from Actions), optimizes this latent variable: the student samples candidate CoTs for each expert action, and we retain those that measurably improve its own probability of recovering the action. Across imperfect-information games at multiple scales and a simulated robotics benchmark, LeAct reaches the solver's numerical floor on small enumerable games. At larger scale, it is $5\\times$ closer to the solver than the strongest expert-iteration baseline. At Flop Hold'em ($\\sim 10^9$ infosets), LeAct wins head-to-head by $+60$ mbb/g, and on the robotics probe it is the only training recipe that improves on direct imitation. We present a principled framework and the result: expert systems become a categorically new source of reasoning teachers for foundation models.",
+      "authors": [
+        "Ziran Yang",
+        "Chengshuai Shi",
+        "Raj Ghugare",
+        "Benjamin Eysenbach",
+        "Karthik Narasimhan",
+        "Chi Jin"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-23T22:50:23+00:00",
+      "link": "https://arxiv.org/pdf/2607.21856v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Leverages expert actions from game engines to train reasoning agents, directly applicable to game AI bot development.",
+      "llm_evidence_cn": "利用游戏引擎等专家系统的动作来训练推理代理，直接用于游戏AI机器人开发。",
+      "llm_evidence": "利用游戏引擎等专家系统的动作来训练推理代理，直接用于游戏AI机器人开发。",
+      "canonical_evidence": "利用游戏引擎等专家系统的动作来训练推理代理，直接用于游戏AI机器人开发。",
+      "llm_tldr_en": "Tackles the problem of silent expert systems by recovering chain-of-thought reasoning from actions, using game engines as an example; this can effectively train game AI bots to reason like experts.",
+      "llm_tldr_cn": "针对专家系统（如游戏引擎）只给出动作而无推理过程的局限，提出从动作中恢复思维链的方法；该方法可将游戏引擎的专家知识蒸馏到游戏AI代理中，使其推理能力逼近专家，有望大幅提升游戏AI的智能水平。",
+      "llm_tldr": "针对专家系统（如游戏引擎）只给出动作而无推理过程的局限，提出从动作中恢复思维链的方法；该方法可将游戏引擎的专家知识蒸馏到游戏AI代理中，使其推理能力逼近专家，有望大幅提升游戏AI的智能水平。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.23434v1",
+      "source": "arxiv",
+      "title": "Two-Timescale Hierarchical Reinforcement Learning for Resilient Operations",
+      "abstract": "Unexpected shocks recur in global operations, requiring decision rules that adapt as market and operating conditions change. Many operational systems also have hierarchical structures in which long-term and short-term decisions pursue a shared objective. We study how hierarchical reinforcement learning can strengthen resilience by adapting these interdependent rules jointly. We develop a two-timescale hierarchical reinforcement learning framework that adapts long-term and short-term policies at their respective time scales. Because the policies are interdependent, we synchronize their updates and prove, to our knowledge, the first convergence guarantees for coupled two-timescale learning. Over $T$ periods, our policies' average gap from an optimal policy pair is $O(T^{-1/2})$, improving to $O(\\log T/T)$ when poor decisions produce clearer profit losses. In a used-car case study, inventory replenishment is the long-term decision and customer-arrival pricing the short-term decision. Relative to the strongest partially adaptive benchmark, the framework increases mean profit by $9.2\\%$ under joint demand-supply shocks and by $11.8\\%$ under a prolonged shock scenario, while maintaining a more stable profit trajectory over time. Short-term adaptation addresses routine seasonality and one-sided disruptions by responding immediately to changing conditions. Under joint demand-supply shocks, however, it is insufficient alone; long-term adaptation is also needed to create favorable conditions for short-term decisions. Joint adaptation thus yields higher and more stable profits through disruption and recovery. Because many organizations already use hierarchical planning, the framework strengthens operational resilience without altering existing decision structures.",
+      "authors": [
+        "Young Hyun Cho",
+        "Franz Stoll",
+        "Will Wei Sun",
+        "Guang Lin",
+        "Stephan Biller"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "stat.ME"
+      ],
+      "published": "2026-07-26T03:08:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.23434v1",
+      "tags": [
+        "keyword:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes two-timescale hierarchical RL that can train game AI with hierarchical decisions",
+      "llm_evidence_cn": "提出双时间尺度分层强化学习，可用于训练需要分层决策的游戏AI",
+      "llm_evidence": "提出双时间尺度分层强化学习，可用于训练需要分层决策的游戏AI",
+      "canonical_evidence": "提出双时间尺度分层强化学习，可用于训练需要分层决策的游戏AI",
+      "llm_tldr_en": "Develops a two-timescale hierarchical RL framework with convergence guarantees, transferable to game AI with multi-level decision-making",
+      "llm_tldr_cn": "针对运营中长短期决策相互依赖的问题，提出双时间尺度分层强化学习框架，并首次证明耦合学习的收敛性。该方法可迁移至游戏AI，处理分层决策任务。",
+      "llm_tldr": "针对运营中长短期决策相互依赖的问题，提出双时间尺度分层强化学习框架，并首次证明耦合学习的收敛性。该方法可迁移至游戏AI，处理分层决策任务。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.26094v1",
+      "source": "arxiv",
+      "title": "Meta-Learned Reward Shaping for Reinforcement Learning from Human Feedback",
+      "abstract": "Reinforcement Learning from Human Feedback (RLHF) is the standard approach for aligning large language models with human preferences, but its quality is limited by static, task-agnostic reward models. This mismatch leads to sparse learning signals and suboptimal alignment. We introduce MeRLa (Meta-Learned Reward Shaping), a principled framework that meta-learns a task-aware shaping function $Φ(x,y;φ)$ across auxiliary tasks before RLHF training. The learned shaping produces a composite reward that preserves policy optimality while providing task-specific learning signals. Our meta-objective combines task discrimination, entropy regularization, and potential-based conservation for stable convergence. We provide theoretical guarantees for policy invariance, analyze representation drift sensitivity, and formally address incentive misalignment from entropy maximization. Experiments on LLaMA-3-8B across four benchmarks show consistent improvements over PPO, DPO, GRPO, and DAPO, achieving a 90.8% length-controlled win rate on AlpacaEval 2.0 and a score of 9.14 on MT-Bench, with 41% less training instability. MeRLa retains its benefits when combined with process-based and rubric-based enhanced rewards.",
+      "authors": [
+        "Yunpeng Chu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-07-28T02:09:26+00:00",
+      "link": "https://arxiv.org/pdf/2607.26094v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes meta-learned reward shaping for RL, applicable to training game AI agents",
+      "llm_evidence_cn": "提出元学习奖励塑形方法，可用于训练游戏AI智能体的强化学习技术",
+      "llm_evidence": "提出元学习奖励塑形方法，可用于训练游戏AI智能体的强化学习技术",
+      "canonical_evidence": "提出元学习奖励塑形方法，可用于训练游戏AI智能体的强化学习技术",
+      "llm_tldr_en": "Introduces MeRLa, a meta-learned reward shaping framework that generates task-specific auxiliary rewards to improve RL training, with theoretical guarantees and empirical success in RLHF, potentially benefiting game AI reinforcement learning.",
+      "llm_tldr_cn": "针对强化学习训练中静态奖励模型导致信号稀疏的问题，本文提出元学习的奖励塑形框架MeRLa，通过跨辅助任务元学习一个任务感知的塑形函数，为策略优化提供稠密的学习信号。理论证明该方法保持策略最优性，实验在RLHF中验证了有效性，其方法可泛化应用于游戏AI的强化学习训练。",
+      "llm_tldr": "针对强化学习训练中静态奖励模型导致信号稀疏的问题，本文提出元学习的奖励塑形框架MeRLa，通过跨辅助任务元学习一个任务感知的塑形函数，为策略优化提供稠密的学习信号。理论证明该方法保持策略最优性，实验在RLHF中验证了有效性，其方法可泛化应用于游戏AI的强化学习训练。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.25369v1",
+      "source": "arxiv",
+      "title": "ODYSSE: Episode-wise Policy Optimization for Personalized Agentic Reasoning",
+      "abstract": "Agentic systems have rapidly advanced in their ability to interact with real-world environments, leverage external tools, and provide services for users. However, unlike natural-world tasks that assume well-defined instructions, human-centered scenarios are characterized by ambiguous requests that lead to large, open-ended solution spaces. Decoding users' personalized preferences is therefore essential for narrowing the candidate solution space. This introduces a new challenge, personalized agentic reasoning, which requires agents to jointly interact with both users and environments to deliver personalized services. In this paper, we present ODYSSE, a Reinforced Fine-Tuning (RFT) framework for personalized agentic reasoning. At its core, ODYSSE proposes Episode-wise GRPO (ESPO), a novel extension of Group Relative Policy Optimization (GRPO) designed to address long action horizons and strong cross-step dependencies in personalized agentic reasoning. Rather than optimizing individual steps independently, ESPO introduces an episode-level reward mechanism together with episodic advantage estimation, enabling upstream evidence to effectively guide downstream personalized decisions and allowing agents to progressively resolve ambiguous user requests across multiple interaction steps. We further propose an episodic batch sampler that groups actions from the same episode into unified training batches, facilitating coherent optimization under ESPO. We evaluate ODYSSE on realistic long-horizon personalized GUI reasoning tasks. Experimental results demonstrate that ODYSSE consistently outperforms both specialist and general-purpose LVLMs, highlighting its effectiveness for personalized agentic reasoning.",
+      "authors": [
+        "Jiaqi Zhang",
+        "Tong Chen",
+        "Junliang Yu",
+        "Quoc Viet Hung Nguyen",
+        "Hongzhi Yin"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-28T07:25:04+00:00",
+      "link": "https://arxiv.org/pdf/2607.25369v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Reinforced fine-tuning for personalized agents, transferable to humanizing game AI bots",
+      "llm_evidence_cn": "提出强化微调实现个性化代理，可应用于拟人化游戏AI bot",
+      "llm_evidence": "提出强化微调实现个性化代理，可应用于拟人化游戏AI bot",
+      "canonical_evidence": "提出强化微调实现个性化代理，可应用于拟人化游戏AI bot",
+      "llm_tldr_en": "ODYSSE uses reinforced fine-tuning to personalize agent reasoning, a method transferable to creating human-like game AI bots",
+      "llm_tldr_cn": "针对人类场景中请求模糊导致解空间大的问题，提出ODYSSE框架，通过强化微调使代理联合交互用户和环境，解码个性化偏好。该方法可迁移至游戏AI，通过适应用户偏好打造更拟人化的游戏bot。",
+      "llm_tldr": "针对人类场景中请求模糊导致解空间大的问题，提出ODYSSE框架，通过强化微调使代理联合交互用户和环境，解码个性化偏好。该方法可迁移至游戏AI，通过适应用户偏好打造更拟人化的游戏bot。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.26120v1",
+      "source": "arxiv",
+      "title": "Even More Deception: Objective Misalignment in Mixed-Motive LLM Multi-Agent Systems",
+      "abstract": "Large Language Models (LLMs)-powered multi-agent systems are increasingly deployed in mixed-motive environments, where agents operate under asymmetric information and strategic deception due to conflicting or hidden objectives. In these settings, misalignment with collective goals becomes a central concern. We propose a novel framework for evaluating objective misalignment using the social deduction game Werewolf, modifying the objective of a single agent while preserving its assigned role. Across LLMs from four different model families and sizes, four player roles, and three objective formulations, we introduce a dual analysis of the agents' internal reasoning and their public cheap-talk behavior (i.e costless, non-binding communication that does not directly affect the agents' utilities), complemented by an analysis of game outcomes. Our results show that objective misalignment undermines outcomes in inherently adversarial environments, an effect exacerbated by asymmetric information and specialized roles. While compromised agents consistently develop distinct objective-dependent reasoning strategies, these adaptations remain largely invisible in their public behavior. More broadly, our findings suggest that even subtle objective misalignment can profoundly affect collective decision-making, highlighting the need for effective mitigation strategies for LLM-based multi-agent systems.",
+      "authors": [
+        "Marylou Fauchard",
+        "Florian Carichon",
+        "Margarida Carvalho",
+        "Golnoosh Farnadi"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-28T17:48:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.26120v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evaluates LLM agent deception in the social deduction game Werewolf",
+      "llm_evidence_cn": "在社交推理游戏狼人杀中评估LLM智能体欺骗行为",
+      "llm_evidence": "在社交推理游戏狼人杀中评估LLM智能体欺骗行为",
+      "canonical_evidence": "在社交推理游戏狼人杀中评估LLM智能体欺骗行为",
+      "llm_tldr_en": "Studies objective misalignment and deceptive behavior of LLM agents in the mixed-motive game Werewolf, providing insights for game AI bot design and behavior analysis.",
+      "llm_tldr_cn": "本文关注LLM驱动的多智能体系统在混合动机环境中的目标不一致与欺骗问题，以狼人杀游戏为实验场景。通过修改单个智能体的游戏目标但保持角色不变，从内部推理和公开沟通两个维度分析其行为。在多个模型和角色设定下的实验揭示了智能体在策略游戏中的欺骗模式，为设计和评估具有拟人行为的游戏AI提供了框架性方法和实证依据。",
+      "llm_tldr": "本文关注LLM驱动的多智能体系统在混合动机环境中的目标不一致与欺骗问题，以狼人杀游戏为实验场景。通过修改单个智能体的游戏目标但保持角色不变，从内部推理和公开沟通两个维度分析其行为。在多个模型和角色设定下的实验揭示了智能体在策略游戏中的欺骗模式，为设计和评估具有拟人行为的游戏AI提供了框架性方法和实证依据。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.26784v1",
+      "source": "arxiv",
+      "title": "SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution",
+      "abstract": "Large language model agents often encounter related yet distinct tasks that share reusable solution patterns. Yet standard agentic reinforcement learning treats tasks as independent episodes, while existing approaches to skill learning either focus on repeated attempts of one task or use pipelines with multiple stages that entangle extraction, retrieval, and execution. We introduce SkillRise, a unified reinforcement learning framework for learning skills across tasks. SkillRise organizes related instances into progressively challenging sequences and uses a single policy to alternate between task solving and curating an evolving skill document passed directly to the next task. Decoupled credit assignment across tasks supervises solving with the current task outcome and curation with discounted downstream outcomes. Experiments on ALFWorld, WebShop, and ScienceWorld show that SkillRise achieves the strongest Pass@1 performance among the compared methods, with gains over the strongest baseline ranging from 2.3 to 8.5 percentage points. Although trained across distinct tasks, its learned curation policy remains effective for repeated attempts on the same task. Further analysis reveals scaling at test time across tasks: performance improves with longer sequences of related tasks even when each task is attempted only once. This trend suggests that SkillRise reuses transferable skills across tasks rather than benefiting from repeated sampling of the same task. SkillRise further retains strong performance while substantially reducing the runtime overhead of skill learning pipelines with multiple stages. Together, these results provide a simple and efficient training paradigm for LLM agents to extract, refine, and reuse transferable skills across tasks.",
+      "authors": [
+        "Zhiyuan Yao",
+        "Yuxin Chen",
+        "Zhengxi Lu",
+        "Zishan Xu",
+        "Yueqing Sun",
+        "Yifu Guo",
+        "Yuquan Lu",
+        "Zhengzhou Cai",
+        "Kangning Zhang",
+        "Zhuowen Han",
+        "Zi-Han Wang",
+        "Ziang Ye",
+        "Qi Gu",
+        "Xunliang Cai",
+        "Weiwen Liu",
+        "Yongliang Shen"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-29T11:26:33+00:00",
+      "link": "https://arxiv.org/pdf/2607.26784v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes an RL framework for agents to learn reusable skills across tasks, applicable to game AI training.",
+      "llm_evidence_cn": "提出一种让智能体跨任务学习可复用技能的强化学习框架，适用于游戏AI训练。",
+      "llm_evidence": "提出一种让智能体跨任务学习可复用技能的强化学习框架，适用于游戏AI训练。",
+      "canonical_evidence": "提出一种让智能体跨任务学习可复用技能的强化学习框架，适用于游戏AI训练。",
+      "llm_tldr_en": "Addresses the problem of independent task learning in agentic RL by introducing SkillRise, a framework that organizes tasks into sequences and maintains an evolving skill document; this method can benefit game AI bots that need to master multiple game levels or skills.",
+      "llm_tldr_cn": "针对智能体强化学习中任务独立学习的局限，提出SkillRise框架，通过序列化任务和进化技能文档实现跨任务技能学习；该方法可应用于游戏AI，使其能在多个关卡或任务中复用技能，提升训练效率。",
+      "llm_tldr": "针对智能体强化学习中任务独立学习的局限，提出SkillRise框架，通过序列化任务和进化技能文档实现跨任务技能学习；该方法可应用于游戏AI，使其能在多个关卡或任务中复用技能，提升训练效率。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

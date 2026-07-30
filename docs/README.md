@@ -6,32 +6,43 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-29
-- 运行时间：2026-07-29 20:13:55 UTC
+- 最新运行日期：2026-07-30
+- 运行时间：2026-07-30 21:43:34 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：3
-- 速读区：0
+- 本次总论文数：7
+- 精读区：1
+- 速读区：6
 
 ### 今日简报（AI）
-今天深入剖析两篇顶会论文，拆解大模型智能体教学与逆向对齐新范式。  
-方向聚焦“用游戏解法当老师”提升LLM推理和“模仿人类”来校准AI价值观。  
-想跟上智能体进化，建议从读透CAST的回合级教学实验入手。
-- 详情：[/202607/29/README](/202607/29/README)
+今日精读满分论文《CaM-Wolf》，速读多智能体欺骗、行为学习与奖励塑形三篇，聚焦大模型在社交博弈中的因果推理能力。  
+最值得关注：如何用因果感知模块让智能体在“狼人杀”中识别谎言，以及混合动机系统中目标错位带来的欺骗行为。  
+想上手实践，不妨从 CaM-Wolf 的开源多模态游戏框架入手，跑一局看看因果推理是否真能提升胜率。
+- 详情：[/202607/30/README](/202607/30/README)
 
 ### 精读区论文标签
-1. [CAST: Game Solvers as Turn-Level Teachers for LLM Agents](/202607/29/2607.25308v1-cast-game-solvers-as-turn-level-teachers-for-llm-agents)  
-   标签：评分：9.0/10、query:gah
-   evidence：利用游戏求解器价值变化为LLM游戏智能体的RL训练提供密集回合级信用
-2. [Inverse RL Helps Align AI by Imitating Humans](/202607/29/2607.24900v1-inverse-rl-helps-align-ai-by-imitating-humans)  
-   标签：评分：8.0/10、query:gah
-   evidence：逆强化学习方法从演示中恢复隐式奖励，可用于模仿人类游戏行为
-3. [Interpretable GOHR Agents via Sparse Autoencoders](/202607/29/2607.25132v1-interpretable-gohr-agents-via-sparse-autoencoders)  
-   标签：评分：8.0/10、query:gah
-   evidence：使用稀疏自编码器解释游戏智能体的行为
+1. [CaM-Wolf: Causal-Aware Multimodal Agents for Social Deduction Games](/202607/30/2607.26393v1-cam-wolf-causal-aware-multimodal-agents-for-social-deduction-games)  
+   标签：评分：10.0/10、query:gah
+   evidence：多模态社交推理游戏智能体，结合因果强化学习和动画分身
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [LeAct: Learning to Reason from Expert Actions](/202607/30/2607.21856v1-leact-learning-to-reason-from-expert-actions)  
+   标签：评分：7.0/10、query:gah
+   evidence：利用游戏引擎等专家系统的动作来训练推理代理，直接用于游戏AI机器人开发。
+2. [Meta-Learned Reward Shaping for Reinforcement Learning from Human Feedback](/202607/30/2607.26094v1-meta-learned-reward-shaping-for-reinforcement-learning-from-human-feedback)  
+   标签：评分：7.0/10、query:gah
+   evidence：提出元学习奖励塑形方法，可用于训练游戏AI智能体的强化学习技术
+3. [Even More Deception: Objective Misalignment in Mixed-Motive LLM Multi-Agent Systems](/202607/30/2607.26120v1-even-more-deception-objective-misalignment-in-mixed-motive-llm-multi-agent-systems)  
+   标签：评分：7.0/10、query:gah
+   evidence：在社交推理游戏狼人杀中评估LLM智能体欺骗行为
+4. [Two-Timescale Hierarchical Reinforcement Learning for Resilient Operations](/202607/30/2607.23434v1-two-timescale-hierarchical-reinforcement-learning-for-resilient-operations)  
+   标签：评分：6.0/10、query:gah
+   evidence：提出双时间尺度分层强化学习，可用于训练需要分层决策的游戏AI
+5. [ODYSSE: Episode-wise Policy Optimization for Personalized Agentic Reasoning](/202607/30/2607.25369v1-odysse-episode-wise-policy-optimization-for-personalized-agentic-reasoning)  
+   标签：评分：6.0/10、query:gah
+   evidence：提出强化微调实现个性化代理，可应用于拟人化游戏AI bot
+6. [SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution](/202607/30/2607.26784v1-skillrise-agentic-reinforcement-learning-for-cross-task-skill-evolution)  
+   标签：评分：6.0/10、query:gah
+   evidence：提出一种让智能体跨任务学习可复用技能的强化学习框架，适用于游戏AI训练。
 
 
 <div class="dpr-home-promo-card">
