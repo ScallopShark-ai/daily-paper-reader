@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-31",
+  "date": "2026-07-31",
+  "generated_at": "2026-07-31T21:16:00",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/31/2607.28287v1-tycho-active-abstraction-with-programmatic-world-models-for-arc-agi-3",
+      "section": "deep",
+      "title_en": "Tycho: Active Abstraction with Programmatic World Models for ARC-AGI-3",
+      "authors": "Jens Lehmann, Andrei Aioanei, Sahar Vahdati",
+      "date": "2026-07-30",
+      "pdf": "https://arxiv.org/pdf/2607.28287v1",
+      "score": "8.0",
+      "evidence": "通过构建可执行世界模型来学习游玩ARC-AGI-3游戏的智能体，展示了游戏AI设计",
+      "tldr": "ARC-AGI-3将抽象转化为交互式技能获取问题，要求高效推断游戏规则。Tycho系统通过构建程序化世界模型实现主动抽象，在公开游戏上获得最高平均相对人类行动效率88.49。采用选定策略，GPT-5.6和Opus 5完成所有关卡，Opus 5动作节省61%。结果表明，主动抽象中模型构建与使用时机决策对强大表现至关重要。",
+      "tags": "query:gah",
+      "abstract_en": "ARC-AGI-3 turns abstraction into an interactive problem of skill acquisition. A player must infer an unfamiliar game's rules, hidden state, and goal while maintaining action efficiency because every move counts. We formalize these environments as parameterized rendered deterministic Moore machines and introduce Tycho, a coding-agent system that constructs and uses game-specific models during interaction. Tycho separates actionable observations from intermediate animation, level-completion, and game-over frames. From this structured history, an agent can model, test, plan with, repair, or bypass a free-form executable hypothesis.   In one matched public-set run per policy, we compare four orchestration policies on all 25 public games using Claude Opus 4.8 under matched inference budgets. Actor-requested delegation to a model builder obtains the highest observed mean Relative Human Action Efficiency (RHAE), 88.49. With this selected policy, GPT-5.6 Sol and Opus 5 both reach 100.00 RHAE and complete all 183 levels. Their game-balanced first-run human-replay midranks are 98.5 and 100.0. Opus 5 uses 61% fewer scored actions than the aggregate official human baselines.   Automatic repair after verification failures produces models that reproduce observed transitions much more accurately, yet reaches only 83.07 RHAE. Transition match indicates whether a simulator reproduces observed dynamics, not whether it has identified the objective or improves the next action. Strong play also requires deciding when to construct, repair, use, or bypass a model. We call this joint problem active abstraction: generating a testable model from costly interaction and deciding when acquiring or using it is worth its cost.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/31/2607.28146v1-can-agents-deceive-evaluating-reasoning-and-deception-in-parliamentbench-using-a-social-deduction-game",
+      "section": "quick",
+      "title_en": "Can Agents Deceive? Evaluating Reasoning and Deception in ParliamentBench using a Social Deduction Game",
+      "authors": "Niklas Bauer, Lars Benedikt Kaesberg, Akiko Aizawa, Jan Philip Wahle, Bela Gipp, Terry Ruas",
+      "date": "2026-07-30",
+      "pdf": "https://arxiv.org/pdf/2607.28146v1",
+      "score": "6.0",
+      "evidence": "评估AI代理在社交推理游戏Secret Hitler中的欺骗行为，分析游戏AI bot行为",
+      "tldr": "LLM在高风险场景中的欺骗能力是安全关键。本文提出基于社交推理游戏Secret Hitler的开源基准ParliamentBench，在1600场对局中评估16个模型，通过三项新指标衡量推理与欺骗。前沿模型（如GPT-5.4、Kimi K2.5）表现强劲，最弱模型低于随机基线，且多数模型难以维持欺骗角色。该基准为可控评估LLM对抗行为提供了可复现手段。",
+      "tags": "query:gah",
+      "abstract_en": "As large language models (LLMs) are deployed as agents in high-stakes settings, such as medical and legal systems, understanding their deceptive capabilities is fundamental to safety. Controlled social deduction games provide a reproducible proxy for isolating and evaluating these complex adversarial behaviors. We present the open-source benchmark framework ParliamentBench based on the game Secret Hitler to evaluate LLMs in scenarios that require deception, persuasion, and reasoning under information asymmetry. We evaluate 16 LLMs across 1,600 simulated matches playing each other, playing against humans, and compare them against a large set of online games. We introduce three novel metrics that isolate social deduction, reasoning, and deceptive consistency. Our experiments reveal that frontier models achieve strong performance across cooperative and deceptive roles, with a strong top-four cluster (GPT-5.4, Kimi K2.5, Grok 4.1 Fast, and DeepSeek 3.1 Terminus), whereas the weakest models fall short of random (33%) and simple algorithmic (45%) baselines. Most LLMs struggle to maintain a consistent deceptive persona throughout an entire game, with deception retention dropping below 50%.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
