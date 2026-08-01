@@ -6,28 +6,37 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-31
-- 运行时间：2026-07-31 21:15:48 UTC
+- 最新运行日期：2026-08-01
+- 运行时间：2026-08-01 21:25:36 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：1
-- 速读区：1
+- 本次总论文数：5
+- 精读区：2
+- 速读区：3
 
 ### 今日简报（AI）
-今日聚焦具身智能与推理评估：精读用可编程世界模型在ARC挑战中实现高分的主动抽象方案，速览代理在社交推理游戏里的欺骗行为检测。  
-核心发现：Tycho框架证明程序化世界模型能主动构建抽象，显著提升ARC-AGI-3基准；智能体在“议会”博弈中确能展现策略性欺骗。  
-建议试追Tycho的抽象生成机制，同时思考代理欺骗的伦理约束。
-- 详情：[/202607/31/README](/202607/31/README)
+今日精读聚焦VLM智能体强化学习，用统一评论器与混合优势估计拿下9.0高分，为多模态决策优化筑底。  
+最值得看的方向是可解释的GOHR智能体（稀疏自编码器揭黑箱）和VLM智能体的稳定训练范式。  
+下一步建议关注“大动作空间+在线/离线学习”如何落地，以及能否把行为目标干预融入你的智能体调优流程。
+- 详情：[/202608/01/README](/202608/01/README)
 
 ### 精读区论文标签
-1. [Tycho: Active Abstraction with Programmatic World Models for ARC-AGI-3](/202607/31/2607.28287v1-tycho-active-abstraction-with-programmatic-world-models-for-arc-agi-3)  
+1. [Hybrid Advantage Estimation with Unified Critic for VLM Agentic Reinforcement Learning](/202608/01/2607.23605v1-hybrid-advantage-estimation-with-unified-critic-for-vlm-agentic-reinforcement-learning)  
+   标签：评分：9.0/10、query:gah
+   evidence：为VLM智能体的RL训练提出混合优势估计方法
+2. [Interpretable GOHR Agents via Sparse Autoencoders](/202608/01/2607.25132v2-interpretable-gohr-agents-via-sparse-autoencoders)  
    标签：评分：8.0/10、query:gah
-   evidence：通过构建可执行世界模型来学习游玩ARC-AGI-3游戏的智能体，展示了游戏AI设计
+   evidence：在隐藏规则游戏中使用稀疏自编码器解释 Transformer 游戏智能体
 
 ### 速读区论文标签
-1. [Can Agents Deceive? Evaluating Reasoning and Deception in ParliamentBench using a Social Deduction Game](/202607/31/2607.28146v1-can-agents-deceive-evaluating-reasoning-and-deception-in-parliamentbench-using-a-social-deduction-game)  
+1. [Bridging Reinforcement Learning and Optimal Control via Feasible Action Mapping](/202608/01/2607.23930v1-bridging-reinforcement-learning-and-optimal-control-via-feasible-action-mapping)  
    标签：评分：6.0/10、query:gah
-   evidence：评估AI代理在社交推理游戏Secret Hitler中的欺骗行为，分析游戏AI bot行为
+   evidence：将强化学习与最优控制结合用于约束动态系统，可潜在应用于游戏智能体。
+2. [Policy Gradient Steering: Interventions from Behavioral Objectives](/202608/01/2607.27574v1-policy-gradient-steering-interventions-from-behavioral-objectives)  
+   标签：评分：6.0/10、query:gah
+   evidence：在象棋谜题上演示了策略梯度操控以改变智能体行为
+3. [On-Policy and Off-Policy Learning for Large Action Spaces](/202608/01/2607.28408v1-on-policy-and-off-policy-learning-for-large-action-spaces)  
+   标签：评分：6.0/10、query:gah
+   evidence：开发面向大动作空间的RL策略学习方法，可直接用于训练游戏玩家智能体
 
 
 <div class="dpr-home-promo-card">
