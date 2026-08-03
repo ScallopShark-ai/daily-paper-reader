@@ -1,0 +1,39 @@
+{
+  "label": "2026-08-03",
+  "date": "2026-08-03",
+  "generated_at": "2026-08-03T21:29:20",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202608/03/2607.29559v1-lemur-learning-to-align-with-multi-objective-reinforcement-learning-from-preference-feedback",
+      "section": "quick",
+      "title_en": "LEMUR: Learning to Align with Multi-Objective Reinforcement Learning from Preference Feedback",
+      "authors": "Manith Adikari, Bei Peng, Samuele Vinanzi, Angelo Cangelosi",
+      "date": "2026-07-31",
+      "pdf": "https://arxiv.org/pdf/2607.29559v1",
+      "score": "7.0",
+      "evidence": "基于偏好的强化学习可学习符合人类偏好的行为，适用于拟人化游戏智能体",
+      "tldr": "现实多目标决策任务中，预定义奖励函数往往难以获得，限制了传统强化学习应用。LEMUR框架通过交互式多人偏好反馈，联合学习多目标奖励模型与最优策略，有效平衡竞争目标。实验表明，该方法在多个多目标基准任务上表现显著优于现有基线。LEMUR为无预定义奖励的复杂多目标决策开辟了新的范式。",
+      "tags": "query:gah",
+      "abstract_en": "Reinforcement Learning (RL) systems are typically trained using a single, well-specified scalar reward function. However, real-world decision-making tasks often involve multiple, competing objectives, such as performance versus efficiency, where ground-truth reward functions are difficult to specify or inaccessible. While Multi-Objective RL (MORL) addresses such trade-offs by modeling rewards as vectors, existing approaches typically assume access to a well-specified reward function for each objective, inheriting the same challenges faced by single-objective RL. Meanwhile, Preference-based RL (PbRL) has shown great potential in solving complex tasks without access to a pre-defined reward function through reward learning from human feedback, yet has largely been studied in single-objective settings. In this work, we bridge this gap with LEMUR: Learning to Align with Multi-Objective Reinforcement Learning with Preference feedback, a novel framework where an agent interactively learns from the preferences of multiple humans to learn optimal multi-objective policies. Our approach jointly learns policies and multiple objective-specific reward models from human feedback, enabling agents to effectively balance competing objectives during learning. We evaluate LEMUR on a variety of benchmark multi-objective tasks, and empirical results demonstrate its superior performance over baseline methods. Our method presents a promising direction for solving multi-objective decision-making tasks without pre-defined reward functions.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/03/2607.29294v1-sample-efficient-hierarchical-reinforcement-learning-via-best-policy-identification",
+      "section": "quick",
+      "title_en": "Sample Efficient Hierarchical Reinforcement Learning via Best Policy Identification",
+      "authors": "Anders Jonsson, Emilie Kaufmann, Gianmarco Tedeschi, Lorenzo Steccanella",
+      "date": "2026-07-31",
+      "pdf": "https://arxiv.org/pdf/2607.29294v1",
+      "score": "6.0",
+      "evidence": "样本高效层次RL，可迁移至游戏AI训练",
+      "tldr": "分层强化学习实证高效但理论样本效率未知。提出模型基算法HBPI-UCRL，并行学习高低层策略，利用高层转移与低层多步转移的对应关系。在满足两个低层动态条件时，证明其样本复杂度多项式有界，且在稀疏奖励目标导向场景下严格优于非分层方法，为HRL效率提供理论保证。",
+      "tags": "query:gah",
+      "abstract_en": "We present HBPI-UCRL, a model-based algorithm for hierarchical reinforcement learning (HRL) that learns high-level and low-level policies in parallel. HBPI-UCRL exploits the fact that a high-level transition corresponds to a multi-step transition at the low level. We introduce two conditions on the low-level dynamics that are sufficient to make parallel HRL learnable. When these conditions hold, we prove that HBPI-UCRL has a polynomial sample complexity in the problem parameters. In the sparse-reward, goal-directed setting, our sample complexity upper bound for HBPI-UCRL is strictly lower than that of its non-hierarchical counterpart, providing theoretical justification for the empirical success of HRL.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

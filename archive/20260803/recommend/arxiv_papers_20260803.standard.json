@@ -1,0 +1,94 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-03T21:27:33.887655+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.29559v1",
+      "source": "arxiv",
+      "title": "LEMUR: Learning to Align with Multi-Objective Reinforcement Learning from Preference Feedback",
+      "abstract": "Reinforcement Learning (RL) systems are typically trained using a single, well-specified scalar reward function. However, real-world decision-making tasks often involve multiple, competing objectives, such as performance versus efficiency, where ground-truth reward functions are difficult to specify or inaccessible. While Multi-Objective RL (MORL) addresses such trade-offs by modeling rewards as vectors, existing approaches typically assume access to a well-specified reward function for each objective, inheriting the same challenges faced by single-objective RL. Meanwhile, Preference-based RL (PbRL) has shown great potential in solving complex tasks without access to a pre-defined reward function through reward learning from human feedback, yet has largely been studied in single-objective settings. In this work, we bridge this gap with LEMUR: Learning to Align with Multi-Objective Reinforcement Learning with Preference feedback, a novel framework where an agent interactively learns from the preferences of multiple humans to learn optimal multi-objective policies. Our approach jointly learns policies and multiple objective-specific reward models from human feedback, enabling agents to effectively balance competing objectives during learning. We evaluate LEMUR on a variety of benchmark multi-objective tasks, and empirical results demonstrate its superior performance over baseline methods. Our method presents a promising direction for solving multi-objective decision-making tasks without pre-defined reward functions.",
+      "authors": [
+        "Manith Adikari",
+        "Bei Peng",
+        "Samuele Vinanzi",
+        "Angelo Cangelosi"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-07-31T15:50:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.29559v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "preference-based RL for learning human-aligned behaviors, applicable to humanizing game bots",
+      "llm_evidence_cn": "基于偏好的强化学习可学习符合人类偏好的行为，适用于拟人化游戏智能体",
+      "llm_evidence": "基于偏好的强化学习可学习符合人类偏好的行为，适用于拟人化游戏智能体",
+      "canonical_evidence": "基于偏好的强化学习可学习符合人类偏好的行为，适用于拟人化游戏智能体",
+      "llm_tldr_en": "LEMUR combines multi-objective RL with preference-based learning to train agents from human feedback without pre-defined rewards, enabling human-aligned policies for game AI.",
+      "llm_tldr_cn": "针对现实任务中多目标冲突且奖励函数难以定义的问题，LEMUR框架融合多目标强化学习与基于偏好的学习，从人类反馈中训练智能体。实验表明该方法能学习符合用户偏好的策略，为游戏AI拟人化等需与人类价值对齐的场景提供了有效途径。",
+      "llm_tldr": "针对现实任务中多目标冲突且奖励函数难以定义的问题，LEMUR框架融合多目标强化学习与基于偏好的学习，从人类反馈中训练智能体。实验表明该方法能学习符合用户偏好的策略，为游戏AI拟人化等需与人类价值对齐的场景提供了有效途径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Research on humanizing game AI bots",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.29294v1",
+      "source": "arxiv",
+      "title": "Sample Efficient Hierarchical Reinforcement Learning via Best Policy Identification",
+      "abstract": "We present HBPI-UCRL, a model-based algorithm for hierarchical reinforcement learning (HRL) that learns high-level and low-level policies in parallel. HBPI-UCRL exploits the fact that a high-level transition corresponds to a multi-step transition at the low level. We introduce two conditions on the low-level dynamics that are sufficient to make parallel HRL learnable. When these conditions hold, we prove that HBPI-UCRL has a polynomial sample complexity in the problem parameters. In the sparse-reward, goal-directed setting, our sample complexity upper bound for HBPI-UCRL is strictly lower than that of its non-hierarchical counterpart, providing theoretical justification for the empirical success of HRL.",
+      "authors": [
+        "Anders Jonsson",
+        "Emilie Kaufmann",
+        "Gianmarco Tedeschi",
+        "Lorenzo Steccanella"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-31T11:12:31+00:00",
+      "link": "https://arxiv.org/pdf/2607.29294v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Sample-efficient hierarchical RL, a transferable technique for training game AI.",
+      "llm_evidence_cn": "样本高效层次RL，可迁移至游戏AI训练",
+      "llm_evidence": "样本高效层次RL，可迁移至游戏AI训练",
+      "canonical_evidence": "样本高效层次RL，可迁移至游戏AI训练",
+      "llm_tldr_en": "Proposes HBPI-UCRL, a model-based hierarchical RL algorithm with improved sample complexity, providing a method that can be used for training game AI agents in hierarchical tasks.",
+      "llm_tldr_cn": "提出基于模型的层次强化学习算法HBPI-UCRL，利用高层与低层策略并行学习，并给出样本复杂度理论保证。该算法特别适合解决具有层次结构的游戏任务，为训练复杂游戏AI提供了高效的样本利用方法。",
+      "llm_tldr": "提出基于模型的层次强化学习算法HBPI-UCRL，利用高层与低层策略并行学习，并给出样本复杂度理论保证。该算法特别适合解决具有层次结构的游戏任务，为训练复杂游戏AI提供了高效的样本利用方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
