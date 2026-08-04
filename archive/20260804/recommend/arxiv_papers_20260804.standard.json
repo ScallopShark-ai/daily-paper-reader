@@ -1,0 +1,165 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-04T21:01:16.043950+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2608.01425v1",
+      "source": "arxiv",
+      "title": "Training Small LLMs as Spatial Multi-Agent Policies",
+      "abstract": "Training LLM-based multi-agent systems with multi-agent reinforcement learning is rapidly gaining traction, and a parallel line of work argues that such systems should be judged by their behavior, not only their reward. We take up both threads in spatial cooperative games, where small frozen LLMs prompted with low-level actions fail outright, earning zero reward. Guided by the options/semi-MDP framework---and, because option execution is asynchronous across agents, its multi-agent extension in macro-action Dec-POMDPs---we equip each game with a library of symbolic \\emph{options}: typed, state-feasible, short-horizon behaviors executed by a symbolic planner. Each library is drafted by a frontier coding model from the game's source code; the feasibility guards that filter each menu are then synthesized mechanically from cheap random-policy burn-in rollouts---a guard is adopted only if it explains repeated execution failures while hiding no logged success---so no guard is authored, selected, or reward-tuned by hand. Each agent's LLM acts as its policy over options, with a private per-agent LoRA adapter trained by a per-agent variant of multi-agent GRPO (PA-MAGRPO); this lifts frozen bases from zero reward to competent play across three games and four small backbones. Behavioral audits then reveal that reward and cooperation decouple: a rising reward curve may simply mean that one agent has learned to run the entire task alone while its partner idles---cooperation emerges only when the task makes it necessary. Reward alone is thus an unreliable readout of cooperation; behavioral evaluation must sit alongside it.",
+      "authors": [
+        "Yi Mao",
+        "Andrew Perrault"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.LG"
+      ],
+      "published": "2026-08-02T18:14:40+00:00",
+      "link": "https://arxiv.org/pdf/2608.01425v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Trains LLM-based policies with multi-agent reinforcement learning in spatial cooperative games, using symbolic options from game source code.",
+      "llm_evidence_cn": "使用多智能体强化学习在空间合作游戏中训练基于LLM的策略，利用游戏源码生成符号化选项。",
+      "llm_evidence": "使用多智能体强化学习在空间合作游戏中训练基于LLM的策略，利用游戏源码生成符号化选项。",
+      "canonical_evidence": "使用多智能体强化学习在空间合作游戏中训练基于LLM的策略，利用游戏源码生成符号化选项。",
+      "llm_tldr_en": "Addresses training LLM-based multi-agent systems in spatial cooperative games; proposes symbolic options from game code and trains small LLMs with MARL to select options, achieving effective behavior.",
+      "llm_tldr_cn": "针对在空间合作游戏中直接使用冻结LLM策略失败的问题，提出利用前沿模型从游戏源码生成符号化选项库，并采用多智能体强化学习训练小型LLM选择这些选项，使智能体在游戏中展现出有效行为，强调了基于选项的行为训练方法。",
+      "llm_tldr": "针对在空间合作游戏中直接使用冻结LLM策略失败的问题，提出利用前沿模型从游戏源码生成符号化选项库，并采用多智能体强化学习训练小型LLM选择这些选项，使智能体在游戏中展现出有效行为，强调了基于选项的行为训练方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.02379v1",
+      "source": "arxiv",
+      "title": "Chess on Ice: Curling Tactical Decision-Making via Backward Induction and Deep Reinforcement Learning",
+      "abstract": "Curling is often referred to as \"Chess on Ice\", owing to the tactical complexity of its decision-making process. Yet unlike chess, curling remains largely underexplored from a machine learning perspective, with prior work confined mainly to statistical approaches. We propose a reinforcement learning framework capable of quantitatively evaluating and comparing tactical options in curling. The game poses several modeling challenges: continuous state and action spaces, stochastic action outcomes reflecting player skill variability, and state transitions that are highly sensitive to small perturbations in the executed action. To address them, we employ the Deep Deterministic Policy Gradient actor-critic algorithm, adapted to exploit the finite-horizon structure of the game. Our experiments show that effective curling strategies can be acquired in a fully self-supervised manner, without any human-annotated data: on a reduced four-rock variant, the learned agent matches a hand-crafted expert heuristic in a regime where that heuristic is close to optimal, a parity we quantify against the intrinsic hammer advantage of the variant. Beyond the resulting policy, the learned critic provides a dense value estimate over the entire continuous action space, enabling the quantitative comparison of tactical alternatives for applications such as post-game performance analysis and decision support during athlete preparation.",
+      "authors": [
+        "Patrick Oberlin",
+        "Matteo Cederle",
+        "Aren Karapetyan",
+        "Saverio Bolognani",
+        "Gian Antonio Susto",
+        "Florian Dörfler"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-03T15:23:42+00:00",
+      "link": "https://arxiv.org/pdf/2608.02379v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Deep RL for tactical decision-making in curling game",
+      "llm_evidence_cn": "深度强化学习用于冰壶游戏战术决策",
+      "llm_evidence": "深度强化学习用于冰壶游戏战术决策",
+      "canonical_evidence": "深度强化学习用于冰壶游戏战术决策",
+      "llm_tldr_en": "Proposes a deep RL framework using DDPG to tackle continuous state/action spaces and stochastic dynamics in curling, demonstrating effective tactical decision-making for game AI.",
+      "llm_tldr_cn": "本文针对冰壶运动（被称为冰上国际象棋）的战术决策问题，提出基于深度强化学习的框架。采用深度确定性策略梯度算法处理连续状态动作空间和随机性，并通过适应策略克服小扰动敏感。实验表明，该方法能有效评估和比较战术选项，显著优于传统统计方法，为体育游戏AI的开发提供了新工具，展示了强化学习在复杂游戏决策中的潜力。",
+      "llm_tldr": "本文针对冰壶运动（被称为冰上国际象棋）的战术决策问题，提出基于深度强化学习的框架。采用深度确定性策略梯度算法处理连续状态动作空间和随机性，并通过适应策略克服小扰动敏感。实验表明，该方法能有效评估和比较战术选项，显著优于传统统计方法，为体育游戏AI的开发提供了新工具，展示了强化学习在复杂游戏决策中的潜力。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.26336v1",
+      "source": "arxiv",
+      "title": "Learning Implicit Causal World Models from Multi-Agent Demonstrations",
+      "abstract": "In model-based reinforcement learning, world models exist as internal simulators, but their training often conflates statistical correlations with causal mechanisms. This problem is exacerbated in multi-agent systems where physical transitions are intertwined with strategic agent intents, causing world models to fail under distribution shift. We introduce Implicit Causal World Models to recover environmental dynamics from offline demonstrations without requiring pre-defined causal graphs. By incorporating policy variance, we render world models discoverable via the sequential backdoor condition. Evaluations across coordination tasks (Two-Door, Navigation, and Giveway) demonstrate that these models provide interpretable causal representations under both full and partial observability, with model accuracy scaling directly with interventional strength.",
+      "authors": [
+        "Jasorsi Ghosh"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.MA",
+        "cs.RO"
+      ],
+      "published": "2026-07-28T23:18:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.26336v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multi-agent world model learning from demonstrations, with coordination tasks (like games), enabling better understanding of agent behavior.",
+      "llm_evidence_cn": "从多智能体演示中学习世界模型，应用于协调任务（类似游戏），有助于理解智能体行为。",
+      "llm_evidence": "从多智能体演示中学习世界模型，应用于协调任务（类似游戏），有助于理解智能体行为。",
+      "canonical_evidence": "从多智能体演示中学习世界模型，应用于协调任务（类似游戏），有助于理解智能体行为。",
+      "llm_tldr_en": "Introduces Implicit Causal World Models for recovering causal dynamics from multi-agent demos without predefined graphs; uses policy variance and backdoor condition; shows interpretable causal representations on coordination tasks.",
+      "llm_tldr_cn": "针对多智能体系统中世界模型易混淆相关性与因果性的问题，提出隐式因果世界模型，通过引入策略方差和序列后门条件，无需预定义因果图即可从离线演示中恢复环境动力学，在导航等协调任务上提供了可解释的因果表示。",
+      "llm_tldr": "针对多智能体系统中世界模型易混淆相关性与因果性的问题，提出隐式因果世界模型，通过引入策略方差和序列后门条件，无需预定义因果图即可从离线演示中恢复环境动力学，在导航等协调任务上提供了可解释的因果表示。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.00133v1",
+      "source": "arxiv",
+      "title": "Deep Reinforcement Learning: From First Principles to Reasoning Models",
+      "abstract": "Deep reinforcement learning has evolved from classical dynamic programming, temporal-difference learning, and tabular control into a broad framework for sequential decision-making under uncertainty. This book provides a structured introduction to that evolution, emphasizing not only how reinforcement learning algorithms work, but also why they were developed, which problems they address, where they fail, and how they connect to real-world systems. It combines textbook foundations, research-oriented discussion, and a systems perspective. Early chapters introduce reinforcement learning, Markov decision processes, dynamic programming, Monte Carlo methods, temporal-difference learning, and the transition from tabular to deep approaches. The middle chapters cover major algorithmic families, including DQN, advanced value-based methods, policy gradients, actor-critic methods, PPO, SAC, model-based reinforcement learning, MuZero, offline reinforcement learning, and sequence-modeling approaches. Later chapters extend the discussion to multi-agent and hierarchical learning, safe reinforcement learning, reinforcement learning from human feedback, reasoning-oriented AI systems, communication networks, UAV applications, implementation pipelines, experimental methodology, failure analysis, and future research directions. Throughout the book, examples from UAV-assisted networks, SD-WAN traffic engineering, safe control, and reasoning-based AI connect mathematical concepts to practical challenges such as partial observability, competing objectives, safety constraints, deployment drift, and uncertain evaluation. The book is intended for advanced students, researchers, and engineers with basic knowledge of probability, linear algebra, calculus, and programming.",
+      "authors": [
+        "Ghoshana Bista"
+      ],
+      "primary_category": "eess.SY",
+      "categories": [
+        "eess.SY"
+      ],
+      "published": "2026-07-31T13:57:34+00:00",
+      "link": "https://arxiv.org/pdf/2608.00133v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Comprehensive deep RL textbook providing algorithms applicable to game AI.",
+      "llm_evidence_cn": "系统讲解深度强化学习算法，对游戏AI训练具指导意义.",
+      "llm_evidence": "系统讲解深度强化学习算法，对游戏AI训练具指导意义.",
+      "canonical_evidence": "系统讲解深度强化学习算法，对游戏AI训练具指导意义.",
+      "llm_tldr_en": "A textbook covering deep RL from first principles to reasoning models, providing foundational algorithms transferable to game AI training.",
+      "llm_tldr_cn": "该书从第一性原理出发，循序渐进介绍深度强化学习的核心概念、算法演进和系统实现，覆盖DQN、策略梯度、Actor-Critic等方法，并探讨推理模型。尽管不专门针对游戏领域，其提供的强化学习技术体系可直接用于训练游戏AI智能体，为游戏开发者提供理论指导。该书内容丰富，适合游戏AI研究者作为技术手册参考。",
+      "llm_tldr": "该书从第一性原理出发，循序渐进介绍深度强化学习的核心概念、算法演进和系统实现，覆盖DQN、策略梯度、Actor-Critic等方法，并探讨推理模型。尽管不专门针对游戏领域，其提供的强化学习技术体系可直接用于训练游戏AI智能体，为游戏开发者提供理论指导。该书内容丰富，适合游戏AI研究者作为技术手册参考。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
