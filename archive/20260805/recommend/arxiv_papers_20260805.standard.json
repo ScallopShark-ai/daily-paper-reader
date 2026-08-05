@@ -1,0 +1,177 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-05T21:47:35.005910+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2608.02005v1",
+      "source": "arxiv",
+      "title": "Evolving in the Agent Jungle via History-Informed Opponent Awareness",
+      "abstract": "Learning to adapt strategies through interaction is a key step toward more general and autonomous LLM agents. Existing approaches typically achieve behavioral adaptation by revising skill libraries. However, in multi-agent environments, opponents may simultaneously update their strategies, causing the environment itself to evolve continuously. Applying skill-revision methods designed for static environments in such settings therefore amounts to updating against an obsolete reference. To address this challenge, we introduce OASE (Opponent-Aware Selective Evolution), which identifies and adopts genuinely beneficial skill revisions in dynamic multi-agent environments. Specifically, OASE conducts paired comparisons between a candidate skill and the incumbent under identical conditions anchored by historical snapshots of opponent strategies, and adopts the candidate only when its estimated payoff gain exceeds an acceptance threshold. We evaluate OASE in two decision-making scenarios: first-price auctions and private-cost Cournot competition. Experimental results show that, compared with a Reflexion-style baseline, OASE achieves a lower final equilibrium distance in both environments while accepting substantially fewer skill revisions, thereby suppressing strategy changes that lack sufficient payoff support. OASE therefore replaces blind updating with evidence-anchored selection, allowing agents to adapt stably and efficiently even as opponents continuously evolve.",
+      "authors": [
+        "Zhaofeng Zhang",
+        "Linhan Xia",
+        "Rui Liu",
+        "Yihao Wang",
+        "Binrui Shen",
+        "Shengxin Zhu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-03T10:06:23+00:00",
+      "link": "https://arxiv.org/pdf/2608.02005v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Opponent-aware skill evolution for adaptive game AI bots",
+      "llm_evidence_cn": "对手感知的技能进化用于自适应游戏AI bot",
+      "llm_evidence": "对手感知的技能进化用于自适应游戏AI bot",
+      "canonical_evidence": "对手感知的技能进化用于自适应游戏AI bot",
+      "llm_tldr_en": "OASE enables agents to evolve skills by being aware of opponent strategy changes, a key requirement for building competitive game AI bots.",
+      "llm_tldr_cn": "OASE利用历史交互信息感知对手策略变化，仅采纳真正有益的技能修订，使智能体能够在动态多智能体环境中持续适应，解决了现有方法因环境演化而更新失效的问题，为构建能应对人类玩家策略变化的游戏AI bot提供了新方法。",
+      "llm_tldr": "OASE利用历史交互信息感知对手策略变化，仅采纳真正有益的技能修订，使智能体能够在动态多智能体环境中持续适应，解决了现有方法因环境演化而更新失效的问题，为构建能应对人类玩家策略变化的游戏AI bot提供了新方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.03420v1",
+      "source": "arxiv",
+      "title": "Towards Improving Sequential Decision-Making in LLM Agents via Experience Memory",
+      "abstract": "Large language models have improved substantially on single-shot reasoning tasks, but their performance in sequential decision-making is less well understood. We study this on fully-observable two-player zero-sum games, which provide ground-truth evaluation: outcomes are determined by the rules, and optimality of individual moves can be computed or approximated, without relying on a judge model. Across model tiers, LLMs play suboptimally in simple games such as tic-tac-toe or Connect Four, and lose to MCTS opponents. Obfuscations that preserve the game tree but rewrite its surface form leave performance largely unchanged, indicating the gap is not fully explained by recall of memorized strategies. Motivated by this performance gap, we introduce an agentic framework enhanced with an experience memory designed for the sequential setting and addressing common challenges of sequential decision-making such as credit assignment. We show that post-game reflection and rule extraction yield measurable improvements on tic-tac-toe without modifying the model weights.",
+      "authors": [
+        "Jakub Rada",
+        "Viliam Lisý"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-04T10:12:12+00:00",
+      "link": "https://arxiv.org/pdf/2608.03420v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Improves LLM gameplay in zero-sum games via experience memory",
+      "llm_evidence_cn": "通过经验记忆改进零和游戏中的LLM游戏表现",
+      "llm_evidence": "通过经验记忆改进零和游戏中的LLM游戏表现",
+      "canonical_evidence": "通过经验记忆改进零和游戏中的LLM游戏表现",
+      "llm_tldr_en": "Studies LLM performance in two-player zero-sum games and introduces experience memory to improve sequential decision-making.",
+      "llm_tldr_cn": "研究大语言模型在零和游戏（如井字棋、四子棋）中的序列决策表现，发现LLM存在次优问题，且并非仅由记忆化策略导致。提出通过经验记忆来改进游戏表现，在简单游戏中缩小与MCTS的差距。该工作为提升游戏AI代理的决策能力提供了新思路。",
+      "llm_tldr": "研究大语言模型在零和游戏（如井字棋、四子棋）中的序列决策表现，发现LLM存在次优问题，且并非仅由记忆化策略导致。提出通过经验记忆来改进游戏表现，在简单游戏中缩小与MCTS的差距。该工作为提升游戏AI代理的决策能力提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.29468v1",
+      "source": "arxiv",
+      "title": "Self-Play Meets Skill Evolution: Self-Evolving Search Agents that Pose, Solve, and Remember",
+      "abstract": "Self-play agents can generate training problems without questions from target benchmarks, but their curricula lack persistent state: failures affect gradients yet do not explicitly shape future practice. External skill memories preserve procedural experience but are typically learned from fixed task distributions. We introduce \\textbf{SESA} (Self-Evolving Skill-Augmented Agent), which makes procedural memory an evolving state of tool-augmented search self-play. A challenger poses problems, while a separately parameterized solver alone retrieves skills. Informative failures are distilled into reusable skills and written back to memory. The updated memory changes solver behavior and success, which changes the challenger's reward and the distribution of future problems; the resulting frontier produces new failures that rewrite memory. This bidirectional loop makes task generation and skill memory co-evolve. Because retrieved skills shape on-policy training trajectories, their benefits can enter the model parameters as well as remain in the external bank, enabling memory-free deployment and optional inference-time retrieval. Across seven open-domain and multi-hop question-answering benchmarks, SESA improves average accuracy over SSP by 1.2--3.2 points across multiple backbones and surpasses the skill-augmented SkillRL baseline by 0.9 points under a unified evaluation protocol. On Qwen3 models, SESA-Off retains 1.8--2.2 points of improvement over SSP, while the final skill bank adds a further 0.5--1.0 points. These results show that evolving skill memory is not merely an inference-time plug-in: it changes policy learning and the future training distribution while retaining value as optional external memory. Our code is available at https://github.com/Zenghuang-Fu/SESA-Self-Evolving-Search-Agents.",
+      "authors": [
+        "Zenghuang Fu",
+        "Zhaoyang Li",
+        "Qiuyuan Ai",
+        "Haoyu Wu",
+        "Minghui Wu",
+        "Chenxu Zhao",
+        "Ante Wang",
+        "Guannan He",
+        "Changwei Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-31T14:32:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.29468v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Self-play with skill evolution directly applicable to game AI training",
+      "llm_evidence_cn": "自我博弈与技能进化可直接应用于游戏AI训练",
+      "llm_evidence": "自我博弈与技能进化可直接应用于游戏AI训练",
+      "canonical_evidence": "自我博弈与技能进化可直接应用于游戏AI训练",
+      "llm_tldr_en": "SESA uses self-play with skill memory evolution to generate and solve problems, a technique directly applicable to training game AI bots via self-play reinforcement learning.",
+      "llm_tldr_cn": "SESA将自我博弈与技能进化结合，通过挑战者出题、求解者检索技能，并将失败经验提炼为可复用技能写回记忆，从而持续提升性能。这种自我博弈与技能进化方法可直接用于训练游戏AI bot，增强其自适应能力。",
+      "llm_tldr": "SESA将自我博弈与技能进化结合，通过挑战者出题、求解者检索技能，并将失败经验提炼为可复用技能写回记忆，从而持续提升性能。这种自我博弈与技能进化方法可直接用于训练游戏AI bot，增强其自适应能力。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.28076v1",
+      "source": "arxiv",
+      "title": "Group-Reflective Self-Distillation for Agentic Reinforcement Learning",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) is effective for training large language model agents. However, terminal rewards provide only coarse trajectory-level supervision, leaving successful behaviors, recurring mistakes, and incidental choices entangled in the same outcome signal. Existing agentic self-distillation methods enrich sparse supervision with natural-language skills, but skills retrieved externally or extracted from a single trajectory by stronger models may mismatch current experience, exceed the policy's capability, or remain path-specific. We propose Group-Reflective Self-Distillation (GRSD), which derives capability-aligned and outcome-discriminative guidance from the policy's own verified rollouts. For each prompt, the policy reflects on each verified trajectory in an on-policy group, and a stop-gradient snapshot contrasts the resulting reflections from successful and failed rollouts to construct group-level privileged guidance. Conditioned on this guidance, a self-teacher refines turn-level credit assignment by modulating outcome-based advantages while preserving the verifier-determined learning direction. Experiments across multiple agentic environments and model scales demonstrate that GRSD consistently outperforms competitive baselines and generalizes more effectively to unseen tasks.",
+      "authors": [
+        "Binbin Zheng",
+        "Zijun Xie",
+        "Guanqun Zhao",
+        "Enlei Gong",
+        "Xing Ma",
+        "Xiaoliang Fu",
+        "Zeyu Chen"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-30T11:49:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.28076v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RLVR self-distillation method for training agent policies",
+      "llm_evidence_cn": "用于训练代理策略的RLVR自蒸馏方法",
+      "llm_evidence": "用于训练代理策略的RLVR自蒸馏方法",
+      "canonical_evidence": "用于训练代理策略的RLVR自蒸馏方法",
+      "llm_tldr_en": "Proposes Group-Reflective Self-Distillation to improve RL training of LLM agents by extracting capability-aligned guidance from verified rollouts.",
+      "llm_tldr_cn": "提出群组反思自蒸馏方法，从策略自身的验证执行轨迹中提取能力对齐且结果区分性的指导信号，以改善LLM代理的强化学习训练。该方法通过群组内对比生成技能，在数学推理等任务上优于现有方法，可应用于游戏AI代理的训练。",
+      "llm_tldr": "提出群组反思自蒸馏方法，从策略自身的验证执行轨迹中提取能力对齐且结果区分性的指导信号，以改善LLM代理的强化学习训练。该方法通过群组内对比生成技能，在数学推理等任务上优于现有方法，可应用于游戏AI代理的训练。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

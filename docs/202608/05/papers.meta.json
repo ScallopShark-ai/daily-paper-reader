@@ -1,0 +1,69 @@
+{
+  "label": "2026-08-05",
+  "date": "2026-08-05",
+  "generated_at": "2026-08-05T21:53:19",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202608/05/2608.02005v1-evolving-in-the-agent-jungle-via-history-informed-opponent-awareness",
+      "section": "deep",
+      "title_en": "Evolving in the Agent Jungle via History-Informed Opponent Awareness",
+      "authors": "Zhaofeng Zhang, Linhan Xia, Rui Liu, Yihao Wang, Binrui Shen, Shengxin Zhu",
+      "date": "2026-08-03",
+      "pdf": "https://arxiv.org/pdf/2608.02005v1",
+      "score": "8.0",
+      "evidence": "对手感知的技能进化用于自适应游戏AI bot",
+      "tldr": "多智能体环境中对手策略持续演化，传统基于静态环境的技能修订方法因参照过时难以有效适应。为此，提出OASE方法，利用历史对手策略快照锚定条件，比较候选与现有技能，仅当收益增益超阈值时采纳修订。在拍卖和古诺博弈中，OASE比Reflexion基线达到更低最终均衡距离，且修订次数显著减少，有效过滤低收益变更。该工作以证据锚定的选择替代盲目更新，为动态交互下的稳定高效自适应提供了新途径。",
+      "tags": "query:gah",
+      "abstract_en": "Learning to adapt strategies through interaction is a key step toward more general and autonomous LLM agents. Existing approaches typically achieve behavioral adaptation by revising skill libraries. However, in multi-agent environments, opponents may simultaneously update their strategies, causing the environment itself to evolve continuously. Applying skill-revision methods designed for static environments in such settings therefore amounts to updating against an obsolete reference. To address this challenge, we introduce OASE (Opponent-Aware Selective Evolution), which identifies and adopts genuinely beneficial skill revisions in dynamic multi-agent environments. Specifically, OASE conducts paired comparisons between a candidate skill and the incumbent under identical conditions anchored by historical snapshots of opponent strategies, and adopts the candidate only when its estimated payoff gain exceeds an acceptance threshold. We evaluate OASE in two decision-making scenarios: first-price auctions and private-cost Cournot competition. Experimental results show that, compared with a Reflexion-style baseline, OASE achieves a lower final equilibrium distance in both environments while accepting substantially fewer skill revisions, thereby suppressing strategy changes that lack sufficient payoff support. OASE therefore replaces blind updating with evidence-anchored selection, allowing agents to adapt stably and efficiently even as opponents continuously evolve.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/05/2608.03420v1-towards-improving-sequential-decision-making-in-llm-agents-via-experience-memory",
+      "section": "deep",
+      "title_en": "Towards Improving Sequential Decision-Making in LLM Agents via Experience Memory",
+      "authors": "Jakub Rada, Viliam Lisý",
+      "date": "2026-08-04",
+      "pdf": "https://arxiv.org/pdf/2608.03420v1",
+      "score": "8.0",
+      "evidence": "通过经验记忆改进零和游戏中的LLM游戏表现",
+      "tldr": "大语言模型虽然在单步推理任务中进步显著，但在如井字棋、四子棋等完全可观察的二人零和游戏中，决策表现次优，难以击败基于蒙特卡洛树搜索的对手，且即使混淆游戏表示，性能提升有限，表明问题并非源自记忆策略的缺乏。针对该局限，本研究提出融合经验记忆的智能体框架，专门应对顺序决策中的挑战（如信用分配），通过赛后反思和规则提取来结构化积累经验，从而在不微调模型参数的情况下，显著增强了LLM智能体的游戏水平，在井字棋上实现了可量化的性能改进。这一方法为提升语言模型在复杂交互环境中的序贯决策能力提供了新的技术路径。",
+      "tags": "query:gah",
+      "abstract_en": "Large language models have improved substantially on single-shot reasoning tasks, but their performance in sequential decision-making is less well understood. We study this on fully-observable two-player zero-sum games, which provide ground-truth evaluation: outcomes are determined by the rules, and optimality of individual moves can be computed or approximated, without relying on a judge model. Across model tiers, LLMs play suboptimally in simple games such as tic-tac-toe or Connect Four, and lose to MCTS opponents. Obfuscations that preserve the game tree but rewrite its surface form leave performance largely unchanged, indicating the gap is not fully explained by recall of memorized strategies. Motivated by this performance gap, we introduce an agentic framework enhanced with an experience memory designed for the sequential setting and addressing common challenges of sequential decision-making such as credit assignment. We show that post-game reflection and rule extraction yield measurable improvements on tic-tac-toe without modifying the model weights.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/05/2607.29468v1-self-play-meets-skill-evolution-self-evolving-search-agents-that-pose-solve-and-remember",
+      "section": "quick",
+      "title_en": "Self-Play Meets Skill Evolution: Self-Evolving Search Agents that Pose, Solve, and Remember",
+      "authors": "Zenghuang Fu, Zhaoyang Li, Qiuyuan Ai, Haoyu Wu, Minghui Wu, Chenxu Zhao, Ante Wang, Guannan He, Changwei Wang",
+      "date": "2026-07-31",
+      "pdf": "https://arxiv.org/pdf/2607.29468v1",
+      "score": "7.0",
+      "evidence": "自我博弈与技能进化可直接应用于游戏AI训练",
+      "tldr": "自对弈代理能生成训练问题，但缺乏对失败经验的显式记忆，传统外部技能记忆源于固定任务。SESA通过挑战者出题、求解器检索技能，将失败提炼为可重用技能并写回记忆，形成双向循环，促使任务生成和技能记忆共同演化。在七个问答基准上，SESA平均提升SSP 1.2-3.2点，超越SkillRL 0.9点；Qwen3上SESA-Off保留提升1.8-2.2点，最终技能库再加0.5-1.0点。这表明技能演化不仅改变策略学习与训练分布，还保留为可选外部记忆，超越推理时增强作用。",
+      "tags": "query:gah",
+      "abstract_en": "Self-play agents can generate training problems without questions from target benchmarks, but their curricula lack persistent state: failures affect gradients yet do not explicitly shape future practice. External skill memories preserve procedural experience but are typically learned from fixed task distributions. We introduce \\textbf{SESA} (Self-Evolving Skill-Augmented Agent), which makes procedural memory an evolving state of tool-augmented search self-play. A challenger poses problems, while a separately parameterized solver alone retrieves skills. Informative failures are distilled into reusable skills and written back to memory. The updated memory changes solver behavior and success, which changes the challenger's reward and the distribution of future problems; the resulting frontier produces new failures that rewrite memory. This bidirectional loop makes task generation and skill memory co-evolve. Because retrieved skills shape on-policy training trajectories, their benefits can enter the model parameters as well as remain in the external bank, enabling memory-free deployment and optional inference-time retrieval. Across seven open-domain and multi-hop question-answering benchmarks, SESA improves average accuracy over SSP by 1.2--3.2 points across multiple backbones and surpasses the skill-augmented SkillRL baseline by 0.9 points under a unified evaluation protocol. On Qwen3 models, SESA-Off retains 1.8--2.2 points of improvement over SSP, while the final skill bank adds a further 0.5--1.0 points. These results show that evolving skill memory is not merely an inference-time plug-in: it changes policy learning and the future training distribution while retaining value as optional external memory. Our code is available at https://github.com/Zenghuang-Fu/SESA-Self-Evolving-Search-Agents.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/05/2607.28076v1-group-reflective-self-distillation-for-agentic-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Group-Reflective Self-Distillation for Agentic Reinforcement Learning",
+      "authors": "Binbin Zheng, Zijun Xie, Guanqun Zhao, Enlei Gong, Xing Ma, Xiaoliang Fu, Zeyu Chen",
+      "date": "2026-07-30",
+      "pdf": "https://arxiv.org/pdf/2607.28076v1",
+      "score": "6.0",
+      "evidence": "用于训练代理策略的RLVR自蒸馏方法",
+      "tldr": "在LLM智能体的RL训练中，信度分配一直是核心挑战。现有RLVR方法仅提供轨迹级二元或连续奖励，无法区分具体动作的贡献；而流行的自我蒸馏方法引入的自然语言技能多来自外部强模型或预定义库，与当前策略能力不适应，导致学习不稳定。为此，GRSD创新地利用策略自身的在线反思能力：对同一提示下的多个已验证轨迹，策略首先进行个体反思，然后通过组对比机制融合成功与失败案例的反思，形成具备能力对齐和结果鉴别力的组级引导；一个自教师网络基于此引导微调标准的优势函数，实现回合内动作的细粒度信用分配。在多个复杂智能体任务（WebShop、TextCraft等）和不同规模模型上的实验显示，GRSD一致超过现有基线，并且在新任务上泛化更好。这验证了策略内在反思与组对比能够产生高效的内部训练信号，为构建能自我提升的智能体系统提供了重要参考。",
+      "tags": "query:gah",
+      "abstract_en": "Reinforcement learning with verifiable rewards (RLVR) is effective for training large language model agents. However, terminal rewards provide only coarse trajectory-level supervision, leaving successful behaviors, recurring mistakes, and incidental choices entangled in the same outcome signal. Existing agentic self-distillation methods enrich sparse supervision with natural-language skills, but skills retrieved externally or extracted from a single trajectory by stronger models may mismatch current experience, exceed the policy's capability, or remain path-specific. We propose Group-Reflective Self-Distillation (GRSD), which derives capability-aligned and outcome-discriminative guidance from the policy's own verified rollouts. For each prompt, the policy reflects on each verified trajectory in an on-policy group, and a stop-gradient snapshot contrasts the resulting reflections from successful and failed rollouts to construct group-level privileged guidance. Conditioned on this guidance, a self-teacher refines turn-level credit assignment by modulating outcome-based advantages while preserving the verifier-determined learning direction. Experiments across multiple agentic environments and model scales demonstrate that GRSD consistently outperforms competitive baselines and generalizes more effectively to unseen tasks.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
