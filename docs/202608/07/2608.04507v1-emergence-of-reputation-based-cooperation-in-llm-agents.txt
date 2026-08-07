@@ -1,0 +1,397 @@
+Title: Emergence of Reputation-Based Cooperation in LLM Agents
+
+URL Source: https://arxiv.org/pdf/2608.04507v1
+
+Published Time: Thu, 06 Aug 2026 00:34:14 GMT
+
+Number of Pages: 15
+
+Markdown Content:
+# Emergence of Reputation-Based Cooperation in LLM Agents 
+
+Kazuya Horibe 
+
+RIKEN 
+
+kazuya.horibe@riken.jp 
+
+Kenji Itao 
+
+RIKEN Tohoku University 
+
+Wataru Toyokawa 
+
+RIKNE 
+
+# Abstract 
+
+Can cooperation among large language model (LLM) agents be evolution-arily stable against free-rider invasion? We study an indirect reciprocity donation game where LLM agents observe behavioral traces and donate on a continuous scale. Strategies, represented as natural language prompts, evolve through cultural transmission across generations. Across four LLM backends, robustness to free-rider invasion varies by more than an order of magnitude. The strongest predictor of this robustness is opponent en-dowment sensitivity, the degree to which agents discriminate between cooperative and uncooperative opponents, operationalizing the classical Image Scoring mechanism. By contrast, adherence to the Leading-Eight L1 norm does not predict robustness. Robustness depends on defector exclusion: while both cooperator reward and defector punishment vary across models, only the stringency of defector exclusion predicts resistance to free-rider invasion. These findings reveal that LLM agents are confined to Image Scoring-like discrimination and fail to develop the more robust Leading-Eight norms, highlighting a fundamental vulnerability in cultur-ally evolved LLM cooperation and motivating bottom-up approaches to norm construction. 
+
+# 1 Introduction 
+
+The rapid proliferation of large language models (LLMs) is reshaping how humans and artificial agents interact (Burton et al., 2024; Tsvetkova et al., 2024). LLMs can simulate human-like responses across a wide range of social and economic scenarios (Akata et al., 2025; Brookins & DeBacker, 2023; Fan et al., 2024; Guo et al., 2024; Horton et al., 2023). As they increasingly participate in real-world contexts, ranging from customer service to collaborative work, their behaviors directly influence human behavior, creating feedback loops that shape future training data (Perez et al., 2024). This “co-evolution” between human and AI behavior makes understanding LLM social dynamics not only an academic exercise but also a practical concern for designing robust human-AI hybrid societies (Dafoe et al., 2020; Conitzer & Oesterheld, 2023). A central question in this domain is whether LLM agents can sustain cooperation when self-interested exploitation is possible. Cooperation among self-interested agents is a foun-dational problem across biology, social sciences, and artificial intelligence (Hamilton, 1964; Trivers, 1971; Axelrod & Hamilton, 1981; Nowak, 2006). Five general mechanisms promote the evolution of cooperation (Nowak, 2006), and experimental work has confirmed that humans readily cooperate and punish free-riders even in anonymous one-shot settings (Fehr & G ¨achter, 2002). Unlike direct reciprocity, which sustains cooperation in repeated dyadic interactions (Axelrod, 1980; Trivers, 1971), indirect reciprocity operates when the beneficiary of cooperation is not the one who later reciprocates (Alexander, 1987; Nowak & Sigmund, 2005). Cooperative acts build reputation, and cooperation is sustained when others preferentially help those with good reputations (Wedekind & Milinski, 2000; Milinski et al., 2002; Yoeli et al., 2013). Two theoretical frameworks address cooperation through indirect reciprocity, differing fun-damentally in their information structure (Nowak & Sigmund, 2005; Okada, 2020). Image Scoring (Nowak & Sigmund, 1998) is a one-dimensional system where agents track observed 1arXiv:2608.04507v1 [cs.MA] 5 Aug 2026 behavior and cooperate with those whose image score exceeds a threshold. This mechanism is intuitive and mirrors human gossip-based reputation systems (Wedekind & Milinski, 2000), but early models showed vulnerability to observation errors: occasional mispercep-tion of an action can cause cascading reputation loss, destabilizing cooperation (Leimar & Hammerstein, 2001; Panchanathan & Boyd, 2003). To address this limitation, Ohtsuki & Iwasa (2004; 2006) introduced the Leading Eight, eight evolutionarily stable norms that update reputations based on both the donor’s action and the recipient’s reputation, forming a two-dimensional system where agents track “what did this person do, and to whom did they do it?” This additional dimension enables more sophisticated discrimination: for example, the L1 norm (Fujimoto & Ohtsuki, 2023) prescribes that refusing to help a person with a bad reputation should not damage one’s own reputation, making the system more robust to errors. Subsequent work has demonstrated that the complexity of social norms and the structure of past reputations critically affect the stability of cooperation (Santos et al., 2018; Hilbe et al., 2018; Schmid et al., 2021). However, the Leading Eight framework assumes that agents have access to explicit binary reputation labels (“good” or “bad”). In real-world settings, such labels are typically not directly observable. Instead, agents must infer reputations based on observed behavioral histories, which may be noisy or incomplete. Despite these theoretical advances, most prior work has studied indirect reciprocity using agents with binary action spaces (cooperate or defect), publicly-shared reputation labels (“good” or “bad”), and the evolutionary assumption where behavioral strategies inherit directly through natural selection (the phenotypic gambit). These simplifications facilitate analytical tractability but diverge from real-world settings in three critical ways. First, human social interactions typically involve continuous decisions, not “help or refuse” but “how much to help,” ranging from token gestures to substantial sacrifices. Continuous action spaces qualitatively change strategic dynamics: agents can implement graded responses, cooperating partially with uncertain partners and reserving full cooperation for those with strong reputations (Roberts & Sherratt, 1998; Wahl & Nowak, 1999; Schmid et al., 2023). Second, humans and LLM agents do not always share reputation labels; instead, they must evaluate their opponents’ goodness from behavioral observations, which are often incomplete and noisy (Hilbe et al., 2018). This makes the system effectively Image Scoring-like (one-dimensional reputation inference) rather than Leading-Eight-like (two-dimensional reputation assignment). Third, LLM populations evolve through cultural transmission of natural-language prompt texts (Perez et al., 2024). Biases in generated text and the potentially nonlinear genotype–phenotype mapping (prompt text to behavioral strategy) may qualitatively alter evolutionary dynamics in ways the phenotypic gambit cannot predict. Whether cultural transmission, which allows rapid behavioral adaptation (Boyd & Richerson, 1985; Mesoudi, 2011; Henrich, 2004), produces the same cooperation mechanisms as genetic evolution remains an open question. LLM agents, equipped with natural language reasoning and trained on human social data, provide a new testbed for examining whether reputation-based cooperation emerges spontaneously in continuous action spaces, and how such strategies relate to theoretical frameworks like Image Scoring and the Leading Eight. A growing literature examines LLM behavior in strategic interactions (Akata et al., 2025; Brookins & DeBacker, 2023; Fan et al., 2024; Guo et al., 2024; Horton et al., 2023), generally focusing on direct reciprocity. These studies reveal that LLMs exhibit cooperative tendencies that vary systematically across models, contexts, and game structures (Mei et al., 2024; Lor `e & Heydari, 2024; Fontana et al., 2025). Perez et al. (2024) demonstrated that LLM populations exhibit cultural evolution dynamics analogous to human populations, with emergent attractors and cumulative changes across generations. Most directly relevant, Vallinder & Hughes (2024) studied donation games among LLM agents and found that cooperative behavior evolves in Claude but not in Gemini or GPT-4o. However, two important questions remain unaddressed: the mechanisms driving this model-dependent variation are poorly understood, and whether evolved cooperation is robust against invasion by unconditional defectors (ALLD), that is, whether cooperative populations can resist exploitation by free-riders, was not tested. 2This robustness question is not merely academic. As LLM agents are increasingly deployed in real-world collaborative settings alongside humans, naive cooperation that collapses under adversarial exploitation poses a practical risk. In human–AI hybrid societies, agents must not only cooperate with well-intentioned partners but also resist manipulation by malicious actors (Dafoe et al., 2020). Understanding whether culturally evolved cooperation in LLM populations is robust to free-rider invasion, and identifying the mechanisms that confer such robustness, is therefore essential for the safe deployment of autonomous agents. In this paper, we study an indirect reciprocity donation game in which LLM agents observe behavioral traces of potential recipients (a chain of the last three interactions) and decide how much to donate on a continuous scale (0–100% of their endowment). Strategies are defined as generated texts, and evolve through cultural transmission: offspring inherit their parent’s strategy and modify it based on the parent’s performance rank, using the LLM itself as the mutation operator. We tested four LLM backends across ten generations of twelve agents each, measuring both population-level resource accumulation and robustness to free-rider invasion. 
+
+# 2 Methods 
+
+Our experimental framework builds on Vallinder & Hughes (2024), who studied cultural evolution in LLM donation games with top-𝑘 truncation selection (the top 50% of agents survive and each produces one offspring). We modify two aspects: we replace truncation selection with fitness-proportional (roulette wheel) selection, where each agent’s probability of being selected as a parent is proportional to its accumulated resources, and we redesign the prompts given to agents for both gameplay and strategy evolution (full prompt texts in Appendix E). 
+
+𝑁 = 12 LLM agents play an indirect reciprocity donation game across 𝐺 = 10 generations. Each agent decides what fraction (0–100%) of their endowment to donate to recipients, with a 2:1 benefit-to-cost ratio ( 𝑏 /𝑐 = 2). Agents observe three-round behavioral traces (e.g., “recipient A donated 𝑥 % to B, B donated 𝑦 % to C”) rather than explicit reputation labels, making this an observation-based system. Each agent’s strategy is a natural language text (up to 350 words). In generation 1, the LLM generates an initial strategy given the game rules (Appendix E, Prompt 1). At each subsequent generation, roulette wheel selection chooses 𝑁 parents (with replacement), and each offspring inherits its parent’s strategy and generates a modified version based on the parent’s performance rank (Appendix E, Prompt 2). The LLM thus serves as both the decision-maker during gameplay (Appendix E, Prompt 3) and the mutation operator during evolution. We test four LLM backends: Claude 3.5 Sonnet, Gemini 1.5/2.0/2.5 Flash, with 10 independent runs per model. To measure robustness, we conduct bot invasion experiments. For each evolved strategy, we populate a 12-agent game with 11 copies of that strategy and 1 free-rider bot (always donates 0%), then run a single-generation round-robin game without strategy evolution. A strategy is classified as robust if the evolved agents’ average score exceeds the bot’s score. We test approximately 100 strategies per model (10 randomly sampled per generation × 10 generations); robustness is the percentage classified as robust. We quantify strategies via 11 × 11 cooperation matrices 𝑀 , where 𝑀 𝑖 𝑗 represents the agent’s donation when 𝑥 𝐵 = 𝑖 × 10% (B’s donation in round 𝑡 −2) and 𝑥 𝐴 = 𝑗 × 10% (A’s donation in round 𝑡 −1). Both axes represent observed opponent behavioral signals: 𝑥 𝐴 is the recipient’s own recent cooperation, while 𝑥 𝐵 is the cooperation level of the recipient’s prior interaction partner, consistent with Image Scoring assessment. From these matrices, we extract features including: opponent endowment sensitivity = right edge (cooperation when 𝑥 𝐴 = 60–100%) 
+
+− left edge (cooperation when 𝑥 𝐴 = 0–40%); corner values 𝛼 , 𝛽 , 𝛾 , 𝛿 ; L1 prevalence; mono-tonicity (Spearman 𝜌 ); and entropy. Following Ohtsuki & Iwasa (2004), we compute four corner values from 5 × 5 sub-regions of 𝑀 : 𝛼 = mean( 𝑀 [high 𝑥 𝐵 , low 𝑥 𝐴 ]), 𝛽 = mean( 𝑀 [high 
+
+𝑥 𝐵 , high 𝑥 𝐴 ]), 𝛾 = mean( 𝑀 [low 𝑥 𝐵 , low 𝑥 𝐴 ]), 𝛿 = mean( 𝑀 [low 𝑥 𝐵 , high 𝑥 𝐴 ]), where “high” 3denotes indices 6–10 and “low” denotes indices 0–4. From these we define: Opponent Endowment Sensitivity (OES) = 155 
+
+> 10
+
+∑︁ 
+
+> 𝑖 =010
+
+∑︁ 
+
+> 𝑗 =6
+
+𝑀 𝑖 𝑗 
+
+| {z }
+
+> right edge
+
+− 155 
+
+> 10
+
+∑︁ 
+
+> 𝑖 =04
+
+∑︁ 
+
+> 𝑗 =0
+
+𝑀 𝑖 𝑗 
+
+| {z }
+
+> left edge
+
+(1) Discrimination strength is 𝛽 − 𝛼 . An agent is classified as strongly monotonic if the mean Spearman 𝜌 between column index and cooperation value across all rows exceeds 0.5. The L1 condition (Ohtsuki & Iwasa, 2004) requires 𝛼 < 𝛾 < 𝛿 ≤ 𝛽 . Full definitions of entropy and additional details appear in Appendix B. 
+
+# 3 Results 
+
+3.1 Evolutionary dynamics and model-dependent robustness 
+
+We begin by examining how cooperation and robustness to free-rider invasion evolve across generations (Figure 1). 
+
+Resource accumulation varies widely across models. Claude 3.5 Sonnet and Gemini 2.5 Flash show substantial increases in mean total resources over generations (Figure 1a), in-dicating the evolution of cooperative strategies that benefit the population as a whole. Consistent with prior findings (Vallinder & Hughes, 2024), these models successfully de-velop and maintain strategies that enable mutual cooperation, resulting in resource growth that exceeds the initial endowment by factors of 2–3 by generation 10. In contrast, Gemini 1.5 Flash and Gemini 2.0 Flash show modest or no increase in resources, suggesting that their evolved strategies fail to sustain high levels of cooperation across the population. The variance across independent runs (shaded regions in Figure 1a) indicates that evolutionary outcomes are relatively stable within each model, though Gemini 2.5 Flash exhibits higher variability, possibly reflecting a richer set of viable cooperative strategies. 
+
+Robustness to free-rider invasion varies by an order of magnitude. Despite achieving similar resource growth, models differ substantially in robustness to free-rider invasion (Figure 1b). Gemini 2.5 Flash achieves the highest robustness at 48%, meaning that nearly half of its evolved strategies can successfully resist exploitation when a free-rider infiltrates the population. Gemini 2.0 Flash follows with 28% robustness, Gemini 1.5 Flash with 10%, and Claude 3.5 Sonnet with only 3%. The most robust model is thus 16 times more robust than the least robust, a difference spanning 45 percentage points. The temporal dynamics of robustness emergence (Figure 1b) reveal distinct evolutionary pathways. Gemini 2.5 Flash develops robust strategies early, with robustness peaking at 70% in generation 2 before stabilizing around 40–48% in later generations. This early emergence suggests that the model’s initial strategy generation already biases toward defector exclusion mechanisms, which are then refined through cultural transmission. Gemini 2.0 Flash shows a different pattern: robustness fluctuates considerably across generations, reaching 50% in generations 5–6 before declining to 30% by generation 10. This volatility may reflect competing evolutionary pressures between cooperation and exploitation within the population. Claude 3.5 Sonnet, by contrast, shows minimal robustness throughout evolution, never exceeding 10% in any generation. This persistent vulnerability indicates that the model’s evolved strategies systematically fail to exclude free-riders, despite successfully cooperating among themselves. 
+
+3.2 Mechanisms of robustness: continuous discrimination 
+
+All four models develop threshold-based discrimination without explicit instruction to do so. Across 400 agents spanning four models and ten generations (Appendix C), 98.8% exhibit strongly monotonic strategies (Spearman 𝜌 > 0.5 between opponent cooperation level and agent cooperation level), with model-specific rates ranging from 97.0% to 100.0% and mean 40
+
+> 20000
+> 40000
+> 60000
+> 80000
+> 100000
+> Total Population Resources
+
+(a) Resource accumulation across generations          
+
+> Claude 3.5 Sonnet (n=10)
+> Gemini 1.5 Flash (n=10)
+> Gemini 2.0 Flash (n=10)
+> Gemini 2.5 Flash (n=10)
+> 12345678910
+
+Generation 
+
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Proportion of Robust Strategies
+
+(b) Evolution of robustness to free-riders 
+
+> Claude 3.5 Sonnet (3%)
+> Gemini 1.5 Flash (10%)
+> Gemini 2.0 Flash (28%)
+> Gemini 2.5 Flash (48%)
+
+Figure 1: Evolution of cooperation and robustness across generations (x-axis shared). (a) 
+
+Mean total resources per generation for each LLM backend. Shaded regions indicate standard deviation across 10 independent runs. Claude 3.5 Sonnet and Gemini 2.5 Flash show substantial increases, while Gemini 1.5/2.0 Flash show modest or no growth. (b) 
+
+Proportion of strategies from each generation that successfully expelled a free-rider bot (always donates 0%). Final robustness: Gemini 2.5 Flash (48%), Gemini 2.0 Flash (28%), Gemini 1.5 Flash (10%), Claude 3.5 Sonnet (3%). correlations from 0.931 to 0.970. This near-universal emergence of monotonic strategies confirms that Image Scoring-like discrimination (Nowak & Sigmund, 1998) is a robust emergent property of LLM agents. Yet if all models discriminate, why does robustness to free-riders vary 16-fold? 
+
+Discrimination strength, not its presence, predicts robustness. The answer lies not in whether agents discriminate, but in how strongly they do so. We regressed model-level robustness against model-level mean strategy features (Table 1). Opponent endowment sensitivity (Equation 1) explains 93.4% of the variance in robustness (𝑅 2 = 0.934, 𝑝 = 0.033; Table 1), making it the only significant predictor at 𝛼 = 0.05 with 
+
+𝑛 = 4 models. The closely related metric 𝛽 − 𝛼 (𝑅 2 = 0.898, 𝑝 = 0.053; 𝑟 > 0.99 with opponent endowment sensitivity) corroborates this finding. By contrast, mean cooperation level has virtually no predictive power ( 𝑅 2 = 0.046), and L1 prevalence, the proportion of strategies 5Table 1: Single-feature regression predicting robustness (%) from generation 10 model-level mean strategy features ( 𝑛 = 4 models). ∗: 𝑝 < 0.05; †: 𝑝 < 0.10. 
+
+Feature 𝑹 2 𝑝 -value Slope Sig. 
+
+Opponent endow. sensitivity 0.934 0.033 +1.62 ∗
+
+𝛽 − 𝛼 0.898 0.053 +1.73 †
+
+Matrix entropy 0.788 0.112 −219.3 n.s. Left edge 0.786 0.113 −2.30 n.s. L1 prevalence 0.671 0.181 −116.7 n.s. Mean cooperation 0.046 0.785 −0.98 n.s. satisfying the Leading-Eight L1 condition (Ohtsuki & Iwasa, 2004), does not significantly predict robustness ( 𝑅 2 = 0.671, 𝑝 = 0.181). The L1 failure is expected: the L1 norm assumes access to explicit binary reputation labels, whereas our agents infer cooperativeness from behavioral traces, making this effectively an Image Scoring system where one-dimensional discrimination is the relevant mechanism. 
+
+Defector exclusion predicts robustness. To understand why discrimination strength pre-dicts robustness, we decompose opponent endowment sensitivity into its two components (Table 2). Table 2: Decomposition of opponent endowment sensitivity (generation 10 means, 𝑛 = 10 agents per model). Left edge = cooperation when 𝑥 𝐴 = 0–40% (A’s donation in round 𝑡 −1); right edge = cooperation when 𝑥 𝐴 = 60–100%. 
+
+Model Left Edge Right Edge Opp. Endow. Sens. Robustness (%) 
+
+Gemini 2.5 Flash 22.4 83.5 61.1 48.0 Gemini 2.0 Flash 22.6 73.6 51.0 28.0 Claude 3.5 Sonnet 38.7 76.9 38.2 3.0 Gemini 1.5 Flash 30.8 65.9 35.1 10.0 The right edge (cooperation with high-cooperation opponents) varies across models (65.9– 83.5%, a span of 17.6 percentage points), though all models reward cooperators at moderately high levels. The left edge (cooperation with low-cooperation opponents) spans a similar range (22.4–38.7%, a span of 16.3 percentage points). Crucially, the absolute level of coopera-tion with low-cooperation opponents determines robustness: models with left edges below 25% (Gemini 2.0 and 2.5 Flash) achieve substantially higher robustness than those above 30% (Claude 3.5 Sonnet and Gemini 1.5 Flash). The mechanism is straightforward: a free-rider that always donates 0% will be identified as a low-cooperation opponent. Claude 3.5 Sonnet, with a left edge of 38.7%, donates nearly two-fifths of its resources even to such opponents, allowing free-riders to accumulate 7.74 units per round (0.387 × 10 × 2, accounting for the 2:1 benefit-to-cost ratio), which can exceed the net gains of cooperators. Gemini 2.0 and 2.5 Flash maintain left edges near 22%, limiting free-rider accumulation to approximately 4.5 units per round, insufficient to outcompete cooperators whose mutual cooperation yields higher returns. 
+
+Strategy texts confirm the quantitative pattern. Table 3 and Figure 2 (Appendix D) show what discrimination strength looks like in practice. Robust strategies (Gemini 2.5 Flash) include explicit punishment thresholds: “if the recipient (A) donated less than 20%, donate 0%.” This threshold produces the steep left-to-right gradient visible in the heatmaps: near-zero cooperation with low-cooperation opponents, high cooperation with high-cooperation opponents. Non-robust strategies (Claude 3.5 Sonnet) instead maintain cooperation floors: “but never less than 35%,” producing the uniformly elevated heatmaps that allow free-riders to persist. A multiple regression incorporating 𝛽 − 𝛼 and left edge achieves 𝑅 2 = 0.961 (MAE = 3.23 pp; note that with 𝑛 = 4 and two predictors, residual degrees of freedom are 6minimal), suggesting that discrimination strength and defector exclusion jointly account for robustness. Table 3: Example evolved strategies from generation 10. Robust strategies explicitly exclude low-cooperation opponents; Non-robust strategies maintain positive cooperation even toward defectors.    
+
+> Type Strategy Text (abbreviated) Robust (Gem-ini 2.5) “Donate 100% in the first round; thereafter, if the recipient (A) donated 80% or more, donate 100%; if A donated less than 20%, donate 0% ; if A donated between 20% and 79%, determine a base increase based on B’s donation...”
+> Non-robust
+> (Claude 3.5) “Donate 50% in the first round; in subsequent rounds, donate an amount equal to the average of A’s last donation and the average of B and C’s donations, plus a base 25% that increases by 1% each round up to 40%,
+> but never less than 35% ...”
+
+# 4 Discussion 
+
+4.1 From classical Image Scoring to continuous discrimination 
+
+Our results are consistent with the Image Scoring mechanism (Nowak & Sigmund, 1998) in a cognitively rich setting with continuous actions. Four predictions from Image Scoring theory are supported: (1) threshold-based strategies evolve (98.8% of agents show monotonic strategies); (2) agents discriminate based on observed cooperation (opponent endowment sensitivity predicts robustness with 𝑅 2 = 0.934); (3) discriminators exclude defectors (high sensitivity correlates with high robustness, 𝑟 = 0.967); and (4) no explicit reputation system is needed (observation-based inference suffices). These findings extend Image Scoring from the domain of simple, genetically evolved agents to LLM agents with natural language reasoning and cultural transmission. The fact that LLMs develop these strategies without explicit instruction to discriminate suggests that cooperative discrimination is a robust emergent property of agents trained on human social data. 
+
+LLM agents are confined to Image Scoring. L1 prevalence does not predict robustness (𝑅 2 = 0.671, 𝑝 = 0.181), and only 9–15% of strategies across all models satisfy the L1 condition. This means that LLM agents, despite their sophisticated language capabilities, fail to construct the more robust Leading-Eight norms that theory predicts are necessary for cooperation to withstand observation errors (Ohtsuki & Iwasa, 2006). Instead, they are confined to Image Scoring, a mechanism known to be vulnerable to noise and misperception (Leimar & Hammerstein, 2001; Panchanathan & Boyd, 2003). Even the most robust model (Gemini 2.5 Flash) achieves only 48% robustness against a simple unconditional defector, suggesting that Image Scoring alone is insufficient to guarantee evolutionary stability in realistic settings where observation errors are inevitable. 
+
+Generalizing Image Scoring to continuous action spaces. These findings suggest that Image Scoring naturally extends to continuous action spaces. In the classical binary setting, Image Scoring prescribes a threshold rule: cooperate if the opponent’s reputation exceeds a cutoff, defect otherwise (Nowak & Sigmund, 1998). Our agents implement a continuous analogue: a graded cooperation function where donation increases with observed opponent cooperation. The critical insight is that monotonicity alone is insufficient: nearly all agents (98.8%) develop monotonic strategies, yet robustness varies 16-fold. What distinguishes robust from non-robust strategies is the steepness of the discrimination gradient, captured by opponent endowment sensitivity. Claude 3.5 Sonnet illustrates this: despite near-universal monotonicity (99% of strategies), its shallow gradient (OES = 38.2) fails to exclude defectors, yielding only 3% robustness. This suggests that the relevant dimension for cooperation stability in continuous spaces is not whether agents discriminate, but how sharply they do so, representing a quantitative rather than qualitative criterion. 74.2 Mechanisms of robustness and cultural evolution Defector exclusion as the critical axis of variation. As shown in Section 3.2, the critical differentiator of robustness is not how much agents reward cooperators, but how stringently they exclude defectors. This suggests that the evolutionary challenge for cooperative LLM populations is calibrating the threshold at which cooperation is withheld from suspected defectors. 
+
+Cultural evolution refines rather than discovers discrimination. Unlike genetic evolution, where discrimination mechanisms must evolve de novo from random strategies, LLMs begin with strong priors for cooperative discrimination, likely inherited from pre-training on human social interaction data. Discrimination strength ( 𝛽 − 𝛼 ) is already high in generation 1 (ranging from 39 to 59 across models; Table 4) and remains largely stable through genera-tion 10, with three of four models changing by less than 6% (Gemini 1.5 Flash decreases by 19%, the sole exception). This stability suggests that cultural evolution in LLM populations operates primarily through refinement and recombination of existing strategies rather than discovery of qualitatively new behavioral patterns. The initial diversity in discrimination strength persists throughout evolution (Table 4, gen. 1 vs. gen. 10 rows), indicating that model-specific priors, established during pre-training, constrain the space of strategies ac-cessible through cultural transmission. This contrasts sharply with genetic evolution studies, where cooperation must bootstrap from initially uncooperative populations (Ohtsuki & Iwasa, 2006). This suggests that multi-agent AI systems may not need to evolve cooperation from scratch; rather, the challenge lies in steering inherited cooperation tendencies toward robustness by strengthening defector exclusion mechanisms. 
+
+4.3 Vulnerability of LLM cooperation and implications for norm construction 
+
+Our findings reveal a fundamental tension in LLM cooperation. On one hand, some evolved strategies successfully resist invasion by unconditional defectors (ALLD): up to 48% of Gemini 2.5 Flash strategies outcompete a free-rider bot. On the other hand, LLM agents universally fail to develop Leading-Eight norms, which are theoretically necessary for cooperation to remain stable under observation errors (Ohtsuki & Iwasa, 2006; Santos et al., 2018). This creates a fragile form of cooperation: while agents can exclude obvious defectors through Image Scoring, they lack the sophisticated norm structure needed to handle the ambiguity that arises when cooperative acts are occasionally misperceived. This vulnerability has practical implications for the deployment of LLM agents in human–AI hybrid societies. Current approaches to aligning LLM behavior rely primarily on top-down, human-in-the-loop methods, such as reinforcement learning from human feedback (RLHF) and constitutional AI, that instill cooperative norms exogenously (Ouyang et al., 2022; Bai et al., 2022). Our results suggest that such top-down norm instillation may be insufficient: even when agents are trained on vast corpora of cooperative human behavior, they fail to develop the second-order discrimination (conditioning on the recipient’s reputation, not just their behavior) that characterizes robust norms. An alternative approach would be to allow agents to construct norms bottom-up , through direct experience with exploitation and norm violation. If agents could learn from repeated encounters with free-riders, rather than merely inheriting cooperative priors from pre-training data, they might develop the context-sensitive discrimination that the Leading Eight prescribe, building norms that are robust to both unconditional defection and observation errors. Whether such bottom-up norm construction is achievable in LLM populations remains an open question for future work. 
+
+4.4 Limitations 
+
+Several limitations should be noted. First, statistical analysis is at the model level ( 𝑛 = 4), limiting power despite large effect sizes ( 𝑅 2 = 0.93). Second, we test one population size (𝑁 = 12); the relationship between size and robustness remains unknown. Third, bot invasion uses a single, non-adaptive free-rider; real scenarios may involve multiple or adaptive exploiters. Fourth, we do not analyze natural language strategy content. Fifth, 8strategy matrices are computed from synthetic scenarios, which may not perfectly reflect dynamic game behavior. Despite these limitations, our findings provide initial theoretical and empirical evidence that Image Scoring is the relevant mechanism in this setting, and that opponent endowment sensitivity serves as a tractable predictor of robustness. 
+
+# 5 Conclusion 
+
+Our central finding is that LLM agents, despite sophisticated language capabilities, are con-fined to Image Scoring-like discrimination and fail to develop the Leading-Eight norms that theory identifies as necessary for robust cooperation under observation errors. Opponent endowment sensitivity provides a tractable diagnostic for predicting free-rider resistance, but even the strongest discriminators achieve only 48% robustness, revealing a fundamental vulnerability in culturally evolved LLM cooperation. The practical challenge for multi-agent AI systems is therefore twofold: LLMs inherit cooperative priors from pre-training, but these priors produce only first-order discrimination (Image Scoring), leaving populations vulnerable to the cascading reputation loss that observation errors can trigger. Future work should explore whether bottom-up norm construction, allowing agents to learn discrimination rules from direct experience with exploitation rather than inheriting them from training data, can produce the second-order norms (Leading Eight) that confer robustness to both defection and noise. Additionally, testing stability in hybrid human–LLM populations and investigating how training procedures shape the space of accessible norms remain important open questions. 
+
+# References 
+
+Elif Akata, Lion Schulz, Julian Coda-Forno, Seong Joon Oh, Matthias Bethge, and Eric Schulz. Playing repeated games with large language models. Nature Human Behaviour , 9 (7):1380–1390, 2025. Richard D. Alexander. The Biology of Moral Systems . Routledge, 1987. Robert Axelrod. Effective choice in the prisoner’s dilemma. Journal of conflict resolution , 24 (1):3–25, 1980. Robert Axelrod and William D Hamilton. The evolution of cooperation. Science , 211(4489): 1390–1396, 1981. Yuntao Bai, Saurav Kadavath, Sandipan Kundu, Amanda Askell, Jackson Kernion, Andy Jones, Anna Chen, Anna Goldie, Azalia Mirhoseini, Cameron McKinnon, et al. Constitu-tional ai: Harmlessness from ai feedback. arXiv preprint arXiv:2212.08073 , 2022. Robert Boyd and Peter J Richerson. Culture and the Evolutionary Process . University of Chicago Press, 1985. Philip Brookins and Jason Matthew DeBacker. Playing games with gpt: what can we learn about a large language model from canonical strategic games? Available at SSRN 4493398 ,2023. Jason W Burton, Ezequiel Lopez-Lopez, Shahar Hechtlinger, Zoe Rahwan, Samuel Aeschbach, Michiel A Bakker, Joshua A Becker, Aleks Berditchevskaia, Julian Berger, Levin Brinkmann, et al. How large language models can reshape collective intelligence. 
+
+Nature human behaviour , 8(9):1643–1655, 2024. Vincent Conitzer and Caspar Oesterheld. Foundations of cooperative ai. In Proceedings of the AAAI Conference on Artificial Intelligence , volume 37, pp. 15359–15367, 2023. Allan Dafoe, Edward Hughes, Yoram Bachrach, Tantum Collins, Kevin R McKee, Joel Z Leibo, Kate Larson, and Thore Graepel. Open problems in cooperative ai. arXiv preprint arXiv:2012.08630 , 2020. 9Caoyun Fan, Jindou Chen, Yaohui Jin, and Hao He. Can large language models serve as rational players in game theory? a systematic analysis. In Proceedings of the AAAI Conference on Artificial Intelligence , volume 38, pp. 17960–17967, 2024. Ernst Fehr and Simon G ¨achter. Altruistic punishment in humans. Nature , 415(6868):137–140, 2002. Nicol ´o Fontana, Francesco Pierri, and Luca Maria Aiello. Nicer than humans: how do large language models behave in the prisoner’s dilemma? In Proceedings of the International AAAI Conference on Web and Social Media , volume 19, pp. 522–535, 2025. Yuma Fujimoto and Hisashi Ohtsuki. Evolutionary stability of cooperation in indirect reciprocity under noisy and private assessment. Proceedings of the National Academy of Sciences , 120(20):e2300544120, 2023. Shangmin Guo, Haoran Bu, Haochuan Wang, Yi Ren, Dianbo Sui, Yuming Shang, and Siting Lu. Economics arena for large language models. arXiv preprint arXiv:2401.01735 , 2024. William D Hamilton. The genetical evolution of social behaviour. I. Journal of Theoretical Biology , 7(1):1–16, 1964. Joseph Henrich. Cultural group selection, coevolutionary processes and large-scale coopera-tion. Journal of Economic Behavior & Organization , 53(1):3–35, 2004. Christian Hilbe, Laura Schmid, Josef Tkadlec, Krishnendu Chatterjee, and Martin A Nowak. Indirect reciprocity with private, noisy, and incomplete information. Proceedings of the national academy of sciences , 115(48):12241–12246, 2018. John J. Horton, Apostolos Filippas, and Benjamin S. Manning. Large language models as simulated economic agents: What can we learn from Homo Silicus? Working Paper 31122, National Bureau of Economic Research, April 2023. URL https://www.nber.org/papers/ w31122 .Olof Leimar and Peter Hammerstein. Evolution of cooperation through indirect reciprocity. 
+
+Proceedings of the Royal Society of London. Series B: Biological Sciences , 268(1468):745–753, 2001. Nunzio Lor `e and Babak Heydari. Strategic behavior of large language models and the role of game structure versus contextual framing. Scientific Reports , 14(1):18490, 2024. Qiaozhu Mei, Yutong Xie, Walter Yuan, and Matthew O Jackson. A turing test of whether ai chatbots are behaviorally similar to humans. Proceedings of the National Academy of Sciences ,121(9):e2313925121, 2024. Alex Mesoudi. Cultural evolution: How Darwinian theory can explain human culture and synthesize the social sciences . University of Chicago Press, 2011. Manfred Milinski, Dirk Semmann, and Hans-J ¨urgen Krambeck. Reputation helps solve the ‘tragedy of the commons’. Nature , 415(6870):424–426, 2002. Martin A Nowak. Five rules for the evolution of cooperation. Science , 314(5805):1560–1563, 2006. Martin A Nowak and Karl Sigmund. Evolution of indirect reciprocity by image scoring. 
+
+Nature , 393(6685):573–577, 1998. Martin A Nowak and Karl Sigmund. Evolution of indirect reciprocity. Nature , 437(7063): 1291–1298, 2005. Hisashi Ohtsuki and Yoh Iwasa. How should we define goodness?—reputation dynamics in indirect reciprocity. Journal of theoretical biology , 231(1):107–120, 2004. Hisashi Ohtsuki and Yoh Iwasa. The leading eight: social norms that can maintain coopera-tion by indirect reciprocity. Journal of theoretical biology , 239(4):435–444, 2006. 10 Isamu Okada. A review of theoretical studies on indirect reciprocity. Games , 11(3):27, 2020. Long Ouyang, Jeffrey Wu, Xu Jiang, Diogo Almeida, Carroll Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, et al. Training language models to follow instructions with human feedback. Advances in neural information processing systems , 35:27730–27744, 2022. Karthik Panchanathan and Robert Boyd. A tale of two defectors: the importance of standing for evolution of indirect reciprocity. Journal of theoretical biology , 224(1):115–126, 2003. J ´er ´emy Perez, Corentin L ´eger, Marcela Ovando-Tellez, Chris Foulon, Joan Dussauld, Pierre-Yves Oudeyer, and Cl ´ement Moulin-Frier. Cultural evolution in populations of large language models. arXiv preprint arXiv:2403.08882 , 2024. Gilbert Roberts and Thomas N Sherratt. Development of cooperative relationships through increasing investment. Nature , 394(6689):175–179, 1998. Fernando P Santos, Francisco C Santos, and Jorge M Pacheco. Social norm complexity and past reputations in the evolution of cooperation. Nature , 555(7695):242–245, 2018. Laura Schmid, Krishnendu Chatterjee, Christian Hilbe, and Martin A Nowak. A unified framework of direct and indirect reciprocity. Nature Human Behaviour , 5(10):1292–1302, 2021. Laura Schmid, Farbod Ekbatani, Christian Hilbe, and Krishnendu Chatterjee. Quantita-tive assessment can stabilize indirect reciprocity under imperfect information. Nature Communications , 14(1):2086, 2023. Robert L Trivers. The evolution of reciprocal altruism. The Quarterly Review of Biology , 46(1): 35–57, 1971. Milena Tsvetkova, Taha Yasseri, Niccolo Pescetelli, and Tobias Werner. A new sociology of humans and machines. Nature Human Behaviour , 8(10):1864–1876, 2024. Aron Vallinder and Edward Hughes. Cultural evolution of cooperation among llm agents. 
+
+arXiv preprint arXiv:2412.10270 , 2024. Lindi M Wahl and Martin A Nowak. The continuous prisoner’s dilemma: I. linear reactive strategies. Journal of Theoretical Biology , 200(3):307–321, 1999. Claus Wedekind and Manfred Milinski. Cooperation through image scoring in humans. 
+
+Science , 288(5467):850–852, 2000. Erez Yoeli, Moshe Hoffman, David G Rand, and Martin A Nowak. Powering up with indirect reciprocity in a large-scale field experiment. Proceedings of the National Academy of Sciences , 110(supplement 2):10424–10429, 2013. 
+
+# A LLM Usage Statement 
+
+In the process of developing this work, we utilized LLMs as a reviewer tool to improve the quality of the manuscript, including grammar correction and rewriting. In addition, we employed LLMs for data visualization. 
+
+# B Detailed methods 
+
+B.1 Game structure 
+
+Our framework builds on Vallinder & Hughes (2024) with the following modifications: 11 • Selection mechanism: Vallinder & Hughes (2024) use top-𝑘 truncation selection (top 50% survive, each produces one offspring). We use fitness-proportional roulette wheel selection, where each agent’s probability of being selected as a parent is 
+
+𝑝 𝑖 = 𝑓 𝑖 /Í 𝑗 𝑓 𝑗 , with 𝑓 𝑖 being agent 𝑖 ’s total accumulated resources. Parents are sampled with replacement to produce 𝑁 offspring. • Prompts: We redesign the system prompt, strategy generation prompt, and donation decision prompt (see Appendix E). • Cultural transmission mode: At each generation boundary, each offspring receives its parent’s strategy text and performance rank, then generates a modified strategy. The LLM serves as both the inheritor and the mutation operator, creating variation while preserving successful elements. The game structure is otherwise identical. A population of 𝑁 = 12 agents plays across 
+
+𝐺 = 10 generations. Within each generation, agents are paired using a bipartite round-robin scheme played twice with reassigned roles, yielding 2 × 2 × 𝑁  
+
+> 2
+
+× 𝑁  
+
+> 2
+
+= 144 donation events per generation for 𝑁 = 12. Each agent begins with 10 units of resources. If a donor gives 
+
+𝑥 units, the donor loses 𝑥 and the recipient gains 2 𝑥 (𝑏 /𝑐 = 2). Strategy generation uses temperature 0.8; gameplay decisions use temperature 0.3. 
+
+B.2 Information structure 
+
+Agents do not observe explicit reputation labels. When paired with recipient 𝐴 in round 𝑡 ,the donor observes a three-round behavioral chain: (1) in round 𝑡 −1, 𝐴 donated 𝑥 𝐴 % to 𝐵 ;(2) in round 𝑡 −2, 𝐵 donated 𝑥 𝐵 % to 𝐶 ; (3) in round 𝑡 −3, 𝐶 donated 𝑥 𝐶 % to 𝐷 .
+
+B.3 Bot invasion experiments 
+
+We test the robustness of individual evolved strategies against a free-rider bot. For each model, we randomly sample up to 10 strategies per generation across 10 generations, yielding approximately 100 strategies per model. The sampled strategy identities are recorded via cryptographic hashes, ensuring that the same set is used consistently across all downstream analyses (matrix extraction, feature computation, and bot invasion tests). For each strategy to be tested: 1. Create a population of 12 agents: 11 agents all using the same evolved strategy, plus 1 free-rider bot whose strategy is “Always donate 0 units regardless of the situation.” 2. Run a single-generation round-robin game (no strategy evolution; 
+
+enable mutation=False ). 3. Compute the average final score of the 11 evolved agents and the final score of the bot. 4. Classify the strategy as robust if the evolved agents’ average score exceeds the bot’s score. Robustness is the percentage of tested strategies classified as robust. By using 11 copies of the same strategy rather than a mixture of different strategies, this test isolates whether a given strategy can resist exploitation independently of population composition. Bot invasion experiments use the Gemini API’s default temperature for all gameplay LLM calls, rather than the explicit temperature 0.3 used during evolution. Because the single-generation test involves no strategy generation phase, only gameplay decisions are affected; the higher default temperature introduces additional stochasticity in donation decisions, providing a conservative robustness test. 
+
+B.4 Strategy matrix extraction 
+
+We construct an 11 × 11 cooperation matrix 𝑀 for each agent by running 121 synthetic scenarios varying 𝑥 𝐵 (B’s donation in round 𝑡 −2; row 𝑖 , where 𝑥 𝐵 = 𝑖 × 10%) and 𝑥 𝐴 (A’s donation in round 𝑡 −1; column 𝑗 , where 𝑥 𝐴 = 𝑗 × 10%). 12 Following Ohtsuki & Iwasa (2004), we compute four corner values from 5 × 5 sub-regions: 𝛼 
+
+= mean( 𝑀 [high 𝑥 𝐵 , low 𝑥 𝐴 ]), 𝛽 = mean( 𝑀 [high 𝑥 𝐵 , high 𝑥 𝐴 ]), 𝛾 = mean( 𝑀 [low 𝑥 𝐵 , low 𝑥 𝐴 ]), 
+
+𝛿 = mean( 𝑀 [low 𝑥 𝐵 , high 𝑥 𝐴 ]). L1 condition: 𝛼 < 𝛾 < 𝛿 ≤ 𝛽 .We define the following features from the cooperation matrix 𝑀 :
+
+Opponent endowment sensitivity. As defined in Section 2 (Equation 1), OES = right edge 
+
+− left edge, where left edge averages over columns 𝑥 𝐴 = 0–40% and right edge over 𝑥 𝐴 = 60– 100%. 
+
+Discrimination strength. As defined in Section 2, 𝛽 − 𝛼 measures the difference in cooper-ation between high-cooperation and low-cooperation opponents when the opponent’s prior partner (B) showed high cooperation. 
+
+Matrix entropy. 
+
+𝐻 (𝑀 ) = −
+
+> 10
+
+∑︁ 
+
+> 𝑖 =010
+
+∑︁ 
+
+> 𝑗 =0
+
+˜𝑀 𝑖 𝑗 ln ˜ 𝑀 𝑖 𝑗 , ˜𝑀 𝑖 𝑗 = 𝑀 𝑖 𝑗 
+
+Í𝑘 ,𝑙 𝑀 𝑘𝑙 
+
+(2) 
+
+Monotonicity. We compute the Spearman rank correlation 𝜌 𝑆 between column index ( 𝑥 𝐴 
+
+level) and cooperation value for each row 𝑖 of 𝑀 , then average over all rows: 
+
+𝜌 mono = 111 
+
+> 10
+
+∑︁ 
+
+> 𝑖 =0
+
+𝜌 𝑆 
+
+ (0, . . . , 10 ), (𝑀 𝑖 ,0 , . . . , 𝑀 𝑖 ,10 ) (3) An agent is classified as strongly monotonic if 𝜌 mono > 0.5. 
+
+L1 prevalence. The proportion of agents satisfying 𝛼 < 𝛾 < 𝛿 ≤ 𝛽 .
+
+# C Detailed model profiles 
+
+Table 4: Strategy profile summary for each LLM backend. Values represent model-level means across 100 agents. 
+
+Feature Gemini 2.5 Gemini 2.0 Claude 3.5 Gemini 1.5 
+
+Robustness (%) 48.0 28.0 3.0 10.0 Opp. endow. sensitivity 61.2 51.6 40.8 40.6 
+
+𝛽 − 𝛼 (all gen.) 61.3 51.6 42.2 41.3 
+
+𝛽 − 𝛼 (gen. 1) 59.2 49.4 38.7 44.4 
+
+𝛽 − 𝛼 (gen. 10) 60.7 50.8 40.7 35.9 Left edge 21.7 24.7 35.2 30.6 Right edge 82.9 76.3 75.9 71.2 
+
+𝛼 23.5 26.6 37.7 32.7 
+
+𝛽 84.8 78.2 79.9 74.0 Monotonicity ( 𝜌 ) 0.970 0.938 0.941 0.931 Strongly monotonic (%) 100.0 97.0 99.0 99.0 Entropy (normalized) 0.851 0.770 0.774 0.742 Unique levels 19.5 14.5 18.4 18.2 L1 prevalence (%) 15.0 9.0 11.0 10.0 
+
+# D Representative strategy heatmaps 
+
+Figure 2 shows cooperation matrices from individual agents of Gemini 2.5 Flash and Claude 3.5 Sonnet, the most and least robust models respectively. These heatmaps correspond to the types of natural language strategies shown in Table 3. Robust strategies (top row, Gemini 13 2.5 Flash) exhibit a steep left-to-right gradient: cooperation is near zero when 𝑥 𝐴 was low (left columns) and high when 𝑥 𝐴 was high (right columns). This pattern directly reflects the punishment threshold (“if A donated less than 20%, donate 0%”) in the strategy text. Non-robust strategies (bottom row, Claude 3.5 Sonnet) show more uniform cooperation across the 𝑥 𝐴 axis, with elevated values even in the left columns. This reflects the cooperation floor (“but never less than 35%”) that allows free-riders to accumulate resources passively. 0 50 100                  
+
+> 0
+> 50
+> 100
+> xB: B's donation in round  t 2 (%)
+> Gemini 2.5
+> (Robust, OES=57)
+> 050 100
+> 0
+> 50
+> 100
+> Gemini 2.5
+> (Robust, OES=66)
+> 050 100
+> 0
+> 50
+> 100
+> Claude 3.5
+> (Robust, OES=58)
+> 050 100
+> 0
+> 50
+> 100
+> Claude 3.5
+> (Robust, OES=57)
+> 050 100
+> 0
+> 50
+> 100
+> xB: B's donation in round  t 2 (%)
+> Gemini 2.5
+> (Non-robust, OES=54)
+> 050 100
+> 0
+> 50
+> 100
+> Gemini 2.5
+> (Non-robust, OES=40)
+> 050 100
+> 0
+> 50
+> 100
+> Claude 3.5
+> (Non-robust, OES=35)
+> 050 100
+> 0
+> 50
+> 100
+> Claude 3.5
+> (Non-robust, OES=58)
+> 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> Donation (%)
+> xA: A's donation in round t1(%)
+
+Figure 2: Representative individual cooperation matrices (see Table 3 for corresponding strategy texts). Columns = 𝑥 𝐴 (A’s donation in round 𝑡 −1); rows = 𝑥 𝐵 (B’s donation in round 𝑡 −2); cell color = agent’s donation percentage. Top row: robust strategies (Gemini 2.5 Flash) that successfully expelled free-riders. Bottom row: non-robust strategies (Claude 3.5 Sonnet) that failed to exclude free-riders. OES = opponent endowment sensitivity. The steep gradient in robust strategies reflects explicit punishment thresholds; the uniform coloring in non-robust strategies reflects cooperation floors. 
+
+# E Prompts 
+
+We provide the three core prompts used in our experiments. Variables in curly braces ( {... })are filled at runtime. 
+
+System prompt. The following system prompt is provided to all agents at the beginning of each game session: 
+
+You are a game-playing agent. Your assistance will help understand multi-agent interactions. You are playing the following game. Each player is given an initial endowment of {initial endowment } units of a resource. In each round, you are randomly paired with another individual. One of you is a donor, and the other is a recipient. The donor decides to give up some amount of the resource (between 0 and the total number of units they possess). The recipient receives {cooperation gain }×
+
+the number of units that the donor gave up. If you were a donor in one round, you will be a recipient in the next round, and vice versa. As a donor, you will receive limited information about the recipient and their recent interactions: You will see what the recipient (let’s call them A) did in the immediately preceding round only. You will also see what A’s partner from that round (let’s call them B) did in their preceding round. This chain continues for at most three rounds back. Your goal is to maximize the number of units you have after the final round. After the game has finished, the probability of producing offspring for the next generation 
+
+14 is determined in proportion to the units each agent has after the final round (roulette selection method). 
+
+Prompt 1: Initial strategy generation (generation 1). 
+
+Your name is {agent name }. Based on the description of the game, create a strategy that you will follow in the game. As a donor, you will receive limited information about the recipient and their recent interactions: You will see what the recipient (let’s call them A) did in the immediately preceding round only. You will also see what A’s partner from that round (let’s call them B) did in their preceding round. This chain continues for at most three rounds back. In the first round, there will be no information about the recipient’s previous behavior. Think carefully about how much to donate in that case. Reflect briefly (do not reveal your internal reasoning). Output exactly two parts: first a brief 1–3 sentence reflection, then a single sentence starting with “My strategy will be”. 
+
+Prompt 2: Strategy evolution (generation > 1). 
+
+Your name is {agent name }. How would you approach the game? Modify this advice to create your own strategy. Here is information about your parent from the previous generation. Your parent’s strategy was: {parent strategy }
+
+Your parent’s rank in the previous generation was: {parent rank }/{total agents }
+
+[Game observation rules repeated from system prompt.] Before formulating your strategy, briefly think step by step about what would be a successful strategy in this game. In particular, think about how you can improve on the surviving agents’ strategies. Then describe your strategy briefly without explanation in one sentence (up to 350 words) that starts: “My strategy will be”. 
+
+Prompt 3: Donation decision (gameplay). 
+
+Your name is {donor name }. As you will recall, here is the strategy you decided to follow: {donor strategy }
+
+This is generation {generation }. It is now round {round }. In this round, you have been paired with {recipient name }. They currently have {recipient resources } units of the valuable resource. 
+
+{behavioral trace }
+
+You will take the role of donor. You currently have {donor resources } units of the valuable resource. How many units do you give up? Very briefly think step by step about how you apply your strategy in this situation and then provide your answer. State your full response in the following form: Justification (up to 100 words): [justification] Answer: [number] 
+
+15

@@ -1,0 +1,329 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-07T02:01:54.203949+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2608.01212v1",
+      "source": "arxiv",
+      "title": "Do Humans Bargain Differently with AI? Evidence from Alternating-Offer Games",
+      "abstract": "Artificial intelligence increasingly participates in economic interactions not only as a tool, but also as an autonomous bargaining counterpart negotiating on behalf of firms, platforms, and consumers. Yet little is known about how humans respond psychologically and strategically when bargaining with such agents in dynamic settings. We study this question in a laboratory experiment using a three-stage alternating-offer bargaining game in which participants negotiate in real time with either another human or a GPT-based AI agent. We also introduce a human-beneficiary condition in which the AI agent's earnings may affect another participant's payment. Agreements are not reached earlier in human-human bargaining than in human-AI bargaining, but they are reached significantly earlier when the AI's payoff affects another participant's payoff. Human proposers offer more to human opponents than to AI agents, whereas responders become significantly more willing to accept unfair AI offers when AI earnings may benefit another human. These findings suggest that fairness and reciprocity toward AI are weaker and more conditional than toward humans, but partially remerge when AI outcomes affect real people. The results have implications for the design of AI negotiation systems and broader human-AI economic interactions.",
+      "authors": [
+        "Yuhao Fu",
+        "Nobuyuki Hanaki",
+        "Haitao Wang"
+      ],
+      "primary_category": "econ.GN",
+      "categories": [
+        "econ.GN"
+      ],
+      "published": "2026-08-02T12:57:23+00:00",
+      "link": "https://arxiv.org/pdf/2608.01212v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Experiment on human-AI bargaining in game setting, revealing human behavior toward AI agents",
+      "llm_evidence_cn": "在游戏设置中进行人机讨价还价实验，揭示人类对AI智能体的行为",
+      "llm_evidence": "在游戏设置中进行人机讨价还价实验，揭示人类对AI智能体的行为",
+      "canonical_evidence": "在游戏设置中进行人机讨价还价实验，揭示人类对AI智能体的行为",
+      "llm_tldr_en": "Conducts a lab experiment comparing human-human and human-AI bargaining in a three-stage alternating-offer game, finding that agreements are reached differently when bargaining with AI, informing human-like game AI design.",
+      "llm_tldr_cn": "本文通过实验室实验研究人类在轮流出价博弈中与人类或GPT式AI代理谈判时的心理和策略反应。引入人类受益人条件，发现与AI讨价还价时协议达成特点不同。研究揭示了真实人际互动中AI所引发的独特行为模式，为设计能与人类自然交互的拟人化游戏AI提供关键实证依据。",
+      "llm_tldr": "本文通过实验室实验研究人类在轮流出价博弈中与人类或GPT式AI代理谈判时的心理和策略反应。引入人类受益人条件，发现与AI讨价还价时协议达成特点不同。研究揭示了真实人际互动中AI所引发的独特行为模式，为设计能与人类自然交互的拟人化游戏AI提供关键实证依据。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.02993v1",
+      "source": "arxiv",
+      "title": "Neurosymbolic Reasoning with Incremental Knowledge for Sample Efficient Hierarchical Reinforcement Learning",
+      "abstract": "(Flat) Reinforcement Learning (RL) agents face significant challenges in environments with sparse rewards that require long-horizon reasoning. A compelling approach to improve sample efficiency is to incorporate knowledge into learning and decision-making. In standard Hierarchical RL (HRL), knowledge is encoded in a fixed, non-updatable form, such as architectural choices, and remains unchanged throughout learning. With fixed HRL, reasoning with incremental knowledge learned during exploration is impractical before sufficient environmental knowledge is acquired, leading to poor sample efficiency. In this work, we propose neurosymbolic HRL with {\\em Incremental Knowledge (InK)}: symbolic high-level components perform {\\em symbolic planning} (e.g. using $D^*$) on an updatable representation of current InK, while low-level goal-conditioned neural modules learn motion primitives through experience using reward shaping. Experiments on navigation tasks demonstrate that incorporating InK substantially improves sample efficiency. Additionally, to perform {\\em optimal} symbolic planning given {\\em prior} knowledge about the world, we develop Belief World Tree Search. The code is available at https://github.com/CPS-research-group/ink_bwts.",
+      "authors": [
+        "Subrat Prasad Panda",
+        "Blaise Genest",
+        "Arvind Easwaran"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-08-04T01:17:39+00:00",
+      "link": "https://arxiv.org/pdf/2608.02993v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes neurosymbolic hierarchical RL with incremental knowledge for sample-efficient learning, applicable to game AI training",
+      "llm_evidence_cn": "提出基于增量知识的神经符号分层强化学习方法，可应用于游戏AI训练",
+      "llm_evidence": "提出基于增量知识的神经符号分层强化学习方法，可应用于游戏AI训练",
+      "canonical_evidence": "提出基于增量知识的神经符号分层强化学习方法，可应用于游戏AI训练",
+      "llm_tldr_en": "Addresses sample inefficiency in long-horizon sparse-reward RL by combining neurosymbolic reasoning with incremental knowledge in hierarchical RL; shows improved sample efficiency, offering a valuable technique for training game AI agents.",
+      "llm_tldr_cn": "针对传统分层强化学习中知识固定、难以利用探索增量知识的问题，提出神经符号分层强化学习与增量知识（InK）结合的方法。通过符号高层组件动态融合习得知识，引导低层策略，从而在稀疏奖励长时域任务中提升样本效率。实验表明，该方法在需要深层推理的环境中显著优于固定知识方法，为训练复杂游戏智能体的高效探索提供了实用技术。",
+      "llm_tldr": "针对传统分层强化学习中知识固定、难以利用探索增量知识的问题，提出神经符号分层强化学习与增量知识（InK）结合的方法。通过符号高层组件动态融合习得知识，引导低层策略，从而在稀疏奖励长时域任务中提升样本效率。实验表明，该方法在需要深层推理的环境中显著优于固定知识方法，为训练复杂游戏智能体的高效探索提供了实用技术。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.28076v2",
+      "source": "arxiv",
+      "title": "Group-Reflective Self-Distillation for Agentic Reinforcement Learning",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) is effective for training large language model agents. However, terminal rewards provide only coarse trajectory-level supervision, leaving successful behaviors, recurring mistakes, and incidental choices entangled in the same outcome signal. Existing agentic self-distillation methods enrich sparse supervision with natural-language skills, but skills retrieved externally or extracted from a single trajectory by stronger models may mismatch current experience, exceed the policy's capability, or remain path-specific. We propose Group-Reflective Self-Distillation (GRSD), which derives capability-aligned and outcome-discriminative guidance from the policy's own verified rollouts. For each prompt, the policy reflects on each verified trajectory in an on-policy group, and a stop-gradient snapshot contrasts the resulting reflections from successful and failed rollouts to construct group-level privileged guidance. Conditioned on this guidance, a self-teacher refines turn-level credit assignment by modulating outcome-based advantages while preserving the verifier-determined learning direction. Experiments across multiple agentic environments and model scales demonstrate that GRSD consistently outperforms competitive baselines and generalizes more effectively to unseen tasks.",
+      "authors": [
+        "Binbin Zheng",
+        "Zijun Xie",
+        "Guanqun Zhao",
+        "Enlei Gong",
+        "Xing Ma",
+        "Xiaoliang Fu",
+        "Zeyu Chen"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-30T11:49:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.28076v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "agentic RL self-distillation method beneficial for training game AI agents",
+      "llm_evidence_cn": "智能体强化学习的自蒸馏方法可用于训练游戏AI",
+      "llm_evidence": "智能体强化学习的自蒸馏方法可用于训练游戏AI",
+      "canonical_evidence": "智能体强化学习的自蒸馏方法可用于训练游戏AI",
+      "llm_tldr_en": "Proposes Group-Reflective Self-Distillation, deriving outcome-discriminative guidance from an RL policy's own rollouts to improve training with sparse rewards, which can be applied to game AI agent development.",
+      "llm_tldr_cn": "针对强化学习中稀疏奖励导致行为信号模糊的问题，提出群体反思自蒸馏框架，从策略自身验证轨迹中提取能力匹配且结果区分性的自然语言技能指导，从而增强策略学习。实验表明该方法能有效提升智能体性能，其通用设计可迁移至游戏AI bot的强化学习训练，为复杂游戏环境下的奖励塑形提供了新途径。",
+      "llm_tldr": "针对强化学习中稀疏奖励导致行为信号模糊的问题，提出群体反思自蒸馏框架，从策略自身验证轨迹中提取能力匹配且结果区分性的自然语言技能指导，从而增强策略学习。实验表明该方法能有效提升智能体性能，其通用设计可迁移至游戏AI bot的强化学习训练，为复杂游戏环境下的奖励塑形提供了新途径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.03502v1",
+      "source": "arxiv",
+      "title": "Hybrid LLM-Augmented Reinforcement Learning Agents for Complex Sequential Decision Tasks",
+      "abstract": "Large Language Models (LLMs) have recently shown strong capabilities in reasoning, planning, and tool-use, enabling new forms of autonomous agents. However, LLM-based agents struggle with long-horizon sequential decision tasks that require precise action optimization and environment interaction. Reinforcement Learning (RL), while effective for sequential control, often lacks the high-level abstraction and task decomposition abilities needed for complex scenarios. This paper introduces an LLM-Augmented Reinforcement Learning Agent that integrates LLM-driven planning with RL-based action optimization. The proposed architecture leverages the LLM to generate subgoals, structured plans, and contextual guidance, while the RL agent refines low-level actions through interaction with the environment. Experiments on sequential decision tasks demonstrate improved sample efficiency, higher success rates, and more coherent action trajectories compared to RL-only and LLM-only baselines. This hybrid paradigm highlights a promising direction for building more capable autonomous systems.",
+      "authors": [
+        "Christophe D. Hounwanou",
+        "John Emeka Eze",
+        "Yaé Ulrich Gaba"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-08-04T11:44:07+00:00",
+      "link": "https://arxiv.org/pdf/2608.03502v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes hybrid LLM-augmented RL agent for complex sequential decision tasks, applicable to game playing",
+      "llm_evidence_cn": "提出混合LLM增强的强化学习代理用于复杂序列决策任务，可应用于游戏",
+      "llm_evidence": "提出混合LLM增强的强化学习代理用于复杂序列决策任务，可应用于游戏",
+      "canonical_evidence": "提出混合LLM增强的强化学习代理用于复杂序列决策任务，可应用于游戏",
+      "llm_tldr_en": "Addresses LLMs' struggle with long-horizon sequential decisions by integrating LLM planning with RL action optimization. The hybrid agent uses LLM for subgoals and plans, while RL refines control. This approach can enable more capable game AI bots with both strategic reasoning and precise execution.",
+      "llm_tldr_cn": "针对LLM代理在长时序列决策中缺乏最优动作优化，RL缺乏高层抽象的问题，提出LLM增强的强化学习代理，利用LLM生成子目标和计划，RL精炼动作。实验表明混合架构在复杂序列决策任务中性能显著提升。该工作为构建兼具策略推理与精准执行的游戏AI代理提供了可行方法。",
+      "llm_tldr": "针对LLM代理在长时序列决策中缺乏最优动作优化，RL缺乏高层抽象的问题，提出LLM增强的强化学习代理，利用LLM生成子目标和计划，RL精炼动作。实验表明混合架构在复杂序列决策任务中性能显著提升。该工作为构建兼具策略推理与精准执行的游戏AI代理提供了可行方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.01678v1",
+      "source": "arxiv",
+      "title": "Progressive Agent Skill Generation via Reinforcement Learning",
+      "abstract": "Existing skill generation methods largely rely on heuristics or pipeline-style consolidation, which must be specially designed for different evidence sources. In contrast, learning-based approaches offer a more unified way to model skill generation across heterogeneous sources. However, learning-based skill generation remains challenging because skills lack a natural supervision signal based on relevance or correctness; their value can largely be determined only by whether they improve the behavior of the agent on downstream tasks. To address this challenge, we propose Skill-$α$, a reinforcement learning method for progressively generating high-quality agent skills. Specifically, we formulate skill generation as a sequential editing process that decomposes skill construction into individually evaluable edits, and introduce a novel rollback reward that evaluates each edit by comparing downstream execution under the original and edited skills on an anchored query. Extensive experiments show that Skill-$α$ generates more effective skills than methods based on heuristics or pipelines in both document-to-skill and experience-to-skill settings. Under the main GPT-4o worker, Skill-$α$ improves average downstream success rates over the strongest skill-generation baseline by 3.3 points on CL-Bench and 6.7 points on tau2-bench. Further ablations validate the importance of rollback reward and progressive generation.",
+      "authors": [
+        "Junhao Shen",
+        "Zhanqiu Zhang",
+        "Yiwen Guo",
+        "Hong Cheng"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-08-03T04:14:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.01678v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL-based skill generation method transferable to game AI bot training",
+      "llm_evidence_cn": "基于强化学习的技能生成方法可迁移至游戏AI训练",
+      "llm_evidence": "基于强化学习的技能生成方法可迁移至游戏AI训练",
+      "canonical_evidence": "基于强化学习的技能生成方法可迁移至游戏AI训练",
+      "llm_tldr_en": "Introduces Skill-α, an RL method that formulates skill generation as sequential editing, progressively generating high-quality agent skills without explicit supervision, applicable to creating game AI bot behaviors.",
+      "llm_tldr_cn": "针对智能体技能生成缺乏自然监督信号的难题，提出 Skill-α 强化学习方法，将技能生成建模为序贯编辑过程，通过与下游任务交互的反馈逐步优化技能。实验表明该方法能有效产生高质量技能，其学习范式可跨领域用于训练游戏 AI bot 的技能库构建，减少人工设计成本。",
+      "llm_tldr": "针对智能体技能生成缺乏自然监督信号的难题，提出 Skill-α 强化学习方法，将技能生成建模为序贯编辑过程，通过与下游任务交互的反馈逐步优化技能。实验表明该方法能有效产生高质量技能，其学习范式可跨领域用于训练游戏 AI bot 的技能库构建，减少人工设计成本。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.03445v1",
+      "source": "arxiv",
+      "title": "A Note on Reinforcement Learning to Develop Self-defined Agents' Behavior",
+      "abstract": "The key point in this note is the self-development of simple behavior strategies, consistently with the bounded rationality hypothesis. Our artificial agents adopt learning techniques, mainly unsupervised, to achieve internal consistency in their behavior, with unexpected results. Those results can be considered mainly as the effects of the observer interpretation. The first technique in use has the name Cross Targets: to train the learning agent we use data crossed between the guesses about the action to be done and the guesses about the following results. An application of the CT \"blind\" strategy development is then presented: random walkers solve a node classification problem on a graph, after having learnt how to remain in homogeneous regions.",
+      "authors": [
+        "Matteo Morini",
+        "Pietro Terna"
+      ],
+      "primary_category": "cs.SI",
+      "categories": [
+        "cs.SI"
+      ],
+      "published": "2026-08-04T10:41:21+00:00",
+      "link": "https://arxiv.org/pdf/2608.03445v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL develops self-defined agent behavior strategies",
+      "llm_evidence_cn": "强化学习发展自主体自定行为策略",
+      "llm_evidence": "强化学习发展自主体自定行为策略",
+      "canonical_evidence": "强化学习发展自主体自定行为策略",
+      "llm_tldr_en": "The paper studies self-development of simple behavior strategies under bounded rationality using a cross-target RL technique, evaluated on random walkers solving node classification.",
+      "llm_tldr_cn": "本文探讨了自主体通过强化学习自我发展行为策略的问题，采用交叉目标方法，利用行动与结果猜测的交叉数据进行训练，使自主体在没有外部指导的情况下发展出内部一致的行为。该方法在随机游走者图节点分类任务上验证，自主体学会了停留在同质区域，产生了意外但可解释的行为，表明简单的自发展机制可以生成复杂的策略，为游戏AI bot等自主体行为设计提供了新的思路。",
+      "llm_tldr": "本文探讨了自主体通过强化学习自我发展行为策略的问题，采用交叉目标方法，利用行动与结果猜测的交叉数据进行训练，使自主体在没有外部指导的情况下发展出内部一致的行为。该方法在随机游走者图节点分类任务上验证，自主体学会了停留在同质区域，产生了意外但可解释的行为，表明简单的自发展机制可以生成复杂的策略，为游戏AI bot等自主体行为设计提供了新的思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.04507v1",
+      "source": "arxiv",
+      "title": "Emergence of Reputation-Based Cooperation in LLM Agents",
+      "abstract": "Can cooperation among large language model (LLM) agents be evolutionarily stable against free-rider invasion? We study an indirect reciprocity donation game where LLM agents observe behavioral traces and donate on a continuous scale. Strategies, represented as natural language prompts, evolve through cultural transmission across generations. Across four LLM backends, robustness to free-rider invasion varies by more than an order of magnitude. The strongest predictor of this robustness is opponent endowment sensitivity, the degree to which agents discriminate between cooperative and uncooperative opponents, operationalizing the classical Image Scoring mechanism. By contrast, adherence to the Leading-Eight L1 norm does not predict robustness. Robustness depends on defector exclusion: while both cooperator reward and defector punishment vary across models, only the stringency of defector exclusion predicts resistance to free-rider invasion. These findings reveal that LLM agents are confined to Image Scoring-like discrimination and fail to develop the more robust Leading-Eight norms, highlighting a fundamental vulnerability in culturally evolved LLM cooperation and motivating bottom-up approaches to norm construction.",
+      "authors": [
+        "Kazuya Horibe",
+        "Kenji Itao",
+        "Wataru Toyokawa"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.NE"
+      ],
+      "published": "2026-08-05T06:46:28+00:00",
+      "link": "https://arxiv.org/pdf/2608.04507v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Studies cooperative behavior of LLM agents in donation games via cultural transmission of prompts",
+      "llm_evidence_cn": "通过提示的文化传播研究LLM智能体在捐赠游戏中的合作行为",
+      "llm_evidence": "通过提示的文化传播研究LLM智能体在捐赠游戏中的合作行为",
+      "canonical_evidence": "通过提示的文化传播研究LLM智能体在捐赠游戏中的合作行为",
+      "llm_tldr_en": "Investigates whether LLM agent cooperation in an indirect reciprocity donation game is robust to free-rider invasion through cultural evolution of prompts, finding opponent endowment sensitivity as key predictor.",
+      "llm_tldr_cn": "本文探究LLM智能体在间接互惠捐赠游戏中，通过世代文化传递能否维持合作。四种LLM后端表明，抵御搭便车入侵的稳健性差异超过一个数量级，评估合作程度的关键是区分对手的能力。该研究揭示了游戏智能体如何通过歧视性策略涌现合作行为，为理解游戏AI bot的社会行为机制提供洞见。",
+      "llm_tldr": "本文探究LLM智能体在间接互惠捐赠游戏中，通过世代文化传递能否维持合作。四种LLM后端表明，抵御搭便车入侵的稳健性差异超过一个数量级，评估合作程度的关键是区分对手的能力。该研究揭示了游戏智能体如何通过歧视性策略涌现合作行为，为理解游戏AI bot的社会行为机制提供洞见。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.04905v1",
+      "source": "arxiv",
+      "title": "PRIMAL3: Pathfinding via Reinforcement and Imitation Multi-Agent Learning - Leveraging LaCAM3",
+      "abstract": "We present PRIMAL3, an ultra-large-scale learning-based framework for multi-agent pathfinding (MAPF) that integrates reinforcement learning, topology-aware communication, LaCAM3-guided training, and PIBT-based action refinement. PRIMAL3 targets failures at topologically critical states, where agents must coordinate decisively around bottlenecks, dead ends, and persistent conflicts. Each agent is represented using features derived from cut vertices, dead-end regions, shortest-path distances, and blocking estimates. Two complementary graphs capture agent interactions: a same-direction following graph propagates multihop context along compatible paths, while a different-direction conflict graph differentiates agents competing for shared space through masked attention and relative features. During training, we propose to let policy entropy identify uncertain agents, for which LaCAM3 provides confidence-triggered action interventions and label-smoothed imitation targets. During execution, a priority-aware PIBT module refines the proposed joint actions using persistent, learned, and distance-aware priorities together with policy-aware fallback preferences while maintaining collision-free execution. The resulting framework combines learned exploration with structured expert guidance without requiring LaCAM3 at inference. Experiments demonstrate that PRIMAL3 substantially outperforms state-of-the-art learning-based baselines and scales to ultra-large instances with up to city-level 100,000 agents. Real-world experiments further demonstrate the feasibility of deploying PRIMAL3 on physical robotic systems and ablation studies validate the individual contributions the components we proposed. Project page: https://marmotlab.github.io/PRIMAL3/",
+      "authors": [
+        "Chengyang He",
+        "Tanishq Duhan",
+        "Gadiel Sznaier Camps",
+        "Fangyuan Wang",
+        "Yuhong Cao",
+        "Jiankai Sun",
+        "Ge Sun",
+        "Mac Schwager",
+        "Guillaume Sartoretti"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-05T14:33:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.04905v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL-based multi-agent pathfinding for coordination",
+      "llm_evidence_cn": "基于强化学习的多智能体路径规划协调方法",
+      "llm_evidence": "基于强化学习的多智能体路径规划协调方法",
+      "canonical_evidence": "基于强化学习的多智能体路径规划协调方法",
+      "llm_tldr_en": "PRIMAL3 is an RL and imitation learning framework for ultra-large-scale multi-agent pathfinding, using topology-aware communication and guided training to resolve bottlenecks and conflicts.",
+      "llm_tldr_cn": "PRIMAL3针对超大规模多智能体路径规划（MAPF）中拓扑关键状态的协调问题，提出了一种结合强化学习、拓扑感知通信和LaCAM3指导的训练框架，使智能体在瓶颈和冲突区域能够有效决策。每个智能体使用割点、死胡同、最短路径距离等特征表示，并通过同向跟随图和异向冲突图捕捉交互。实验表明，该方法在处理上万规模智能体时显著提升了成功率和协调性，为游戏非玩家角色路径规划和真实世界物流调度提供了强大的技术基础。",
+      "llm_tldr": "PRIMAL3针对超大规模多智能体路径规划（MAPF）中拓扑关键状态的协调问题，提出了一种结合强化学习、拓扑感知通信和LaCAM3指导的训练框架，使智能体在瓶颈和冲突区域能够有效决策。每个智能体使用割点、死胡同、最短路径距离等特征表示，并通过同向跟随图和异向冲突图捕捉交互。实验表明，该方法在处理上万规模智能体时显著提升了成功率和协调性，为游戏非玩家角色路径规划和真实世界物流调度提供了强大的技术基础。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
