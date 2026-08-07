@@ -1,26 +1,25 @@
 # 日报 · 2026-08-07
 
-- 生成时间：2026-08-07 02:09:30 UTC
-- 当次推荐总数：8
-- 精读区：1
-- 速读区：7
+- 生成时间：2026-08-07 20:53:52 UTC
+- 当次推荐总数：7
+- 精读区：5
+- 速读区：2
 
 ## 今日简报（AI）
-人类对AI的讨价还价策略已现端倪：精读研究发现，在与AI博弈时，人们会系统性地压低报价、更少让步，暴露出明确的“算法剥削”心态。  
-今日速读集中在让AI学会“边做边推理”——神经符号方法助强化学习更高效，而用大模型反思自我、引导策略蒸馏则是内部反思新思路。  
-想理解未来人机交互中的心理博弈，可从这篇8分论文入手，并持续关注将符号推理与自我反思融入智能体的混合训练。
+今日精读两篇满分AI论文：用历史对局训练的下棋AI Otter，和基于VLM标注数据集训练的游戏Agent。
+最值得关注的是结合时间感知与历史条件的棋类AI设计，以及用视觉语言模型自动标注游戏数据的训练新范式。
+想尝试AI游戏开发？不妨从VLM自动生成训练数据入手，快速搭建自己的游戏Agent原型。
 
 ## 精读区
-1. [Do Humans Bargain Differently with AI? Evidence from Alternating-Offer Games](/202608/07/2608.01212v1-do-humans-bargain-differently-with-ai-evidence-from-alternating-offer-games) （8.0/10）
+1. [Otter: A Time-Aware, History-Conditioned Human Chess AI](/202608/07/2608.05206v1-otter-a-time-aware-history-conditioned-human-chess-ai) （10.0/10）
+2. [Training a Conditioned Video Game Agent on a VLM Annotated Dataset](/202608/07/2608.05954v1-training-a-conditioned-video-game-agent-on-a-vlm-annotated-dataset) （10.0/10）
+3. [Emotion Dynamics in Social Deception Games: Analysis of Professional and Nonprofessional Players through Electrodermal Activity in Werewolf Games](/202608/07/2608.04605v1-emotion-dynamics-in-social-deception-games-analysis-of-professional-and-nonprofessional-players-through-electrodermal-activity-in-werewolf-games) （9.0/10）
+4. [IFlowNets: Extending Generative Samplers to Learn Strategies in Incomplete Information Games](/202608/07/2608.05422v1-iflownets-extending-generative-samplers-to-learn-strategies-in-incomplete-information-games) （9.0/10）
+5. [VLMs for Videogame Data Annotation](/202608/07/2608.05949v1-vlms-for-videogame-data-annotation) （9.0/10）
 
 ## 速读区
 1. [Neurosymbolic Reasoning with Incremental Knowledge for Sample Efficient Hierarchical Reinforcement Learning](/202608/07/2608.02993v1-neurosymbolic-reasoning-with-incremental-knowledge-for-sample-efficient-hierarchical-reinforcement-learning) （7.0/10）
-2. [Hybrid LLM-Augmented Reinforcement Learning Agents for Complex Sequential Decision Tasks](/202608/07/2608.03502v1-hybrid-llm-augmented-reinforcement-learning-agents-for-complex-sequential-decision-tasks) （7.0/10）
-3. [Group-Reflective Self-Distillation for Agentic Reinforcement Learning](/202608/07/2607.28076v2-group-reflective-self-distillation-for-agentic-reinforcement-learning) （6.0/10）
-4. [Progressive Agent Skill Generation via Reinforcement Learning](/202608/07/2608.01678v1-progressive-agent-skill-generation-via-reinforcement-learning) （6.0/10）
-5. [A Note on Reinforcement Learning to Develop Self-defined Agents' Behavior](/202608/07/2608.03445v1-a-note-on-reinforcement-learning-to-develop-self-defined-agents-behavior) （6.0/10）
-6. [Emergence of Reputation-Based Cooperation in LLM Agents](/202608/07/2608.04507v1-emergence-of-reputation-based-cooperation-in-llm-agents) （6.0/10）
-7. [PRIMAL3: Pathfinding via Reinforcement and Imitation Multi-Agent Learning - Leveraging LaCAM3](/202608/07/2608.04905v1-primal3-pathfinding-via-reinforcement-and-imitation-multi-agent-learning---leveraging-lacam3) （6.0/10）
+2. [Hybrid LLM-Augmented Reinforcement Learning Agents for Complex Sequential Decision Tasks](/202608/07/2608.03502v1-hybrid-llm-augmented-reinforcement-learning-agents-for-complex-sequential-decision-tasks) （6.0/10）
 
 ---
 使用键盘方向键可在日报/论文之间快速切换。
