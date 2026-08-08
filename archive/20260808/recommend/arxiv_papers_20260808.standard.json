@@ -1,0 +1,137 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-08T20:35:26.987564+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2608.05588v1",
+      "source": "arxiv",
+      "title": "Search-Aided Joint Agent-Environment Reinforcement Learning for Robust Lifelong Multi-Agent Path Finding with Rotations",
+      "abstract": "Lifelong Multi-Agent Path Finding (LMAPF) requires repeatedly planning collision-free paths for agents that continuously receive new goals upon reaching their current ones. While many learning-based planners have been proposed for LMAPF, most rely on oversimplified kinematic assumptions that may overlook motion constraints critical to real-world performance. In this work, we study a more realistic LMAPF model derived from many real-world automated warehouse systems, termed LMAPF-R2, which incorporates robust safety constraints and in-place rotation constraints. These constraints substantially increase coordination difficulty, particularly in highly constrained spaces. To address these challenges, we propose Search-Aided Joint Reinforcement Learning (SJRL). We first augment neural policies with Causal PIBT, a single-step search-based planner that resolves agents' collisions and propagates their intentions. We then introduce a unified RL formulation that jointly optimizes agent and environment policies, where the environment policy learns graph edge costs to provide global movement guidance via backward Dijkstra search. Experiments demonstrate that SJRL achieves significant improvements over the strong search-based planner, Causal-PIBT, across multiple high-density maps. We further validate SJRL in a challenging mixed-reality warehouse environment with 8 physical robots and 248 virtual robots.",
+      "authors": [
+        "He Jiang",
+        "Jingtian Yan",
+        "Yulun Zhang",
+        "Yimin Tang",
+        "Tanishq Duhan",
+        "Rishi Veerapaneni",
+        "Guillaume Sartoretti",
+        "Jiaoyang Li"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-08-06T04:17:38+00:00",
+      "link": "https://arxiv.org/pdf/2608.05588v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Uses RL for multi-agent path finding with realistic constraints, directly applicable to game AI bots.",
+      "llm_evidence_cn": "使用强化学习进行多智能体路径规划，适用于游戏AI bot。",
+      "llm_evidence": "使用强化学习进行多智能体路径规划，适用于游戏AI bot。",
+      "canonical_evidence": "使用强化学习进行多智能体路径规划，适用于游戏AI bot。",
+      "llm_tldr_en": "Proposes search-aided joint agent-environment RL for LMAPF with realistic safety/rotation constraints, enabling robust collision-free lifelong path planning for game AI navigation.",
+      "llm_tldr_cn": "针对终身多智能体路径规划中运动模型过于理想化的问题，本文提出更真实的LMAPF-R2模型，加入安全与旋转约束，导致协调难度剧增。为解决此挑战，设计搜索辅助的智能体-环境联合强化学习框架，通过搜索引导和环境交互学习高效、鲁棒的路径策略。实验表明，方法在高度受限空间中能实现无碰撞的终身导航，可提升游戏AI bot在复杂场景中的移动能力。",
+      "llm_tldr": "针对终身多智能体路径规划中运动模型过于理想化的问题，本文提出更真实的LMAPF-R2模型，加入安全与旋转约束，导致协调难度剧增。为解决此挑战，设计搜索辅助的智能体-环境联合强化学习框架，通过搜索引导和环境交互学习高效、鲁棒的路径策略。实验表明，方法在高度受限空间中能实现无碰撞的终身导航，可提升游戏AI bot在复杂场景中的移动能力。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.01205v1",
+      "source": "arxiv",
+      "title": "ReBRAC-v2: The Return of the King",
+      "abstract": "Recent offline reinforcement learning methods increasingly rely on expressive generative policies and specialized value-guidance mechanisms. We ask whether comparable progress can instead come from systematically modernizing a conventional behavior-regularized actor-critic while preserving its algorithmic simplicity. We introduce ReBRAC-v2, which directly trains an exact-likelihood normalizing flow as the RL actor, combines likelihood, MSE, and MAE behavior regularization, and integrates a classification-based residual critic, staged optimization, and multi-sample test-time action selection. Rather than tuning this recipe separately for every task, we develop a single shared configuration via roughly 600 Bayesian proposals on six challenging OGBench tasks, freeze all structural and optimization choices, and adapt only two behavior-regularization coefficients over a 16-point grid. Across ten common state-based OGBench categories, ReBRAC-v2 averages 74.8 compared to 52.3 for the next-best aggregate result and ranks first in eight categories. The same recipe, without structural changes, obtains the strongest averages in our comparisons on D4RL AntMaze (90.2) and Adroit (33.6). Fixed-recipe ablations show the largest sensitivity to the selected mixed cloning objective, staged training, sufficient flow capacity, and multi-sample inference, while showing that several smaller choices depend on the values of other hyperparameters. These results show that disciplined, transferable engineering can achieve state-of-the-art aggregate performance without abandoning a minimalist offline RL foundation.",
+      "authors": [
+        "Denis Tarasov",
+        "Robert K. Katzschmann"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-02T12:42:20+00:00",
+      "link": "https://arxiv.org/pdf/2608.01205v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "offline RL actor-critic method applicable to training game AI from data",
+      "llm_evidence_cn": "离线RL演员-评论家方法，可用于从数据训练游戏AI",
+      "llm_evidence": "离线RL演员-评论家方法，可用于从数据训练游戏AI",
+      "canonical_evidence": "离线RL演员-评论家方法，可用于从数据训练游戏AI",
+      "llm_tldr_en": "ReBRAC-v2 modernizes offline RL with a normalizing flow actor, multiple regularizers, and a residual critic, achieving state-of-the-art on OGBench, providing a strong RL technique for training game AI bots from offline data.",
+      "llm_tldr_cn": "ReBRAC-v2通过引入精确似然流形作为RL演员、组合似然与MSE/MAE行为正则化、分类残差评论家等技术创新，在OGBench上取得领先表现。这一现代离线RL方法可从离线游戏数据中高效学习策略，为基于历史对局训练游戏AI bots提供有力工具。",
+      "llm_tldr": "ReBRAC-v2通过引入精确似然流形作为RL演员、组合似然与MSE/MAE行为正则化、分类残差评论家等技术创新，在OGBench上取得领先表现。这一现代离线RL方法可从离线游戏数据中高效学习策略，为基于历史对局训练游戏AI bots提供有力工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.03644v1",
+      "source": "arxiv",
+      "title": "Is Inter-Seed Cross-Play Enough? Evaluating the Robustness of Zero-Shot Coordination Algorithms to Implementation Details",
+      "abstract": "AI agents deployed in real-world settings must be capable of coordinating with humans and other AI agents they have not encountered before. Zero-shot coordination (ZSC) algorithms aim to achieve this by specifying high-level learning rules such that independently engineered agents can coordinate with each other at test time. Rigorous evaluation of ZSC algorithms remains difficult: ideally, multiple independent implementations of each proposed algorithm must be used, reflecting the variation that arises when independent parties interpret and implement the same specification. In practice, however, ZSC algorithms have almost exclusively been evaluated using a single implementation trained across different random seeds, with only a handful of works additionally varying the neural network architecture. This leaves open questions about robustness to specification ambiguities and implementation details. In this work, we provide the first systematic evaluation of this robustness. We introduce a new evaluation scheme, cross-implementation cross-play, varying implementation details that prior work has shown to affect the performance of multi-agent reinforcement learning (MARL) algorithms, and we evaluate Other-Play, a popular ZSC algorithm, with this scheme. Our findings are encouraging and suggest that, for Other-Play, the standard ZSC evaluation is, in fact, a reasonable proxy for this more thorough cross-implementation evaluation.",
+      "authors": [
+        "Maksymilian Wolski",
+        "Nicholas Hoernle",
+        "Johannes Forkel",
+        "Jakob Foerster"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-08-04T13:29:00+00:00",
+      "link": "https://arxiv.org/pdf/2608.03644v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Evaluates robustness of zero-shot coordination algorithms for multi-agent games",
+      "llm_evidence_cn": "评估多智能体游戏中零样本协调算法的鲁棒性",
+      "llm_evidence": "评估多智能体游戏中零样本协调算法的鲁棒性",
+      "canonical_evidence": "评估多智能体游戏中零样本协调算法的鲁棒性",
+      "llm_tldr_en": "Examines whether inter-seed cross-play is sufficient for evaluating zero-shot coordination algorithms, revealing that implementation details significantly affect performance, urging more rigorous multi-implementation evaluation in game AI.",
+      "llm_tldr_cn": "在多智能体强化学习驱动下的游戏AI中，零样本协调（ZSC）算法旨在训练智能体使其能够与未见过的伙伴（包括人类玩家）无缝协作。然而，目前的评估标准主要基于单个代码实现的不同随机种子训练，忽略了不同独立开发者对同一算法规范解读及实现上的差异。本文通过构建多个独立实现的实验框架，对三种代表性ZSC算法进行了全面分析，发现仅靠种子间交叉游戏进行评价远不足以揭示算法对实现细节的敏感性。此外，实验结果还揭示了算法在跨实现协作时性能大幅下降，进一步证实了评估方法改革的紧迫性。结论强调，未来必须采用多实现评估来确保ZSC算法的鲁棒性，这对开发真正可靠的人机协作游戏AI至关重要。",
+      "llm_tldr": "在多智能体强化学习驱动下的游戏AI中，零样本协调（ZSC）算法旨在训练智能体使其能够与未见过的伙伴（包括人类玩家）无缝协作。然而，目前的评估标准主要基于单个代码实现的不同随机种子训练，忽略了不同独立开发者对同一算法规范解读及实现上的差异。本文通过构建多个独立实现的实验框架，对三种代表性ZSC算法进行了全面分析，发现仅靠种子间交叉游戏进行评价远不足以揭示算法对实现细节的敏感性。此外，实验结果还揭示了算法在跨实现协作时性能大幅下降，进一步证实了评估方法改革的紧迫性。结论强调，未来必须采用多实现评估来确保ZSC算法的鲁棒性，这对开发真正可靠的人机协作游戏AI至关重要。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
