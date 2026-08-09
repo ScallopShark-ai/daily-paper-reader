@@ -1,0 +1,109 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-09T20:22:37.588750+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.03223v1",
+      "source": "arxiv",
+      "title": "Agentic Reinforcement Learning with Self-Distilled Reward Shaping",
+      "abstract": "Agentic reinforcement learning enables LLM agents to learn through interaction, but sparse trajectory-level rewards reveal success without identifying which intermediate decisions deserve credit. Training-only privileged skills can provide denser supervision by allowing the same frozen policy snapshot to rescore fixed tokens from skill-free trajectories while conditioned on task-matched procedural skills. Existing methods, however, do not jointly calibrate teacher scores across interaction steps, relate teacher confidence to realized returns, and integrate the resulting signal into native reward-to-advantage construction. We introduce Agentic Reinforcement Learning with Self-Distilled Reward Shaping (ADRS), a framework for constructing return-associated token-level credit for multi-turn language agents. ADRS centers and normalizes privileged token scores within each step, modulates them with a return-associated Teacher Value Advantage (TVA) gate based on within-group confidence--return association, and incorporates the gated token signal into native RL credit construction. Together, these components determine what the teacher prefers, when that preference is return-relevant, and how it enters the native reinforcement-learning credit path, while keeping rollouts and inference skill-free. Finally, experiments across three interactive benchmarks show that ADRS consistently improves performance on long-horizon tasks, with gains persisting across RL backbones, reduced-data settings, unseen tasks, and extended training. For anonymous review, our code is available at the following the link: https://github.com/gitrxh/ADRS-arxiv",
+      "authors": [
+        "Ranxu Zhang",
+        "Guinan Chen",
+        "Chenshaodong",
+        "Jinghao Lin",
+        "Xiaozhou Xu",
+        "Sunzhe",
+        "Yanyong Zhang",
+        "Chao Wang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-04T06:56:47+00:00",
+      "link": "https://arxiv.org/pdf/2608.03223v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Self-distilled reward shaping for agentic RL, applicable to training game-playing agents",
+      "llm_evidence_cn": "自蒸馏奖励塑形用于智能体强化学习，可应用于训练游戏AI代理",
+      "llm_evidence": "自蒸馏奖励塑形用于智能体强化学习，可应用于训练游戏AI代理",
+      "canonical_evidence": "自蒸馏奖励塑形用于智能体强化学习，可应用于训练游戏AI代理",
+      "llm_tldr_en": "ADRS framework provides dense credit assignment in agentic RL by self-distilling teacher scores, enabling better training of game-playing agents that rely on sparse trajectory rewards.",
+      "llm_tldr_cn": "针对智能体强化学习中轨迹级奖励难以识别关键中间决策的问题，提出自蒸馏奖励塑形框架ADRS，利用冻结策略快照及技能条件生成细粒度令牌级监督，整合回报关联校准至原生优势构建。实验证明该方法能精确分配学分，加速复杂序列决策任务学习。其对训练游戏AI等依赖长程推理的代理具有重要意义。",
+      "llm_tldr": "针对智能体强化学习中轨迹级奖励难以识别关键中间决策的问题，提出自蒸馏奖励塑形框架ADRS，利用冻结策略快照及技能条件生成细粒度令牌级监督，整合回报关联校准至原生优势构建。实验证明该方法能精确分配学分，加速复杂序列决策任务学习。其对训练游戏AI等依赖长程推理的代理具有重要意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.05987v1",
+      "source": "arxiv",
+      "title": "AgentOPSD: Recursive Self-Distillation for Agentic Reinforcement Learning",
+      "abstract": "Reinforcement learning (RL) with verifiable rewards constructs trajectory-level advantage estimates, yet it often fails to credit the few pivotal decisions that determine outcomes in long-horizon, multi-turn agentic tasks. Recent work introduces privileged self-distillation for credit assignment, providing denser supervision, but it remains unclear how such local signals should represent sequential credit. We propose AgentOPSD, a critic-free, recursive method for turn-level credit assignment in agentic reinforcement learning. AgentOPSD aggregates token-level teacher-student log-probability gaps into turn-level evidence and recursively updates a Bayesian belief state in log-odds space. This yields a principled reweighting scheme that converts sparse outcome supervision into turn-level credit signals and identifies pivotal turns through the marginal belief revision between consecutive states. The method is fully compatible with standard policy optimization and requires neither an additional critic nor extra rollouts. We evaluate AgentOPSD on ALFWorld, WebShop, and Search-QA using Qwen2.5 models at two scales (3B and 7B). AgentOPSD outperforms GRPO and strong self-distillation baselines, achieving 89.1% success on ALFWorld with Qwen2.5-7B. Ablation studies attribute the gains to turn-level aggregation and history-dependent recursive belief updates.",
+      "authors": [
+        "Zi-Han Wang",
+        "Zhengxi Lu",
+        "Zhiyuan Yao",
+        "Jinyang Wu",
+        "Jie Wu",
+        "Zhengzhou Cai",
+        "Yueqing Sun",
+        "Ziang Ye",
+        "Linji Hao",
+        "Qi Gu",
+        "Xunliang Cai",
+        "Yongliang Shen",
+        "Yujiu Yang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-06T13:00:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.05987v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Recursive self-distillation for credit assignment in agentic RL, applicable to game-playing agents",
+      "llm_evidence_cn": "递归自蒸馏用于智能体强化学习的信用分配，可应用于游戏AI代理",
+      "llm_evidence": "递归自蒸馏用于智能体强化学习的信用分配，可应用于游戏AI代理",
+      "canonical_evidence": "递归自蒸馏用于智能体强化学习的信用分配，可应用于游戏AI代理",
+      "llm_tldr_en": "AgentOPSD proposes a critic-free recursive Bayesian method for turn-level credit assignment in agentic RL, enhancing training of game-playing agents by accurately crediting key decisions.",
+      "llm_tldr_cn": "针对智能体强化学习中长程任务关键决策学分难以分配的问题，提出递归自蒸馏方法AgentOPSD，将令牌级对数概率差聚合为回合级证据并递归更新对数几率贝叶斯信念状态，实现无评论家的信用分配。实验表明该方法能更准确地定位关键动作，提升稀疏奖励下的学习效率。该技术有助于训练复杂游戏中的智能体，使其做出更优决策。",
+      "llm_tldr": "针对智能体强化学习中长程任务关键决策学分难以分配的问题，提出递归自蒸馏方法AgentOPSD，将令牌级对数概率差聚合为回合级证据并递归更新对数几率贝叶斯信念状态，实现无评论家的信用分配。实验表明该方法能更准确地定位关键动作，提升稀疏奖励下的学习效率。该技术有助于训练复杂游戏中的智能体，使其做出更优决策。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

@@ -6,31 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-08
-- 运行时间：2026-08-08 20:39:14 UTC
+- 最新运行日期：2026-08-09
+- 运行时间：2026-08-09 20:24:59 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：1
+- 本次总论文数：2
+- 精读区：0
 - 速读区：2
 
 ### 今日简报（AI）
-今日从终身多智能体路径规划到强化学习算法升级，精读了一篇9分论文，并速览了算法改进与零样本协调鲁棒性两篇研究。  
-最值得关注的是搜索增强的联合训练方法让多智能体在旋转场景下实现稳健的终身路径规划，以及实现细节对零样本协调算法泛化的隐藏影响。  
-建议读者若关心具身智能长期可靠运行，优先深读那篇高分路径规划工作，同时留意算法实现一致性对协同训练的实际冲击。
-- 详情：[/202608/08/README](/202608/08/README)
+速读两篇关于代理强化学习自蒸馏奖励塑形的前沿研究。  
+核心方向都是通过递归自蒸馏重构奖励信号，让智能体更稳定地学习。  
+想快速跟上可重点对比它们对“自蒸馏带来的偏差与收益”的权衡设计。
+- 详情：[/202608/09/README](/202608/09/README)
 
 ### 精读区论文标签
-1. [Search-Aided Joint Agent-Environment Reinforcement Learning for Robust Lifelong Multi-Agent Path Finding with Rotations](/202608/08/2608.05588v1-search-aided-joint-agent-environment-reinforcement-learning-for-robust-lifelong-multi-agent-path-finding-with-rotations)  
-   标签：评分：9.0/10、query:gah
-   evidence：使用强化学习进行多智能体路径规划，适用于游戏AI bot。
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [ReBRAC-v2: The Return of the King](/202608/08/2608.01205v1-rebrac-v2-the-return-of-the-king)  
-   标签：评分：7.0/10、query:gah
-   evidence：离线RL演员-评论家方法，可用于从数据训练游戏AI
-2. [Is Inter-Seed Cross-Play Enough? Evaluating the Robustness of Zero-Shot Coordination Algorithms to Implementation Details](/202608/08/2608.03644v1-is-inter-seed-cross-play-enough-evaluating-the-robustness-of-zero-shot-coordination-algorithms-to-implementation-details)  
-   标签：评分：7.0/10、query:gah
-   evidence：评估多智能体游戏中零样本协调算法的鲁棒性
+1. [Agentic Reinforcement Learning with Self-Distilled Reward Shaping](/202608/09/2608.03223v1-agentic-reinforcement-learning-with-self-distilled-reward-shaping)  
+   标签：评分：6.0/10、query:gah
+   evidence：自蒸馏奖励塑形用于智能体强化学习，可应用于训练游戏AI代理
+2. [AgentOPSD: Recursive Self-Distillation for Agentic Reinforcement Learning](/202608/09/2608.05987v1-agentopsd-recursive-self-distillation-for-agentic-reinforcement-learning)  
+   标签：评分：6.0/10、query:gah
+   evidence：递归自蒸馏用于智能体强化学习的信用分配，可应用于游戏AI代理
 
 
 <div class="dpr-home-promo-card">

@@ -1,0 +1,39 @@
+{
+  "label": "2026-08-09",
+  "date": "2026-08-09",
+  "generated_at": "2026-08-09T20:25:09",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202608/09/2608.03223v1-agentic-reinforcement-learning-with-self-distilled-reward-shaping",
+      "section": "quick",
+      "title_en": "Agentic Reinforcement Learning with Self-Distilled Reward Shaping",
+      "authors": "Ranxu Zhang, Guinan Chen, Chenshaodong, Jinghao Lin, Xiaozhou Xu, Sunzhe, Yanyong Zhang, Chao Wang",
+      "date": "2026-08-04",
+      "pdf": "https://arxiv.org/pdf/2608.03223v1",
+      "score": "6.0",
+      "evidence": "自蒸馏奖励塑形用于智能体强化学习，可应用于训练游戏AI代理",
+      "tldr": "面向LLM智能体的强化学习常使用稀疏轨迹级奖励，难以分辨中间决策的贡献。ADRS框架通过自蒸馏特权技能生成与回报关联的token级密集奖励，利用教师价值优势门控选择性融入原生RL信用构造。在多个交互基准上，该方法显著提升长时域任务性能，且收益跨不同RL骨架、数据缩减和未知任务保持。",
+      "tags": "query:gah",
+      "abstract_en": "Agentic reinforcement learning enables LLM agents to learn through interaction, but sparse trajectory-level rewards reveal success without identifying which intermediate decisions deserve credit. Training-only privileged skills can provide denser supervision by allowing the same frozen policy snapshot to rescore fixed tokens from skill-free trajectories while conditioned on task-matched procedural skills. Existing methods, however, do not jointly calibrate teacher scores across interaction steps, relate teacher confidence to realized returns, and integrate the resulting signal into native reward-to-advantage construction. We introduce Agentic Reinforcement Learning with Self-Distilled Reward Shaping (ADRS), a framework for constructing return-associated token-level credit for multi-turn language agents. ADRS centers and normalizes privileged token scores within each step, modulates them with a return-associated Teacher Value Advantage (TVA) gate based on within-group confidence--return association, and incorporates the gated token signal into native RL credit construction. Together, these components determine what the teacher prefers, when that preference is return-relevant, and how it enters the native reinforcement-learning credit path, while keeping rollouts and inference skill-free. Finally, experiments across three interactive benchmarks show that ADRS consistently improves performance on long-horizon tasks, with gains persisting across RL backbones, reduced-data settings, unseen tasks, and extended training. For anonymous review, our code is available at the following the link: https://github.com/gitrxh/ADRS-arxiv",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/09/2608.05987v1-agentopsd-recursive-self-distillation-for-agentic-reinforcement-learning",
+      "section": "quick",
+      "title_en": "AgentOPSD: Recursive Self-Distillation for Agentic Reinforcement Learning",
+      "authors": "Zi-Han Wang, Zhengxi Lu, Zhiyuan Yao, Jinyang Wu, Jie Wu, Zhengzhou Cai, Yueqing Sun, Ziang Ye, Linji Hao, Qi Gu, Xunliang Cai, Yongliang Shen, Yujiu Yang",
+      "date": "2026-08-06",
+      "pdf": "https://arxiv.org/pdf/2608.05987v1",
+      "score": "6.0",
+      "evidence": "递归自蒸馏用于智能体强化学习的信用分配，可应用于游戏AI代理",
+      "tldr": "多轮智能体任务中稀疏奖励难以精准归因关键决策步。AgentOPSD 通过递归自蒸馏，聚合师生对数概率差距为轮级证据，并在对数几率空间递归更新贝叶斯信念，将稀疏结果监督转化为轮级信用。在 ALFWorld 上使用 Qwen2.5-7B 达到 89.1% 成功率，超越 GRPO 等基线。无 critic 无额外 rollouts，实现更精准信用分配，为智能体 RL 提供高效方案。",
+      "tags": "query:gah",
+      "abstract_en": "Reinforcement learning (RL) with verifiable rewards constructs trajectory-level advantage estimates, yet it often fails to credit the few pivotal decisions that determine outcomes in long-horizon, multi-turn agentic tasks. Recent work introduces privileged self-distillation for credit assignment, providing denser supervision, but it remains unclear how such local signals should represent sequential credit. We propose AgentOPSD, a critic-free, recursive method for turn-level credit assignment in agentic reinforcement learning. AgentOPSD aggregates token-level teacher-student log-probability gaps into turn-level evidence and recursively updates a Bayesian belief state in log-odds space. This yields a principled reweighting scheme that converts sparse outcome supervision into turn-level credit signals and identifies pivotal turns through the marginal belief revision between consecutive states. The method is fully compatible with standard policy optimization and requires neither an additional critic nor extra rollouts. We evaluate AgentOPSD on ALFWorld, WebShop, and Search-QA using Qwen2.5 models at two scales (3B and 7B). AgentOPSD outperforms GRPO and strong self-distillation baselines, achieving 89.1% success on ALFWorld with Qwen2.5-7B. Ablation studies attribute the gains to turn-level aggregation and history-dependent recursive belief updates.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
