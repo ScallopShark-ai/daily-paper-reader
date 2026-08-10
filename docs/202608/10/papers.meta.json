@@ -1,0 +1,39 @@
+{
+  "label": "2026-08-10",
+  "date": "2026-08-10",
+  "generated_at": "2026-08-10T21:06:34",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202608/10/2608.01837v1-pcsd-persistent-consistency-for-self-distillation-in-agentic-reinforcement-learning",
+      "section": "quick",
+      "title_en": "PCSD: Persistent Consistency for Self-Distillation in Agentic Reinforcement Learning",
+      "authors": "Chunji Lv, Yangguang Wei, Junlin Liu, Yang Gao, Ming Liu, Xinming Wang, Jinyang Wu, Guoren Wang, Changsheng Li",
+      "date": "2026-08-03",
+      "pdf": "https://arxiv.org/pdf/2608.01837v1",
+      "score": "6.0",
+      "evidence": "提出一种面向强化学习代理的自蒸馏方法，为训练提供密集奖励。",
+      "tldr": "大型语言模型智能体的强化学习常因稀疏奖励导致训练低效，在线自蒸馏虽能提供密集监督但教师信号可能不可靠。PCSD通过局部持久性分析计算令牌级蒸馏权重，结合趋势调制和门控机制提升鲁棒性。在ALFWorld上显著超越GRPO和SDAR，未见分割提升15.8分，WebShop也具竞争力。该方法为稀疏奖励下的智能体训练提供了有效的自蒸馏范例。",
+      "tags": "query:gah",
+      "abstract_en": "Large language model agents have shown strong potential in complex interactive tasks, yet their reinforcement learning (RL) is often hindered by sparse rewards, as a long multi-turn trajectory may receive only a single outcome-level signal. On-policy self-distillation (OPSD) provides dense token-level supervision from a privileged teacher, but the teacher may not be reliable at every position. Existing methods commonly rely on isolated token-level discrepancies, which can be sensitive to noise, or assign a shared step-level weight that may overlook positional variation. We propose Persistent Consistency Self-Distillation (PCSD), which derives token-level distillation weights from the local persistence of teacher-favoring signals. PCSD combines adaptive windows with exponentially decayed aggregation to capture persistent relative teacher support, applies trend-aware modulation to attenuate locally declining support, and produces continuous weights through sigmoid gating. The resulting objective is jointly optimized with GRPO, combining dense teacher guidance with sparse environmental feedback. Without inference-time skills, PCSD achieves the best ALFWorld Overall results among all baselines on both backbones, exceeding GRPO by 15.6 and 13.3 points and SDAR by 6.2 and 5.5 points, while remaining competitive on WebShop and gaining 15.8 points over GRPO on unseen ALFWorld split.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/10/2608.02508v1-romerl-balancing-feedback-coverage-and-the-memory-reward-trap-in-self-evolving-agent-memory-via-reduced-order-utility-states",
+      "section": "quick",
+      "title_en": "RoMeRL: Balancing Feedback Coverage and the Memory-Reward Trap in Self-Evolving Agent Memory via Reduced-Order Utility States",
+      "authors": "Yi Yang, Zhennan Chen, Yihong Zhuang, Tiehan Fan, Yinan Chen, Jian Li, Jian Yang, Ying Tai",
+      "date": "2026-08-03",
+      "pdf": "https://arxiv.org/pdf/2608.02508v1",
+      "score": "6.0",
+      "evidence": "提出降阶记忆强化学习用于代理",
+      "tldr": "自演化LLM代理的记忆系统面临反馈分散和记忆-奖励陷阱双重挑战，阻碍高效学习。RoMeRL引入降阶效用状态，将不断增长的轨迹索引空间压缩为固定维度的语义坐标，从而集中反馈并抑制误导性更新。实验显示，该方法将冷Q比降低80%，反馈密度提升约6倍，维持的记忆大小和LLM调用分别减少84.4%和21.1%。该工作为自演化代理提供了高效且稳健的记忆维护新范式。",
+      "tags": "query:gah",
+      "abstract_en": "Learning-based memory systems for self-evolving LLM agents face two tightly coupled challenges. First, trajectory-indexed utilities grow with the interaction history, thereby dispersing limited feedback over an ever-expanding state space. Second, because trajectory-level rewards are jointly assigned to co-retrieved memories, irrelevant experiences may receive misleading utility updates and consequently enter the memory-reward trap. To address these challenges, we introduce Reduced-Order Memory Reinforcement Learning (RoMeRL), which represents the growing trajectory-indexed utility space using a fixed-dimensional per-task memory state factorized by outcome polarity and memory dynamics. RoMeRL incorporates new experiences through a fixed set of semantic coordinates whose contents are updated or replaced over time, thereby concentrating feedback over a bounded utility support. Theoretically, we show that this reduced-order parameterization increases the average feedback received by each utility coordinate and characterize the steady-state occupancy of erroneous coordinates under a generic coordinate-transition model. Empirically, across ALFWorld and LifelongAgentBench, RoMeRL improves task performance, reduces the Cold-Q ratio by 80.0%, increases feedback density by approximately 6.0 times, reduces the maintained memory size by 84.4%, and cuts LLM calls by 21.1%. These results show that reduced-order utility states support efficient self-evolving agent memory while limiting persistent reward contamination. Code is available at: https://github.com/YOUNG-fnxm/RoMeRL",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
