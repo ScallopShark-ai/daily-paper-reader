@@ -6,29 +6,34 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-10
-- 运行时间：2026-08-10 21:06:25 UTC
+- 最新运行日期：2026-08-11
+- 运行时间：2026-08-11 20:55:14 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：0
-- 速读区：2
+- 本次总论文数：4
+- 精读区：3
+- 速读区：1
 
 ### 今日简报（AI）
-今日速读两篇智能体学习前沿，聚焦自蒸馏稳定性与记忆陷阱。  
-PCSD为智能体强化学习提供持久一致性自蒸馏，RoMeRL用降阶效用状态化解记忆-奖励窘境。  
-若希望探索更稳健的智能体演进，不妨从这两篇的方法并交叉验证入手。
-- 详情：[/202608/10/README](/202608/10/README)
+今日精读两篇9分论文，聚焦LLM智能体在交互叙事中的长期一致性评估与《黑暗之魂》Boss战的AI学习环境构建。  
+关键结论：LLM智能体难以在长线故事中维持角色设定，而游戏强化学习正迈向高难度动态实战模拟。  
+建议关注AI叙事一致性瓶颈与游戏智能体训练新平台，这两者正重塑交互体验的研发方向。
+- 详情：[/202608/11/README](/202608/11/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [Can LLM Agents Stick to the Script? A Benchmark for Long-Horizon Consistency in Interactive Narratives](/202608/11/2608.08160v1-can-llm-agents-stick-to-the-script-a-benchmark-for-long-horizon-consistency-in-interactive-narratives)  
+   标签：评分：9.0/10、query:gah
+   evidence：评估LLM代理在互动叙事中维持叙事一致性，游戏AI bot设计核心挑战
+2. [DSLE: A Learning Environment for Dark Souls Boss Encounters](/202608/11/2608.09902v1-dsle-a-learning-environment-for-dark-souls-boss-encounters)  
+   标签：评分：9.0/10、query:gah
+   evidence：提供类Gym环境的黑暗之魂Boss战基准，用于训练游戏AI代理的强化学习
+3. [CEAA: A Cognitive Embodied Agents Architecture for Interactive Computing Systems](/202608/11/2608.09848v1-ceaa-a-cognitive-embodied-agents-architecture-for-interactive-computing-systems)  
+   标签：评分：8.0/10、query:gah
+   evidence：提出具身虚拟智能体的认知架构，实现类人推理
 
 ### 速读区论文标签
-1. [PCSD: Persistent Consistency for Self-Distillation in Agentic Reinforcement Learning](/202608/10/2608.01837v1-pcsd-persistent-consistency-for-self-distillation-in-agentic-reinforcement-learning)  
-   标签：评分：6.0/10、query:gah
-   evidence：提出一种面向强化学习代理的自蒸馏方法，为训练提供密集奖励。
-2. [RoMeRL: Balancing Feedback Coverage and the Memory-Reward Trap in Self-Evolving Agent Memory via Reduced-Order Utility States](/202608/10/2608.02508v1-romerl-balancing-feedback-coverage-and-the-memory-reward-trap-in-self-evolving-agent-memory-via-reduced-order-utility-states)  
-   标签：评分：6.0/10、query:gah
-   evidence：提出降阶记忆强化学习用于代理
+1. [A Unified Framework for Dynamic Reward Shaping in Reinforcement Learning](/202608/11/2608.08158v1-a-unified-framework-for-dynamic-reward-shaping-in-reinforcement-learning)  
+   标签：评分：7.0/10、query:gah
+   evidence：提出动态奖励塑形统一框架，可加速奖励稀疏的游戏AI训练。
 
 
 <div class="dpr-home-promo-card">
