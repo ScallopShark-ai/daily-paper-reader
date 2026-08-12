@@ -1,0 +1,54 @@
+{
+  "label": "2026-08-12",
+  "date": "2026-08-12",
+  "generated_at": "2026-08-12T20:13:23",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202608/12/2608.08604v1-multi-agent-reinforcement-learning-via-agent-specific-preference",
+      "section": "quick",
+      "title_en": "Multi-Agent Reinforcement Learning via Agent-Specific Preference",
+      "authors": "Ni Mu, Yao Luan, Yiqin Yang, Qing-Shan Jia",
+      "date": "2026-08-09",
+      "pdf": "https://arxiv.org/pdf/2608.08604v1",
+      "score": "7.0",
+      "evidence": "基于智能体特定偏好的多智能体强化学习，可用于训练游戏AI机器人",
+      "tldr": "多智能体强化学习通常依赖精心设计的全局奖励函数，但在异构智能体场景下，单一标量目标难以捕捉多样行为。本文提出MAGPIE，采用智能体特定偏好建模，每个智能体通过专家偏好信号单独评估，消除全局评价需求。方法从偏好数据构建智能体特定奖励模型，并通过单调聚合机制整合为全局目标，理论证明其优化等价于训练纳什均衡策略。在基准多智能体任务和顺序生产线任务上，MAGPIE取得与奖励工程基线相当的性能，证明在奖励工程不可行时能有效促进策略学习。",
+      "tags": "query:gah",
+      "abstract_en": "Multi-agent reinforcement learning (MARL) is a powerful framework for solving complex collaborative tasks, but it relies heavily on well-defined global reward functions. Designing such rewards is challenging, especially in systems with heterogeneous agents, where a single scalar objective may fail to capture diverse behaviors. In this paper, we introduce Multi-AGent Preference-Integrated lEarning (MAGPIE), which addresses these challenges through agent-specific preference modeling. Each agent is evaluated by a dedicated expert through preference signals, eliminating the need for global evaluation. We theoretically prove that optimizing these decentralized preferences converges to a Nash equilibrium policy. To integrate local preferences into a coherent global objective, we construct agent-specific reward models from preference data and combine them via a monotonic aggregation mechanism. We further prove that optimizing this aggregate reward model is equivalent to training the Nash equilibrium policy. Extensive experiments on benchmark multi-agent tasks and a sequential production line task show that MAGPIE achieves performance comparable to reward-engineered baselines, demonstrating its potential to facilitate policy learning in scenarios where precise reward engineering is impractical.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/12/2608.06741v1-solver-guided-reasoning-for-mixed-equilibrium-strategies",
+      "section": "quick",
+      "title_en": "Solver-Guided Reasoning for Mixed-Equilibrium Strategies",
+      "authors": "Han Wang, Philippe Beardsell, Boning Li, Aaron Sasmita, Shuai Li, Hongyuan Zha, Baoxiang Wang",
+      "date": "2026-08-07",
+      "pdf": "https://arxiv.org/pdf/2608.06741v1",
+      "score": "6.0",
+      "evidence": "求解器引导的LLM游戏均衡策略推理，适用于游戏AI机器人设计",
+      "tldr": "大语言模型在复杂博弈中的推理通常依赖人类文本与演示，但人类玩法偏向纯策略，偏离混合策略均衡，导致模型策略薄弱。本文提出混合策略决策树(MDT)，将求解器输出的均衡最优性提炼为稀疏可理解的战略规则，以指导模型推理。在无限注德州扑克上查询超过2.5亿个混合策略决策，MDT及相关技术使模型与均衡的ℓ1距离降低52.6%，覆盖8种LLM配置。实验还验证了该方法在河牌残局和骰子游戏中的战略保真度与可移植性。",
+      "tags": "query:gah",
+      "abstract_en": "Reasoning in large language models (LLMs) is often grounded in human text, human demonstrations, and human-generated rationales. For equilibrium reasoning in complex games, however, relying on human data can be suboptimal. In fact, human play is often guided by intuition and heuristics and can deviate substantially from game equilibrium. This discrepancy is amplified in games with mixed-strategy equilibria, where human data is heavily biased toward pure strategies. Consequently, conditioning LLMs on this data yields weak game strategies. To grant LLMs the reasoning capacity in games, in this work, we study how to elicit equilibrium play using solver output. We propose Mixed-Strategy Decision Tree (MDT), which articulates the silent optimality of the equilibrium into sparse strategic rules that both humans and LLMs could understand. Using solver output rather than human annotation allows us to extend the input to arbitrarily new states and continuations. We instantiate this study on No-Limit Texas Hold'em by querying a solver oracle for over \\textbf{250 million mixed-strategy decisions}; MDT together with other techniques \\textbf{reduces the $\\ell_1$ distance to the equilibrium by $52.6\\%$} across $8$ different LLM configurations. A Route-only ablation tests the incremental contribution of the shadow-based contrast, while complete River-endgame and Liar's Dice experiments evaluate strategic fidelity and portability beyond the original NLH communication setting.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/12/2608.09389v1-regret-equilibrium-and-learning-in-games-a-guided-tour",
+      "section": "quick",
+      "title_en": "Regret, equilibrium, and learning in games: A guided tour",
+      "authors": "Panayotis Mertikopoulos",
+      "date": "2026-08-10",
+      "pdf": "https://arxiv.org/pdf/2608.09389v1",
+      "score": "6.0",
+      "evidence": "博弈中的学习、多智能体奖励与对抗环境",
+      "tldr": "博弈学习在单智能体序贯决策与多智能体交互中具有广泛应用，尤其涉及未知、非平稳及对抗性环境。论文考察基于历史最佳响应加正则化惩罚的 regularized learning 策略，通过统一分析框架处理 oracle 与 bandit 两类信息反馈。关键结果包括对抗多臂老虎机的后悔界、零和博弈的遍历均衡收敛，以及纳什均衡与正则化学习吸引点之间的泛函定理。作为入门综述，本文为博弈学习领域提供连贯易懂的框架，并探讨其对理性研究的启示。",
+      "tags": "query:gah",
+      "abstract_en": "This note aims to serve as an entry point to the literature on learning in games, a topic with significant theoretical appeal and a wide range of applications -- from machine learning and data science to economics and beyond. Our presentation is structured around two complementary viewpoints: We first consider a single agent -- the learner -- engaged in a sequential decision process in an unknown, non-stationary, and possibly adversarial environment. We then examine what happens when the environment is shaped by the decisions of several interacting agents, not necessarily aware of each other's actions or goals, and all seeking to improve their individual rewards. In this general context, we examine a family of regularized learning policies based on best-responding to the past history of play, up to a regularization penalty intended to encourage exploration and prevent over-commitment to suboptimal choices. In the single-agent setting, we present some basic regret bounds for regularized learning in adversarial multi-armed bandits; in the multi-agent setting, we describe an ergodic equilibrium convergence result for zero-sum games in the spirit of classical results on fictitious play, as well as a \"folk theorem\" linking strategic and dynamic notions of stability -- Nash equilibria and attracting points of regularized learning, respectively. We pay special attention to the information available to the players and, through a unified analysis framework, we study both oracle- and payoff-based (bandit) methods. Our goal is to provide a coherent and comprehensible -- albeit, by necessity, not comprehensive -- account of some recent ideas in the field, and to discuss their implications for the study of rationality.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
