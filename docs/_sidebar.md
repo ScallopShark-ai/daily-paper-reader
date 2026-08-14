@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-08-14 <!--dpr-date:20260814-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/14/2608.12253v1-one-frozen-simulator-is-not-enough-simulator-collapse-in-multi-agent-rl" data-sidebar-item="{&quot;title&quot;: &quot;One Frozen Simulator Is Not Enough: Simulator Collapse in Multi-Agent RL&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.12253v1-one-frozen-simulator-is-not-enough-simulator-collapse-in-multi-agent-rl&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;解决多智能体RL中模拟器坍缩以训练鲁棒游戏智能体&quot;}">One Frozen Simulator Is Not Enough: Simulator Collapse in Multi-Agent RL</a>
   * 2026-08-13 <!--dpr-date:20260813-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/13/2608.12216v1-pharos-night-crown-pursuit-an-ai-native-deck-building-and-tactical-arena-game-design-based-on-multi-agent-systems" data-sidebar-item="{&quot;title&quot;: &quot;\&quot;Pharos Night: Crown Pursuit\&quot;: An AI-Native Deck-Building and Tactical Arena Game Design Based on Multi-Agent Systems&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.12216v1-pharos-night-crown-pursuit-an-ai-native-deck-building-and-tactical-arena-game-design-based-on-multi-agent-systems&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;AI原生游戏采用LLM多智能体NPC和自然语言交互&quot;}">&quot;Pharos Night: Crown Pursuit&quot;: An AI-Native Deck-Building and Tactical Arena Game Design Based on Multi-Agent Systems</a>

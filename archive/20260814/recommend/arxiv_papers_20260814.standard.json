@@ -1,0 +1,63 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-14T21:01:08.097407+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.12253v1",
+      "source": "arxiv",
+      "title": "One Frozen Simulator Is Not Enough: Simulator Collapse in Multi-Agent RL",
+      "abstract": "Multi-agent reinforcement learning for human-AI interaction typically relies on a single large language model to simulate user behavior. We show that this approach systematically fails to generalize, and trace the failure to simulator collapse: because the simulator LLM is mode-collapsed, an LLM policy trained against it overfits to narrow strategies that exploit the simulator's dominant mode, and such a policy transfers poorly to unseen simulators and real users. We formalize this collapse theoretically and propose two complementary solutions, one at inference time and one at training time. The inference-time solution, Verbalized Sampling, broadens the simulator's behavior by sampling from a verbalized response distribution, reducing mode collapse. The training-time solution, Co-Training, jointly optimizes the policy against a population of trainable simulators, preventing it from overfitting to any single simulator's mode. We validate both solutions on three multi-turn benchmarks: Persuasion for Good, $τ^2$-bench, and CooperBench. Verbalized Sampling improves held-out success by up to 9% over single-simulator RL, and Co-Training pushes gains further to 14%; the human study shows similar gain on real users. Both solutions preserve the policy diversity that collapses under single-simulator RL. To support further work in this direction, we release SCOPE, an open-source framework for Population Co-Training multi-agent RL. More broadly, our results suggest that the diversity of the training environment, not only the policy, is critical to the generalization of multi-turn RL to real-world deployment.",
+      "authors": [
+        "Simon Yu",
+        "Nicholas Tomlin",
+        "Marwa Abdulhai",
+        "Ximing Lu",
+        "Derek Chong",
+        "Abe Hou",
+        "Dilara Soylu",
+        "Sergey Levine",
+        "Christopher D. Manning",
+        "Weiyan Shi"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-12T16:55:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.12253v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "addresses simulator collapse in multi-agent RL for training robust game playing agents",
+      "llm_evidence_cn": "解决多智能体RL中模拟器坍缩以训练鲁棒游戏智能体",
+      "llm_evidence": "解决多智能体RL中模拟器坍缩以训练鲁棒游戏智能体",
+      "canonical_evidence": "解决多智能体RL中模拟器坍缩以训练鲁棒游戏智能体",
+      "llm_tldr_en": "The paper shows training multi-agent RL policies against a single LLM simulator leads to overfitting and poor generalization due to simulator mode collapse. It proposes Verbalized Sampling at inference and a training-time solution to broaden simulator behavior. This method is valuable for training game AI bots that must generalize beyond simulated opponents or users.",
+      "llm_tldr_cn": "基于单一LLM模拟器的多智能体强化学习存在模拟器坍缩问题，训练出的策略过拟合模拟器主导模式，在新模拟器或真实用户上表现差。本文形式化模拟器坍缩，提出推理端言语化采样扩大模拟器行为分布，并补充训练端方案降低模式坍缩。实验证明该方法能减少策略对模拟器狭窄策略的利用，提升迁移鲁棒性。该研究成果为使用模拟器训练游戏AI智能体等交互策略提供了泛化保障。",
+      "llm_tldr": "基于单一LLM模拟器的多智能体强化学习存在模拟器坍缩问题，训练出的策略过拟合模拟器主导模式，在新模拟器或真实用户上表现差。本文形式化模拟器坍缩，提出推理端言语化采样扩大模拟器行为分布，并补充训练端方案降低模式坍缩。实验证明该方法能减少策略对模拟器狭窄策略的利用，提升迁移鲁棒性。该研究成果为使用模拟器训练游戏AI智能体等交互策略提供了泛化保障。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
