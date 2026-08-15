@@ -1,0 +1,128 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-15T20:29:12.268733+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2608.12547v1",
+      "source": "arxiv",
+      "title": "Do LLMs Beat Nash? Testing Decentralized Coordination in Self-Play Multi-Agent Games",
+      "abstract": "Large language model agents deployed without a central controller are often assumed to require communication to coordinate their actions. We ask what remains possible without it: when independent instances of the same model cannot communicate, can they still reason about their counterparts well enough to exceed the standard game-theoretic baseline for uncoordinated play? We introduce a benchmark of one-shot, no-communication games in which each of thirteen language models is told only that its counterparts are running the same model and is evaluated against the Nash equilibrium of the underlying game. In two-player matrix games spanning seven archetypes and two to ten actions per player, two frontier-hosted models consistently exceed their Nash benchmark, approaching the optimal joint outcome in several archetypes, while most open-weight models achieve only partial gains that vary sharply by game structure. Performance degrades substantially in team-based games with four or more interchangeable agents, particularly as the action space grows, suggesting that whatever capability drives self-play gains in dyadic games does not transfer to larger multi-agent teams.",
+      "authors": [
+        "Deborah Sinishaw",
+        "Qile Zhu",
+        "Edwin Meriaux",
+        "Gregory Dudek"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.RO"
+      ],
+      "published": "2026-08-12T19:36:53+00:00",
+      "link": "https://arxiv.org/pdf/2608.12547v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "LLM agents in self-play multi-agent games evaluated against Nash equilibrium",
+      "llm_evidence_cn": "在自博弈多智能体游戏中评估LLM智能体相对纳什均衡的表现",
+      "llm_evidence": "在自博弈多智能体游戏中评估LLM智能体相对纳什均衡的表现",
+      "canonical_evidence": "在自博弈多智能体游戏中评估LLM智能体相对纳什均衡的表现",
+      "llm_tldr_en": "Tests whether LLM agents can exceed Nash equilibrium in no-communication, one-shot multi-agent games via self-play.",
+      "llm_tldr_cn": "该论文探究大型语言模型智能体在无通信、一次性多智能体博弈中能否通过推理超越纳什均衡基线。作者构建了包含七种矩阵博弈类型的基准，让同一模型的独立实例进行自博弈，并评估其是否优于标准博弈论预测。实验发现，两种前沿模型在多数博弈中一致超越纳什均衡，表明LLM智能体具有超出经典均衡的协调能力。该研究揭示了游戏AI bot在分散场景下的行为特征与潜力。",
+      "llm_tldr": "该论文探究大型语言模型智能体在无通信、一次性多智能体博弈中能否通过推理超越纳什均衡基线。作者构建了包含七种矩阵博弈类型的基准，让同一模型的独立实例进行自博弈，并评估其是否优于标准博弈论预测。实验发现，两种前沿模型在多数博弈中一致超越纳什均衡，表明LLM智能体具有超出经典均衡的协调能力。该研究揭示了游戏AI bot在分散场景下的行为特征与潜力。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.12753v1",
+      "source": "arxiv",
+      "title": "Decentralized Multi-Player Q-Learning in Episodic Markov Decision Processes with Information Asymmetry",
+      "abstract": "We study decentralized multi-player reinforcement learning in episodic tabular Markov decision processes (MDPs) under three forms of information asymmetry: (A) unobserved actions with common rewards, (B) observed actions with independent rewards, and (C) unobserved actions with independent rewards. Players cannot communicate during learning but may agree on a protocol a priori. For Problems A and B we propose \\texttt{mQ-learning} and \\texttt{mQ-learning-intervals}, achieving $\\tilde{O}(\\sqrt{H^4 S A_{\\text{joint}}\\, T})$ regret, where $H$ is the horizon, $S$ the state count, $T = KH$ the total steps, and $A_{\\text{joint}} = \\prod_{i=1}^M |\\mathcal{A}_i|$ the joint action space across $M$ players. For Problem C we give \\texttt{mEXC} and \\texttt{mEXC-Bellman}, two-phase explore-then-commit algorithms with regret $\\tilde{O}(H (S A_{\\text{joint}})^{1/3} T^{2/3})$. Against the centralized joint-action benchmark, decentralized learning under information asymmetry matches the single-agent Q-learning rate of \\cite{jin2018q} up to logarithmic factors. Because $A_{\\text{joint}}$ grows exponentially in $M$, the bounds are most meaningful for small $M$ or small per-player action sets.",
+      "authors": [
+        "Larissa Xu",
+        "King Bi",
+        "William Chang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-13T03:06:11+00:00",
+      "link": "https://arxiv.org/pdf/2608.12753v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Multi-player Q-learning for decentralized RL in MDPs, directly applicable to game playing agents.",
+      "llm_evidence_cn": "多玩家Q学习用于去中心化强化学习，可直接应用于游戏智能体。",
+      "llm_evidence": "多玩家Q学习用于去中心化强化学习，可直接应用于游戏智能体。",
+      "canonical_evidence": "多玩家Q学习用于去中心化强化学习，可直接应用于游戏智能体。",
+      "llm_tldr_en": "Proposes mQ-learning algorithms for decentralized multi-player RL under information asymmetry with near-optimal regret, advancing RL for multi-agent game settings.",
+      "llm_tldr_cn": "该论文研究分散式多玩家强化学习，针对信息不对称提出mQ-learning算法，实现近最优遗憾界。该方法为多智能体游戏场景中的AI训练提供了理论基础和算法支持。",
+      "llm_tldr": "该论文研究分散式多玩家强化学习，针对信息不对称提出mQ-learning算法，实现近最优遗憾界。该方法为多智能体游戏场景中的AI训练提供了理论基础和算法支持。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.13420v1",
+      "source": "arxiv",
+      "title": "Enhancing Virtual Agents through SLMs and Edge-Computing: An Exploratory Evaluation of Think and Memory Processes",
+      "abstract": "Embodied intelligent virtual agents are expected to operate as persistent, adaptive, and context-aware entities within complex virtual and Metaverse worlds. However, implementing cognitively capable agents in such environments is conceptually and technologically challenging. Among a range of blueprints and development approaches, the Cognitive Embodied Agent Architecture (CEAA) has been developed as an implementation-oriented framework for architecting components of perception, memory, reasoning, planning, and embodied action. Considering the recent advances in edge computing and generative AI language models, this paper explores the use of Small Language Models (SLMs) to support edge-based operation of selected CEAA components, focusing on \"Think\" and \"Memory\" as processes central to cognitive orchestration and persistence of virtual agents in interactive virtual worlds. An edge-based virtual agent gateway system was developed and evaluated on an NVIDIA Jetson Orin NX using Qwen2.5 models of different sizes, exploring the system's capability to process service requests and handle memory-driven conversations. A series of simulation experiments evaluated routing accuracy, memory-read performance, and latency, demonstrating an SLM-driven prototype agent system that partially implements selected CEAA processes to support the development of embodied agents whose cognitive \"brain\" can operate efficiently and contextually for interactive experiences in immersive virtual worlds.",
+      "authors": [
+        "Aimilios Hadjiliasi",
+        "Louis Nisiotis"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-13T16:12:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.13420v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Cognitive architecture for virtual agents with perception, memory, reasoning, planning",
+      "llm_evidence_cn": "虚拟代理的认知架构包含感知、记忆、推理、规划",
+      "llm_evidence": "虚拟代理的认知架构包含感知、记忆、推理、规划",
+      "canonical_evidence": "虚拟代理的认知架构包含感知、记忆、推理、规划",
+      "llm_tldr_en": "Explores using small language models and edge computing to implement cognitive processes in virtual agents, providing a blueprint for human-like game AI bots.",
+      "llm_tldr_cn": "该论文针对虚拟世界中智能代理需要持久、自适应和上下文感知能力但认知实现困难的问题，探索使用小型语言模型和边缘计算来支持基于认知具身代理架构的思维与记忆过程。论文提出在边缘设备上运行SLMs以增强虚拟代理的感知、记忆、推理和规划组件。初步评估显示该方法在资源受限环境下可实现一定程度的认知能力。该工作为设计拟人化游戏AI机器人提供了可行的架构参考。",
+      "llm_tldr": "该论文针对虚拟世界中智能代理需要持久、自适应和上下文感知能力但认知实现困难的问题，探索使用小型语言模型和边缘计算来支持基于认知具身代理架构的思维与记忆过程。论文提出在边缘设备上运行SLMs以增强虚拟代理的感知、记忆、推理和规划组件。初步评估显示该方法在资源受限环境下可实现一定程度的认知能力。该工作为设计拟人化游戏AI机器人提供了可行的架构参考。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

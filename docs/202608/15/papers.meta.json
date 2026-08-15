@@ -1,0 +1,54 @@
+{
+  "label": "2026-08-15",
+  "date": "2026-08-15",
+  "generated_at": "2026-08-15T20:35:36",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202608/15/2608.12547v1-do-llms-beat-nash-testing-decentralized-coordination-in-self-play-multi-agent-games",
+      "section": "deep",
+      "title_en": "Do LLMs Beat Nash? Testing Decentralized Coordination in Self-Play Multi-Agent Games",
+      "authors": "Deborah Sinishaw, Qile Zhu, Edwin Meriaux, Gregory Dudek",
+      "date": "2026-08-12",
+      "pdf": "https://arxiv.org/pdf/2608.12547v1",
+      "score": "8.0",
+      "evidence": "在自博弈多智能体游戏中评估LLM智能体相对纳什均衡的表现",
+      "tldr": "传统假设认为无中央控制的LLM智能体需通信才能协调。本研究构建一次性无通信博弈基准，让13个模型的独立实例仅知对手为同模型，与纳什均衡比较。结果发现两个前沿托管模型在双人矩阵博弈中持续超越纳什，接近最优联合结果，但多数开源权重模型仅获部分收益且依赖博弈结构。在四及以上智能体的团队博弈中性能大幅退化，表明双人自博弈协调能力难以迁移至大规模多智能体场景。",
+      "tags": "query:gah",
+      "abstract_en": "Large language model agents deployed without a central controller are often assumed to require communication to coordinate their actions. We ask what remains possible without it: when independent instances of the same model cannot communicate, can they still reason about their counterparts well enough to exceed the standard game-theoretic baseline for uncoordinated play? We introduce a benchmark of one-shot, no-communication games in which each of thirteen language models is told only that its counterparts are running the same model and is evaluated against the Nash equilibrium of the underlying game. In two-player matrix games spanning seven archetypes and two to ten actions per player, two frontier-hosted models consistently exceed their Nash benchmark, approaching the optimal joint outcome in several archetypes, while most open-weight models achieve only partial gains that vary sharply by game structure. Performance degrades substantially in team-based games with four or more interchangeable agents, particularly as the action space grows, suggesting that whatever capability drives self-play gains in dyadic games does not transfer to larger multi-agent teams.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/15/2608.12753v1-decentralized-multi-player-q-learning-in-episodic-markov-decision-processes-with-information-asymmetry",
+      "section": "deep",
+      "title_en": "Decentralized Multi-Player Q-Learning in Episodic Markov Decision Processes with Information Asymmetry",
+      "authors": "Larissa Xu, King Bi, William Chang",
+      "date": "2026-08-13",
+      "pdf": "https://arxiv.org/pdf/2608.12753v1",
+      "score": "8.0",
+      "evidence": "多玩家Q学习用于去中心化强化学习，可直接应用于游戏智能体。",
+      "tldr": "本文研究无通信分散多智能体强化学习，在三种信息不对称设定下学习最优联合策略。针对未观察/观察动作和独立/共同奖励，提出mQ-learning系列算法与两阶段探索后承诺算法mEXC及变体。两类算法分别达到~O(√(H^4 S A_joint T))和~O(H(S A_joint)^{1/3}T^{2/3})遗憾，均匹配单智能体Q学习速率的对数因子。这证明分散学习可接近集中式联合动作基准，但联合动作空间指数增长限制了大规模玩家场景。",
+      "tags": "query:gah",
+      "abstract_en": "We study decentralized multi-player reinforcement learning in episodic tabular Markov decision processes (MDPs) under three forms of information asymmetry: (A) unobserved actions with common rewards, (B) observed actions with independent rewards, and (C) unobserved actions with independent rewards. Players cannot communicate during learning but may agree on a protocol a priori. For Problems A and B we propose \\texttt{mQ-learning} and \\texttt{mQ-learning-intervals}, achieving $\\tilde{O}(\\sqrt{H^4 S A_{\\text{joint}}\\, T})$ regret, where $H$ is the horizon, $S$ the state count, $T = KH$ the total steps, and $A_{\\text{joint}} = \\prod_{i=1}^M |\\mathcal{A}_i|$ the joint action space across $M$ players. For Problem C we give \\texttt{mEXC} and \\texttt{mEXC-Bellman}, two-phase explore-then-commit algorithms with regret $\\tilde{O}(H (S A_{\\text{joint}})^{1/3} T^{2/3})$. Against the centralized joint-action benchmark, decentralized learning under information asymmetry matches the single-agent Q-learning rate of \\cite{jin2018q} up to logarithmic factors. Because $A_{\\text{joint}}$ grows exponentially in $M$, the bounds are most meaningful for small $M$ or small per-player action sets.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/15/2608.13420v1-enhancing-virtual-agents-through-slms-and-edge-computing-an-exploratory-evaluation-of-think-and-memory-processes",
+      "section": "quick",
+      "title_en": "Enhancing Virtual Agents through SLMs and Edge-Computing: An Exploratory Evaluation of Think and Memory Processes",
+      "authors": "Aimilios Hadjiliasi, Louis Nisiotis",
+      "date": "2026-08-13",
+      "pdf": "https://arxiv.org/pdf/2608.13420v1",
+      "score": "7.0",
+      "evidence": "虚拟代理的认知架构包含感知、记忆、推理、规划",
+      "tldr": "具身智能虚拟代理在元宇宙等复杂虚拟世界中需持久自适应且上下文感知，但认知能力实现面临概念和技术挑战。本文基于CEAA框架，探索使用SLMs在边缘设备支持Think与Memory过程，构建边缘虚拟代理网关并在Jetson Orin NX上部署Qwen2.5模型。模拟实验评估了路由准确性、记忆读取性能和延迟，结果表明原型系统能高效处理服务请求和记忆驱动对话，部分实现CEAA。该工作为边缘SLM驱动沉浸式虚拟代理认知大脑提供了可行技术方案。",
+      "tags": "query:gah",
+      "abstract_en": "Embodied intelligent virtual agents are expected to operate as persistent, adaptive, and context-aware entities within complex virtual and Metaverse worlds. However, implementing cognitively capable agents in such environments is conceptually and technologically challenging. Among a range of blueprints and development approaches, the Cognitive Embodied Agent Architecture (CEAA) has been developed as an implementation-oriented framework for architecting components of perception, memory, reasoning, planning, and embodied action. Considering the recent advances in edge computing and generative AI language models, this paper explores the use of Small Language Models (SLMs) to support edge-based operation of selected CEAA components, focusing on \"Think\" and \"Memory\" as processes central to cognitive orchestration and persistence of virtual agents in interactive virtual worlds. An edge-based virtual agent gateway system was developed and evaluated on an NVIDIA Jetson Orin NX using Qwen2.5 models of different sizes, exploring the system's capability to process service requests and handle memory-driven conversations. A series of simulation experiments evaluated routing accuracy, memory-read performance, and latency, demonstrating an SLM-driven prototype agent system that partially implements selected CEAA processes to support the development of embodied agents whose cognitive \"brain\" can operate efficiently and contextually for interactive experiences in immersive virtual worlds.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
