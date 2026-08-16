@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-08-16 <!--dpr-date:20260816-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/16/2608.08255v1-learning-from-environmental-feedback-credit-assignment-across-multiple-timescales-for-agentic-reinforcement-learning" data-sidebar-item="{&quot;title&quot;: &quot;Learning from Environmental Feedback: Credit Assignment across Multiple Timescales for Agentic Reinforcement Learning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.08255v1-learning-from-environmental-feedback-credit-assignment-across-multiple-timescales-for-agentic-reinforcement-learning&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;提出用于智能体强化学习的信用分配方法，可用于游戏AI训练&quot;}">Learning from Environmental Feedback: Credit Assignment across Multiple Timescales for Agentic Reinforcement Learning</a>
   * 2026-08-15 <!--dpr-date:20260815-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/15/2608.12547v1-do-llms-beat-nash-testing-decentralized-coordination-in-self-play-multi-agent-games" data-sidebar-item="{&quot;title&quot;: &quot;Do LLMs Beat Nash? Testing Decentralized Coordination in Self-Play Multi-Agent Games&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.12547v1-do-llms-beat-nash-testing-decentralized-coordination-in-self-play-multi-agent-games&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;在自博弈多智能体游戏中评估LLM智能体相对纳什均衡的表现&quot;}">Do LLMs Beat Nash? Testing Decentralized Coordination in Self-Play Multi-Agent Games</a>

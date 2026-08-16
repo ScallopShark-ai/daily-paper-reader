@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-16",
+  "date": "2026-08-16",
+  "generated_at": "2026-08-16T20:26:20",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/16/2608.08255v1-learning-from-environmental-feedback-credit-assignment-across-multiple-timescales-for-agentic-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Learning from Environmental Feedback: Credit Assignment across Multiple Timescales for Agentic Reinforcement Learning",
+      "authors": "Yifu Huo, Shunjie Xing, Chenglong Wang, Peinan Feng, Qiaozhi He, Yan Ding, Anxiang Ma, Yuxin Gao, Tongran Liu, Tong Xiao, Jingbo Zhu",
+      "date": "2026-08-08",
+      "pdf": "https://arxiv.org/pdf/2608.08255v1",
+      "score": "6.0",
+      "evidence": "提出用于智能体强化学习的信用分配方法，可用于游戏AI训练",
+      "tldr": "代理强化学习常受延迟稀疏奖励困扰，信用分配是关键解法但现有方法忽略交互历史等过程信息。本文提出EFCA，从环境反馈中提取短期即时效果和中期状态历史信号，与长期结果共同通过回报重加权进行多时间尺度信用分配。在ALFWorld和WebShop上，EFCA一致优于强基线，提升任务成功率和质量。研究表明，利用环境过程信息可显著改善长时程代理RL的信用分配。",
+      "tags": "query:gah",
+      "abstract_en": "Agentic reinforcement learning (RL) often suffers from delayed and sparse rewards in real-world environments. A promising solution to this challenge is credit assignment, which aims to decompose trajectory-level rewards and provide more fine-grained supervision for intermediate decisions. However, existing credit assignment approaches ignore the rich process information naturally generated during environment interaction, e.g., interaction history. We argue that such information provides valuable supervision for identifying the contribution of individual actions. To this end, we propose Environmental Feedback-based Credit Assignment (EFCA), a multi-timescale credit assignment approach for long-horizon agentic RL. EFCA complements the long-term outcome signal with two environment-grounded process signals: a short-term feedback signal that captures the immediate effect of the current action and a medium-term state-history signal that identifies ineffective patterns from recent interactions. Both signals are directly extracted from environment feedback and integrated through a return reweighting mechanism. Experiments on ALFWorld and WebShop demonstrate that EFCA consistently improves both task success and task quality over strong baselines, highlighting the effectiveness of environment-grounded multi-timescale credit assignment for long-horizon agentic RL.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
