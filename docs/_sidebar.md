@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-08-17 <!--dpr-date:20260817-->
+    * 精读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/17/2608.14135v1-agilepe-autonomous-uav-pursuit-evasion-via-self-play-reinforcement-learning" data-sidebar-item="{&quot;title&quot;: &quot;AgilePE: Autonomous UAV Pursuit-Evasion via Self-Play Reinforcement Learning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.14135v1-agilepe-autonomous-uav-pursuit-evasion-via-self-play-reinforcement-learning&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;自博弈强化学习用于自主追逃，一种竞争性游戏场景&quot;}">AgilePE: Autonomous UAV Pursuit-Evasion via Self-Play Reinforcement Learning</a>
   * 2026-08-16 <!--dpr-date:20260816-->
     * 速读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/16/2608.08255v1-learning-from-environmental-feedback-credit-assignment-across-multiple-timescales-for-agentic-reinforcement-learning" data-sidebar-item="{&quot;title&quot;: &quot;Learning from Environmental Feedback: Credit Assignment across Multiple Timescales for Agentic Reinforcement Learning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.08255v1-learning-from-environmental-feedback-credit-assignment-across-multiple-timescales-for-agentic-reinforcement-learning&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;提出用于智能体强化学习的信用分配方法，可用于游戏AI训练&quot;}">Learning from Environmental Feedback: Credit Assignment across Multiple Timescales for Agentic Reinforcement Learning</a>
