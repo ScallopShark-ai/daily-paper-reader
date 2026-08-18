@@ -1,0 +1,238 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-18T19:27:25.704780+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2608.15146v1",
+      "source": "arxiv",
+      "title": "PureTD: Reinforcement Learning for Backgammon Money Games with No Evaluation-time Search",
+      "abstract": "We revisit Tesauro's TD-Gammon for backgammon money games in the setting of no evaluation-time search. Both checker play and cube action (use of the doubling cube) are learned from scratch via self-play reinforcement learning (RL), with minimal hand-coded logic and no expert features. In this setting, we demonstrate that pure self-play RL suffices to train models that reach near-state-of-the-art playing strength. Specifically, for cubeful money games, our search-free model evaluates faster and is substantially stronger than the open-source engines GNU Backgammon and Open Sage running a one-move (1-ply) look-ahead search.",
+      "authors": [
+        "Alexander L. Strehl"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-15T09:46:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.15146v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "self-play RL for backgammon money games with no search",
+      "llm_evidence_cn": "十五子棋现金局的自对弈强化学习，无搜索",
+      "llm_evidence": "十五子棋现金局的自对弈强化学习，无搜索",
+      "canonical_evidence": "十五子棋现金局的自对弈强化学习，无搜索",
+      "llm_tldr_en": "This paper revisits TD-Gammon, training both checker play and cube actions for backgammon money games via self-play reinforcement learning without evaluation-time search, using minimal hand-coded logic. The resulting search-free model is faster and substantially stronger than open-source engines running 1-ply search, showing pure self-play RL suffices for near-state-of-the-art play.",
+      "llm_tldr_cn": "该文重新审视Tesauro的TD-Gammon，在无评估时搜索的条件下，用自对弈强化学习同时学习十五子棋现金局中的下棋和加倍操作，仅依赖极少量手工规则。实验表明，纯自对弈RL可在无专家特征的条件下训练出接近最先进的模型，且无搜索模型比开源引擎GNU Backgammon和Open Sage的一步前瞻搜索更快更强。这一结果证明了纯强化学习在经典棋牌游戏中的有效性，为游戏AI bot设计提供了简洁方案。",
+      "llm_tldr": "该文重新审视Tesauro的TD-Gammon，在无评估时搜索的条件下，用自对弈强化学习同时学习十五子棋现金局中的下棋和加倍操作，仅依赖极少量手工规则。实验表明，纯自对弈RL可在无专家特征的条件下训练出接近最先进的模型，且无搜索模型比开源引擎GNU Backgammon和Open Sage的一步前瞻搜索更快更强。这一结果证明了纯强化学习在经典棋牌游戏中的有效性，为游戏AI bot设计提供了简洁方案。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.15700v1",
+      "source": "arxiv",
+      "title": "Adaptive Mixing of Policies from Searching and Policies from Learning",
+      "abstract": "Background: Distillation of training targets generated thru search/planning has proven useful in reinforcement learning, but search can take exceedingly long. Objectives: Rather than perform search to the same depth every time (typically at a fixed period of steps), reduce the search depth proportionally to the quality of the policy network priors. Methods: We describe Flexer, an architecture that, for each step, mixes the policy from a neural network and the policy from Monte Carlo tree search. The mixing factor favors the MCTS policy as the policy imitation error of the network and the environment models' variance increases. Results: Flexer outperforms a version of AlphaZero (and DQN and ADP) for some experiments on three toy symbolic problems.",
+      "authors": [
+        "Gavin B. Rens"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-16T12:11:01+00:00",
+      "link": "https://arxiv.org/pdf/2608.15700v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Mixes neural network policy with MCTS, evaluated against AlphaZero and DQN for game-like symbolic problems",
+      "llm_evidence_cn": "将神经网络策略与蒙特卡洛树搜索混合，并与AlphaZero和DQN对比用于符号问题",
+      "llm_evidence": "将神经网络策略与蒙特卡洛树搜索混合，并与AlphaZero和DQN对比用于符号问题",
+      "canonical_evidence": "将神经网络策略与蒙特卡洛树搜索混合，并与AlphaZero和DQN对比用于符号问题",
+      "llm_tldr_en": "Flexer addresses long search times in RL distillation by adaptively mixing neural network and MCTS policies based on policy quality. It reduces search depth with better priors and outperforms AlphaZero, DQN, and ADP on toy symbolic problems, showing promise for game AI.",
+      "llm_tldr_cn": "该论文针对强化学习中通过搜索/规划生成训练目标耗时过长的问题，提出Flexer架构，根据策略网络先验质量动态混合神经网络策略与蒙特卡洛树搜索策略。在三个玩具符号问题上，Flexer优于AlphaZero、DQN和ADP。其核心思想是当策略网络更可靠时减少搜索深度，从而加快学习，为游戏AI中的高效策略训练提供了新思路。",
+      "llm_tldr": "该论文针对强化学习中通过搜索/规划生成训练目标耗时过长的问题，提出Flexer架构，根据策略网络先验质量动态混合神经网络策略与蒙特卡洛树搜索策略。在三个玩具符号问题上，Flexer优于AlphaZero、DQN和ADP。其核心思想是当策略网络更可靠时减少搜索深度，从而加快学习，为游戏AI中的高效策略训练提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.16666v1",
+      "source": "arxiv",
+      "title": "Chronocooked: A Benchmark for Implicit Interval Timing in Reinforcement Learning Agents",
+      "abstract": "This paper presents Chronocooked, a reinforcement learning (RL) benchmark suite for studying implicit interval timing in RL agents. Inspired by Overcooked, the suite comprises cooking scenarios that require temporal decision making. The tasks and reward functions are designed such that temporal information is unobserved yet critical for optimal performance. The environment is intentionally kept simple to enable controlled experiments and support biologically plausible models. Evaluation metrics are designed to expose limitations in timing abilities of RL agents, and we report baselines using a non-recurrent, a recurrent, and a biologically plausible model. This work ultimately aims to underscore the need to incorporate time perception and temporal processing in artificial agents designed for human robot interaction and deployment in time dependent human societies.",
+      "authors": [
+        "Amrapali Pednekar",
+        "Alvaro Garrido-Perez",
+        "Yara Khaluf",
+        "Pieter Simoens"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-17T14:55:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.16666v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "RL benchmark suite based on Overcooked-inspired cooking scenarios for implicit interval timing",
+      "llm_evidence_cn": "基于Overcooked启发的烹饪场景的强化学习基准测试，用于隐式间隔计时",
+      "llm_evidence": "基于Overcooked启发的烹饪场景的强化学习基准测试，用于隐式间隔计时",
+      "canonical_evidence": "基于Overcooked启发的烹饪场景的强化学习基准测试，用于隐式间隔计时",
+      "llm_tldr_en": "Introduces Chronocooked, an RL benchmark based on Overcooked-style cooking tasks that require implicit interval timing to expose timing limitations of RL agents.",
+      "llm_tldr_cn": "该论文针对强化学习智能体在时间感知能力上缺乏系统性评测的问题，提出了Chronocooked基准测试套件。该套件受Overcooked游戏启发，包含需要隐式间隔计时的烹饪任务，奖励函数设计使时间信息不可观测但对最优性能至关重要。文章报告了非递归、递归和生物合理模型等基线在时间能力上的表现。该基准有助于揭示RL智能体的时间感知缺陷，推动时间决策研究。",
+      "llm_tldr": "该论文针对强化学习智能体在时间感知能力上缺乏系统性评测的问题，提出了Chronocooked基准测试套件。该套件受Overcooked游戏启发，包含需要隐式间隔计时的烹饪任务，奖励函数设计使时间信息不可观测但对最优性能至关重要。文章报告了非递归、递归和生物合理模型等基线在时间能力上的表现。该基准有助于揭示RL智能体的时间感知缺陷，推动时间决策研究。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.14490v1",
+      "source": "arxiv",
+      "title": "Twin: Playing an Unknown Game with a Test-Time Digital Twin",
+      "abstract": "We present a Test-time World-model Inference (Twin) system, in which a frontier coding agent writes an executable world model for completing continual learning tasks, such as ARC-AGI-3 games. Traditional approaches hand-engineer such models, one custom design per task. Each game hides its rules and goal, and our system constructs them from simulation and interaction alone. Its inductive prior over grid games is strong enough to recover the true transitions of the game and the goal on nearly all levels. Replay validation happens in a twin world model. The harness enforces that an action is not made until the program reproduces every previous observed game transition. Each mismatch between a world model prediction and the actual action result becomes a counterexample that is used to repair the world model. Twin clears 179 out of 183 levels (97.8%), and does so more efficiently than humans in 158 out of 179 levels (88.3%). The system infers the goal before any reward on 156 of the levels it clears (87.2%), and in the remaining levels automatically discovers the goal by search. The benchmark scores completion and action efficiency, between 0 and 100, against humans playing each game for the first time. Played directly, the base model scores only 7.8%; an off-the-shelf harness increases it to 61.1%, whereas our twin world model increases the same base model to 93.3%, clearing 23 out of 25 games. Building a usable world model is simpler than anticipated, whereas the harder problem is inferring the right goal.",
+      "authors": [
+        "Alexy Skoutnev",
+        "Kirill Acharya",
+        "Gaston Longhitano",
+        "Madeleine Udell",
+        "Kevin Ellis",
+        "Iddo Drori"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-14T17:06:00+00:00",
+      "link": "https://arxiv.org/pdf/2608.14490v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Test-time world model inference for playing unknown games, relevant to game AI bot development",
+      "llm_evidence_cn": "测试时世界模型推理用于玩未知游戏，与游戏AI bot开发相关",
+      "llm_evidence": "测试时世界模型推理用于玩未知游戏，与游戏AI bot开发相关",
+      "canonical_evidence": "测试时世界模型推理用于玩未知游戏，与游戏AI bot开发相关",
+      "llm_tldr_en": "Introduces Twin, a coding agent that builds executable world models to play ARC-AGI-3 games, reconstructing rules and goals from interaction.",
+      "llm_tldr_cn": "该论文提出Twin系统，通过前沿编程代理在测试时构建可执行世界模型，以玩未知的ARC-AGI-3游戏。系统从模拟和交互中恢复游戏规则与目标，并在孪生世界模型中进行回放验证。该方法为游戏AI bot在未知环境中的自主学习提供了新思路。",
+      "llm_tldr": "该论文提出Twin系统，通过前沿编程代理在测试时构建可执行世界模型，以玩未知的ARC-AGI-3游戏。系统从模拟和交互中恢复游戏规则与目标，并在孪生世界模型中进行回放验证。该方法为游戏AI bot在未知环境中的自主学习提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.14977v1",
+      "source": "arxiv",
+      "title": "Watermarked Game Solving via Perturbed Regret Minimization",
+      "abstract": "Many real-world interactions among self-interested parties can be modeled by game theory, and the rapid advancements in AI have raised concerns about the possible misuse---accidental or deliberate---of superhuman or human-level game-playing agents by bad actors. While AI watermarking has mainly been applied to LLM-generated texts, a recent line of work proposes developing watermarking techniques for agents in game-theoretic settings. However, existing watermarking techniques for game-theoretic agents are not readily applicable due to their limited scope or capabilities---they are tailored to perfect-information games and are thus inapplicable to richer game types. We propose a new approach to watermarking game-playing agents, which a) can be applied to imperfect-information settings; b) is directly integrated into the learning process itself; and c) incurs only a bounded cost in exploitability. For this purpose, we introduce perturbed regret minimization, which adds perturbations to the utilities prior to observation so as to encourage the learning algorithm to embed the watermark. Our experiments show that the watermark incurs only a small exploitability cost and can be detected within just a couple of hours of gameplay at human speed.",
+      "authors": [
+        "Juho Kim",
+        "Tuomas Sandholm"
+      ],
+      "primary_category": "cs.GT",
+      "categories": [
+        "cs.GT"
+      ],
+      "published": "2026-08-15T01:59:54+00:00",
+      "link": "https://arxiv.org/pdf/2608.14977v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "watermarking game-playing agents in imperfect-information games via perturbed regret minimization",
+      "llm_evidence_cn": "通过扰动后悔最小化为不完美信息博弈中的游戏代理添加水印",
+      "llm_evidence": "通过扰动后悔最小化为不完美信息博弈中的游戏代理添加水印",
+      "canonical_evidence": "通过扰动后悔最小化为不完美信息博弈中的游戏代理添加水印",
+      "llm_tldr_en": "Proposes a watermarking method for game-playing agents applicable to imperfect-information games by perturbing regret minimization, addressing misuse concerns while preserving agent performance.",
+      "llm_tldr_cn": "游戏理论中许多现实交互可建模为博弈，AI游戏代理可能被滥用，但现有游戏代理水印技术仅适用于完美信息博弈。该论文提出通过扰动后悔最小化的新水印方法，能应用于不完美信息博弈，在不显著影响性能的前提下为游戏代理嵌入可识别标记。该方法扩展了游戏AI水印的适用范围，有助于防止超人类游戏代理的恶意使用，同时保持策略质量。",
+      "llm_tldr": "游戏理论中许多现实交互可建模为博弈，AI游戏代理可能被滥用，但现有游戏代理水印技术仅适用于完美信息博弈。该论文提出通过扰动后悔最小化的新水印方法，能应用于不完美信息博弈，在不显著影响性能的前提下为游戏代理嵌入可识别标记。该方法扩展了游戏AI水印的适用范围，有助于防止超人类游戏代理的恶意使用，同时保持策略质量。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.16888v1",
+      "source": "arxiv",
+      "title": "Q-based Variational Inverse Reinforcement Learning",
+      "abstract": "The development of safe and beneficial AI requires that systems can learn and act in accordance with human preferences. However, explicitly specifying these preferences by hand is often infeasible. Inverse reinforcement learning (IRL) addresses this challenge by inferring preferences, represented as reward functions, from expert behaviour. We introduce Q-based Variational IRL (QVIRL), a novel Bayesian IRL method that recovers a posterior distribution over rewards from expert demonstrations via primarily learning a variational distribution over optimal Q-values. Unlike previous approaches, QVIRL combines scalability with uncertainty quantification, important for safety-critical applications as well as active learning. We demonstrate QVIRL's strong performance in apprenticeship learning across various tasks, including gridworlds, Lunar Lander, the Highway Environment, and two ATARI games both with static expert data and with active learning. It is the first method for Bayesian IRL that demonstrates training from raw pixel observations.",
+      "authors": [
+        "Ondrej Bajgar",
+        "Peter Tisnikar",
+        "Alessandro Abate",
+        "Konstantinos Gatsis",
+        "Maike Osborne"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-17T17:59:55+00:00",
+      "link": "https://arxiv.org/pdf/2608.16888v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Inverse reinforcement learning recovers reward functions from expert behavior, enabling human-like game AI",
+      "llm_evidence_cn": "逆强化学习从专家行为中恢复奖励函数，可用于人类化游戏AI",
+      "llm_evidence": "逆强化学习从专家行为中恢复奖励函数，可用于人类化游戏AI",
+      "canonical_evidence": "逆强化学习从专家行为中恢复奖励函数，可用于人类化游戏AI",
+      "llm_tldr_en": "Proposes QVIRL, a Bayesian IRL method that learns a posterior over rewards by variational approximation of optimal Q-values, enabling scalable uncertainty-aware imitation learning.",
+      "llm_tldr_cn": "针对逆强化学习难以同时兼顾可扩展性和不确定性量化的问题，提出QVIRL方法，通过变分学习最优Q值分布来恢复奖励后验。实验表明其在学徒学习任务中表现强劲，为安全敏感和主动学习场景提供了有力工具。",
+      "llm_tldr": "针对逆强化学习难以同时兼顾可扩展性和不确定性量化的问题，提出QVIRL方法，通过变分学习最优Q值分布来恢复奖励后验。实验表明其在学徒学习任务中表现强劲，为安全敏感和主动学习场景提供了有力工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
