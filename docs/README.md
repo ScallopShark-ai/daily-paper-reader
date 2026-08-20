@@ -6,29 +6,38 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-19
-- 运行时间：2026-08-19 20:53:16 UTC
+- 最新运行日期：2026-08-20
+- 运行时间：2026-08-20 20:46:22 UTC
 - 运行状态：成功
-- 本次总论文数：2
+- 本次总论文数：5
 - 精读区：0
-- 速读区：2
+- 速读区：5
 
 ### 今日简报（AI）
-- 今日共生成 2 篇推荐（精读 0 篇，速读 2 篇）
-- 速读：《UC-PSRO: Utility-Conditioned Policy-Space Response Oracles with a Communication-Dropout Curriculum for Game-Theoretic Course-of-Action Generation in Adversarial Swarms》（6.0/10）, 《Towards Zero-Shot Task Transfer with Neurosymbolic World Models》（6.0/10）
+- 今日共生成 5 篇推荐（精读 0 篇，速读 5 篇）
+- 速读：《RoboStriker: Latent-Space Strategic Games for Autonomous Humanoid Boxing》（7.0/10）, 《PlanPO: Group Planning-Aware Policy Optimization for Multi-Turn Agentic LLMs》（7.0/10）, 《SPADE: Self-Play in Adaptive Synthetic Executable Environments》（7.0/10）
 - 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202608/19/README](/202608/19/README)
+- 详情：[/202608/20/README](/202608/20/README)
 
 ### 精读区论文标签
 - 本次无精读推荐。
 
 ### 速读区论文标签
-1. [UC-PSRO: Utility-Conditioned Policy-Space Response Oracles with a Communication-Dropout Curriculum for Game-Theoretic Course-of-Action Generation in Adversarial Swarms](/202608/19/2608.15372v1-uc-psro-utility-conditioned-policy-space-response-oracles-with-a-communication-dropout-curriculum-for-game-theoretic-course-of-action-generation-in-adversarial-swarms)  
+1. [RoboStriker: Latent-Space Strategic Games for Autonomous Humanoid Boxing](/202608/20/2608.16195v1-robostriker-latent-space-strategic-games-for-autonomous-humanoid-boxing)  
+   标签：评分：7.0/10、query:gah
+   evidence：将自主人形拳击表述为零和博弈并用多智能体RL求解
+2. [PlanPO: Group Planning-Aware Policy Optimization for Multi-Turn Agentic LLMs](/202608/20/2608.17289v1-planpo-group-planning-aware-policy-optimization-for-multi-turn-agentic-llms)  
+   标签：评分：7.0/10、query:gah
+   evidence：多轮交互智能体的强化学习策略优化
+3. [SPADE: Self-Play in Adaptive Synthetic Executable Environments](/202608/20/2608.19197v1-spade-self-play-in-adaptive-synthetic-executable-environments)  
+   标签：评分：7.0/10、query:gah
+   evidence：自适应可执行环境中的自博弈强化学习框架
+4. [Q-Learning With World Models](/202608/20/2608.17163v1-q-learning-with-world-models)  
    标签：评分：6.0/10、query:gah
-   evidence：使用PSRO自博弈进行对抗游戏环境中的多智能体强化学习
-2. [Towards Zero-Shot Task Transfer with Neurosymbolic World Models](/202608/19/2608.17959v1-towards-zero-shot-task-transfer-with-neurosymbolic-world-models)  
+   evidence：基于世界模型的Q学习提升样本效率，可迁移至游戏智能体
+5. [MLREF: Efficient Module Reuse for Reward Design in Reinforcement Learning via Large Language Models](/202608/20/2608.18827v1-mlref-efficient-module-reuse-for-reward-design-in-reinforcement-learning-via-large-language-models)  
    标签：评分：6.0/10、query:gah
-   evidence：神经符号世界模型用于基于模型的强化学习零样本任务迁移，可应用于游戏智能体
+   evidence：LLM驱动的模块化奖励进化用于RL，可应用于游戏AI奖励设计
 
 
 <div class="dpr-home-promo-card">

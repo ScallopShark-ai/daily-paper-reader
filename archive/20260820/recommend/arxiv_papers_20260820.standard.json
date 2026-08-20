@@ -1,0 +1,236 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-20T20:43:20.663522+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.16195v1",
+      "source": "arxiv",
+      "title": "RoboStriker: Latent-Space Strategic Games for Autonomous Humanoid Boxing",
+      "abstract": "Achieving human-level competitive intelligence and physical agility in humanoid robots remains a profound challenge, particularly in contact-rich and highly dynamic tasks such as boxing. While Multi-Agent Reinforcement Learning offers a principled framework for strategic interaction, its direct application to unstructured raw motor spaces inevitably leads to joint-level physical collapse, preventing the emergence of any viable combat tactics. To resolve this fundamental conflict between strategic exploration and physical feasibility, we formulate the humanoid combat task as a novel two-player latent-space zero-sum Markov game. Under standard regularity and approximate best-response assumptions, we show that the latent formulation induces an equivalent game over the decoder-reachable action manifold, providing an approximate-Nash interpretation of the resulting self-play dynamics. To instantiate this theoretical formulation, we propose RoboStriker, a hierarchical framework that decouples high-level reasoning from low-level execution. It first distills the tracking expertise of predefined boxing motions into a topologically bounded latent manifold. This structured latent foundation subsequently drives multi-agent co-evolution via Latent-Space Neural Fictitious Self-Play. Extensive experimental results demonstrate that gaming within this structured latent space substantially outperforms direct exploration. By constraining strategic exploration through a pretrained motion decoder, RoboStriker substantially reduces the catastrophic balance failures observed in raw action-space methods and achieves superior tactical performance in both competitive win rates and striking efficiency. Finally, we successfully deploy and validate our learned combat policies on real-world humanoid robots. Our code and video and supplementary materials are available at RoboStriker.",
+      "authors": [
+        "Kangning Yin",
+        "Kaige Liu",
+        "Zhe Cao",
+        "Wentao Dong",
+        "Weishuai Zeng",
+        "Tianyi Zhang",
+        "Qiang Zhang",
+        "Jingbo Wang",
+        "Jiangmiao Pang",
+        "Yang Li",
+        "Ming Zhou",
+        "Weinan Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-17T07:19:09+00:00",
+      "link": "https://arxiv.org/pdf/2608.16195v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Multi-agent RL formulation for autonomous humanoid boxing as a zero-sum game",
+      "llm_evidence_cn": "将自主人形拳击表述为零和博弈并用多智能体RL求解",
+      "llm_evidence": "将自主人形拳击表述为零和博弈并用多智能体RL求解",
+      "canonical_evidence": "将自主人形拳击表述为零和博弈并用多智能体RL求解",
+      "llm_tldr_en": "Formulates humanoid boxing as a latent-space zero-sum Markov game, enabling strategic RL while maintaining physical feasibility, contributing to game-like humanoid AI.",
+      "llm_tldr_cn": "该论文解决人形机器人拳击中策略探索与物理可行性冲突的问题，避免直接在高维动作空间应用多智能体RL导致关节级崩溃。它将该任务构建为新颖的两人隐空间零和马尔可夫博弈，在隐空间中进行策略学习。理论分析表明隐空间公式可诱导等价博弈。该工作推动了具有竞争智能和类人敏捷性的游戏型机器人发展。",
+      "llm_tldr": "该论文解决人形机器人拳击中策略探索与物理可行性冲突的问题，避免直接在高维动作空间应用多智能体RL导致关节级崩溃。它将该任务构建为新颖的两人隐空间零和马尔可夫博弈，在隐空间中进行策略学习。理论分析表明隐空间公式可诱导等价博弈。该工作推动了具有竞争智能和类人敏捷性的游戏型机器人发展。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.17163v1",
+      "source": "arxiv",
+      "title": "Q-Learning With World Models",
+      "abstract": "Off-policy reinforcement learning (RL) has become increasingly sample-efficient, enabling applications such as RL fine-tuning of Vision-Language-Action models into reliable, high-performing policies. World models offer a further lever for sample efficiency, as they predict state changes rather than actions alone, but their success has largely been confined to supervised policy learning. Prior model-based RL methods often optimize the policy or value function directly on imagined rollouts, which is prone to compounding bias and struggles to scale to large, high-dimensional problems such as real-world robotics, a problem that worsens with task horizon and visual complexity. In this work, we instead ask whether we can leverage world models directly on top of standard Q-learning to improve performance, while remaining trained and grounded in the real, online setting. We propose QWM, a framework that leverages world models to perform test-time search over imagined trajectories on top of Q-learning to select high-value actions during both online rollouts and evaluation. Since the policy and value function are trained only on real transitions, QWM avoids compounding model bias while still gaining the sample-efficiency benefits of predictive search. On challenging manipulation benchmarks Robomimic and LIBERO, QWM significantly outperforms strong prior state-of-the-art methods on both sample efficiency and performance.",
+      "authors": [
+        "Perry Dong",
+        "Yueru Jia",
+        "Chelsea Finn",
+        "Dorsa Sadigh"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-17T22:00:42+00:00",
+      "link": "https://arxiv.org/pdf/2608.17163v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "World-model-based Q-learning for sample-efficient RL, transferable to game agents",
+      "llm_evidence_cn": "基于世界模型的Q学习提升样本效率，可迁移至游戏智能体",
+      "llm_evidence": "基于世界模型的Q学习提升样本效率，可迁移至游戏智能体",
+      "canonical_evidence": "基于世界模型的Q学习提升样本效率，可迁移至游戏智能体",
+      "llm_tldr_en": "Proposes using world models on top of standard Q-learning for off-policy RL, avoiding compounding bias and improving sample efficiency, relevant for game agent training.",
+      "llm_tldr_cn": "该论文针对基于模型的强化学习在想象rollout上直接优化策略易产生复合偏差且难以扩展到高维问题。它提出在标准Q学习之上直接利用世界模型，试图在保持离策略学习稳定性的同时提升样本效率。实验预计展示在部分高维任务上的性能。该方法为训练高样本效率的游戏智能体提供了新思路。",
+      "llm_tldr": "该论文针对基于模型的强化学习在想象rollout上直接优化策略易产生复合偏差且难以扩展到高维问题。它提出在标准Q学习之上直接利用世界模型，试图在保持离策略学习稳定性的同时提升样本效率。实验预计展示在部分高维任务上的性能。该方法为训练高样本效率的游戏智能体提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.17289v1",
+      "source": "arxiv",
+      "title": "PlanPO: Group Planning-Aware Policy Optimization for Multi-Turn Agentic LLMs",
+      "abstract": "Group-relative policy optimization has emerged as a key paradigm for training agentic large language models (LLMs) on multi-turn interactive tasks. However, most existing variants fail to distinguish advantages among successful trajectories even when these trajectories differ substantially in their interaction efficiency. For instance, circuitous successes are often assigned the identical outcome reward, causing advantage collapse and severe performance bottlenecks. To this end, we propose Group Planning-aware Policy Optimization (PlanPO), a simple yet effective RL method for learning generalizable planning abilities beyond task-specific high-quality behavior patterns. Specifically, PlanPO introduces coarse-to-fine advantage signals, which capture the relative differences in trajectory-level lengths and turn-level response lengths conditioned on successful trajectories sampled for the same task. Within the group-relative optimization structure, this enables agents to actively learn generalizable and deliberate behaviors spanning interaction planning and textual generation from high-quality rollouts, without degenerating into vanilla length minimization. Experimentally, PlanPO improves over GRPO by 27.2\\% on average across the challenging multi-turn benchmarks ALFWorld, WebShop, and SciWorld, outperforming recent powerful baselines while incurring negligible additional training cost.",
+      "authors": [
+        "Dayang Liang",
+        "Liyuan He",
+        "Xuan Feng",
+        "Shuxin Li",
+        "Bo An",
+        "Yunlong Liu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-18T02:39:53+00:00",
+      "link": "https://arxiv.org/pdf/2608.17289v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "RL policy optimization for multi-turn interactive agents",
+      "llm_evidence_cn": "多轮交互智能体的强化学习策略优化",
+      "llm_evidence": "多轮交互智能体的强化学习策略优化",
+      "canonical_evidence": "多轮交互智能体的强化学习策略优化",
+      "llm_tldr_en": "Proposes PlanPO, an RL method for multi-turn agentic LLMs that introduces coarse-to-fine advantage signals to distinguish trajectory efficiency, improving planning ability and avoiding advantage collapse.",
+      "llm_tldr_cn": "针对群组相对策略优化中轨迹效率差异无法区分的优势塌陷问题，提出PlanPO方法，引入由粗到细的优势信号以学习可泛化的规划能力。实验在多轮交互任务中验证了其避免迂回成功、提升策略质量的有效性。该方法可作为训练游戏AI智能体的通用强化学习技术。",
+      "llm_tldr": "针对群组相对策略优化中轨迹效率差异无法区分的优势塌陷问题，提出PlanPO方法，引入由粗到细的优势信号以学习可泛化的规划能力。实验在多轮交互任务中验证了其避免迂回成功、提升策略质量的有效性。该方法可作为训练游戏AI智能体的通用强化学习技术。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.18827v1",
+      "source": "arxiv",
+      "title": "MLREF: Efficient Module Reuse for Reward Design in Reinforcement Learning via Large Language Models",
+      "abstract": "Reward function design remains a bottleneck in reinforcement learning. While large language models (LLMs) have enabled automated reward generation, existing methods generate and revise reward functions as monolithic programs, making it difficult to reliably preserve and reuse effective components discovered in earlier iterations, leading to unstable performance across iterations. To address this, we propose Module Level Reward Evolution Framework (MLREF). At the core of MLREF is a module pool, a persistent repository of reusable reward components. MLREF treats the module pool as the primary optimization object: the pool evolves across iterations by accumulating successful modules, refining underperforming ones, and reusing proven components; while reward functions are constructed as linear combinations of modules drawn from this pool. To drive this evolution, MLREF integrates three mechanisms: reflection-based refinement, hybrid credit assignment, and a merge strategy with rollback, which together improve the effectiveness and robustness of reward optimization. Experiments on 17 tasks show that MLREF outperforms strong baselines by 25.2% in locomotion and 6.6% in manipulation, with more stable optimization dynamics.",
+      "authors": [
+        "Chenglin Liu",
+        "Xun Wang",
+        "Ruishuo Chen",
+        "Zhuoran Li",
+        "Longbo Huang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-19T11:36:55+00:00",
+      "link": "https://arxiv.org/pdf/2608.18827v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLM-driven modular reward evolution for RL, applicable to game AI reward design",
+      "llm_evidence_cn": "LLM驱动的模块化奖励进化用于RL，可应用于游戏AI奖励设计",
+      "llm_evidence": "LLM驱动的模块化奖励进化用于RL，可应用于游戏AI奖励设计",
+      "canonical_evidence": "LLM驱动的模块化奖励进化用于RL，可应用于游戏AI奖励设计",
+      "llm_tldr_en": "Proposes MLREF, a module pool approach that evolves reusable reward components via LLMs, addressing monolithic reward generation instability; useful for game AI reward engineering.",
+      "llm_tldr_cn": "该论文针对现有LLM自动生成奖励函数时以整体程序方式修改导致难以复用有效组件、性能不稳定的问题，提出模块级奖励进化框架MLREF。MLREF维护一个可复用奖励组件池，通过跨迭代累积成功模块、优化欠佳模块和复用组件来逐步进化。该方法有望提升奖励设计的稳定性和效率，对游戏AI中的奖励工程具有借鉴价值。",
+      "llm_tldr": "该论文针对现有LLM自动生成奖励函数时以整体程序方式修改导致难以复用有效组件、性能不稳定的问题，提出模块级奖励进化框架MLREF。MLREF维护一个可复用奖励组件池，通过跨迭代累积成功模块、优化欠佳模块和复用组件来逐步进化。该方法有望提升奖励设计的稳定性和效率，对游戏AI中的奖励工程具有借鉴价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.19197v1",
+      "source": "arxiv",
+      "title": "SPADE: Self-Play in Adaptive Synthetic Executable Environments",
+      "abstract": "Continuous self-improvement requires an ever-expanding pool of self-generated, diverse, adaptive goals. For language agents, existing training environment pools (hand-curated, statically synthesized, or frozen-verifier) keep the goal distribution fixed as the learner scales. We introduce SPADE (Self-Play in Adaptive Synthetic Executable Environments), a self-play RL framework in which a single LLM plays two roles: an Environment Designer that writes complete, long-horizon training environments as executable code with an OpenAI Gym-style reset()/step() interface, and a Reasoning Agent that learns to act in them. Each is a stateful, multi-turn environment (state transitions, reward functions, and verification code), so one interface spans reasoning problems and multi-step agentic tool use. The Reasoning Agent's regret is estimated using the gap between its reward with and without privileged hints; in optimizing this regret signal the Environment Designer learns to target environments at the edge of the agent's capabilities while keeping them feasible. Through extensive experimentation, we find several components critical to success: grounding the Environment Designer on documents sampled from a large pretraining corpus, and giving it an accumulated environment memory. Scaling to 30B-parameter models, SPADE improves over the strongest fixed-environment baseline by +5.3 on average across eight held-out math, science, code, and reasoning benchmarks, and lifts the tool-use setting by +5.7 on BFCL-v4 multi-turn and +13.9 on ACEBench-Agent; on the games setting, the margin over the strongest baseline grows with model scale. By making environment design itself a learnable component, SPADE takes a concrete step toward open-ended self-improvement.",
+      "authors": [
+        "Bo Liu",
+        "Simon Yu",
+        "Yiding Jiang",
+        "Ao Qu",
+        "Andrew Zhao",
+        "Zichen Liu",
+        "Junsu Kim",
+        "Zijian Zhou",
+        "Seungone Kim",
+        "Tongzheng Ren",
+        "Mickel Liu",
+        "Hanfei Yu",
+        "Zhaorun Chen",
+        "Weiyan Shi",
+        "Paul Pu Liang",
+        "Luke Zettlemoyer",
+        "Yejin Choi",
+        "Natasha Jaques"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-19T17:58:56+00:00",
+      "link": "https://arxiv.org/pdf/2608.19197v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "self-play RL framework for adaptive executable environments",
+      "llm_evidence_cn": "自适应可执行环境中的自博弈强化学习框架",
+      "llm_evidence": "自适应可执行环境中的自博弈强化学习框架",
+      "canonical_evidence": "自适应可执行环境中的自博弈强化学习框架",
+      "llm_tldr_en": "Introduces SPADE, a self-play RL framework where a single LLM designs executable environments and learns to act, enabling continuous generation of diverse goals for self-improvement.",
+      "llm_tldr_cn": "针对语言智能体训练环境池固定限制连续自改进的问题，提出SPADE框架，让单一LLM既设计带Gym接口的长程环境又作为推理智能体行动，实现自博弈。实验表明该方法能够持续生成多样化目标，提高智能体适应新环境的能力。这一框架可直接用于游戏AI智能体的训练环境生成与自博弈。",
+      "llm_tldr": "针对语言智能体训练环境池固定限制连续自改进的问题，提出SPADE框架，让单一LLM既设计带Gym接口的长程环境又作为推理智能体行动，实现自博弈。实验表明该方法能够持续生成多样化目标，提高智能体适应新环境的能力。这一框架可直接用于游戏AI智能体的训练环境生成与自博弈。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
