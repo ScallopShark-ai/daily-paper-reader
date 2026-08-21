@@ -6,8 +6,8 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-20
-- 运行时间：2026-08-20 20:46:22 UTC
+- 最新运行日期：2026-08-21
+- 运行时间：2026-08-21 20:27:07 UTC
 - 运行状态：成功
 - 本次总论文数：5
 - 精读区：0
@@ -15,29 +15,29 @@
 
 ### 今日简报（AI）
 - 今日共生成 5 篇推荐（精读 0 篇，速读 5 篇）
-- 速读：《RoboStriker: Latent-Space Strategic Games for Autonomous Humanoid Boxing》（7.0/10）, 《PlanPO: Group Planning-Aware Policy Optimization for Multi-Turn Agentic LLMs》（7.0/10）, 《SPADE: Self-Play in Adaptive Synthetic Executable Environments》（7.0/10）
+- 速读：《From Passive Delegates to Strategic Negotiators: Reinforcing Social Reasoning in Small Language Models with SocialRL》（7.0/10）, 《When Stories Evolve: Benchmarking LLM Storytelling Across Agent Architectures in Open-Ended World Simulations》（7.0/10）, 《Policy-Invariant Reward Shaping from LLM Feedback: A Framework for Hybrid RL Agents》（7.0/10）
 - 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202608/20/README](/202608/20/README)
+- 详情：[/202608/21/README](/202608/21/README)
 
 ### 精读区论文标签
 - 本次无精读推荐。
 
 ### 速读区论文标签
-1. [RoboStriker: Latent-Space Strategic Games for Autonomous Humanoid Boxing](/202608/20/2608.16195v1-robostriker-latent-space-strategic-games-for-autonomous-humanoid-boxing)  
+1. [From Passive Delegates to Strategic Negotiators: Reinforcing Social Reasoning in Small Language Models with SocialRL](/202608/21/2608.13787v1-from-passive-delegates-to-strategic-negotiators-reinforcing-social-reasoning-in-small-language-models-with-socialrl)  
    标签：评分：7.0/10、query:gah
-   evidence：将自主人形拳击表述为零和博弈并用多智能体RL求解
-2. [PlanPO: Group Planning-Aware Policy Optimization for Multi-Turn Agentic LLMs](/202608/20/2608.17289v1-planpo-group-planning-aware-policy-optimization-for-multi-turn-agentic-llms)  
+   evidence：使用强化学习训练参与谈判游戏的智能体
+2. [When Stories Evolve: Benchmarking LLM Storytelling Across Agent Architectures in Open-Ended World Simulations](/202608/21/2608.15654v1-when-stories-evolve-benchmarking-llm-storytelling-across-agent-architectures-in-open-ended-world-simulations)  
    标签：评分：7.0/10、query:gah
-   evidence：多轮交互智能体的强化学习策略优化
-3. [SPADE: Self-Play in Adaptive Synthetic Executable Environments](/202608/20/2608.19197v1-spade-self-play-in-adaptive-synthetic-executable-environments)  
+   evidence：开放式世界模拟与AI原生游戏中LLM叙事基准
+3. [Policy-Invariant Reward Shaping from LLM Feedback: A Framework for Hybrid RL Agents](/202608/21/2608.18008v1-policy-invariant-reward-shaping-from-llm-feedback-a-framework-for-hybrid-rl-agents)  
    标签：评分：7.0/10、query:gah
-   evidence：自适应可执行环境中的自博弈强化学习框架
-4. [Q-Learning With World Models](/202608/20/2608.17163v1-q-learning-with-world-models)  
+   evidence：使用LLM反馈进行奖励塑形以训练RL智能体
+4. [SAPO: Single-Rollout Autoregressive Policy Optimization for Agentic Reinforcement Learning](/202608/21/2608.19842v1-sapo-single-rollout-autoregressive-policy-optimization-for-agentic-reinforcement-learning)  
+   标签：评分：7.0/10、query:gah
+   evidence：提出用于长程智能体任务的强化学习策略优化方法
+5. [ARC: Fair Relative Advantage Comparison in Open-Ended Real-World Interaction](/202608/21/2608.13622v1-arc-fair-relative-advantage-comparison-in-open-ended-real-world-interaction)  
    标签：评分：6.0/10、query:gah
-   evidence：基于世界模型的Q学习提升样本效率，可迁移至游戏智能体
-5. [MLREF: Efficient Module Reuse for Reward Design in Reinforcement Learning via Large Language Models](/202608/20/2608.18827v1-mlref-efficient-module-reuse-for-reward-design-in-reinforcement-learning-via-large-language-models)  
-   标签：评分：6.0/10、query:gah
-   evidence：LLM驱动的模块化奖励进化用于RL，可应用于游戏AI奖励设计
+   evidence：针对开放式交互的公平优势比较的RL训练方法
 
 
 <div class="dpr-home-promo-card">

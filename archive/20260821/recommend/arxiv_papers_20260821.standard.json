@@ -1,0 +1,220 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-21T20:22:38.665803+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.13787v1",
+      "source": "arxiv",
+      "title": "From Passive Delegates to Strategic Negotiators: Reinforcing Social Reasoning in Small Language Models with SocialRL",
+      "abstract": "AI agents increasingly act on their users' behalf, handling tasks such as scheduling meetings, comparing offers, and haggling over prices. These principal-driven tasks routinely place the agent across from a counterpart (another user's agent, a seller, a recruiter) whose goals may conflict with its principal's. Yet the dispositions that make an assistant pleasant can make it a poor delegate: a friendly, helpful frontier model may disclose its principal's private information unprompted and concede at the first sign of resistance. We present SocialRL, a general recipe that trains social reasoning directly, and apply it to a 4B model across six domains: Deal-or-No-Deal, CaSiNo, Craigslist, Job Interview, Calendar, and Marketplace. Every domain is trained in-domain under the same recipe, and every policy is evaluated on all six. We find that (1) in-domain training reaches the frontier: on held-out scenarios the 4B matches or exceeds the GPT-5 family per domain, closing 73-122% of the baseline-to-frontier gap on the negotiation games, with 78% of buyer openings anchoring below target versus 3% untrained; (2) cross-domain transfer follows game structure: structurally paired games lift each other, a broad multi-issue donor lifts nearly all domains, and structurally isolated games transfer nothing; (3) guided by this transfer structure, two strategies, cascade RL and multi-teacher on-policy distillation (OPD), consolidate the per-domain specialists into a single unified 4B that reaches 0.627 average utility across all six environments, matching or exceeding GPT-4.1 (0.625), GPT-5.1 (0.619), and GPT-5.2 (0.613); (4) an explicit theory-of-mind scaffold helps only through training: distilling the ToM trace, rather than actions alone, lifts utility on every environment and generalizes better across them, and of the two ToM skills, only next-action prediction predicts negotiation outcomes.",
+      "authors": [
+        "Wenyue Hua",
+        "Zachary Huang",
+        "Tyler Payne",
+        "Safoora Yousefi",
+        "Saleema Amershi",
+        "Asli Celikyilmaz"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-08-13T21:39:12+00:00",
+      "link": "https://arxiv.org/pdf/2608.13787v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses RL to train agents in negotiation games like Deal-or-No-Deal",
+      "llm_evidence_cn": "使用强化学习训练参与谈判游戏的智能体",
+      "llm_evidence": "使用强化学习训练参与谈判游戏的智能体",
+      "canonical_evidence": "使用强化学习训练参与谈判游戏的智能体",
+      "llm_tldr_en": "SocialRL trains small language models with reinforcement learning to improve social reasoning in negotiation games, outperforming passive baselines.",
+      "llm_tldr_cn": "针对小型语言模型在代表用户进行谈判等博弈任务时缺乏策略性社会推理的问题，论文提出SocialRL方法，通过强化学习直接训练社会推理能力。在Deal-or-No-Deal、CaSiNo、Craigslist等六个谈判域上对4B模型进行实验，结果表明该方法能显著提升代理的谈判表现，减少轻易让步和信息泄露。该工作为将强化学习用于训练具有人类谈判策略的游戏型智能体提供了通用方法。",
+      "llm_tldr": "针对小型语言模型在代表用户进行谈判等博弈任务时缺乏策略性社会推理的问题，论文提出SocialRL方法，通过强化学习直接训练社会推理能力。在Deal-or-No-Deal、CaSiNo、Craigslist等六个谈判域上对4B模型进行实验，结果表明该方法能显著提升代理的谈判表现，减少轻易让步和信息泄露。该工作为将强化学习用于训练具有人类谈判策略的游戏型智能体提供了通用方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.13622v1",
+      "source": "arxiv",
+      "title": "ARC: Fair Relative Advantage Comparison in Open-Ended Real-World Interaction",
+      "abstract": "Open-ended real-world interaction admits multiple valid behaviors: an agent may answer directly, ask for clarification, provide progress updates, or confirm before acting. This flexibility breaks a core assumption behind group-based RL: rollouts compared within a group are no longer guaranteed to be behaviorally comparable. As a result, reward-model preferences over interaction style can distort relative advantages and steer optimization toward reward-preferred behaviors rather than context-appropriate ones. We formalize this as a \\textit{reward fairness problem} and propose \\textbf{ARC} (Advantage Regularization via Conditioning), a training recipe that restores fairer relative comparison through strategy-conditioned rollout grouping, together with hybrid rewards and entropy regularization. We study ARC in our proposed \\inter, a novel paradigm for responsive, steerable, and execution-aware user-agent interaction that decouples user-visible communication from latent reasoning and tool use. \\inter\\ also provides the annotation and distillation pipeline for constructing \\inter-86K, our strategy-annotated training corpus for supervised and RL training. Empirically, ARC substantially strengthens the core $τ/τ^2$ tool-use benchmarks, while \\inter\\ reduces time-to-first-token from 4.91s to 1.27s relative to a think-style baseline. Together, these results suggest that a central bottleneck in open-ended interactive learning is not only how agents are rewarded, but whether their behaviors are compared fairly in the first place. The ARC implementation and \\inter-86K training data will be released.",
+      "authors": [
+        "Yongqi Tong",
+        "Tan Li Hui Faith",
+        "Choy Zhen Wen Marcus",
+        "Zhou Jin",
+        "Kewei Fu",
+        "Jiang-Ming Yang",
+        "Jianshe Li",
+        "Xin Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-13T01:51:53+00:00",
+      "link": "https://arxiv.org/pdf/2608.13622v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL training recipe for fair advantage comparison in open-ended interaction",
+      "llm_evidence_cn": "针对开放式交互的公平优势比较的RL训练方法",
+      "llm_evidence": "针对开放式交互的公平优势比较的RL训练方法",
+      "canonical_evidence": "针对开放式交互的公平优势比较的RL训练方法",
+      "llm_tldr_en": "Identifies reward fairness problem in group-based RL due to behavior variability, proposes ARC to condition rollouts by strategy, restoring fair advantage comparison.",
+      "llm_tldr_cn": "针对开放世界交互中rollout行为不可比导致奖励模型偏好扭曲优化方向的问题，本文提出优势正则化（ARC）训练方法，通过策略条件化的rollout分组恢复公平的相对优势比较。实验表明该方法能避免优化被奖励偏好带偏，提升智能体在开放式环境中的策略质量。该技术可迁移至游戏AI bot的行为多样化训练。",
+      "llm_tldr": "针对开放世界交互中rollout行为不可比导致奖励模型偏好扭曲优化方向的问题，本文提出优势正则化（ARC）训练方法，通过策略条件化的rollout分组恢复公平的相对优势比较。实验表明该方法能避免优化被奖励偏好带偏，提升智能体在开放式环境中的策略质量。该技术可迁移至游戏AI bot的行为多样化训练。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.15654v1",
+      "source": "arxiv",
+      "title": "When Stories Evolve: Benchmarking LLM Storytelling Across Agent Architectures in Open-Ended World Simulations",
+      "abstract": "Large language models can write fluent stories, but open-ended storytelling requires more than local fluency. In evolving world simulations and AI-native games, models must preserve facts, relationships, causal dependencies, and character states as the world changes. We introduce WSE-bench, a process benchmark that separately evaluates sustained generation, canonical coherence, and meaningful development in dynamic LLM storytelling. Generation Coverage records the proportion of planned narrative steps produced; Consistency tracks when canon breaks; and Richness measures how meaningfully branching, player-shaped trajectories develop. Across frontier models, Consistency and Richness do not form a smooth trade-off: their empirical Pareto frontier is non-concave, with several non-dominated intermediate configurations that no positive linear weighting can select. Added structure can enrich trajectories, but it does not uniformly improve coherence and may shorten them. Model scale chiefly improves sustained generation, without producing reliable gains in canonical coherence or meaningful development. These results show that sustained generation, canonical coherence, and meaningful development are distinct and sometimes competing capacities. WSE-bench makes those dynamics visible by extending narrative evaluation from finished stories to the processes that create them.",
+      "authors": [
+        "Yuqi Chen",
+        "Sixuan Li",
+        "Yunfeng Cai",
+        "Xueai Li",
+        "Ka Man Yan",
+        "Ying Li"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-16T09:46:45+00:00",
+      "link": "https://arxiv.org/pdf/2608.15654v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "benchmark for LLM storytelling in open-ended world simulations and AI-native games",
+      "llm_evidence_cn": "开放式世界模拟与AI原生游戏中LLM叙事基准",
+      "llm_evidence": "开放式世界模拟与AI原生游戏中LLM叙事基准",
+      "canonical_evidence": "开放式世界模拟与AI原生游戏中LLM叙事基准",
+      "llm_tldr_en": "Proposes WSE-bench to evaluate LLM storytelling quality across agent architectures in evolving world simulations, focusing on generation coverage, canonical coherence, and meaningful development.",
+      "llm_tldr_cn": "针对开放式世界模拟和AI原生游戏中大语言模型叙事保持事实、关系、因果和角色状态一致性的挑战，提出WSE-bench基准，从生成覆盖率、规范一致性和有意义发展三个维度评估动态叙事，实验发现前沿模型在一致性和丰富度之间并非平滑权衡，为开发更具人类化游戏AI提供评测工具。",
+      "llm_tldr": "针对开放式世界模拟和AI原生游戏中大语言模型叙事保持事实、关系、因果和角色状态一致性的挑战，提出WSE-bench基准，从生成覆盖率、规范一致性和有意义发展三个维度评估动态叙事，实验发现前沿模型在一致性和丰富度之间并非平滑权衡，为开发更具人类化游戏AI提供评测工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.18008v1",
+      "source": "arxiv",
+      "title": "Policy-Invariant Reward Shaping from LLM Feedback: A Framework for Hybrid RL Agents",
+      "abstract": "Combining large language models with reinforcement learning is increasingly explored, yet the theoretical status of LLM-derived reward signals is often left implicit. We formalize the hybrid LLM-planner and RL-controller architecture as a Goal-Augmented Markov Decision Process and show that when the LLM per-state progress score is used as a bounded potential function, the resulting shaping term preserves the optimal policy set even when the LLM scores are inaccurate. This guarantee is stronger than what general LLM-as-reward approaches provide. We verify the result numerically on a small MDP under four potential configurations, including an adversarial one scaled to twenty times the base reward magnitude.",
+      "authors": [
+        "Christophe D. Hounwanou",
+        "John Emeka Eze",
+        "Yaé U. Gaba"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-18T16:55:46+00:00",
+      "link": "https://arxiv.org/pdf/2608.18008v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Reward shaping from LLM feedback for RL agents",
+      "llm_evidence_cn": "使用LLM反馈进行奖励塑形以训练RL智能体",
+      "llm_evidence": "使用LLM反馈进行奖励塑形以训练RL智能体",
+      "canonical_evidence": "使用LLM反馈进行奖励塑形以训练RL智能体",
+      "llm_tldr_en": "Formalizes hybrid LLM-planner/RL-controller as a goal-augmented MDP, showing that using LLM per-state progress as a bounded potential preserves optimal policies even with inaccurate scores.",
+      "llm_tldr_cn": "本文针对大型语言模型与强化学习结合的架构，将混合LLM规划器与RL控制器形式化为目标增强的马尔可夫决策过程。提出将LLM的逐状态进度评分作为有界势函数进行奖励塑形，即使在评分不准确时也能保持最优策略集不变。数值实验在多种配置下验证了该性质，包括奖励幅度放大二十倍的对抗情形，为LLM辅助的RL训练提供了理论保障。",
+      "llm_tldr": "本文针对大型语言模型与强化学习结合的架构，将混合LLM规划器与RL控制器形式化为目标增强的马尔可夫决策过程。提出将LLM的逐状态进度评分作为有界势函数进行奖励塑形，即使在评分不准确时也能保持最优策略集不变。数值实验在多种配置下验证了该性质，包括奖励幅度放大二十倍的对抗情形，为LLM辅助的RL训练提供了理论保障。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.19842v1",
+      "source": "arxiv",
+      "title": "SAPO: Single-Rollout Autoregressive Policy Optimization for Agentic Reinforcement Learning",
+      "abstract": "Agentic reinforcement learning (RL) has become a critical stage in the post-training of large language models. Existing critic-free, group-relative methods estimate policy advantages from multiple rollouts, avoiding the substantial memory overhead of conventional proximal policy optimization (PPO) and achieving strong performance on long-horizon interactive tasks. Despite their success, recent studies revealed three limitations: (1) Lack explicit value generalization and effective temporal credit assignment; (2) Suffer from potential advantage collapse in long-horizon complex tasks; (3) Require a costly trade-off between sampling budget and policy performance. In this work, we propose Single-rollout Autoregressive Policy Optimization (SAPO), a low-memory and compute-efficient framework in which the policy and value functions share a single autoregressive backbone. SAPO exploits the autoregressive structure of LLMs to produce policy and value predictions at distinct causal boundaries with shared parameters, while independently optimizing the PPO objectives and auxiliary on-policy SARSA objectives. To robustly estimate the contribution of each turn, we further introduce a trajectory-level generalized advantage estimator that combines lambda-returns with batch normalization. Experiments across ALFWorld and WebShop with Qwen2.5-1.5B/7B show that SAPO trains stably and outperforms PPO and GRPO by mean +15.1 and +12.1 percentage points, respectively, while eliminating the memory cost of a separate critic model and reducing per-iteration runtime by 33.2% over PPO.",
+      "authors": [
+        "Dayang Liang",
+        "Lang Feng",
+        "Bo An",
+        "Yunlong Liu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-20T09:43:47+00:00",
+      "link": "https://arxiv.org/pdf/2608.19842v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes RL policy optimization for long-horizon agentic tasks",
+      "llm_evidence_cn": "提出用于长程智能体任务的强化学习策略优化方法",
+      "llm_evidence": "提出用于长程智能体任务的强化学习策略优化方法",
+      "canonical_evidence": "提出用于长程智能体任务的强化学习策略优化方法",
+      "llm_tldr_en": "Addresses limitations of critic-free RL methods by proposing single-rollout autoregressive policy optimization, improving advantage estimation and credit assignment for agentic tasks.",
+      "llm_tldr_cn": "针对现有无critic、组相对方法在多rollout中估计优势存在的价值泛化缺失、优势崩塌和采样成本高等问题，本文提出单rollout自回归策略优化（SAPO）。该方法在长程交互任务中实现显式价值泛化和时间信用分配，并降低采样预算需求。实验表明其性能优于现有方法，为游戏AI等交互式智能体训练提供了更高效的RL算法。",
+      "llm_tldr": "针对现有无critic、组相对方法在多rollout中估计优势存在的价值泛化缺失、优势崩塌和采样成本高等问题，本文提出单rollout自回归策略优化（SAPO）。该方法在长程交互任务中实现显式价值泛化和时间信用分配，并降低采样预算需求。实验表明其性能优于现有方法，为游戏AI等交互式智能体训练提供了更高效的RL算法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
