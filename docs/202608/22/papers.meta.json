@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-22",
+  "date": "2026-08-22",
+  "generated_at": "2026-08-22T19:56:40",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/22/2608.17373v1-integrating-novelty-and-surprise-for-experience-prioritization-and-exploration-in-image-based-reinforcement-learning",
+      "section": "deep",
+      "title_en": "Integrating Novelty and Surprise for Experience Prioritization and Exploration in Image-Based Reinforcement Learning",
+      "authors": "Hoda Yamani, Henry Williams, Bruce A. MacDonald",
+      "date": "2026-08-18",
+      "pdf": "https://arxiv.org/pdf/2608.17373v1",
+      "score": "8.0",
+      "evidence": "在基于图像的强化学习中集成新颖性与惊讶用于经验优先和探索，适用于游戏智能体",
+      "tldr": "图像强化学习中样本效率是核心挑战，传统随机采样导致冗余更新；PER虽能重用高价值转移，但未充分整合探索信号，图像领域尤为突出。NSPER利用新颖性捕捉未充分表示的状态，并利用惊讶度揭示模型预测误差与理解缺口，实现经验优先级排序。在DeepMind Control Suite上，NSPER及NSPER+R的训练效率和收敛速度均优于现有方法。该研究将经验重放与内在奖励有机融合，为图像RL提供了更高效的探索与采样一体化方案。",
+      "tags": "query:gah",
+      "abstract_en": "Sample efficiency is a central challenge in reinforcement learning (RL), particularly in image-based domains where agents must learn from high-dimensional visual inputs. Traditional sampling often relies on random or suboptimal experience selection, leading to redundant updates and slow learning. Improving efficiency requires mechanisms that prioritize informative experiences while also encouraging effective exploration. Prioritized Experience Replay (PER) addresses part of this challenge by reusing high-value transitions, while intrinsic rewards promote the exploration of novel or uncertain states. However, their integration has not been extensively studied. This paper introduces Novelty and Surprise Prioritized Experience Replay (NSPER), which uses novelty to capture underrepresented states and surprise to expose gaps in the agent's understanding of the environment. We further extend this with NSPER+R, integrating these signals as intrinsic rewards to jointly improve replay quality and exploration. Experiments on DeepMind Control Suite tasks show that NSPER and NSPER+R improve training efficiency and convergence speed compared to existing methods in image-based RL.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
