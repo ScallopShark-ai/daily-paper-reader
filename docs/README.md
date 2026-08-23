@@ -6,26 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-22
-- 运行时间：2026-08-22 19:56:11 UTC
+- 最新运行日期：2026-08-23
+- 运行时间：2026-08-23 20:07:37 UTC
 - 运行状态：成功
-- 本次总论文数：1
-- 精读区：1
-- 速读区：0
+- 本次总论文数：2
+- 精读区：0
+- 速读区：2
 
 ### 今日简报（AI）
-- 今日共生成 1 篇推荐（精读 1 篇，速读 0 篇）
-- 精读：《Integrating Novelty and Surprise for Experience Prioritization and Exploration in Image-Based Reinforcement Learning》（8.0/10）
+- 今日共生成 2 篇推荐（精读 0 篇，速读 2 篇）
+- 速读：《Temporal Logic Guided Universal Task Representations for Reinforcement Learning》（6.0/10）, 《Repetition as Reinforcement: Enhancing Sample Efficiency via Instant Episode Repetition in Reinforcement Learning》（6.0/10）
 - 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202608/22/README](/202608/22/README)
+- 详情：[/202608/23/README](/202608/23/README)
 
 ### 精读区论文标签
-1. [Integrating Novelty and Surprise for Experience Prioritization and Exploration in Image-Based Reinforcement Learning](/202608/22/2608.17373v1-integrating-novelty-and-surprise-for-experience-prioritization-and-exploration-in-image-based-reinforcement-learning)  
-   标签：评分：8.0/10、query:gah
-   evidence：在基于图像的强化学习中集成新颖性与惊讶用于经验优先和探索，适用于游戏智能体
+- 本次无精读推荐。
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [Temporal Logic Guided Universal Task Representations for Reinforcement Learning](/202608/23/2608.15509v1-temporal-logic-guided-universal-task-representations-for-reinforcement-learning)  
+   标签：评分：6.0/10、query:gah
+   evidence：可集成到任意RL算法的通用任务表示框架
+2. [Repetition as Reinforcement: Enhancing Sample Efficiency via Instant Episode Repetition in Reinforcement Learning](/202608/23/2608.17347v1-repetition-as-reinforcement-enhancing-sample-efficiency-via-instant-episode-repetition-in-reinforcement-learning)  
+   标签：评分：6.0/10、query:gah
+   evidence：提出IER通过重复成功动作序列提升RL样本效率
 
 
 <div class="dpr-home-promo-card">
