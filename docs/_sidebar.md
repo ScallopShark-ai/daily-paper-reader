@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-08-24 <!--dpr-date:20260824-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/24/2608.18852v1-skillgate-training-in-policy-skill-selection-in-long-horizon-agents" data-sidebar-item="{&quot;title&quot;: &quot;SkillGate: Training In-Policy Skill Selection in Long-Horizon Agents&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.18852v1-skillgate-training-in-policy-skill-selection-in-long-horizon-agents&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;强化学习训练长程智能体的在策略技能选择，可迁移到游戏bot技能决策&quot;}">SkillGate: Training In-Policy Skill Selection in Long-Horizon Agents</a>
   * 2026-08-23 <!--dpr-date:20260823-->
     * 速读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/23/2608.15509v1-temporal-logic-guided-universal-task-representations-for-reinforcement-learning" data-sidebar-item="{&quot;title&quot;: &quot;Temporal Logic Guided Universal Task Representations for Reinforcement Learning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.15509v1-temporal-logic-guided-universal-task-representations-for-reinforcement-learning&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;可集成到任意RL算法的通用任务表示框架&quot;}">Temporal Logic Guided Universal Task Representations for Reinforcement Learning</a>

@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-24",
+  "date": "2026-08-24",
+  "generated_at": "2026-08-24T20:34:48",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/24/2608.18852v1-skillgate-training-in-policy-skill-selection-in-long-horizon-agents",
+      "section": "quick",
+      "title_en": "SkillGate: Training In-Policy Skill Selection in Long-Horizon Agents",
+      "authors": "Qingyao Li, Wenxiang Jiao, Shuai Shao, Kangning Zhang, Yuan Lu, Yi Guo, Weiwen Liu, Weinan Zhang, Yong Yu",
+      "date": "2026-08-19",
+      "pdf": "https://arxiv.org/pdf/2608.18852v1",
+      "score": "6.0",
+      "evidence": "强化学习训练长程智能体的在策略技能选择，可迁移到游戏bot技能决策",
+      "tldr": "长时程代理把程序性知识打包为技能并按需读取，但选择哪个技能成为策略中间决策，却缺乏训练信号。现有结果奖励RL因选择器信用饥饿，正确选择常因后续执行失败被惩罚，且随轨迹长度恶化。SkillGate将token支持划分为两个信用通道，结果信用只达执行token，动作局部优势只达技能命名token且仅正确读取为正。在五个agent基准、16候选技能下，9B策略成功率从40.8%升至53.2%，优于同预算结果奖励，并减少三分之二误导候选暴露。",
+      "tags": "query:gah",
+      "abstract_en": "Agent frameworks increasingly package procedural knowledge as skills: instruction files an agent reads on demand, while public libraries now hold thousands of them. Which skill to read has thus become a decision the policy itself makes in the middle of an episode, yet no existing signal trains it. We show that the default remedy, outcome-rewarded RL over the candidate slate, cannot teach it, for a structural reason we identify and name selector credit starvation: under a broadcast, sequence-level advantage, the few tokens that name the chosen skill carry a vanishing share of the loss, and the credit they inherit is increasingly wrong-signed as trajectories lengthen. A correct choice is punished whenever the execution after it fails, even though the choice itself is among the most valuable decisions in the trajectory. Auditing a completed run's own training artifacts confirms all three properties, each worsening monotonically with horizon. SkillGate removes the failure by construction: it partitions the token support into two disjoint credit channels, outcome credit reaching only execution tokens, and a separate action-local advantage reaching exactly the skill-naming tokens, positive only when a trajectory's single read is the correct one. On five agentic benchmarks under a 16-candidate slate, SkillGate lifts a 9B policy from 40.8% to 53.2% trial success, well ahead of the identical budget spent on outcome reward alone, while cutting exposure to misleading candidates by two thirds and reading fewer skills.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

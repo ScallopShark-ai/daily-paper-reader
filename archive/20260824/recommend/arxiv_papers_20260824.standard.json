@@ -1,0 +1,60 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-24T20:32:49.493682+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.18852v1",
+      "source": "arxiv",
+      "title": "SkillGate: Training In-Policy Skill Selection in Long-Horizon Agents",
+      "abstract": "Agent frameworks increasingly package procedural knowledge as skills: instruction files an agent reads on demand, while public libraries now hold thousands of them. Which skill to read has thus become a decision the policy itself makes in the middle of an episode, yet no existing signal trains it. We show that the default remedy, outcome-rewarded RL over the candidate slate, cannot teach it, for a structural reason we identify and name selector credit starvation: under a broadcast, sequence-level advantage, the few tokens that name the chosen skill carry a vanishing share of the loss, and the credit they inherit is increasingly wrong-signed as trajectories lengthen. A correct choice is punished whenever the execution after it fails, even though the choice itself is among the most valuable decisions in the trajectory. Auditing a completed run's own training artifacts confirms all three properties, each worsening monotonically with horizon. SkillGate removes the failure by construction: it partitions the token support into two disjoint credit channels, outcome credit reaching only execution tokens, and a separate action-local advantage reaching exactly the skill-naming tokens, positive only when a trajectory's single read is the correct one. On five agentic benchmarks under a 16-candidate slate, SkillGate lifts a 9B policy from 40.8% to 53.2% trial success, well ahead of the identical budget spent on outcome reward alone, while cutting exposure to misleading candidates by two thirds and reading fewer skills.",
+      "authors": [
+        "Qingyao Li",
+        "Wenxiang Jiao",
+        "Shuai Shao",
+        "Kangning Zhang",
+        "Yuan Lu",
+        "Yi Guo",
+        "Weiwen Liu",
+        "Weinan Zhang",
+        "Yong Yu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-19T12:24:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.18852v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL trains in-policy skill selection in long-horizon agents, applicable to game bot skill decisions",
+      "llm_evidence_cn": "强化学习训练长程智能体的在策略技能选择，可迁移到游戏bot技能决策",
+      "llm_evidence": "强化学习训练长程智能体的在策略技能选择，可迁移到游戏bot技能决策",
+      "canonical_evidence": "强化学习训练长程智能体的在策略技能选择，可迁移到游戏bot技能决策",
+      "llm_tldr_en": "The paper addresses the problem of training skill selection in long-horizon agents, showing that standard outcome-rewarded RL fails due to selector credit starvation. It proposes SkillGate, an RL method that provides in-policy signal for skill selection. Experiments demonstrate improved skill selection, making it a transferable technique for game AI bots that need to choose among skills during episodes.",
+      "llm_tldr_cn": "该论文针对长程智能体中技能选择缺乏有效训练信号的问题。作者提出SkillGate方法，通过在策略强化学习为技能选择提供奖励信号，解决传统结果奖励强化学习中技能选择令牌信用分配不足的缺陷。实验表明该方法能有效训练智能体在长程任务中选择合适技能。这一方法可迁移到游戏AI bot的技能决策训练中，有助提升bot行为水平。",
+      "llm_tldr": "该论文针对长程智能体中技能选择缺乏有效训练信号的问题。作者提出SkillGate方法，通过在策略强化学习为技能选择提供奖励信号，解决传统结果奖励强化学习中技能选择令牌信用分配不足的缺陷。实验表明该方法能有效训练智能体在长程任务中选择合适技能。这一方法可迁移到游戏AI bot的技能决策训练中，有助提升bot行为水平。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
