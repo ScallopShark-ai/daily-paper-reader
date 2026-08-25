@@ -1,0 +1,132 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-25T20:18:48.459710+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2608.21439v1",
+      "source": "arxiv",
+      "title": "WorldMind: Decoupled Game World Model for State-Aware NPC Behavior",
+      "abstract": "Game world models have recently demonstrated promising capabilities in generating visually coherent and action-controllable gameplay videos. However, non-player character (NPC) behavior in existing models is either implicitly entangled with video generation or explicitly prescribed through external control signals. Consequently, a game world model has to jointly understand the state, plan the NPC's response and render its visual outcome, limiting its ability to produce responsive and state-aware NPC behavior. The challenge lies in the lack of an explicit interface for state-grounded decision-making. To this end, we introduce WorldMind, to our knowledge the first decoupled framework for state-aware NPC behavior in game world models. WorldMind separates interactive world modeling into four layers: an Understanding Layer that constructs a compact state from generated frames; a Decision Layer that reasons over the compact state to plan the NPC's next action; a Control Layer that translates the actions into temporally aligned conditions; and a Generation Layer that synthesizes their visual outcomes. By reconnecting layers in a closed interaction loop, WorldMind grounds NPC behavior in the evolving game state. We further introduce BOSS-140K, a dataset of gameplay videos paired with rich internal game states, together with an agent that automates the collection at scale. Experiments on BOSS-140K demonstrate reliable compact state reconstruction and mechanics-grounded planning, with WorldMind preferred over the baselines in approximately 70% of pairwise comparisons for its more tactically appropriate and coherent NPC behavior. Project page: https://teawhite.cn/worldmind_projectpage/",
+      "authors": [
+        "Zhiyang Deng",
+        "Boran Zhang",
+        "Danze Chen",
+        "Yeying Jin"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-18T04:09:17+00:00",
+      "link": "https://arxiv.org/pdf/2608.21439v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Decoupled game world model for state-aware NPC behavior",
+      "llm_evidence_cn": "面向状态感知NPC行为的解耦游戏世界模型",
+      "llm_evidence": "面向状态感知NPC行为的解耦游戏世界模型",
+      "canonical_evidence": "面向状态感知NPC行为的解耦游戏世界模型",
+      "llm_tldr_en": "Introduces WorldMind, a decoupled framework separating state understanding, NPC planning, and rendering to enable responsive NPC behavior in games.",
+      "llm_tldr_cn": "现有游戏世界模型将NPC行为与视频生成耦合，难以产生状态感知的响应。该文提出WorldMind，首个解耦框架，将状态理解、NPC规划与渲染分离，提供显式接口用于状态锚定决策。实验表明该框架能产生更响应和状态感知的NPC行为。这项工作为游戏世界模型中的NPC行为生成提供了新方向。",
+      "llm_tldr": "现有游戏世界模型将NPC行为与视频生成耦合，难以产生状态感知的响应。该文提出WorldMind，首个解耦框架，将状态理解、NPC规划与渲染分离，提供显式接口用于状态锚定决策。实验表明该框架能产生更响应和状态感知的NPC行为。这项工作为游戏世界模型中的NPC行为生成提供了新方向。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.20016v1",
+      "source": "arxiv",
+      "title": "Emergence of cooperation: A reputation-modulated reinforcement learning",
+      "abstract": "Reputation is widely recognized as a key mechanism for sustaining cooperation. However, most existing game-theoretic models treat reputation primarily as an external factor that modulates payoffs, interaction structures, or strategy update rules. In many social contexts, though, reputation operates primarily as information -- it shapes how individuals interpret their own experiences and assess the behavior of others. To bridge this gap, we propose a spatial prisoner's dilemma game grounded in the reinforcement learning paradigm, in which agents equipped with Q-learning integrate both individual and social information via a locally defined reputation metric to guide their decisions. Our results reveal that reputation-modulated learning significantly promotes the emergence of cooperative behavior, and we observe a discontinuous phase transition from full cooperation to full defection as the temptation increases. Cooperation spreads through the nucleation of cooperative clusters, whereas the disintegration of these clusters drives the system into an absorbing state of complete defection. Overall, this study demonstrates that reputation facilitates cooperation not only by providing direct incentives but also by reshaping the social information landscape that agents rely on for learning and adaptation.",
+      "authors": [
+        "Chenyang Zhao",
+        "Jiqiang Zhang",
+        "Li Chen",
+        "Yong Zou"
+      ],
+      "primary_category": "physics.soc-ph",
+      "categories": [
+        "physics.soc-ph",
+        "cond-mat.dis-nn",
+        "nlin.AO",
+        "q-bio.PE",
+        "stat.ML"
+      ],
+      "published": "2026-08-20T13:27:41+00:00",
+      "link": "https://arxiv.org/pdf/2608.20016v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "spatial prisoner's dilemma game with Q-learning agents using reputation-modulated reinforcement learning",
+      "llm_evidence_cn": "空间囚徒困境游戏中Q学习代理利用声誉调制强化学习",
+      "llm_evidence": "空间囚徒困境游戏中Q学习代理利用声誉调制强化学习",
+      "canonical_evidence": "空间囚徒困境游戏中Q学习代理利用声誉调制强化学习",
+      "llm_tldr_en": "This paper studies emergence of cooperation in spatial prisoner's dilemma using reinforcement learning agents that integrate reputation as information. Q-learning agents use local reputation to guide decisions, showing reputation-modulated learning significantly promotes cooperative behavior in multi-agent games.",
+      "llm_tldr_cn": "本文针对博弈论模型中声誉多被视为外部调节因素而忽略其信息作用的问题，提出在空间囚徒困境博弈中，Q学习代理通过局部声誉度量整合个体与社会信息进行决策。实验表明，声誉调制的强化学习显著促进合作行为的涌现。该研究为使用强化学习训练游戏玩代理并研究其行为提供了新视角。",
+      "llm_tldr": "本文针对博弈论模型中声誉多被视为外部调节因素而忽略其信息作用的问题，提出在空间囚徒困境博弈中，Q学习代理通过局部声誉度量整合个体与社会信息进行决策。实验表明，声誉调制的强化学习显著促进合作行为的涌现。该研究为使用强化学习训练游戏玩代理并研究其行为提供了新视角。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.22731v1",
+      "source": "arxiv",
+      "title": "LLM-Based Selection of Incongruent Verbal and Nonverbal Behavior for Virtual Humans",
+      "abstract": "Nonverbal behavior generation systems for virtual agents often take an utterance as input and generate nonverbal behaviors that emphasize or illustrate the content of the verbal channel. However, human nonverbal behavior is shaped by more than the content of the speech. It is also influenced by speaker roles, interpersonal relationships, social context, and the cognitive and emotional states of the interactants. As a result, the nonverbal channel may reinforce, weaken, qualify, or even contradict the verbal channel. It may also reveal internal states that are hidden or only indirectly implied in speech, including emotional \"leakage\" that may be incidental to the immediate interaction. Modeling this richer relationship between verbal and nonverbal behavior is important for designing virtual agents that exhibit realistic, human-like behavior. It is especially critical in training contexts that require nuanced social interpretation, such as counseling simulations involving virtual patients. Drawing on Ekman's framework of verbal nonverbal relationships, we propose a taxonomy of categories in which mismatches between verbal and nonverbal behavior can occur. We then examine alternative approaches for realizing these behaviors using large language models, focusing on whether LLMs can select contextually appropriate mismatched verbal and nonverbal behaviors from a given dialogue and social interaction context. Finally, we evaluate the resulting behaviors in a human-subject study, assessing whether context-driven nonverbal behavior, when embodied in a virtual human, produces the intended effects on observers.",
+      "authors": [
+        "Parisa Ghanad Torshizi",
+        "Stacy Marsella"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.HC",
+        "cs.RO"
+      ],
+      "published": "2026-08-24T02:38:55+00:00",
+      "link": "https://arxiv.org/pdf/2608.22731v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "LLM selects incongruent verbal and nonverbal behavior for virtual humans, enhancing anthropomorphism",
+      "llm_evidence_cn": "使用LLM为虚拟人选择不一致的语言与非语言行为，增强拟人化表现",
+      "llm_evidence": "使用LLM为虚拟人选择不一致的语言与非语言行为，增强拟人化表现",
+      "canonical_evidence": "使用LLM为虚拟人选择不一致的语言与非语言行为，增强拟人化表现",
+      "llm_tldr_en": "This paper addresses the need to model richer verbal-nonverbal relationships in virtual humans, proposing LLM-based selection of incongruent behaviors. It aims to reflect social context and emotional leakage, moving beyond content-illustrative gestures. The approach improves human-likeness of virtual agents relevant to game AI characters.",
+      "llm_tldr_cn": "现有虚拟人非言语行为生成仅强调或解释言语内容，忽略了社会角色、人际关系和情绪状态等复杂因素。本文提出基于LLM的不一致言语与非言语行为选择方法，使非言语通道可以强化、弱化、限定甚至矛盾于言语通道，并揭示隐含情绪泄漏。该方法能显著提升虚拟智能体的人类相似度，对游戏AI角色的拟人化设计具有直接借鉴意义。",
+      "llm_tldr": "现有虚拟人非言语行为生成仅强调或解释言语内容，忽略了社会角色、人际关系和情绪状态等复杂因素。本文提出基于LLM的不一致言语与非言语行为选择方法，使非言语通道可以强化、弱化、限定甚至矛盾于言语通道，并揭示隐含情绪泄漏。该方法能显著提升虚拟智能体的人类相似度，对游戏AI角色的拟人化设计具有直接借鉴意义。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "anthropomorphism in AI game bots",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

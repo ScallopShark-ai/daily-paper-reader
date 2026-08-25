@@ -1,0 +1,54 @@
+{
+  "label": "2026-08-25",
+  "date": "2026-08-25",
+  "generated_at": "2026-08-25T20:26:05",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202608/25/2608.21439v1-worldmind-decoupled-game-world-model-for-state-aware-npc-behavior",
+      "section": "deep",
+      "title_en": "WorldMind: Decoupled Game World Model for State-Aware NPC Behavior",
+      "authors": "Zhiyang Deng, Boran Zhang, Danze Chen, Yeying Jin",
+      "date": "2026-08-18",
+      "pdf": "https://arxiv.org/pdf/2608.21439v1",
+      "score": "9.0",
+      "evidence": "面向状态感知NPC行为的解耦游戏世界模型",
+      "tldr": "现有游戏世界模型将非玩家角色行为与视频生成隐式纠缠或依赖外部控制，缺乏状态接地决策的显式接口。WorldMind提出首个解耦框架，将交互式世界建模分为理解层、决策层、控制层和生成层，闭环连接以接地演化状态。在BOSS-140K数据集上，该方法实现可靠的紧凑状态重建和机制接地规划，约70%成对比较中优于基线。WorldMind为非玩家角色行为提供显式状态接口，推动游戏世界模型产生响应性、状态感知的行为。",
+      "tags": "query:gah",
+      "abstract_en": "Game world models have recently demonstrated promising capabilities in generating visually coherent and action-controllable gameplay videos. However, non-player character (NPC) behavior in existing models is either implicitly entangled with video generation or explicitly prescribed through external control signals. Consequently, a game world model has to jointly understand the state, plan the NPC's response and render its visual outcome, limiting its ability to produce responsive and state-aware NPC behavior. The challenge lies in the lack of an explicit interface for state-grounded decision-making. To this end, we introduce WorldMind, to our knowledge the first decoupled framework for state-aware NPC behavior in game world models. WorldMind separates interactive world modeling into four layers: an Understanding Layer that constructs a compact state from generated frames; a Decision Layer that reasons over the compact state to plan the NPC's next action; a Control Layer that translates the actions into temporally aligned conditions; and a Generation Layer that synthesizes their visual outcomes. By reconnecting layers in a closed interaction loop, WorldMind grounds NPC behavior in the evolving game state. We further introduce BOSS-140K, a dataset of gameplay videos paired with rich internal game states, together with an agent that automates the collection at scale. Experiments on BOSS-140K demonstrate reliable compact state reconstruction and mechanics-grounded planning, with WorldMind preferred over the baselines in approximately 70% of pairwise comparisons for its more tactically appropriate and coherent NPC behavior. Project page: https://teawhite.cn/worldmind_projectpage/",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/25/2608.20016v1-emergence-of-cooperation-a-reputation-modulated-reinforcement-learning",
+      "section": "deep",
+      "title_en": "Emergence of cooperation: A reputation-modulated reinforcement learning",
+      "authors": "Chenyang Zhao, Jiqiang Zhang, Li Chen, Yong Zou",
+      "date": "2026-08-20",
+      "pdf": "https://arxiv.org/pdf/2608.20016v1",
+      "score": "8.0",
+      "evidence": "空间囚徒困境游戏中Q学习代理利用声誉调制强化学习",
+      "tldr": "现有模型多将声誉视为影响收益或策略更新规则的外部因素，忽略其作为社会信息塑造学习过程的作用。论文提出基于Q学习的空间囚徒困境模型，个体整合个人与社会信息，通过局部声誉指标指导决策。结果表明声誉调制学习显著促进合作，并随诱惑增大出现从全合作到全背叛的非连续相变。该工作揭示了声誉通过重塑社会信息环境而非仅靠直接激励来促进合作。",
+      "tags": "query:gah",
+      "abstract_en": "Reputation is widely recognized as a key mechanism for sustaining cooperation. However, most existing game-theoretic models treat reputation primarily as an external factor that modulates payoffs, interaction structures, or strategy update rules. In many social contexts, though, reputation operates primarily as information -- it shapes how individuals interpret their own experiences and assess the behavior of others. To bridge this gap, we propose a spatial prisoner's dilemma game grounded in the reinforcement learning paradigm, in which agents equipped with Q-learning integrate both individual and social information via a locally defined reputation metric to guide their decisions. Our results reveal that reputation-modulated learning significantly promotes the emergence of cooperative behavior, and we observe a discontinuous phase transition from full cooperation to full defection as the temptation increases. Cooperation spreads through the nucleation of cooperative clusters, whereas the disintegration of these clusters drives the system into an absorbing state of complete defection. Overall, this study demonstrates that reputation facilitates cooperation not only by providing direct incentives but also by reshaping the social information landscape that agents rely on for learning and adaptation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/25/2608.22731v1-llm-based-selection-of-incongruent-verbal-and-nonverbal-behavior-for-virtual-humans",
+      "section": "deep",
+      "title_en": "LLM-Based Selection of Incongruent Verbal and Nonverbal Behavior for Virtual Humans",
+      "authors": "Parisa Ghanad Torshizi, Stacy Marsella",
+      "date": "2026-08-24",
+      "pdf": "https://arxiv.org/pdf/2608.22731v1",
+      "score": "8.0",
+      "evidence": "使用LLM为虚拟人选择不一致的语言与非语言行为，增强拟人化表现",
+      "tldr": "现有虚拟人非语言行为生成通常仅依据话语内容进行强调或说明，忽略了说话者角色、人际关系、社会情境以及认知与情绪状态，导致难以表现言语与非言语通道之间的不一致、矛盾甚至情绪泄露。本文基于Ekman的言语-非言语关系框架，提出一套不一致行为类别分类法，并利用大语言模型（LLM）从给定的对话和社会互动上下文中选择上下文适当的不匹配言语与非言语行为。通过在虚拟人上进行人类受试者研究，评估上下文驱动的非语言行为是否对观察者产生预期效果。该工作为咨询模拟等训练场景中设计逼真虚拟代理提供了关键技术支持。",
+      "tags": "query:gah",
+      "abstract_en": "Nonverbal behavior generation systems for virtual agents often take an utterance as input and generate nonverbal behaviors that emphasize or illustrate the content of the verbal channel. However, human nonverbal behavior is shaped by more than the content of the speech. It is also influenced by speaker roles, interpersonal relationships, social context, and the cognitive and emotional states of the interactants. As a result, the nonverbal channel may reinforce, weaken, qualify, or even contradict the verbal channel. It may also reveal internal states that are hidden or only indirectly implied in speech, including emotional \"leakage\" that may be incidental to the immediate interaction. Modeling this richer relationship between verbal and nonverbal behavior is important for designing virtual agents that exhibit realistic, human-like behavior. It is especially critical in training contexts that require nuanced social interpretation, such as counseling simulations involving virtual patients. Drawing on Ekman's framework of verbal nonverbal relationships, we propose a taxonomy of categories in which mismatches between verbal and nonverbal behavior can occur. We then examine alternative approaches for realizing these behaviors using large language models, focusing on whether LLMs can select contextually appropriate mismatched verbal and nonverbal behaviors from a given dialogue and social interaction context. Finally, we evaluate the resulting behaviors in a human-subject study, assessing whether context-driven nonverbal behavior, when embodied in a virtual human, produces the intended effects on observers.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
