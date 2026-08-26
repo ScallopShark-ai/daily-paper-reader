@@ -1,0 +1,69 @@
+{
+  "label": "2026-08-26",
+  "date": "2026-08-26",
+  "generated_at": "2026-08-26T21:42:18",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202608/26/2608.21296v1-level-k-distinguishable-mechanisms-for-evaluating-bounded-rationality-in-llms",
+      "section": "quick",
+      "title_en": "Level-k Distinguishable Mechanisms for Evaluating Bounded Rationality in LLMs",
+      "authors": "Binchi Zhang, Atrisha Sarkar",
+      "date": "2026-08-21",
+      "pdf": "https://arxiv.org/pdf/2608.21296v1",
+      "score": "7.0",
+      "evidence": "通过新颖博弈结构评估LLM战略推理，与类人游戏AI相关",
+      "tldr": "现有LLM战略推理评估依赖预训练常见经典博弈，难区分真实推理与记忆。本文提出Level-k可区分性条件，设计新博弈套件，结合思维链与行动分析递归推理和归纳推断。实验发现LLM在递归推理下各级别准确且行动与推理一致，错误在迭代深度选择而非最佳响应；归纳推断准确率大幅下降，显式战略心理化有助提升。该工作为评估LLM有限理性战略深度提供更可靠基准。",
+      "tags": "query:gah",
+      "abstract_en": "Strategic depth of reasoning is essential for human interaction of Large Language Models (LLMs) operating in boundedly rational environments. However, existing evaluations are primarily based on canonical games prevalent in pretraining corpora, making it difficult to disentangle true strategic reasoning from memorisation. To address this, we formalise a necessary level-K distinguishability condition for strategic depth inference and construct a suite of novel game structures that meet this standard. Using these games, we evaluate strategic depth in LLMs from both the Chain-of-Thought tokens and actual actions under recursive reasoning and an inductive trace of opponent game-play data. Across experimental trials spanning four LLMs, four game structures, and ten levels of iterated reasoning, we find that model models maintain accurate strategic depth under recursive reasoning, with strong internal consistency between stated reasoning and actions at every level. Errors arise from using the wrong number of iterated depth of reasoning steps, not from computing best responses incorrectly. However, inductive inference from opponent play degrades accuracy sharply and unevenly across games, and explicit strategic mentalizing in the chain of thought substantially improves overall performance.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/26/2608.23318v1-agent-g2-gaussian-guidance-for-agentic-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Agent-G$^2$: Gaussian Guidance for Agentic Reinforcement Learning",
+      "authors": "Zixuan Wang, Yanrui Miao, Zhengxi Lu, Teng Pan, Yiwen Qiu, Hongxing Li, Peng Qiu, Ruiqing Zhang, Yongliang Shen",
+      "date": "2026-08-24",
+      "pdf": "https://arxiv.org/pdf/2608.23318v1",
+      "score": "7.0",
+      "evidence": "改进长程代理任务的强化学习，可直接应用于游戏AI训练",
+      "tldr": "Hint-based 强化学习通过保留专家轨迹前缀缓解长程任务奖励稀疏，但 guidance depth 的设定是关键，现有方法要么全局固定要么需额外探测。本文发现有效 guidance depth 的 informativeness profile 近似高斯分布，提出 Agent-G^2 高斯引导框架，从在线估计的高斯分布中为每个任务采样 depth。在 ALFWorld 和 WebShop 上，Agent-G^2 以低于 per-sample probing 三分之一的 rollout 成本，在 ALFWorld 上超越最强基线 2.3-7.4 点。",
+      "tags": "query:gah",
+      "abstract_en": "Hint-based reinforcement learning addresses reward sparsity in long-horizon agentic tasks by retaining a prefix of an expert trajectory before each rollout, letting the policy explore from a state closer to success. Its effectiveness hinges on the guidance depth: how much of the trajectory to keep. Existing methods treat this depth as a deterministic scalar. Scheduled approaches share one value across samples and ignore per-task heterogeneity; per-sample probing estimates it separately at the cost of extra rollouts. We find that useful guidance occupies a band of depths whose informativeness profile is approximately Gaussian around the band center, rather than concentrating at a single optimal point. We propose Agent-G$^2$, a Gaussian guidance framework that draws the depth per task from a Gaussian whose center and spread are estimated online from rollouts already collected for policy optimization, requiring no probe rollouts or learned depth predictor. The center combines a global baseline with per-cluster difficulty, and the spread tracks within-cluster variance. We evaluate Agent-G$^2$ on ALFWorld and WebShop on Qwen2.5-1.5B / 7B-Instruct. Agent-G$^2$ outperforms the strongest hint-based, hint-free, and Aux-RL baselines on ALFWorld by 2.3 / 3.9 / 7.4 points at under one-third the rollout cost of per-sample probing.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/26/2608.22840v1-equilibrium-in-multi-agent-reinforcement-learning",
+      "section": "quick",
+      "title_en": "Equilibrium in Multi-Agent Reinforcement Learning",
+      "authors": "Maurizio D'Andrea, Bar Light",
+      "date": "2026-08-24",
+      "pdf": "https://arxiv.org/pdf/2608.22840v1",
+      "score": "6.0",
+      "evidence": "多智能体强化学习中随机博弈的新均衡概念",
+      "tldr": "随机博弈的标准解概念如马尔可夫完美均衡与粗相关均衡计算困难，去中心化强化学习算法难以收敛到它们。本文提出新解概念马尔可夫贝叶斯粗相关均衡（MBCCE）及对应后悔度量AMCR，并将实现AMCR归结为每状态外部后悔最小化和联合策略评估两个标准任务。证明了异步演员-评论家和投影策略梯度两种算法在温和条件下实现AMCR，产生近似MBCCE并得到显式收敛速率。这为多智能体强化学习提供了现实可达到的均衡刻画与算法保证。",
+      "tags": "query:gah",
+      "abstract_en": "Standard solution concepts for stochastic games, such as Markov perfect equilibrium and Markov coarse correlated equilibrium, are computationally difficult, and thus, standard decentralized reinforcement-learning algorithms should not generally be expected to converge to them. In this paper, we study the equilibrium generated by such algorithms. In particular, we introduce a new solution concept for stochastic games, Markov Bayes coarse correlated equilibrium (MBCCE), defined as a distribution over states and stationary policy profiles such that, after observing the state but before observing her recommended action, no player can gain by choosing a different current action, with the sampled policy profile governing play thereafter. We discuss the parallels between MBCCE and coarse correlated equilibrium (CCE) in finite normal-form games and show that MBCCE retains several of its key properties. We then introduce a corresponding regret notion, adaptive Markov coarse regret (AMCR), and show that vanishing AMCR implies that every accumulation point of the empirical distribution of realized states and policy profiles is an MBCCE. Crucially, we show that achieving AMCR reduces to two standard learning tasks: minimizing external regret at each state and accurately evaluating the current joint policy. We then prove that under mild conditions these properties hold for two natural RL algorithmic designs: a decentralized asynchronous actor--critic algorithm through a new two-timescale stochastic-approximation analysis, and a standard episodic multi-agent projected policy-gradient method. Hence, both algorithms generate approximate MBCCEs, and we establish explicit finite-time convergence rates for both.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/26/2608.23030v1-artificial-empathy-towards-a-framework-for-unsupervised-agency-detection-and-policy-reconstruction",
+      "section": "quick",
+      "title_en": "Artificial Empathy: Towards a Framework for Unsupervised Agency Detection and Policy Reconstruction",
+      "authors": "Peter Kuhn, Chris Pang, Sonakshi Chauhan",
+      "date": "2026-08-24",
+      "pdf": "https://arxiv.org/pdf/2608.23030v1",
+      "score": "6.0",
+      "evidence": "利用强化学习从观察中建模其他代理，与拟人游戏AI对手建模相关",
+      "tldr": "真实世界合作要求智能系统从观察中识别并建模其他智能体，但该问题比逆强化学习约束更少且探索不足。本文提出一个无监督框架，使用在独立任务上训练的强化学习智能体作为智能体动态先验，实现智能体检测与策略重建。该方法仅凭观察即可完成检测与重建，无需额外监督。该工作初步推动了人工共情能力的发展，为自主合作行为奠定关键基础。",
+      "tags": "query:gah",
+      "abstract_en": "We study how an AI system can identify and model other agents in its environment from observation alone, which is a capability necessary for cooperative behaviour in the real world. This problem is less constrained than inverse reinforcement learning and remains largely unexplored. We propose a framework that uses a reinforcement learning agent, trained on an independent task as a prior about agentic dynamics, to perform agency detection and policy reconstruction.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

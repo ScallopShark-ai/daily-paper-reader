@@ -6,32 +6,35 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-25
-- 运行时间：2026-08-25 20:25:37 UTC
+- 最新运行日期：2026-08-26
+- 运行时间：2026-08-26 21:41:51 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：3
-- 速读区：0
+- 本次总论文数：4
+- 精读区：0
+- 速读区：4
 
 ### 今日简报（AI）
-- 今日共生成 3 篇推荐（精读 3 篇，速读 0 篇）
-- 精读：《WorldMind: Decoupled Game World Model for State-Aware NPC Behavior》（9.0/10）, 《Emergence of cooperation: A reputation-modulated reinforcement learning》（8.0/10）
+- 今日共生成 4 篇推荐（精读 0 篇，速读 4 篇）
+- 速读：《Level-k Distinguishable Mechanisms for Evaluating Bounded Rationality in LLMs》（7.0/10）, 《Agent-G$^2$: Gaussian Guidance for Agentic Reinforcement Learning》（7.0/10）, 《Equilibrium in Multi-Agent Reinforcement Learning》（6.0/10）
 - 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202608/25/README](/202608/25/README)
+- 详情：[/202608/26/README](/202608/26/README)
 
 ### 精读区论文标签
-1. [WorldMind: Decoupled Game World Model for State-Aware NPC Behavior](/202608/25/2608.21439v1-worldmind-decoupled-game-world-model-for-state-aware-npc-behavior)  
-   标签：评分：9.0/10、query:gah
-   evidence：面向状态感知NPC行为的解耦游戏世界模型
-2. [Emergence of cooperation: A reputation-modulated reinforcement learning](/202608/25/2608.20016v1-emergence-of-cooperation-a-reputation-modulated-reinforcement-learning)  
-   标签：评分：8.0/10、query:gah
-   evidence：空间囚徒困境游戏中Q学习代理利用声誉调制强化学习
-3. [LLM-Based Selection of Incongruent Verbal and Nonverbal Behavior for Virtual Humans](/202608/25/2608.22731v1-llm-based-selection-of-incongruent-verbal-and-nonverbal-behavior-for-virtual-humans)  
-   标签：评分：8.0/10、query:gah
-   evidence：使用LLM为虚拟人选择不一致的语言与非语言行为，增强拟人化表现
+- 本次无精读推荐。
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [Level-k Distinguishable Mechanisms for Evaluating Bounded Rationality in LLMs](/202608/26/2608.21296v1-level-k-distinguishable-mechanisms-for-evaluating-bounded-rationality-in-llms)  
+   标签：评分：7.0/10、query:gah
+   evidence：通过新颖博弈结构评估LLM战略推理，与类人游戏AI相关
+2. [Agent-G$^2$: Gaussian Guidance for Agentic Reinforcement Learning](/202608/26/2608.23318v1-agent-g2-gaussian-guidance-for-agentic-reinforcement-learning)  
+   标签：评分：7.0/10、query:gah
+   evidence：改进长程代理任务的强化学习，可直接应用于游戏AI训练
+3. [Equilibrium in Multi-Agent Reinforcement Learning](/202608/26/2608.22840v1-equilibrium-in-multi-agent-reinforcement-learning)  
+   标签：评分：6.0/10、query:gah
+   evidence：多智能体强化学习中随机博弈的新均衡概念
+4. [Artificial Empathy: Towards a Framework for Unsupervised Agency Detection and Policy Reconstruction](/202608/26/2608.23030v1-artificial-empathy-towards-a-framework-for-unsupervised-agency-detection-and-policy-reconstruction)  
+   标签：评分：6.0/10、query:gah
+   evidence：利用强化学习从观察中建模其他代理，与拟人游戏AI对手建模相关
 
 
 <div class="dpr-home-promo-card">
