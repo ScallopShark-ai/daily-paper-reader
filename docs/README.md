@@ -6,35 +6,35 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-26
-- 运行时间：2026-08-26 21:41:51 UTC
+- 最新运行日期：2026-08-28
+- 运行时间：2026-08-28 03:46:18 UTC
 - 运行状态：成功
 - 本次总论文数：4
-- 精读区：0
-- 速读区：4
+- 精读区：1
+- 速读区：3
 
 ### 今日简报（AI）
-- 今日共生成 4 篇推荐（精读 0 篇，速读 4 篇）
-- 速读：《Level-k Distinguishable Mechanisms for Evaluating Bounded Rationality in LLMs》（7.0/10）, 《Agent-G$^2$: Gaussian Guidance for Agentic Reinforcement Learning》（7.0/10）, 《Equilibrium in Multi-Agent Reinforcement Learning》（6.0/10）
+- 今日共生成 4 篇推荐（精读 1 篇，速读 3 篇）
+- 精读：《ShuttleArena: Interpretable Self-Play in Physics-Based Badminton》（9.0/10）
+- 速读：《RTPO: Reverse-Turn Policy Optimization for Stabilizing Agentic RL Training》（7.0/10）, 《EDGE: Experience-Distillation for Guided Exploration in Agentic Reinforcement Learning》（7.0/10）, 《Disentangled Skill Representations for Predictive Human Modeling》（6.0/10）
 - 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202608/26/README](/202608/26/README)
+- 详情：[/202608/28/README](/202608/28/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [ShuttleArena: Interpretable Self-Play in Physics-Based Badminton](/202608/28/2608.25246v1-shuttlearena-interpretable-self-play-in-physics-based-badminton)  
+   标签：评分：9.0/10、query:gah
+   evidence：基于物理的羽毛球自对弈环境，用于游戏AI智能体
 
 ### 速读区论文标签
-1. [Level-k Distinguishable Mechanisms for Evaluating Bounded Rationality in LLMs](/202608/26/2608.21296v1-level-k-distinguishable-mechanisms-for-evaluating-bounded-rationality-in-llms)  
+1. [RTPO: Reverse-Turn Policy Optimization for Stabilizing Agentic RL Training](/202608/28/2608.18682v1-rtpo-reverse-turn-policy-optimization-for-stabilizing-agentic-rl-training)  
    标签：评分：7.0/10、query:gah
-   evidence：通过新颖博弈结构评估LLM战略推理，与类人游戏AI相关
-2. [Agent-G$^2$: Gaussian Guidance for Agentic Reinforcement Learning](/202608/26/2608.23318v1-agent-g2-gaussian-guidance-for-agentic-reinforcement-learning)  
+   evidence：稳定多轮 RL 训练，可用于训练游戏游玩智能体
+2. [EDGE: Experience-Distillation for Guided Exploration in Agentic Reinforcement Learning](/202608/28/2608.21946v1-edge-experience-distillation-for-guided-exploration-in-agentic-reinforcement-learning)  
    标签：评分：7.0/10、query:gah
-   evidence：改进长程代理任务的强化学习，可直接应用于游戏AI训练
-3. [Equilibrium in Multi-Agent Reinforcement Learning](/202608/26/2608.22840v1-equilibrium-in-multi-agent-reinforcement-learning)  
+   evidence：提出一种适用于包括游戏在内的智能体任务的通用 RL 探索蒸馏方法
+3. [Disentangled Skill Representations for Predictive Human Modeling](/202608/28/2608.23776v1-disentangled-skill-representations-for-predictive-human-modeling)  
    标签：评分：6.0/10、query:gah
-   evidence：多智能体强化学习中随机博弈的新均衡概念
-4. [Artificial Empathy: Towards a Framework for Unsupervised Agency Detection and Policy Reconstruction](/202608/26/2608.23030v1-artificial-empathy-towards-a-framework-for-unsupervised-agency-detection-and-policy-reconstruction)  
-   标签：评分：6.0/10、query:gah
-   evidence：利用强化学习从观察中建模其他代理，与拟人游戏AI对手建模相关
+   evidence：对人类技能进行建模以预测行为
 
 
 <div class="dpr-home-promo-card">

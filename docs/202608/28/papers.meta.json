@@ -1,0 +1,69 @@
+{
+  "label": "2026-08-28",
+  "date": "2026-08-28",
+  "generated_at": "2026-08-28T03:46:26",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202608/28/2608.25246v1-shuttlearena-interpretable-self-play-in-physics-based-badminton",
+      "section": "deep",
+      "title_en": "ShuttleArena: Interpretable Self-Play in Physics-Based Badminton",
+      "authors": "Peize Ding",
+      "date": "2026-08-26",
+      "pdf": "https://arxiv.org/pdf/2608.25246v1",
+      "score": "9.0",
+      "evidence": "基于物理的羽毛球自对弈环境，用于游戏AI智能体",
+      "tldr": "该论文针对羽毛球游戏中击球选择和回位耦合导致决策困难的问题，提出可解释的自对弈物理环境ShuttleArena。环境耦合连续羽毛球飞行、球员拦截、结构化击球生成和击球后回位，策略采用角色条件输出。通过自对弈训练，智能体能够学习在对手响应下最优的击球与回位策略。该工作为体育类视频游戏AI提供了紧凑且具有挑战性的训练平台和研究基准。",
+      "tags": "query:gah",
+      "abstract_en": "Badminton is a compact but challenging domain for game AI: a player must choose a physically feasible shuttle trajectory, anticipate the opponent's interception, and recover to a court position whose value depends on the opponent's next response. The central challenge is that shot selection and recovery are not separable: the best recovery depends on the shot-induced opponent response, while the value of the shot depends on whether the hitter can cover the reply. This paper presents ShuttleArena, a physics-based singles badminton self-play environment that couples continuous shuttle flight, player interception, structured shot generation, and post-shot recovery. The policy uses role-conditioned outputs: a masked interception choice on receiver turns and a factorized hitter action over shot azimuth, shot elevation, shot speed, and recovery target, enabling interpretable tactical probes. Episodes are single rallies rather than full scored games, and training uses Proximal Policy Optimization (PPO) self-play against a staged checkpoint opponent pool with sparse terminal rally-outcome rewards and a factor-specific recovery update. Evaluation with frozen checkpoint play, controlled tactical probes, recovery ablations, qualitative rollouts, and a human-data sanity check shows competitive improvement together with interpretable opponent-conditioned changes in shot geometry and recovery behavior. The learned policies produce recognizable badminton-like structure while also reflecting the abstractions of the simulator, and the recovery intervention shows that learned recovery behavior is competitively important. These results suggest that physics-based racket sports are a useful testbed for interactive digital entertainment AI because they require agents to coordinate execution, positioning, and opponent-relative tactical value.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/28/2608.18682v1-rtpo-reverse-turn-policy-optimization-for-stabilizing-agentic-rl-training",
+      "section": "quick",
+      "title_en": "RTPO: Reverse-Turn Policy Optimization for Stabilizing Agentic RL Training",
+      "authors": "Yugu Li, Jimmy Cao, Jianglin Qiao, Siyi Hu",
+      "date": "2026-08-19",
+      "pdf": "https://arxiv.org/pdf/2608.18682v1",
+      "score": "7.0",
+      "evidence": "稳定多轮 RL 训练，可用于训练游戏游玩智能体",
+      "tldr": "针对多轮智能体强化学习训练不稳定问题，从理论分析揭示三个耦合的不稳定性来源。提出 RTPO 方法，通过逆序策略优化改善信用分配和策略漂移。实验显示能显著缓解长轨迹下的性能退化。该技术对训练基于 RL 的游戏 AI 具有重要意义。",
+      "tags": "query:gah",
+      "abstract_en": "Training multi-turn agentic workflows with reinforcement learning (RL) enables large language models to perform complex reasoning, use external tools, and conduct iterative search beyond single-turn settings. Yet multi-turn RL training remains highly unstable, often causing severe performance degradation as the number of turns increases. Through theoretical analysis, we identify three tightly coupled sources of instability: rollout-training context mismatch, weak turn-level credit assignment under sparse terminal rewards, and asynchronous policy drift when short and long trajectories are optimized under different policy versions. We show that these issues share a common structural origin in flattened trajectory optimization and address them through a unified reverse-turn formulation. We propose Reverse-Turn Policy Optimization (RTPO), which organizes multi-turn rollouts as sparse reverse trees and performs turn-level policy updates in temporal reverse order, aligning each decision with its downstream continuation. RTPO enables causally consistent turn-level credit assignment and on-policy continuation to control asynchronous drift. We provide theoretical guarantees showing that RTPO eliminates context mismatch and asynchronous drift under the proposed turn-level formulation, reduces credit bias, and converges to recursive optimality. Experiments on multi-turn agentic RL benchmarks show that RTPO improves upon trajectory- and turn-level baselines by 21.50% and 10.76%, respectively, highlighting its potential to support more stable training for tool-using agents.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/28/2608.21946v1-edge-experience-distillation-for-guided-exploration-in-agentic-reinforcement-learning",
+      "section": "quick",
+      "title_en": "EDGE: Experience-Distillation for Guided Exploration in Agentic Reinforcement Learning",
+      "authors": "Can Xie, Yuyi Zhou, Wen Yang, Ziyi zhang, Siyao Song, Yingzhuo Deng, Shuo Ren, Jiajun Zhang",
+      "date": "2026-08-22",
+      "pdf": "https://arxiv.org/pdf/2608.21946v1",
+      "score": "7.0",
+      "evidence": "提出一种适用于包括游戏在内的智能体任务的通用 RL 探索蒸馏方法",
+      "tldr": "解决智能体强化学习中经验仅用一次、策略能力变化被忽视的问题。提出 EDGE 框架，将检索经验作为训练时的临时脚手架并逐步内化到参数策略中。实验表明该方法能提升智能体在长时程任务中的探索效率和最终性能。该技术可迁移到游戏 AI 的训练中。",
+      "tags": "query:gah",
+      "abstract_en": "Reinforcement learning with outcome-based objectives such as GRPO enables LLM-based agents to solve complex, long-horizon tasks, yet the reusable exploration patterns embedded in interaction trajectories are largely discarded after a single policy update. Existing experience-augmented approaches retrieve historical guidance at inference time, but they apply experiences without accounting for the policy's evolving capability and create persistent dependencies on external retrieval. We propose EDGE (Experience-Distillation for Guided Exploration), a framework that treats retrieved experiences as temporary training-time scaffolds and progressively internalizes their benefits into the parametric policy. Concretely, EDGE partitions each rollout group into experience-conditioned and experience-free trajectories to estimate and admit only positive marginal gains without extra sampling, then distills the induced behavior into the base policy via a reverse-KL objective on its own empirical support. A co-evolutionary experience bank further synthesizes guidance from emerging failure modes and prunes obsolete entries as the policy evolves. On ALFWorld and WebShop, EDGE improves over GRPO by 8.3 and 12.5 success-rate points at the 7B scale and retains 96.0% of its scaffolded performance when external experiences are removed at inference time. The code is available at https://github.com/xvolcano02/EDGE.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/28/2608.23776v1-disentangled-skill-representations-for-predictive-human-modeling",
+      "section": "quick",
+      "title_en": "Disentangled Skill Representations for Predictive Human Modeling",
+      "authors": "Mariah Schrum, Deepak Gopinath, Srijan Srivatsa, Guy Rosman, Tiffany Chen",
+      "date": "2026-08-24",
+      "pdf": "https://arxiv.org/pdf/2608.23776v1",
+      "score": "6.0",
+      "evidence": "对人类技能进行建模以预测行为",
+      "tldr": "该论文针对人类技能建模中技能是持久、组合且基于行为的构念但难以从单次观察推断的问题，提出SAIL方法。SAIL从自然行为中学习可解释的多维技能嵌入，对瞬时性能波动鲁棒，并能学习可迁移的子技能表示。该方法支持技能感知的行为预测，在多个领域内情境中具有泛化能力，为设计更人性化的AI系统提供了基础。",
+      "tags": "query:gah",
+      "abstract_en": "Understanding human skill is important for AI systems that collaborate with, coach, or assist people. Unlike typical latent variable estimation problems which rely on single observations, skill is a persistent, compositional, and behaviorally grounded construct that must be inferred from patterns over time. We introduce Skill Abstraction with Interpretable Latents (SAIL), a method for modeling human skill as an interpretable, multi-dimensional construct inferred from naturalistic behavior. Our approach produces a skill embedding that is robust to transient performance fluctuations and learns a transferable representation of human subskills. Furthermore, SAIL supports skill-informed behavior prediction that generalizes across a variety of in-domain contexts. We represent each individual with a persistent skill embedding that controls a blend between expert and novice bases and is trained using counterfactual subskill swaps for disentanglement. This design encourages representations that are both robust to performance variation and structured for interpretability. We demonstrate across racing and baseball that SAIL achieves strong predictive performance and consistently improves behaviorally grounded disentanglement over the evaluated baselines, while also improving downstream AI coaching performance.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
