@@ -1,0 +1,499 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-08T22:41:29.031949+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 6,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2609.01549v1",
+      "source": "arxiv",
+      "title": "NashDreamer: Model-Based Reinforcement Learning for Zero-Sum Imperfect-Information Games",
+      "abstract": "Model-based reinforcement learning (MBRL) has achieved remarkable results in single-agent domains, yet its extension to competitive imperfect information games (IIGs) remains underexplored. In multi-agent settings, opponent-induced non-stationarity complicates the learning process, and decentralized model learning faces severe identifiability barriers, which we argue make centralized model learning a mathematical necessity. Building on this analysis, we propose NashDreamer, a principled MBRL framework for two-player zero-sum IIGs. It introduces a centralized Multi-Agent Recurrent State-Space Model (MARSSM) that decouples environment dynamics from the effect of players' strategies on their individual observations. NashDreamer is designed to use arbitrary policy gradient algorithms and inherits their convergence guarantees towards Nash equilibria under an idealized model. Empirical evaluations across four benchmark games demonstrate that NashDreamer substantially improves sample efficiency over model-free baselines early in the training. Finally, we theoretically analyze the architecture's optimization landscape, identifying the vulnerability of the Dreamer family of algorithms to posterior collapse in stochastic environments. We leave it as an open challenge.",
+      "authors": [
+        "Tomáš Holeček",
+        "Viliam Lisý"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-09-01T17:15:41+00:00",
+      "link": "https://arxiv.org/pdf/2609.01549v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "model-based reinforcement learning for zero-sum imperfect-information games",
+      "llm_evidence_cn": "零和不完美信息博弈的基于模型强化学习",
+      "llm_evidence": "零和不完美信息博弈的基于模型强化学习",
+      "canonical_evidence": "零和不完美信息博弈的基于模型强化学习",
+      "llm_tldr_en": "Proposes NashDreamer, a model-based RL framework for two-player zero-sum imperfect-information games using a centralized multi-agent recurrent state-space model to decouple dynamics from strategies.",
+      "llm_tldr_cn": "针对基于模型的强化学习难以应用于竞争性不完美信息博弈的问题，提出NashDreamer框架，采用中心化多代理循环状态空间模型解耦环境动态与玩家策略，从数学上论证中心化模型学习的必要性，为两人零和不完美信息博弈提供原则性MBRL方法，实验结果验证了其有效性。",
+      "llm_tldr": "针对基于模型的强化学习难以应用于竞争性不完美信息博弈的问题，提出NashDreamer框架，采用中心化多代理循环状态空间模型解耦环境动态与玩家策略，从数学上论证中心化模型学习的必要性，为两人零和不完美信息博弈提供原则性MBRL方法，实验结果验证了其有效性。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.03660v1",
+      "source": "arxiv",
+      "title": "Local Updates, Global Learning (LUGL): Playing Games with non-incremental Learners",
+      "abstract": "The dominance of Neural Networks (NNs) in RL is partially due to their incremental learning capability, which naturally suits the online, non-stationary nature of self-play training. However, gradient-boosted trees like LightGBM are widely recognised as the state of the art for tabular data in supervised learning, often outperforming NNs in accuracy and efficiency. Game states are inherently tabular---discrete actions, categorical card identities, structured board positions---which makes them an ideal candidate for tree-based methods. We introduce LUGL (Local Updates, Global Learning), a framework that decouples data collection from model fitting, enabling non-incremental learners such as GBTs to operate in RL settings where they would otherwise fail due to distributional shift. LUGL alternates between a local updates phase, where the agent plays self-play games and accumulates tabular updates (Q-values, V-values, policies, or regret values) in a finite table, and a global learning phase, where the table is used to train a function approximator that generalises to unseen states before the table is reset. We test our approach in four standard perfect-information games (Tic-tac-toe, Connect-4, Othello, and Hex) and five imperfect-information games (Kuhn's poker, Leduc Hold'em, Liar's Dice, Goofspiel, and Flop5 Hold'em), and show that our results are competitive with or superior to DQN and DeepCFR. Our experiments demonstrate that the community's strong bias towards NNs in game-playing may be unwarranted, since LightGBM-based agents achieve competitive or superior performance across all tested benchmarks.",
+      "authors": [
+        "David Milec",
+        "Spyridon Samothrakis",
+        "Michael Fairbank",
+        "Dennis J. N. J. Soemers"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-09-03T10:58:09+00:00",
+      "link": "https://arxiv.org/pdf/2609.03660v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Introduces LUGL to use non-incremental learners (GBTs) in RL for playing games.",
+      "llm_evidence_cn": "提出LUGL框架，在游戏强化学习中使用非增量学习器（梯度提升树）。",
+      "llm_evidence": "提出LUGL框架，在游戏强化学习中使用非增量学习器（梯度提升树）。",
+      "canonical_evidence": "提出LUGL框架，在游戏强化学习中使用非增量学习器（梯度提升树）。",
+      "llm_tldr_en": "Proposes LUGL, a framework that decouples data collection from model fitting, enabling non-incremental learners like gradient-boosted trees to be used in reinforcement learning for games, where they can outperform neural networks on tabular game states.",
+      "llm_tldr_cn": "针对神经网络在强化学习中占主导但非增量学习器难以应用的局限，提出LUGL框架，将数据收集与模型拟合解耦，使梯度提升树等非增量学习器能够用于游戏强化学习环境。实验表明该方法在表格型游戏状态上可能优于神经网络，为游戏AI训练提供了新选择。",
+      "llm_tldr": "针对神经网络在强化学习中占主导但非增量学习器难以应用的局限，提出LUGL框架，将数据收集与模型拟合解耦，使梯度提升树等非增量学习器能够用于游戏强化学习环境。实验表明该方法在表格型游戏状态上可能优于神经网络，为游戏AI训练提供了新选择。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.30635v1",
+      "source": "arxiv",
+      "title": "Test-time Reinforcement Learning in Imperfect Information Games",
+      "abstract": "Test-time reasoning has significantly improved performance in domains ranging from games to language models. However, test-time policy changes with formal guarantees on the performance of the resulting strategy remain a challenge in two-player zero-sum imperfect-information games. Existing solutions are limited to tabular methods or single gradient step updates. In this work, we investigate policy-gradient algorithms as a method for scalable test-time reasoning. We extend the concept of gadget game, tabular technique for test-time search, to the reinforcement learning setting. Unlike prior approaches, we represent the gadget game implicitly by modified sampling and neural policy rather then explicitly by constructing it, thereby removing constraints on subgame size. Furthermore, we formally prove that, unlike prior tabular algorithms, regularized policy-gradient algorithms limit possible strategy degradation caused by test-time reasoning, even without the gadget games. Our evaluation across small- and large-scale games confirms that additional test-time training often substantially improves performance relative to the blueprint strategy.",
+      "authors": [
+        "Ondrej Kubicek",
+        "Viliam Lisy",
+        "Tuomas Sandholm"
+      ],
+      "primary_category": "cs.GT",
+      "categories": [
+        "cs.GT"
+      ],
+      "published": "2026-08-31T11:44:15+00:00",
+      "link": "https://arxiv.org/pdf/2608.30635v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Policy-gradient test-time RL for imperfect information games, directly relevant to RL game AI training.",
+      "llm_evidence_cn": "不完全信息博弈中测试时强化学习的策略梯度方法，直接相关于游戏AI的强化学习训练。",
+      "llm_evidence": "不完全信息博弈中测试时强化学习的策略梯度方法，直接相关于游戏AI的强化学习训练。",
+      "canonical_evidence": "不完全信息博弈中测试时强化学习的策略梯度方法，直接相关于游戏AI的强化学习训练。",
+      "llm_tldr_en": "Extends test-time search to reinforcement learning for imperfect information games using implicit gadget game representation, enabling scalable policy-gradient algorithms with formal guarantees.",
+      "llm_tldr_cn": "针对双人零和不完全信息博弈中测试时策略更新的可扩展性与保证问题，提出基于策略梯度的测试时强化学习方法。通过隐式表示gadget game，克服了表格法和单步更新的限制，支持神经网络策略和修改采样。该方法为不完全信息游戏AI提供了一种可扩展的测试时推理途径，可能提升策略性能。",
+      "llm_tldr": "针对双人零和不完全信息博弈中测试时策略更新的可扩展性与保证问题，提出基于策略梯度的测试时强化学习方法。通过隐式表示gadget game，克服了表格法和单步更新的限制，支持神经网络策略和修改采样。该方法为不完全信息游戏AI提供了一种可扩展的测试时推理途径，可能提升策略性能。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.03122v1",
+      "source": "arxiv",
+      "title": "Turn-Based Combat Arena: A New Framework for Multiagent Training and Game Balancing",
+      "abstract": "This paper is the first in a series on Turn-Based Combat Arena, a configurable framework for turn-based strategy games designed to support the efficient training and evaluation of machine learning agents. The proposed framework enables flexible modification of game rules and parameters, allowing rapid experimentation across diverse scenarios. Its architecture is optimized for high-throughput simulation, supporting tens of thousands of games per second and enabling the storage and processing of billions of gameplay records on a single machine. The problem of balancing the game, and particularly the parameters of game units, is investigated in detail. We evaluate several optimization approaches and show that multiple methods converge to comparable solutions, suggesting robustness in identifying balanced game configurations. These results indicate that the framework can serve as a practical platform for both game design analysis and agent training.",
+      "authors": [
+        "V. M. Vasyuta",
+        "V. V. Malitskyi",
+        "O. S. Kushnir",
+        "B. I. Horon",
+        "V. A. Franiv"
+      ],
+      "primary_category": "cs.GT",
+      "categories": [
+        "cs.GT"
+      ],
+      "published": "2026-09-02T20:00:41+00:00",
+      "link": "https://arxiv.org/pdf/2609.03122v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Framework for training and evaluating ML agents in turn-based strategy games, including game balancing",
+      "llm_evidence_cn": "回合制策略游戏中训练和评估机器学习智能体的框架，含游戏平衡",
+      "llm_evidence": "回合制策略游戏中训练和评估机器学习智能体的框架，含游戏平衡",
+      "canonical_evidence": "回合制策略游戏中训练和评估机器学习智能体的框架，含游戏平衡",
+      "llm_tldr_en": "Presents Turn-Based Combat Arena, a configurable framework for training and evaluating ML agents in turn-based games, supporting high-throughput simulation and game balancing.",
+      "llm_tldr_cn": "针对回合制策略游戏中机器学习智能体高效训练与评估的需求，提出可配置的Turn-Based Combat Arena框架。该框架支持灵活修改游戏规则和参数，优化高吞吐模拟，每秒可运行数万局游戏并存储处理数十亿对局记录。论文深入研究了游戏平衡问题，评估多种优化方法并显示其收敛到较优参数。该框架为游戏AI bot开发和多智能体训练提供了有力工具。",
+      "llm_tldr": "针对回合制策略游戏中机器学习智能体高效训练与评估的需求，提出可配置的Turn-Based Combat Arena框架。该框架支持灵活修改游戏规则和参数，优化高吞吐模拟，每秒可运行数万局游戏并存储处理数十亿对局记录。论文深入研究了游戏平衡问题，评估多种优化方法并显示其收敛到较优参数。该框架为游戏AI bot开发和多智能体训练提供了有力工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.00504v1",
+      "source": "arxiv",
+      "title": "Independent Reinforcement Learning in Discounted Markov Games",
+      "abstract": "In this work, we study radically uncoupled learning in discounted general-sum Markov games. Assuming ``$\\mathsf{ETH}$ for $\\mathsf{PPAD}$\", we show that, for every fixed discount factor, there is no polynomial-time algorithm for computing inverse-polynomially accurate coarse correlated equilibria in discounted general-sum Markov games when players learn independently in decentralized settings. Complementing this hardness result, we provide what appears to be the first \\emph{radically uncoupled} algorithm with sub-exponential convergence guarantees to coarse correlated equilibria in discounted general-sum Markov games without imposing any structural restrictions on the game. Our algorithm is a \\emph{layered} variant of optimistic mirror descent with an increasing step-size schedule tailored to the multi-agent setting. Finally, we develop both full-feedback and partial feedback versions of the aforementioned algorithm and establish sub-exponential convergence guarantees for each case.",
+      "authors": [
+        "Asrin Efe Yorulmaz",
+        "Ugur Aydin",
+        "Tamer Basar"
+      ],
+      "primary_category": "cs.GT",
+      "categories": [
+        "cs.GT",
+        "cs.AI",
+        "cs.LG",
+        "eess.SY",
+        "math.OC"
+      ],
+      "published": "2026-09-01T00:07:45+00:00",
+      "link": "https://arxiv.org/pdf/2609.00504v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Radically uncoupled RL algorithm for discounted general-sum Markov games",
+      "llm_evidence_cn": "针对折扣一般和马尔可夫博弈的完全去耦合强化学习算法",
+      "llm_evidence": "针对折扣一般和马尔可夫博弈的完全去耦合强化学习算法",
+      "canonical_evidence": "针对折扣一般和马尔可夫博弈的完全去耦合强化学习算法",
+      "llm_tldr_en": "Studies independent RL in discounted Markov games, proving hardness of computing CCE and providing first radically uncoupled algorithm with sub-exponential convergence.",
+      "llm_tldr_cn": "针对折扣一般和马尔可夫博弈中的独立学习问题，证明计算粗相关均衡的多项式时间算法在ETH假设下不存在，并提出首个完全去耦合的乐观镜像下降分层变体，实现次指数收敛。",
+      "llm_tldr": "针对折扣一般和马尔可夫博弈中的独立学习问题，证明计算粗相关均衡的多项式时间算法在ETH假设下不存在，并提出首个完全去耦合的乐观镜像下降分层变体，实现次指数收敛。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.02459v1",
+      "source": "arxiv",
+      "title": "CivBench: A Long-Horizon Benchmark for Tool-Mediated Agents in Civilization VI",
+      "abstract": "We present CivBench, an open-source benchmark for evaluating language model agents in long-horizon, tool-mediated environments through the Model Context Protocol (MCP). A single episode spans 300+ turns and produces thousands of tool calls over a large action space, requiring sustained planning, state monitoring, and execution under partial observability. The environment exposes 76 MCP tools and a narration layer that converts visual game state into structured text.   We use CivBench to characterise agent behaviour across four model families in 23 admissible runs. The sample is a pilot, not a model ranking: aggregate outcomes do not reliably discriminate models at this scale. Instead, we introduce two interface-level metrics that the environment makes measurable: Proactive Monitoring Rate (PMR), capturing whether agents actively query latent strategic state, and RAG@10, capturing whether commitments stated in structured planning reflections are executed within ten subsequent turns.   Across runs we observe two consistent patterns under a shared playbook protocol. Agents under-monitor strategically relevant state that is available but requires explicit querying: despite playbook guidance to query victory progress every 20 turns, agents do so only every 30 to 75 turns, and in 7 of 20 detectable defeats they failed to query within the 20 turn warning window before game end. Agents also frequently fail to execute near-term commitments stated in their own planning reflections (RAG@10 between 48.2% and 65.8% across models). Both patterns arise despite tool access and explicit guidance, and we interpret them as deviations under instruction rather than absences of capability.   We release the environment, scenarios, logs, metrics, and analysis pipeline at https://github.com/lmwilki/civ6-mcp",
+      "authors": [
+        "Austin Tudor David Andrews",
+        "Liam Wilkinson",
+        "Jamie Heagerty",
+        "Harry Coppock",
+        "Jakob Nicolaus Foerster",
+        "Rui Ponte Costa"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-02T11:31:39+00:00",
+      "link": "https://arxiv.org/pdf/2609.02459v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "benchmark for language model agents in Civilization VI game",
+      "llm_evidence_cn": "文明VI游戏中语言模型智能体的基准测试",
+      "llm_evidence": "文明VI游戏中语言模型智能体的基准测试",
+      "canonical_evidence": "文明VI游戏中语言模型智能体的基准测试",
+      "llm_tldr_en": "Introduces CivBench, an open-source benchmark for evaluating LM agents in long-horizon Civilization VI via MCP tools; directly studies behavior of game AI agents.",
+      "llm_tldr_cn": "本文针对现有长时程工具中介智能体基准缺乏真实战略游戏环境的问题，提出CivBench，一个基于《文明VI》的开放基准。该环境通过MCP暴露76个工具，并将视觉游戏状态转化为结构化文本，单集超过300回合。用四个模型家族进行试点评估，分析智能体行为并引入接口级指标。该基准为游戏AI智能体的长程规划与行为评估提供了平台，推动游戏AI bot的行为研究。",
+      "llm_tldr": "本文针对现有长时程工具中介智能体基准缺乏真实战略游戏环境的问题，提出CivBench，一个基于《文明VI》的开放基准。该环境通过MCP暴露76个工具，并将视觉游戏状态转化为结构化文本，单集超过300回合。用四个模型家族进行试点评估，分析智能体行为并引入接口级指标。该基准为游戏AI智能体的长程规划与行为评估提供了平台，推动游戏AI bot的行为研究。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.30428v1",
+      "source": "arxiv",
+      "title": "Lies We Can See: Joint Verbal and Non-Verbal Deception by VLM Agents in Embodied Social Interactions",
+      "abstract": "Strategic deception by LLM and VLM agents has emerged as a central AI alignment and safety concern. Social-deduction games (where each player holds a hidden role and communicates with others to deduce identities) serve as the canonical testbed, particularly in multi-agent settings. Existing testbeds, however, are text-only and run on a single fixed agent configuration, missing the non-verbal sensorimotor channels treated as core by deception taxonomies and leaving it ambiguous whether an observed behavior reflects the underlying model or the surrounding harness. We introduce MineAmongUs, a 3D multimodal Among Us sandbox where imposter agents must deceive crewmates through joint verbal and non-verbal action. We also propose ARIA, a configurable VLM-agent harness that exposes five cognitive-component ablation axes; and an atom- and arc-level annotation scheme grounded in deception taxonomies and operationalized at scale by an LLM-as-a-Judge reaching near-human atom-labeling agreement. Empirical results show that VLM agents pursue imposter wins through joint verbal and non-verbal deception, with non-verbal channels emerging as the more decisive winning contributors across both harness ablation and cross-VLM evaluation. Taken together, our work opens a new path for embodied VLM-agent alignment research.",
+      "authors": [
+        "Jaewoo Ahn",
+        "Junseo Kim",
+        "Hyunseo Kim",
+        "Heeseung Yun",
+        "Jaehyeon Son",
+        "Zsolt Kira",
+        "Gunhee Kim"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-31T08:24:29+00:00",
+      "link": "https://arxiv.org/pdf/2608.30428v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "deception by VLM agents in social deduction game Among Us",
+      "llm_evidence_cn": "VLM智能体在社交推理游戏Among Us中的欺骗行为",
+      "llm_evidence": "VLM智能体在社交推理游戏Among Us中的欺骗行为",
+      "canonical_evidence": "VLM智能体在社交推理游戏Among Us中的欺骗行为",
+      "llm_tldr_en": "MineAmongUs provides a 3D multimodal Among Us sandbox to study joint verbal and non-verbal deception by VLM game agents, advancing game AI bot behavior analysis.",
+      "llm_tldr_cn": "现有社交推理游戏测试床仅文本且配置固定，缺少非语言通道。该文提出MineAmongUs，一个3D多模态Among Us沙盒，其中冒充者智能体必须通过言语和非言语动作欺骗船员。利用VLM智能体在该环境中实施联合言语与非言语欺骗，从而更真实地评估游戏AI bot的欺骗行为及其对齐安全。",
+      "llm_tldr": "现有社交推理游戏测试床仅文本且配置固定，缺少非语言通道。该文提出MineAmongUs，一个3D多模态Among Us沙盒，其中冒充者智能体必须通过言语和非言语动作欺骗船员。利用VLM智能体在该环境中实施联合言语与非言语欺骗，从而更真实地评估游戏AI bot的欺骗行为及其对齐安全。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.30406v1",
+      "source": "arxiv",
+      "title": "Locally-Guided Actor-Critic: Training a Goal-conditioned Actor with a Subgoal-aware Critic",
+      "abstract": "Goal-conditioned reinforcement learning struggles with long horizons when rewards are sparse. While a planner can provide subgoals to guide a low-level policy, its use at test time may introduce practical subgoal management difficulties. An alternative paradigm utilizes a high-level planner to assist learning, while the policy remains conditioned only on the final goal, enabling planner-free deployment. Among these methods, Reinforcement Learning with Imagined Subgoals (RIS) introduces a regularization term that encourages the policy to take the same actions for the final goal as it does for an intermediate goal. This regularization, however, may lead to goal-chaining issues when intermediate goals are low-dimensional. Potential-based reward shaping (PBRS) translates plans into an additional reward while ensuring that the optimal policy remains unchanged. Yet, it can generate deceptive rewards in terminal states. We study these failure cases and first propose an alternative reward shaping method (RS) that removes these deceptive rewards at the expense of theoretical guarantees of PBRS. Similar to this RS variant, we then propose another method named Locally-Guided Actor Critic (LG-AC) that rewards the agent for reaching intermediate goals. Unlike RS, where intermediate rewards are implicit in the shaping signal, we explicitly condition a value estimator on the full sequence of intermediate goals but represent the value function as a sum of subgoal-conditioned value functions, enabling dense hindsight relabeling. We evaluate all these methods in tasks with challenging goal-chaining requirements and empirically highlight specific cases in which either action regularization or reward shaping yield low performance, while LG-AC achieves the best overall performance across tasks.",
+      "authors": [
+        "Olivier Serris",
+        "Stéphane Doncieux",
+        "Olivier Sigaud"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-31T08:00:40+00:00",
+      "link": "https://arxiv.org/pdf/2608.30406v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes an actor-critic method for goal-conditioned RL applicable to training game AI with long-horizon goals.",
+      "llm_evidence_cn": "提出一种用于目标条件强化学习的演员-评论家方法，可应用于训练具有长期目标的游戏AI。",
+      "llm_evidence": "提出一种用于目标条件强化学习的演员-评论家方法，可应用于训练具有长期目标的游戏AI。",
+      "canonical_evidence": "提出一种用于目标条件强化学习的演员-评论家方法，可应用于训练具有长期目标的游戏AI。",
+      "llm_tldr_en": "Addresses long-horizon goal-conditioned RL with sparse rewards by training a goal-conditioned actor with a subgoal-aware critic, enabling planner-free deployment. The method is transferable to game AI tasks requiring hierarchical reasoning.",
+      "llm_tldr_cn": "针对长时程目标条件强化学习中奖励稀疏的问题，提出局部引导的演员-评论家方法，通过子目标感知评论家辅助目标条件演员训练，实现无规划器部署。该方法可迁移至游戏AI等需要分层推理的领域。",
+      "llm_tldr": "针对长时程目标条件强化学习中奖励稀疏的问题，提出局部引导的演员-评论家方法，通过子目标感知评论家辅助目标条件演员训练，实现无规划器部署。该方法可迁移至游戏AI等需要分层推理的领域。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.30640v1",
+      "source": "arxiv",
+      "title": "Three Steps at a Time: Learning Representations from Action Sequences in Contrastive RL",
+      "abstract": "While self-supervised approaches to reinforcement learning have achieved strong results by learning representations of states and actions, a key open question is the time scale over which actions should be modeled. Departing from the standard formulation relying on single-step actions, we extend contrastive reinforcement learning (CRL), a prototypical self-supervised method, to operate over action chunks, and find that this results in large, pervasive gains across established offline and online benchmarks: +31.7% and +93.1% across 18 and 11 environments respectively. While action-chunking-driven gains are generally explained through the ability to model non-Markovian, temporally extended policies, and to propagate unbiased multi-step returns, interestingly, we find that these arguments only partially apply to CRL. Our empirical studies suggest that, in the context of CRL, an action chunk carries more information about the goal than a single action, measurably improving the critic's representations, and rendering the algorithm significantly more effective.",
+      "authors": [
+        "Michal Korniak",
+        "Kamil Dybek",
+        "Benjamin Eysenbach",
+        "Marco Bagatella",
+        "Michał Bortkiewicz"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-31T11:47:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.30640v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Contrastive RL over action chunks improves state-action representations for RL agents",
+      "llm_evidence_cn": "基于动作块上的对比强化学习改进状态-动作表征",
+      "llm_evidence": "基于动作块上的对比强化学习改进状态-动作表征",
+      "canonical_evidence": "基于动作块上的对比强化学习改进状态-动作表征",
+      "llm_tldr_en": "Extends contrastive RL to action chunks, achieving large gains across offline and online benchmarks, showing benefits of modeling temporally extended actions.",
+      "llm_tldr_cn": "针对单步动作建模的局限，提出在对比强化学习中扩展至动作块，以建模非马尔可夫和时序扩展策略。在多个基准上取得显著提升，证明了多步动作建模在表征学习中的优势。",
+      "llm_tldr": "针对单步动作建模的局限，提出在对比强化学习中扩展至动作块，以建模非马尔可夫和时序扩展策略。在多个基准上取得显著提升，证明了多步动作建模在表征学习中的优势。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.31100v1",
+      "source": "arxiv",
+      "title": "S3Gym: Can LLMs Turn Self-Testing and Self-Judging into Self-Improvement?",
+      "abstract": "Large language models (LLMs) increasingly interact with external environments and accumulate substantial behavioral experience, yet existing agent benchmarks largely evaluate them as fixed policies. It therefore remains unclear whether an agent can actively test its behavior, judge the resulting experience, and use that experience to improve future decisions. We introduce \\textbf{S\\textsuperscript{3}Gym}, an interactive benchmark for evaluating LLM self-improvement through three coupled capabilities: \\textbf{Self-Testing}, \\textbf{Self-Judging}, and \\textbf{Self-Improvement}. S$^3$Gym separates permissive exploration from strict held-out evaluation and instantiates this protocol in seven text-based games with executable environment verifiers. We evaluate three pathways for incorporating interaction experience: direct History ICL, score-conditioned Summary Memory, and parameter Training.   Our experiments reveal that self-improvement is neither automatic nor uniform. Context-level experience improves performance for several model--game pairs, but the most effective pathway depends strongly on the task structure: summaries are beneficial when experience can be compressed into reusable strategic rules, yet often underperform raw history when success depends on precise, state-contingent information. Parameter training produces substantial gains on some tasks, but also exhibits unstable improvement and severe negative transfer on others. These findings show that recognizing successful actions is insufficient; agents must also transform feedback into executable and transferable policies. S$^3$Gym provides a unified framework for diagnosing this process and identifying the bottlenecks that prevent agents from translating interaction experience into reliable self-improvement.",
+      "authors": [
+        "Jiajun Shi",
+        "Siyuan Tao",
+        "Yuhao Wu",
+        "Zexuan Wang",
+        "Jingyuan Zhang",
+        "Jiaheng Liu",
+        "Xinping Lei",
+        "Xinrong Zhang",
+        "Siyuan Fang",
+        "Zhewen Tan",
+        "Tianle Cai",
+        "Junhao Fang",
+        "Jiameng Huang",
+        "Yueyang Wang",
+        "Jinkai Liu",
+        "Yuxuan Zhang",
+        "Jian Yang",
+        "Zhoujun Li",
+        "Shen Yan",
+        "Wenhao Huang",
+        "Ge Zhang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-31T17:05:41+00:00",
+      "link": "https://arxiv.org/pdf/2608.31100v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "self-improvement evaluation of LLM agents in text-based games",
+      "llm_evidence_cn": "文本游戏中LLM智能体自我提升评估",
+      "llm_evidence": "文本游戏中LLM智能体自我提升评估",
+      "canonical_evidence": "文本游戏中LLM智能体自我提升评估",
+      "llm_tldr_en": "S3Gym introduces an interactive benchmark to evaluate LLM self-improvement via self-testing, self-judging, and self-improvement in seven text-based games, advancing game AI agent evaluation.",
+      "llm_tldr_cn": "S3Gym 针对LLM智能体能否通过自测、自评实现自我改进这一开放问题，提出了一个交互式基准。该基准将宽容探索与严格保留评估分离，并在七个基于文本的游戏中实例化协议，配有可执行环境验证器。实验评估了LLM的自我提升能力，为游戏AI智能体的学习和行为评估提供了新方法。",
+      "llm_tldr": "S3Gym 针对LLM智能体能否通过自测、自评实现自我改进这一开放问题，提出了一个交互式基准。该基准将宽容探索与严格保留评估分离，并在七个基于文本的游戏中实例化协议，配有可执行环境验证器。实验评估了LLM的自我提升能力，为游戏AI智能体的学习和行为评估提供了新方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.00474v1",
+      "source": "arxiv",
+      "title": "Exploring Collaboration between a language and a non-language agent",
+      "abstract": "LLMs are increasingly deployed as orchestrators that coordinate specialized subagents to solve complex tasks through natural language. However, in many important domains like game playing and robotics, the strongest available agents are not language models. Integrating non-language agents with LLMs would require \\emph{verbalization}: compressing their rich continuous representations into sparse textual summaries at each interaction step. To study whether verbalization constitutes a bottleneck, we introduce \\textsc{LLAMIA-Bench}, a suite of six diverse collaborative chess tasks spanning three facets: behavioral imitation, state assessment, and natural-language explanation. Each task instantiates a well-established chess problem that neither the LLM nor the chess engine can solve alone. To solve LLM collaboration with non-language agents, we introduce \\emph{latent state internalization}, which projects the subagent's continuous representations directly into the LLM's token stream as learned state tokens, with dynamic re-encoding as actions advance the environment state. Comparing internalization to verbalized integration, our experiments reveal a consistent \\emph{verbalization debt}: the performance gap widens throughout training and persists as the LLM scales from 4B to 14B parameters. A single 14B model, \\textsc{LLAMIA}, trained with latent state internalization, matches or exceeds task specialists and frontier models including GPT-5.1 with tool access across all benchmark tasks, and generalizes out-of-distribution where task-specific finetunes collapse",
+      "authors": [
+        "Harini S",
+        "Somesh Singh",
+        "Yaman K Singla",
+        "Rajiv Ratn Shah",
+        "David Doermann",
+        "Balaji Krishnamurthy"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-31T23:25:10+00:00",
+      "link": "https://arxiv.org/pdf/2609.00474v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Benchmark for collaborative chess tasks between LLM and non-language agent, relevant to game AI bot design.",
+      "llm_evidence_cn": "LLM与非语言智能体协作棋类任务的基准，与游戏AI机器人设计相关。",
+      "llm_evidence": "LLM与非语言智能体协作棋类任务的基准，与游戏AI机器人设计相关。",
+      "canonical_evidence": "LLM与非语言智能体协作棋类任务的基准，与游戏AI机器人设计相关。",
+      "llm_tldr_en": "Introduces LLAMIA-Bench, a suite of collaborative chess tasks across behavioral imitation, state assessment, and explanation, to study verbalization bottleneck when LLMs orchestrate non-language game-playing agents.",
+      "llm_tldr_cn": "针对LLM编排非语言智能体在游戏等领域的协作问题，研究语言压缩是否构成瓶颈。提出LLAMIA-Bench基准，包含六个协作国际象棋任务，覆盖行为模仿、状态评估和自然语言解释。该基准为评估LLM与非语言游戏智能体的协作能力提供了测试平台，有助于指导游戏AI机器人的混合设计。",
+      "llm_tldr": "针对LLM编排非语言智能体在游戏等领域的协作问题，研究语言压缩是否构成瓶颈。提出LLAMIA-Bench基准，包含六个协作国际象棋任务，覆盖行为模仿、状态评估和自然语言解释。该基准为评估LLM与非语言游戏智能体的协作能力提供了测试平台，有助于指导游戏AI机器人的混合设计。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.04189v1",
+      "source": "arxiv",
+      "title": "Robust PAC Learning of Concurrent Stochastic Games",
+      "abstract": "We introduce the first Probably Approximately Correct (PAC) learning framework for general-sum concurrent stochastic games (CSGs) with transition uncertainty, while addressing the challenge of Nash equilibrium (NE) existence. Our algorithm maintains data-driven $L^1$ confidence sets over transition kernels and solves a robust CSG to compute a social-welfare optimal $\\varepsilon$-NE, using a robust MDP-based exploration mechanism to drive joint state-action coverage. Crucially, we introduce a Nash margin characterisation that enables principled reasoning about equilibrium existence: the framework either returns an $\\varepsilon$-approximate NE whose social-welfare value is $\\varepsilon$-close to optimal, or provides a sound certificate that no exact NE exists. Under a minimum reachability condition $p_{\\mathrm{reach}}>0$ over relevant state-action pairs, the algorithm terminates after a polynomial number of trajectory samples, with sample complexity $\\widetilde{O}\\left( {R_{\\max}^2 H^4 |S|^2 |A| / (p_{\\mathrm{reach}} \\varepsilon^2)} \\right)$. Empirical results on benchmark CSGs demonstrate near-optimal performance, correct handling of equilibrium (non-)existence, and sample complexity consistent with theory.",
+      "authors": [
+        "Angel Y. He",
+        "David Parker"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.GT",
+        "cs.LO",
+        "cs.MA"
+      ],
+      "published": "2026-09-03T17:58:57+00:00",
+      "link": "https://arxiv.org/pdf/2609.04189v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "PAC learning framework for concurrent stochastic games, Nash equilibrium computation",
+      "llm_evidence_cn": "并发随机博弈的PAC学习框架与纳什均衡计算",
+      "llm_evidence": "并发随机博弈的PAC学习框架与纳什均衡计算",
+      "canonical_evidence": "并发随机博弈的PAC学习框架与纳什均衡计算",
+      "llm_tldr_en": "Introduces first PAC learning framework for general-sum concurrent stochastic games with transition uncertainty, using robust optimization and Nash margin characterization to certify NE existence or approximate optimality.",
+      "llm_tldr_cn": "针对并发随机博弈中转移不确定性导致缺乏PAC学习保证的问题，提出首个鲁棒PAC学习框架，通过数据驱动L1置信集和鲁棒MDP探索机制计算社会福利最优ε-纳什均衡，并利用纳什边际刻画均衡存在性，算法可返回近似最优解或证明均衡不存在，为多代理游戏学习提供理论保障。",
+      "llm_tldr": "针对并发随机博弈中转移不确定性导致缺乏PAC学习保证的问题，提出首个鲁棒PAC学习框架，通过数据驱动L1置信集和鲁棒MDP探索机制计算社会福利最优ε-纳什均衡，并利用纳什边际刻画均衡存在性，算法可返回近似最优解或证明均衡不存在，为多代理游戏学习提供理论保障。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
