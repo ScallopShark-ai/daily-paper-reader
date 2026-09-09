@@ -1,0 +1,341 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-09T21:50:55.688070+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2609.06816v1",
+      "source": "arxiv",
+      "title": "Unsound Search with Policy and Value Networks in Legends of Code and Magic",
+      "abstract": "Decision-time search in perfect and imperfect information games with enumerable belief states are effective methods for game AI. Collectible card games are imperfect information games with large belief states. Legends of Code and Magic is a collectible card game competition where the belief states are $2^{101}$. The Legends of Code and Magic (LoCM) champion, ByteRL, plays with no search. Other works claim sound enumeration-based search is unusable in the genre due to the number of belief states. We measured three previously defined properties that predict where theoretically unsound perfect information Monte Carlo's defects are cheap and found LoCM sits in the favorable region. Starting with imitation learning of the runner-up policy, NeteaseOPD, we created a policy and value feed-forward network. Our agent searches over worlds sampled from a prior over the opponent's deck built from the runner-up's drafts. Using our strictest configuration in the battle phase we beat ByteRL with a win percentage of 51.35% 95% CI [50.37, 52.33], over 10,000 pre-registered games using the LoCM official referee and time limit. Search is not a minor factor on the matchup between our agent and ByteRL. Without search this agent scores 26.8% and adding search adds +24.6 points. Unsound search in imperfect information games could be exploitable. We replicate a published best-response attack against ByteRL. We then apply the same attack protocol to two search configurations of our agent, and each one resists it better than ByteRL at every iteration. In LoCM unsound search gives us a stronger and more resilient agent.",
+      "authors": [
+        "Dustin Rubin"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-06T20:18:52+00:00",
+      "link": "https://arxiv.org/pdf/2609.06816v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "game AI for card game LoCM using policy/value networks and search",
+      "llm_evidence_cn": "使用策略和价值网络及搜索的卡牌游戏AI",
+      "llm_evidence": "使用策略和价值网络及搜索的卡牌游戏AI",
+      "canonical_evidence": "使用策略和价值网络及搜索的卡牌游戏AI",
+      "llm_tldr_en": "Studies unsound perfect information Monte Carlo search in LoCM, combining imitation learning and policy/value networks; finds favorable region and improves over ByteRL; directly relevant to game AI bot design and RL-based game agents.",
+      "llm_tldr_cn": "该论文针对《代码与魔法传奇》卡牌游戏的AI，研究在不可枚举信念状态下使用非完备搜索。从模仿学习亚军策略开始，结合策略与价值网络，发现该游戏处于理论缺陷成本低廉的有利区域。实验表明该方法可提升卡牌游戏AI水平，直接推动游戏AI bot设计。",
+      "llm_tldr": "该论文针对《代码与魔法传奇》卡牌游戏的AI，研究在不可枚举信念状态下使用非完备搜索。从模仿学习亚军策略开始，结合策略与价值网络，发现该游戏处于理论缺陷成本低廉的有利区域。实验表明该方法可提升卡牌游戏AI水平，直接推动游戏AI bot设计。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.09059v1",
+      "source": "arxiv",
+      "title": "PlayTrain: An Efficient Reinforcement Learning Framework for LLM-Generated Adaptable JavaScript Games",
+      "abstract": "While many video-game environments (VGEs) have played crucial roles in advancing reinforcement learning (RL), developing novel VGEs or modifying existing ones to support new features, has been a laborious process requiring extensive hand-coding. Here we present PlayTrain, an RL framework that combines the abilities of large language models (LLMs) to robustly generate JavaScript (JS) games from a minimal human prompt, and an efficient pipeline that can run any JS game in a standard 'gym' environment. Not only are recent LLMs particularly good at writing JS code, but the JS format also allows users to easily play generated VGEs, while PlayTrain enables us to train RL agents on the exact same games. We demonstrate multiple use cases of PlayTrain, including cloning well-known Atari and ProcGen games in simple JS, where PlayTrain trains pixel-based agents end-to-end at over 1M agent-decisions per second on a single GPU node; and creating modified versions thereof (e.g., that support novel test sets, procedural generation logics, or game dynamics). Through PlayTrain, we reimagine RL VGE development: all we need is a single JS file, generated and modified through an LLM. We discuss promising future RL research directions that PlayTrain unlocks.",
+      "authors": [
+        "Ryan Truong",
+        "Lance Ying",
+        "Samuel J. Gershman",
+        "Kazuki Irie"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-09-08T17:15:39+00:00",
+      "link": "https://arxiv.org/pdf/2609.09059v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM-generated games + RL gym pipeline to train game-playing agents",
+      "llm_evidence_cn": "LLM生成游戏+RL gym管道训练游戏智能体",
+      "llm_evidence": "LLM生成游戏+RL gym管道训练游戏智能体",
+      "canonical_evidence": "LLM生成游戏+RL gym管道训练游戏智能体",
+      "llm_tldr_en": "Presents PlayTrain, an RL framework using LLMs to generate JavaScript games and an efficient gym-compatible pipeline to train RL agents on the same games, reducing manual coding effort for game AI research.",
+      "llm_tldr_cn": "针对手工构建游戏环境费时费力的问题，该文提出PlayTrain框架，结合大语言模型自动生成JavaScript游戏，并提供与gym兼容的高效训练管道。实验表明能快速训练多个强化学习智能体。该框架降低了游戏环境开发门槛，有助于强化学习驱动的游戏AI研究，并为新游戏环境的创建提供了可扩展方案。",
+      "llm_tldr": "针对手工构建游戏环境费时费力的问题，该文提出PlayTrain框架，结合大语言模型自动生成JavaScript游戏，并提供与gym兼容的高效训练管道。实验表明能快速训练多个强化学习智能体。该框架降低了游戏环境开发门槛，有助于强化学习驱动的游戏AI研究，并为新游戏环境的创建提供了可扩展方案。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.09094v1",
+      "source": "arxiv",
+      "title": "The Surprising Effectiveness of Approximate Value Iteration in Self-Play",
+      "abstract": "Combining search with function approximation has driven major advances in game-playing programs, making self-play algorithms more competitive than ever. Still, the computational overhead of the most popular methods, based on Monte Carlo Tree Search (MCTS), can be substantial. In this work, we investigate whether simpler methods remain competitive in non-trivial, moderately sized games such as Connect Four, Hex(7x7) and synthetic games. We train a minimal self-play implementation of Approximate Value Iteration (AVI) and use ground-truth oracles for exact evaluation. Contrary to expectations, our results demonstrate the surprising effectiveness of AVI: it learns more accurate value functions than those learned by AlphaZero, while its one-step-lookahead greedy policies remain competitive with MCTS-based policies at substantially lower training and inference costs. Preliminary experiments on Othello and Go(9x9) show that AVI trains stably on larger games and learns effective value functions. These findings suggest that the success of MCTS-based methods may have eclipsed simpler approaches that have become increasingly practical with modern deep-learning tools.",
+      "authors": [
+        "Raphael Boige",
+        "Amine Boumaza",
+        "Bruno Scherrer"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-08T17:37:19+00:00",
+      "link": "https://arxiv.org/pdf/2609.09094v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Self-play approximate value iteration for game playing shows better value functions than AlphaZero in Connect Four and Hex.",
+      "llm_evidence_cn": "自博弈近似价值迭代在四子棋和Hex中比AlphaZero学到更优价值函数。",
+      "llm_evidence": "自博弈近似价值迭代在四子棋和Hex中比AlphaZero学到更优价值函数。",
+      "canonical_evidence": "自博弈近似价值迭代在四子棋和Hex中比AlphaZero学到更优价值函数。",
+      "llm_tldr_en": "Studies whether approximate value iteration in self-play can compete with MCTS-based AlphaZero on moderately sized games. Trains AVI with ground-truth oracles for exact evaluation. Shows AVI learns more accurate value functions than AlphaZero while requiring much less computation, suggesting simpler self-play methods remain competitive.",
+      "llm_tldr_cn": "针对AlphaZero等基于蒙特卡洛树搜索的自博弈方法计算开销大的问题，本文研究了近似价值迭代(AVI)在中等规模游戏中的自博弈效果。研究者实现了极简的AVI自博弈训练并使用真实值预言机进行精确评估。实验表明，AVI在四子棋、Hex(7x7)等游戏中学习到的价值函数比AlphaZero更准确，且其一步前瞻效果明显。这一发现表明简单自博弈方法仍具有竞争力，为低资源游戏AI训练提供了新思路。",
+      "llm_tldr": "针对AlphaZero等基于蒙特卡洛树搜索的自博弈方法计算开销大的问题，本文研究了近似价值迭代(AVI)在中等规模游戏中的自博弈效果。研究者实现了极简的AVI自博弈训练并使用真实值预言机进行精确评估。实验表明，AVI在四子棋、Hex(7x7)等游戏中学习到的价值函数比AlphaZero更准确，且其一步前瞻效果明显。这一发现表明简单自博弈方法仍具有竞争力，为低资源游戏AI训练提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.06421v1",
+      "source": "arxiv",
+      "title": "On BatchNorm Forward Modes in Value-Based Reinforcement Learning",
+      "abstract": "Batch normalization (BN) substantially improves sample efficiency in continuous-control actor-critic methods such as CrossQ, yet recent studies report performance degradation in discrete-action value learning on Atari. These failures are surprising because discrete Q-networks lack the action-input distribution mismatch identified by CrossQ. We show for target-based C51 and target-free PQN that the simple choice between running and batch statistics at specific forward passes can reverse this degradation. In C51, switching the BN bootstrap forward to batch-statistic mode significantly improves performance over unnormalized and LayerNorm baselines and scales stably with update-to-data ratios up to 12. In PQN, using batch-statistics for both action selection and bootstrapping recovers performance from the failing running-statistic configuration. Across 26 Atari games at 400M frames, this configuration achieves a higher final aggregate score than PQN with LayerNorm. Our results show that carefully configured BN can substantially improve discrete-action value learning, and that its forward protocols are an essential part of the algorithm specification.",
+      "authors": [
+        "Daniel Palenicek",
+        "Mikael Henaff",
+        "Scott Fujimoto",
+        "Koustuv Sinha"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-09-06T06:45:59+00:00",
+      "link": "https://arxiv.org/pdf/2609.06421v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "improves value-based RL on Atari games via BatchNorm forward modes",
+      "llm_evidence_cn": "通过BatchNorm前向模式改进Atari游戏的值基强化学习",
+      "llm_evidence": "通过BatchNorm前向模式改进Atari游戏的值基强化学习",
+      "canonical_evidence": "通过BatchNorm前向模式改进Atari游戏的值基强化学习",
+      "llm_tldr_en": "Studies forward modes of batch normalization in value-based RL on Atari, showing simple switching can reverse performance degradation and improve stability.",
+      "llm_tldr_cn": "针对批归一化在Atari离散动作值学习中性能下降的问题，该文研究在C51和PQN算法中不同前向阶段使用运行统计与批量统计的选择。实验表明在C51中切换BN bootstrap前向为批量统计模式能显著超越无归一化和LayerNorm基线，且在更新数据比达12时仍稳定；PQN在动作选择和评估中使用批量统计也获得提升。这一简单调整有效逆转了性能退化，为离散动作值基强化学习提供了低成本改进方案。",
+      "llm_tldr": "针对批归一化在Atari离散动作值学习中性能下降的问题，该文研究在C51和PQN算法中不同前向阶段使用运行统计与批量统计的选择。实验表明在C51中切换BN bootstrap前向为批量统计模式能显著超越无归一化和LayerNorm基线，且在更新数据比达12时仍稳定；PQN在动作选择和评估中使用批量统计也获得提升。这一简单调整有效逆转了性能退化，为离散动作值基强化学习提供了低成本改进方案。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.06563v1",
+      "source": "arxiv",
+      "title": "MARBO: Relational Belief Grounding for LLM Agents in Social Deduction Games",
+      "abstract": "Social deduction games (SDGs) require agents to reason under partial observability by maintaining relational beliefs about hidden roles and team alignments. While recent LLM-agent approaches improve gameplay through prompting and preference optimization, they often optimize actions and in-game speech without explicitly grounding them in such beliefs. This frequently leads to strategically inconsistent behavior, especially for compact LLM agents. We introduce Multi-Agent Relational Belief Optimization (MARBO), a belief-grounded preference optimization framework that leverages relational beliefs to guide strategic decisions and in-game speech. MARBO provides preference feedback only when behaviors are supported by reliable relational beliefs and lead to strategically favorable social outcomes, encouraging more consistent learning under uncertainty. Experiments on representative SDGs show that MARBO enables compact LLM agents to consistently outperform existing baselines. The Code is available on https://github.com/PleaseTakemeAway/MARBO.",
+      "authors": [
+        "Hwang Yechan",
+        "Bae Sangjun",
+        "Kim Jeongmo",
+        "Bang Sangwoo",
+        "Han Seungyul"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-09-06T12:18:39+00:00",
+      "link": "https://arxiv.org/pdf/2609.06563v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "belief-grounded preference optimization for LLM agents in social deduction games",
+      "llm_evidence_cn": "社交推理游戏中基于关系信念的偏好优化框架",
+      "llm_evidence": "社交推理游戏中基于关系信念的偏好优化框架",
+      "canonical_evidence": "社交推理游戏中基于关系信念的偏好优化框架",
+      "llm_tldr_en": "Introduces MARBO, a belief-grounded preference optimization framework that leverages relational beliefs to guide LLM agents' strategic decisions and speech in social deduction games, improving consistency.",
+      "llm_tldr_cn": "针对LLM智能体在社交推理游戏中常因缺乏关系信念接地而策略不一致的问题，提出MARBO框架，利用多智能体关系信念优化来指导策略决策和游戏发言。该框架仅在行为得到可靠关系信念支持时提供偏好反馈，引导智能体学习一致的行为。实验表明MARBO能显著提升紧凑型LLM智能体的策略一致性和游戏表现。该工作为设计具备稳定信念推理能力的游戏AI智能体提供了有效方法。",
+      "llm_tldr": "针对LLM智能体在社交推理游戏中常因缺乏关系信念接地而策略不一致的问题，提出MARBO框架，利用多智能体关系信念优化来指导策略决策和游戏发言。该框架仅在行为得到可靠关系信念支持时提供偏好反馈，引导智能体学习一致的行为。实验表明MARBO能显著提升紧凑型LLM智能体的策略一致性和游戏表现。该工作为设计具备稳定信念推理能力的游戏AI智能体提供了有效方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.02987v1",
+      "source": "arxiv",
+      "title": "Tail-Likelihood Reinforcement Learning",
+      "abstract": "Reinforcement learning typically optimizes average reward. For generative policies, the average can hide an important distinction: two policies can achieve the same mean reward while having very different chances of producing a rare but high-reward rollout. This matters as sampling increases during training and inference, since its benefit depends on retaining probability mass on high-reward outcomes. We propose to optimize this coverage directly. Rather than considering only expected reward, we consider all of its upper tails: for each reward threshold, how likely is the policy to exceed it? This turns a continuous reward into a family of binary success events. We introduce Tail-Likelihood Reinforcement Learning (TailRL), which maximizes the log-probability of exceeding a randomly chosen reward threshold. Its gradient gives more weight to rare, high-reward rollouts and can be interpreted as a mixture of Best-of-(k) gradients. TailRL requires only a simple modification to the advantage function, making it compatible with existing reinforcement learning pipelines. Across object localization, maze navigation, GUI grounding, and code optimization, TailRL leverages rare high-reward training samples to avoid suboptimal solutions and yields models that benefit more from additional samples at inference time.",
+      "authors": [
+        "Shrinivas Ramasubramanian",
+        "Daman Arora",
+        "Fahim Tajwar",
+        "Guanning Zeng",
+        "Qingyang Wu",
+        "Zhongzhu Zhou",
+        "Chenfeng Xu",
+        "Haiwen Feng",
+        "Yuda Song",
+        "Aarti Singh",
+        "Ruslan Salakhutdinov",
+        "J. Andrew Bagnell",
+        "Jeff Schneider",
+        "Andrea Zanette"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-09-02T14:54:45+00:00",
+      "link": "https://arxiv.org/pdf/2609.02987v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "general RL algorithm optimizing upper-tail rewards, applicable to game AI training",
+      "llm_evidence_cn": "优化上尾奖励的通用强化学习算法，适用于游戏AI训练",
+      "llm_evidence": "优化上尾奖励的通用强化学习算法，适用于游戏AI训练",
+      "canonical_evidence": "优化上尾奖励的通用强化学习算法，适用于游戏AI训练",
+      "llm_tldr_en": "Proposes TailRL, which maximizes log-probability of exceeding reward thresholds rather than average reward, improving coverage of high-reward outcomes; a general RL technique applicable to game AI generative policies.",
+      "llm_tldr_cn": "传统强化学习优化平均奖励，可能忽视稀有高奖励轨迹。本文提出尾部似然强化学习（TailRL），直接优化策略超过奖励阈值的对数概率。该算法可应用于游戏AI等生成式策略的训练，提升高奖励结果的覆盖。",
+      "llm_tldr": "传统强化学习优化平均奖励，可能忽视稀有高奖励轨迹。本文提出尾部似然强化学习（TailRL），直接优化策略超过奖励阈值的对数概率。该算法可应用于游戏AI等生成式策略的训练，提升高奖励结果的覆盖。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.03667v1",
+      "source": "arxiv",
+      "title": "Out-of-Distribution Generalisation with Sequence Models in Offline Multi-Agent Reinforcement Learning",
+      "abstract": "Generalising to unseen tasks remains a fundamental challenge in offline multi-agent reinforcement learning (MARL). In this work, we present a principled analysis of zero-shot task generalisation in the offline setting and conduct an extensive empirical investigation into the scaling behaviour governing task diversity, dataset size, and network capacity. To facilitate this study, we extend offline sequence modelling architectures to handle multi-task observation and action spaces alongside variable agent counts across tasks. Our primary finding is that scaling task diversity---rather than sheer dataset size is the dominant factor in achieving robust zero-shot transfer. Through large-scale experiments across four challenging environments (Connector, RWARE, SMAX, and LBF), we demonstrate that our multi-task approach achieves a mean improvement of 3.2x on held-out test tasks compared to single-task models and consistently outperforms strong behaviour cloning baselines. These results suggest that the development of generalisable MARL agents should prioritise the diversity of the training distribution with varying numbers of agents, providing a roadmap for scaling offline MARL effectively.",
+      "authors": [
+        "Oussama Hidaoui",
+        "Omer Ebead",
+        "Ulrich Armel Mbou Sob",
+        "Siddarth Singh",
+        "Juan Claude Formanek",
+        "Felix Chalumeau",
+        "Omayma Mahjoub",
+        "Sasha Abramowitz",
+        "Ruan John de Kock",
+        "Wiem Khlifi",
+        "Louay Ben Nessir",
+        "Simon Verster Du Toit",
+        "Daniel Rajaonarivonivelomanantsoa",
+        "Asim Awad Osman",
+        "Arnol Manuel Fokam",
+        "Refiloe Shabe",
+        "Arnu Pretorius"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-09-03T11:04:23+00:00",
+      "link": "https://arxiv.org/pdf/2609.03667v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "offline multi-agent RL generalisation applicable to game AI",
+      "llm_evidence_cn": "离线多智能体强化学习泛化方法可应用于游戏AI",
+      "llm_evidence": "离线多智能体强化学习泛化方法可应用于游戏AI",
+      "canonical_evidence": "离线多智能体强化学习泛化方法可应用于游戏AI",
+      "llm_tldr_en": "Extends sequence models for offline multi-agent RL and shows task diversity dominates over dataset size for zero-shot generalisation, relevant for game AI.",
+      "llm_tldr_cn": "针对离线多智能体强化学习在未见任务上的泛化挑战，该文扩展序列建模架构以支持多任务、可变智能体数量，并系统研究任务多样性、数据集规模和网络容量对零样本泛化的影响。大规模实验表明任务多样性而非数据集规模是获得鲁棒零样本迁移的主导因素。该发现为设计可泛化的离线多智能体学习系统提供了重要见解，对游戏AI等多智能体场景具有参考价值。",
+      "llm_tldr": "针对离线多智能体强化学习在未见任务上的泛化挑战，该文扩展序列建模架构以支持多任务、可变智能体数量，并系统研究任务多样性、数据集规模和网络容量对零样本泛化的影响。大规模实验表明任务多样性而非数据集规模是获得鲁棒零样本迁移的主导因素。该发现为设计可泛化的离线多智能体学习系统提供了重要见解，对游戏AI等多智能体场景具有参考价值。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game playing agents with reinforcement learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.08853v1",
+      "source": "arxiv",
+      "title": "CAST: Alternating State-Value Targets and Expanded Policy Gradients for Model-Based Reinforcement Learning",
+      "abstract": "Model-based reinforcement learning (MBRL) is a family of RL methods that learn a model of the environment and use it for action selection, making it well suited to robotics due to its sample efficiency. Combining learned models with online planning can further improve action selection, as the planner can exploit the model to find better actions than the learned policy alone. Recent methods combining learned policies with online planning typically learn the value of the policy rather than the stronger planner-guided behavior. We present CAST (Critic with Alternating State-value Target), which uses planner-guided behavior to improve value learning while regularizing the value estimate with the current policy. CAST replaces the action-value critic with a state-value critic, trained using a target that combines a real planner-guided transition and an imagined transition under the current policy. The resulting value function corresponds to an alternating process between planner-guided behavior and the current policy, allowing it to benefit from the stronger planner behavior while being regularised by the policy being learned. We evaluate CAST on the DeepMind Control and HumanoidBench Suites against several state-of-the-art methods, and demonstrate successful transfer to a physical Unitree Go2 quadruped performing a dynamic handstand.",
+      "authors": [
+        "Pietro Noah Crestaz",
+        "Mohamed Yassine Kabouri",
+        "Nicolas Mansard",
+        "Andrea Del Prete"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-09-08T15:05:16+00:00",
+      "link": "https://arxiv.org/pdf/2609.08853v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "general model-based RL improvement applicable to game AI training",
+      "llm_evidence_cn": "通用基于模型强化学习改进，适用于游戏AI训练",
+      "llm_evidence": "通用基于模型强化学习改进，适用于游戏AI训练",
+      "canonical_evidence": "通用基于模型强化学习改进，适用于游戏AI训练",
+      "llm_tldr_en": "Presents CAST, a model-based RL method alternating state-value targets and expanded policy gradients to improve value learning with planner-guided behavior.",
+      "llm_tldr_cn": "针对基于模型强化学习中策略与规划结合时价值学习不强的问题，该文提出CAST方法，交替使用状态值目标并扩展策略梯度。它利用规划引导行为改进价值学习，同时用当前策略正则化。实验表明该方法在连续控制任务上表现更优。作为通用技术，它可迁移到游戏智能体训练。",
+      "llm_tldr": "针对基于模型强化学习中策略与规划结合时价值学习不强的问题，该文提出CAST方法，交替使用状态值目标并扩展策略梯度。它利用规划引导行为改进价值学习，同时用当前策略正则化。实验表明该方法在连续控制任务上表现更优。作为通用技术，它可迁移到游戏智能体训练。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
