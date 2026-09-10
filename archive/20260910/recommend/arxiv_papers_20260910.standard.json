@@ -1,0 +1,256 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-10T21:51:03.213383+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2609.07478v1",
+      "source": "arxiv",
+      "title": "The Internal Anatomy of Strategic Choice in Large Language Models",
+      "abstract": "Large language models act as strategic agents and models of human choice, yet choosing like a strategic agent does not mean computing like one. We recorded activations from four open-weight models --- dense and mixture-of-experts, including a matched base--instruct pair --- in one-shot play of 144 strict ordinal $2\\times2$ games. We followed a prespecified incentive from prompt, through activations, to choice. Dense models mirrored the unadjusted human decline with game complexity. Incentive and choice were detectable in every model, but models differed in whether incentive reached the choice, aligned with it and, where tested, whether strengthening it shifted preference. The base and instruction-tuned Qwen2.5 models chose almost identically at baseline yet differed in whether incentive reached choice. Fixed decision cues were distinguishable internally but changed choices selectively. Similar behaviour can rest on different computation; post-training can reshape the path from represented incentive to decision while leaving behaviour and decodable information largely intact.",
+      "authors": [
+        "Vinícius Ferraz",
+        "Leon Houf",
+        "Enrico Ferrea"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.GT"
+      ],
+      "published": "2026-09-07T13:34:30+00:00",
+      "link": "https://arxiv.org/pdf/2609.07478v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "analyzing strategic choice in LLMs playing 2x2 games",
+      "llm_evidence_cn": "分析大语言模型在2x2游戏中的战略选择",
+      "llm_evidence": "分析大语言模型在2x2游戏中的战略选择",
+      "canonical_evidence": "分析大语言模型在2x2游戏中的战略选择",
+      "llm_tldr_en": "This paper records activations from four open-weight LLMs playing 144 strict ordinal 2x2 games, tracing incentive from prompt to choice and revealing how models differ in strategic computation and human-like behavior.",
+      "llm_tldr_cn": "针对大语言模型作为战略智能体但其内部计算过程未知的问题，本文记录了四个开源模型在144个严格序数2x2游戏中的激活。通过追踪从提示中的激励到最终选择的路径，发现稠密模型与人类在游戏复杂度上的表现下降类似。激励和选择在每个模型中均可检测，但模型在激励是否到达选择、是否与选择对齐等方面存在差异。该研究揭示了LLM战略选择的内部机制，为设计更类人的游戏AI提供依据。",
+      "llm_tldr": "针对大语言模型作为战略智能体但其内部计算过程未知的问题，本文记录了四个开源模型在144个严格序数2x2游戏中的激活。通过追踪从提示中的激励到最终选择的路径，发现稠密模型与人类在游戏复杂度上的表现下降类似。激励和选择在每个模型中均可检测，但模型在激励是否到达选择、是否与选择对齐等方面存在差异。该研究揭示了LLM战略选择的内部机制，为设计更类人的游戏AI提供依据。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.03842v1",
+      "source": "arxiv",
+      "title": "Multi-step Proximal Policy Improvement in Offline Reinforcement Learning",
+      "abstract": "Offline reinforcement learning (RL) must reconcile two competing requirements: policy updates should stay near dataset-supported actions to keep value estimates reliable, yet meaningful gains often require moving beyond the behavior distribution. We develop a geometric view of offline actor updates by modeling policies as a probability manifold endowed with a chosen metric geometry. Under this lens, a broad class of offline actor objectives can be interpreted as a single proximal policy improvement step (SPI), i.e., an implicit discretization of a manifold gradient flow induced by a critic-defined energy. Building on this insight, we propose multi-step proximal policy improvement (MPI), a plug-in refinement mechanism that composes sequential re-centered proximal steps. MPI enables controlled policy improvement beyond dataset support while retaining proximal control at each refinement. The framework accommodates multiple policy geometries and admits practical instantiations for deterministic and diagonal-Gaussian policies. Experiments on D4RL benchmarks show that small numbers of MPI refinements improve strong offline baselines, including TD3+BC, ReBRAC, and IQL, on many tasks. Focused diagnostics further distinguish re-centered refinement from fixed-objective update scheduling and characterize limitations under critic error.",
+      "authors": [
+        "Soohyun Choi",
+        "Seonvin Cho",
+        "Songnam Hong"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-09-03T13:37:39+00:00",
+      "link": "https://arxiv.org/pdf/2609.03842v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "offline reinforcement learning method for policy improvement, applicable to game AI training",
+      "llm_evidence_cn": "离线强化学习策略改进方法，可应用于游戏AI训练",
+      "llm_evidence": "离线强化学习策略改进方法，可应用于游戏AI训练",
+      "canonical_evidence": "离线强化学习策略改进方法，可应用于游戏AI训练",
+      "llm_tldr_en": "The paper addresses offline RL limitations by interpreting actor updates as manifold gradient flow, proposing multi-step proximal policy improvement (MPI) to refine policies beyond behavior distribution. Experiments show improved performance, offering a transferable technique for training game AI agents.",
+      "llm_tldr_cn": "论文针对离线强化学习中策略更新需靠近数据集支持动作与获得有意义改进之间的冲突，提出多步近端策略改进（MPI）方法，将策略更新视为流形梯度流的多步离散化。实验表明MPI能有效提升策略性能，为游戏AI智能体的离线训练提供了可迁移的技术。",
+      "llm_tldr": "论文针对离线强化学习中策略更新需靠近数据集支持动作与获得有意义改进之间的冲突，提出多步近端策略改进（MPI）方法，将策略更新视为流形梯度流的多步离散化。实验表明MPI能有效提升策略性能，为游戏AI智能体的离线训练提供了可迁移的技术。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.09418v1",
+      "source": "arxiv",
+      "title": "Valerant: An Automatic Navigable Game Map Generator via Action-Conditioned World Model Exploration",
+      "abstract": "World Action Models (WAMs) couple predictive world modeling with action generation, allowing anticipated future states to guide agent behavior. Although WAMs are rapidly advancing embodied AI, general-purpose counterparts remain largely unexplored in games. Existing game-oriented approaches often combine action-conditioned world models with external policies and reward functions to realize WAM-like decision-making, yet they operate mainly in 2D visual observation space and do not instantiate persistent 3D geometry. Extending this paradigm to 3D games introduces a distinct challenge. In autonomous driving and robotics, the physical environment exists independently of the model, providing a persistent 3D world in which selected actions can be executed. Games have no such external substrate; the virtual world itself must be instantiated. Most playable games require a persistent and navigable space, while 3D games additionally require explicit geometry that supports movement and interaction. Action-conditioned video rollouts provide visual observations but not this spatial representation. We present \\textsc{Valerant}, a training-free framework that transforms a pretrained action-conditioned world model into a WAM for exploring and constructing 3D game maps. By coupling predictive visual rollouts with SLAM-based spatial reconstruction and exploration-driven action selection, \\textsc{Valerant} progressively transforms a single image into a persistent 3D game map. This framework extends WAM-based interaction beyond 2D visual simulation and offers a new approach to reducing manual effort in 3D game-map creation.",
+      "authors": [
+        "Yiran Qiao",
+        "Feng Wang",
+        "Jing Ma"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-08T20:17:48+00:00",
+      "link": "https://arxiv.org/pdf/2609.09418v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Action-conditioned world models for game environment and agent behavior, relevant to game AI bot design",
+      "llm_evidence_cn": "动作条件世界模型用于游戏环境与智能体行为，与游戏AI机器人设计相关",
+      "llm_evidence": "动作条件世界模型用于游戏环境与智能体行为，与游戏AI机器人设计相关",
+      "canonical_evidence": "动作条件世界模型用于游戏环境与智能体行为，与游戏AI机器人设计相关",
+      "llm_tldr_en": "Addresses the lack of general-purpose world action models in 3D games; proposes Valerant, using action-conditioned world model exploration to automatically generate navigable game maps; demonstrates applicability to 3D game settings, extending beyond previous 2D approaches; contributes a tool for creating game environments that can guide AI agents.",
+      "llm_tldr_cn": "针对3D游戏中通用世界动作模型缺乏的问题，提出Valerant方法，通过动作条件世界模型探索自动生成可导航游戏地图；该方法将现有2D方法扩展到3D场景，为游戏智能体提供了持久3D几何环境；这一工具可支持游戏AI机器人的环境构建与行为引导。",
+      "llm_tldr": "针对3D游戏中通用世界动作模型缺乏的问题，提出Valerant方法，通过动作条件世界模型探索自动生成可导航游戏地图；该方法将现有2D方法扩展到3D场景，为游戏智能体提供了持久3D几何环境；这一工具可支持游戏AI机器人的环境构建与行为引导。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.08404v1",
+      "source": "arxiv",
+      "title": "Environments as Scaffold: Enriching Feedback to Bootstrap Self-Evolving Agents in Long-Horizon Tasks",
+      "abstract": "Large Language Models demonstrate remarkable proficiency in static reasoning, yet training them as autonomous agents through Reinforcement Learning (RL) for long-horizon tasks is often hindered by severe reward sparsity. While conventional \\textit{agent-side warming} up via supervised fine-tuning (SFT) can alleviate this, it is frequently limited by data scarcity and constrained exploration. To address this, we propose a paradigm shift to \\textit{environment-side adaptation} by constructing \\textbf{F}eedback-\\textbf{E}nriched \\textbf{E}nvironments (\\textbf{FEEs}). Through a pilot study, we establish a feedback design strategy that reformulates environments by transitioning from action guidance to observation enrichment during the later stages of both intra-episode exploration and inter-episode evolution. Large-scale experiments on SciWorld and BFCL benchmarks using various Qwen3 model scales and RL algorithms such as GRPO, GSPO, and DAPO demonstrate that FEEs consistently yield performance improvements over standard settings. Furthermore, our analysis reveals that training with FEEs \\textbf{(1)} stabilizes training dynamics by reducing entropy volatility, \\textbf{(2)} facilitates proactive state-space exploration in difficult tasks, \\textbf{(3) }ensures the internalization of environmental guidance into policy weights rather than acting as a mere inference-time prior, and \\textbf{(4) }identifies intra-group feedback consistency as a critical boundary for stable optimization.",
+      "authors": [
+        "Hongbang Yuan",
+        "Zhuoran Jin",
+        "Yixin Cao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-09-08T08:14:25+00:00",
+      "link": "https://arxiv.org/pdf/2609.08404v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Reinforcement learning for training autonomous agents",
+      "llm_evidence_cn": "强化学习训练自主智能体",
+      "llm_evidence": "强化学习训练自主智能体",
+      "canonical_evidence": "强化学习训练自主智能体",
+      "llm_tldr_en": "Proposes feedback-enriched environments to address reward sparsity in RL for long-horizon agent tasks, enabling self-evolving agents.",
+      "llm_tldr_cn": "针对RL训练长程任务自主智能体时奖励稀疏问题，提出反馈丰富的环境（FEEs）从环境侧进行改造，通过将行动引导转为观察丰富，引导智能体自进化，实验表明该方法能有效引导探索并提升长程任务性能，为RL训练复杂智能体提供了新思路。",
+      "llm_tldr": "针对RL训练长程任务自主智能体时奖励稀疏问题，提出反馈丰富的环境（FEEs）从环境侧进行改造，通过将行动引导转为观察丰富，引导智能体自进化，实验表明该方法能有效引导探索并提升长程任务性能，为RL训练复杂智能体提供了新思路。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.08919v1",
+      "source": "arxiv",
+      "title": "Experience Funnel: A State-Policy Alternating Loop for Self-Evolving Agents",
+      "abstract": "Autonomous agents powered by large language models (LLMs) continuously accumulate experience through interaction, creating an opportunity to improve future behavior through self-evolution. A fundamental challenge is how to transform abundant, task-specific interaction experience into reusable model competence without sacrificing the ability to adapt rapidly to newly observed evidence. Explicit textual states, such as skills and agent harnesses, provide fast, human-readable and editable adaptation, but incur persistent dependence on external context; parametric policies provide compact and reusable competence, but are substantially slower to update. We present \\textit{Experience Funnel}, a self-evolving framework that couples fast state adaptation with slow policy consolidation in an alternating loop. Interaction trajectories are first distilled into an explicit textual state, where newly acquired experience can be rapidly incorporated and validated. The framework then selectively identifies state-enabled behavior that remains useful across state revisions and consolidates it into the policy through transition-aware distillation. The updated state--policy pair subsequently generates new rollouts, providing fresh evidence for the next round of state adaptation and policy consolidation. Experiments across diverse agent benchmarks show that \\textit{Experience Funnel} consistently improves agent capability over state-only evolution and policy-internalization approaches, while progressively converting useful explicit experience into autonomous policy competence.",
+      "authors": [
+        "Wenbo Gao",
+        "Zhaomou Song",
+        "Zhiyuan Ji",
+        "Renxi Liu",
+        "Xing Li",
+        "Xianzhi Yu",
+        "Xiaoguang Li",
+        "James Chung-wai Cheung",
+        "Weizhe Lin",
+        "Yaoyuan Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-09-08T15:48:11+00:00",
+      "link": "https://arxiv.org/pdf/2609.08919v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Framework for self-evolving agents via state-policy alternating loop, transferable to game AI bot design",
+      "llm_evidence_cn": "通过状态-策略交替循环实现自进化智能体的框架，可迁移至游戏AI机器人设计",
+      "llm_evidence": "通过状态-策略交替循环实现自进化智能体的框架，可迁移至游戏AI机器人设计",
+      "canonical_evidence": "通过状态-策略交替循环实现自进化智能体的框架，可迁移至游戏AI机器人设计",
+      "llm_tldr_en": "Addresses the challenge of converting interaction experience into reusable agent competence; proposes Experience Funnel, coupling fast state adaptation with parametric policy updates for self-evolving LLM agents; demonstrates improved adaptability and reusability over fixed-parameter baselines; provides a method that could enhance game AI bot development.",
+      "llm_tldr_cn": "针对智能体如何将交互经验转化为可复用能力的问题，提出经验漏斗框架，通过状态快速适应与参数化策略更新的交替循环实现自进化；实验表明该框架能平衡快速适应与长期能力积累；该方法可为游戏AI机器人的自我改进提供通用技术路径。",
+      "llm_tldr": "针对智能体如何将交互经验转化为可复用能力的问题，提出经验漏斗框架，通过状态快速适应与参数化策略更新的交替循环实现自进化；实验表明该框架能平衡快速适应与长期能力积累；该方法可为游戏AI机器人的自我改进提供通用技术路径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.09764v1",
+      "source": "arxiv",
+      "title": "SocialRL: Refining LLMs' Social Intelligence through Multi-turn Reinforcement Learning and Reward Design",
+      "abstract": "Social intelligence enables agents to read social context, infer intent, and adapt over sustained dialogue. As language models become autonomous collaborators, it is central to building effective and trustworthy human-AI interaction. Existing reinforcement learning methods optimize single-turn utterances and sparse outcome rewards, producing short-sighted policies that struggle to manage goal-relationship tensions across multi-turn interactions. We propose SocialRL, a multi-turn reinforcement learning framework addressing both challenges. First, we apply multi-turn reinforcement learning using PPO that propagates delayed outcome rewards back to each turn, enabling long-horizon planning. Second, we design six process reward dimensions capturing the goal-relationship trade-off, including goal advancement, relational attunement, contextual coherence, etc. A reward model dynamically generates fine-grained scoring criteria for each dimension, while a stage-aware weight schedule prioritizes relationship-building in early turns, goal advancement mid-way, and balanced closure late. Across multiple social-dialogue benchmarks, SocialRL improves Goal Achievement by an average of 9.2 percentage points over the corresponding Base models. These results demonstrate the effectiveness of SocialRL across synthetic and real social scenes, as well as standard and challenging social scenarios.",
+      "authors": [
+        "Jianing Wang",
+        "Xintao Wang",
+        "Aili Chen",
+        "Jie Shi",
+        "Hongcheng Guo",
+        "Jun Gao",
+        "Wenxuan Zhao",
+        "Chengkun Lang",
+        "Yuanli Guo",
+        "Yanghua Xiao"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-09-09T06:06:34+00:00",
+      "link": "https://arxiv.org/pdf/2609.09764v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "multi-turn RL for social intelligence, applicable to human-like game AI dialogue",
+      "llm_evidence_cn": "多轮强化学习提升社交智能，可应用于类人游戏AI对话",
+      "llm_evidence": "多轮强化学习提升社交智能，可应用于类人游戏AI对话",
+      "canonical_evidence": "多轮强化学习提升社交智能，可应用于类人游戏AI对话",
+      "llm_tldr_en": "Proposes SocialRL, a multi-turn reinforcement learning framework using PPO and process rewards to improve LLM social intelligence. It addresses long-horizon social interactions, offering a method transferable to human-like game AI bots.",
+      "llm_tldr_cn": "论文针对现有强化学习优化单轮话语导致短视行为的问题，提出SocialRL框架，采用多轮PPO和过程奖励设计，传播延迟奖励以支持长程规划。该方法在社交互动中提升了LLM的社交智能，为构建具有人类般社交能力的游戏AI bot提供了可借鉴的途径。",
+      "llm_tldr": "论文针对现有强化学习优化单轮话语导致短视行为的问题，提出SocialRL框架，采用多轮PPO和过程奖励设计，传播延迟奖励以支持长程规划。该方法在社交互动中提升了LLM的社交智能，为构建具有人类般社交能力的游戏AI bot提供了可借鉴的途径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
