@@ -6,41 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-09-10
-- 运行时间：2026-09-10 21:56:13 UTC
+- 最新运行日期：2026-09-11
+- 运行时间：2026-09-11 21:44:00 UTC
 - 运行状态：成功
-- 本次总论文数：6
-- 精读区：0
-- 速读区：6
+- 本次总论文数：2
+- 精读区：1
+- 速读区：1
 
 ### 今日简报（AI）
-- 今日共生成 6 篇推荐（精读 0 篇，速读 6 篇）
-- 速读：《The Internal Anatomy of Strategic Choice in Large Language Models》（7.0/10）, 《Valerant: An Automatic Navigable Game Map Generator via Action-Conditioned World Model Exploration》（7.0/10）, 《Multi-step Proximal Policy Improvement in Offline Reinforcement Learning》（6.0/10）
+- 今日共生成 2 篇推荐（精读 1 篇，速读 1 篇）
+- 精读：《The Convention Gap: Towards Measuring Implicit Communication in Cooperative AI Evaluation》（8.0/10）
+- 速读：《Online Change-point Detection for Cooperative Multi-Agent Reinforcement Learning》（6.0/10）
 - 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202609/10/README](/202609/10/README)
+- 详情：[/202609/11/README](/202609/11/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [The Convention Gap: Towards Measuring Implicit Communication in Cooperative AI Evaluation](/202609/11/2609.11489v1-the-convention-gap-towards-measuring-implicit-communication-in-cooperative-ai-evaluation)  
+   标签：评分：8.0/10、query:gah
+   evidence：使用Hanabi衡量人类和AI游戏中的隐性沟通约定
 
 ### 速读区论文标签
-1. [The Internal Anatomy of Strategic Choice in Large Language Models](/202609/10/2609.07478v1-the-internal-anatomy-of-strategic-choice-in-large-language-models)  
-   标签：评分：7.0/10、query:gah
-   evidence：分析大语言模型在2x2游戏中的战略选择
-2. [Valerant: An Automatic Navigable Game Map Generator via Action-Conditioned World Model Exploration](/202609/10/2609.09418v1-valerant-an-automatic-navigable-game-map-generator-via-action-conditioned-world-model-exploration)  
-   标签：评分：7.0/10、query:gah
-   evidence：动作条件世界模型用于游戏环境与智能体行为，与游戏AI机器人设计相关
-3. [Multi-step Proximal Policy Improvement in Offline Reinforcement Learning](/202609/10/2609.03842v1-multi-step-proximal-policy-improvement-in-offline-reinforcement-learning)  
+1. [Online Change-point Detection for Cooperative Multi-Agent Reinforcement Learning](/202609/11/2609.05298v1-online-change-point-detection-for-cooperative-multi-agent-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：离线强化学习策略改进方法，可应用于游戏AI训练
-4. [Environments as Scaffold: Enriching Feedback to Bootstrap Self-Evolving Agents in Long-Horizon Tasks](/202609/10/2609.08404v1-environments-as-scaffold-enriching-feedback-to-bootstrap-self-evolving-agents-in-long-horizon-tasks)  
-   标签：评分：6.0/10、query:gah
-   evidence：强化学习训练自主智能体
-5. [Experience Funnel: A State-Policy Alternating Loop for Self-Evolving Agents](/202609/10/2609.08919v1-experience-funnel-a-state-policy-alternating-loop-for-self-evolving-agents)  
-   标签：评分：6.0/10、query:gah
-   evidence：通过状态-策略交替循环实现自进化智能体的框架，可迁移至游戏AI机器人设计
-6. [SocialRL: Refining LLMs' Social Intelligence through Multi-turn Reinforcement Learning and Reward Design](/202609/10/2609.09764v1-socialrl-refining-llms-social-intelligence-through-multi-turn-reinforcement-learning-and-reward-design)  
-   标签：评分：6.0/10、query:gah
-   evidence：多轮强化学习提升社交智能，可应用于类人游戏AI对话
+   evidence：基于奖励信号的协作多智能体强化学习在线变点检测，适用于自适应游戏AI bot
 
 
 <div class="dpr-home-promo-card">
