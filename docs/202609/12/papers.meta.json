@@ -1,0 +1,54 @@
+{
+  "label": "2026-09-12",
+  "date": "2026-09-12",
+  "generated_at": "2026-09-12T20:52:58",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202609/12/2609.05650v1-endogenous-exploration-in-reinforcement-learning-with-intrinsic-curiosity",
+      "section": "quick",
+      "title_en": "Endogenous Exploration in Reinforcement Learning with Intrinsic Curiosity",
+      "authors": "Armando Vieira",
+      "date": "2026-09-04",
+      "pdf": "https://arxiv.org/pdf/2609.05650v1",
+      "score": "7.0",
+      "evidence": "内在好奇心探索在LunarLander游戏环境评估",
+      "tldr": "针对非平稳环境和稀疏奖励的探索难题，本文提出基于内在好奇心的强化学习框架，在液态状态机基底上结合外部奖励与认知动机。假设有效探索出现在中间不连贯水平，过刚或过乱均导致性能下降。在LunarLanderv2和BipedalWalkerv3上取得与PPO、ICM相当的竞争性能。分析表明Active Inference未出现好奇窗口，揭示该方法捕获了独特的探索机制。",
+      "tags": "query:gah",
+      "abstract_en": "We propose a reinforcement learning framework in which exploration is driven by intrinsic curiosity, designed for scenarios where environments are non-stationary and rewards are sparse, delayed, uninformative, or absent. In our model, action selection is guided by a combination of external rewards and an epistemic motivation mechanism that biases the agent toward structured exploratory directions. The central hypothesis is that effective exploration emerges at intermediate levels of incoherence, while performance degrades under both overly rigid and overly disordered dynamics. To test this idea, we implement the framework on top of a Liquid State Machine (LSM) substrate and evaluate it on two standard benchmarks: the discrete-action LunarLanderv2 and the continuous-control BipedalWalkerv3. The proposed method achieves competitive performance on both tasks relative to established deep RL algorithms, including Proximal Policy Optimization (PPO) and Intrinsic Curiosity Module (ICM). We further show that the curiosity window is not recovered in Active Inference agents under the same analysis, suggesting that the proposed dynamics capture a distinct exploration regime",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/12/2609.05856v1-transformation-of-adaptive-multistage-sampling-for-solving-finite-horizon-markov-decision-processes-with-unknown-model",
+      "section": "quick",
+      "title_en": "Transformation of Adaptive Multistage Sampling for Solving Finite-Horizon Markov Decision Processes with Unknown Model",
+      "authors": "Hyeong Soo Chang",
+      "date": "2026-09-05",
+      "pdf": "https://arxiv.org/pdf/2609.05856v1",
+      "score": "6.0",
+      "evidence": "用于模型未知MDP的RL算法，可用于游戏AI训练",
+      "tldr": "针对模型未知的有限时域MDP，传统最优值估计缺乏采样理论保证。本文将自适应多阶段采样算法AMS转化为无采样的自适应多阶段展开AMR，在仅知状态与动作空间时，以单条轨迹反向追踪更新。证明了AMR渐近最优，期望绝对误差趋于零，收敛速度取决于可达状态访问次数。该工作将AMS结果系统拓展至强化学习环境。",
+      "tags": "query:gah",
+      "abstract_en": "This work provides a learning approach to solving finite-horizon Markov decision processes (MDPs) when the underlying model of a given finite MDP is unknown to the decision maker. We transform the adaptive multistage sampling (AMS) algorithm into a sampling-free algorithm, called \"adaptive multistage rollout (AMR),\" for estimating the optimal value at an initial state when only the state set and the action set are known. AMR emulates the backward induction as in AMS but in a reinforcement learning (RL) setting. At each iteration, AMR generates a non-stationary policy to be used for exploration and rolls out the policy in order to obtain a single trajectory of experiences and traces it backwards in a non-recursive way while doing relevant updates only at visited states and for actions taken at the visited states. We show that AMR is asymptotically optimal such that the sequence of the expected absolute errors approaches zero and its convergence rate depends on the number of visits to each reachable state at each stage from the initial state, essentially transforming the result of AMS into the RL setting.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/12/2609.08642v1-sun-reaching-for-novelty-in-reinforcement-learning",
+      "section": "quick",
+      "title_en": "SUN: Reaching for Novelty in Reinforcement Learning",
+      "authors": "Wenyan Yang, Arsenii Mustafin, Dominik Baumann, Joni Pajarinen, Simone Parisi",
+      "date": "2026-09-08",
+      "pdf": "https://arxiv.org/pdf/2609.08642v1",
+      "score": "6.0",
+      "evidence": "强化学习探索方法SUN可用于训练游戏AI",
+      "tldr": "强化学习中的探索仍是核心挑战，现有目标条件方法难以同时兼顾目标新颖性与可达性。本文提出可达性感知的目标选择框架，引入基于后继价值函数的SUN指标，可无缝嵌入任意离线策略算法。SUN在极限下恢复计数奖励，能界定短期命中概率并拒绝不可达目标。实验表明，该方法在含不可达状态、障碍物、迷宫等场景中显著优于现有先进方法，提供统一高效探索方案。",
+      "tags": "query:gah",
+      "abstract_en": "Exploration in reinforcement learning (RL) remains a fundamental challenge. Recent goal-conditioned RL strategies (which select goals to encourage broader state coverage) have shown promising results, but none scores a goal by novelty and reachability jointly: the two signals are traded off by hand, applied in sequence, or one is neglected outright. In this paper, we introduce a reachability-aware goal-selection framework that explicitly integrates these two aspects, and that can be seamlessly incorporated into any off-policy RL algorithm. To this aim, we propose SUccessor-to-Novelty (SUN), an indicator derived from successor value functions to identify goals that are both novel and reachable. We prove that SUN recovers count-based bonuses in the limit, bounds short-horizon hitting probabilities, and provably rejects unreachable goals. We further present an adaptive goal-selection strategy that leverages these properties, and an accurate yet lightweight pseudocount to avoid the overhead of classic methods. We back up all our claims with thorough benchmarks: SUN consistently outperforms state-of-the-art methods in standard and novel environments with unreachable or hard-to-reach states, irreversible transitions, obstacles, mazes, and unbounded spaces.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
