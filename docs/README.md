@@ -6,32 +6,38 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-09-12
-- 运行时间：2026-09-12 20:52:41 UTC
+- 最新运行日期：2026-09-13
+- 运行时间：2026-09-13 21:16:34 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：0
-- 速读区：3
+- 本次总论文数：5
+- 精读区：1
+- 速读区：4
 
 ### 今日简报（AI）
-今日速读3篇强化学习探索主题论文，其中内在好奇心方法得分最高（7.0/10）。  
-最值得看的是《Endogenous Exploration in Reinforcement Learning with Intrinsic Curiosity》：用内生好奇心驱动探索，让智能体不依赖外部奖励自主发现新状态。  
-普通读者建议先读这篇高分论文，再对照未知模型MDP采样与新颖性搜索两篇，理解不同探索策略的取舍。
-- 详情：[/202609/12/README](/202609/12/README)
+- 今日共生成 5 篇推荐（精读 1 篇，速读 4 篇）
+- 精读：《SkillX: Unified Multi-Skill Policy Learning for Humanoid Soccer》（8.0/10）
+- 速读：《SRPO: Setwise Relative Policy Optimization for Multi-Agent LLMs》（7.0/10）, 《Noisy-Space Policy Gradient for Diffusion Policies in Offline Reinforcement Learning》（6.0/10）, 《Long-Horizon Language Model Reinforcement Learning via Progressive Point Matching》（6.0/10）
+- 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
+- 详情：[/202609/13/README](/202609/13/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [SkillX: Unified Multi-Skill Policy Learning for Humanoid Soccer](/202609/13/2609.06718v1-skillx-unified-multi-skill-policy-learning-for-humanoid-soccer)  
+   标签：评分：8.0/10、query:gah
+   evidence：用于人形足球技能的统一强化学习框架
 
 ### 速读区论文标签
-1. [Endogenous Exploration in Reinforcement Learning with Intrinsic Curiosity](/202609/12/2609.05650v1-endogenous-exploration-in-reinforcement-learning-with-intrinsic-curiosity)  
+1. [SRPO: Setwise Relative Policy Optimization for Multi-Agent LLMs](/202609/13/2609.08452v1-srpo-setwise-relative-policy-optimization-for-multi-agent-llms)  
    标签：评分：7.0/10、query:gah
-   evidence：内在好奇心探索在LunarLander游戏环境评估
-2. [Transformation of Adaptive Multistage Sampling for Solving Finite-Horizon Markov Decision Processes with Unknown Model](/202609/12/2609.05856v1-transformation-of-adaptive-multistage-sampling-for-solving-finite-horizon-markov-decision-processes-with-unknown-model)  
+   evidence：提出面向多智能体LLM的集合式RL优化，可应用于游戏AI智能体训练
+2. [Noisy-Space Policy Gradient for Diffusion Policies in Offline Reinforcement Learning](/202609/13/2609.06882v1-noisy-space-policy-gradient-for-diffusion-policies-in-offline-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：用于模型未知MDP的RL算法，可用于游戏AI训练
-3. [SUN: Reaching for Novelty in Reinforcement Learning](/202609/12/2609.08642v1-sun-reaching-for-novelty-in-reinforcement-learning)  
+   evidence：扩散策略的策略梯度方法，可应用于连续游戏控制
+3. [Long-Horizon Language Model Reinforcement Learning via Progressive Point Matching](/202609/13/2609.07303v1-long-horizon-language-model-reinforcement-learning-via-progressive-point-matching)  
    标签：评分：6.0/10、query:gah
-   evidence：强化学习探索方法SUN可用于训练游戏AI
+   evidence：用于长程任务的密集奖励RL方法，适用于游戏智能体训练
+4. [Temporal-Causal Inference for Reinforcement Learning via Automata Learning](/202609/13/2609.07461v1-temporal-causal-inference-for-reinforcement-learning-via-automata-learning)  
+   标签：评分：6.0/10、query:gah
+   evidence：结合自动机学习的强化学习框架，可迁移至游戏环境
 
 
 <div class="dpr-home-promo-card">
