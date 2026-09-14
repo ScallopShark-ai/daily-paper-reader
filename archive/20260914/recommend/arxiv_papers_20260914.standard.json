@@ -1,0 +1,141 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-14T22:52:14.298727+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2609.12422v1",
+      "source": "arxiv",
+      "title": "Hierarchical Belief Modeling for Zero-Shot Opponent Adaptation in Partially Observable Multi-Agent Navigation",
+      "abstract": "Lux AI Season 3 requires agents to act under partial observability, randomized episode level dynamics, and a best of five match structure that rewards both tactical execution and fast adaptation. We present HORIZON, a hierarchical agent that combines symmetry aware spatial perception, dual memory belief tracking, relic centric graph attention, information gain driven exploration, and an opponent conditioned policy mixture. HORIZON separates short horizon control from cross match meta reasoning, while auxiliary belief and world model objectives stabilize learning. Trained with PPO in a large scale JAX simulator, the resulting agent explicitly infers hidden game parameters and opponent style. Experiments show consistent gains in match win rate, episode win rate, adaptation gain, and league rating over strong recurrent and feed forward baselines.",
+      "authors": [
+        "Kowei Shih",
+        "Lu Cheng",
+        "Zeyu Wang",
+        "Yeyun Xu",
+        "Kejian Tong"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-09-11T04:17:38+00:00",
+      "link": "https://arxiv.org/pdf/2609.12422v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Game AI agent trained with PPO for Lux AI, adapts to opponents",
+      "llm_evidence_cn": "使用PPO训练的Lux AI游戏智能体，能适应对手",
+      "llm_evidence": "使用PPO训练的Lux AI游戏智能体，能适应对手",
+      "canonical_evidence": "使用PPO训练的Lux AI游戏智能体，能适应对手",
+      "llm_tldr_en": "Presents HORIZON, a hierarchical RL agent for Lux AI Season 3 that uses PPO, belief tracking, and opponent-conditioned policies to achieve zero-shot adaptation.",
+      "llm_tldr_cn": "该文针对Lux AI Season 3的部分可观测多智能体导航任务，提出HORIZON分层智能体。它结合对称感知、双记忆信念跟踪、图注意力、信息增益探索和对手条件策略混合，并用PPO训练。实验显示能显式推断对手风格并稳定适应。",
+      "llm_tldr": "该文针对Lux AI Season 3的部分可观测多智能体导航任务，提出HORIZON分层智能体。它结合对称感知、双记忆信念跟踪、图注意力、信息增益探索和对手条件策略混合，并用PPO训练。实验显示能显式推断对手风格并稳定适应。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "Papers on using reinforcement learning to create game AI bots",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.06718v2",
+      "source": "arxiv",
+      "title": "SkillX: Unified Multi-Skill Policy Learning for Humanoid Soccer",
+      "abstract": "Humanoid soccer is a challenging testbed for dynamic whole-body control, requiring robots to coordinate balance, locomotion, object interaction, and skill switching over long horizons. Existing humanoid sports methods often rely on task-specific multi-stage pipelines, making it difficult to jointly learn and compose multiple object-interactive skills within a single deployable policy. To address this, we present SkillX, a unified reinforcement learning framework that learns and composes multiple atomic soccer skills through a single command-conditioned policy. SkillX integrates three core designs: skill-specific adversarial motion priors, skill-specific critics, and an object-aware temporal encoder, enabling the robot to execute atomic skills and transition among them such as dribbling, trapping, and shooting. Experiments in simulation and on a real Noetix E1 humanoid demonstrate robust multi-skill execution, long-horizon skill composition, and successful sim-to-real deployment.",
+      "authors": [
+        "Zhangchen Ye",
+        "Enxuan Ruan",
+        "Yifei Bao",
+        "Runhan Huang",
+        "Jiankun Yang",
+        "Jiakang Jin",
+        "Yixiao Huo",
+        "Pengyuan Wang",
+        "Yinan Han",
+        "Huaxing Huang",
+        "Wenhao Cui",
+        "Yiming Li",
+        "Xiaoyu Tian"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-09-06T16:41:29+00:00",
+      "link": "https://arxiv.org/pdf/2609.06718v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "unified reinforcement learning framework for humanoid soccer skills",
+      "llm_evidence_cn": "用于人形足球技能的统一强化学习框架",
+      "llm_evidence": "用于人形足球技能的统一强化学习框架",
+      "canonical_evidence": "用于人形足球技能的统一强化学习框架",
+      "llm_tldr_en": "SkillX is a unified RL framework for humanoid soccer that learns multiple atomic skills with a single command-conditioned policy, using adversarial motion priors, skill-specific critics, and an object-aware temporal encoder, enabling long-horizon skill composition.",
+      "llm_tldr_cn": "该论文解决人形足球机器人多技能学习与组合的挑战，提出SkillX统一强化学习框架，通过技能对抗运动先验、技能特定评论家和物体感知时间编码器，实现单一策略下原子技能的执行与切换。实验表明该方法能协调平衡、运动、物体交互等技能，在长程任务中稳定执行，为游戏AI中的机器人足球智能体提供了先进训练方案。该框架避免了多阶段管道的复杂性，可扩展至更复杂的游戏场景。",
+      "llm_tldr": "该论文解决人形足球机器人多技能学习与组合的挑战，提出SkillX统一强化学习框架，通过技能对抗运动先验、技能特定评论家和物体感知时间编码器，实现单一策略下原子技能的执行与切换。实验表明该方法能协调平衡、运动、物体交互等技能，在长程任务中稳定执行，为游戏AI中的机器人足球智能体提供了先进训练方案。该框架避免了多阶段管道的复杂性，可扩展至更复杂的游戏场景。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.11489v2",
+      "source": "arxiv",
+      "title": "The Convention Gap: Towards Measuring Implicit Communication in Cooperative AI Evaluation",
+      "abstract": "Cooperative AI agents are evaluated against other AIs, yet human cooperation relies on implicit conventions -- shared protocols for reading meaning beyond the literal message -- which AI-AI benchmarks may not capture. We propose the convention gap, the difference between the failure probability predicted from the literal content of communication and the observed failure rate, as a metric of implicit communication. In the card game Hanabi, the finite deck and deterministic hint constraints make this posterior exactly computable. We replayed about 101,000 play actions from three public datasets of human-human (an online Hanabi platform), AI-AI (HOAD), and human-AI (HanabiData) games. The gap was +26.2 percentage points (pp) in human pairs, -0.7 pp in AI pairs, and +16.4 pp in human-AI pairs, and was concentrated on plays of cards that had received no hints (+46 pp in human pairs). Within human-AI play, the literal information available to humans was similar across the three AI partners (mean predicted failure 38-41%), but human failure rates ranged from 14.4% to 34.4% and the gap from +24.1 to +6.2 pp; the partner eliciting the largest gap produced the fewest human failures. Game score carried different information: it depended on each corpus's roster composition, whereas the gap separated human from AI play at the agent level. As a known-answer check, Off-Belief Learning agents, whose convention content is controlled by construction, gave a gap of +1.6 pp at the convention-free level, rising monotonically to +21.7 pp. These results suggest that convention compatibility, rather than AI-AI performance, may predict an AI's effectiveness with human partners.",
+      "authors": [
+        "Makoto Fukushima",
+        "Hua-Dong Xiong",
+        "Ehsan Moradi Pari"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.HC"
+      ],
+      "published": "2026-09-10T12:57:03+00:00",
+      "link": "https://arxiv.org/pdf/2609.11489v2",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "measuring implicit communication in cooperative AI via convention gap in the card game Hanabi",
+      "llm_evidence_cn": "通过惯例差距衡量卡牌游戏Hanabi中合作AI的隐性沟通",
+      "llm_evidence": "通过惯例差距衡量卡牌游戏Hanabi中合作AI的隐性沟通",
+      "canonical_evidence": "通过惯例差距衡量卡牌游戏Hanabi中合作AI的隐性沟通",
+      "llm_tldr_en": "This paper introduces the convention gap to measure implicit communication in cooperative AI, using Hanabi to compute posteroiors and replay human-human, AI-AI, and human-AI games, revealing significant gaps between human and AI conventions.",
+      "llm_tldr_cn": "该文针对合作AI评估忽视隐性沟通的问题，提出“惯例差距”指标，即在字面沟通内容预测的失败概率与实际失败率之间的差异。以卡牌游戏Hanabi为测试平台，利用有限牌堆和确定性提示精确计算后验概率，回放约10.1万次行动数据。结果显示人类对局惯例差距为+26.2个百分点，表明AI-AI评估可能低估人类合作中的隐性惯例。该指标为开发更接近人类沟通方式的合作AI提供了评估工具。",
+      "llm_tldr": "该文针对合作AI评估忽视隐性沟通的问题，提出“惯例差距”指标，即在字面沟通内容预测的失败概率与实际失败率之间的差异。以卡牌游戏Hanabi为测试平台，利用有限牌堆和确定性提示精确计算后验概率，回放约10.1万次行动数据。结果显示人类对局惯例差距为+26.2个百分点，表明AI-AI评估可能低估人类合作中的隐性惯例。该指标为开发更接近人类沟通方式的合作AI提供了评估工具。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "human-like game artificial intelligence",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

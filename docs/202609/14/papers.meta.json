@@ -1,0 +1,54 @@
+{
+  "label": "2026-09-14",
+  "date": "2026-09-14",
+  "generated_at": "2026-09-14T22:55:49",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202609/14/2609.12422v1-hierarchical-belief-modeling-for-zero-shot-opponent-adaptation-in-partially-observable-multi-agent-navigation",
+      "section": "deep",
+      "title_en": "Hierarchical Belief Modeling for Zero-Shot Opponent Adaptation in Partially Observable Multi-Agent Navigation",
+      "authors": "Kowei Shih, Lu Cheng, Zeyu Wang, Yeyun Xu, Kejian Tong",
+      "date": "2026-09-11",
+      "pdf": "https://arxiv.org/pdf/2609.12422v1",
+      "score": "10.0",
+      "evidence": "使用PPO训练的Lux AI游戏智能体，能适应对手",
+      "tldr": "Lux AI第三赛季要求智能体在部分可观测、动态随机及五局三胜制下快速适应。HORIZON采用对称空间感知、双记忆信念跟踪、遗物中心图注意力与信息增益探索，分离短期控制与跨场次元推理，并用辅助目标稳定PPO训练。实验显示HORIZON在比赛胜率、局胜率、适应增益和联赛评分上均超越强循环与前馈基线。验证了层次信念建模对零样本对手适应的有效性。",
+      "tags": "query:gah",
+      "abstract_en": "Lux AI Season 3 requires agents to act under partial observability, randomized episode level dynamics, and a best of five match structure that rewards both tactical execution and fast adaptation. We present HORIZON, a hierarchical agent that combines symmetry aware spatial perception, dual memory belief tracking, relic centric graph attention, information gain driven exploration, and an opponent conditioned policy mixture. HORIZON separates short horizon control from cross match meta reasoning, while auxiliary belief and world model objectives stabilize learning. Trained with PPO in a large scale JAX simulator, the resulting agent explicitly infers hidden game parameters and opponent style. Experiments show consistent gains in match win rate, episode win rate, adaptation gain, and league rating over strong recurrent and feed forward baselines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/14/2609.06718v2-skillx-unified-multi-skill-policy-learning-for-humanoid-soccer",
+      "section": "deep",
+      "title_en": "SkillX: Unified Multi-Skill Policy Learning for Humanoid Soccer",
+      "authors": "Zhangchen Ye, Enxuan Ruan, Yifei Bao, Runhan Huang, Jiankun Yang, Jiakang Jin, Yixiao Huo, Pengyuan Wang, Yinan Han, Huaxing Huang, Wenhao Cui, Yiming Li, Xiaoyu Tian",
+      "date": "2026-09-06",
+      "pdf": "https://arxiv.org/pdf/2609.06718v2",
+      "score": "9.0",
+      "evidence": "用于人形足球技能的统一强化学习框架",
+      "tldr": "人形足球要求机器人长时间协调平衡、运动、物体交互与技能切换，但现有多阶段流水线难以在单一策略中联合学习多个物体交互技能。为此提出 SkillX，一个统一强化学习框架，通过单一命令条件策略学习并组合多个原子足球技能。其核心设计包括技能特定对抗运动先验、技能特定评论家和物体感知时间编码器，实现带球、停球、射门等技能的鲁棒执行与切换。仿真和真实机器人实验验证了多技能执行、长时程组合及仿真到真实部署，为人形运动技能学习提供了新范式。",
+      "tags": "query:gah",
+      "abstract_en": "Humanoid soccer is a challenging testbed for dynamic whole-body control, requiring robots to coordinate balance, locomotion, object interaction, and skill switching over long horizons. Existing humanoid sports methods often rely on task-specific multi-stage pipelines, making it difficult to jointly learn and compose multiple object-interactive skills within a single deployable policy. To address this, we present SkillX, a unified reinforcement learning framework that learns and composes multiple atomic soccer skills through a single command-conditioned policy. SkillX integrates three core designs: skill-specific adversarial motion priors, skill-specific critics, and an object-aware temporal encoder, enabling the robot to execute atomic skills and transition among them such as dribbling, trapping, and shooting. Experiments in simulation and on a real Noetix E1 humanoid demonstrate robust multi-skill execution, long-horizon skill composition, and successful sim-to-real deployment.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/14/2609.11489v2-the-convention-gap-towards-measuring-implicit-communication-in-cooperative-ai-evaluation",
+      "section": "quick",
+      "title_en": "The Convention Gap: Towards Measuring Implicit Communication in Cooperative AI Evaluation",
+      "authors": "Makoto Fukushima, Hua-Dong Xiong, Ehsan Moradi Pari",
+      "date": "2026-09-10",
+      "pdf": "https://arxiv.org/pdf/2609.11489v2",
+      "score": "7.0",
+      "evidence": "通过惯例差距衡量卡牌游戏Hanabi中合作AI的隐性沟通",
+      "tldr": "现有合作AI评估主要基于AI-AI对抗，忽略人类合作依赖的隐式约定。本文提出“约定间隙”指标，即字面信息预测失败率与实际失败率之差，并在Hanabi游戏三个数据集（人人、AI-AI、人-AI）重放约10.1万动作进行测量。结果显示，人类对间隙+26.2pp、AI对-0.7pp、人-AI对+16.4pp，且间隙最大的AI伙伴带来最少人类失败。该指标表明，约定兼容性而非AI-AI表现，可能预测AI与人类合作的有效性。",
+      "tags": "query:gah",
+      "abstract_en": "Cooperative AI agents are evaluated against other AIs, yet human cooperation relies on implicit conventions -- shared protocols for reading meaning beyond the literal message -- which AI-AI benchmarks may not capture. We propose the convention gap, the difference between the failure probability predicted from the literal content of communication and the observed failure rate, as a metric of implicit communication. In the card game Hanabi, the finite deck and deterministic hint constraints make this posterior exactly computable. We replayed about 101,000 play actions from three public datasets of human-human (an online Hanabi platform), AI-AI (HOAD), and human-AI (HanabiData) games. The gap was +26.2 percentage points (pp) in human pairs, -0.7 pp in AI pairs, and +16.4 pp in human-AI pairs, and was concentrated on plays of cards that had received no hints (+46 pp in human pairs). Within human-AI play, the literal information available to humans was similar across the three AI partners (mean predicted failure 38-41%), but human failure rates ranged from 14.4% to 34.4% and the gap from +24.1 to +6.2 pp; the partner eliciting the largest gap produced the fewest human failures. Game score carried different information: it depended on each corpus's roster composition, whereas the gap separated human from AI play at the agent level. As a known-answer check, Off-Belief Learning agents, whose convention content is controlled by construction, gave a gap of +1.6 pp at the convention-free level, rising monotonically to +21.7 pp. These results suggest that convention compatibility, rather than AI-AI performance, may predict an AI's effectiveness with human partners.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
