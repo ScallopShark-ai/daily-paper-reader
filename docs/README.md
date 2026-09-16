@@ -6,29 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-09-15
-- 运行时间：2026-09-15 22:30:31 UTC
+- 最新运行日期：2026-09-16
+- 运行时间：2026-09-16 21:55:48 UTC
 - 运行状态：成功
 - 本次总论文数：2
-- 精读区：1
-- 速读区：1
+- 精读区：0
+- 速读区：2
 
 ### 今日简报（AI）
-- 今日共生成 2 篇推荐（精读 1 篇，速读 1 篇）
-- 精读：《"What Can I Do for You'': How Should AI Companions Provide Assistance to Players in Virtual Reality Games》（9.0/10）
-- 速读：《Robust Policy Optimization via Adversarial Importance Sampling》（7.0/10）
-- 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202609/15/README](/202609/15/README)
+今日速读两篇强化学习论文，聚焦策略优化与稳定性改进。  
+值得关注的方向：基于细化的流策略优化，以及用 Sigmoid 有界熵稳定保守 Q 学习。  
+建议普通读者优先浏览《Refinement-based Flow Policy Optimization》了解策略细化思路，再按需跟进 SCQ 的稳定性修正。
+- 详情：[/202609/16/README](/202609/16/README)
 
 ### 精读区论文标签
-1. ["What Can I Do for You'': How Should AI Companions Provide Assistance to Players in Virtual Reality Games](/202609/15/2609.13727v1-what-can-i-do-for-you-how-should-ai-companions-provide-assistance-to-players-in-virtual-reality-games)  
-   标签：评分：9.0/10、query:gah
-   evidence：VR游戏中的AI伴侣向玩家提供帮助
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [Robust Policy Optimization via Adversarial Importance Sampling](/202609/15/2609.13044v1-robust-policy-optimization-via-adversarial-importance-sampling)  
+1. [Refinement-based Flow Policy Optimization](/202609/16/2609.15123v1-refinement-based-flow-policy-optimization)  
    标签：评分：7.0/10、query:gah
-   evidence：适用于游戏AI训练的鲁棒深度强化学习策略优化
+   evidence：提出RFPO用于在线强化学习的流策略训练，可应用于游戏AI
+2. [SCQ: Stabilizing Conservative Q-Learning with Sigmoid-Bounded Entropy](/202609/16/2609.12749v1-scq-stabilizing-conservative-q-learning-with-sigmoid-bounded-entropy)  
+   标签：评分：6.0/10、query:gah
+   evidence：保守Q学习的sigmoid有界熵稳定性，适用于游戏智能体的离线到在线RL
 
 
 <div class="dpr-home-promo-card">

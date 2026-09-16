@@ -1,0 +1,93 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-16T21:54:14.279631+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2609.15123v1",
+      "source": "arxiv",
+      "title": "Refinement-based Flow Policy Optimization",
+      "abstract": "Flow-based policies offer an expressive representation for online reinforcement learning, but conventional flow matching requires samples drawn from the distribution to be modeled. This poses a challenge when the desired action distribution is defined only implicitly by a Q-function, since directly sampling actions from the resulting distribution is generally intractable. We propose Refinement-Based Flow Policy Optimization (RFPO), a novel framework for training a flow policy in online reinforcement learning by alternating between Q-guided sample refinement and self-target flow matching. RFPO first generates actions from Gaussian noise using the current flow policy and then uses a finite-step stochastic refinement procedure to move them toward an energy-based distribution induced by the Q-function. Each refined action is then paired with its corresponding initial noise sample and used as a fixed target for flow-matching training. By repeatedly refining its own outputs and learning from the resulting targets, RFPO incorporates Q-guidance into the policy without requiring direct samples from the target distribution, while retaining the capacity to represent multiple action modes. We further provide a theoretical analysis of the distributional dynamics induced by RFPO. Across six continuous-control tasks, RFPO matches or outperforms a standard Gaussian-policy baseline on almost every task. Experiments on six synthetic two-dimensional target distributions with diverse geometries demonstrate that RFPO captures complex multimodal structure without mode collapse.",
+      "authors": [
+        "Bumgeun Park",
+        "Hyukjun Yang",
+        "Donghwan Lee"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-09-14T06:56:33+00:00",
+      "link": "https://arxiv.org/pdf/2609.15123v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes RFPO for online reinforcement learning of flow policies, applicable to game AI training",
+      "llm_evidence_cn": "提出RFPO用于在线强化学习的流策略训练，可应用于游戏AI",
+      "llm_evidence": "提出RFPO用于在线强化学习的流策略训练，可应用于游戏AI",
+      "canonical_evidence": "提出RFPO用于在线强化学习的流策略训练，可应用于游戏AI",
+      "llm_tldr_en": "The paper proposes Refinement-Based Flow Policy Optimization (RFPO) to train flow policies in online RL by alternating Q-guided refinement and self-target flow matching, addressing intractable sampling from Q-induced distributions; experiments demonstrate improved performance over baselines.",
+      "llm_tldr_cn": "针对流匹配在Q函数隐式定义动作分布时难以采样的局限，本文提出RFPO框架，通过Q引导样本精炼与自目标流匹配交替训练流策略；在多个在线强化学习基准上的实验表明，RFPO能有效提升策略性能；该方法为游戏AI等连续控制场景提供了新型策略优化路径。",
+      "llm_tldr": "针对流匹配在Q函数隐式定义动作分布时难以采样的局限，本文提出RFPO框架，通过Q引导样本精炼与自目标流匹配交替训练流策略；在多个在线强化学习基准上的实验表明，RFPO能有效提升策略性能；该方法为游戏AI等连续控制场景提供了新型策略优化路径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.12749v1",
+      "source": "arxiv",
+      "title": "SCQ: Stabilizing Conservative Q-Learning with Sigmoid-Bounded Entropy",
+      "abstract": "Offline-to-online reinforcement learning reduces interaction cost for real-world robot learning but suffers from persistent value estimation instability. Existing methods address this through pessimistic regularization, lower-bound calibration, and architectural normalization, but an overlooked source of instability lies in the entropy formulation: the standard log-entropy term can become negative, destabilizing policy updates. We introduce SCQ (Sigmoid-Bounded Conservative Q-Learning), which replaces this term with a sigmoid-bounded formulation that stays strictly positive. SCQ retains conservative Q regularization and return-based lower-bound calibration, stabilizing policy optimization without sacrificing exploration. We evaluate SCQ on D4RL (Minari) benchmarks under both single-demonstration and standard dataset settings, as well as on simulation and real-world visual tasks. SCQ matches or exceeds baseline performance while exhibiting more stable training dynamics across state-based and visual benchmarks, and transfers to four real-robot platforms including manipulation, wheeled, quadruped, and humanoid systems. A direct clipping intervention that removes negative log-probability contributions, together with gradient-matched positive-score controls, indicates that positivity rather than a particular score shape alone drives much of the improvement. Project website: https://scq-rl.github.io.",
+      "authors": [
+        "Xiefeng Wu",
+        "Shu Zhang",
+        "Zhaojie Chu",
+        "Mingyu Hu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-11T11:59:52+00:00",
+      "link": "https://arxiv.org/pdf/2609.12749v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "novel entropy stabilization for conservative Q-learning, offline-to-online RL applicable to game agents",
+      "llm_evidence_cn": "保守Q学习的sigmoid有界熵稳定性，适用于游戏智能体的离线到在线RL",
+      "llm_evidence": "保守Q学习的sigmoid有界熵稳定性，适用于游戏智能体的离线到在线RL",
+      "canonical_evidence": "保守Q学习的sigmoid有界熵稳定性，适用于游戏智能体的离线到在线RL",
+      "llm_tldr_en": "Introduces SCQ, a conservative Q-learning variant with sigmoid-bounded entropy to stabilize offline-to-online RL, originally for robotics but applicable to game AI agent training.",
+      "llm_tldr_cn": "本文解决离线到在线强化学习中价值估计不稳定的问题，指出标准log熵项可能变为负值导致策略更新不稳定。提出SCQ方法，用sigmoid有界熵替换，保持严格正性，同时保留保守Q正则化和下界校准。在D4RL基准上的实验表明SCQ能稳定策略优化并保持探索。该RL技术可迁移用于游戏AI智能体的离线到在线训练，减少实际交互成本。",
+      "llm_tldr": "本文解决离线到在线强化学习中价值估计不稳定的问题，指出标准log熵项可能变为负值导致策略更新不稳定。提出SCQ方法，用sigmoid有界熵替换，保持严格正性，同时保留保守Q正则化和下界校准。在D4RL基准上的实验表明SCQ能稳定策略优化并保持探索。该RL技术可迁移用于游戏AI智能体的离线到在线训练，减少实际交互成本。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
