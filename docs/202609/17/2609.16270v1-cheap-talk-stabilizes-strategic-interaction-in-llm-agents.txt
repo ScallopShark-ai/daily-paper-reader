@@ -1,0 +1,781 @@
+Title: Cheap Talk Stabilizes Strategic Interaction in LLM Agents
+
+URL Source: https://arxiv.org/pdf/2609.16270v1
+
+Published Time: Wed, 16 Sep 2026 00:13:56 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+# Cheap Talk Stabilizes Strategic Interaction in LLM Agents 
+
+## Nunzio Lorè, Hongan Zhu, Babak Heydari ∗
+
+Multi-Agent Intelligent Complex Systems (MAGICS) Lab, Northeastern University, Boston, MA, USA 
+
+Abstract 
+
+Large language models are increasingly deployed as interact-ing agents, making the persistence of their action policies across repeated interaction critical for reliable multi-agent operation. We investigate whether and how agent-generated, non-binding pre-play communication (“cheap talk”) increases such persistence in four open-weight 7–9B-parameter LLMs. Our experiments span four repeated two-player games— Prisoner’s Dilemma, Snowdrift, Stag Hunt, and Harmony— with incentive structures ranging from strategic conflict to alignment, each presented in six contexts. We observe un-stable trajectories in all four games, although their preva-lence and magnitude depend strongly on model and context. Across models, games, and contexts, cheap talk is predomi-nantly stabilizing, with five corrected reversals concentrated in social or team framings; effects vary substantially by model and context. Controlled current-message interventions iden-tify two separable output-level channels in Qwen: reduced action uncertainty and less between-round drift in action prob-abilities. Matched history-by-message counterfactuals further show that recent partner behavior conditions how mutual-benefit versus self-prioritizing language affects policy persis-tence. Finally, in Prisoner’s Dilemma, we identify in Qwen and Falcon a history-balanced policy-content direction in late transformer layers; projecting out this direction increases re-alized switching during closed-loop play, demonstrating that complete trajectories are causally sensitive to this component. Together, these findings show that cheap talk can make in-dividual trajectories more persistent across diverse incentive structures, while revealing that the magnitude and mecha-nisms of stabilization are model- and history-dependent. 
+
+## 1 Introduction 
+
+Large language models (LLMs) increasingly act as au-tonomous or delegated agents in shared environments (Acharya, Kuppan, and Divya 2025; Shavit et al. 2023; Sap-kota, Roumeliotis, and Karkee 2026). This introduces fail-ure modes less visible in single-turn evaluation (Li et al. 2024; Han et al. 2024), while multi-agent deployment can compound strategic misalignment with instability (Cemri et al. 2025). Because one agent’s action enters another’s later context, small behavioral fluctuations can compound across rounds (Lorè and Heydari 2024). Predictability is therefore 
+
+> ∗
+
+Corresponding author: b.heydari@northeastern.edu 
+
+important for reliable operation (Novikova et al. 2025) and human expectations (Barak and Costa-Gomes 2025). We study behavioral stability in the narrow sense of adjacent-round action persistence. This trajectory-level prop-erty cannot be inferred from population averages: a stable aggregate share of one action can coexist with every indi-vidual agent alternating between the two. Some switching is adaptive, since an agent may reasonably respond to a change in its partner’s behavior. The oscillation we observe is largely not of that kind: it reaches rates that no memoryless random-ization over actions can produce, and it persists even under incentive structures in which one action strictly dominates the other. We therefore use adjacent-round switching as an operational measure of first-order trajectory persistence, not as a claim that every action change is irrational or that the metric captures every form of predictability. Pre-play communication is a natural intervention. Cheap talk is costless and non-binding, so it can change what agents express about their intentions without changing incentives (Crawford and Sobel 1982; Farrell and Rabin 1996). Nei-ther cheap-talk theory nor the human experimental record fixes what to expect from LLM agents: their messages may convey strategic intent, but text may equally sharpen ac-tion distributions, anchor policies, or be read against recent play. We therefore ask whether cheap talk stabilizes repeated interaction across incentive structures, and through which mechanisms. We evaluate four open-weight 7–9B models in repeated Prisoner’s Dilemma, Snowdrift, Stag Hunt, and Harmony. Across six framings and two treatments, 100 independent ten-round dyads per model–game–context–treatment cell yield 19,200 repeated-game dyads. Figure 1 summarizes the de-sign and the follow-ups. Cheap talk stabilizes 71 of the 96 model–game–context comparisons after correction, while five reverse in social or team framings. Three follow-ups then separate fixed-history policy effects (Experiments 1–2) from closed-loop sensitiv-ity to a late-layer component (Experiment 3). The contri-bution is therefore not that communication shifts average behavior, but that it makes individual trajectories more per-sistent, and that this effect separates into output-level and representation-level components. arXiv:2609.16270v1 [cs.MA] 14 Sep 2026 A Behavioral experiment and primary result  
+
+> EXPERIMENTAL SCOPE
+> 4
+
+open-weight LLMs (7–9B)  
+
+> Qwen · Falcon · Granite · Gemma
+> 4
+
+repeated 2×2 games    
+
+> PD Snowdrift Stag Hunt Harmony
+> conflict alignment
+> 6
+
+contextual framings                                              
+
+> neutral · business · environmental social · team · international relations
+> 100 dyads/cell × 10 rounds → 19,200 dyads
+> AGENT-LEVEL ACTION TRAJECTORIES illustrative sequences
+> No message
+> high switching
+> Agent 1 ABABABABAB
+> Agent 2 ABABABABAB
+> period-two oscillation, mostly in phase (AA
+> ⇄BB)
+> One-sentence cheap talk
+> persistent actions
+> Agent 1 AAAABAAAAA
+> Agent 2 BBBBBBABBB
+> persistent actions, rare switches (either action)
+> switch stay — adjacent-round switching = share of switch transitions
+> MEAN ADJACENT-ROUND SWITCHING
+
+No message 63.8% 
+
+−44.9 pp (−70% relative) 
+
+Cheap talk 18.9%  
+
+> 71 / 96 model–game–context cells significantly stabilizing (BH–FDR, q < .05)
+> all 5 significant reversals : social/team framings
+> cheap talk also raises mutual-A play & mean payoffs
+
+B Mechanistic probes of cheap-talk stabilization distinct contributors — not a complete mediation chain  
+
+> OPEN-LOOP
+> 1
+
+Current-message replay      
+
+> Re-score each action while changing only the current message: content, dummy text, attribution.
+> r1 r2 r3 msg
+> history fixed swapped
+> Qwen: expected switching −12.9 pp: uncertainty −8.7, probability drift −4.2
+> OPEN-LOOP
+> 2
+
+History × message       
+
+> Cross standardized mutual-benefit (MB) vs self-prioritizing (SP) messages with partner's last action.
+> MB SP
+> after A ↓↑
+> after B ↑↓
+> ↑↓ effect on switching (illustrative)
+> Partner's last action conditions message effects — in all 4 models
+> CLOSED-LOOP PLAY
+> 3
+
+Late-layer projection  
+
+> Remove a policy-content direction at every action during regenerated play (Qwen & Falcon, PD).
+> 28 layers · policy-content direction d
+> − d Switching ↑ at layers 20–24; Qwen L22: 6% → 70%
+
+Figure 1: Design, primary result, and mechanistic follow-ups. (A) Four open-weight 7–9B LLMs play four repeated 2 × 2 games under six framings, with or without one-sentence pre-play cheap talk; illustrative trajectories contrast period-two cycling with persistent play. Across the 96 model–game–context comparisons, mean adjacent-round switching falls from 63.8% to 18.9%. (B) Three analyses examine current-message effects along fixed histories, history-conditioned message effects, and the sensitivity of regenerated trajectories to projecting out a late-layer policy-content direction. 
+
+## 2 Related Work 
+
+Strategic Decision-Making in LLMs 
+
+Strategic competence requires representing incentives, up-dating beliefs, and comparing contingent actions in an in-teractive environment, and remains challenging for LLMs (Zhu et al. 2025). Early work proposed LLMs as scalable “in silico” proxies for human participants (Horton, Filippas, and Manning 2023), but behavior in adversarial and game-theoretic settings is often boundedly rational and heuristic (Sun et al. 2025), diverging from both rational-choice pre-dictions and established behavioral regularities (Kitadai et al. 2023; Zhang et al. 2024; Guo 2023; Mei et al. 2024; Fontana, Pierri, and Aiello 2025). Models also struggle to refine be-liefs from interaction evidence and apply humanlike strate-gies rigidly (Fan et al. 2024; Zheng, Zhou, and Wang 2025), so the validity of LLM-based strategic simulation depends on experimental design and opaque training choices as much as on capability (Wang et al. 2025b; Willis et al. 2025). A parallel literature seeks to steer multi-agent behavior toward cooperation or prosocial outcomes (Ani Justus and Baber 2025; Chen et al. 2024; Tran et al. 2025; Wang et al. 2025a; Piatti et al. 2024), emphasizing welfare or equilibrium rather than whether an individual policy persists across rounds. This distinction matters because a change in aggregate co-operation can reflect either a genuine policy shift or greater stochastic dispersion around an unchanged tendency. 
+
+Behavioral Stability 
+
+LLM instability reflects probabilistic sampling and compu-tational nondeterminism (Atil et al. 2024), pre-training and system design (Wang and Wang 2025; Roy, Jhaveri, and Tri-antafyllopoulos 2025), and sensitivity to prompt wording, framing, and contextual cues (Huang et al. 2025; Mozikov et al. 2024; Errica et al. 2025; Sclar et al. 2024). Greater scale does not necessarily eliminate the problem (Zhou et al. 2024; Yu et al. 2025), creating concern where reproducible reasoning and dependable decisions are required (Caran-dang et al. 2025; Blair-Stanek and Van Durme 2025; Pu-rushothama et al. 2026; Gallagher et al. 2024), and recent benchmarks accordingly evaluate reliability across repeated runs, perturbations, and scoring dimensions (Anghel et al. 2025; Nalbandyan, Shahbazyan, and Bakhturina 2025; Jang, Ahn, and Shin 2025). Multi-turn interaction adds a feedback problem, since earlier outputs enter later contexts and consis-tency may deteriorate over an exchange (Li et al. 2025), and context dependence is pronounced in behavioral and strategic tasks (Kovač et al. 2024). Our focus complements cross-run reliability by measuring within-trajectory policy persistence, which stable population averages can conceal and which is separate from whether the persistent action is cooperative. It also differs from consistency across semantically equivalent prompts: the unit of analysis is one agent’s evolving policy within one repeated interaction. Strategic Communication 
+
+Strategic communication has been studied through signal-ing, disclosure, persuasion, and related frameworks (Spence 1973; Akerlof 1970; Grossman 1981; Milgrom 1981; Schelling 1980; Kamenica and Gentzkow 2011). Most rel-evant here is cheap talk: costless, non-binding communi-cation without direct payoff effects or enforceable truthful-ness, which admits uninformative babbling equilibria but can be informative when interests are sufficiently aligned (Crawford and Sobel 1982; Farrell and Rabin 1996). Cred-ibility may also emerge from reliable behavioral histories, extended conversation, reputation, and repeated interaction (Sobel 1985; Aumann and Hart 2003; Golosov et al. 2014; Blume, Lai, and Lim 2020; Wilson and Sell 1997; Lima and Melo-Filho 2024; Arechar et al. 2017). Human behav-ior departs systematically from these benchmarks: senders overcommunicate (Cai and Wang 2006; Sánchez-Pagés and Vorsatz 2007; Lafky, Lai, and Lim 2022; Wang, Spezio, and Camerer 2010), while receivers may overweight biased mes-sages or discount information too strongly (Li, Özer, and Subramanian 2022; Kartik, Ottaviani, and Squintani 2007; Li and Peeters 2016), and whether LLMs reproduce, amplify, or attenuate these biases remains under study (Tjuatja et al. 2024; Geva et al. 2025). Less is known about whether cheap talk makes repeated policies more persistent across conflict and coordination environments, and whether any stabiliza-tion reflects strategic content, generic text, attribution, or interaction with observed behavior. Our design treats these as separable hypotheses rather than interpreting the presence of a message as a unitary intervention. 
+
+Causal Analysis of Internal Representations 
+
+Diagnostic probes show that information is decodable with-out establishing that a model uses it to produce an output (Hewitt and Liang 2019; Belinkov 2022; Elazar et al. 2021). Causal mediation, tracing, patching, and steering intervene on internal states and measure behavioral change (Vig et al. 2020; Meng et al. 2022; Zhang and Nanda 2024; Li et al. 2023; Rimsky et al. 2024), while projection-based removal provides a complementary necessity test and causal abstrac-tion a broader interpretive framework (Elazar et al. 2021; Dobrzeniecka, Fokkens, and Sommerauer 2025; Geiger et al. 2025). In multi-agent play, however, an altered action changes the history conditioning later decisions, so an intervention that changes one logit without regenerating subsequent play may miss the system-level consequence. We therefore com-bine matched output counterfactuals with closed-loop pro-jection ablation, so that trajectory-level claims concern be-havioral use rather than decodability alone. 
+
+## 3 Methods 
+
+Experimental Design 
+
+In each repeated symmetric 2 × 2 game, both agents choose A or B. Following standard notation, R is each agent’s pay-off under AA, P is each payoff under BB, T is the pay-off to B against A, and S is the payoff to A against B. The games differ only in rank order: Prisoner’s Dilemma (T > R > P > S ), Snowdrift ( T > R > S > P ), Stag Hunt ( R > T > P > S ), and Harmony ( R > S > T > P ). Values 5, 3, 1, and 0 are assigned in rank order, holding scale fixed while varying incentives. Prompts show the pay-off matrix but not the conventional game name. Each game is framed as neutral, business, environmental, social, team, or international-relations interaction. For each model–game–context–treatment cell, we gener-ate 100 independent ten-round dyads; agents are not told the horizon. Message calls execute sequentially for imple-mentation, but the protocol is simultaneous in information: each agent composes from its history through the preceding round, the first message is buffered, and both messages are revealed before either action. Messages are non-binding and carry no truthfulness requirement, distinguishing cheap talk from commitment. The no-communication treatment sup-plies only the game and observed history. System prompts contain the framing, action definitions, and payoff matrix; round prompts report prior actions and payoffs, elicit and buffer messages when applicable, reveal the counterpart’s message, and request A or B. Communication therefore changes pre-action text without changing payoffs or intro-ducing within-round sequential persuasion. 
+
+Behavioral Stability Metric 
+
+Let aidt ∈ { A, B } be agent i’s action in dyad d at round t.Trajectory instability is 
+
+Sid = 1
+
+T − 1
+
+> T
+
+X
+
+> t=2
+
+1{aidt ̸ = aid,t −1} , T = 10 . (1) Each complete dyad contributes 18 transitions, nine from each agent, and condition-level rates pool these indicators. The communication effect is 
+
+∆S = ¯Sno message − ¯Smessage , (2) so positive values indicate stabilization. The metric is label-symmetric and agnostic about which action persists; stable A and stable B trajectories receive the same score. Independent draws from a memoryless Bernoulli policy have expected switching 2p(1 − p) ≤ 1/2; near-ceiling rates therefore imply systematic temporal structure rather than in-dependent mixing. More generally, for a stationary binary series with marginal p and first-order autocorrelation ρ1,
+
+S = 2 p(1 − p) (1 − ρ1), (3) so at fixed p the switch rate is an affine rescaling of ρ1.Because 2p(1 − p) ≤ 1/2 for every p, any S > 1/2 implies 
+
+ρ1 < 0 irrespective of the marginal, whereas below one half the sign of ρ1 depends on p; we therefore draw this inference in one direction only. We report S rather than mean run length because run length is censored at the ten-round horizon, whereas a per-transition rate is not. A deterministic period-two sequence can nevertheless have S = 1 while remaining perfectly predictable from round parity, and period-two cycling is in fact the second-order structure we observe. Under our rank-order payoffs, constant A weakly dominates sustained in-phase and antiphase alter-nation in every game and strictly dominates except antiphase Snowdrift, which ties. We therefore interpret S as first-order action persistence, characterizing the sign and strength of adjacent-round dependence rather than general predictabil-ity, strategic quality, or welfare. With nine transitions per agent, it estimates that dependence within a short window and does not distinguish a settled cycle from a transient that has not yet converged. 
+
+Model Selection 
+
+We evaluate four general-purpose open-weight models in a narrow 7–9B parameter range: Qwen 2.5 7B, Falcon 3 7B, Granite 3.3 8B, and Gemma 2 9B. Holding scale ap-proximately constant limits parameter-count variation while retaining differences in training history and architecture, and open weights expose token-level action probabilities and internal activations. Moderate size makes 19,200 dyads, matched replays, and closed-loop interventions tractable; we exclude reasoning-distilled checkpoints to preserve a com-mon class of instruction-tuned models. Compact models are also practically relevant because repeated multi-agent infer-ence magnifies token and compute costs (Zhang et al. 2025; Belcak et al. 2025). 
+
+Model Execution and Statistical Analysis 
+
+Primary simulations use ollama at temperature 0.8, held fixed across treatments. This setting exposes variation in the sampled policy rather than evaluating only modal actions and is comparable to prior behavioral and multi-agent stud-ies (Aher, Arriaga, and Kalai 2023; Lorè and Heydari 2024). Exact model artifacts, prompts, decoding and parsing rules, replay construction, and provenance are documented in Sup-plementary Material, Sections A.3–A.5 and F. The complete-case analysis excludes 39 dyads (0.20%) with generation or parsing errors, including 25 partial dyads, leaving 19,161 dyads and 344,898 adjacent-round transi-tions. A sensitivity analysis retaining fallback actions and all available transitions from partial trajectories changes none of the 96 corrected significance classifications. For each cell, a nonparametric bootstrap resamples whole dyads separately by treatment, preserving dependence be-tween agents and rounds, and recomputes ∆S 10,000 times (Efron 1979); we report percentile 95% intervals and two-sided bootstrap p-values. Benjamini–Hochberg correction is applied across the 96 cell-level comparisons, with q < . 05 
+
+defining a corrected result (Benjamini and Hochberg 1995). Model-, game-, and overall estimates weight their constituent cells equally and use the same stratified bootstrap. 
+
+Mechanistic Follow-Up 
+
+Experiments 1 and 2 replay 20 communication-treatment dyads per model–game–context cell under fixed realized his-tories; Experiment 3 uses a separate Qwen/Falcon cohort and regenerates trajectories under activation intervention. Figure 1B summarizes these complementary designs: the first two estimate open-loop policy effects, whereas the third captures closed-loop propagation. 
+
+Experiment 1: Current-Message Policy Replay We rescore each action prompt under seven matched conditions: endogenous partner message; focal-agent text attributed to the partner; partner text attributed to the focal agent; fo-cal agent’s public message; unrelated dummy text; partner-formatted dummy text; and no message. Only the current block and its attribution change. Let pt = P (A) under a counterfactual condition. Expected disagreement between independent adjacent policy draws is 
+
+Et = pt(1 − pt+1 ) + (1 − pt)pt+1 
+
+= pt + pt+1 − 2ptpt+1 
+
+= ( pt+1 − pt)2
+
+| {z }
+
+> probability drift
+
++ pt(1 − pt) + pt+1 (1 − pt+1 )
+
+| {z }
+
+> action uncertainty
+
+. (4) This exact, label-symmetric decomposition separates move-ment in P (A) from the adjacent policies’ Bernoulli vari-ances. It summarizes the open-loop policy along fixed his-tories and is distinct from realized switching in regenerated trajectories. Real versus dummy content under partner fram-ing tests content; the same dummy text with and without partner formatting tests attribution; reattribution tests appar-ent source. 
+
+Experiment 2: History-Conditioned Message Effects 
+
+We cross the partner’s most recent action (A or B) with a standardized mutual-benefit (MB) or self-prioritizing (SP) message. The outcome remains open-loop expected switch-ing. The estimand is one-half of the history-by-message in-teraction: the SP-minus-MB contrast after A minus the same contrast after B. Halving places it on the scale of one con-ditional contrast, comparable to Experiment 1. A nonzero value means that recent partner behavior conditions the sta-bility effect of message framing; the design does not assign a game-invariant semantic consistency label to any A/B– message pairing. 
+
+Experiment 3: Layerwise Causal Intervention We in-tervene in Prisoner’s Dilemma for Qwen and Falcon, the only depth-matched pair: both have 28 transformer layers, versus 40 for Granite and 42 for Gemma. Matching depth al-lows comparison at identical absolute layer indices and depth fractions without introducing total depth as a further differ-ence. We test layers 2, 4, . . . , 28 , use ten trajectories per con-text, and split complete decisions 65/35 into construction and held-out sets. At each layer, final-token residual means for mutual-benefit and self-prioritizing messages are balanced over partner-A and partner-B histories; their normalized dif-ference defines a history-balanced policy-content direction 
+
+dl (Li et al. 2023; Rimsky et al. 2024). Balancing prevents unequal composition of the partner’s latest action from driv-ing the contrast, and the held-out split prevents the same decision from constructing and evaluating the direction. We first add dl, or an equal-norm random direction, on 150 held-out no-message replay prompts balanced across the six contexts and measure the A–B logit-margin slope. We then project out the candidate component during every action choice, 
+
+h′ 
+
+> l, −1
+
+= hl, −1 − (h⊤
+
+> l, −1
+
+dl)dl, (5) while leaving message generation unchanged. Each ablated trajectory is paired with a clean trajectory using the same context and seed. The paired change in switching tests closed-loop sensitivity rather than mere decodability (Elazar et al. 2021; Geiger et al. 2025; Dobrzeniecka, Fokkens, and Som-merauer 2025). 
+
+## 4 Results 
+
+Communication Reduces Action Switching 
+
+Table 1 summarizes the primary result. Equally weighting all 96 cells, switching is 63.8% without communication and 18.9% with it, a reduction of 44.9 percentage points (95% CI [44.1, 45.6]) or 70.4% relative. The direction is stabilizing in 81 cells, and 71 remain significant after correction across the full family of tests. The effect spans all games: pooled reductions are 45.8 points in Prisoner’s Dilemma, 51.6 in Snowdrift, 38.7 in Stag Hunt, and 43.5 in Harmony, with every game-level interval excluding zero. After correction across all 96 comparisons, significantly stabilizing cells number 21/24, 19/24, 14/24, and 17/24, respectively. Falcon in Stag Hunt is the weak-est model–game combination ( 0.5 points; interval includes zero). Because action persistence is distinct from strategic qual-ity, we also examine what becomes persistent. Across games, communication raises Action-A rates by 18.49–23.49 per-centage points, AA outcomes by 25.90–30.08 points, and mean payoff by 0.404–1.036 points per agent per round. Sta-bilization is therefore accompanied by a systematic shift to-ward persistent AA play and higher realized scores rather than arbitrary persistence on either action (Supplementary Material, Section A.1). 
+
+Model and Context Heterogeneity 
+
+Qwen and Granite show the broadest effects: all 24 cells stabilize, with model-level reductions of 83.2 and 73.5 per-centage points. Their no-communication switching rates are also highest (94.4% and 91.7%), strongly shaping the grand mean. Gemma and Falcon decline by 14.5 and 8.3 points; across their 48 cells, 23 stabilize, five destabilize, and 20 are null after correction, although both aggregate intervals exclude zero. The near-ceiling baselines reflect population-wide period-two alternation. Of 4,800 Qwen no-communication agent tra-jectories, 91.5% switch on all nine transitions, as do 83.2% of Granite’s 4,798; 92.3% and 89.8% switch on at least eight. In Harmony, both agents alternate in 591/600 Qwen and 498/600 Granite dyads; 73.4% and 59.0% of these are in phase, cycling jointly between AA and BB rather than tak-ing turns in asymmetric outcomes. In Snowdrift, both agents alternate perfectly in 583/600 Qwen and 526/599 complete Granite dyads; 88.2% and 79.7% of these are likewise in phase. Thus, the Snowdrift exception in which antiphase al-ternation ties constant A at (T + S)/2 = R applies to only 11.8% and 20.3% of perfectly alternating dyads. The pre-dominance of in-phase play also excludes mutual reciprocity: tit-for-tat against a tit-for-tat partner is absorbing from a sym-metric opening, giving S = 0 , and yields antiphase alterna-tion from an asymmetric one, so it cannot produce in-phase joint cycling from any start. These trajectories are also anti-persistent in a sense that re-quires no knowledge of the action marginals: an agent switch-ing on at least eight of nine transitions has S ≥ 8/9, and since 
+
+2p(1 − p) ≤ 1/2 for every p, Equation 3 gives ρ1 < 0 with-out any estimate of its action frequencies. Communication moves every model–game cell below the one-half threshold (Table 1), removing this signature. A simple preference for one action label also cannot explain the pattern, because it would predict persistence on the favored label rather than symmetric alternation. A tendency not to reproduce the most recently emitted action would be consistent with what we observe, since it is label-symmetric and predicts period-two play; separating it from strategic instability requires varying how prior rounds are presented, which we do not do here. The full audit appears in Supplementary Material, Section A.2. Communication is not universally stabilizing. Corrected reversals occur for Falcon in social Snowdrift and Harmony, Gemma in social Stag Hunt and Harmony, and Gemma in team Stag Hunt. Their concentration in social or team fram-ings across several games shows that context can change both magnitude and direction. Including fallback outputs and par-tial trajectories changes none of the 96 corrected classifica-tions (Supplementary Material, Section A.3). 
+
+## 5 Mechanistic Analysis 
+
+The behavioral treatment changes messages and the histories they create. Experiments 1 and 2 instead alter current prompts along fixed communication-treatment histories, estimating immediate open-loop effects; Experiment 3 intervenes on a candidate component during regenerated play. 
+
+Experiment 1: Current-Message Policy Replay 
+
+Table 2 shows that Qwen has the clearest strategically spe-cific immediate effect. Under matched partner framing, the endogenous message reduces expected switching by 21.12 points more than partner-formatted dummy text (95% CI [19.99, 22.22]). Holding dummy content fixed, partner for-matting changes the effect from 7.39 to −8.19 points, a 15.57-point loss [14.59, 16.53]; content and attribution therefore interact. Apparent source also matters: own text presented as partner speech yields 13.13 points, versus 4.38 when partner text is presented as the focal agent’s message. Falcon’s partner-message and plain-dummy effects are similar (4.40 versus 4.82 points), and Gemma’s partner ef-fect is slightly destabilizing. In Granite, real partner con-tent recovers 10.17 points [9.00, 11.29] relative to partner-formatted dummy text but remains near the no-message ref-erence. Partner-formatted dummy text increases expected switching in every model, so partner formatting alone is insufficient. Immediate specificity is therefore strongest in Qwen; Granite’s 73.5-point trajectory effect likely depends on accumulated interaction, earlier messages, self-generated anchoring, or their interaction rather than the latest received message alone. Figure 2 decomposes Qwen’s partner-message effect into 4.22 points of reduced probability drift and 8.72 of reduced action uncertainty; dummy text yields 0.95 and 6.44 points. Generic text can sharpen the action distribution, whereas Switch rate (%) Pooled effect FDR by context Model Game No msg. Msg. ∆S (pp) 95% CI N B E S T IR Qwen 2.5 7B PD 85.2 13.1 72.1 *** [69 .5, 74 .8] + + + + + +                                                                                                                                                                        
+
+> Snowdrift 99.5 12.6 86.9 *** [84 .9,88 .8] ++++++
+> Stag Hunt 93.3 10.1 83.2 *** [81 .1,85 .3] ++++++
+> Harmony 99.8 9.3 90.5 *** [88 .7,92 .2] ++++++
+> Granite 3.3 8B PD 95.2 23.6 71.6 *** [69 .1,74 .1] ++++++
+> Snowdrift 98.5 19.1 79.3 *** [77 .1,81 .5] ++++++
+> Stag Hunt 80.5 14.7 65.8 *** [62 .3,69 .1] ++++++
+> Harmony 92.7 15.5 77.2 *** [74 .5,79 .9] ++++++
+> Gemma 2 9B PD 44.0 21.5 22.6 *** [18 .4,26 .6] +++··+
+> Snowdrift 53.8 25.8 28.0 *** [24 .0,32 .1] +++··+
+> Stag Hunt 16.7 11.5 5.2 ** [1 .9,8.6] ++·−−·
+> Harmony 13.4 11.0 2.4 [−0.7,5.6] ++·−·+
+> Falcon 3 7B PD 52.3 35.5 16.8 *** [12 .8,20 .8] ++++·+
+> Snowdrift 42.5 30.3 12.2 *** [8 .2,16 .1] +·+−·+
+> Stag Hunt 25.1 24.6 0.5 [−3.1,4.1] ······
+> Harmony 27.9 24.1 3.8 *[0 .2,7.4] +·+−··
+
+Table 1: Communication effects on adjacent-round switching. Model–game rows pool six contexts; positive ∆S indicates stabilization. Bold pooled effects are significant ( *p < . 05 , ** p < . 01 , *** p < . 001 ). Context symbols show Benjamini–Hochberg results across 96 cells ( q < . 05 ): + stabilizing, − destabilizing, · null. Codes: neutral (N), business (B), environmental (E), social (S), team (T), and international relations (IR). Confidence intervals use 10,000 dyad-level bootstrap resamples.                                                      
+
+> Condition Qwen Falcon Gemma Granite
+> Partner message 12.94 [12.19, 13.68] 4.40 [4.05, 4.75] −0.43 [−0.77 ,−0.10 ]−0.75 [−1.54 , 0.00] Own text as partner 13.13 [12.39, 13.88] 5.37 [4.96, 5.78] −0.17 [−0.53 , 0.15] 0.25 [ −0.56 , 1.00] Partner text as own public 4.38 [3.66, 5.09] 1.27 [0.98, 1.55] −0.50 [−0.77 ,−0.24 ]−2.10 [−2.79 ,−1.42 ]
+> Own public message 4.73 [4.04, 5.40] 1.59 [1.31, 1.88] −0.27 [−0.54 ,−0.00 ]−0.11 [−0.83 , 0.58] Dummy text 7.39 [6.67, 8.09] 4.82 [4.50, 5.14] −0.63 [−0.89 ,−0.37 ]2.42 [1.99, 2.87]
+> Partner-formatted dummy −8.19 [−9.08 ,−7.26 ]−0.52 [−0.86 ,−0.17 ]−6.38 [−6.77 ,−5.97 ]−10 .92 [−11 .73 ,−10 .10 ]
+> No message 0.00 (reference) 0.00 (reference) 0.00 (reference) 0.00 (reference)
+
+Table 2: Experiment 1 reduction in open-loop expected switching relative to no message (percentage points; 95% intervals); positive values indicate persistence. Bold entries have Benjamini–Hochberg q < . 05 across the six nonreference conditions within model. Estimates weight 24 game–context strata equally, from 10,000 paired bootstrap resamples of 20 dyads per stratum. strategically attributed content additionally limits movement across rounds. Other-model decompositions appear in Sup-plementary Material, Figure S2. 
+
+Experiment 2: History-Conditioned Message Effects 
+
+The pooled history-by-message interaction is 3.42 points for Qwen (95% CI [3.06, 3.80]), 20.29 for Falcon [19.77, 20.81], 18.11 for Gemma [17.69, 18.53], and 16.31 for Gran-ite [15.63, 16.98]; all remain significant after correction (q < . 001 ). Conditional effects reverse sign: Gemma’s SP-minus-MB contrast is 11.90 points after A and −24 .32 after B; Granite’s is 19.91 and −12 .70 . Averaging over recent be-havior can therefore hide substantial responsiveness. Because Experiment 1 compares endogenous messages with dele-tion whereas Experiment 2 manipulates standardized content and history, the two are complementary rather than nested. Qwen’s Snowdrift interaction is null; the other models are positive in every game (Supplementary Material, Section C). Figure 3 shows that conditioning appears early and persists rather than accumulating monotonically. Qwen is positive at eight of nine transitions; Falcon remains strongly positive and peaks mid-interaction; Gemma and Granite peak early and then settle to smaller positive effects. Current language is therefore interpreted against recent partner behavior from the beginning of play and throughout the interaction. 
+
+Experiment 3: Layerwise Causal Intervention 
+
+Adding the learned direction to held-out prompts gives small, sometimes sign-reversing A–B logit-margin effects at early layers. From about layer 18, both models show larger, con-sistently positive responses relative to equal-norm random directions. Closed-loop projection produces no corrected increase in switching through layer 18, then significant increases at lay-ers 20, 22, and 24 in both models. At layer 20, switching rises by 0.099 (95% CI [0.042, 0.156]) in Qwen and 0.581 [0.487, 0.674] in Falcon. Qwen peaks at layer 22, rising from 6.0% under clean play to 70.0% under ablation ( ∆ = 0 .640 
+
+[0.553, 0.727]). At Qwen layer 22, mean action entropy un-der ablation is only 0.125 nats, versus the binary maximum of 0.693; the intervention therefore induces confident al-Figure 2: Experiment 1 decomposition for Qwen. Bars par-tition each reduction in expected switching into reduced between-round P (A) drift (blue) and reduced action un-certainty (orange); diamonds show their exact sum. Positive values indicate greater persistence. ternation rather than near-random choice. It changes which action the model commits to across rounds rather than dis-solving within-round commitment. Falcon remains signifi-cant at layer 26 ( ∆ = 0 .306 [0.212, 0.401]); neither model is corrected-significant at layer 28. Because intervened ac-tions enter subsequent histories, these are trajectory-level effects. The full sweep appears in Supplementary Material, Figure S4. Two limits qualify the causal claim. Equal-norm random controls were used for additive steering but not for closed-loop projection, so ablation establishes sensitivity to remov-ing this component, not projection specificity. Moreover, mutual-benefit and self-prioritizing messages differ in fa-vored action as well as semantics; policy-content direction 
+
+names the construction rather than a unique interpretation. The results therefore establish causal sensitivity of complete trajectories to a late-layer component, not unique mediation of communication-induced stabilization. 
+
+## 6 Conclusion 
+
+Across four repeated games, cheap talk reduces average adjacent-round switching from 63.8% to 18.9%, with 71 of 96 cell-level effects remaining stabilizing after correction. Effects span every incentive structure but vary sharply by model and context; five reversals occur in social or team framings. Mechanistic analyses refine this aggregate pattern. In Qwen, strategic content and partner attribution jointly re-duce action uncertainty and probability drift. Across all mod-els, recent partner behavior conditions the effect of message framing, showing that messages are not interpreted in iso-lation. In Qwen and Falcon, removing a late-layer policy-content component increases switching during regenerated 
+
+Figure 3: Experiment 2 history-by-message interaction by transition. Points show the one-half interaction defined in Methods; positive values mean the SP-minus-MB contrast is larger after partner action A than after B. Estimates pool four games and six contexts; bands are 95% stratified-bootstrap intervals. play, establishing causal relevance without projection speci-ficity or unique mediation. The study covers four open-weight 7–9B checkpoints, ten-round interactions, fixed payoff structures and framings, and temperature 0.8. Activation interventions are limited to depth-matched Qwen and Falcon in Prisoner’s Dilemma with ten trajectories per context. Switching measures first-order action persistence rather than general predictability or strategic quality, and history-presentation robustness re-mains untested. The findings establish a replicated pattern within this model class; generalization to larger or reasoning-focused models, longer horizons, richer games, and alterna-tive communication protocols remains open. 
+
+## References        
+
+> Acharya, D. B.; Kuppan, K.; and Divya, B. 2025. Agentic AI: Autonomous Intelligence for Complex Goals—A Comprehen-sive Survey. IEEE Access , 13: 18912–18936. Aher, G. V.; Arriaga, R. I.; and Kalai, A. T. 2023. Using Large Language Models to Simulate Multiple Humans and Replicate Human Subject Studies. In Proc. ICML , volume 202 of Pro-ceedings of Machine Learning Research , 337–371. Akerlof, G. A. 1970. The Market for “Lemons”: Quality Uncer-tainty and the Market Mechanism. Q. J. Econ. , 84(3): 488–500. Anghel, C.; et al. 2025. Diagnosing Bias and Instability in LLM Evaluation: A Scalable Pairwise Meta-Evaluator. Information ,16(8): 652. Ani Justus, A.; and Baber, C. 2025. LLMs as Policy-Agnostic Teammates: A Case Study in Human Proxy Design for Hetero-geneous Agent Teams. In Proc. ECAI , volume 413 of Frontiers in Artificial Intelligence and Applications , 3711–3718.
+
+Arechar, A. A.; et al. 2017. “I’m just a soul whose intentions are good”: Communication in noisy repeated games. Games Econ. Behav. , 104: 726–743. Atil, B.; et al. 2024. Non-Determinism of “Deterministic” LLM Settings. arXiv:2408.04667 .Aumann, R. J.; and Hart, S. 2003. Long Cheap Talk. Econo-metrica , 71(6): 1619–1660. Barak, D.; and Costa-Gomes, M. 2025. Humans Expect Ra-tionality and Cooperation from LLM Opponents in Strategic Games. arXiv:2505.11011 .Belcak, P.; et al. 2025. Small Language Models Are the Future of Agentic AI. arXiv:2506.02153 .Belinkov, Y. 2022. Probing Classifiers: Promises, Shortcom-ings, and Advances. Comput. Linguist. , 48(1): 207–219. Benjamini, Y.; and Hochberg, Y. 1995. Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing. JRSS B , 57(1): 289–300. Blair-Stanek, A.; and Van Durme, B. 2025. LLMs Provide Unstable Answers to Legal Questions. In Proc. ICAIL .Blume, A.; Lai, E. K.; and Lim, W. 2020. Strategic Information Transmission: A Survey. In Capra, C. M.; Croson, R. T. A.; Rigdon, M. L.; and Rosenblat, T. S., eds., Handbook of Exper-imental Game Theory , 311–347. Edward Elgar Publishing. Cai, H.; and Wang, J. T.-Y. 2006. Overcommunication in strate-gic information transmission games. Games Econ. Behav. , 56: 7–36. Carandang, K. A. M.; et al. 2025. Are LLMs Reliable? An Exploration of the Reliability of Large Language Models in Clinical Note Generation. In Proc. ACL (Industry) , 1413–1422. Cemri, M.; et al. 2025. Why Do Multi-Agent LLM Systems Fail? arXiv:2503.13657 .Chen, Q.; et al. 2024. Integrated Design and Governance of Agentic AI Systems through Adaptive Information Modulation. 
+
+arXiv:2409.10372 .Crawford, V. P.; and Sobel, J. 1982. Strategic Information Transmission. Econometrica , 50(6): 1431–1451. Dobrzeniecka, A.; Fokkens, A.; and Sommerauer, P. 2025. Im-proving Causal Interventions in Amnesic Probing with Mean Projection or LEACE. In Findings of ACL , 12981–12993. Efron, B. 1979. Bootstrap Methods: Another Look at the Jack-knife. Ann. Stat. , 7(1): 1–26. Elazar, Y.; et al. 2021. Amnesic Probing: Behavioral Explana-tion with Amnesic Counterfactuals. TACL , 9: 160–175. Errica, F.; et al. 2025. What Did I Do Wrong? Quantifying LLMs’ Sensitivity and Consistency to Prompt Engineering. In 
+
+Proc. NAACL , 1543–1558. Fan, C.; et al. 2024. Can Large Language Models Serve as Ra-tional Players in Game Theory? A Systematic Analysis. Proc. AAAI , 38(16): 17960–17967. Farrell, J.; and Rabin, M. 1996. Cheap Talk. J. Econ. Perspect. ,10(3): 103–118. Fontana, N.; Pierri, F.; and Aiello, L. M. 2025. Nicer than Humans: How Do Large Language Models Behave in the Pris-oner’s Dilemma? Proc. ICWSM , 19(1): 522–535. Gallagher, S. K.; et al. 2024. Assessing LLMs for High Stakes Applications. In Proc. ICSE-SEIP , 103–105. Geiger, A.; et al. 2025. Causal Abstraction: A Theoretical Foundation for Mechanistic Interpretability. JMLR , 26(83): 1–64. Geva, T.; et al. 2025. Do LLMs Exhibit Human-Like Cognitive Biases? A Large-Scale Systematic Evaluation. Working Paper 5498944, SSRN. Golosov, M.; et al. 2014. Dynamic strategic information trans-mission. J. Econ. Theory , 151: 304–341. Grossman, S. J. 1981. The informational role of warranties. J. Law Econ. , 24: 461–483. Guo, F. 2023. GPT in Game Theory Experiments. 
+
+arXiv:2305.05516 .Han, S.; et al. 2024. LLM Multi-Agent Systems: Challenges and Open Problems. arXiv:2402.03578 .Hewitt, J.; and Liang, P. 2019. Designing and Interpreting Probes with Control Tasks. In Proc. EMNLP-IJCNLP , 2733– 2743. Horton, J. J.; Filippas, A.; and Manning, B. S. 2023. Large Language Models as Simulated Economic Agents: What Can We Learn from Homo Silicus? Working Paper 31122, National Bureau of Economic Research. Huang, J.-t.; et al. 2025. How Far Are We on the Decision-Making of LLMs? Evaluating LLMs’ Gaming Ability in Multi-Agent Environments. In Proc. ICLR .Jang, D.; Ahn, Y.; and Shin, H. 2025. RCScore: Quantifying Response Consistency in Large Language Models. In Proc. EMNLP , 5690–5708. Kamenica, E.; and Gentzkow, M. 2011. Bayesian persuasion. 
+
+Am. Econ. Rev. , 101: 2590–2615. Kartik, N.; Ottaviani, M.; and Squintani, F. 2007. Credulity, lies, and costly talk. J. Econ. Theory , 134: 93–116. Kitadai, A.; et al. 2023. Toward a Novel Methodology in Eco-nomic Experiments: Simulation of the Ultimatum Game with Large Language Models. In Proc. IEEE BigData , 3168–3175. Kovač, G.; et al. 2024. Stick to Your Role! Stability of Personal Values Expressed in Large Language Models. PLOS ONE ,19(8): e0309114. Lafky, J.; Lai, E. K.; and Lim, W. 2022. Preferences vs. strategic thinking: Causes of overcommunication. Games Econ. Behav. ,136: 92–116. Li, K.; et al. 2023. Inference-Time Intervention: Eliciting Truth-ful Answers from a Language Model. In Proc. NeurIPS , vol-ume 36, 41451–41530. Li, X.; Özer, Ö.; and Subramanian, U. 2022. Are we strategi-cally naïve or guided by trust in cheap-talk? Manage. Sci. , 68: 376–398. Li, X.; and Peeters, R. 2016. Cheap talk with multiple strategi-cally interacting audiences. PLoS ONE , 11: e0163783. Li, X.; et al. 2024. A Survey on LLM-Based Multi-Agent Sys-tems: Workflow, Infrastructure, and Challenges. Vicinagearth ,1: 9. Li, Y.; et al. 2025. Firm or Fickle? Evaluating Large Language Models Consistency in Sequential Interactions. In Findings of ACL , 6679–6700. Lima, R. C. C.; and Melo-Filho, P. 2024. Infinitely Repeated Cheap-Talk. In Proc. 46th Brazilian Econometric Society Meet-ing .Lorè, N.; and Heydari, B. 2024. Strategic Behavior of Large Language Models and the Role of Game Structure versus Con-textual Framing. Sci. Rep. , 14: 18490. Mei, Q.; et al. 2024. A Turing Test of Whether AI Chatbots Are Behaviorally Similar to Humans. PNAS , 121(9): e2313925121. Meng, K.; et al. 2022. Locating and Editing Factual Associa-tions in GPT. In Proc. NeurIPS , volume 35, 17359–17372. Milgrom, P. R. 1981. Good news and bad news: Representation theorems. Bell J. Econ. , 380–391. Mozikov, M.; et al. 2024. EAI: Emotional Decision-Making of LLMs in Strategic Games and Ethical Dilemmas. In Proc. NeurIPS , volume 37, 53969–54002. Nalbandyan, G.; Shahbazyan, R.; and Bakhturina, E. 2025. SCORE: Systematic COnsistency and Robustness Evaluation for Large Language Models. In Proc. NAACL (Industry) , 470– 484. Novikova, J.; et al. 2025. Consistency in Language Mod-els: Current Landscape, Challenges, and Future Directions. 
+
+arXiv:2505.00268 .Piatti, G.; et al. 2024. Cooperate or Collapse: Emergence of Sustainable Cooperation in a Society of LLM Agents. In Proc. NeurIPS , volume 37, 111715–111759. Purushothama, A.; et al. 2026. Prompting from the Bench: Large-Scale Pretraining Is Not Sufficient to Prepare LLMs for Ordinary Meaning Analysis. In Proc. FAccT , 4552–4580. Rimsky, N.; et al. 2024. Steering Llama 2 via Contrastive Activation Addition. In Proc. ACL , 15504–15522. Roy, T. S.; Jhaveri, A. R.; and Triantafyllopoulos, I. 2025. Interpreting and Mitigating Unwanted Uncertainty in LLMs. 
+
+arXiv:2510.22866 .Sánchez-Pagés, S.; and Vorsatz, M. 2007. An experimental study of truth-telling in a sender–receiver game. Games Econ. Behav. , 61: 86–112. Sapkota, R.; Roumeliotis, K. I.; and Karkee, M. 2026. AI Agents vs. Agentic AI: A Conceptual Taxonomy, Applications and Challenges. Inf. Fusion , 126(B): 103599. Schelling, T. C. 1980. The Strategy of Conflict . Harvard Univ. Press. Sclar, M.; et al. 2024. Quantifying Language Models’ Sensitiv-ity to Spurious Features in Prompt Design or: How I Learned to Start Worrying about Prompt Formatting. In Proc. ICLR .Shavit, Y.; et al. 2023. Practices for Governing Agentic AI Systems. Technical report, OpenAI. Sobel, J. 1985. A Theory of Credibility. Rev. Econ. Stud. ,52(4): 557–573. Spence, M. 1973. Job Market Signaling. Q. J. Econ. , 87(3): 355–374. Sun, H.; et al. 2025. Game Theory Meets Large Language Models: A Systematic Survey. In Proc. IJCAI , 10669–10677. Tjuatja, L.; et al. 2024. Do LLMs Exhibit Human-Like Re-sponse Biases? TACL , 12: 1011–1026. Tran, K.-T.; et al. 2025. Multi-Agent Collaboration Mecha-nisms: A Survey of LLMs. arXiv:2501.06322 .Vig, J.; et al. 2020. Investigating Gender Bias in Language Models Using Causal Mediation Analysis. In Proc. NeurIPS ,volume 33, 12388–12401. Wang, H.; et al. 2025a. Beyond Frameworks: Unpacking Col-laboration Strategies in Multi-Agent Systems. In Proc. ACL ,21361–21375. Wang, J. J.; and Wang, V. X. 2025. Assessing Consistency and Reproducibility in the Outputs of Large Language Mod-els: Evidence Across Diverse Finance and Accounting Tasks. 
+
+arXiv:2503.16974 .Wang, J. T.-y.; Spezio, M.; and Camerer, C. F. 2010. Pinocchio’s pupil: using eyetracking to understand truth telling. Am. Econ. Rev. , 100: 984–1007. Wang, Q.; et al. 2025b. LLM-Based Human Simulations Have Not Yet Been Reliable. arXiv:2501.08579 .Willis, R.; et al. 2025. Will Systems of LLM Agents Cooperate: An Investigation into a Social Dilemma. arXiv:2501.16173 .Wilson, R. K.; and Sell, J. 1997. “Liar, liar...” Cheap talk and reputation. J. Conflict Resolut. , 41: 695–717. Yu, H.; et al. 2025. Performance of Large Language Models in Diagnosing Rare Hematologic Diseases and the Impact of Their Diagnostic Outputs on Physicians: Combined Retrospective and Prospective Study. JMIR , 27: e77334. Zhang, F.; and Nanda, N. 2024. Towards Best Practices of Activation Patching in Language Models: Metrics and Methods. In Proc. ICLR .Zhang, G.; et al. 2025. Multi-Agent Architecture Search via Agentic Supernet. In Proc. ICML , volume 267 of Proceedings of Machine Learning Research , 75834–75852. Zhang, Y.; et al. 2024. LLM as a Mastermind: A Sur-vey of Strategic Reasoning with Large Language Models. 
+
+arXiv:2404.01230 .Zheng, K.; Zhou, J.; and Wang, H. 2025. Beyond Nash Equilib-rium: Bounded Rationality of LLMs and Humans in Strategic Decision-Making. arXiv:2506.09390 .Zhou, L.; et al. 2024. Larger and More Instructable Language Models Become Less Reliable. Nature , 634(8032): 61–68. Zhu, S.; et al. 2025. GTAlign: Game-Theoretic Alignment of LLM Assistants for Social Welfare. arXiv:2510.08872 .SUPPLEMENTARY MATERIAL 
+
+Cheap Talk Stabilizes Strategic Interaction in LLM Agents 
+
+End of main text. Sections, figures, tables, and equations below are numbered A, B, C. . . and S1, S2, S3. . . 
+
+## A Scope and Analysis Inventory 
+
+This supplement provides additional behavioral evidence, mechanistic analyses, and implementation details supporting the main paper. It first expands the primary behavioral results, then reports the three mechanistic experiments, and finally documents the computational and prompt-level provenance of the study. 
+
+Behavioral experiment. Four models play four ten-round games in six contexts, with 100 dyads in every model– game–context–treatment cell. The primary outcome is re-alized adjacent-round action switching. 
+
+Experiment 1: current-message policy replay. For 20 communication-treatment dyads per model–game–context cell, 38,400 action decisions are rescored under seven current-message conditions. The outcome is policy-implied expected switching along fixed realized histories. 
+
+Experiment 2: history-conditioned message effects. The same decisions are rescored under a 2 × 2 crossing of recent partner action and standardized current-message framing. The outcome is a history-by-message interaction in expected switching. 
+
+Replay reference. Each decision is additionally scored once under pre_action , which replays the unmodified action prompt from the actual accumulated conversation state. This pass is used only as a natural-policy reference for recon-struction checks and is not an Experiment 1 or Experiment 2 condition. 
+
+Experiment 3: layerwise causal intervention. Qwen and Falcon, the only depth-matched pair among the four models, are tested in Prisoner’s Dilemma across six contexts at layers 
+
+2, 4, . . . , 28 . One-step tests use 150 held-out no-message ac-tion decisions, balanced at 25 per context; closed-loop tests compare 60 paired clean and ablated trajectories at each layer. 
+
+A.1 Behavioral Outcomes and Payoffs 
+
+Reduced switching does not by itself reveal which action be-comes persistent or whether stabilization improves realized outcomes. We therefore return to the 100-dyad behavioral archive and summarize marginal action frequencies, joint outcomes, and realized payoffs. For each game and treat-ment, we first compute the relevant quantity within every model–context cell and then give the resulting 24 cells equal weight. Confidence intervals use 10,000 dyad-level boot-strap resamples within each cell. Communication and no-communication dyads are resampled independently because they are separate trajectories. Across games, communication raises the marginal fre-quency of Action A by 18.49–23.49 percentage points and increases average payoff by 0.404–1.036 points per agent per round. The joint-outcome shift is similarly systematic: AA increases by approximately 25.9–30.1 points, while AB, BA, and BB all decline. Stabilization is therefore accompanied by a pronounced shift toward persistent AA play and higher realized scores rather than arbitrary persistence in either ac-tion. The magnitude of this shift remains model-dependent. Qwen and Granite move strongly toward A in every game, whereas Falcon and Gemma change little in Stag Hunt and Harmony, where their no-communication Action-A rates are already high. 
+
+A.2 Period-Two Cycling 
+
+For an agent action sequence aid 1, . . . , a idT , define period-two adherence as 
+
+Cid = 1
+
+T − 2
+
+> T
+
+X
+
+> t=3
+
+1{aidt = aid,t −2 and aidt ̸ = aid,t −1} .
+
+(S1) A score of one means that every action from round 3 onward repeats the action taken two rounds earlier while differing from the immediately preceding action. The measure there-fore distinguishes systematic alternation from a high switch rate produced by irregular, nonperiodic changes. Pooling all four games, 91.5% of Qwen agents and 83.2% of Granite agents switch on all nine transitions; 92.3% and 89.8%, respectively, switch at least eight times. Median period-two adherence equals one in every model–game cell. The extreme no-communication switch rates therefore re-flect a population-wide alternating pattern rather than a small number of anomalous trajectories or an artifact of population averaging. In Harmony, both agents switch on all nine transi-tions in 591/600 Qwen and 498/600 Granite dyads; 434/591 (73.4%) and 294/498 (59.0%) of these are in phase. In Snowdrift, both agents alternate perfectly in 583/600 Qwen and 526/599 complete Granite dyads; 514/583 (88.2%) and 419/526 (79.7%) are in phase. The antiphase Snowdrift cy-cles that tie constant A at (T + S)/2 = R therefore account for only 69/583 (11.8%) and 107/526 (20.3%) of perfectly alternating dyads. Action-A rate (%) Payoff per agent per round Game No message Message ∆ [95% CI] No message Message ∆ [95% CI]                         
+
+> Prisoner’s Dilemma 58.56 82.05 23.49 [22.36, 24.64] 2.335 2.739 0.404 [0.384, 0.423] Snowdrift 61.57 84.44 22.87 [21.88, 23.84] 2.246 2.808 0.563 [0.538, 0.587] Stag Hunt 70.64 89.13 18.49 [17.50, 19.44] 3.382 4.366 0.984 [0.925, 1.044] Harmony 70.49 89.90 19.41 [18.57, 20.27] 3.395 4.431 1.036 [0.988, 1.085]
+
+Table S1: Action-A frequencies and realized payoffs by game and treatment. Differences are communication minus no commu-nication. Action A is reported descriptively rather than assigned a common strategic label across games. Estimates give equal weight to 24 model–context cells and use only complete, error-free dyads.                                                                                                                
+
+> Action-A rate (%) Payoff per agent per round Model Game No msg. Msg. ∆[95% CI] No msg. Msg. ∆[95% CI]
+> Qwen Prisoner’s Dilemma 43.72 90.54 46.83 [45.07, 48.50] 1.978 2.866 0.888 [0.853, 0.922] Snowdrift 50.01 92.15 42.14 [40.99, 43.23] 1.696 2.916 1.220 [1.180, 1.259] Stag Hunt 47.94 92.36 44.42 [43.00, 45.84] 2.610 4.566 1.956 [1.874, 2.038] Harmony 50.10 94.37 44.27 [43.29, 45.19] 2.370 4.682 2.312 [2.254, 2.369] Falcon Prisoner’s Dilemma 70.47 79.76 9.29 [7.09, 11.51] 2.612 2.736 0.124 [0.091, 0.157] Snowdrift 77.00 83.02 6.02 [3.92, 8.16] 2.806 2.865 0.059 [0.024, 0.095] Stag Hunt 86.51 86.15 −0.36 [−2.31 , 1.62] 4.119 4.137 0.018 [ −0.105 , 0.144] Harmony 85.54 86.22 0.67 [ −1.28 , 2.58] 4.166 4.205 0.040 [ −0.073 , 0.152] Granite Prisoner’s Dilemma 48.30 75.62 27.32 [25.08, 29.42] 2.170 2.630 0.460 [0.419, 0.501] Snowdrift 49.57 80.56 31.00 [28.96, 32.96] 1.842 2.715 0.873 [0.809, 0.936] Stag Hunt 57.22 85.68 28.47 [26.14, 30.76] 2.404 4.217 1.813 [1.675, 1.944] Harmony 53.18 85.03 31.84 [29.77, 33.92] 2.453 4.179 1.726 [1.613, 1.839] Gemma Prisoner’s Dilemma 71.75 82.29 10.54 [7.72, 13.26] 2.579 2.724 0.144 [0.099, 0.190] Snowdrift 69.70 82.01 12.31 [9.99, 14.65] 2.638 2.735 0.098 [0.048, 0.147] Stag Hunt 90.89 92.33 1.44 [ −0.52 , 3.37] 4.396 4.546 0.149 [0.026, 0.274] Harmony 93.13 94.01 0.87 [ −0.72 , 2.48] 4.591 4.656 0.065 [ −0.029 , 0.161]
+
+Table S2: Model–game expansion of Table S1. Within each model–game combination, estimates give equal weight to the six contexts.                                          
+
+> Game Treatment AA AB BA BB
+> Prisoner’s Dilemma No message 42.21 16.01 16.70 25.09 Message 72.28 9.91 9.63 8.18 Snowdrift No message 48.29 13.25 13.31 25.15 Message 75.27 9.06 9.27 6.40 Stag Hunt No message 55.87 15.25 14.30 14.59 Message 82.51 6.52 6.73 4.24 Harmony No message 57.53 13.10 12.82 16.56 Message 83.44 6.58 6.35 3.63
+
+Table S3: Joint-action frequencies (%) under the same equal-cell weighting as Table S1. In the asymmetric outcomes AB and BA, the first letter denotes Agent 0’s action and the second denotes Agent 1’s. 
+
+A.3 Error Audit 
+
+The primary behavioral experiment planned 19,200 dyads. Thirty-nine dyads (0.20%) contain at least one malformed output, including 25 that terminate before round ten. The complete-case analysis retains 19,161 dyads and 344,898 agent-level adjacent-round transitions. Mean switch rates are 0.6377 without communication and 0.1889 with communi-cation, a reduction of 0.4488. Of the 96 model–game–context contrasts, 81 are positive; after Benjamini–Hochberg correc-tion, 71 are stabilizing and five are destabilizing. Including fallback B actions and every available transition from partial trajectories yields rates of 0.6375 and 0.1890, a reduction of 0.4485. Under this specification, 82 contrasts are posi-tive, and none of the 96 corrected significance classifications changes. 
+
+A.4 Policy Extraction 
+
+At each realized action decision, the replay runner sends the exact system prompt, conversation state, and counterfactual action prompt to the same Ollama checkpoint that generated the trajectory. Generation is limited to one token, with tem-perature 0.8, top-p = 1 , an 8,192-token context window, and 20 requested first-token log probabilities. If ℓA,t and ℓB,t 
+
+denote the returned log probabilities of action tokens A and B at round t, the renormalized binary action policy is 
+
+pt ≡ Pt(A) = exp( ℓA,t )exp( ℓA,t ) + exp( ℓB,t ) . (S2) The corresponding probability of B is Pt(B) = 1 − pt.Renormalization over A and B isolates the model’s relative (a) Fixed no-communication trajectory sample Qwen: Snowdrift                                                                                                                                                                                                                                                                                       
+
+> 12345678910 d1/0 BABABABABAd1/1 BABABABABAd2/0 ABBABABABAd2/1 BABABABABAd3/0 BABABABABAd3/1 BABABABABA
+> Qwen: Harmony
+> 12345678910 d1/0 BABABABABAd1/1 BABABABABAd2/0 BABABABABAd2/1 BABABABABAd3/0 BABABABABAd3/1 BABABABABA
+> Granite: Snowdrift
+> 12345678910 d1/0 BABABABABAd1/1 BABABABABAd2/0 BABABBABABd2/1 BBABBBBBBBd3/0 BABABABABAd3/1 BABABABABA
+> Granite: Harmony
+> 12345678910 d1/0 ABABABABABd1/1 BABABABABAd2/0 ABABABABABd2/1 BABABABABAd3/0 BABABABABAd3/1 BBABBABBBB
+> (b) Share of agents switching on all nine transitions
+> Qwen 91.5% Granite 83.2%
+
+Figure S1: Near-period-two behavior without communication. Panel (a) shows both agents from the first three numerically indexed complete, error-free dyads in each neutral-context cell; trajectories were not selected by outcome. Blue cells denote A and orange cells denote B. Panel (b) pools all four games and six contexts within each model and reports the share of agents that switch on all nine adjacent-round transitions.                                                    
+
+> Agent trajectories Dyads Model Game 9/9 switches ≥8/9 switches Cid , median [IQR] Both agents 9/9 In phase |both 9/9
+> Qwen Prisoner’s Dilemma 80.3% 81.4% 1.00 [1.00, 1.00] ——Snowdrift 98.5% 98.8% 1.00 [1.00, 1.00] 583/600 (97.2%) 514/583 (88.2%) Stag Hunt 87.9% 89.4% 1.00 [1.00, 1.00] ——Harmony 99.3% 99.5% 1.00 [1.00, 1.00] 591/600 (98.5%) 434/591 (73.4%) Granite Prisoner’s Dilemma 86.0% 91.8% 1.00 [1.00, 1.00] ——Snowdrift 92.9% 97.5% 1.00 [1.00, 1.00] 526/599 (87.8%) 419/526 (79.7%) Stag Hunt 66.0% 77.8% 1.00 [0.75, 1.00] ——Harmony 87.9% 92.3% 1.00 [1.00, 1.00] 498/600 (83.0%) 294/498 (59.0%)
+
+Table S4: No-communication alternation in Qwen and Granite, pooling the six contexts within each game. Each complete, error-free dyad contributes two agent trajectories. Dyad-level phase is reported for Snowdrift and Harmony: in-phase dyads cycle between AA and BB, whereas the complementary out-of-phase dyads cycle between AB and BA. One error-marked Granite–Snowdrift dyad is excluded, leaving 599 dyads and 1,198 agent trajectories; every other cell contains 600 dyads and 1,200 agent trajectories. preference between the two valid actions while excluding probability mass assigned to formatting or explanatory to-kens. The exported archive contains 38,400 unique agent–round decisions and 12 scored passes per decision. Seven passes are the Experiment 1 current-message conditions, four are the Experiment 2 history–message conditions, and the re-maining pre_action pass replays the unmodified action prompt using the actual accumulated conversation state. The 
+
+pre_action pass serves only as a natural-policy refer-ence for reconstruction checks and is not included in the Ex-periment 1 or Experiment 2 estimands. Each pass contains exactly 38,400 rows, so 
+
+38 ,400 + 268 ,800 + 153 ,600 = 460 ,800 ,
+
+where the three terms correspond to pre_action , the Model Treatment Planned dyads Error-marked dyads Malformed-output events API-failure events Partial dyads Complete clean dyads                                                     
+
+> Qwen No message 2,400 00002,400 Message 2,400 00002,400 Falcon No message 2,400 11 11 062,389 Message 2,400 14 14 082,386 Granite No message 2,400 11002,399 Message 2,400 12 15 010 2,388 Gemma No message 2,400 11012,399 Message 2,400 00002,400
+
+Table S5: Behavioral error audit across four games and six contexts. The 42 malformed-output events comprise 41 unparsable action responses and one empty message. No archived trajectory records an Ollama/API exception, and a dyad may contain more than one malformed event. seven Experiment 1 passes, and the four Experiment 2 passes, respectively. When one action token falls outside the returned top-20 window, its log probability is known only to be no greater than the lowest returned score. This yields an identifica-tion interval for pt. The raw export records the interval, and the analysis uses the endpoint nearest Pt(A) = 0 .5, which is conservative with respect to policy extremity. Across the 460,800-row replay archive, 2,699 rows (0.59%) are interval-censored: 0 for Qwen, 177 for Falcon, 29 for Gemma, and 2,493 for Granite. Eleven API responses without usable log probabilities were discarded and successfully retried. Nine incomplete behavioral attempts were likewise logged, dis-carded, and replaced before policy scoring. All 96 model– game–context cells contain the planned 20 complete dyads. 
+
+A.5 Pairing and Inference 
+
+Experiments 1 and 2 pair output-policy contrasts within model, dyad, agent, round, game, and context. Decision-level measurements are first aggregated within dyad. The boot-strap then resamples the 20 dyads with replacement inside each fixed game–context stratum and gives the 24 strata equal weight within a model. Confidence intervals and p-values use 10,000 paired stratified bootstrap resamples. In Experiment 3, one-step slopes are averaged within 25 context–simulation groups and evaluated with one-sample Student-t intervals and tests; closed-loop inference uses the same procedure on 60 paired ablated-minus-clean trajectory differences per layer. Benjamini–Hochberg adjustment is applied separately to the prespecified testing families: the six condition-versus-no-message tests and five specificity contrasts within each model in Experiment 1; the four pooled model tests and, sep-arately, the 16 model–game tests in Experiment 2; and the fourteen tested layers within each model and outcome in Ex-periment 3. Unless otherwise stated, corrected significance is defined by q < . 05 .
+
+## B Experiment 1: Current-Message Policy Replay 
+
+B.1 Counterfactual Construction 
+
+Experiment 1 asks which properties of the text immediately preceding an action make the next-action policy more persis-tent. For every action decision in a realized communication-treatment trajectory, we construct seven prompts that share the system prompt, game, context, focal agent, round, action instruction, and preceding realized history. Only the current text block and its displayed speaker role vary. Table S6 gives the exact construction. The conditions separate three features that coincide during natural play: strategically relevant content, true authorship, and displayed conversational role. The two cross-attribution conditions are particularly informative. “Own text as partner” preserves partner attribution while changing the underlying endogenous message and its true author. “Partner text as own public” holds the partner’s exact text fixed while removing partner attribution. 
+
+B.2 Expected Policy Switching and Decomposition 
+
+Let p(c) 
+
+> t
+
+denote the counterfactual Pt(A) at round t under condition c. Assuming independent draws from adjacent ac-tion policies, the probability that the draws disagree is 
+
+E(c) 
+
+> t
+
+= p(c)
+
+> t
+
+
+
+1 − p(c)
+
+> t+1
+
+
+
++
+
+
+
+1 − p(c)
+
+> t
+
+
+
+p(c)
+
+> t+1
+
+.
+
+(S3) This quantity is invariant to relabeling A and B and is low for both persistent-A and persistent-B policies. Expected switching decomposes exactly as 
+
+E(c) 
+
+> t
+
+=
+
+
+
+p(c) 
+
+> t+1
+
+− p(c)
+
+> t
+
+2
+
+| {z }
+
+> probability drift
+
++ p(c)
+
+> t
+
+
+
+1 − p(c)
+
+> t
+
+
+
++ p(c)
+
+> t+1
+
+
+
+1 − p(c)
+
+> t+1
+
+| {z }
+
+> action uncertainty
+
+.
+
+(S4) The first component is the squared between-round change in P (A) and therefore measures movement in the model’s relative preference for A versus B. The second is the sum of the two adjacent policies’ Bernoulli variances. Expected switching can therefore arise from probability drift, within-round action uncertainty, or both. For each condition, we report 
+
+∆Sc = Eno message − Ec, (S5) Condition Current block before the action instruction What it isolates 
+
+Partner message “Message received from counterpart: Agent j: [endogenous partner text]” Natural received communication Own text as partner “Message received from counterpart: Agent j: [endogenous focal-agent text]” Partner attribution with different en-dogenous content Partner text as own public The endogenous partner text is displayed as a public message sent earlier by the focal agent Identical partner content without partner attribution Own public message The endogenous focal-agent text is displayed as its own earlier public message Self-generated strategic content without received text Dummy text “Extra unrelated text shown before the action phase: [fixed dummy text]” Generic text without strategic con-tent Partner-formatted dummy “Message received from counterpart: Agent j: [fixed dummy text]” Partner formatting without strategic content No message The current text block is deleted History-only reference 
+
+Table S6: Experiment 1 counterfactual conditions. Only the current text block changes. Endogenous text is drawn from the same focal agent, partner, and realized round. The fixed dummy text is “The sky is blue. Grass is green. Seven is odd. Squares have four sides.”           
+
+> Model Real vs. dummy, partner framed Plain vs. partner-framed dummy
+> Qwen 21.12 [19.99, 22.22] 15.57 [14.59, 16.53]
+> Falcon 4.93 [4.51, 5.32] 5.34 [5.07, 5.62]
+> Gemma 5.95 [5.44, 6.45] 5.75 [5.31, 6.17]
+> Granite 10.17 [9.00, 11.29] 13.33 [12.53, 14.14]
+
+Table S7: Matched Experiment 1 contrasts in percentage points with 95% paired-bootstrap confidence intervals. The first column changes content while retaining partner framing; the second changes framing while retaining identical dummy content. Positive values favor the first condition named in each heading. Bold intervals exclude zero. so positive values indicate that condition c lowers the policy-implied probability of switching relative to the no-message replay. 
+
+B.3 Results and Strategic Specificity 
+
+The main paper reports the complete condition estimates, and Figure S5 displays them jointly. Qwen shows the clearest strategically specific pattern. Under matched partner fram-ing, its endogenous partner message is 21.12 percentage points [19.99, 22.22] more stabilizing than the dummy mes-sage. Under matched dummy content, plain presentation is 15.57 points [14.59, 16.53] more stabilizing than partner-attributed presentation. Presenting the focal agent’s endoge-nous message as partner speech yields a 13.13-point reduc-tion, whereas presenting the partner’s exact message as the focal agent’s own public text reduces the effect to 4.38 points. The Qwen result therefore reflects a strong interaction be-tween content and apparent source rather than a main effect of either alone. Both matched contrasts are positive in every model. Real content improves persistence relative to irrelevant content under the partner wrapper, while attaching that wrapper to irrelevant content reduces persistence relative to plain pre-sentation. Partner framing is therefore consequential but not generically stabilizing: its effect depends on what the at-tributed partner actually says. Qwen and Falcon combine this matched content advantage with a positive endogenous partner-message effect relative to deleting the message. Figure S2 reports the decomposition for Falcon, Gemma, and Granite; the corresponding Qwen panel appears in the main paper. For Qwen’s endogenous partner message, 4.22 points of the 12.94-point total come from reduced between-round probability drift and 8.72 points from reduced action uncertainty. Dummy text produces only 0.95 points of drift reduction but 6.44 points of uncertainty reduction. Generic text can therefore sharpen Qwen’s action policy, whereas partner-attributed strategic content additionally limits move-ment in action probabilities across rounds. Falcon’s positive effects are dominated by lower uncertainty. In Gemma and Granite, the endogenous partner message reduces uncertainty but increases probability drift enough to eliminate a positive total effect. Figure S2: Experiment 1 decomposition for Falcon, Gemma, and Granite. Bars partition the no-message-minus-condition effect into reduced between-round P (A) drift (blue) and re-duced action uncertainty (orange); diamonds show their exact sum. Positive totals indicate lower expected switching. The corresponding Qwen decomposition appears in the main pa-per. C Experiment 2: History-Conditioned Message Effects 
+
+C.1 Matched History–Message Design 
+
+Experiment 2 asks whether recent partner behavior condi-tions how current message framing affects policy persistence. The focal agent’s preceding action is fixed at A, the partner’s preceding action is set to A or B, and the current partner mes-sage expresses either mutual benefit or self-prioritization. These manipulations produce the complete 2 × 2 factorial in Table S8.      
+
+> Latest partner action Current partner message Cell
+> A“I intend to pursue the mutually beneficial outcome this round.” A/MB A“I intend to prioritize my own highest pos-sible score this round.” A/SP B“I intend to pursue the mutually beneficial outcome this round.” B/MB B“I intend to prioritize my own highest pos-sible score this round.” B/SP
+
+Table S8: Experiment 2 factorial conditions. The part-ner’s latest action is crossed with current message framing; MB denotes mutual-benefit language and SP denotes self-prioritizing language. From round 2 onward, the synthetic outcome block re-places the natural preceding-round summary at every scored decision. At round 1, an analogous synthetic prior-outcome block is inserted so that the factorial manipulation is de-fined at every round index. All remaining inputs—including model, game, context, focal identity, round index, earlier his-tory, and action instruction—remain paired. 
+
+C.2 History-by-Message Estimand 
+
+Let EA, MB denote mean expected switching when the part-ner’s latest action is A and the current message expresses mutual benefit. Define the other three cells analogously, with SP denoting self-prioritization. The symmetrically scaled history-by-message interaction is 
+
+∆SHM = 12
+
+  EA, SP − EA, MB 
+
+ −  EB, SP − EB, MB 
+
+ .
+
+(S6) This is one-half of the conventional 2 × 2 difference-in-differences and retains an average-difference scale. A nonzero value means that the message-framing effect de-pends on recent partner action. 
+
+C.3 Pooled and Game-Specific Results 
+
+The pooled interaction is positive in all four models. Its conditional contrasts can have opposite signs: the self-prioritizing-minus-mutual-benefit expected-switching con-trast is 3.20 points after partner action A and −3.64 after B for Qwen, 39.79 and −0.80 for Falcon, 11.90 and −24 .32 
+
+for Gemma, and 19.91 and −12 .70 for Granite. Averaging 
+
+Figure S3: Exact decomposition of the Experiment 2 history-by-message interaction. Blue bars show the probability-drift component, orange bars show the action-uncertainty compo-nent, and diamonds show their total. over histories can therefore conceal strong conditional re-sponsiveness. Qwen’s 3.42-point interaction is more hetero-geneous: Snowdrift is not distinguishable from zero, while its other game estimates remain positive after correction. Falcon, Gemma, and Granite are positive in all four games. 
+
+C.4 Components and Round Profile 
+
+Figure S3 partitions the pooled interaction using Equa-tion S4. Drift and uncertainty contribute 0.53 and 2.89 points for Qwen, 0.45 and 19.84 for Falcon, 5.45 and 12.66 for Gemma, and 7.24 and 9.07 for Granite. Action uncertainty is the dominant common component; probability drift con-tributes more in Gemma and Granite than in Qwen and Fal-con. The main-paper round profile covers transitions ending at rounds 2–10. Qwen is positive at eight of nine transitions but unresolved at round 3; Falcon remains strongly positive; Gemma and Granite are largest early and then settle to smaller positive values. The interaction therefore appears early and persists, with model-dependent timing and magnitude. Model Pooled Prisoner’s Dilemma Snowdrift Stag Hunt Harmony                      
+
+> Qwen 2.5 7B 3.42 [3.06, 3.80] 1.15 [0.51, 1.85] −0.40 [−1.16 , 0.36] 6.73 [6.14, 7.36] 6.21 [5.38, 7.09]
+> Falcon 3 7B 20.29 [19.77, 20.81] 20.49 [19.44, 21.52] 21.67 [20.66, 22.68] 19.55 [18.53, 20.57] 19.45 [18.34, 20.52]
+> Gemma 2 9B 18.11 [17.69, 18.53] 20.47 [19.74, 21.20] 19.33 [18.48, 20.17] 18.99 [18.04, 19.93] 13.65 [12.81, 14.44]
+> Granite 3.3 8B 16.31 [15.63, 16.98] 14.82 [13.31, 16.37] 15.69 [14.24, 17.11] 16.95 [15.70, 18.17] 17.77 [16.54, 19.03]
+
+Table S9: History-by-message interaction ∆SHM in percentage points with 95% confidence intervals. Pooled estimates give equal weight to 24 game–context strata; game-specific estimates give equal weight to six contexts. Bold pooled entries have 
+
+q < . 05 after correction across the four model tests, and bold game-specific entries have q < . 05 after correction across the 16 model–game tests. 
+
+## D Experiment 3: Layerwise Causal Intervention 
+
+D.1 Depth-Matched Activation Capture 
+
+The causal experiment uses Qwen 2.5 7B Instruct and Fal-con 3 7B Instruct, the only depth-matched pair among the four evaluated models. Both contain 28 transformer layers, whereas Granite and Gemma contain 40 and 42, respectively. Matching total depth permits an identical intervention grid, 
+
+2, 4, . . . , 28 , and comparison at the same absolute layer in-dices and fractions of network depth without introducing model depth as an additional difference. The restriction is therefore a controlled design choice and does not imply that the candidate mechanism is absent from Granite or Gemma. The same Ollama weights used in the behavioral simulations can be loaded through the Transformers GGUF stack. The source models are qwen2.5:7b and 
+
+falcon3:7b , both using Q4_K_M quantization. For ac-tivation capture, the tensors are loaded into the correspond-ing Qwen/Qwen2.5-7B-Instruct and tiiuae/ Falcon3-7B-Instruct architectures and dequantized to float16 .For each model, the capture cohort contains ten Prisoner’s Dilemma communication-treatment trajectories in each of the six contexts. The 1,200 complete decision keys are split deterministically into 780 construction and 420 held-out keys (65%/35%), ensuring that no decision both defines and eval-uates the intervention direction. 
+
+D.2 History-Balanced Policy Direction 
+
+At each layer l, we collect final-token residual-stream activa-tions for the four Experiment 2 variants: the mutual-benefit message under synthetic partner-A and partner-B histories, and the self-prioritizing message under the same two histo-ries. Each of the 780 construction decisions contributes two activation rows to each message class, yielding 1,560 source rows per class and balancing partner-A and partner-B frames exactly. If μMB  
+
+> l
+
+and μSP  
+
+> l
+
+denote the two class means, the candidate direction is 
+
+dl = μMB  
+
+> l
+
+− μSP 
+
+> l
+
+μMB  
+
+> l
+
+− μSP  
+
+> l2
+
+. (S7) Balancing partner-A and partner-B histories within each mes-sage class prevents the mean difference from being driven by unequal representation of the partner’s latest action. 
+
+D.3 Immediate and Closed-Loop Tests 
+
+The one-step test adds the candidate direction at the final prompt position: 
+
+h′ 
+
+> l, −1
+
+= hl, −1 + αd l, (S8) For α ∈ {− 2, −1, −0.5, 0.5, 1, 2}, we estimate the slope of the A–B logit margin, ℓA − ℓB , with respect to α. Eval-uation uses 150 held-out cf_no_message decisions, se-lected as 25 per context. The same decisions are perturbed with an equal-norm random direction. The reported imme-diate effect is the learned-direction slope minus the random-direction slope, controlling for the generic effect of a same-norm residual-stream perturbation. The stronger test removes the candidate component during every action choice in a regenerated ten-round trajectory: 
+
+h′ 
+
+> l, −1
+
+= hl, −1 −  h⊤
+
+> l, −1
+
+dl
+
+ dl. (S9) Message generation remains unchanged. Each intervened tra-jectory is paired with a clean communication-treatment tra-jectory using the same model, context, and seed. The closed-loop outcome is Sablated − Sclean , where S denotes realized adjacent-round switching. A positive value means that re-moving the component makes the regenerated trajectory less persistent. The equal-norm random comparison belongs only to the additive test; no matched random-projection trajectory is included. 0.00 0.05 0.10 0.15 0.20 
+
+> Immediate A-B logit-margin slope
+
+Qwen 2.5 7B 
+
+> 0.00 0.01 0.02 0.03 0.04
+> Immediate A-B logit-margin slope
+
+Falcon 3 7B                
+
+> 2610 14 18 22 26 28
+> Decoder layer
+> −0.1 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7
+> Increase in action switching after projection ablation
+> 2610 14 18 22 26 28
+> Decoder layer
+> −0.1 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7
+> Increase in action switching after projection ablation
+> Learned policy-content direction Equal-norm random direction
+
+Figure S4: Experiment 3 layerwise interventions in the depth-matched Qwen and Falcon models across decoder layers 2–28. Top: immediate A–B logit-margin slopes for the learned direction (blue) and an equal-norm random direction (gray). Bottom: paired change in realized ten-round action switching after projection ablation, with 95% confidence intervals. Positive bottom-panel values indicate that ablation increases switching. The closed-loop analysis uses 60 context–seed trajectory pairs per layer. 
+
+D.4 Layerwise Interpretation 
+
+Immediate A–B logit-margin sensitivity appears at several early layers, but the effects are small and their signs vary. The closed-loop result is more localized: projection abla-tion produces no Benjamini–Hochberg-significant increase in switching through layer 18, then significantly increases switching at layers 20, 22, and 24 in both models and at layer 26 in Falcon. Qwen peaks at layer 22 ( ∆S = 0 .640 [0.553, 0.727]), whereas Falcon peaks at layer 20 ( ∆S = 0 .581 
+
+[0.487, 0.674]) and remains positive at layer 26 ( ∆S = 0 .306 
+
+[0.212, 0.401]). Neither model has a corrected effect at layer 28. On the tested grid, the clearest trajectory-level depen-dence on the history-balanced policy content component therefore lies in a model-dependent late-layer band spanning layers 20–26. All Qwen projection-ablation trajectories are error-free. Falcon records parser fallbacks in one of 60 trajectories at layers 6, 20, 24, and 26 and in two trajectories at layer 22; the layer-26 trajectory contains six fallback actions, while each other affected trajectory contains one. Excluding every affected pair leaves the corrected closed-loop conclusions unchanged: layers 20, 22, 24, and 26 remain significant. 
+
+## E Additional Experiment 1 Display 
+
+Figure S5 collects the complete set of current-message replay estimates in one panel, complementing the numerical results in the main paper and the specificity contrasts reported above. Qwen 2.5 7B Falcon 3 7B Layer Learned − random slope Ablated − clean switching Learned − random slope Ablated − clean switching 
+
+2 0.019 [ −0.003 , 0.041] 0.000 [0.000, 0.000] 0.002 [0.001, 0.003] 0.004 [ −0.004 , 0.011] 4 −0.024 [−0.031 , −0.017 ] 0.016 [ −0.011 , 0.042] 0.003 [0.003, 0.004] 0.001 [ −0.001 , 0.003] 6 0.022 [0.017, 0.027] 0.000 [ −0.003 , 0.003] 0.004 [0.003, 0.005] −0.010 [−0.028 , 0.007] 8 0.067 [0.057, 0.077] 0.000 [0.000, 0.000] 0.011 [0.009, 0.012] 0.001 [ −0.001 , 0.003] 10 0.003 [ −0.013 , 0.018] 0.000 [0.000, 0.000] −0.004 [−0.005 , −0.003 ] −0.006 [−0.018 , 0.007] 12 −0.029 [−0.042 , −0.017 ] 0.000 [0.000, 0.000] 0.000 [ −0.001 , 0.001] 0.005 [ −0.003 , 0.013] 14 0.071 [0.059, 0.083] −0.003 [−0.034 , 0.028] 0.005 [0.003, 0.007] −0.007 [−0.026 , 0.011] 16 0.076 [0.044, 0.109] −0.002 [−0.006 , 0.002] 0.000 [ −0.001 , 0.001] 0.001 [ −0.001 , 0.003] 18 0.099 [0.067, 0.132] 0.016 [ −0.011 , 0.043] 0.030 [0.027, 0.032] −0.050 [−0.096 , −0.004 ]20 0.098 [0.082, 0.114] 0.099 [0.042, 0.156] 0.035 [0.032, 0.037] 0.581 [0.487, 0.674] 
+
+22 0.209 [0.190, 0.227] 0.640 [0.553, 0.727] 0.028 [0.026, 0.030] 0.520 [0.424, 0.617] 
+
+24 0.162 [0.154, 0.169] 0.365 [0.282, 0.448] 0.025 [0.024, 0.027] 0.133 [0.049, 0.217] 
+
+26 0.130 [0.127, 0.133] −0.034 [−0.082 , 0.013] 0.023 [0.022, 0.024] 0.306 [0.212, 0.401] 
+
+28 0.121 [0.119, 0.123] 0.076 [0.012, 0.140] 0.022 [0.021, 0.023] 0.019 [ −0.087 , 0.124] 
+
+Table S10: Complete Experiment 3 layer sweep with 95% Student-t confidence intervals. The one-step columns report the learned-minus-random A–B logit-margin slope across 25 context–simulation means. The closed-loop columns report the ablated-minus-clean change in switch-rate proportion across 60 paired context–seed trajectories. Bold entries have q < . 05 after separate Benjamini–Hochberg correction across fourteen layers within each model and outcome. 
+
+Figure S5: Complete Experiment 1 condition display. Each point is the reduction in open-loop expected adjacent-round switching relative to no message, averaged with equal weight across four games and six contexts. Positive values indicate greater policy persistence; no message is zero by construction. Error bars are 95% paired stratified-bootstrap confidence intervals based on 20 dyads per stratum. 
+
+## F Reproducibility Details 
+
+F.1 Code and Data Organization 
+
+The released code follows the same stages as the study. Run notebooks are in notebooks/ ; matching analysis scripts are in analysis/ . Each notebook writes the raw outputs for its stage and can resume from saved checkpoints. Stage Run notebook and analysis script     
+
+> Behavioral 00_run_behavioral_ollama.ipynb 00_analyze_behavioral_switching.py
+> Experiment 1 01_run_message_and_history_counterfactuals. ipynb 01_analyze_message_conditions.py
+> Experiment 2 Same run notebook as Experiment 1
+> 02_analyze_history_vetting.py
+> Experiment 3 02_run_layerwise_causal_interventions.ipynb 03_analyze_layerwise_interventions.py
+
+The behavioral stage records ten-round trajectories, and 00_analyze_behavioral_switching.py pro-duces the switching summaries; the action-frequency, payoff, and period-two results in Section A are direct aggregations of the same trajectory archive. Experiments 1 and 2 record first-token A/B policy scores and produce the message-condition and history-by-message estimates. Experiment 3 records ac-tivations and intervention outcomes and produces the lay-erwise causal results. Shared functions are provided under 
+
+src/cheaptalk/ ; requirements-analysis.txt 
+
+and requirements-experiment3.txt define the re-leased environments. 
+
+F.2 Models and Software                
+
+> Model Ollama name Quant. Study stages
+> Qwen 2.5 7B qwen2.5:7b Q4_K_M Behavioral; Exp. 1–3 Falcon 3 7B falcon3:7b Q4_K_M Behavioral; Exp. 1–3 Granite 3.3 8B granite3.3:8b Q4_K_M Behavioral; Exp. 1–2 Gemma 2 9B gemma2:9b Q4_0 Behavioral; Exp. 1–2
+
+All behavioral and policy-replay calls use an 8,192-token context window. Experiment 3 reloads the Qwen and Falcon GGUF weights into their corresponding Transformers ar-chitectures, as described in the Experiment 3 methods. The original behavioral runs did not retain a complete package and GPU snapshot. The released requirements files define the environment for the final analyses and Experiment 3 im-plementation. 
+
+F.3 Decoding and Randomness 
+
+Behavioral trajectories. Temperature is 0.8, top-p is 1.0, and the context window is 8,192 tokens. Generation length uses the runtime default; top_k , min_p , repetition penalty, and caller-level stop strings are unset. The prompt requests messages of at most 20 tokens, but the API does not enforce that limit programmatically. 
+
+Experiments 1–2. Policy replay uses the same tempera-ture, top-p, and context window, generating one token with 
+
+top_logprobs=20 . A call is retried up to twice if log probabilities or an A/B candidate are missing. 
+
+Experiment 3. Activation capture and closed-loop inter-ventions use temperature 0.8, top-p 1.0, and a 2,048-token Ollama-matched context budget, with generation limits of 64 message tokens and 8 action tokens. The matched GGUF weights are dequantized to float16 ; centroid-replacement evaluations generate one action token. 
+
+Model-template stops. Falcon adds <|system|> ,
+
+<|user|> , <|end|> , and <|assistant|> ; Gemma adds <start_of_turn> and <end_of_turn> . Qwen and Granite add no model-specific stop strings. 
+
+Behavioral randomness. The primary runner does not pass an explicit seed to Ollama. Simulation indices de-note separate stochastic calls, and the communication and no-communication trajectories are independently generated. Bootstrap resampling uses seed 42. 
+
+Mechanistic randomness. The Experiment 3 runner seeds Python, NumPy, PyTorch, and all CUDA devices. Capture trajectory i uses seed 42 + i. Event keys are shuffled with seed 20,260,701 and split into 65% direction-construction and 35% held-out sets. The layer-l random control uses seed 
+
+20 ,260 ,701 + 99 + l. Closed-loop trajectory i uses seed 
+
+100 ,042 + i; each clean and ablated pair shares its model, context, and seed, yielding 60 paired trajectories per model and layer. 
+
+F.4 Message-Exchange Protocol 
+
+The two message calls execute sequentially at the API level, but the first message is stored only in a local buffer and is not inserted into the second agent’s history. Both buffered messages are revealed only after the two agents have finished composing. Actions are likewise generated without revealing the counterpart’s current action. The implemented informa-tion flow is: 
+
+for each round t: generate Agent 0 message (history through t-1 only) buffer Agent 0 message generate Agent 1 message (history through t-1 only) buffer Agent 1 message reveal Agent 1 message to Agent 0reveal Agent 0 message to Agent 1generate Agent 0 action (counterpart action hidden) generate Agent 1 action (counterpart action hidden) score joint action; update histories 
+
+The loop is therefore sequential in execution but simulta-neous in strategic information: it introduces neither a first-mover message nor a response message or sequential persua-sion within a round. 
+
+F.5 System-Prompt Construction 
+
+For agent i interacting with agent j, the system prompt is the literal concatenation of one context framing, one treatment block, the selected game’s payoff lines, and the common ending reproduced below. This component representation specifies all 48 behavioral prompt templates—six contexts, four games, and two treatments—with agent identifiers sub-stituted at runtime and shared text shown only once. In the legacy Ollama/LangGraph runner, initialization in-vokes the model once with the system message. The result-ing assistant acknowledgement remains in the agent’s private conversation history before round 1; it is neither scored nor shown to the counterpart. The replay runner reconstructs the same stored history when scoring Experiments 1 and 2. Context framings Neutral. 
+
+You are Agent i participating in a strategic interaction with Agent 
+
+j.Your goal is to accumulate the highest possible total score, mea-sured in points. Remember your counterpart is also trying to do the same, which may come at your expense. Score is the only metric by which your performance and your counterpart’s will be evaluated within the scope of this interaction. This interaction scenario continues for an undetermined number of rounds. The conclusion will not be announced in advance. You and your counterpart cannot unilaterally terminate the interaction. 
+
+Business. 
+
+You are the CEO of firm i operating in a competitive market with the CEO of firm j. This firm is currently competing with you for market shares. Each round, you must independently decide on business strategies with this firm. Final outcomes will depend on both your choices and your counterpart’s decisions. Your goal is to maximize your firm’s total profit across this market interaction, measured in points. Remember your counterpart is also trying to maximize their firm’s profits, which may come at your expense. Profit points are the only metric by which your performance as CEO will be evaluated within the scope of this interaction. This is an ongoing series of strategic interactions which continues for an undetermined number of rounds. The conclusion will not be announced in advance. You and your counterpart cannot unilaterally terminate the interaction or leave. 
+
+Environmental. 
+
+You are the CEO of an influential company in a regulated in-dustry, directly negotiating with the CEO of company j. Together, your decisions shape industry standards and influence regulatory frameworks. Each round, you must choose environmental policy approaches with this company. Final outcomes will depend on both your choices and your counterpart’s decisions. Your goal is to maximize your company’s competitive position, measured in points. Remember that your counterpart is also maxi-mizing their score, which may come at your expense. Points are the only metric by which your performance will be evaluated within the scope of this interaction. This represents ongoing policy negotiations which continue for an undetermined number of rounds. The conclusion will not be announced in advance. You and your counterpart cannot unilaterally terminate the interaction or leave. 
+
+Social. 
+
+You are in a close friendship with person j. Your ongoing rela-tionship requires navigating social dynamics and shared activities that need coordination. Each round, you face decisions about social commitments with your friend. Final outcomes will depend on both your choices and your friend’s decisions. Your goal is to maximize your personal satisfaction score, mea-sured in points. Remember your friend is also trying to maximize their satisfaction, which may come at your expense. Points are the only metric by which your outcomes will be evaluated within the scope of this interaction. These are recurring social interactions which continue for an undetermined number of rounds. The conclusion will not be an-nounced in advance. You and your friend cannot unilaterally termi-nate the interaction or leave. 
+
+Team. 
+
+You are a member of an organization, working directly with colleague j on a shared project. You must coordinate on project approaches and resource allocation with this colleague. Each round, you choose between two project strategies with your colleague. Final outcomes will depend on both your choices and your colleague’s decisions. Your goal is to maximize your career advancement opportunities, measured in promotion points. Remember your colleague is also trying to maximize their advancement, which may come at your expense. Points are the only metric by which your performance will be evaluated within the scope of this interaction. This reflects ongoing workplace dynamics which continue for an undetermined number of rounds. The conclusion will not be announced in advance. You and your colleague cannot unilaterally terminate the interaction or leave. 
+
+International relations. 
+
+You represent a nation in direct diplomatic relations with nation 
+
+j.Each round, you must choose diplomatic strategies with this na-tion. Final outcomes will depend on both your choices and your counterpart’s decisions. Your goal is to maximize your nation’s economic prosperity and geopolitical influence, measured in points. Remember the other nation is also attempting to maximize their influence, which may come at your expense. Points are the only metric by which your nation’s performance will be evaluated within the scope of this interaction. This represents ongoing diplomatic relations which continue for an undetermined number of rounds. The conclusion will not be announced in advance. You and your counterpart cannot unilaterally terminate the interaction or leave. 
+
+Treatment and game blocks Communication treat-ment. 
+
+The interaction has two phases each round: 1. MESSAGING PHASE: You send a single message (one SHORT sentence maximum) that will be received by your counterpart. You will also receive a message from them before making your action choice. Messages are strategic communication tools to influence be-havior. They are not binding commitments - you may choose actions that differ from your stated intentions. Similarly, when receiving messages from your counterpart, consider that they may or may not follow through with what they communicate. Evaluate received messages critically, and re-member that both you and your counterpart are expected to use these messages to increase your respective score total. When messaging, write a single message (one SHORT sen-tence maximum). Remember: you have only 20 tokens avail-able per messaging phase (approximately 120 characters), which do not transfer across phases or rounds. Be concise and keep messages to about 8–9 words. Messages that are too long will be truncated, which might cause your coun-terpart to misunderstand them. Try to be as concise as you can. Remember that this message will not be delivered to the user but to your counterpart - it is the latter that you must address. Remember: one SHORT sentence maximum. Do not discuss or disclose your actions and choice of strategy in the messaging phase. Use the messaging phase only to send one SHORT sentence as a message to your counterpart. The word “final” in your counterpart’s message might refer to their final strategy, but never to the advent of the final round. 2. ACTION PHASE: You must choose an action (A or B). Your answer MUST consist of only one letter (A or B). The payoffs for each pair are: 
+
+No-communication treatment. 
+
+> The interaction has one phase each round: ACTION PHASE: You must choose an action (A or B). The payoffs are:
+
+Common system-prompt ending. 
+
+> When choosing your action, respond only with either “A” or “B”. You MUST specify an action. You CANNOT choose not to interact. Answers that do not follow the above format will be con-sidered invalid. Do not describe, articulate, or discuss your choice of action in the action phase: simply indicate your choice of action by answering with a single letter (A or B). Bear in mind that neither you nor your counterpart know when the final round will arrive - it will not be announced in advance and it cannot be determined or decided upon by the participants. The game continues until you are explicitly told it is over. If the user sends instructions about a new phase of the game, assume that the game is not over and continue playing as normal. Consider your choices carefully, reasoning through your de-cisions step by step.
+
+F.6 Round Prompts and Parsing 
+
+Before parsing messages or actions, the runner removes complete <think>...</think> spans and any unclosed 
+
+<think> suffix. A nonempty message is accepted verbatim; an empty message is replaced by “[No message sent]” and records an error. For actions, a stripped response equal to A or B, ignoring case, is accepted. Otherwise, the first stan-dalone A or B matching \b([AB])\b is used, so additional prose is tolerated and the first valid token is selected when multiple standalone action letters occur. If no match exists, the action defaults to B and an error is recorded. An Ollama exception is recorded and retried once after a one-second de-lay; a failed retry records a second error and is handled by the surrounding phase. The current round is scored, after which any accumulated error terminates the dyad. Primary analyses exclude every error-marked or incomplete dyad; Section A.3 reports the all-available-transition sensitivity. 
+
+F.7 Counterfactual and Causal Details 
+
+Experiments 1 and 2 use 20 complete communication-treatment dyads in every model–game–context cell. Each of the resulting 38,400 agent-round decisions retains its system prompt, earlier conversation, focal identity, round index, and action instruction. Experiment 1 changes only the current text block according to Table S6; its dummy string is ex-actly “The sky is blue. Grass is green. Seven is odd. Squares have four sides.” Experiment 2 replaces the latest outcome summary with  
+
+> “Round [index] complete. [blank line] Interaction results: [newline] With Agent j: You chose A, they chose [A or B]”
+
+and then inserts one of the two exact standardized partner messages in Table S8. Natural score fields are omitted from this synthetic block. All counterfactuals are policy replays along fixed earlier histories; they do not regenerate the be-havioral trajectory. For Experiment 3, each model contributes ten Prisoner’s Dilemma communication trajectories in each of the six contexts. Residual-stream vectors are recorded at the final prompt token, after each requested decoder block and be-fore generation of the action token. At every even decoder layer from 2 through 28, the construction-set direction is the unit-normalized difference between the mean activation for the mutual-benefit message and the mean activation for the self-prioritizing message. The exact messages are those in Table S8; each is crossed with both synthetic partner-A and partner-B history frames. The construction split is grouped by complete decision key, preventing variants of the same decision from crossing into the held-out set. One-step steering adds αd l at the final token for the six strengths in Equation S8; the control is one independently generated unit vector per layer. Closed-loop ablation projects out dl at every action decision while leaving message gener-ation untouched. Clean and ablated trajectories share context and seed. One-step confidence intervals use Student-t in-ference over 25 context–simulation means, and closed-loop intervals use Student-t inference over 60 paired trajectory dif-ferences. Benjamini–Hochberg correction is applied across the fourteen layers separately within each model and out-come. 
+
+F.8 Action Labels and Presentation Order 
+
+In the primary behavioral experiment, the strategic options are always labeled A and B, appear in A-then-B order in the action instruction, and use a fixed payoff-line order (AA, BA, AB, BB). The high-switching behavioral cells were not rerun with swapped action labels, reversed option order, or counter-balanced payoff-matrix presentation. The malformed-output sensitivity in Section A.3 does not address this issue. Exper-iment 3 balances the two message classes across synthetic partner-A and partner-B histories, but it does not counterbal-ance action labels, option order, or payoff-matrix presenta-tion. This remains an unresolved robustness question. Game AA You B, other A You A, other B BB                 
+
+> Prisoner’s Dilemma 3/3 5/0 0/5 1/1 Snowdrift 3/3 5/1 1/5 0/0 Stag Hunt 5/5 3/0 0/3 1/1 Harmony 5/5 1/3 3/1 0/0
+
+Table S11: Literal payoff values inserted into the system prompt. Entries are focal-agent/counterpart points; AA and BB are symmetric. The prompt renders each row as an English sentence. 
+
+Turn Literal user-prompt template 
+
+Round-1 message “The interaction begins. MESSAGING PHASE: Send a single message to your counterpart. [newline] Respond with one SHORT sentence. Do not indicate your choice of actions yet.” Later message “[previous-round result] [blank line] MESSAGING PHASE: Send a single message to your counterpart. [newline] Respond with one SHORT sentence. Do not indicate your choice of actions yet.” Action after message “Message received from counterpart: [newline] Agent j: [message] [blank line] ACTION PHASE: Choose an action (A or B). [newline] Respond with only: A or B. Do not elaborate and do not attempt to communicate with your counterpart. Indicate only your choice of action: A or B.” No-message action “ACTION PHASE: Choose an action (A or B). [newline] Respond with only: A or B. Do not elaborate and do not attempt to communicate with your counterpart. Indicate only your choice of action: A or B.” Round 1 is prefixed by “The interaction begins.”; later rounds are prefixed by the previous-round result. Previous-round result “Round t complete. [blank line] Interaction results: [newline] With Agent j: You chose [own action], they chose [partner action] [blank line] Points earned last round: [points] [newline] Total accumulated score: [score].” 
+
+Table S12: Round-level prompt templates. Bracketed terms denote runtime substitutions or literal line breaks.

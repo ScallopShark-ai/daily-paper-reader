@@ -1,0 +1,239 @@
+Title: Oops, Not Now: PEARL, a RAG-Based Support Agent for Gameplay and What Players Want from AI Help
+
+URL Source: https://arxiv.org/pdf/2609.13718v1
+
+Published Time: Tue, 15 Sep 2026 00:36:46 GMT
+
+Number of Pages: 8
+
+Markdown Content:
+# Oops, Not Now: PEARL, a RAG-Based Support Agent for Gameplay and What Players Want from AI Help 
+
+1st Jiahong Li *
+
+University of California Santa Cruz 
+
+Santa Cruz, USA jli906@ucsc.edu 
+
+2nd Sai Siddartha Maram 
+
+University of California Santa Cruz 
+
+Santa Cruz, USA msaisiddartha1@gmail.com 
+
+3rd Atieh Kashani 
+
+University of California Santa Cruz 
+
+Santa Cruz, USA atkashan@ucsc.edu 
+
+4th Ulia Zaman 
+
+University of California Santa Cruz 
+
+Santa Cruz, USA uzaman@ucsc.edu 
+
+5th Zhiyu Lin 
+
+University of California Santa Cruz 
+
+Santa Cruz, USA zlin34@ucsc.edu 
+
+6th Cameron Marano 
+
+University of Central Florida 
+
+Orlando, USA cameron.marano@ucf.edu 
+
+7th Roger Azevedo 
+
+University of Central Florida 
+
+Orlando, USA roger.azevedo@ucf.edu 
+
+8th Jichen Zhu 
+
+IT University of Copenhagen 
+
+Copenhagen, Denmark jicz@itu.dk 
+
+9th Magy Seif El-Nasr 
+
+University of California Santa Cruz 
+
+Santa Cruz, USA mseifeln@ucsc.edu 
+
+Abstract —AI-powered gameplay support agents hold promise for game-based learning, yet grounding generative models in structured game data remains an open challenge. We present PEARL (Parallel Education Agent for Reflection and Learning), a dual-component Retrieval-Augmented Generation (RAG) system that combines semantic knowledge retrieval with structural board-state matching to deliver contextualized scaffolding in Parallel, a puzzle game for learning parallel programming. PEARL operates on two input streams (natural language queries and board topology), retrieving both conceptual explanations of gameplay moves and peer-generated board states as evidence: capabilities unavailable to a standard Large Language Model (LLM) with game state access alone. In a qualitative evaluation (N =10 ) comparing PEARL against an existing community-based Open Player Model (OPM) visualization system, participants preferred the visualization system on perceived usefulness and reported higher frustration with PEARL; five of ten minimized or abandoned the AI tool during play. Proactive delivery, generic responses, and trust deficits drove disengagement, while a subset of four participants found PEARL’s grounded explanations complementary to visualization in specific contexts where they initiated the interaction. We position PEARL as a deployed design probe whose failure modes inform a concrete design agenda for AI gameplay support, captured as seven open problems for the community. 
+
+Index Terms —Retrieval-Augmented Generation, Game-Based Learning, Open Player Models, Parallel Programming, AI Sup-port Agents 
+
+> *
+
+Corresponding author. 
+
+I. I NTRODUCTION 
+
+Educational technology has increasingly embraced AI-powered tutoring systems to deliver personalized, scalable learning experiences [1], [2]. However, a persistent tension remains: many AI tutoring systems operate as opaque pipelines whose internal reasoning is invisible to learners, limiting the metacognitive engagement that self-regulated learning theory identifies as essential for deep understanding [3]–[5]. A promising approach is scaffolding : temporary, structured support that helps learners accomplish tasks within Vygot-sky’s zone of proximal development [6], first formalized by Wood, Bruner, and Ross [7]. In technology-rich environ-ments, scaffolding has expanded beyond one-to-one tutoring to encompass tool-mediated supports distributed across soft-ware, content, and peers [8]. Scaffolding is central to self-regulated learning [9], yet remains underexplored in game-based contexts where AI must interpret dynamic, structured state representations [10]. Recent advances in conversational agents and LLM-driven game characters [11]–[13] demon-strate that generative AI can support rich, context-sensitive dia-logue within games. However, while standard Large Language Models (LLMs) can generate context-sensitive responses when provided with game state information, they cannot scaffold learning through peer comparison since they lack access to ver-ified peer play traces, community-generated board states, and expert-annotated move classifications. Without such ground-ing, LLMs produce generic advice and risk hallucination [14], a critical concern where incorrect guidance reinforces miscon-ceptions. 
+
+> Accepted for publication at the 2026 IEEE Conference on Games (CoG). © 2026 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media, including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in other works. arXiv:2609.13718v1 [cs.HC] 12 Sep 2026
+
+This scaffolding gap is particularly acute in game-based learning environments that expose peer data through Open Player Models (OPMs). OPMs, which extend the tradition of Open Learner Models (OLMs) [15] to games, make player traces, inferred competencies, and peer strategies visible for self-assessment and reflection [16], [17]. Prior work on OPMs within Parallel, a puzzle game that teaches parallel programming through spatial coordination of concurrent pro-cesses [18], has shown that peer data exposure can elicit mean-ingful reflection [19], [20] and improve problem-solving [21]. Yet even with interactive spatio-temporal visualizations [19], [20], learners must still independently interpret what they ob-serve, which is a non-trivial cognitive task. Prior deployments of these visualizations across approximately 50 play sessions revealed recurring struggles: trial-and-error without reflection, difficulty diagnosing failure causes, and strategy fixation [19]. Visualization alone does not close the interpretation gap; a natural complement is conversational scaffolding that enables players to ask questions about the peer data they are viewing. To bridge this gap, we propose PEARL ( Parallel Education 
+
+Agent for Reflection and Learning), a Retrieval-Augmented Generation (RAG) system that enables pedagogical scaffold-ing by indexing peer play traces within a searchable vec-tor space. PEARL employs a dual-component architecture ,combining semantic knowledge retrieval with structural board-state matching. This is because standard semantic embeddings introduce imprecision that is unacceptable for logic-based puz-zles where a single misplaced edge can distinguish a correct solution from a deadlock. The semantic component retrieves conceptual explanations from an expert-annotated knowledge graph, while the structural component performs exact binary matching of board topologies to surface peer boards that are structurally proximate and pedagogically relevant. This transforms a generic conversational tutor into a peer-aware scaffolding agent that grounds every response in verified peer data. We evaluate PEARL in Parallel [18], an ideal testbed due to its customizable data pipelines, existing OPM infrastructure, and spatial board representation that mirrors techniques used in commercial games [22]. The dual-component architecture is applicable to any game with representable state spaces and pedagogical metadata. Motivated by these considerations, we investigate the following research questions: 
+
+RQ1: How does PEARL’s dual-component RAG archi-tecture support gameplay assistance compared with existing visualization-based OPM support? 
+
+RQ2: How do players engage with PEARL’s retrieval-grounded explanations and structurally retrieved peer board states during gameplay? 
+
+RQ3: What design considerations and player preferences emerge from deploying PEARL during live gameplay? Based on the above research questions, we identify three core contributions: 
+
+1. Seven empirically grounded design themes for AI gameplay support, including on-demand availability, diagnos-tic failure feedback, and preservation of agency, drawn from a within-subjects qualitative deployment ( N =10 ) and posed as a concrete design agenda for the community. 
+
+2. A characterization of PEARL as a deployed de-sign probe , identifying the conditions under which retrieval-grounded help complements visualization (for a subset of participants who initiated the interaction and engaged with their current board state) and the failure modes (proactive delivery, generic responses, trust deficits) that drove a majority of participants to disengage. 
+
+3. PEARL, a dual-component RAG system that com-bines semantic knowledge retrieval with structural board-state matching, describing an architecture for grounding LLM-based agents in structured game data. II. P REVIOUS WORK 
+
+A. Exploring Peer Learning and Peer Play 
+
+Research has consistently demonstrated the pedagogical benefits of allowing students to explore alternative learning paths and the progress of their peers [20]. However, raw data from learning communities is often dense, multidimensional, and difficult for novices to comprehend. The field has in-creasingly relied on telemetry data (continuous, non-invasive logging of user behavior) to enable formative assessment, capturing the process of learning as it unfolds [23]. These concepts extend to commercial games, where com-petitive titles provide post-match analytics and racing games employ “ghosts” for real-time peer comparison [22]. Despite maturity in esports, such systems have rarely translated ef-fectively into serious games [24], [25]. Recent efforts bridge this gap: Maram et al. proposed Open Player Models (OPMs), adapting OLM principles [15] to game-based learning [16]; spatio-temporal visualizations help players interpret actions relative to alternative paths [19], [26]; and Kleinman et al. [21] showed that exposing community data improves reflection quality. Despite these advancements, a key limitation persists: even interactive visualization systems rely on the learner to inde-pendently interpret what they see. Kleinman et al. [21] and Maram et al. [19] both observed that participants frequently requested more explicit guidance. A natural complement is 
+
+conversational scaffolding : the process by which a more knowledgeable agent structures a task to support learner progress [7]. Scaffolding is central to intelligent tutoring sys-tems, where VanLehn [27] showed step-level ITS approaches the effectiveness of human tutoring and dialogue-based agents such as AutoTutor [28] produce measurable learning gains [9]. Recent work applies LLM-based scaffolding to game-based learning [10], though standard LLMs without grounding in verified peer traces riskhallucinated or generic advice [14]. 
+
+B. RAGs and LLMs in Education 
+
+Large Language Models (LLMs) have demonstrated signif-icant potential in education across language acquisition [29], humanities [30], and STEM [31]. Within CS education, LLMs aid debugging, code explanation [32], [33], and personalized feedback [34], [35]. Standard LLMs are prone to “hallucinations,” which Retrieval-Augmented Generation (RAG) systems address by grounding responses in verified external knowledge [14], [36], [37]. Yet the prevailing interaction paradigm remains text-centric, while serious games, increasingly adopted in classrooms, embed pedagogical scaffolding within gameplay mechanics. Our paper addresses this gap by showing how RAG-based systems can interpret dynamic gameplay states without compromising pedagogical integrity. 
+
+C. LLMs and RAG in Game-Based Learning 
+
+Where earlier conversational agents relied on fixed dialogue trees (Section II-A), recent work casts LLMs as improvisa-tional “gamemasters” for role-play across civic, counseling, and historical domains [11], [12], [38]–[41]. Despite these affordances [42], [43], empirical evidence remains mixed: Wang et al. [44] found LLM-adaptive mechanisms improved performance but increased cognitive load, and Tinterri et al. [45] showed LLMs struggle with game-specific reasoning. RAG [46] grounds generative models in external knowledge bases. Within gaming, RAG has primarily served narrative con-sistency and memory : the Generative Agents architecture [47] and the “Ghost” system [48] let NPCs “remember” past interactions. Its use in serious games remains restricted to this textual domain, neglecting structured gameplay data ; current AI tutoring systems typically compare a student’s move only against a static “gold standard” solution [36]. Our work repurposes RAG for structural pedagogical re-trieval , treating dynamic player traces and board states as a queryable vector space and retrieving the trajectories of peers who navigated similar impasses, aligning with calls for “explanatory analytics” [23] that bridge raw log data and actionable pedagogical insight. 
+
+D. Parallel – Research Platform 
+
+The Parallel serious game platform [16] facilitates the learn-ing of parallel programming through gamified, spatial puzzles. The game presents a 2D environment where players coordinate concurrent processes (represented as moving arrows) by strate-gically placing and linking signals and semaphores. Prior work demonstrates the platform’s versatility: Maram [16] developed an OPM visualization system, and Maram et al. [17] used AI to relate in-game player actions to underlying learning concepts. The spatial design of Parallel allows researchers to dissect the game board into functional “zones,” mirroring spatial analysis techniques used in commercial titles such as Guild Wars 2 and Dota 2. This structural similarity suggests that systems developed for Parallel possess the potential to generalize to broader gaming contexts. III. T HE PEARL S YSTEM 
+
+PEARL is a dual-component RAG architecture combining semantic knowledge retrieval (Section III-A) with structural board state matching (Section III-B), motivated by the impreci-sion of standard semantic embeddings for logic-based puzzles where a single misplaced edge separates a working solution from a deadlock. 
+
+A. Semantic Knowledge Retrieval 
+
+The semantic component leverages an expert-annotated knowledge graph [19] of 133 knowledge units across the two study levels. Each unit annotates a move with its classification (good or bad), the concept being demonstrated or violated, common misconceptions, and recommended alternatives. The graph encodes 391 directed recommendation edges, driving sequential chaining from semantic to structural retrieval. 
+
+Embedding and Retrieval. We convert this knowledge graph into a searchable vector space using GPT-embeddings (text-embedding-3-small , 1536-dimensional). For each move, we construct a context string that includes the link notation (the text encoding of each directed edge, e.g., 
+
+ZoneA →ZoneB ), level identifier, classification, explanation text, and board state description. As illustrated in Fig. 1, each player action generates a composite query integrating four sub-queries: move notation, current level context, knowledge-graph teaching content with recommended alternatives, and serialized board topology. The composite is embedded once and cosine-similarity-ranked against the indexed corpus, with a similarity floor of 0.05 and deduplication by player. The matched entries are aggregated into a ranked set of knowledge units (K 1, K 2, . . . , K n), synthesized into explanatory text and a set of recommended next moves that anchor the subsequent structural retrieval stage. 
+
+Retrieval Parameters. The semantic phase returns the top-
+
+ks = 4 alternative good moves for correct player actions, or top-ks = 3 similar mistakes for incorrect actions. The structural phase, detailed below, ranks peer boards encoded as binary adjacency vectors of length |V |2 (64-dimensional on Level 3 with |V | = 8 zones, 256-dimensional on Level 13 with |V | = 16 zones) by Hamming distance, restricted to peer boards containing the recommendation edges surfaced by the semantic phase, and retains the top-kp = 5 solution boards. 
+
+B. Structural Board State Retrieval 
+
+While the semantic component provides conceptual ex-planations, the structural component addresses the need for 
+
+precise structural matching of board states. Peer board states are drawn from a curated corpus of 13 unique peer play sessions across the two study levels (4 on Level 3, 9 on Level 13) sampled from the production Parallel platform. Stan-dard semantic embeddings create “fuzzy” similarity measures that can cluster board states based on superficial similarities even when they differ in critical structural properties. We illustrate the structural board state retrieval process in Fig. 2. 
+
+Graph-Based Representation. We model the game board as a directed graph G = ( V, E ), where V represents zones and E represents user-created synchronization links. The board state St at time t is converted into an adjacency matrix M ,then flattened into a binary vector vstruct of length |V |2.Fig. 1. Semantic Knowledge Retrieval, Augmentation and Generation for Player Moves. The player’s move and query are converted into a multi-query system, where queries are transformed into dense vector embeddings using GPT-embeddings. These are searched against a corpus of embedded documents from the knowledge graph, and synthesized into a unified pedagogical response. 
+
+Structural Similarity. We employ Hamming Distance rather than cosine similarity because each dimension of the binary vector encodes a discrete structural property (edge present or absent), and Hamming Distance directly counts the number of structural edits between two boards. Specifically, we compute the Hamming Distance in Eq. (1): 
+
+H(vcurr , vpeer ) =  
+
+> |V|2
+
+X
+
+> i=1
+
+|vcurr [i] − vpeer [i]| (1) and Jaccard Similarity for measuring overlap in Eq. (2): 
+
+J(vcurr , vpeer ) = |vcurr ∩ vpeer ||vcurr ∪ vpeer | (2) 
+
+Pedagogically-Aware Ranking. The structural component employs a two-stage ranking process. In Validation Mode 
+
+(“Am I on the right track?”), the system minimizes Hamming Distance to retrieve structurally similar peer boards, reinforc-ing the player’s current strategy. In Correction Mode (“What is wrong?”), the system retrieves boards that are initially similar but diverge in key success edges (edges present in passing peer solutions but absent from the player’s current board): 
+
+Rank corr (vcurr ) = arg min   
+
+> vpeer ∈S
+
+H(vcurr , vpeer ) (3) where S is the set of peer boards that led to a correct solution. This restricts candidates to passing boards and prioritizes those closest to the player’s current state, highlighting the structural “delta” required to reach a passing state. 
+
+C. Generative Synthesis and Integration 
+
+PEARL chains the components sequentially: semantic retrieval returns knowledge units (K 1–K n) that the LLM syn-thesizes into explanatory text and recommended next moves; these recommended moves then act as a pedagogical filter on structural retrieval, so only peer boards containing the recom-mended move types are eligible. The final LLM call assembles both semantic knowledge units and filtered peer board states into a single context window, generating a response that pairs explanatory text with visually rendered peer boards. 
+
+PEARL vs. LLM with Game State. Fig. 3 compares PEARL with a standard LLM that receives the player’s board state, game rules, and level instructions injected into its context window. The LLM can explain parallel programming concepts and produce Socratic prompts, but cannot access the expert-annotated knowledge graph, the peer play trace database, or structural matching. The critical difference is not context awareness but scaffolding through peer evidence , grounding abstract advice in concrete community data. 
+
+Proactive Delivery. When enabled (default on), PEARL fires a retrieval-and-synthesis pass on every distinct link cre-ation event, with per-session deduplication but no temporal cooldown or move-count throttle. This delivery model drove the disengagement patterns reported in Section V-D. Users may toggle proactivity off via a sidebar control. IV. E VALUATION 
+
+To evaluate PEARL, we conducted a within-subjects qual-itative comparison against “Community” [16], the existing OPM visualization system. Community presents peer data through spatio-temporal heatmaps, node-edge solution graphs, and aggregate performance data per level. It serves as the non-scaffolded baseline: players can see peer data but must independently interpret it. The objective was not to establish performance superiority but to characterize interaction patterns and identify contexts where users engage with PEARL’s scaffolding versus visualization-based exploration. The IRB-approved study used a think-aloud protocol with N =10 par-ticipants holding at least an undergraduate Computer Science degree. 
+
+Study Levels. Levels 3 and 13 were selected to span a calibrated difficulty curve while remaining solvable within 20 minutes: Level 3 introduces foundational synchronization in an 8-zone topology; Level 13 requires multi-thread coordination across 16 zones with both signal and semaphore mechanics. 
+
+Study Design. We employed a within-subjects design with counterbalancing across two conditions: PEARL and Com-munity. Participants were randomly assigned to one of two counterbalanced groups: Group 1 played Level 3 with Commu-nity then Level 13 with PEARL; Group 2 played the reverse. Each session lasted 20 minutes, preceded by a tutorial on the assigned tool. After each condition, participants completed three surveys: the Technology Acceptance Model (TAM) [49], the NASA Task Load Index (NASA-TLX) [50], and the Player Experience of Need Satisfaction (PENS) [51]. Following both Fig. 2. Structural Board State Retrieval. The player’s board state is encoded as a binary adjacency vector and searched against peer playtraces using Hamming Distance and Jaccard Similarity. Pedagogically-aware ranking retrieves relevant board states based on the player’s learning intent.  
+
+> Fig. 3. Side-by-side comparison of an LLM with game state (left) and the full PEARL architecture (right) for the same player state. The LLM can reason about game mechanics but lacks access to the knowledge graph and peer database. PEARL retrieves expert-annotated explanations and structurally matched peer boards to scaffold learning.
+
+conditions, participants completed a knowledge test covering game-specific concepts (race conditions, semaphores, critical sections, and condition variables), co-designed with subject matter experts and the lead developers of Parallel. Participants then completed a semi-structured interview about their expe-riences with both systems. 
+
+Analysis. We applied codebook thematic analysis [52] with the framework method [53]. A 14-code codebook (Table I) was developed deductively from the research questions. Two researchers independently coded one transcript (14 segments) with 92.9% agreement (Cohen’s κ = .92 [54]); the codebook was then locked and remaining transcripts divided for inde-pendent coding. Coded data were charted into a participant ×
+
+condition × theme matrix. V. R ESULTS 
+
+Codebook thematic analysis of interview transcripts re-vealed three overarching patterns corresponding to our re-search questions; both conditions expose community peer data, the distinction being how : Community through visual-ization, PEARL through retrieval-grounded scaffolding. We use pseudonyms (P1–P10) and report survey data ( n=10 for TAM and NASA-TLX; n=9 for PENS due to one incomplete response) descriptively to contextualize qualitative findings. 
+
+A. RQ1: Complementary but Unequally Adopted 
+
+Most participants preferred Community over PEARL when given the choice, and at least five of ten minimized or abandoned the AI tool during play. Descriptive survey scores are consistent with this pattern: TAM Perceived Usefulness                    
+
+> TABLE I CODEBOOK : 14 DEDUCTIVE CODES ORGANIZED BY RESEARCH QUESTION .
+> Code Description
+> Interaction Patterns How participants engaged with each tool Complementary Roles Perceived distinct functions of PEARL vs. Community Motivation Framing Intrinsic vs. extrinsic motivation shaping tool use Learning & Reflection Conceptual learning or self-reflection episodes Grounding Responses perceived as evidence-based vs. generic Socratic Approach Reactions to guided questioning style Basics & Fundamentals Naming or explaining core programming concepts Analogies Comparisons to external tools or experi-ences Peer Board Utility Value of structurally retrieved peer boards Granularity Desired level of detail in support Autonomy Preservation Desire to maintain independent problem-solving Trust & Credibility Confidence in system accuracy and relia-bility Timing of Help-Seeking When and why participants sought help AI Proactivity Reactions to unsolicited AI suggestions
+
+was higher for Community ( M =4 .98 vs. M =4 .57 , 7-point scale), as was Perceived Ease of Use ( M =5 .02 vs. M =4 .75 ). NASA-TLX overall workload was comparable ( M =46 .9 vs. 
+
+M =49 .1), while the frustration subscale was higher for PEARL ( M =56 .5 vs. M =43 .2). The reasons for this preference, however, were not uniform. Some encountered content quality issues: P5 found re-sponses followed “ the same kind of script each time ,” and P1 read a stale proactive message referencing an already-removed element, eroding trust. Others rejected the interaction model : P8 rejected hint systems outright, feeling the game was “hand-holding me .” The most consistent thread of resistance, PEARL’s proactive delivery, is examined in Section V-D. P2’s resistance was personality-driven, “ not always reaching out for help first. ”Among participants who engaged substantively with both tools, four of ten (P4, P6, P7, P10) perceived them as serving distinct roles. P4 summarized: “ Community gives you some-where to start. . . AI just knew a lot, it told me exactly what it was: race conditions, semaphores, critical regions. ” P10 drew a similar contrast: “ Community is the same for everyone. . . the AI is based on exactly where your stuff is right now. ” P6 preferred PEARL because “ it already knows your current solution state, you don’t have to give it information ,” and P7 found it “ more helpful as a companion. ” These participants valued PEARL’s contextual awareness, its ability to ground feedback in the player’s current board state, a capability Community’s fixed peer screenshots could not provide. 
+
+B. RQ2: Conceptual Grounding Through Dual Retrieval 
+
+When PEARL’s retrieval worked, participants engaged with the semantic and structural components in distinct and pro-ductive ways. The semantic component served a naming 
+
+function: it made implicit programming concepts explicit. P4’s “aha moment” illustrates this: “ AI discussed mutexes, which connected to my earlier intuitive solution. My initial answer was correct but because I didn’t know what mutexes were, it was confusing. ” P6 similarly noted that AI “ clarified why zones fail ” while trial-and-error remained the primary discovery mechanism. However, for three of ten participants, the semantic com-ponent produced responses perceived as generic or repetitive. P5 reported the AI followed “ the same kind of script each time ,” and P8 found feedback limited to “ interesting choice you made. . . critically think about your thing, ” offering no actionable guidance. P3’s experience captured a temporal mismatch: AI explanation eventually clarified his failure cause, but “ it wasn’t necessarily helping for [the first 20 minutes] ”, suggesting retrieval latency between player action and useful feedback was too long for some. Retrieved peer boards served two roles: validation and 
+
+alternative discovery . Seven of ten participants reported that seeing peer struggles provided emotional reassurance (“ at least I’m not the only one struggling ”, P6), while five of ten used peer boards to discover structurally different approaches. P10 compared peer boards to “ LeetCode post-solve solutions, seeing signals on the right side when mine were on the left .” However, P3 found peer boards “ discouraging rather than collaborative ,” and four of ten participants found the structural matching confusing when retrieved boards appeared visually dissimilar even when conceptually aligned (“ visually completely off from mine but conceptually around the same ”, P4). Scaffolding perceptions varied by interaction style. Par-ticipants who used PEARL’s suggested questions perceived scaffolding (“ it didn’t just tell me how to optimize, it suggested zones and deduplication ”, P10), i.e., eliminating redundant links, while those who asked direct questions received more explicit answers. P4 noted that PEARL “gives too many answers ” on easier levels, suggesting the system lacked cali-bration to problem difficulty. 
+
+C. RQ3: Autonomy, Timing, and Granularity as Design Axes 
+
+Three dimensions of individual difference emerged as struc-turally important for AI support design. 
+
+Autonomy preservation. Participants varied in how strongly they protected their independent problem-solving. The most consistent expression of this concern, resistance to unsolicited proactive help, is examined in Section V-D. 
+
+Help-seeking timing. Most participants were failure-triggered, seeking help only after repeated failures. The thresh-old varied: P8 required “ consistent ” wall-hitting before open-ing any tool, while P6 opened tools out of curiosity. P2 resisted tools entirely until time pressure forced engagement: “ part of my personality. . . not always reaching out for help first. ”
+
+Desired granularity. Preferences ranged from minimal nudges to complete explanations, often depending on prox-imity to a solution. P7 articulated this contingency: “ If I’m not even close. . . I might need a full explanation. But today I was really close, I just needed a hint. ” P6 recognized the pedagogical value of hints despite personally wanting more: “small hints are better. . . AI adapted better because it didn’t fully give answers. ” At the other extreme, P1 wanted “ the whole picture ” and found the community’s complete solution “easier to deal with. ”
+
+D. Proactive Help and the Clippy Failure Mode 
+
+The single most consistent thread across participants was discomfort with PEARL’s proactive intervention. Four of ten participants (P2, P3, P7, P10) cited proactive interruption as a concrete negative, and the language they used to describe it converged on a familiar trope. P3 found PEARL’s proactive responses “ jarring ”, explaining that “ when I’m putting an element on the track. . . it interrupts and tries to give advice ,” and described his preferred AI as “ very non-invasive .” P10 noted that the AI “ was telling me the answer before I asked it. ”P2 found the agent “ interruptive ” as it would “ pop up with a new message ” after each action. Even P7, who valued PEARL overall, flagged that it “ gives you feedback every single time you make updates, even though you haven’t finished your updates. ”The objection was rarely to the content of the help. Several of the same participants endorsed PEARL’s grounded expla-nations when they sought them on their own terms. What participants rejected was the unsolicited delivery: an agent that responded to every move acted, in their framing, less like a tutor and more like an unwanted helper interrupting work in progress. The architectural capability for retrieval-grounded help can be undermined by the interaction model through which that help is delivered, a pattern reminiscent of 
+
+Clippy and other proactive office assistants. 
+
+E. Knowledge Test 
+
+Knowledge test scores are reported descriptively. Ten partic-ipants completed an eight-item post-session assessment cover-ing parallel programming concepts encountered during game-play. Mean total accuracy was 5.50 of 8 (68.8%, SD =0 .94 ;range 4.0–7.0), with item-level accuracy spanning 10/10 (def-initions of “semaphore” and “critical section”) to 4/10 (identi-fying intersections as the appropriate first-semaphore location). On a multi-select item identifying critical-section zones on a labeled board, no participant produced the complete correct set (2 selected only correct but incomplete zones, scored 0.5; 8 included an incorrect zone, scored 0). The within-subjects design administered the test once post-session, covering both conditions; scores reflect aggregate post-study understanding rather than condition-attributable learning gains, and N =10 
+
+precludes inferential testing of condition effects. VI. D ISCUSSION 
+
+The most consistent design lesson from our deployment is a pointed question: are we building Clippy? As detailed in Section V-D, the barrier to adoption was primarily inter-action design rather than retrieval architecture: AI gameplay agents should default to passive availability and respect player-initiated interaction boundaries [4]. Beyond proactivity, our findings position PEARL not as a replacement for visualization-based OPMs but as a condition-ally complementary scaffolding modality that addresses the interpretation gap identified in prior work [19], [21]. Where visualization exposes peer data, PEARL scaffolds learners’ interpretation of it by grounding explanations in verified peer experiences. Participants who engaged substantively with both tools perceived them as serving different roles (concrete evi-dence versus personalized explanation). This complementarity, however, was asymmetric and conditional: most participants gravitated toward Community, and several disengaged from PEARL. Participants who received well-grounded responses (P4, P6, P7) reported productive engagement with PEARL under solicited conditions. Across all ten participants, we identified seven recurring themes characterizing what players want from AI gameplay support. Three are addressed by PEARL’s architecture: diag-nostic failure feedback (semantic retrieval), conceptual bridg-ing (knowledge graph), and visual and multimodal support 
+
+(peer board states). Two require interaction redesign: on-demand availability and Socratic guided questioning , valued but too generic in practice. Two remain open: preservation of agency , requiring adaptive calibration, and genuine social community , a desire for live peer interaction beyond retrieved boards. We pose these as a design agenda for AI gameplay support. Our findings also suggest motivation context shapes recep-tivity: participants framed gameplay as intrinsically motivated, and unsolicited help “spoils the fun” (P8, P3). 
+
+Limitations and Future Work. Our sample ( N =10 ) of CS-trained participants limits generalizability to novice learners and non-technical domains, and the within-subjects design introduces potential order and difficulty confounds despite counterbalancing. The PEARL/Community comparison cannot isolate retrieval architecture effects from differences in modal-ity, timing, interface, and interaction style; it characterizes two contrasting support paradigms rather than providing an architectural comparison. Some retrieval quality issues may also reflect knowledge graph coverage gaps. We evaluate PEARL as a deployed design probe rather than a retrieval system in isolation; systematic comparison of semantic-only, structural-only, and combined retrieval against expert-labeled ground truth (e.g., Precision@k, Recall@k, MRR) is left to a focused architectural study. Future work should evaluate PEARL with larger, more diverse samples, explore adaptive proactivity models that default to passive assistance, and extend the framework beyond Parallel. REFERENCES [1] Y. Chen, S. Jensen, L. J. Albert, S. Gupta, and T. Lee, “Artificial intelligence (ai) student assistants in the classroom: Designing chatbots to support student success,” Information Systems Frontiers , vol. 25, no. 1, pp. 161–182, 2023. [2] T. Adıg¨ uzel, M. H. Kaya, and F. K. Cansu, “Revolutionizing education with ai: Exploring the transformative potential of chatgpt,” Contempo-rary Educational Technology , vol. 15, no. 3, p. ep429, 2023. [3] P. H. Winne and R. Azevedo, “Metacognition and self-regulated learn-ing,” in The Cambridge Handbook of the Learning Sciences . Cambridge University Press, 2022, pp. 93–113. [4] B. J. Zimmerman, “Becoming a self-regulated learner: An overview,”                            
+
+> Theory Into Practice , vol. 41, no. 2, pp. 64–70, 2002. [5] R. Azevedo and M. Wiedbusch, “Theories of metacognition and peda-gogy applied to AIED systems,” in Handbook of Artificial Intelligence in Education .Edward Elgar Publishing, 2023, pp. 45–67. [6] L. S. Vygotsky, Mind in Society: The Development of Higher Psycho-logical Processes .Cambridge, MA: Harvard University Press, 1978. [7] D. Wood, J. S. Bruner, and G. Ross, “The role of tutoring in problem solving,” Journal of Child Psychology and Psychiatry , vol. 17, no. 2, pp. 89–100, 1976. [8] S. Puntambekar and R. H¨ ubscher, “Tools for scaffolding students in a complex learning environment: What have we gained and what have we missed?” Educational Psychologist , vol. 40, no. 1, pp. 1–12, 2005. [9] D. A. Dever, N. A. Sonnenfeld, M. D. Wiedbusch, S. G. Schmorrow, M. J. Amon, and R. Azevedo, “A complex systems approach to analyzing pedagogical agents’ scaffolding of self-regulated learning within an intelligent tutoring system,” Metacognition and Learning , vol. 18, pp. 753–791, 2023. [10] Y. Gong, M. Wang, L. He, C. Xu, and Y. Yu, “Asking, playing, learning: Investigating large language model-based scaffolding in digital game-based learning for elementary artificial intelligence education,” Journal of Educational Computing Research , vol. 64, pp. 311–343, 2025. [11] S. E. Huber, K. Kiili, S. Nebel, R. M. Ryan, M. Sailer, and M. Ninaus, “Leveraging the potential of large language models in education through playful and game-based learning,” Educational Psychology Review ,vol. 36, no. 1, p. 25, 2024. [12] F. Bonetti, A. Bucchiarone, and V. Wanick, “Using llms to adapt serious games with educators in the loop,” in International Conference on Games and Learning Alliance .Cham: Springer Nature Switzerland, Nov 2024, pp. 68–77. [13] B. G¨ obl, S. Kriglstein, and H. Hlavacs, “Conversational interfaces in serious games: Identifying potentials and future research directions based on a systematic literature review,” in CSEDU (1) , 2021, pp. 108– 115. [14] J. Lu and J. Li, “A novel framework for educational q&a: Leveraging rag and code interpreters for knowledge retrieval and logical computation,”
+> PloS one , vol. 20, no. 12, p. e0337361, 2025.
+
+[15] J. Kay, K. Bartimote, K. Kitto, B. Kummerfeld, D. Liu, and P. Reimann, “Enhancing learning by Open Learner Model (OLM) driven data design,” Computers and Education: Artificial Intelligence , vol. 3, p. 100069, 2022. [16] S. S. Maram, J. Villareale, T. B. Fox, J. Zhu, and M. S. El-Nasr, “Parallel opm: A visualization system for analyzing peers board states for gameplay reflection,” in 2023 IEEE Conference on Games (CoG) .IEEE, 2023, pp. 1–2. [17] S. S. Maram, J. Villareale, J. Zhu, and M. Seif El-Nasr, “Open player modeling: Using AI to help reflection and learning in serious games,” in Proceedings of the 39th ACM/SIGAPP Symposium on Applied Com-puting , 2024, pp. 1–7. [18] J. Zhu, K. Alderfer, A. Furqan, J. Nebolsky, B. Char, B. Smith, and S. Onta˜ n´ on, “Programming in game space: How to represent parallel programming concepts in an educational game,” in Proceedings of the 14th International Conference on the Foundations of Digital Games ,2019, pp. 1–10. [19] S. S. Maram, E. Kleinman, J. Villareale, J. Zhu, and M. Seif El-Nasr, “”ah! I see” - facilitating process reflection in gameplay through a novel spatio-temporal visualization system,” in Proceedings of the CHI Conference on Human Factors in Computing Systems , vol. 3. ACM, 2024, pp. 1–19. [20] E. Kleinman, J. Villareale, M. Shergadwala, Z. Teng, A. Bryant, J. Zhu, and M. Seif El-Nasr, “Towards an understanding of how players make meaning from post-play process visualizations,” in Lecture Notes in Computer Science . Springer International Publishing, 2022, pp. 47– 58. [21] E. Kleinman, J. Villareale, M. N. Shergadwala, Z. Teng, A. Bryant, J. Zhu, and M. S. El-Nasr, “” what else can i do?” examining the impact of community data on adaptation and quality of reflection in an educational game,” in Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems , 2023, pp. 1–12. [22] S. S. Maram, J. Pfau, J. Villareale, Z. Teng, J. Zhu, and M. S. El-Nasr, “Mining player behavior patterns from domain-based spatial abstraction in games,” in 2023 IEEE Conference on Games (CoG) . IEEE, 2023, pp. 1–8. [23] D. Gibson and S. de Freitas, “Exploratory analysis in learning analytics,” 
+
+Technology, Knowledge and Learning , vol. 21, no. 1, pp. 5–19, 2016. [24] G. Wallner and S. Kriglstein, “Visualization-based analysis of gameplay data – a review of literature,” Entertainment Computing , vol. 4, no. 3, pp. 143–155, 2013. [25] C. S. Loh, Y. Sheng, and D. Ifenthaler, “Serious games analytics: Theo-retical framework,” in Serious Games Analytics . Springer International Publishing, 2015, pp. 3–29. [26] J. Pfau and M. Seif El-Nasr, “On video game balancing: Joining player-and data-driven analytics,” ACM Games , vol. 2, no. 3, pp. 1–27, 2024. [27] K. VanLehn, “The relative effectiveness of human tutoring, intelligent tutoring systems, and other tutoring systems,” Educational psychologist ,vol. 46, no. 4, pp. 197–221, 2011. [28] A. C. Graesser, P. Chipman, B. C. Haynes, and A. Olney, “AutoTutor: An intelligent tutoring system with mixed-initiative dialogue,” IEEE Transactions on Education , vol. 48, no. 4, pp. 612–618, 2005. [29] J. Park, J. Bae, U. Lee, T. Ahn, S. Lee, D. Kim, A. Choi, Y. Jeong, J. Moon, and H. Kim, “How to align large language models for teach-ing english? designing and developing llm based-chatbot for teaching english conversation in efl, findings and limitations,” arXiv preprint arXiv:2409.04987 , 2024. [30] L. Vastakas, “Cultural heritage search with large language models: Enhancing the discoverability of cultural heritage artifacts through large language model-based search systems,” Master’s thesis, Linnaeus University, 2024. [31] J. Achiam, S. Adler, S. Agarwal, L. Ahmad, I. Akkaya, F. L. Aleman, D. Almeida, J. Altenschmidt, S. Altman, S. Anadkat et al. , “Gpt-4 technical report,” arXiv preprint arXiv:2303.08774 , 2023. [32] Q. Ma, H. Shen, K. Koedinger, and S. T. Wu, “How to teach program-ming in the ai era? using llms as a teachable agent for debugging,” in International Conference on Artificial Intelligence in Education .Springer, 2024, pp. 265–279. [33] H. Jin, S. Lee, H. Shin, and J. Kim, “Teach ai how to code: Using large language models as teachable agents for programming education,” in Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems , 2024, pp. 1–28. [34] W. Dai, J. Lin, H. Jin, T. Li, Y.-S. Tsai, D. Gaˇ sevi´ c, and G. Chen, “Can large language models provide feedback to students? a case study on chatgpt,” in 2023 IEEE international conference on advanced learning technologies (ICALT) . IEEE, 2023, pp. 323–325. [35] K. Seßler, A. Bewersdorff, C. Nerdel, and E. Kasneci, “Towards adaptive feedback with ai: Comparing the feedback quality of llms and teachers on experimentation protocols,” arXiv preprint arXiv:2502.12842 , 2025. [36] Z. Liu, P. Agrawal, S. Singhal, V. Madaan, M. Kumar, and P. K. Verma, “Lpitutor: an llm based personalized intelligent tutoring system using rag and prompt engineering,” PeerJ Computer Science , vol. 11, p. e2991, 2025. [37] J. Li, X. Shi, K. Zhang, L. Li, G. Li, Z. Tao, F. Liu, C. Tao, and Z. Jin, “Coderag: Supportive code retrieval on bigraph for real-world code generation,” arXiv preprint arXiv:2504.10046 , 2025. [38] R. Stampfl, I. Ivki´ c, and B. Geyer, “Role-playing simulation games using chatgpt,” arXiv preprint arXiv:2402.09161 , 2024. [39] R. K. Maurya, “A qualitative content analysis of chatgpt’s client simulation role-play for practising counselling skills,” Counselling and Psychotherapy Research , vol. 24, no. 2, pp. 614–630, 2024. [40] B. Breen, “Large language models, experiential learning, and ai simula-tions in the classroom: The historylens framework,” Teaching History: A Journal of Methods , vol. 49, no. 1, pp. 10–33, 2025. [41] B. Kindenberg, “The role of ai in historical simulation design: A tpack perspective on a french revolution simulation design experience,” 
+
+Education Sciences , vol. 15, no. 2, p. 192, 2025. [42] J. Chen, M. Tang, Y. Lu, B. Yao, E. Fan, X. Ma, Y. Xu, D. Wang, Y. Sun, and L. He, “Characterizing llm-empowered personalized story-reading and interaction for children: Insights from multi-stakeholder perspectives,” arXiv preprint arXiv:2503.00590 , 2025. [43] P. Sweetser, “Large language models and video games: A preliminary scoping review,” in Proceedings of the 6th ACM Conference on Conver-sational User Interfaces , Jul 2024, pp. 1–8. [44] M. Wang, D. Zhang, J. Zhu, and H. Gu, “Effects of incorporating a large language model-based adaptive mechanism into contextual games on students’ academic performance, flow experience, cognitive load and behavioral patterns,” Journal of Educational Computing Research ,vol. 63, no. 3, pp. 662–694, 2025. [45] A. Tinterri, F. Pelizzari, G. Vignoli, F. Palladino, and M. di Padova, “Towards AI-assisted board game-based learning: Assessing LLMs in game personalisation,” in European Conference on Games Based Learning , vol. 18, no. 1, 2024, pp. 1107–1115. [46] P. Lewis, E. Perez, A. Piktus, F. Petroni, V. Karpukhin, N. Goyal, H. K¨ uttler, M. Lewis, W.-t. Yih, T. Rockt¨ aschel et al. , “Retrieval-augmented generation for knowledge-intensive nlp tasks,” Advances in neural information processing systems , vol. 33, pp. 9459–9474, 2020. [47] J. S. Park, J. O’Brien, C. J. Cai, M. R. Morris, P. Liang, and M. S. Bernstein, “Generative agents: Interactive simulacra of human behavior,” in Proceedings of the 36th annual acm symposium on user interface software and technology , 2023, pp. 1–22. [48] X. Zhu, Y. Chen, H. Tian, C. Tao, W. Su, C. Yang, G. Huang, B. Li, L. Lu, X. Wang et al. , “Ghost in the minecraft: Generally capable agents for open-world environments via large language models with text-based knowledge and memory,” arXiv preprint arXiv:2305.17144 , 2023. [49] F. D. Davis, “Perceived usefulness, perceived ease of use, and user acceptance of information technology,” MIS Quarterly , vol. 13, no. 3, pp. 319–340, 1989. [50] S. G. Hart and L. E. Staveland, “Development of nasa-tlx (task load index): Results of empirical and theoretical research,” in Advances in psychology . Elsevier, 1988, vol. 52, pp. 139–183. [51] R. M. Ryan, C. S. Rigby, and A. Przybylski, “The motivational pull of video games: A self-determination theory approach,” Motivation and emotion , vol. 30, no. 4, pp. 344–360, 2006. [52] V. Braun and V. Clarke, “Can i use TA? Should i use TA? Should i not use TA? Comparing reflexive thematic analysis and other pattern-based qualitative analytic approaches,” Counselling and Psychotherapy Research , vol. 21, no. 1, pp. 37–47, 2021. [53] N. K. Gale, G. Heath, E. Cameron, S. Rashid, and S. Redwood, “Using the framework method for the analysis of qualitative data in multi-disciplinary health research,” BMC Medical Research Methodology ,vol. 13, no. 1, p. 117, 2013. [54] J. R. Landis and G. G. Koch, “The measurement of observer agreement for categorical data,” biometrics , pp. 159–174, 1977.

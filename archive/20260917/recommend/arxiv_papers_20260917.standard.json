@@ -1,0 +1,215 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-17T21:48:36.535715+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2609.16679v1",
+      "source": "arxiv",
+      "title": "AI for Games in the Foundation Model Era",
+      "abstract": "Foundation models, alongside advances in learned game-world models, are reshaping AI across the game lifecycle. Beyond playing games, recent systems model players and game dynamics, support design and development, adapt player-facing experiences at runtime, and evaluate resulting artifacts. Yet these directions have evolved largely separately, obscuring which capabilities transfer across settings and which remain tied to particular games, engines, interfaces, or player populations. We organize the literature into six roles according to the immediate use of AI output: playing and acting; modeling players and games; designing games; building and maintaining games; generating and adapting at runtime; and testing and evaluating games. For each role, we examine what structure is supplied by the game or workflow, what AI learns or produces, which capabilities and artifacts transfer across settings and roles, and what evidence supports the claims. We identify cross-role connections: trajectories train world models, learned environments provide experience for agents, design specifications drive executable implementations, and play or testing feedback guides revision. However, control schemes, rules, engine interfaces, state representations, and player contexts often remain setting-specific, so downstream claims require validation in the target setting. Evaluation is most standardized for bounded game playing and selected learned environments, while persistent state in learned worlds, repeated software revision, validated player modeling, sustained runtime adaptation, and representative automated testing remain less established. The central challenge is to reuse or transfer outputs and capabilities across roles while re-establishing evidence for effectiveness in the game-specific contexts where they are used.",
+      "authors": [
+        "Meng Luo",
+        "Yanlin Li",
+        "Hao Li",
+        "Hongzhan Lin",
+        "Pengfei Zhou",
+        "Tianjie Ju",
+        "Ran Zhang",
+        "Yeying Jin",
+        "Mong-Li Lee",
+        "Wynne Hsu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-15T06:00:47+00:00",
+      "link": "https://arxiv.org/pdf/2609.16679v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Survey covering AI playing and acting in games, including game AI bots and RL techniques",
+      "llm_evidence_cn": "涵盖游戏AI扮演与行动角色的综述，涉及游戏AI机器人和强化学习技术",
+      "llm_evidence": "涵盖游戏AI扮演与行动角色的综述，涉及游戏AI机器人和强化学习技术",
+      "canonical_evidence": "涵盖游戏AI扮演与行动角色的综述，涉及游戏AI机器人和强化学习技术",
+      "llm_tldr_en": "Survey organizing AI for games literature into six roles: playing, modeling, designing, building, adapting, testing. Covers game AI bots, player modeling, runtime adaptation; links foundation models and RL to game lifecycle. Provides overview of capabilities and transfer gaps.",
+      "llm_tldr_cn": "该综述将游戏AI文献按六种角色组织：游玩行动、玩家与游戏建模、游戏设计、构建维护、运行时生成适应、测试评估。论文覆盖游戏AI机器人、玩家建模和运行时适应，并将基础模型与强化学习关联到游戏全生命周期。它提供了当前能力和迁移差距的全面视角。",
+      "llm_tldr": "该综述将游戏AI文献按六种角色组织：游玩行动、玩家与游戏建模、游戏设计、构建维护、运行时生成适应、测试评估。论文覆盖游戏AI机器人、玩家建模和运行时适应，并将基础模型与强化学习关联到游戏全生命周期。它提供了当前能力和迁移差距的全面视角。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.18286v1",
+      "source": "arxiv",
+      "title": "What Counts as Strategic Reasoning? A Systematic Mapping of Chess Research on Humans, Engines, and Language Models",
+      "abstract": "Chess has long served as a model domain for studying search, expertise, decision-making, and artificial intelligence. The emergence of large language models (LLMs) has renewed the relevance of chess as a controlled environment for investigating strategic reasoning and comparing human and artificial decision-making. We present a systematic mapping study of recent research spanning human players, classical chess engines, neural and reinforcement-learning systems, LLMs, and hybrid approaches. The final map comprises 84 core study families, classified according to agent type, strategic-reasoning stages, and evaluation dimensions.   The map reveals a literature strongly concentrated on situation assessment, evaluation, and action selection, while explicit planning, explanation, metacognition, and human--AI collaboration remain less explored. LLM research places particular emphasis on state representation and generalization, whereas grounded explanation appears more frequently in hybrid approaches combining language models with engines, expert knowledge, or other external structures. Two distinctions emerge that the map aggregates rather than resolves: hybrid systems differ in where and when heterogeneous capabilities combine, and evaluations that show improved human performance do not thereby establish human--AI synergy. We propose both as extensions of the mapping framework.   We argue that chess provides a useful bridge between cognitive and computational perspectives on strategic reasoning, and identify explicit planning, grounded and faithful explanation, metacognitive calibration, and human--AI complementarity as directions for future research.",
+      "authors": [
+        "Paolo Ciancarini",
+        "Remo Pareschi"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-16T08:06:57+00:00",
+      "link": "https://arxiv.org/pdf/2609.18286v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "systematic mapping of chess research on humans, engines, and language models including RL systems",
+      "llm_evidence_cn": "对国际象棋研究中人类、引擎和语言模型（含强化学习系统）的系统性映射",
+      "llm_evidence": "对国际象棋研究中人类、引擎和语言模型（含强化学习系统）的系统性映射",
+      "canonical_evidence": "对国际象棋研究中人类、引擎和语言模型（含强化学习系统）的系统性映射",
+      "llm_tldr_en": "Provides a systematic mapping of chess research across human players, engines, neural/RL systems, and LLMs, revealing concentration on situation assessment and evaluation.",
+      "llm_tldr_cn": "针对国际象棋作为战略推理和AI研究模型领域，对近期涉及人类棋手、传统引擎、神经与强化学习系统、大语言模型及混合方法的研究进行系统性映射，归纳出84个核心研究族。映射揭示文献高度集中在态势评估和评价维度，为游戏AI、人类-机器对比及战略推理研究提供了全面的分类与概览。",
+      "llm_tldr": "针对国际象棋作为战略推理和AI研究模型领域，对近期涉及人类棋手、传统引擎、神经与强化学习系统、大语言模型及混合方法的研究进行系统性映射，归纳出84个核心研究族。映射揭示文献高度集中在态势评估和评价维度，为游戏AI、人类-机器对比及战略推理研究提供了全面的分类与概览。",
+      "llm_tags": [
+        "query:gah:composite"
+      ],
+      "matched_query_tag": "query:gah:composite",
+      "matched_query_text": "Papers central to 强化学习和游戏AI bot及拟人化相关论文, especially work that connects or combines: reinforcement learning techniques for training game AI; game AI bot design and development; human-like game artificial intelligence; game playing agents with reinforcement learning; behavior of game AI bots; anthropomorphism in AI game bots; Papers on using reinforcement learning to create game AI bots; Research on humanizing game AI bots.",
+      "matched_requirement_id": "req-composite-gah",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.16270v1",
+      "source": "arxiv",
+      "title": "Cheap Talk Stabilizes Strategic Interaction in LLM Agents",
+      "abstract": "Large language models are increasingly deployed as interacting agents, making the persistence of their action policies across repeated interaction critical for reliable multi-agent operation. We investigate whether and how agent-generated, non-binding pre-play communication (\"cheap talk\") increases such persistence in four open-weight 7-9B-parameter LLMs. Our experiments span four repeated two-player games -- Prisoner's Dilemma, Snowdrift, Stag Hunt, and Harmony -- with incentive structures ranging from strategic conflict to alignment, each presented in six contexts. We observe unstable trajectories in all four games, although their prevalence and magnitude depend strongly on model and context. Across models, games, and contexts, cheap talk is predominantly stabilizing, with five corrected reversals concentrated in social or team framings; effects vary substantially by model and context. Controlled current-message interventions identify two separable output-level channels in Qwen: reduced action uncertainty and less between-round drift in action probabilities. Matched history-by-message counterfactuals further show that recent partner behavior conditions how mutual-benefit versus self-prioritizing language affects policy persistence. Finally, in Prisoner's Dilemma, we identify in Qwen and Falcon a history-balanced policy-content direction in late transformer layers; projecting out this direction increases realized switching during closed-loop play, demonstrating that complete trajectories are causally sensitive to this component. Together, these findings show that cheap talk can make individual trajectories more persistent across diverse incentive structures, while revealing that the magnitude and mechanisms of stabilization are model- and history-dependent.",
+      "authors": [
+        "Nunzio Lorè",
+        "Hongan Zhu",
+        "Babak Heydari"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA"
+      ],
+      "published": "2026-09-14T19:32:48+00:00",
+      "link": "https://arxiv.org/pdf/2609.16270v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "LLM agents playing repeated games with cheap talk",
+      "llm_evidence_cn": "大语言模型智能体在重复博弈中使用廉价沟通",
+      "llm_evidence": "大语言模型智能体在重复博弈中使用廉价沟通",
+      "canonical_evidence": "大语言模型智能体在重复博弈中使用廉价沟通",
+      "llm_tldr_en": "Investigates whether agent-generated cheap talk increases action policy persistence across repeated two-player games in LLM agents.",
+      "llm_tldr_cn": "针对大语言模型智能体在重复交互中策略不稳定的问题，研究智能体产生的非绑定事前沟通（廉价沟通）是否增强策略持续性。在囚徒困境、雪堆、猎鹿和和谐博弈四种重复双人博弈中，测试四个开源7-9B参数LLM。结果显示所有博弈中均出现不稳定轨迹，但廉价沟通普遍稳定了战略互动，其效果受模型和情境影响，为多智能体协调设计提供见解。",
+      "llm_tldr": "针对大语言模型智能体在重复交互中策略不稳定的问题，研究智能体产生的非绑定事前沟通（廉价沟通）是否增强策略持续性。在囚徒困境、雪堆、猎鹿和和谐博弈四种重复双人博弈中，测试四个开源7-9B参数LLM。结果显示所有博弈中均出现不稳定轨迹，但廉价沟通普遍稳定了战略互动，其效果受模型和情境影响，为多智能体协调设计提供见解。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "behavior of game AI bots",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.13718v1",
+      "source": "arxiv",
+      "title": "Oops, Not Now: PEARL, a RAG-Based Support Agent for Gameplay and What Players Want from AI Help",
+      "abstract": "AI-powered gameplay support agents hold promise for game-based learning, yet grounding generative models in structured game data remains an open challenge. We present PEARL (Parallel Education Agent for Reflection and Learning), a dual-component Retrieval-Augmented Generation (RAG) system that combines semantic knowledge retrieval with structural board-state matching to deliver contextualized scaffolding in Parallel, a puzzle game for learning parallel programming. PEARL operates on two input streams (natural language queries and board topology), retrieving both conceptual explanations of gameplay moves and peer-generated board states as evidence: capabilities unavailable to a standard Large Language Model (LLM) with game state access alone. In a qualitative evaluation (N=10) comparing PEARL against an existing community-based Open Player Model (OPM) visualization system, participants preferred the visualization system on perceived usefulness and reported higher frustration with PEARL; five of ten minimized or abandoned the AI tool during play. Proactive delivery, generic responses, and trust deficits drove disengagement, while a subset of four participants found PEARL's grounded explanations complementary to visualization in specific contexts where they initiated the interaction. We position PEARL as a deployed design probe whose failure modes inform a concrete design agenda for AI gameplay support, captured as seven open problems for the community.",
+      "authors": [
+        "Jiahong Li",
+        "Sai Siddartha Maram",
+        "Atieh Kashani",
+        "Ulia Zaman",
+        "Zhiyu Lin",
+        "Cameron Marano",
+        "Roger Azevedo",
+        "Jichen Zhu",
+        "Magy Seif El-Nasr"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.AI"
+      ],
+      "published": "2026-09-12T05:05:29+00:00",
+      "link": "https://arxiv.org/pdf/2609.13718v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Designs a RAG-based gameplay support agent for a puzzle game, studying player needs for AI help.",
+      "llm_evidence_cn": "为益智游戏设计基于RAG的游戏支持智能体，研究玩家对AI帮助的需求。",
+      "llm_evidence": "为益智游戏设计基于RAG的游戏支持智能体，研究玩家对AI帮助的需求。",
+      "canonical_evidence": "为益智游戏设计基于RAG的游戏支持智能体，研究玩家对AI帮助的需求。",
+      "llm_tldr_en": "Presents PEARL, a dual-component RAG system that combines semantic knowledge retrieval with board-state matching to provide contextualized scaffolding in a learning game; surveys player preferences for AI help.",
+      "llm_tldr_cn": "针对游戏化学习中生成式模型难以接地于结构化游戏数据的问题，提出PEARL系统。PEARL采用双组件RAG架构，同时处理自然语言查询和棋盘拓扑，检索概念解释与同伴棋局状态作为证据，为学习者提供情境化支架。在Parallel益智游戏中的部署与用户研究表明，PEARL能有效支持反思学习，并揭示了玩家对AI帮助的期望特征，为设计更人性化的游戏AI支持系统提供了依据。",
+      "llm_tldr": "针对游戏化学习中生成式模型难以接地于结构化游戏数据的问题，提出PEARL系统。PEARL采用双组件RAG架构，同时处理自然语言查询和棋盘拓扑，检索概念解释与同伴棋局状态作为证据，为学习者提供情境化支架。在Parallel益智游戏中的部署与用户研究表明，PEARL能有效支持反思学习，并揭示了玩家对AI帮助的期望特征，为设计更人性化的游戏AI支持系统提供了依据。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "game AI bot design and development",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.15544v1",
+      "source": "arxiv",
+      "title": "Specifying Reward Functions for RL Without Environment Sampling",
+      "abstract": "Enabling human stakeholders to specify reward functions that lead to their desired outcomes is a key challenge in deploying reinforcement learning agents. Preference-based methods such as online RLHF can reduce the burden of manual reward design, but they require repeatedly training policies, sampling trajectories from the real world, and eliciting feedback, making them impractical in settings where environment interaction is computationally expensive or unsafe. We introduce Experience-Free Autonomous Reward Specification (EARS), a method for learning reward functions from preferences without environment interaction. Our approach uses a structured LLM-mediated process to construct a small set of expressive reward features from a task description and the environment observation space, then strategically samples imagined trajectories in this feature space and learns feature weights from preferences over the imagined trajectory pairs. We evaluate on three long-horizon domains: pandemic lockdown regulation design, insulin administration for diabetes patients, and autonomous vehicle control on a highway. We compare EARS to baselines that also enable reward specification without environment interaction--namely, methods that directly prompt an LLM to generate a reward function. When learning from either ground-truth preference labels or preferences labeled by a LLM, EARS designs reward functions that are more aligned with the ground truth reward function that produced the preferences or LLM context than these baselines. These results suggest that preference-based reward specification remains effective without environment sampling, enabling practical reward design in settings where collecting real trajectories is costly or infeasible.",
+      "authors": [
+        "Stephane Hatgis-Kessell",
+        "W. Bradley Knox",
+        "Emma Brunskill"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-09-14T13:28:52+00:00",
+      "link": "https://arxiv.org/pdf/2609.15544v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Reward specification method for reinforcement learning",
+      "llm_evidence_cn": "强化学习的奖励函数指定方法",
+      "llm_evidence": "强化学习的奖励函数指定方法",
+      "canonical_evidence": "强化学习的奖励函数指定方法",
+      "llm_tldr_en": "Introduces EARS, an experience-free autonomous reward specification method that learns reward functions from preferences without environment interaction.",
+      "llm_tldr_cn": "针对偏好学习方法需反复环境交互导致不实用的问题，提出无环境采样的自主奖励指定方法EARS。通过结构化LLM介导过程，从任务描述和环境信息构建小型表达性奖励特征集，无需在线轨迹即可从偏好中学习奖励函数。实验验证EARS在无交互情况下有效学习奖励，为部署强化学习智能体提供更安全的奖励设计途径。",
+      "llm_tldr": "针对偏好学习方法需反复环境交互导致不实用的问题，提出无环境采样的自主奖励指定方法EARS。通过结构化LLM介导过程，从任务描述和环境信息构建小型表达性奖励特征集，无需在线轨迹即可从偏好中学习奖励函数。实验验证EARS在无交互情况下有效学习奖励，为部署强化学习智能体提供更安全的奖励设计途径。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
