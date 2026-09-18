@@ -1,0 +1,424 @@
+Title: A Qualitative Model for Reasoning about Path and Support
+
+URL Source: https://arxiv.org/pdf/2609.20349v1
+
+Published Time: Fri, 18 Sep 2026 01:16:47 GMT
+
+Number of Pages: 7
+
+Markdown Content:
+# A Qualitative Model for Reasoning about Path and Support 
+
+# Abhishek Jaiswal , Zoe Falomir 
+
+# Ume˚ a University, Sweden 
+
+# {abhishek.jaiswal,zoe.falomir }@umu.se 
+
+# Abstract 
+
+Spatial reasoning abilities correlate strongly with per-formance in STEM fields. Games offer a compelling medium for training these critical skills in develop-ing children who have a natural proclivity for play. However, to facilitate human-like tutoring and player guidance, these games require an AI agent capable of making commonsense inferences from spatial events. Qualitative reasoning (QR) models appear to be a suit-able framework for these application domains. As these models reason in symbolic representations, they can seamlessly translate game states into interpretable feedback for human-like player guidance. This pa-per introduces a hybrid qualitative model designed for Camelot Jr., a block-puzzle game that requires con-structing multi-level bridges to connect two avatars stationed on separate towers. The game poses a chal-lenge for the player, who must make platforms sta-ble, plan their path, and ensure they use all the pro-vided blocks. To handle the precise physics required by the domain, we integrate a mathematical center-of-mass stability logic to guide our qualitative solver. Our work facilitates spatial skill training in Camelot Jr. and contributes to the development of human-centric, explainable game-playing agents. 
+
+# 1 Introduction 
+
+Qualitative Spatial and Temporal Representations and Reason-ing (QSTR) [Cohn and Renz, 2007; Ligozat, 2011; Sioutis and Wolter, 2021] models and reasons about time (i.e., coinci-dence, order, concurrency, overlap, granularity) and also about properties of space (i.e., topology, location, direction, proxim-ity, geometry, intersection, etc.) as well as their evolution in time across continuous neighboring situations. Maintaining spa-tial and temporal consistency and constraints is fundamental to qualitative reasoning when solving spatial problems (such as pathfinding, orientation, and relative positioning) and temporal problems (such as constraint satisfaction, schedule optimization, and precedence) [Guesgen and Bhatt, 2009]. As a result, well-defined qualitative models and reasoning techniques have been invented in the literature that can handle imprecise and incom-plete knowledge at the symbolic level. Spatio-temporal reason-ing has proven successful across a wide range of domains and applications such as: robotics [Mast et al. , 2016; Falomir et al. ,2011, 2013], computer vision [Suchan, 2022], ambient intelli-gence [Falomir and Oltet ¸eanu, 2015], architecture and design [Li and Schultz, 2024; Bhatt and Freksa, 2015], geographic infor-mation systems [Wei et al. , 2024; Clementini and Cohn, 2024; Moratz et al. , 2025], safety analysis [Grigoleit et al. , 2017], au-tonomous driving [Monsen et al. , 2025], game playing [Jaiswal and Srivastava, 2024] and education [Kragten et al. , 2024; Santa-marta et al. , 2023]. A comprehensive survey of the most relevant calculi in Qualitative Spatial Reasoning (QSR) can be found in Dylla et al. [2017]. Furthermore, qualitative representations are believed to be closer to the cognitive domain, as shown in cognitive models of sketch recognition [Lovett et al. , 2006], spatial problem-solving tasks (e.g., visual oddity tasks) [Lovett and Forbus, 2011], paper-folding reasoning tests [Falomir, 2016; Falomir 
+
+et al. , 2021], analogy in Raven’s Progressive Matrices [Lovett and Forbus, 2017], logic composition of qualitative shapes in solving cognitive tests [Falomir et al. , 2020; Pich and Falomir, 2018], modeling 2D spatial abstraction during mental rotation tasks [Lovett and Schultheis, 2014], solving 3D rotation tasks [Ejarque and Falomir, 2026], and solving the Cube Comparison Test (CCT) [Falomir et al. , 2026; Falomir, 2025]. Therefore, novel models that combine QSTR, cognitive spa-tial thinking, and common sense are a challenge that holds the promise of further advances in Artificial Intelligence and its ap-plications. Moreover, spatial cognition studies have shown that there is a strong link between spatial abilities and success in Science, Technology, Engineering and Math (STEM) disciplines [New-combe, 2010; Wai et al. , 2009]. For example, children as young as four years old already have an informal awareness of spatial relations, such as identifying parallel lines for two dimensional shape description, well before they are formally taught about them [Sinclair et al. , 2013]. For this reason, researchers in the US and Canada study the current status and future possibilities of spatial reasoning in contemporary school mathematics [Sin-clair and Bruce, 2014], also because spatial learning and rea-soning can be easily taught using the visual and kinetic interac-tions offered by new digital technologies [Highfield and Mulli-gan, 2007]. In cognitive psychology, games like Upside Down World are used to evaluate spatial skills of students by challenging them to recreate buildings composed of multilink cubes in their upright orientation and use spatial language to describe the composition of the buildings to their colleagues for building them accordingly [Sinclair and Bruce, 2014]. Also, to help identify gifted children, the German Academic Foundation tests kids on matching the consistent projection of a 3D object corresponding to a technical drawing 1. In previous works by one of the authors, a qualitative model for 3D object description was developed, and promising         
+
+> 1Test der Studienstiftung: Gehirnjogging f¨ ur Hochbegabte ,see Spiegel Online: http://www.spiegel.de/quiztool/ quiztool-49771.html arXiv:2609.20349v1 [cs.AI] 17 Sep 2026
+
+results were obtained [Falomir, 2015]. Consequently, QSR methods present a unique opportunity to develop game-playing agents that follow a human-centric logic. While this paradigm requires frameworks grounded in symbolic representations, existing research on spatial games like Angry Birds suggests the need to complement pure symbolic abstrac-tions by mathematical knowledge of physical phenomena Haase and Wolter [2021]. In this work, we investigate a hybrid spa-tial reasoning framework using the bridge-building puzzle game 
+
+Camelot Jr. (illustrated in Figure 1), where the core objective is to construct a continuous path connecting a starting position to a goal point. To address this, we propose a solver model grounded in human-like commonsense logic that combines qualitative rea-soning modules with physical stability calculations. Concretely, this paper explores the challenge of formulating a model that can serve two objectives: • Help people understand how to solve games involving spa-tial stability and path planning, so that they can improve their spatial skills and therefore enhance their success in STEM; and also, • Equip artificial intelligence agents with the symbolic and physical reasoning mechanisms to solve spatial problems in wooden puzzle games so that they can reason about the spatial stability and path finding. The rest of the paper is organized as follows. Section 2 out-lines the specifics of the Camelot Jr. game. Section 3 introduces the Qualitative Descriptor model for the game. Section 4 de-scribes the game constraints for the qualitative model to comply with. Section 5 details the numerical centre-of-mass (COM) sta-bility logic. Section 6 describes the graph traversal logic used by the agent in the game. Section 7 explains the path-finding algorithm using the previously discussed ingredients. Section 8 concludes with a discussion on the current scope and future directions. 
+
+# 2 The Camelot Jr. Game: Background 
+
+This section presents the various game elements, how they inter-act, and the rules governing their behavior. 
+
+2.1 Game Elements and Definitions 
+
+All gameplay in Camelot Jr. occurs on a vertical 2D Grid 
+
+that represents the castle layout, where the Ground serves as the base of the grid and acts as the primary immutable support for all structures. The core task revolves around two animated characters, the Knight (K) and the Princess (P ), who must be connected by a path comprising various block pieces across the layout. The environment contains fixed Towers (T ), which are solid, permanent structures positioned at the start of a challenge. To bridge structural gaps, the player deploys pieces from a lim-ited inventory of Blocks (B), consisting of rectangular building blocks that serve as stable, walkable platforms and stair-blocks, which combine a solid block with a ramp side that allows di-agonal movement up or down. The ramp side occupies exactly one grid cell. The rectangular blocks can be of sizes 1 to 3. The stair-block has one ramp side combined with rectangular blocks of size one or two (see Figure 2 for sample stair-block orienta-tions). The entire environment is governed by a global Gravity con-straint, ensuring that every placed block structure is physically viable under static equilibrium to be considered a valid solution. Together, these elements dictate the available Walkable Space ,defined as the set of empty grid cells located immediately above stable structures or the ground. Crucially, for stair-blocks, the ramp face itself constitutes the active walkable surface rather than the empty grid cell above it. A schematic overview of the game is illustrated in Figure 1. 
+
+2.2 Game Mechanics and Objectives 
+
+The primary objective in Camelot Jr. is to use a limited set of blocks to construct a path for the Knight to reach the Princess. This task is governed by three environmental constraints. First, no game element can extend beyond the castle grid. Second, towers stay fixed; they cannot be moved or rotated. Third, ev-ery inventory block given at the start must be used in the final solution. Beyond these operational boundaries, the player must follow the rules of structural placement and stability. The support rule requires that every block must rest on solid ground, a fixed tower, or another stable block. Under the global stability rule, any as-sembly of inventory blocks must remain viable under gravita-tional torque without toppling. The inclined side of a stair-block cannot support another block (i.e., no block can be placed on top of the ramp for stability). However, if a horizontal stair-block is inverted with its flat bottom on top ( HNI and HMI in Figure 2), it provides a valid horizontal support surface. A valid solution gives a walkable path, defined as a sequence of connected grid cells, from the Knight to the Princess. 
+
+# 3 Qualitative Description 
+
+3.1 Grid Environment ( G)
+
+The grid is a set of cells cx,y where x ∈ [0 , W ) and y ∈ [0 , H ):
+
+cx,y =
+
+
+
+0 Empty Space 
+
+1 Tower (T )
+
+id ≥ 1 Placed Block (B)
+
+K = ( xk, y k) (Knight) and P = ( xp, y p) (Princess). 
+
+3.2 Block Definition 
+
+A block B is defined as a 4-tuple representing its intrinsic prop-erties and current state: 
+
+B = {N, id , O, χ }
+
+Where: • N ∈ Z+ is the Scalar Size , representing the length of the block segment. • id ∈ Z is the unique identifier used for tracking grid occu-pancy and enforcing placement order. • O is the Orientation State Vector , stores the particular orientation of the block to be used for grid placement. • χ ∈ { 0, 1} is the Stair Indicator , defining whether the block possesses ramp side ( χ = 1 ) or is a standard flat block ( χ = 0 ). A placement is a mapping L : B → (x, y ), where (x, y ) repre-sents the anchor coordinate (the bottom-left cell) of the block in the grid G. We define Bx,y as the block instance whose anchor point is situated at (x, y )
+
+3.3 The Orientation State Vector 
+
+The vector O = ( Axis , f, ι ) governs the spatial projection and parity of the block via three qualitative operations: • Axis ∈ { H, V }: Determines if the block is Horizontal or Vertical. Inventory: B1 B2 B3 
+
+TTTTK P
+
+> (a) Initial fixed configuration.
+
+TTTTB2 B3 B1 
+
+K P
+
+> (b) Knight’s solution path.
+
+TTTTB2 B3 B1 
+
+K P   
+
+> (c) Agent’s internal graph traversal.
+
+Figure 1: Qualitative discrete representation of a Camelot Jr. game challenge layout: (a) initial problem state, (b) a stable solution path with stair-blocks placed in horizontal and vertical orientations, and (c) the agent’s internal path traversal graph. The agent’s moves are: ( move-right ), ( move-right + move-diagonal-down ), and ( move-diagonal-up ). 
+
+Label State Name (Axis , f, ι ) if χ = 1 Functional Affordance HN Horizontal Normal (H, 0, 0) Flat structural support + Downward ramp from left to right 
+
+HM Horizontal Mirror (H, 1, 0) Flat structural support + Upward ramp from left to right 
+
+HNI Horizontal Inverted (H, 0, 1) Flat structural support 
+
+HMI Horizontal Mirror Inverted (H, 1, 1) Flat structural support 
+
+VN Vertical Normal (V, 0, 0) Upward ramp from left to right 
+
+VM Vertical Mirror (V, 1, 0) Downward ramp from left to right 
+
+VNI Vertical Normal Inverted (V, 0, 1) Inverted Pillar (Illegal placement) 
+
+VMI Vertical Mirror Inverted (V, 1, 1) Inverted Pillar (Illegal placement) 
+
+RB Rectangular Solid Block χ = 0 Flat structural support Table 1: Qualitative orientation labels and the supported affordances for inventory blocks • Reflection (f ∈ { 0, 1}): Governs horizontal parity (Mir-roring). • Inversion (ι ∈ { 0, 1}): Governs vertical parity (Flipping). The solver navigates the orientation space using three discrete operations: • Reflect ( R): A Horizontal Flip (Reflection across the ver-tical axis), • Invert ( I): A Vertical Flip (Reflection across the horizontal axis), • Transpose ( T ): A 90 ◦ Anti-Clockwise Rotation. Table 1 describes the various orientations for a stair-block, along with the affordance of the orientations. Figure 2 shows a schematic of the various ramp orientations. Horizontal Normal refers to the base orientation of a stair-block with the ramp oc-cupying the rightmost size (1st diagram in Figure 2). For a rectangular block denoted as RB , only two distinct ori-entations exist - Horizontal and Vertical and we use only the Axis label to define them. 
+
+3.4 State Transition Matrix 
+
+Table 2 defines how orientation changes through various qual-itative operations for a stair-block. The solver utilizes this to explore valid placements during backtracking. For rectangular blocks only to-and-fro Horizontal-Vertical state transitions exist. From subsequent discussion, we consider only the legal place-ments of stair-blocks.      
+
+> HN HM HNI HMI VN VM VNI VMI
+
+Figure 2: The eight qualitative orientation states for a stair-block (N > = 2 ). Arrangements like VNI and VMI are illegal as per the game rules. 
+
+# 4 Block Placement Constraints for the Solver 
+
+4.1 Spatial Restrictions 
+
+The effective dimensions (we, h e) are emergent properties de-rived from the Scalar Size N and the Axis state: 
+
+(we, h e) = 
+
+(N, 1) if Axis = H
+
+(1 , N ) if Axis = V
+
+A placement L : B → (x, y ) is valid only if every grid cell 
+
+c within the block’s effective dimensions (we, h e) is currently empty (value = 0 ). 
+
+∀j ∈ [0 , w e), ∀i ∈ [0 , h e) : cx+j,y +i = 0 
+
+This rule ensures that blocks do not collide with fixed Towers or previously placed inventory items. Additionally, the placement must satisfy the Boundary Constraint: 
+
+x + w < W and y + h < H Initial State Reflect ( R) Invert ( I) Transpose ( T )
+
+HN HM HNI VN HM HN HMI VNI (Illegal) HNI HMI HN VM HMI HNI HM VMI (Illegal) VN VM VNI (Illegal) HMI VM VN VMI (Illegal) HM Table 2: State Transition Matrix for qualitative block orienta-tions. Pruned states are marked as Illegal. 
+
+4.2 Foundational Restrictions 
+
+To optimize the search process, the solver evaluates a block’s im-mediate foundational support before committing to a placement. For any block Bx,y not at ground level ( y > 0), there must be at least one valid point of support contact with the structure below. Support is validated by inspecting the cells directly beneath the block’s footprint. For these supporting blocks, we have: For j ∈ [0 , w e] and (xsup , y sup ) ∈ cx+j,y −1,
+
+ValidSupport (xsup , y sup ) = True if: 1. cxsup ,y sup ̸ = 0 i.e., xsup , y sup must be part of a Block Bsup 
+
+2. χ = 0 i.e., Bsup is not a stair-block. 3. If Bsup ∈ { HNI , HMI } (i.e., χ = 1 and ι = 1 ), it is an inverted stair-block providing flat structural support. 4. If Bsup ∈ { HN , HM , VN , VM } (i.e., χ = 1 and ι = 0 ), the support is invalid if (xsup , y sup ) is the non-inverted ramp cell, i.e.,                 
+
+> (xsup , y sup )̸=
+> 
+> (xs+N−1, y s)if label (Bsup ) = HN
+> (xs, y s)if label (Bsup ) = HM
+> (xs, y s+N−1) if label (Bsup )∈ { VN ,VM }
+
+where (xs, y s) denotes the structural anchor (the bottom-left ref-erence cell) of the supporting block Bsup , and N represents the dimension length of the block. This support logic works because any non-stair horizontal or vertical block allows walking over itself. Similarly, if the stair is inverted ( ι = 1 ), the block acts as a flat top surface, and support is valid throughout its width. For a normal stair-block, the sup-port is valid as long as the cell xsup , y sup is not the ramp cell of the stair-block. 
+
+# 5 Recursive Stability Formalization 
+
+The solver verifies structural integrity by iterating through all placed pieces in descending order of their vertical position (y). This top-down sequence follows real-world centre-of-mass (COM) physics and ensures that loads from higher blocks are propagated to those below. 
+
+Recursive Load Aggregation 
+
+From top to bottom in each stack of blocks, for each block Bi
+
+with weight wi, we define the total weight Wi from the top till 
+
+Bi including it and their resultant moment Mi:
+
+Wi = wi + X
+
+> k∈Loads (i)
+
+wk
+
+Mi = ( wi · ci) + X
+
+> k∈Loads (i)
+
+(wk · ck)
+
+Here Loads (i) represents all blocks above Bi, ci and ck repre-sent the COM for Bi and blocks above it. The effective COM for the system including Bi is then: 
+
+COM res,i = Mi
+
+Wi
+
+The Convex Hull Constraint 
+
+A sub-stack of blocks is considered stable if, and only if, its resultant center of mass is contained within the bounds of its support geometry: 
+
+smin ≤ COM res,i ≤ smax 
+
+Where smin and smax represent the extreme horizontal bound-aries of all supporting cells (x, y − 1) in contact with the base block ( Bi) of the current sub-stack. 
+
+Bridge Distribution (The Lever Rule) 
+
+In cases of multiple supports (e.g., a bridge), the total weight 
+
+Wi is distributed between the two outermost supports s1 and s2
+
+with horizontal center points cp 1 and cp 2 (where cp 1 < cp 2). The force f1 allocated to support s1 is determined by: 
+
+f1 = Wi · cp 2 − COM res,i 
+
+cp 2 − cp 1
+
+The remaining force f2 = Wi − f1 is transmitted to s2. This recursive propagation continues until the forces are absorbed by the immutable ground or towers. 
+
+# 6 Cell Affordances for Agent Actions 
+
+Once the entire block inventory is placed on the grid and veri-fied as structurally stable, the agent attempts to discover a valid path connecting the Knight to the Princess. Starting from the Knight’s position, the agent operates within a Directed Acyclic Graph (DAG) framework, with the movement primitives move-right , move-diagonal-up , and move-diagonal-down (Table 3). The agent initiates a move-right motion from an idle position; however, depending on the structural affordances of the terrain where the agent lands, a move-diagonal-up or move-diagonal-down adjustment may follow automatically depending on where the agent lands. 
+
+Action Label Coordinate Transition 
+
+move-diagonal-up (i, j ) → (i + 1 , j + 1) 
+
+move-diagonal-down (i, j ) → (i + 1 , j − 1) 
+
+move-right (i, j ) → (i + 1 , j )
+
+Table 3: Permissible agent actions during path exploration from the Knight to the Princess. Let the intentional horizontal target cell be cx,y at grid posi-tion (x, y ) = ( i+1 , j ), and let (xsup , y sup ) = ( i+1 , j −1) be the underlying support cell provided by block Bsup . Let (xs, y s) de-note the bottom-left anchor point of the block under evaluation (i.e., the support block if the target cell is empty, or the block occupying the target cell otherwise). A transition is valid if it satisfies any of the following conditions: 1. Flat Foundation ( ∆y = 0 ): A horizontal move is valid if the cell is empty and the agent is supported by a flat boundary. This occurs if the support cell directly below is ground ( j − 1 = 0 ), a tower, or a block with flat struc-tural support. For inventory block support, we require: 
+
+cx,y = 0 ∧ cxsup ,y sup ∈ { RB , HNI , HMI }2. Stair Platform ( ∆y = 0): A horizontal move is still valid if the agent walks along the flat surface of an up-right stair-block. Only HN and HM blocks present this spe-cific combination of a flat walking surface and a ramp cell: 
+
+cx,y = 0 ∧ cxsup ,y sup ∈ { HN , HM } such that 
+
+(xsup , y sup )̸ =
+
+(xs + N − 1, y s) if label (Bsup ) = HN 
+
+(xs, y s) if label (Bsup ) = HM 3. Geometric Descent ( ∆y = −1): An automatic di-agonal downward transition is triggered when the hor-izontal movement causes the agent to land over an empty cell whose underlying support footprint cor-responds exactly to a downward-sloping ramp cell. 
+
+cx,y = 0 ∧ cxsup ,y sup ∈ { HN , VM } such that 
+
+(xsup , y sup ) = 
+
+(xs + N − 1, y s) if label (Bsup ) = HN 
+
+(xs, y s + N − 1) if label (Bsup ) = VM 4. Geometric Ascent ( ∆y = +1 ): A diagonal upward tran-sition automatically follows if the agent lands on the ramp cell of an ascending stair. This is the only case in which the landing cell for move-right is not an empty cell ( cx,y ̸ = 0 ), and validity requires the entry point to match the ramp cell. 
+
+cx,y ̸ = 0 ∧ cx,y ∈ { HM , VN } such that 
+
+(x, y ) = 
+
+(xs, y s) if label (Bx,y ) = HM 
+
+(xs, y s + N − 1) if label (Bx,y ) = VN Figure 1c illustrates the agent’s motion as it executes two con-secutive move-right actions from the Knight’s initial position. It lands on a cell above the downward ramp, which automatically triggers a move-diagonal-down action. Subsequently, it lands on an upward ramp, triggering a move-diagonal-up action and enabling the agent to successfully reach the Princess. Although the agent’s path differs slightly from the Knight’s traced path due to stair-block traversal mechanics, both approaches follow the same block-placement structure. 
+
+# 7 Pathfinding Agent Behaviour 
+
+The agent’s solving algorithm is implemented using a recursive backtracking protocol. Algorithm 1 describes the step-by-step working of the agent. It searches the permutation space of the inventory I to identify a final structural arrangement that satis-fies two independent evaluation criteria: Static Stability and Path Connectivity .Mirroring a human player, the agent places inventory blocks one after another onto the grid layout, evaluates their structural validity once the inventory is fully deployed, and subsequently evaluates path connectivity. Similar to an intelligent player who intuitively rules out any piece configuration unlikely to reach the target destination, our solver implements geometric pruning strategies to cut off impractical search branches that cannot con-nect the start and the end points with the remaining inventory. 
+
+7.1 Search Criteria 
+
+To evaluate a candidate grid configuration G, the solver verifies two primary conditions: • Static Stability: This condition is satisfied if every placed inventory block conforms to the convex hull stability con-straint (Section 5), verifying that no component of the structural assembly will tilt or collapse under gravity. In-tegrating this quantitative physics metric ensures that the qualitative model accurately respects the domain’s physi-cal constraints. 
+
+Algorithm 1 Recursive Backtracking Search for Stable Path So-lutions 
+
+Require: Inventory I, Current grid configuration G, Placed blocks set U
+
+Ensure: A stable grid configuration with a valid path, or failure  
+
+> 1:
+
+if |U| = |I| then  
+
+> 2:
+
+{Base Case: Inventory deployed } 
+
+> 3:
+
+if not IsEntireStructureStable (G) then  
+
+> 4:
+
+return false {Reject: unstable structure } 
+
+> 5:
+
+end if  
+
+> 6:
+
+Path ← FindValidPath (G) 
+
+> 7:
+
+if Path ̸ = ∅ then  
+
+> 8:
+
+SaveSolution (G, Path ) 
+
+> 9:
+
+return true {Solution confirmed } 
+
+> 10:
+
+end if  
+
+> 11:
+
+return false {Reject: unreachable goal } 
+
+> 12:
+
+end if  
+
+> 13:
+
+B ← SelectUnusedBlock (I \ U ) 
+
+> 14:
+
+for each Orientation O ∈ GetOrientations (B) do  
+
+> 15:
+
+for each Position (x, y ) ∈ GridCoordinates do  
+
+> 16:
+
+if not HasValidSupportFootprint (G, x, y, O ) then  
+
+> 17:
+
+continue {Prune if no support from below } 
+
+> 18:
+
+end if  
+
+> 19:
+
+if CanPlaceBlock (G, x, y, O ) then  
+
+> 20:
+
+G ← ApplyPlacement (G, B, x, y, O ) 
+
+> 21:
+
+U ← U ∪ { B} 
+
+> 22:
+
+if SolveRecursive (I, G, U) = true then  
+
+> 23:
+
+return true {Propagate success upstream } 
+
+> 24:
+
+end if  
+
+> 25:
+
+{Backtrack: Revert state if path or stability fails } 
+
+> 26:
+
+G ← RemovePlacement (G, B ) 
+
+> 27:
+
+U ← U \ { B} 
+
+> 28:
+
+end if  
+
+> 29:
+
+end for  
+
+> 30:
+
+end for  
+
+> 31:
+
+return false {Exhausted branches without success }
+
+• Path Connectivity: This condition is satisfied if the pathfinding module successfully extracts a continuous route from the Knight’s starting location K to the Princess’s destination cell P based on sequential spatial affordances (Section 6). 
+
+7.2 Search Protocol and Backtracking 
+
+The solver employs a recursive backtracking approach to sys-tematically explore the valid state space: 1. Sequential Placement: Blocks are selected one-by-one from the inventory I and assigned a local coordinate po-sition via the mapping L : B → (x, y ) alongside an ori-entation choice O. Each block can serve as the starting point and all block orientations are tested recursively. Each potential placement enforces spatial Exclusion Rules and Foundational Restrictions (Section 4). 2. Inventory Exhaustion: The recursive engine continues branching until every asset within the inventory set has been successfully allocated to the grid. 3. Global Validation: Once all the inventory is used, the agent verifies the center-of-mass (COM) stability of the complete assembly. It is necessary to check stability only after placing all blocks, as sometimes counterweights can stabilize an initially unstable arrangement. 4. Path Verification: If the final configuration is completely stable, the agent invokes the grid-walking graph to evaluate connectivity between K and P via sequential cell affor-dances (Section 6). 5. State Reversion: If the agent fails to satisfy any of the cri-teria previously described, it backtracks to a previous state, clearing the cell occupancy for the most recent node allo-cation ( cx,y → 0), and tests for other alternative branches. 
+
+7.3 Termination Criteria 
+
+The search terminates and yields a complete solution when both static stability and path connectivity are satisfied. The search can continue further to find multiple solutions, depending on the specific requirements of the agent solver. 
+
+# 8 Discussion and Future Work 
+
+This work presents a hybrid qualitative solver for the puzzle game Camelot Jr. , which requires understanding of structural stability and spatial path connectivity. Our solver agent lever-ages a symbolic paradigm to investigate the game state using common-sense logic, formalizing environmental interactions through qualitative structural affordances. Because the game mechanics involve complex physical equilibria, we integrate this symbolic layer with a numerical center-of-mass (COM) stabil-ity logic. By fusing these qualitative and numerical ingredients, the agent successfully solves arbitrary configuration challenges within the game’s problem space. We envisage several use cases and extensions for this kind of solving methodology. First, the framework can be used to train human spatial reasoning, specifically regarding structural stabil-ity and path visualization. Because the agent’s decision-making process is inspired by human-centric thinking, the system can serve as a core engine for an intelligent tutoring system, provid-ing meaningful, human-like hints tailored to a player’s current solution attempt. Experiments with students in STEM fields, en-gaging with such interactive teaching tools, can be an effective educational aid. Second, the solver’s qualitative behavior opens up opportuni-ties to investigate the specific structural and combinatorial pa-rameters that increase task difficulty from a human perspective. By tracking metrics such as placement options, inventory count, and orientation and pruning efficiency across various levels, we can develop metrics that quantify how humans navigate spatial path-building games. Building upon this foundational setup, we plan to extend this hybrid paradigm to other physical puzzle games of a similar na-ture. Investigating how qualitative action affordances and rigor-ous physical constraints interact across different game environ-ments will help uncover more generalized logics of human-like game-playing and tutoring, providing a clear roadmap for future inquiry. 
+
+# Acknowledgments 
+
+We acknowledge the funding by the Wallenberg AI, Au-tonomous Systems and Software Program (WASP) awarded by the Knut and Alice Wallenberg Foundation, and the funding by 
+
+Stiftelserna J.C. Kempes och Seth M. Kempes minne , Sweden. 
+
+# References 
+
+M. Bhatt and C. Freksa. Spatial computing for design: an arti-ficial intelligence perspective. In John S. Gero, editor, Study-ing Visual and Spatial Reasoning for Design Creativity , pages 109–127. 2015. Eliseo Clementini and Anthony G. Cohn. Extension of rcc*-9 to complex and three-dimensional features and its reasoning system. ISPRS Int. J. Geo Inf. , 13(1):25, 2024. A. G. Cohn and J. Renz. Qualitative Spatial Reasoning, Hand-book of Knowledge Representation . Elsevier, Wiley-ISTE, London, 2007. Frank Dylla, Jae Hee Lee, Till Mossakowski, Thomas Schnei-der, Andr´ e van Delden, Jasper van de Ven, and Diedrich Wolter. A survey of qualitative spatial and temporal calculi: Algebraic and computational properties. ACM Comput. Surv. ,50(1):7:1–7:39, 2017. Marti Ejarque and Zoe Falomir. Applying the qualitative model for reasoning about 3d perspectives (q3d) to solve a spatial test about rotations. In International Workshop on Qualita-tive Reasoning (QR’26), co-located at the 35nd Joint Interna-tional Conference on Artificial Intelligence (IJCAI) , Bremen, Germany, August 2026. Z. Falomir and A.-M. Oltet ¸eanu. Logics based on qualitative descriptors for scene understanding. Neurocomputing , 161:3– 16, 2015. Z. Falomir, E. Jim´ enez-Ruiz, M. T. Escrig, and L. Museros. De-scribing images using qualitative models and description log-ics. Spatial Cognition and Computation , 11(1):45–74, 2011. Z. Falomir, L. Museros, V. Castell´ o, and L. Gonzalez-Abril. Qualitative distances and qualitative image descriptions for representing indoor scenes in robotics. Pattern Recognition Letters , 38:731–743, 2013. Zoe Falomir, Albert Pich, and Vicent Costa. Spatial reasoning about qualitative shape compositions. Ann. Math. Artif. Intell. ,88(5-6):589–621, 2020. Zoe Falomir, Ruben Tarin, Aurelio Puerta, and Pablo Garcia-Segarra. An interactive game for training reasoning about pa-per folding. Multim. Tools Appl. , 80(5):6535–6566, 2021. Zoe Falomir, Ramon Garcia-Pou, and Vicent Costa. A qualita-tive model to reason about object rotations – applied to solve the Cube Comparison Test. 2026. Under Review. Zoe Falomir. A qualitative model for reasoning about 3d ob-jects using depth and different perspectives. In T. Lechowski, P. Wallega, and M. Zawidzki, editors, LQMR 2015 Workshop ,volume 7 of Annals of Computer Science and Information Systems , pages 3–11. PTI, 2015. Z. Falomir. Towards a qualitative descriptor for paper folding reasoning. In Proc. of the 29th International Workshop on Qualitative Reasoning , 2016. Co-located with IJCAI’2016 in New York, USA. Zoe Falomir. A qualitative model to reason about object rota-tions (QOR) applied to solve the cube comparison test (CCT). 
+
+ArXiv preprint arXiv.2601.08382 , 2025. Florian Grigoleit, Sebastian Holei, Andreas Pleuss, Robert Reiser, Julian Rhein, Peter Struss, and Jana von Wedel. The qsafe project - developing a tool for current practice in func-tional safety analysis. In Marina Zanella, Ingo Pill, and Alessandro Cimatti, editors, 28th International Workshop on Principles of Diagnosis (DX’17), Brescia, Italy, September 26-29, 2017 , Kalpa Publications in Computing, pages 297– 312. EasyChair, 2017. H. Guesgen and M. Bhatt, editors. Proc. of the Workshop on Spatial and Temporal Reasoning , Pasadena, California, USA, 2009. International Joint Conference on Artificial Intelligence (IJCAI). Felix Haase and Diedrich Wolter. Behind the corner: Using qualitative reasoning for solving angry birds. 2021. K. Highfield and J. Mulligan. The role of dynamic interactive technological tools in preschoolers’ mathematical patterning. In J. Watson and K. Beswick, editors, Proc. of the 30th annual conference of the Mathematics Education Research Group of Australasia , volume 1, pages 372–381. MERGA, 2007. Abhishek Jaiswal and Nisheeth Srivastava. Learning to play video games with intuitive physics priors. arXiv preprint arXiv:2409.13886 , 2024. Marco Kragten, Tessa Hoogma, and Bert Bredeweg. Integra-tion of a teacher dashboard in a hybrid support approach for constructing qualitative representations. In Rafael Ferreira Mello, Nikol Rummel, Ioana Jivet, Gerti Pishtari, and Jos´ e A. Ruip´ erez-Valiente, editors, Technology Enhanced Learning for Inclusive and Equitable Quality Education - 19th Euro-pean Conference on Technology Enhanced Learning, EC-TEL 2024, Krems, Austria, September 16-20, 2024, Proceedings, Part I , Lecture Notes in Computer Science, pages 208–221. Springer, 2024. Beidi Li and Carl Schultz. Clingo2dsr - a clingo-based software system for declarative spatial reasoning. Spatial Cognition & Computation , 0(0):1–51, 2024. G. Ligozat. Qualitative Spatial and Temporal Reasoning . MIT Press, Wiley-ISTE, London, 2011. A. Lovett and K. Forbus. Cultural commonalities and differ-ences in spatial problem-solving: A computational analysis. 
+
+Cognition , 121(2):281 – 287, 2011. A. Lovett and K. Forbus. Modeling visual problem solving as analogical reasoning. Psychological Review , 124(1):60 – 90, 2017. Andrew M. Lovett and Holger Schultheis. Modeling spatial abstraction during mental rotation. In Paul Bello, Marcello Guarini, Marjorie McShane, and Brian Scassellati, editors, 
+
+Proceedings of the 36th annual conference of the Cognitive Science Society , pages 886 – 891. Cognitive Science Society, 2014. A. Lovett, M. Dehghani, and K. Forbus. Learning of qualitative descriptions for sketch recognition. In Proc. 20th Int. Work-shop on Qualitative Reasoning (QR), Hanover, USA, July ,2006. Vivien Mast, Zoe Falomir, and Diedrich Wolter. Probabilis-tic reference and grounding with PRAGR for dialogues with robots. J. Exp. Theor. Artif. Intell. , 28(5):889–911, 2016. Julius Monsen, Jakob Suchan, and Mehul Bhatt. Probabilistic answer set programming driven ranking of dynamic space-time belief models. In Rules and Reasoning: 9th Interna-tional Joint Conference, RuleML+RR 2025, Istanbul, Turkey, September 22–24, 2025, Proceedings , page 156–175, Berlin, Heidelberg, 2025. Springer-Verlag. Reinhard Moratz, Niklas Daute, James Ondieki, Markus Kat-tenbeck, Mario Krajina, and Ioannis Giannopoulos. Bi-lateral spatial reasoning about street networks: Graph-based RAG with qualitative spatial representations. CoRR ,abs/2512.15388, 2025. N. Newcombe. Picture this: Increasing math and science learning by improving spatial thinking. American Educator ,34(2):29–35, 2010. Albert Pich and Zoe Falomir. Logical composition of qualitative shapes applied to solve spatial reasoning tests. Cogn. Syst. Res. , 52:82–102, 2018. Vicent Santamarta, Pablo Garcia-Segarra, Noelia Ventura-Campos, Aida Moreno-Rus, and Zoe Falomir. Reversal error in mathematics: Training against it using ϵ-coach. In Ismael Sanz, Raquel Ros, and Jordi Nin, editors, Artificial Intelli-gence Research and Development - Proceedings of the 25th International Conference of the Catalan Association for Arti-ficial Intelligence, CCIA 2023, M´ on Sant Benet, Spain, 25-27 October 2023 , Frontiers in Artificial Intelligence and Appli-cations, pages 241–249. IOS Press, 2023. N. Sinclair and C. D. Bruce. Spatial reasoning for young learn-ers, Research Forum. In Proc. of the 38th Conference of the International Group for the Psychology of Mathematics Edu-cation and the 36th Conference of the North American Chap-ter of the Psychology of Mathematics Education (PME 38 / PME-NA 36) , pages 173–205, Vancouver, Canada, July 2014. N. Sinclair, E. de Freitas, and F. Ferrara. Virtual encounters: the murky and furtive world of mathematical inventiveness. 
+
+ZDM. The International Journal on Mathematics Education ,45(2):239–252, 2013. Michael Sioutis and Diedrich Wolter. Qualitative spatial and temporal reasoning: Current status and future challenges. In 
+
+IJCAI , pages 4594–4601, 2021. Jakob Suchan. Declarative reasoning about space and motion in visual imagery - theoretical foundations and applications .PhD thesis, Bremen University, Germany, 2022. J. Wai, D. Lubinksi, and C. P. Benbow. Spatial ability for STEM domains: Aligning over 50 years of cumulative psychological knowledge solidifies its importance. Journal of Educational Psychology , 101(4):817–835, 2009. Lijun Wei, Val´ erie Gouet-Brunet, and Anthony G. Cohn. Loca-tion retrieval using qualitative place signatures of visible land-marks. Int. J. Geogr. Inf. Sci. , 38(8):1633–1677, 2024.

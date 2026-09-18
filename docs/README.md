@@ -6,38 +6,38 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-09-17
-- 运行时间：2026-09-17 21:53:35 UTC
+- 最新运行日期：2026-09-18
+- 运行时间：2026-09-18 21:52:25 UTC
 - 运行状态：成功
 - 本次总论文数：5
-- 精读区：2
-- 速读区：3
+- 精读区：1
+- 速读区：4
 
 ### 今日简报（AI）
-- 今日共生成 5 篇推荐（精读 2 篇，速读 3 篇）
-- 精读：《AI for Games in the Foundation Model Era》（9.0/10）, 《What Counts as Strategic Reasoning? A Systematic Mapping of Chess Research on Humans, Engines, and Language Models》（9.0/10）
-- 速读：《Cheap Talk Stabilizes Strategic Interaction in LLM Agents》（7.0/10）, 《Oops, Not Now: PEARL, a RAG-Based Support Agent for Gameplay and What Players Want from AI Help》（6.0/10）, 《Specifying Reward Functions for RL Without Environment Sampling》（6.0/10）
+- 今日共生成 5 篇推荐（精读 1 篇，速读 4 篇）
+- 精读：《A Qualitative Model for Reasoning about Path and Support》（9.0/10）
+- 速读：《What Counts as Strategic Reasoning? A Systematic Mapping of Chess Research on Humans, Engines, and Language Models》（7.0/10）, 《Granularity-Adaptive Credit Assignment for Long-Horizon LLM Agent Reinforcement Learning》（6.0/10）, 《EvoRS: On-Policy Self-Evolution of Reward Systems for Open-Ended Reinforcement Learning》（6.0/10）
 - 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202609/17/README](/202609/17/README)
+- 详情：[/202609/18/README](/202609/18/README)
 
 ### 精读区论文标签
-1. [AI for Games in the Foundation Model Era](/202609/17/2609.16679v1-ai-for-games-in-the-foundation-model-era)  
+1. [A Qualitative Model for Reasoning about Path and Support](/202609/18/2609.20349v1-a-qualitative-model-for-reasoning-about-path-and-support)  
    标签：评分：9.0/10、query:gah
-   evidence：涵盖游戏AI扮演与行动角色的综述，涉及游戏AI机器人和强化学习技术
-2. [What Counts as Strategic Reasoning? A Systematic Mapping of Chess Research on Humans, Engines, and Language Models](/202609/17/2609.18286v1-what-counts-as-strategic-reasoning-a-systematic-mapping-of-chess-research-on-humans-engines-and-language-models)  
-   标签：评分：9.0/10、query:gah
-   evidence：对国际象棋研究中人类、引擎和语言模型（含强化学习系统）的系统性映射
+   evidence：用于游戏AI的定性推理模型，提供人类化辅导和玩家指导
 
 ### 速读区论文标签
-1. [Cheap Talk Stabilizes Strategic Interaction in LLM Agents](/202609/17/2609.16270v1-cheap-talk-stabilizes-strategic-interaction-in-llm-agents)  
+1. [What Counts as Strategic Reasoning? A Systematic Mapping of Chess Research on Humans, Engines, and Language Models](/202609/18/2609.18286v1-what-counts-as-strategic-reasoning-a-systematic-mapping-of-chess-research-on-humans-engines-and-language-models)  
    标签：评分：7.0/10、query:gah
-   evidence：大语言模型智能体在重复博弈中使用廉价沟通
-2. [Oops, Not Now: PEARL, a RAG-Based Support Agent for Gameplay and What Players Want from AI Help](/202609/17/2609.13718v1-oops-not-now-pearl-a-rag-based-support-agent-for-gameplay-and-what-players-want-from-ai-help)  
+   evidence：国际象棋研究中强化学习系统的系统图谱
+2. [Granularity-Adaptive Credit Assignment for Long-Horizon LLM Agent Reinforcement Learning](/202609/18/2609.12424v1-granularity-adaptive-credit-assignment-for-long-horizon-llm-agent-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：为益智游戏设计基于RAG的游戏支持智能体，研究玩家对AI帮助的需求。
-3. [Specifying Reward Functions for RL Without Environment Sampling](/202609/17/2609.15544v1-specifying-reward-functions-for-rl-without-environment-sampling)  
+   evidence：适用于游戏AI bot训练的粒度自适应信用分配
+3. [EvoRS: On-Policy Self-Evolution of Reward Systems for Open-Ended Reinforcement Learning](/202609/18/2609.12459v1-evors-on-policy-self-evolution-of-reward-systems-for-open-ended-reinforcement-learning)  
    标签：评分：6.0/10、query:gah
-   evidence：强化学习的奖励函数指定方法
+   evidence：开放式强化学习的自进化奖励系统
+4. [Groupoid-Based Internal State Representations for Reinforcement Learning with Local Symmetries](/202609/18/2609.13035v1-groupoid-based-internal-state-representations-for-reinforcement-learning-with-local-symmetries)  
+   标签：评分：6.0/10、query:gah
+   evidence：使用群胚的RL状态表示，可用于游戏AI
 
 
 <div class="dpr-home-promo-card">
