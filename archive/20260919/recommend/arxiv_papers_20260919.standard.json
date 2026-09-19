@@ -1,0 +1,96 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-19T21:11:31.642877+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2609.15987v1",
+      "source": "arxiv",
+      "title": "Bellman Policy Optimization",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) improves the reasoning capabilities of large language models (LLMs). We introduce Bellman Policy Optimization (BPO), a critic-free method derived from Policy Mirror Descent (PMD). For autoregressive generation with terminal rewards, BPO uses the Bellman equations to reformulate PMD as a trajectory-level objective. The reformulation avoids estimating state values at intermediate states. We prove that it has the same unique optimal solution as the original PMD objective. We derive the practical BPO loss by approximating this objective. Its mismatch-correction weight is a smoothed ratio of complementary token probabilities. Experiments on mathematical reasoning benchmarks demonstrate the effectiveness of BPO.",
+      "authors": [
+        "Zhuoqing Song",
+        "Haotian Xu",
+        "Xikun Zhang",
+        "Lidong Bing"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL",
+        "math.OC"
+      ],
+      "published": "2026-09-14T17:59:47+00:00",
+      "link": "https://arxiv.org/pdf/2609.15987v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "general RL algorithm for autoregressive generation with terminal rewards, applicable to game AI",
+      "llm_evidence_cn": "针对自回归生成与终端奖励的通用强化学习算法，可应用于游戏AI",
+      "llm_evidence": "针对自回归生成与终端奖励的通用强化学习算法，可应用于游戏AI",
+      "canonical_evidence": "针对自回归生成与终端奖励的通用强化学习算法，可应用于游戏AI",
+      "llm_tldr_en": "Bellman Policy Optimization is a critic-free RL method for autoregressive generation with terminal rewards, derived from Policy Mirror Descent via Bellman equations. It avoids state value estimation and shows effectiveness on math reasoning.",
+      "llm_tldr_cn": "针对带有可验证奖励的强化学习可以提高大语言模型推理能力的问题，本文提出贝尔曼策略优化（BPO），一种基于策略镜像下降的无批评家方法。BPO利用贝尔曼方程将目标重写为轨迹级目标，避免估计中间状态价值，并推导出实际损失函数。在数学推理基准上的实验表明BPO有效提升了推理性能，为LLM的强化学习训练提供了新算法。",
+      "llm_tldr": "针对带有可验证奖励的强化学习可以提高大语言模型推理能力的问题，本文提出贝尔曼策略优化（BPO），一种基于策略镜像下降的无批评家方法。BPO利用贝尔曼方程将目标重写为轨迹级目标，避免估计中间状态价值，并推导出实际损失函数。在数学推理基准上的实验表明BPO有效提升了推理性能，为LLM的强化学习训练提供了新算法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.18599v1",
+      "source": "arxiv",
+      "title": "Online Robust Reinforcement Learning Through Monte-Carlo Planning",
+      "abstract": "Monte Carlo Tree Search (MCTS) is a powerful framework for solving complex decision-making problems, yet it often relies on the assumption that the simulator and the real-world dynamics are identical. Although this assumption helps achieve the success of MCTS in games like Chess, Go, and Shogi, the real-world scenarios incur ambiguity due to their modeling mismatches in low-fidelity simulators. In this work, we present a new robust variant of MCTS that mitigates dynamical model ambiguities. Our algorithm addresses transition dynamics and reward distribution ambiguities to bridge the gap between simulation-based planning and real-world deployment. We incorporate a robust power mean backup operator and carefully designed exploration bonuses to ensure finite-sample convergence at every node in the search tree. We show that our algorithm achieves a convergence rate of $\\mathcal{O}(n^{-1/2})$ for the value estimation at the root node, comparable to that of standard MCTS. Finally, we provide empirical evidence that our method achieves robust performance in planning problems even under significant ambiguity in the underlying reward distribution and transition dynamics.",
+      "authors": [
+        "Tuan Dam",
+        "Kishan Panaganti",
+        "Brahim Driss",
+        "Adam Wierman"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-09-16T12:52:13+00:00",
+      "link": "https://arxiv.org/pdf/2609.18599v1",
+      "tags": [
+        "keyword:gah",
+        "query:gah"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Robust MCTS variant for RL, applicable to game AI",
+      "llm_evidence_cn": "用于RL的鲁棒MCTS变体，可应用于游戏AI",
+      "llm_evidence": "用于RL的鲁棒MCTS变体，可应用于游戏AI",
+      "canonical_evidence": "用于RL的鲁棒MCTS变体，可应用于游戏AI",
+      "llm_tldr_en": "Proposes a robust MCTS variant that handles transition and reward ambiguities using a power mean backup and exploration bonuses, bridging sim-to-real gap for RL planning in games and beyond.",
+      "llm_tldr_cn": "针对MCTS在模拟器与真实动态不一致时性能下降的问题，论文提出一种鲁棒的MCTS变体。该方法通过鲁棒功率均值备份算子和精心设计的探索奖励来应对转移动态和奖励分布的不确定性。实验表明该算法在模型歧义下仍能保持有限样本性能。该工作为游戏AI和仿真到现实迁移提供了更可靠的规划方法。",
+      "llm_tldr": "针对MCTS在模拟器与真实动态不一致时性能下降的问题，论文提出一种鲁棒的MCTS变体。该方法通过鲁棒功率均值备份算子和精心设计的探索奖励来应对转移动态和奖励分布的不确定性。实验表明该算法在模型歧义下仍能保持有限样本性能。该工作为游戏AI和仿真到现实迁移提供了更可靠的规划方法。",
+      "llm_tags": [
+        "query:gah"
+      ],
+      "matched_query_tag": "query:gah",
+      "matched_query_text": "reinforcement learning techniques for training game AI",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

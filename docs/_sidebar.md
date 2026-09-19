@@ -1,6 +1,10 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-09-19 <!--dpr-date:20260919-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/19/2609.15987v1-bellman-policy-optimization" data-sidebar-item="{&quot;title&quot;: &quot;Bellman Policy Optimization&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.15987v1-bellman-policy-optimization&quot;, &quot;score&quot;: &quot;7.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;针对自回归生成与终端奖励的通用强化学习算法，可应用于游戏AI&quot;}">Bellman Policy Optimization</a>
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/19/2609.18599v1-online-robust-reinforcement-learning-through-monte-carlo-planning" data-sidebar-item="{&quot;title&quot;: &quot;Online Robust Reinforcement Learning Through Monte-Carlo Planning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.18599v1-online-robust-reinforcement-learning-through-monte-carlo-planning&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;用于RL的鲁棒MCTS变体，可应用于游戏AI&quot;}">Online Robust Reinforcement Learning Through Monte-Carlo Planning</a>
   * 2026-09-18 <!--dpr-date:20260918-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/18/2609.20349v1-a-qualitative-model-for-reasoning-about-path-and-support" data-sidebar-item="{&quot;title&quot;: &quot;A Qualitative Model for Reasoning about Path and Support&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.20349v1-a-qualitative-model-for-reasoning-about-path-and-support&quot;, &quot;score&quot;: &quot;9.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;用于游戏AI的定性推理模型，提供人类化辅导和玩家指导&quot;}">A Qualitative Model for Reasoning about Path and Support</a>
