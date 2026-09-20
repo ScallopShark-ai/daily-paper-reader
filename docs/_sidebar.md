@@ -1,6 +1,11 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-09-20 <!--dpr-date:20260920-->
+    * 精读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/20/2609.18935v1-long-lived-characters-local-inference-incremental-memory-maintenance-for-game-npcs" data-sidebar-item="{&quot;title&quot;: &quot;Long-Lived Characters, Local Inference: Incremental Memory Maintenance for Game NPCs&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.18935v1-long-lived-characters-local-inference-incremental-memory-maintenance-for-game-npcs&quot;, &quot;score&quot;: &quot;9.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;游戏NPC语言模型的增量记忆维护，支持对话与游戏动作&quot;}">Long-Lived Characters, Local Inference: Incremental Memory Maintenance for Game NPCs</a>
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/20/2609.15361v1-robust-and-efficient-communication-for-multi-agent-learning" data-sidebar-item="{&quot;title&quot;: &quot;Robust and Efficient Communication for Multi-Agent Learning&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.15361v1-robust-and-efficient-communication-for-multi-agent-learning&quot;, &quot;score&quot;: &quot;7.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;多智能体正则化通信框架，用于多智能体强化学习的通信鲁棒性&quot;}">Robust and Efficient Communication for Multi-Agent Learning</a>
   * 2026-09-19 <!--dpr-date:20260919-->
     * 速读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/19/2609.15987v1-bellman-policy-optimization" data-sidebar-item="{&quot;title&quot;: &quot;Bellman Policy Optimization&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.15987v1-bellman-policy-optimization&quot;, &quot;score&quot;: &quot;7.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;gah&quot;}], &quot;evidence&quot;: &quot;针对自回归生成与终端奖励的通用强化学习算法，可应用于游戏AI&quot;}">Bellman Policy Optimization</a>

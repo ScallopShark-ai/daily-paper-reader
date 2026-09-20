@@ -6,29 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-09-19
-- 运行时间：2026-09-19 21:13:19 UTC
+- 最新运行日期：2026-09-20
+- 运行时间：2026-09-20 21:34:53 UTC
 - 运行状态：成功
 - 本次总论文数：2
-- 精读区：0
-- 速读区：2
+- 精读区：1
+- 速读区：1
 
 ### 今日简报（AI）
-- 今日共生成 2 篇推荐（精读 0 篇，速读 2 篇）
-- 速读：《Bellman Policy Optimization》（7.0/10）, 《Online Robust Reinforcement Learning Through Monte-Carlo Planning》（6.0/10）
+- 今日共生成 2 篇推荐（精读 1 篇，速读 1 篇）
+- 精读：《Long-Lived Characters, Local Inference: Incremental Memory Maintenance for Game NPCs》（9.0/10）
+- 速读：《Robust and Efficient Communication for Multi-Agent Learning》（7.0/10）
 - 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202609/19/README](/202609/19/README)
+- 详情：[/202609/20/README](/202609/20/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [Long-Lived Characters, Local Inference: Incremental Memory Maintenance for Game NPCs](/202609/20/2609.18935v1-long-lived-characters-local-inference-incremental-memory-maintenance-for-game-npcs)  
+   标签：评分：9.0/10、query:gah
+   evidence：游戏NPC语言模型的增量记忆维护，支持对话与游戏动作
 
 ### 速读区论文标签
-1. [Bellman Policy Optimization](/202609/19/2609.15987v1-bellman-policy-optimization)  
+1. [Robust and Efficient Communication for Multi-Agent Learning](/202609/20/2609.15361v1-robust-and-efficient-communication-for-multi-agent-learning)  
    标签：评分：7.0/10、query:gah
-   evidence：针对自回归生成与终端奖励的通用强化学习算法，可应用于游戏AI
-2. [Online Robust Reinforcement Learning Through Monte-Carlo Planning](/202609/19/2609.18599v1-online-robust-reinforcement-learning-through-monte-carlo-planning)  
-   标签：评分：6.0/10、query:gah
-   evidence：用于RL的鲁棒MCTS变体，可应用于游戏AI
+   evidence：多智能体正则化通信框架，用于多智能体强化学习的通信鲁棒性
 
 
 <div class="dpr-home-promo-card">
