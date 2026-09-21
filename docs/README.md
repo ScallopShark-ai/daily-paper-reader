@@ -6,29 +6,22 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-09-20
-- 运行时间：2026-09-20 21:34:53 UTC
+- 最新运行日期：2026-09-21
+- 运行时间：2026-09-21 22:47:51 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：1
-- 速读区：1
+- 本次总论文数：0
+- 精读区：0
+- 速读区：0
 
 ### 今日简报（AI）
-- 今日共生成 2 篇推荐（精读 1 篇，速读 1 篇）
-- 精读：《Long-Lived Characters, Local Inference: Incremental Memory Maintenance for Game NPCs》（9.0/10）
-- 速读：《Robust and Efficient Communication for Multi-Agent Learning》（7.0/10）
-- 这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。
-- 详情：[/202609/20/README](/202609/20/README)
+> 今日无新推荐，系统未产出可展示论文。
+- 详情：[/202609/21/README](/202609/21/README)
 
 ### 精读区论文标签
-1. [Long-Lived Characters, Local Inference: Incremental Memory Maintenance for Game NPCs](/202609/20/2609.18935v1-long-lived-characters-local-inference-incremental-memory-maintenance-for-game-npcs)  
-   标签：评分：9.0/10、query:gah
-   evidence：游戏NPC语言模型的增量记忆维护，支持对话与游戏动作
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [Robust and Efficient Communication for Multi-Agent Learning](/202609/20/2609.15361v1-robust-and-efficient-communication-for-multi-agent-learning)  
-   标签：评分：7.0/10、query:gah
-   evidence：多智能体正则化通信框架，用于多智能体强化学习的通信鲁棒性
+- 本次无速读推荐。
 
 
 <div class="dpr-home-promo-card">
